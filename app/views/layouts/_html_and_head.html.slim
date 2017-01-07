@@ -1,0 +1,68 @@
+doctype html
+html lang="en"
+  head
+
+    title == content_for?(:page_title) ? yield(:page_title) : "Startup Alliance"
+
+    /meta name='description' content='The SkillBank mission is to spark the imagination of people who want to learn.'
+    /meta name='keywords'    content='education, learning, career, hobby, skills, skill, activities, activity, skill building'
+
+    /meta property='og:title' content='SkillBank'
+    /meta property='og:type' content='website'
+    /meta property='og:site_name' content='SkillBank'
+    /meta property='og:description' content='The SkillBank mission is to spark the imagination of people who want to learn.'
+    /meta property='og:url' content='http://skillbank.io'
+    /meta property='fb:app_id' content='1814078232153628'
+
+    /meta name="apple-mobile-web-app-capable" content='yes'
+    /meta name="apple-mobile-web-app-title" content="SkillBank"
+    /meta name="application-name" content="SkillBank"
+    /meta name="mobile-web-app-capable" content='yes'
+    /meta charset="utf-8"
+
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    <link href='/assets/apple-touch-startup-image-320x460.png?v=1' media='(device-width: 320px)' rel='apple-touch-startup-image'>
+    <link href='/assets/apple-touch-startup-image-640x920.png?v=1' media='(device-width: 320px) and (-webkit-device-pixel-ratio: 2)' rel='apple-touch-startup-image'>
+    <link href='/assets/apple-touch-startup-image-750x1294.png?v=1' media='(device-width: 375px) and (-webkit-device-pixel-ratio: 2)' rel='apple-touch-startup-image'>
+    <link href='/assets/apple-touch-startup-image-1242x2148.png?v=1' media='(device-width: 414px) and (-webkit-device-pixel-ratio: 3)' rel='apple-touch-startup-image'>
+
+    /= favicon_link_tag
+    /= favicon_link_tag 'favicon-16x16.png?v=1', rel: 'icon', type: 'image/png', sizes: '16x16'
+    /= favicon_link_tag 'favicon-32x32.png?v=1', rel: 'icon', type: 'image/png', sizes: '32x32'
+    /= favicon_link_tag 'favicon-96x96.png?v=1', rel: 'icon', type: 'image/png', sizes: '96x96'
+    /= favicon_link_tag 'apple-touch-icon.png?v=1', rel: 'apple-touch-icon', type: 'image/png'
+    /= favicon_link_tag 'apple-touch-icon-precomposed.png?v=1', rel: 'apple-touch-icon', type: 'image/png'
+    /= favicon_link_tag 'apple-touch-icon-57x57.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '57x57'
+    /= favicon_link_tag 'apple-touch-icon-60x60.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '60x60'
+    /= favicon_link_tag 'apple-touch-icon-72x72.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '72x72'
+    /= favicon_link_tag 'apple-touch-icon-76x76.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '76x76'
+    /= favicon_link_tag 'apple-touch-icon-114x114.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '114x114'
+    /= favicon_link_tag 'apple-touch-icon-120x120.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '120x120'
+    /= favicon_link_tag 'apple-touch-icon-144x144.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '144x144'
+    /= favicon_link_tag 'apple-touch-icon-152x152.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '152x152'
+    /= favicon_link_tag 'apple-touch-icon-180x180.png?v=1', rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180'
+
+    - if Rails.env.production?
+      / Facebook pixel
+      /javascript:
+        !function (f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function (){n.callMethod ?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push = n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+          document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+        /fbq('init', '1745907309020072');
+        /fbq('track', "PageView");
+
+      /noscript
+        img height="1" width="1" style="display:none"src="https://www.facebook.com/tr?id=1745907309020072&ev=PageView&noscript=1"
+
+      /= javascript_include_tag 'hotjar'
+
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'modernizr'
+    = javascript_include_tag 'application'
+    /= stylesheet_link_tag 'foundation-select'
+    = csrf_meta_tag
+

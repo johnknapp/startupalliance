@@ -1,0 +1,24 @@
+.row
+  /- if params[:action] != 'home' and current_or_guest_user.role == 'guest' and (current_or_guest_user.adjects.present? or current_or_guest_user.interests.present? or current_or_guest_user.proficiencies.present?)
+    = render 'layouts/guest_reminder'
+  hr
+  .small-6.columns
+    ul.menu.simple.snug-top.faint
+      /li= link_to 'FAQ', faq_path
+      /li= link_to 'Leaderboards', leaderboards_path
+      /li= link_to 'Contributors guide', contributors_guide_path                       if current_user
+      li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
+
+  .small-6.columns
+    p.text-right.snug-top.faint
+      ' Made with
+      i.fi-heart.red-text
+      |  in Silicon Valley
+      /- if params[:action] == 'home'
+        | &nbsp;
+        | &nbsp;
+        | &nbsp;
+        a href="https://mixpanel.com/f/partner"
+          img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" width='90px'
+
+  p.hide-for-large &nbsp;

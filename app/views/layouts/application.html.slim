@@ -1,0 +1,28 @@
+= render 'layouts/html_and_head'
+body.Site
+  /= javascript_include_tag 'fb_js_sdk'
+  .Site-content
+    .off-canvas-wrapper.full-height
+      .off-canvas-wrapper-inner.full-height data-off-canvas-wrapper='true'
+        .off-canvas.position-right#off-canvas-menu data-off-canvas='true' data-position='right'
+          = render 'layouts/off_canvas_menu'
+        .off-canvas-content data-off-canvas-content=true
+          .row
+            .small-12.columns
+              /= render 'layouts/impersonation'
+              - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
+                = render 'layouts/topbar'
+              - else
+                .text-right.little-space-top= link_to root_path do
+                  i.fa.fa-home.light-primary-text
+              = render 'layouts/alerts'
+              = yield
+  .Site-footer
+    - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
+      = render 'layouts/footer'
+= javascript_include_tag 'foundation-select'
+- if Rails.env.production?
+  /= javascript_include_tag 'google_analytics'
+- unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
+  = javascript_include_tag('http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-574f6d8a09c60bbf', async: 'async')
+/ twitter

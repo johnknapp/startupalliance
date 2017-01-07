@@ -1,0 +1,67 @@
+button.close-button data-close=true aria-label='Close'
+  span aria-hidden=true
+    | &times;
+
+.row
+  .small-10.small-offset-1.columns
+    .little-space-top=link_to image_tag('skillbank_logo.svg'), root_path
+hr
+
+/ul.menu.vertical.snug-bottom
+  /li.snug-top &nbsp;
+
+  /li
+    = link_to root_path do
+      i.fa.fa-home
+      | &nbsp;
+      ' Home
+  li= link_to 'FAQ', faq_path
+  /li= link_to 'Leaderboards', leaderboards_path
+  li= link_to 'Contributors guide', contributors_guide_path
+  /hr
+  /ul.menu.vertical.snug-bottom
+    li.snug-top.bold= link_to 'Explore:',  '#'
+  ul.dropdown.menu data-dropdown-menu=true
+    li
+      = link_to 'Browse Activities', discover_activities_path
+      ul.menu
+        - Branch.visible_branches.each do |b|
+          li= link_to b.name, branch_path(b)
+    /li= render 'partials/search_activity_minimal'
+    /li.snug-top.snug-bottom &nbsp;
+    /li= render 'partials/search_skill_minimal'
+    hr
+
+  - if can? :manage, Approval
+    /li.snug-top &nbsp;
+    li.snug-top.bold= link_to 'Approvals:',  '#'
+    li= link_to "(#{Activity.invisible_count}) Activities",    approvals_activities_path
+    li= link_to "(#{Skill.invisible_count}) Skills",           approvals_skills_path
+    li= link_to "(#{Resource.invisible_count}) Resources",        approvals_resources_path
+    li= link_to "(#{Flag.count}) Flagged materials",  approvals_flags_path
+    li= link_to "(#{ActivitySkill.invisible_count}) Activity : Skills",  approvals_activity_skills_path
+    li= link_to "(#{SkillResource.invisible_count}) Skill : Resources",  approvals_skill_resources_path
+    hr
+
+  - if can? :manage, :all
+    li.snug-top.bold= link_to 'Admin:',  '#'
+    li= link_to 'Adjectives', adjectives_path
+    li= link_to 'Branches', branches_path
+    hr
+    li.snug-top.bold= link_to 'Browse:',  '#'
+    li= link_to 'Activities', activities_path
+    li= link_to 'Skills', skills_path
+    li= link_to 'Resources', resources_path
+    hr
+
+  - if can? :manage, Approval
+    li.snug-top.bold= link_to 'Your account:',  '#'
+  - else
+    li.bold= link_to 'Your account:',  '#'
+
+  li= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
+  li= link_to 'Settings', edit_user_registration_path                       if current_user and current_user.confirmed?
+  li= link_to 'Activate your account', new_confirmation_path(current_user)  if current_user and !current_user.confirmed?
+  li= link_to 'Sign-out', destroy_user_session_path
+  hr
+  li.snug-top= mail_to 'hello@skillbank.io', 'Say hello to SkillBank', subject: "Hello!", encode: 'hex'
