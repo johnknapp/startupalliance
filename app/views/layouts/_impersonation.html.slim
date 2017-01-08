@@ -1,0 +1,9 @@
+- if current_user != true_user
+  .callout.simple.alert
+    p.text-center
+      ' #{true_user.username.upcase} signed in as #{link_to current_user.username.upcase, vanity_path(current_user.username)}.
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      = link_to users_stop_impersonating_path, method: :put do
+        ' Stop impersonating

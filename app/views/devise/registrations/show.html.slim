@@ -1,0 +1,97 @@
+.row
+  .large-12.columns
+    h3.space-top
+      strong
+        ' #{@user.name}
+    hr.little-snug-top
+    - if @user.tagline.present?
+      p.snug-top.space-bottom.text-right #{@user.tagline}
+    - elsif current_user and @user == current_user and current_user.confirmed?
+      p.snug-top.space-bottom.text-right.faint= link_to 'Add your personal introduction', edit_user_registration_path
+    - else
+      p.snug-top.space-bottom.text-right Member since #{@user.created_at.strftime('%B %e, %Y')}
+    .row
+      .medium-8.columns
+
+        .callout
+          p.text-center Placeholder
+
+      .medium-4.columns
+        .callout
+          - if current_user and current_user.admin?
+            p.faint.text-center
+              = link_to users_impersonate_path(pid: @user.pid), method: :put do
+                ' Impersonate
+                | &nbsp;
+                i.fa.fa-user-secret
+          p
+            strong Account summary:
+          .row
+            .small-4.columns
+              p.faint.snug-top Username:
+            .small-8.columns
+              p.faint.text-right.snug-top= @user.username.upcase
+          .row
+            .small-6.columns
+              p.faint.snug-top Member since:
+            .small-6.columns
+              p.faint.text-right.snug-top= @user.created_at.strftime('%B %e, %Y')
+          hr.little-snug-top
+          - if @user.bio.present?
+            p
+              strong Personal summary:
+            p.snug-top= @user.bio
+            hr
+          - elsif current_user and @user == current_user and current_user.confirmed?
+            p.text-center.faint= link_to 'Add your personal summary', edit_user_registration_path
+            hr
+          - else
+            p.text-center.faint No personal summary yet
+            hr
+          - if @user.twitter_profile.present? or @user.facebook_profile.present? or @user.instagram_profile.present? or @user.pinterest_profile.present? or @user.linkedin_profile.present? or @user.website.present?
+            p
+              strong Social profiles:
+          - elsif current_user and @user == current_user and current_user.confirmed?
+            p.text-center.faint= link_to 'Add your social profiles', edit_user_registration_path
+          - else
+            p.text-center.faint No social profiles yet
+
+          h5.snug-top.space-bottom
+            - if @user.twitter_profile.present?
+              = link_to @user.twitter_profile, target: '_blank'
+                span.fa.fa-twitter
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+            - if @user.facebook_profile.present?
+              = link_to @user.facebook_profile, target: '_blank'
+                span.fa.fa-facebook
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+            - if @user.instagram_profile.present?
+              = link_to @user.instagram_profile, target: '_blank'
+                span.fa.fa-instagram
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+            - if @user.pinterest_profile.present?
+              = link_to @user.pinterest_profile, target: '_blank'
+                span.fa.fa-pinterest
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+            - if @user.linkedin_profile.present?
+              = link_to @user.linkedin_profile, target: '_blank'
+                span.fa.fa-linkedin
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+            - if @user.website.present?
+              = link_to @user.website, target: '_blank'
+                span.fa.fa-globe

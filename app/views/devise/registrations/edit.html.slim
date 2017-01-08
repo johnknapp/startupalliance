@@ -1,0 +1,68 @@
+.row
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
+    h3.show-for-medium-up &nbsp;
+    h3 Update your StartupAlliance settings
+    hr.little-snug-top
+    p.text-right.snug-top= link_to 'You look marvelous!', vanity_path(current_user.username)   if current_user.confirmed?
+
+    p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = f.error_notification
+      .form-inputs
+        .row
+          .row
+            .small-12.columns
+              = f.input :email, required: true
+          .row
+            .small-4.columns
+              = f.input :first_name, required: true
+            .small-4.columns
+              = f.input :last_name, required: true
+            .small-4.columns
+              = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
+          .row
+            .large-6.columns
+              = f.input :password, placeholder: 'New password'
+            .large-6.columns
+              = f.input :password_confirmation, placeholder: 'New password confirmation'
+        .callout.primary
+          p
+            ' Personal introduction
+            em
+              ' (Optional)
+          = f.input :tagline, label: false, placeholder: 'Introduce yourself in less than 72 characters.'
+        .callout.primary
+          p
+            ' Personal summary
+            em
+              ' (Optional)
+          = f.input :bio, input_html: { rows: '3' }, label: false, placeholder: 'Help people get to know you. Share your hobbies, education, profession.'
+        .callout.primary
+          p
+            ' Links to your social media accounts
+            em
+              ' (Optional)
+          .row
+            .small-4.columns
+              = f.input :twitter_profile, label: 'Twitter'
+            .small-4.columns
+              = f.input :facebook_profile, label: 'Facebook'
+            .small-4.columns
+              = f.input :pinterest_profile, label: 'Pinterest'
+          .row
+            .small-4.columns
+              = f.input :instagram_profile, label: 'Instagram'
+            .small-4.columns
+              = f.input :linkedin_profile, label: 'LinkedIn'
+            .small-4.columns
+              = f.input :website, label: 'Website'
+        .row
+          .medium-12.columns
+            = f.input :current_password, placeholder: 'Current password required to save any changes', required: true
+      .row
+        .large-8.columns
+          .form-actions
+            ul.menu
+              li= f.button :submit, "Update your settings", class: 'button radius'
+        .large-4.columns
+          p.text-right.scale-to-80
+            em #{link_to 'Delete your account', registration_path(resource_name), data: { confirm: 'Delete your account and all your data?' }, method: :delete}

@@ -1,0 +1,14 @@
+- @acqsrc = params[:acqsrc] ? params[:acqsrc] : params[:controller] + '/' +params[:action]
+
+= simple_form_for(:user, url: registration_path(:user)) do |f|
+  = f.error_notification
+  = f.hidden_field :acqsrc, value: @acqsrc
+  .row.collapse
+    .small-8.columns
+      = f.input :email, placeholder: 'Enter your email', label: false
+    .small-4.columns
+      = f.button :submit, 'Join StartupAlliance', class: 'postfix expanded'
+  .row
+    p.snug-top.snug-bottom.faint
+      em 100% privacy. No spam ever.
+

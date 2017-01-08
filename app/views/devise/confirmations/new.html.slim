@@ -1,0 +1,22 @@
+.row
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
+    h3.show-for-medium-up &nbsp;
+    h3 Resend activation email
+    hr.little-snug-top
+    p.text-right.snug-top We’re glad you’re doing this
+
+    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      = f.error_notification
+      = f.full_error :confirmation_token
+      .form-inputs
+        = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Enter your email'
+      .form-actions
+        .float-left
+          = f.button :submit, "Resend activation email", class: 'small'
+        .float-right
+          = render "devise/shared/links"
+
+
+      /.form-actions
+      /  = f.button :submit, "Resend confirmation instructions"
+    /= render "devise/shared/links"

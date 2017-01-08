@@ -1,0 +1,16 @@
+table width='600px' align='center' padding='12px'
+  tr
+    td
+      p &nbsp;
+      h3 Welcome! Your account activation link is below.
+      p
+        strong
+          ' Pro tip:
+        br
+        ' Part of account activation is choosing a username. It identifies you on the site and
+        ' becomes part of your StartupAlliance profile URL.
+        em
+          ' (Don’t worry, you can always change it later.)
+      h3.bold Let’s do this:
+      p= link_to 'Visit your account activation page', confirmation_url(@resource, confirmation_token: @token)
+
