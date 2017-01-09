@@ -1,0 +1,26 @@
+- content_for :page_title do
+  ' Thanks for activating your StartupAlliance account!
+
+.row
+  .large-8.large-offset-2.columns
+
+    h3.show-for-medium-up &nbsp;
+    h3 Your StartupAlliance account is now active
+    hr.little-snug-top
+    - if current_user
+      p.snug-top.text-right
+        ' You are signed in as #{@user.name}
+        span.faint
+          ' (aka #{@user.username.upcase})
+    - else
+      p.snug-top.text-right You are not signed in
+
+    p Next steps:
+
+    ol.indented-2
+      li Make sure you’re #{link_to 'signed in', new_user_session_path}.
+      - if current_user
+        li Check out your #{link_to 'StartupAlliance profile', vanity_path(current_user.username)}.
+      li Start exploring StartupAlliance and get involved!
+
+    p.bold We’re glad to have you as a member!

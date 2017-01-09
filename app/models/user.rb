@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Pid
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable

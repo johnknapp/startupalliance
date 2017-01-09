@@ -4,9 +4,7 @@
   hr
   .small-6.columns
     ul.menu.simple.snug-top.faint
-      /li= link_to 'FAQ', faq_path
-      /li= link_to 'Leaderboards', leaderboards_path
-      /li= link_to 'Contributors guide', contributors_guide_path                       if current_user
+      li= link_to 'FAQ', faq_path
       li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
 
   .small-6.columns
