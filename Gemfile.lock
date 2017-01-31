@@ -251,6 +251,8 @@ GEM
       activerecord
     spring (2.0.0)
       activesupport (>= 4.2)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -276,6 +278,7 @@ GEM
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
+    vcr (3.0.3)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (3.4.0)
@@ -328,9 +331,11 @@ DEPENDENCIES
   slim-rails
   socialization
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   uglifier (>= 1.3.0)
   validate_url
+  vcr
   web-console
 
 RUBY VERSION
