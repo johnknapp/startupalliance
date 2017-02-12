@@ -33,7 +33,7 @@ $ rake db:migrate
 $ rake db:seed
 ```
 
-## Run the app
+## Run the app:
 
 In your browser, visit <symlink_name>.dev
 
