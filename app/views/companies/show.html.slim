@@ -1,39 +1,20 @@
-p#notice = notice
+.row
+  .medium-8.medium-offset-2.columns
+    h3.space-top= link_to @company.name, url: @company.url
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right Founded #{@company.founded.strftime('%B %e, %Y')}
 
-p
-  strong Name:
-  = @company.name
-p
-  strong Offering:
-  = @company.offering
-p
-  strong Serving:
-  = @company.serving
-p
-  strong Url:
-  = @company.url
-p
-  strong Location:
-  = @company.location
-p
-  strong Latitude:
-  = @company.latitude
-p
-  strong Longitude:
-  = @company.longitude
-p
-  strong Time zone:
-  = @company.time_zone
-p
-  strong Founded:
-  = @company.founded
-p
-  strong State:
-  = @company.state
-p
-  strong Pid:
-  = @company.pid
 
-= link_to 'Edit', edit_company_path(@company)
-'|
-= link_to 'Back', companies_path
+
+    p
+      strong Offering:
+      = @company.offering
+    p
+      strong Serving:
+      = @company.serving
+    p
+      strong Location:
+      = @company.location
+    p
+      strong Time zone:
+      = @company.time_zone

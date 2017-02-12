@@ -2,17 +2,20 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :offering
-    = f.input :serving
-    = f.input :url
-    = f.input :location
-    = f.input :latitude
-    = f.input :longitude
-    = f.input :time_zone
-    = f.input :founded
-    = f.input :state
-    = f.input :pid
+    .row
+      .medium-6.columns
+        = f.input :name, placeholder: 'Company name'
+      .medium-6.columns
+        = f.input :url, label: 'URL', placeholder: 'Company website'
+    = f.input :offering, label: 'Product or service offering', placeholder: 'Brief description of the product or service'
+    = f.input :serving, label: 'Market served', placeholder: 'Brief description of the market the company serves'
+    .row
+      .medium-4.columns
+        = f.input :founded, label: 'Date founded', as: :string, placeholder: 'Date founded', class: 'company-founded'
+      .medium-4.columns
+        = f.input :location, label: 'Company location', placeholder: 'Company location'
+      .medium-4.columns
+        = f.input :time_zone, label: 'Company time zone'
 
   .form-actions
     = f.button :submit
