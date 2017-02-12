@@ -7,7 +7,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string  :last_name,                                   default: ''
       t.string  :username,                                    default: ''
       t.string  :tagline,                                     default: ''
-      t.text    :bio,                                         default: ''
       t.string  :twitter_profile,                             default: ''
       t.string  :linkedin_profile,                            default: ''
       t.string  :website,                                     default: ''

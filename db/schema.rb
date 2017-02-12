@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20170212173019) do
     t.string   "last_name",              default: ""
     t.string   "username",               default: ""
     t.string   "tagline",                default: ""
-    t.text     "bio",                    default: ""
     t.string   "twitter_profile",        default: ""
     t.string   "linkedin_profile",       default: ""
     t.string   "website",                default: ""

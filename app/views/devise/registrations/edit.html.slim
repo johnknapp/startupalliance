@@ -3,7 +3,13 @@
     h3.show-for-medium-up &nbsp;
     h3 Update your Account
     hr.little-snug-top
-    p.text-right.snug-top= link_to 'You look marvelous!', vanity_path(current_user.username)   if current_user.confirmed?
+    ul.menu.align-right.snug-top
+      - if current_user.company.present?
+        li= link_to 'Update company', edit_company_path(current_user.company)
+      - else
+        li= link_to 'Create company', new_company_path(current_user.company)
+
+    /p.text-right.snug-top= link_to 'You look marvelous!', vanity_path(current_user.username)   if current_user.confirmed?
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
@@ -32,13 +38,6 @@
             em
               ' (Optional)
           = f.input :tagline, label: false, placeholder: 'Introduce yourself in less than 72 characters.'
-        .callout.primary
-          p
-            ' Personal summary
-            em
-              ' (Optional)
-          = f.input :bio, input_html: { rows: '3' }, label: false, placeholder: 'Help people get to know you. Share your hobbies, education, profession.'
-        .callout.primary
           p
             ' Links to your social media accounts
             em
@@ -49,7 +48,7 @@
             .small-4.columns
               = f.input :linkedin_profile, label: 'LinkedIn'
             .small-4.columns
-              = f.input :website, label: 'Website'
+              = f.input :website, label: 'Personal website'
         .row
           .medium-12.columns
             = f.input :current_password, placeholder: 'Current password required to save any changes', required: true

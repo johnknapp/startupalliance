@@ -36,19 +36,8 @@
               p.faint.snug-top Member since:
             .small-6.columns
               p.faint.text-right.snug-top= @user.created_at.strftime('%B %e, %Y')
-          hr.little-snug-top
-          - if @user.bio.present?
-            p
-              strong Personal summary:
-            p.snug-top= @user.bio
             hr
-          - elsif current_user and @user == current_user and current_user.confirmed?
-            p.text-center.faint= link_to 'Add your personal summary', edit_user_registration_path
-            hr
-          - else
-            p.text-center.faint No personal summary yet
-            hr
-          - if @user.twitter_profile.present? or @user.facebook_profile.present? or @user.instagram_profile.present? or @user.pinterest_profile.present? or @user.linkedin_profile.present? or @user.website.present?
+          - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
             p
               strong Social profiles:
           - elsif current_user and @user == current_user and current_user.confirmed?
