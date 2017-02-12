@@ -1,12 +1,19 @@
 USER_STATES               = %w[unconfirmed active paused]
-USER_ROLES                = %w[guest associate builder booster admin]
+USER_ROLES                = %w[guest user founder advisor admin]
+
+COMPANY_STATES             = %w[initialized active paused]
+OKR_STATES                = %w[initialized active concluded]
+ALLIANCE_STATES           = %w[initialized active paused]
 
 USERNAME_EXCLUSIONS = %w[
   about
   admin
   administrator
-  code-of-conduct
+  alliance
+  alliances
   code_of_conduct
+  company
+  companies
   content
   faq
   help
@@ -14,7 +21,11 @@ USERNAME_EXCLUSIONS = %w[
   images
   join_thanks
   join-thanks
+  meeting
+  meetings
   newrelic
+  okr
+  okrs
   privacy
   sandbox
   sandboxes

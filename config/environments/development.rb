@@ -4,8 +4,8 @@ Rails.application.configure do
   # config.action_controller.action_on_unpermitted_parameters = :raise
 
   config.sass.preferred_syntax = :sass
-  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  Rails.application.routes.default_url_options[:host] = 'sa.dev'
+  config.action_mailer.default_url_options = { host: 'sa.dev' }
   config.action_mailer.delivery_method = :letter_opener
 
   # In the development environment your application's code is reloaded on

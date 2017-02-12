@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :alliances
+  resources :okrs
+  resources :companies
   root 'pages#home'
 
   get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }

@@ -1,0 +1,27 @@
+h1 Listing alliances
+
+table
+  thead
+    tr
+      th Name
+      th Purpose
+      th State
+      th Pid
+      th
+      th
+      th
+
+  tbody
+    - @alliances.each do |alliance|
+      tr
+        td = alliance.name
+        td = alliance.purpose
+        td = alliance.state
+        td = alliance.pid
+        td = link_to 'Show', alliance
+        td = link_to 'Edit', edit_alliance_path(alliance)
+        td = link_to 'Destroy', alliance, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Alliance', new_alliance_path

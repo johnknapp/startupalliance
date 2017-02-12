@@ -18,8 +18,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string  :role,                                        default: 'guest'
       t.string  :pid,                      null: false
       t.string  :acqsrc
+      t.string  :location
       t.float   :latitude
       t.float   :longitude
+      t.string  :time_zone
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

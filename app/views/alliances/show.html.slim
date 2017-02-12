@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @alliance.name
+p
+  strong Purpose:
+  = @alliance.purpose
+p
+  strong State:
+  = @alliance.state
+p
+  strong Pid:
+  = @alliance.pid
+
+= link_to 'Edit', edit_alliance_path(@alliance)
+'|
+= link_to 'Back', alliances_path

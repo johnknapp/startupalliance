@@ -1,0 +1,41 @@
+h1 Listing companies
+
+table
+  thead
+    tr
+      th Name
+      th Offering
+      th Serving
+      th Url
+      th Location
+      th Latitude
+      th Longitude
+      th Time zone
+      th Founded
+      th State
+      th Pid
+      th
+      th
+      th
+
+  tbody
+    - @companies.each do |company|
+      tr
+        td = company.name
+        td = company.offering
+        td = company.serving
+        td = company.url
+        td = company.location
+        td = company.latitude
+        td = company.longitude
+        td = company.time_zone
+        td = company.founded
+        td = company.state
+        td = company.pid
+        td = link_to 'Show', company
+        td = link_to 'Edit', edit_company_path(company)
+        td = link_to 'Destroy', company, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Company', new_company_path

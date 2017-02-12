@@ -1,0 +1,18 @@
+= simple_form_for(@company) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :offering
+    = f.input :serving
+    = f.input :url
+    = f.input :location
+    = f.input :latitude
+    = f.input :longitude
+    = f.input :time_zone
+    = f.input :founded
+    = f.input :state
+    = f.input :pid
+
+  .form-actions
+    = f.button :submit

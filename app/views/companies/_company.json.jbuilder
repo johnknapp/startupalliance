@@ -1,0 +1,2 @@
+json.extract! company, :id, :name, :offering, :serving, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :pid, :created_at, :updated_at
+json.url company_url(company, format: :json)

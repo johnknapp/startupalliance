@@ -1,36 +1,28 @@
 .top-bar
   - if !current_user and params[:action] == 'home'
     .top-bar-left
-      h4.bold.primary StartupAlliance
-
+      .indented-9.show-for-large= image_tag 'banner.svg', width: '360px'
+      .hide-for-large= image_tag 'banner.svg', width: '360px'
 
   - if current_user or params[:action] != 'home'
     .top-bar-title
-      p= link_to StartupAlliance, root_path
-  /- if current_user
-    .top-bar-left
-      ul.menu
-        li
-          = link_to '#',    data: { toggle: 'activity' } do
-            i.skillbank.sailboat.scale-to-130
-            | &nbsp;
-            | &nbsp;
-            | &nbsp;
-            ' Activities
-        li
-          = link_to '#',        data: { toggle: 'skill' } do
-            i.skillbank.owl.scale-to-130
-            | &nbsp;
-            | &nbsp;
-            | &nbsp;
-            ' Skills
-        .dropdown-pane id='activity' data-dropdown='true' data-hover='true' data-hover-pane='true'
-          = render 'partials/search_activity_minimal'
-        .dropdown-pane id='skill' data-dropdown='true' data-hover='true' data-hover-pane='true'
-          = render 'partials/search_skill_minimal'
+      p= link_to (image_tag 'logotype.svg', width: '200px'), root_path
   .top-bar-right
     - if current_user
-      a data-toggle='off-canvas-menu' aria-expanded='false' aria-controls='off-canvas-menu'
+      ul.vertical.dropdown.menu data-dropdown-menu=true
+        li
+          | #{current_user.name.upcase}
+          | &nbsp;
+          | &nbsp;
+          i.fa.fa-bars.secondary
+          ul.menu
+            li= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
+            li= link_to 'Settings', edit_user_registration_path                       if current_user and current_user.confirmed?
+            li= link_to 'Activate your account', new_confirmation_path(current_user)  if current_user and !current_user.confirmed?
+            li= link_to 'Sign-out', destroy_user_session_path
+
+
+      /a data-toggle='off-canvas-menu' aria-expanded='false' aria-controls='off-canvas-menu'
         strong
           i.fa.fa-thumbs-o-up
           | &nbsp;

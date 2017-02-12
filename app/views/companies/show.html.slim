@@ -1,0 +1,39 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @company.name
+p
+  strong Offering:
+  = @company.offering
+p
+  strong Serving:
+  = @company.serving
+p
+  strong Url:
+  = @company.url
+p
+  strong Location:
+  = @company.location
+p
+  strong Latitude:
+  = @company.latitude
+p
+  strong Longitude:
+  = @company.longitude
+p
+  strong Time zone:
+  = @company.time_zone
+p
+  strong Founded:
+  = @company.founded
+p
+  strong State:
+  = @company.state
+p
+  strong Pid:
+  = @company.pid
+
+= link_to 'Edit', edit_company_path(@company)
+'|
+= link_to 'Back', companies_path

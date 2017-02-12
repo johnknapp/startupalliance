@@ -1,0 +1,39 @@
+p#notice = notice
+
+p
+  strong Objective:
+  = @okr.objective
+p
+  strong Key result 1:
+  = @okr.key_result_1
+p
+  strong Key result 2:
+  = @okr.key_result_2
+p
+  strong Key result 3:
+  = @okr.key_result_3
+p
+  strong Period start:
+  = @okr.period_start
+p
+  strong Period end:
+  = @okr.period_end
+p
+  strong Mid score:
+  = @okr.mid_score
+p
+  strong Final score:
+  = @okr.final_score
+p
+  strong Company:
+  = @okr.company_id
+p
+  strong Pid:
+  = @okr.pid
+p
+  strong State:
+  = @okr.state
+
+= link_to 'Edit', edit_okr_path(@okr)
+'|
+= link_to 'Back', okrs_path

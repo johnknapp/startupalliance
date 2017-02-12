@@ -77,14 +77,14 @@ group :development do
 end
 
 group :test do
-  gem 'vcr'
+  # gem 'vcr'
 end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'spring-commands-rspec'
+  # gem 'factory_girl_rails'
+  # gem 'rspec-rails'
+  # gem 'spring-commands-rspec'
 end
 
 group :production do

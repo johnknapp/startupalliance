@@ -65,8 +65,10 @@ class ApplicationController < ActionController::Base
           :instagram_profile,
           :pinterest_profile,
           :website,
+          :location,
           :latitude,
-          :longitude
+          :longitude,
+          :time_zone
       )
     end
 

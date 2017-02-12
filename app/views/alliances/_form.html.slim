@@ -1,0 +1,11 @@
+= simple_form_for(@alliance) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :purpose
+    = f.input :state
+    = f.input :pid
+
+  .form-actions
+    = f.button :submit

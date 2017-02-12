@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   include Pid
+  has_many  :company_users
+  has_many  :companies, through: :company_users
+  has_many  :alliance_users
+  has_many  :alliances, through: :alliance_users
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable

@@ -2,15 +2,12 @@
 body.Site
   /= javascript_include_tag 'fb_js_sdk'
   .Site-content
-    .off-canvas.position-right#off-canvas-menu data-off-canvas='true' data-position='right'
-      = render 'layouts/off_canvas_menu'
-    .off-canvas-content data-off-canvas-content=true
-      = render 'layouts/impersonation'
-      .row
-        .medium-12.columns
-          = render 'layouts/topbar'
-          = render 'layouts/alerts'
-      = yield
+    = render 'layouts/impersonation'
+    .row
+      .medium-12.columns
+        = render 'layouts/alerts'
+        = render 'layouts/topbar'
+    = yield
   .Site-footer
     = render 'layouts/footer'
   /= javascript_include_tag 'foundation-select'

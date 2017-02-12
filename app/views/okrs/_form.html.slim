@@ -1,0 +1,18 @@
+= simple_form_for(@okr) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :objective
+    = f.input :key_result_1
+    = f.input :key_result_2
+    = f.input :key_result_3
+    = f.input :period_start
+    = f.input :period_end
+    = f.input :mid_score
+    = f.input :final_score
+    = f.input :company_id
+    = f.input :pid
+    = f.input :state
+
+  .form-actions
+    = f.button :submit

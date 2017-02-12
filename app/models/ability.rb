@@ -18,15 +18,13 @@ class Ability
       when 'admin'
         can :manage,                [:all]
 
-      when 'builder'
+      when 'founder'
 
-      when 'booster'
-
-      when 'associate'
+      when 'advisor'
 
       when 'user'
 
-      else # no user means they are a non-auth guest
+      else # no role means they are a non-auth guest
 
     end
   end
