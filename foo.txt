@@ -1,8 +1,5 @@
-Better Together
+User company find or create from user account
 
-ima_builder (vs booster)
-
-rails g scaffold booster_attributes
 
 
 

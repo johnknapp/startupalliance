@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include Pid
-  has_many  :company_users
-  has_many  :companies, through: :company_users
+  has_one   :company_user
+  has_one   :company, through: :company_user
   has_many  :alliance_users
   has_many  :alliances, through: :alliance_users
 
@@ -16,9 +16,6 @@ class User < ApplicationRecord
   validates :tagline, length: { in: 3..72 }, allow_blank: true
 
   validates :twitter_profile, url: { allow_nil: true, allow_blank: true, no_local: true },    format: { with: /twitter.com/, allow_blank: true}
-  validates :facebook_profile, url: { allow_nil: true, allow_blank: true, no_local: true },   format: { with: /facebook.com/, allow_blank: true}
-  validates :instagram_profile, url: { allow_nil: true, allow_blank: true, no_local: true },  format: { with: /instagram.com/, allow_blank: true}
-  validates :pinterest_profile, url: { allow_nil: true, allow_blank: true, no_local: true },  format: { with: /pinterest.com/, allow_blank: true}
   validates :linkedin_profile, url: { allow_nil: true, allow_blank: true, no_local: true },   format: { with: /linkedin.com/, allow_blank: true}
   validates :website, url: { allow_nil: true, allow_blank: true, no_local: true }
 

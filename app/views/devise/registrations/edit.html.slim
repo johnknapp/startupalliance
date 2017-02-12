@@ -1,7 +1,7 @@
 .row
   .large-10.large-offset-1.medium-12.columns
     h3.show-for-medium-up &nbsp;
-    h3 Update your StartupAlliance settings
+    h3 Update your Account
     hr.little-snug-top
     p.text-right.snug-top= link_to 'You look marvelous!', vanity_path(current_user.username)   if current_user.confirmed?
 
@@ -46,13 +46,6 @@
           .row
             .small-4.columns
               = f.input :twitter_profile, label: 'Twitter'
-            .small-4.columns
-              = f.input :facebook_profile, label: 'Facebook'
-            .small-4.columns
-              = f.input :pinterest_profile, label: 'Pinterest'
-          .row
-            .small-4.columns
-              = f.input :instagram_profile, label: 'Instagram'
             .small-4.columns
               = f.input :linkedin_profile, label: 'LinkedIn'
             .small-4.columns

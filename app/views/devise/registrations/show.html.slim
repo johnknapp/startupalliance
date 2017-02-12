@@ -64,27 +64,6 @@
               | &nbsp;
               | &nbsp;
               | &nbsp;
-            - if @user.facebook_profile.present?
-              = link_to @user.facebook_profile, target: '_blank'
-                span.fa.fa-facebook
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
-            - if @user.instagram_profile.present?
-              = link_to @user.instagram_profile, target: '_blank'
-                span.fa.fa-instagram
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
-            - if @user.pinterest_profile.present?
-              = link_to @user.pinterest_profile, target: '_blank'
-                span.fa.fa-pinterest
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
             - if @user.linkedin_profile.present?
               = link_to @user.linkedin_profile, target: '_blank'
                 span.fa.fa-linkedin
