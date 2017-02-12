@@ -21,7 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string  :location
       t.float   :latitude
       t.float   :longitude
-      t.string  :time_zone
+      t.string  :time_zone,                                   default: 'Pacific Time (US & Canada)'
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

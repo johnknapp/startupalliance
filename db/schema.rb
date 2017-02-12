@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20170212173019) do
     t.string   "location"
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "time_zone"
+    t.string   "time_zone",  default: "Pacific Time (US & Canada)"
     t.date     "founded"
     t.string   "state",      default: "initialized"
-    t.string   "pid",                                null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "pid",                                               null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "company_users", force: :cascade do |t|
@@ -85,18 +85,18 @@ ActiveRecord::Schema.define(version: 20170212173019) do
     t.string   "website",                default: ""
     t.string   "state",                  default: "unconfirmed"
     t.string   "role",                   default: "guest"
-    t.string   "pid",                                            null: false
+    t.string   "pid",                                                           null: false
     t.string   "acqsrc"
     t.string   "location"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "time_zone"
-    t.string   "email",                  default: "",            null: false
-    t.string   "encrypted_password",     default: "",            null: false
+    t.string   "time_zone",              default: "Pacific Time (US & Canada)"
+    t.string   "email",                  default: "",                           null: false
+    t.string   "encrypted_password",     default: "",                           null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,             null: false
+    t.integer  "sign_in_count",          default: 0,                            null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -105,8 +105,8 @@ ActiveRecord::Schema.define(version: 20170212173019) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

@@ -8,7 +8,7 @@ class CreateCompanies < ActiveRecord::Migration[5.0]
       t.string :location
       t.string :latitude
       t.string :longitude
-      t.string :time_zone
+      t.string :time_zone,                             default: 'Pacific Time (US & Canada)'
       t.date   :founded
       t.string :state,                                 default: 'initialized'
       t.string :pid,                      null: false
