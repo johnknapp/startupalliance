@@ -24,17 +24,25 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Company.new(company_params)
-
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
-        format.json { render :show, status: :created, location: @company }
-      else
-        format.html { render :new }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+    @company = Company.first_or_initialize(company_params)
+    if @company.new_record?
+      @company.founded = Date.strptime(params[:company][:founded], '%m/%d/%Y')
+      params[:company].delete [:founded]
+      respond_to do |format|
+        if @company.save
+          @company.founders << current_user
+          format.html { redirect_to edit_user_registration_path(current_user), notice: 'Company was successfully created.' }
+          format.json { render :show, status: :created, location: @company }
+        else
+          format.html { render :new }
+          format.json { render json: @company.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to vanity_path(current_user.username), notice: 'Company already exists!'
     end
+
+
   end
 
   # PATCH/PUT /companies/1
@@ -42,7 +50,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+        format.html { redirect_to edit_user_registration_path(current_user), notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }
@@ -56,7 +64,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to edit_user_registration_path(current_user), notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

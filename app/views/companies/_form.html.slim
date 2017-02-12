@@ -11,11 +11,15 @@
     = f.input :serving, label: 'Market served', placeholder: 'Brief description of the market the company serves'
     .row
       .medium-4.columns
-        = f.input :founded, label: 'Date founded', as: :string, placeholder: 'Date founded', class: 'company-founded'
+        = f.input :founded, label: 'Date founded', as: :string, placeholder: 'mm/dd/yyyy', class: 'company-founded'
       .medium-4.columns
         = f.input :location, label: 'Company location', placeholder: 'Company location'
       .medium-4.columns
         = f.input :time_zone, label: 'Company time zone'
 
   .form-actions
-    = f.button :submit
+    .row
+      .medium-12.columns
+        .button-group
+          = f.button :submit, class: 'button'
+          = link_to 'Exit', :back, class: 'button accent'

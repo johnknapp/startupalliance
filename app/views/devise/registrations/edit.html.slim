@@ -5,9 +5,9 @@
     hr.little-snug-top
     ul.menu.align-right.snug-top
       - if current_user.company.present?
-        li= link_to 'Update company', edit_company_path(current_user.company)
+        li= link_to 'Update your company', edit_company_path(current_user.company), class: 'button small'
       - else
-        li= link_to 'Create company', new_company_path(current_user.company)
+        li= link_to 'Create your company', new_company_path(current_user.company), class: 'button small'
 
     /p.text-right.snug-top= link_to 'You look marvelous!', vanity_path(current_user.username)   if current_user.confirmed?
 
@@ -56,7 +56,7 @@
         .large-8.columns
           .form-actions
             ul.menu
-              li= f.button :submit, "Update your settings", class: 'button radius'
+              li= f.button :submit, 'Update your settings', class: 'button radius'
         .large-4.columns
           p.text-right.scale-to-80
             em #{link_to 'Delete your account', registration_path(resource_name), data: { confirm: 'Delete your account and all your data?' }, method: :delete}

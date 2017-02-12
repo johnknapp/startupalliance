@@ -14,7 +14,8 @@
       .medium-8.columns
 
         .callout
-          p.text-center Placeholder
+          - if @user.company.present?
+            p Founder of #{link_to @user.company.name, company_path(@user.company)}
 
       .medium-4.columns
         .callout

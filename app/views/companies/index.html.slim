@@ -11,11 +11,9 @@
 table.hover.stacked
   thead
     tr
-      th Name
-      th Offering
-      th Serving
-      th
-      th
+      th{valign='top' width='20%'} Name
+      th{width='40%'} Product / service offering
+      th{width='40%'} Market served
 
   tbody
     - @companies.each do |company|
@@ -28,6 +26,8 @@ table.hover.stacked
             .float-right
               = link_to edit_company_path(company) do
                 i.fa.fa-pencil
+              | &nbsp;
+              | &nbsp;
               = link_to company, data: { confirm: 'Are you sure?' }, method: :delete do
                 i.fa.fa-trash-o
 

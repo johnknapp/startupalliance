@@ -9,7 +9,7 @@ class CreateOkrs < ActiveRecord::Migration[5.0]
       t.date :period_end
       t.integer :mid_score
       t.integer :final_score
-      t.integer :entity_id,               null: false
+      t.integer :company_id,              null: false
       t.string :state,                                 default: 'initialized'
       t.string :pid,                      null: false
 
