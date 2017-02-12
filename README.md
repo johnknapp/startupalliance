@@ -1,24 +1,31 @@
-# README
+# Dev setup:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements:
 
-Things you may want to cover:
+ - install pow (http://pow.cx)
+ - install rvm (https://rvm.io)
+ - install postgres
 
-* Ruby version
+## Setup POW:
 
-* System dependencies
+Add the path to the app
 
-* Configuration
+```
+$ cd ~/.pow
+$ ln -s /path/to/the_app <symlink_name>
+```
 
-* Database creation
+## Initial Setup
 
-* Database initialization
+```
+$ cd /path/to/the_app
+$ rvm install 2.3.1
+$ bundle install
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+```
 
-* How to run the test suite
+## Run the app
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+In your browser, visit <symlink_name>.dev
