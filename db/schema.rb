@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 20170212173019) do
   create_table "alliances", force: :cascade do |t|
     t.string   "name"
     t.string   "purpose"
-    t.string   "state",      default: "initialized"
-    t.string   "pid",                                null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "webmeet_url"
+    t.string   "state",       default: "initialized"
+    t.string   "pid",                                 null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -60,10 +61,12 @@ ActiveRecord::Schema.define(version: 20170212173019) do
     t.string   "key_result_1"
     t.string   "key_result_2"
     t.string   "key_result_3"
-    t.date     "period_start"
-    t.date     "period_end"
+    t.integer  "okr_duration"
+    t.integer  "okr_units"
+    t.date     "okr_start"
     t.integer  "mid_score"
     t.integer  "final_score"
+    t.text     "postmortem"
     t.integer  "company_id",                           null: false
     t.string   "state",        default: "initialized"
     t.string   "pid",                                  null: false

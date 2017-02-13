@@ -45,7 +45,8 @@ class OkrsController < ApplicationController
   def update
     respond_to do |format|
       if @okr.update(okr_params)
-        format.html { redirect_to company_path(@okr.company_id), notice: 'OKR was successfully updated.' }
+        @company = Company.find @okr.company_id
+        format.html { redirect_to company_path(@company), notice: 'OKR was successfully updated.' }
         format.json { render :show, status: :ok, location: @okr }
       else
         format.html { render :edit }
@@ -72,6 +73,6 @@ class OkrsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def okr_params
-      params.require(:okr).permit(:objective, :key_result_1, :key_result_2, :key_result_3, :period_start, :period_end, :mid_score, :final_score, :company_id, :pid, :state)
+      params.require(:okr).permit(:objective, :key_result_1, :key_result_2, :key_result_3, :postmortem, :okr_duration, :okr_units, :okr_start, :mid_score, :final_score, :company_id, :pid, :state)
     end
 end

@@ -8,16 +8,22 @@
     = f.input :key_result_2, placeholder: 'A numerically quantifiable result'
     = f.input :key_result_3, placeholder: 'A numerically quantifiable result'
     .row
-      .medium-6.columns
-        = f.input :period_start, as: :string, class: 'foo'
-      .medium-6.columns
-        = f.input :period_end, as: :string, class: 'foo'
+      .medium-4.columns
+        = f.input :okr_duration, label: 'OKR duration', placeholder: 'Number between 3 and 6'
+      .medium-4.columns
+        = f.input :okr_units, label: 'OKR units', collection: Okr.okr_units.keys, placeholder: 'Choose a unit'
+      .medium-4.columns
+        = f.input :okr_start, label: 'OKR begins on', placeholder: 'In the future (mm/dd/yyyy)', as: :string, class: 'foo'
+
     - if !@okr.new_record?
       .row
         .medium-6.columns
           = f.input :mid_score, label: 'Score at middle of period', placeholder: 'Your score on a scale 1 to 10'
         .medium-6.columns
           = f.input :final_score, label: 'Score at end of period', placeholder: 'Your score on a scale 1 to 10'
+      .row
+        .medium-12.columns
+          = f.input :postmortem, label: 'OKR Postmortem', placeholder: 'Summary outcome of this OKR'
 
   .form-actions
     .row

@@ -85,6 +85,6 @@ class AlliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alliance_params
-      params.require(:alliance).permit(:name, :purpose, :state, :pid)
+      params.require(:alliance).permit(:name, :purpose, :webmeet_url, :state, :pid)
     end
 end
