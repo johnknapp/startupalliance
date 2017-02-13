@@ -1,5 +1,5 @@
 class AlliancesController < ApplicationController
-  before_action :set_alliance, only: [:show, :edit, :update, :destroy]
+  before_action :set_alliance, only: [:show, :add_member, :remove_member, :edit, :update, :destroy]
 
   # GET /alliances
   # GET /alliances.json
@@ -19,6 +19,21 @@ class AlliancesController < ApplicationController
 
   # GET /alliances/1/edit
   def edit
+  end
+
+  # GET /alliances/1/specify_member
+  def specify_member
+  end
+
+  # PUT /alliances/1/add_member
+  def add_member
+    member = User.find_by_username(params[:username])
+    @company.members << member
+  end
+
+  def remove_member
+    member = User.find_by_pid(params[:member_pid])
+    @company.members.delete(member)
   end
 
   # POST /alliances

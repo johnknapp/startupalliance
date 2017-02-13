@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :alliances
-  resources :okrs
-  resources :companies
   root 'pages#home'
+  resources :companies do
+    member do
+      get :specify_founder
+      put :add_founder
+    end
+  end
+  resources :alliances do
+    member do
+      get :specify_member
+      put :add_member
+    end
+  end
+  resources :okrs
 
   get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
   get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }

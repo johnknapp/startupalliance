@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :add_founder, :remove_founder, :edit, :update, :destroy]
 
   # GET /companies
   # GET /companies.json
@@ -20,6 +20,21 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+  end
+
+  # GET /companies/1/specify_founder
+  def specify_founder
+  end
+
+  # PUT /companies/1/add_founder
+  def add_founder
+    founder = User.find_by_username(params[:username])
+    @company.founders << founder
+  end
+
+  def remove_founder
+    founder = User.find_by_pid(params[:founder_pid])
+    @company.founders.delete(founder)
   end
 
   # POST /companies
