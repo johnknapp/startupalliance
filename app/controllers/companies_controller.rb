@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
       respond_to do |format|
         if @company.save
           @company.founders << current_user
-          format.html { redirect_to edit_user_registration_path(current_user), notice: 'Company was successfully created.' }
+          format.html { redirect_to @company, notice: 'Company was successfully created.' }
           format.json { render :show, status: :created, location: @company }
         else
           format.html { render :new }
@@ -51,7 +51,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to edit_user_registration_path(current_user), notice: 'Company was successfully updated.' }
+        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }

@@ -5,16 +5,25 @@
     p.snug-top.space-bottom.text-right Founded #{@company.founded.strftime('%B %e, %Y')} in #{@company.location}
 
     .callout
-      h5.bold.primary-text Company snapshot:
-      p.indented-2.bold Product or service offering:
-      p.indented-4.snug-top= @company.offering
-      p.indented-2.bold Market served:
-      p.indented-4.snug-top= @company.serving
+      h5.bold.primary-text #{'Founder'.pluralize(@company.founders.count)}:
+      ul
+        - @company.founders.each do |founder|
+          li.indented-2
+            strong
+              ' #{link_to founder.name, vanity_path(founder.username)}
+
+    .callout
+      h5.bold.primary-text Product or service offering:
+      p.indented-2.bold= @company.offering
+
+    .callout
+      h5.bold.primary-text Market served:
+      p.indented-2.bold= @company.serving
 
     .callout
       h5.bold.primary-text
         ' Company objectives and key results:
-        - if current_user.founder?(@company)
+        - if current_user and current_user.founder?(@company)
           .float-right
             = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
               i.fa.fa-plus
@@ -23,7 +32,7 @@
           - @okrs.each do |okr|
             li.indented-2
               .bold= okr.objective
-              - if current_user.founder?(@company)
+              - if current_user and current_user.founder?(@company)
                 .float-right
                   = link_to edit_okr_path(okr, company_pid: @company.pid) do
                     i.fa.fa-pencil
@@ -31,8 +40,7 @@
                   | &nbsp;
                   = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
                     i.fa.fa-trash-o
-
-              ul
+              ol
                 li= okr.key_result_1
                 li= okr.key_result_2
                 li= okr.key_result_3
