@@ -1,7 +1,7 @@
 USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user founder advisor admin]
 
-COMPANY_STATES             = %w[initialized active paused]
+COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized active concluded]
 ALLIANCE_STATES           = %w[initialized active paused]
 
