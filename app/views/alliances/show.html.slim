@@ -1,18 +1,18 @@
-p#notice = notice
+.row
+  .medium-8.medium-offset-2.columns
+    h3.space-top= @alliance.name
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right Private Alliance
 
-p
-  strong Name:
-  = @alliance.name
-p
-  strong Purpose:
-  = @alliance.purpose
-p
-  strong State:
-  = @alliance.state
-p
-  strong Pid:
-  = @alliance.pid
+    .callout
+      h5.bold.primary-text Alliance Purpose:
+      p.indented-2.bold= @alliance.purpose
 
-= link_to 'Edit', edit_alliance_path(@alliance)
-'|
-= link_to 'Back', alliances_path
+    .callout
+      h5.bold.primary-text Alliance Members:
+      ul
+        - @alliance.members.each do |member|
+          li.indented-2
+            strong
+              ' #{link_to member.name, vanity_path(member.username)}
+

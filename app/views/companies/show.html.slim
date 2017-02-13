@@ -1,8 +1,12 @@
 .row
   .medium-8.medium-offset-2.columns
-    h3.space-top= link_to @company.name, url: @company.url
+    h3.space-top
+      = link_to @company.url, target: '_blank' do
+        ' #{@company.name}
+        | &nbsp;
+        i.fa.fa-external-link
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Founded #{@company.founded.strftime('%B %e, %Y')} in #{@company.location}
+    p.snug-top.space-bottom.text-right #{@company.name} was founded #{@company.founded.strftime('%B %e, %Y')} in #{@company.location}
 
     .callout
       h5.bold.primary-text #{'Founder'.pluralize(@company.founders.count)}:

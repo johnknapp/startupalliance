@@ -28,6 +28,7 @@ class AlliancesController < ApplicationController
 
     respond_to do |format|
       if @alliance.save
+        @alliance.members << current_user
         format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }
         format.json { render :show, status: :created, location: @alliance }
       else

@@ -15,7 +15,17 @@
 
         .callout
           - if @user.company.present?
-            p Founder of #{link_to @user.company.name, company_path(@user.company)}
+            h5.bold.primary-text My Company:
+            ul
+              li.indented-2 Company name: #{link_to @user.company.name, company_path(@user.company)}
+              li.indented-2 Founded: #{@user.company.founded.strftime('%B %e, %Y')}
+              li.indented-2 Company location: #{@user.company.location}
+          - if @user.alliances.present?
+            h5.bold.primary-text My Private Alliances:
+            ul
+              - @user.alliances.each do |alliance|
+                li.indented-2= link_to alliance.name, alliance_path(alliance)
+
 
       .medium-4.columns
         .callout
