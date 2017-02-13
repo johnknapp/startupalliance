@@ -1,7 +1,8 @@
 .row
   .medium-8.medium-offset-2.columns
-    h3.space-top
-      = link_to @company.url, target: '_blank' do
+    h3.space-top.primary-text
+      ' Company profile:
+      strong= link_to @company.url, target: '_blank' do
         ' #{@company.name}
         | &nbsp;
         i.fa.fa-external-link
@@ -9,6 +10,10 @@
     p.snug-top.space-bottom.text-right #{@company.name} was founded #{@company.founded.strftime('%B %e, %Y')} in #{@company.location}
 
     .callout
+      - if current_user and @company.founders.include? current_user
+        .float-right
+          = link_to '#' do
+            i.fa.fa-plus
       h5.bold.primary-text #{'Founder'.pluralize(@company.founders.count)}:
       ul
         - @company.founders.each do |founder|
@@ -26,11 +31,11 @@
 
     .callout
       h5.bold.primary-text
-        ' Company objectives and key results:
         - if current_user and current_user.founder?(@company)
           .float-right
             = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
               i.fa.fa-plus
+        ' Company objectives and key results:
       - if @okrs.present?
         ul
           - @okrs.each do |okr|
