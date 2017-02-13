@@ -47,7 +47,7 @@ user_facets
   solvency             status user_focus
   work_enjoyment       status user_focus
 
-company_facets
+SAKPIs
   team                 status user_focus
   capital              status user_focus
   cash_flow            status user_focus
