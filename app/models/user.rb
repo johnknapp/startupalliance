@@ -25,6 +25,10 @@ class User < ApplicationRecord
     end
   end
 
+  def founder?(company)
+    company.founders.include? self
+  end
+
   def admin?
     self.role == 'admin'
   end

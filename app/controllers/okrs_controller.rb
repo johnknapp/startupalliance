@@ -15,20 +15,23 @@ class OkrsController < ApplicationController
   # GET /okrs/new
   def new
     @okr = Okr.new
+    @company = Company.find_by_pid(params[:company_pid])
   end
 
   # GET /okrs/1/edit
   def edit
+    @company = Company.find_by_pid(params[:company_pid])
   end
 
   # POST /okrs
   # POST /okrs.json
   def create
     @okr = Okr.new(okr_params)
+    @company = Company.find @okr.company_id
 
     respond_to do |format|
       if @okr.save
-        format.html { redirect_to @okr, notice: 'Okr was successfully created.' }
+        format.html { redirect_to company_path(@company), notice: 'OKR was successfully created.' }
         format.json { render :show, status: :created, location: @okr }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class OkrsController < ApplicationController
   def update
     respond_to do |format|
       if @okr.update(okr_params)
-        format.html { redirect_to @okr, notice: 'Okr was successfully updated.' }
+        format.html { redirect_to company_path(@okr.company_id), notice: 'OKR was successfully updated.' }
         format.json { render :show, status: :ok, location: @okr }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class OkrsController < ApplicationController
   def destroy
     @okr.destroy
     respond_to do |format|
-      format.html { redirect_to okrs_url, notice: 'Okr was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'OKR was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

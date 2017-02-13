@@ -2,17 +2,26 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :objective
-    = f.input :key_result_1
-    = f.input :key_result_2
-    = f.input :key_result_3
-    = f.input :period_start
-    = f.input :period_end
-    = f.input :mid_score
-    = f.input :final_score
-    = f.input :company_id
-    = f.input :pid
-    = f.input :state
+    = f.hidden_field :company_id, value: @company.id
+    = f.input :objective, placeholder: 'An objective for this period'
+    = f.input :key_result_1, placeholder: 'A numerically quantifiable result'
+    = f.input :key_result_2, placeholder: 'A numerically quantifiable result'
+    = f.input :key_result_3, placeholder: 'A numerically quantifiable result'
+    .row
+      .medium-6.columns
+        = f.input :period_start, as: :string, class: 'foo'
+      .medium-6.columns
+        = f.input :period_end, as: :string, class: 'foo'
+    - if !@okr.new_record?
+      .row
+        .medium-6.columns
+          = f.input :mid_score, label: 'Score at middle of period', placeholder: 'Your score on a scale 1 to 10'
+        .medium-6.columns
+          = f.input :final_score, label: 'Score at end of period', placeholder: 'Your score on a scale 1 to 10'
 
   .form-actions
-    = f.button :submit
+    .row
+      .medium-12.columns
+        .button-group
+          = f.button :submit, class: 'button'
+          = link_to 'Exit', :back, class: 'button accent'

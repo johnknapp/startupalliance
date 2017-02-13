@@ -1,19 +1,20 @@
-h1 Listing okrs
+.row
+  .medium-12.columns
+    h3.space-top Objectives and key results (#{number_with_delimiter(@okrs.count)})
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right OKRs for member companies
 
-table
+
+  - if can? :manage, :all
+    = link_to 'New OKR', new_okr_path
+
+table.hover.stacked
   thead
     tr
       th Objective
-      th Key result 1
-      th Key result 2
-      th Key result 3
-      th Period start
-      th Period end
       th Mid score
       th Final score
       th Company
-      th Pid
-      th State
       th
       th
       th
@@ -21,21 +22,20 @@ table
   tbody
     - @okrs.each do |okr|
       tr
-        td = okr.objective
-        td = okr.key_result_1
-        td = okr.key_result_2
-        td = okr.key_result_3
-        td = okr.period_start
-        td = okr.period_end
-        td = okr.mid_score
-        td = okr.final_score
-        td = okr.company_id
-        td = okr.pid
-        td = okr.state
-        td = link_to 'Show', okr
+        td= link_to okr.objective, okr
+        td= okr.mid_score
+        td= okr.final_score
+        td
+          = okr.company.name
+          - if can? :manage, :all
+            .float-right
+              = link_to edit_okr_path(okr) do
+                i.fa.fa-pencil
+              | &nbsp;
+              | &nbsp;
+              = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
+                i.fa.fa-trash-o
+
+
         td = link_to 'Edit', edit_okr_path(okr)
         td = link_to 'Destroy', okr, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Okr', new_okr_path

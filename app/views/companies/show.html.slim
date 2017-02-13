@@ -2,19 +2,39 @@
   .medium-8.medium-offset-2.columns
     h3.space-top= link_to @company.name, url: @company.url
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Founded #{@company.founded.strftime('%B %e, %Y')}
+    p.snug-top.space-bottom.text-right Founded #{@company.founded.strftime('%B %e, %Y')} in #{@company.location}
+
+    .callout
+      h5.bold.primary-text Company snapshot:
+      p.indented-2.bold Product or service offering:
+      p.indented-4.snug-top= @company.offering
+      p.indented-2.bold Market served:
+      p.indented-4.snug-top= @company.serving
+
+    .callout
+      h5.bold.primary-text
+        ' Company objectives and key results:
+        - if current_user.founder?(@company)
+          .float-right
+            = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
+              i.fa.fa-plus
+      - if @okrs.present?
+        ul
+          - @okrs.each do |okr|
+            li.indented-2
+              .bold= okr.objective
+              - if current_user.founder?(@company)
+                .float-right
+                  = link_to edit_okr_path(okr, company_pid: @company.pid) do
+                    i.fa.fa-pencil
+                  | &nbsp;
+                  | &nbsp;
+                  = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
+                    i.fa.fa-trash-o
+
+              ul
+                li= okr.key_result_1
+                li= okr.key_result_2
+                li= okr.key_result_3
 
 
-
-    p
-      strong Offering:
-      = @company.offering
-    p
-      strong Serving:
-      = @company.serving
-    p
-      strong Location:
-      = @company.location
-    p
-      strong Time zone:
-      = @company.time_zone

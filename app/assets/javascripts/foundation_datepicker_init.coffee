@@ -1,4 +1,4 @@
 $ ->
-  $('.company-founded').fdatepicker
+  $('.fdatepicker').fdatepicker
     format: 'mm-dd-yyyy'
   return
