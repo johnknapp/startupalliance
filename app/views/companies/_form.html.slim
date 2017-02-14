@@ -3,10 +3,12 @@
 
   .form-inputs
     .row
-      .medium-6.columns
+      .medium-4.columns
         = f.input :name, placeholder: 'Company name'
-      .medium-6.columns
+      .medium-4.columns
         = f.input :url, label: 'URL', placeholder: 'Company website'
+      .medium-4.columns
+        = f.input :phases, label: 'Company phase', collection: Company.phases.keys, placeholder: 'Company website'
     = f.input :offering, label: 'Product or service offering', placeholder: 'Brief description of the product or service'
     = f.input :serving, label: 'Market served', placeholder: 'Brief description of the market the company serves'
     .row

@@ -6,4 +6,13 @@ class Company < ApplicationRecord
 
   validates :url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
+  enum phases: {
+      Ideation:         0,
+      Validation:       1,
+      Foundation:       2,
+      Fortification:    3,
+      Expansion:        4,
+      Diversification:  5
+  }
+
 end
