@@ -20,18 +20,4 @@ rails g model meet_users meet_id:integer user_id:integer
 alliance has many meets through alliance_meets
 meet belongs to alliance
 
-user_facets
-  health               status user_focus
-  family_friends       status user_focus
-  recreation           status user_focus
-  solvency             status user_focus
-  work_enjoyment       status user_focus
-
-SAKPIs
-  team                 status user_focus
-  capital              status user_focus
-  cash_flow            status user_focus
-  offering             status user_focus
-  growth               status user_focus
-  differentiation      status user_focus
 
