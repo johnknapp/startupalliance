@@ -3,6 +3,8 @@ class Company < ApplicationRecord
   has_many :company_users
   has_many :founders, through: :company_users, source: :user
   has_many :okrs
+  has_many :company_sakpis
+  has_many :sakpis, through: :company_sakpis
 
   validates :url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
