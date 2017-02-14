@@ -1,0 +1,61 @@
+- if current_user == @user
+  ul.dropdown.menu data-dropdown-menu=true
+    li
+      a
+        - if current_user and current_user.user_traits.where(trait_id: trait.id).present?
+          = current_user.user_traits.where(trait_id: trait.id).first.level
+        ul.menu
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  1
+            li.active= link_to '1', declare_trait_path(trait_id: trait.id, level: 1), method: :put
+          - else
+            li = link_to '1', declare_trait_path(trait_id: trait.id, level: 1), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  2
+            li.active= link_to '2', declare_trait_path(trait_id: trait.id, level: 2), method: :put
+          - else
+            li = link_to '2', declare_trait_path(trait_id: trait.id, level: 2), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  3
+            li.active= link_to '3', declare_trait_path(trait_id: trait.id, level: 3), method: :put
+          - else
+            li = link_to '3', declare_trait_path(trait_id: trait.id, level: 3), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  4
+            li.active= link_to '4', declare_trait_path(trait_id: trait.id, level: 4), method: :put
+          - else
+            li = link_to '4', declare_trait_path(trait_id: trait.id, level: 4), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  5
+            li.active= link_to '5', declare_trait_path(trait_id: trait.id, level: 5), method: :put
+          - else
+            li = link_to '5', declare_trait_path(trait_id: trait.id, level: 5), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  6
+            li.active= link_to '6', declare_trait_path(trait_id: trait.id, level: 6), method: :put
+          - else
+            li = link_to '6', declare_trait_path(trait_id: trait.id, level: 6), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  7
+            li.active= link_to '7', declare_trait_path(trait_id: trait.id, level: 7), method: :put
+          - else
+            li = link_to '7', declare_trait_path(trait_id: trait.id, level: 7), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  8
+            li.active= link_to '8', declare_trait_path(trait_id: trait.id, level: 8), method: :put
+          - else
+            li = link_to '8', declare_trait_path(trait_id: trait.id, level: 8), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  9
+            li.active= link_to '9', declare_trait_path(trait_id: trait.id, level: 9), method: :put
+          - else
+            li = link_to '9', declare_trait_path(trait_id: trait.id, level: 9), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level == 10
+            li.active= link_to '10', declare_trait_path(trait_id: trait.id, level: 10), method: :put
+          - else
+            li = link_to '10', declare_trait_path(trait_id: trait.id, level: 10), method: :put
+
+          - if current_user and current_user.user_traits.where(trait_id: trait.id).present?
+            li= link_to 'Unset', unset_trait_path(trait_id: trait.id), data: {:confirm => 'Really unset?'}, :method => :delete
+- elsif @user != current_user and @user.user_traits.where(trait_id: trait.id).present?
+  = @user.user_traits.where(trait_id: trait.id).first.level

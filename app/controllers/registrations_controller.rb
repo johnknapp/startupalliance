@@ -2,6 +2,42 @@ class RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
+  def declare_trait
+    if current_user and params[:trait_id] and params[:level]
+      UserTrait.create(
+          user_id:  current_user.id,
+          trait_id: params[:trait_id],
+          level:    params[:level] 
+      )
+    end
+    redirect_to :back, notice: 'You set your level'
+  end
+
+  def unset_trait
+    if current_user and params[:trait_id]
+      UserTrait.where(user_id: current_user.id, trait_id: params[:trait_id]).first.destroy
+    end
+    redirect_to :back, alert: 'You unset your level'
+  end
+
+  def declare_skill
+    if current_user and params[:skill_id] and params[:level]
+      UserSkill.create(
+          user_id:  current_user.id,
+          skill_id: params[:skill_id],
+          level:    params[:level]
+      )
+    end
+    redirect_to :back, notice: 'You set your level'
+  end
+
+  def unset_skill
+    if current_user and params[:skill_id]
+      UserSkill.where(user_id: current_user.id, skill_id: params[:skill_id]).first.destroy
+    end
+    redirect_to :back, alert: 'You unset your level'
+  end
+
   # GET /resource/sign_up
   def new
     super

@@ -4,6 +4,10 @@ class User < ApplicationRecord
   has_one   :company, through: :company_user
   has_many  :alliance_users
   has_many  :alliances, through: :alliance_users
+  has_many  :user_traits
+  has_many  :traits, through: :user_traits
+  has_many  :user_skills
+  has_many  :skills, through: :user_skills
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable

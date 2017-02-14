@@ -38,3 +38,7 @@ $ rake db:seed
 In your browser, visit <symlink_name>.dev
 
 There are seeds for users
+
+## Monitor pow server logs:
+
+$ tail -f ~/Library/Logs/Pow/apps/startup_alliance.log

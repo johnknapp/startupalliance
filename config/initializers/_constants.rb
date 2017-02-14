@@ -5,6 +5,11 @@ COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized future present past]
 ALLIANCE_STATES           = %w[initialized active paused]
 
+USER_TRAIT_TIP                 = 'Only traits where you have rated yourself appear to others.'
+VIEWER_TRAIT_TIP               = 'This member has rated themselves for these traits.'
+USER_SKILL_TIP                 = 'Only skills where you have rated yourself appear to others.'
+VIEWER_SKILL_TIP               = 'This member has rated themselves for these skills.'
+
 USERNAME_EXCLUSIONS = %w[
   about
   admin
