@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :companies do
     member do
-      get :specify_founder
-      put :add_founder
+      put     :add_founder
+      delete  :remove_founder
     end
   end
   resources :alliances do
     member do
-      get :specify_member
-      put :add_member
+      put     :add_member
+      delete  :remove_member
     end
   end
   resources :okrs

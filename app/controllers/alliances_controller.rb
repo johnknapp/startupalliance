@@ -21,19 +21,25 @@ class AlliancesController < ApplicationController
   def edit
   end
 
-  # GET /alliances/1/specify_member
-  def specify_member
-  end
-
   # PUT /alliances/1/add_member
   def add_member
     member = User.find_by_username(params[:username])
-    @company.members << member
+    if @alliance.members.exists? member.id
+      redirect_to :back, alert: 'Already a member!'
+    else
+      @alliance.members << member
+      redirect_to :back, notice: 'Member added.'
+    end
   end
 
   def remove_member
     member = User.find_by_pid(params[:member_pid])
-    @company.members.delete(member)
+    if @alliance.members.count > 1
+      @alliance.members.delete(member)
+      redirect_to :back, notice: 'Member removed.'
+    else
+      redirect_to :back, alert: 'Cannot remove the last member, please contact support.'
+    end
   end
 
   # POST /alliances

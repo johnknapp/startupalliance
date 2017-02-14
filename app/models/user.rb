@@ -29,6 +29,10 @@ class User < ApplicationRecord
     company.founders.include? self
   end
 
+  def member?(alliance)
+    alliance.members.include? self
+  end
+
   def admin?
     self.role == 'admin'
   end

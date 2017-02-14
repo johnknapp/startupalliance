@@ -15,7 +15,7 @@
         ' Alliance Purpose:
       p.indented-2.bold= @alliance.purpose
 
-    - if current_user and @alliance.members.include? current_user
+    - if @alliance.webmeet_url.present? and current_user and @alliance.members.include? current_user
       .callout
         h5.bold.primary-text
           ' Alliance web meeting URL:
@@ -25,12 +25,25 @@
     .callout
       - if current_user and @alliance.members.include? current_user
         .float-right
-          = link_to specify_member_alliance_path(@alliance) do
+          a data-open='add-member'
             i.fa.fa-plus
+          .reveal#add-member data-reveal=true
+            p.bold To add a member, please provide their StartupAlliance username
+            = form_tag add_member_alliance_path, method: :put
+              = text_field_tag :username
+              = submit_tag 'Add member', class: 'button expanded secondary'
+
+
+          /= link_to add_member_alliance_path(@alliance) do
+          /  i.fa.fa-plus
       h5.bold.primary-text Alliance Members:
       ul
         - @alliance.members.each do |member|
           li.indented-2
+            - if current_user and current_user.member?(@alliance)
+              .float-right
+                = link_to remove_member_alliance_path(member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                  i.fa.fa-trash-o
             strong
               ' #{link_to member.name, vanity_path(member.username)}
 

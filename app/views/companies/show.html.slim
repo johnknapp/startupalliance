@@ -12,12 +12,22 @@
     .callout
       - if current_user and @company.founders.include? current_user
         .float-right
-          = link_to specify_founder_company_path(@company) do
+          a data-open='add-founder'
             i.fa.fa-plus
+          .reveal#add-founder data-reveal=true
+            p.bold To add a founder, please provide their StartupAlliance username
+            = form_tag add_founder_company_path, method: :put
+              = text_field_tag :username
+              = submit_tag 'Add founder', class: 'button expanded secondary'
+
       h5.bold.primary-text #{'Founder'.pluralize(@company.founders.count)}:
       ul
         - @company.founders.each do |founder|
           li.indented-2
+            - if current_user and current_user.founder?(@company)
+              .float-right
+                = link_to remove_founder_company_path(founder_pid: founder.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                  i.fa.fa-trash-o
             strong
               ' #{link_to founder.name, vanity_path(founder.username)}
 

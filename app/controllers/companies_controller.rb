@@ -22,19 +22,26 @@ class CompaniesController < ApplicationController
   def edit
   end
 
-  # GET /companies/1/specify_founder
-  def specify_founder
-  end
-
   # PUT /companies/1/add_founder
   def add_founder
     founder = User.find_by_username(params[:username])
-    @company.founders << founder
+    if @company.founders.exists? founder.id
+      redirect_to :back, alert: 'Already a founder!'
+    else
+      @company.founders << founder
+      redirect_to :back, notice: 'Founder added.'
+    end
   end
 
+  # DELETE
   def remove_founder
     founder = User.find_by_pid(params[:founder_pid])
-    @company.founders.delete(founder)
+    if @company.founders.count > 1
+      @company.founders.delete(founder)
+      redirect_to :back, notice: 'Founder removed.'
+    else
+      redirect_to :back, alert: 'Cannot remove the last founder, please contact support.'
+    end
   end
 
   # POST /companies
