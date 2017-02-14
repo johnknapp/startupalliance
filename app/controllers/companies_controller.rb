@@ -1,6 +1,9 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :add_founder, :remove_founder, :edit, :update, :destroy]
 
+  before_action :authenticate_user!, except: [:show]
+  load_and_authorize_resource
+
   # GET /companies
   # GET /companies.json
   def index

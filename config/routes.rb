@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   end
   resources :okrs
 
+  get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
+  get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
+  get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
+
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}
     put  :declare_trait,              to: 'registrations#declare_trait',  constraints: { format: 'html' }
@@ -22,10 +26,6 @@ Rails.application.routes.draw do
     delete  :unset_trait,             to: 'registrations#unset_trait',    constraints: { format: 'html' }
     delete  :unset_skill,             to: 'registrations#unset_skill',    constraints: { format: 'html' }
   end
-
-  get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
-  get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
-  get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
 
   devise_for :users, controllers: { confirmations: 'confirmations', registrations: 'registrations', sessions: 'sessions' , passwords: 'passwords' }
   as :user do
