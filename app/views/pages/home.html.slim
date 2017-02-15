@@ -1,32 +1,59 @@
 .row
-  .large-8.large-offset-2.medium-10.medium-offset-1.small-10.small-offset-1.columns
-    - if !current_user
+  .medium-10.medium-offset-1.small-10.small-offset-1.columns
+    /- if !current_user
       p &nbsp;
 
-    .callout.primary-background
-      h1.bold.success-text.text-center Better. Together.
-
-    h2.bold.text-center.primary-text.space-top
+    h1.bold.text-center.primary-text.little-space-top
       ' Our mission:
-    h4.bold.text-center.space-bottom
+    h1.bold.text-center.tight-lead.space-bottom
       span.alert-text
-        ' Maximize your business success
-      ' , no matter where you are.
+        | Maximize your business success
+      br
+      ' no matter where you are.
 
-    h2.bold.text-center.primary-text
-      ' Our method:
-    h4.bold.text-center.space-bottom
-      span.alert-text
-        ' Connect you
-      ' with the entrepreneurs that can help you most.
-    h4.bold.text-center.space-bottom
-      span.alert-text
-        ' Provide tools
-      ' to focus your efforts and track your progress.
-    h4.bold.text-center.space-bottom
-      ' And help you help others so you can
-      span.alert-text
-        ' pay it forward.
+    .row
+      /h1.bold.primary-text.text-center This is how:
+      .medium-4.columns
+        .callout
+          h1.bold.text-center.primary-text
+            i.fa.fa-handshake-o
+            | &nbsp;
+            | &nbsp;
+            i.fa.fa-group
+          h4.bold.text-center
+            span.alert-text
+              ' We connect you
+            ' with the entrepreneurs that can help you most.
+      .medium-4.columns
+        .callout
+          h1.bold.text-center.primary-text
+            i.fa.fa-gears
+            | &nbsp;
+            | &nbsp;
+            i.fa.fa-line-chart
+          h4.bold.text-center
+            span.alert-text
+              ' We provide tools
+            ' to focus your efforts and track your progress.
+      .medium-4.columns
+        .callout
+          h1.bold.text-center.primary-text
+            i.fa.fa-thumbs-o-up
+            | &nbsp;
+            | &nbsp;
+            /i.fa.fa-smile-o
+            /| &nbsp;
+            /| &nbsp;
+            i.fa.fa-rocket
+          h4.bold.text-center
+            ' We help you help
+            br
+            ' others so you can
+            span.alert-text
+              ' pay&nbsp;it&nbsp;forward!
+
+    .callout.primary-background
+      h1.bold.text-center.success-text Better. Together.
 
     p &nbsp;
 
@@ -39,7 +66,7 @@
     .max-width-centered
       .large-8.large-offset-2.medium-10.medium-offset-1.small-10.small-offset-1.columns
         p.little-snug-top.snug-bottom &nbsp;
-        h4.bold.white-text.text-center Better&nbsp;Together
+        h4.bold.white-text Better&nbsp;Together
         p.snug-top.snug-bottom &nbsp;
 
 
