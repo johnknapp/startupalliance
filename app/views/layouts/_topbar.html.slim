@@ -9,7 +9,7 @@
       p= link_to (image_tag 'logotype.svg', width: '200px'), root_path
   .top-bar-right
     - if current_user
-      ul.vertical.dropdown.menu data-dropdown-menu=true
+      ul.dropdown.menu data-dropdown-menu=true
         li
           | #{current_user.name.upcase}
           | &nbsp;
@@ -21,6 +21,7 @@
               li= link_to 'OKRs', okrs_path
               li= link_to 'Alliances', alliances_path
               hr
+            li= link_to current_user.company.name, company_path(current_user.company)  if current_user and current_user.company.present?
             li= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
             li= link_to 'Account', edit_user_registration_path                        if current_user and current_user.confirmed?
             li= link_to 'Activate your account', new_confirmation_path(current_user)  if current_user and !current_user.confirmed?
