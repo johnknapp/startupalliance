@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
   include Pid
   has_many :company_users
-  has_many :founders, through: :company_users, source: :user
+  has_many :partners, through: :company_users, source: :user
   has_many :okrs
   has_many :company_sakpis
   has_many :sakpis, through: :company_sakpis

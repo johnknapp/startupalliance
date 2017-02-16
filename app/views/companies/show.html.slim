@@ -10,26 +10,26 @@
     p.snug-top.space-bottom.text-right #{@company.name} was founded #{@company.founded.strftime('%B %e, %Y')} in #{@company.location}
 
     .callout
-      - if current_user and @company.founders.include? current_user
+      - if current_user and @company.partners.include? current_user
         .float-right
-          a data-open='add-founder'
+          a data-open='add-partner'
             i.fa.fa-plus
-          .reveal#add-founder data-reveal=true
-            p.bold To add a founder, please provide their StartupAlliance username
-            = form_tag add_founder_company_path, method: :put
+          .reveal#add-partner data-reveal=true
+            p.bold To add a partner, please provide their StartupAlliance username
+            = form_tag add_partner_company_path, method: :put
               = text_field_tag :username
-              = submit_tag 'Add founder', class: 'button expanded secondary'
+              = submit_tag 'Add partner', class: 'button expanded secondary'
 
-      h5.bold.primary-text #{'Founder'.pluralize(@company.founders.count)}:
+      h5.bold.primary-text #{'Partner'.pluralize(@company.partners.count)}:
       ul
-        - @company.founders.each do |founder|
+        - @company.partners.each do |partner|
           li.indented-2
-            - if current_user and current_user.founder?(@company)
+            - if current_user and current_user.partner?(@company)
               .float-right
-                = link_to remove_founder_company_path(founder_pid: founder.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                = link_to remove_partner_company_path(partner_pid: partner.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
                   i.fa.fa-trash-o
             strong
-              ' #{link_to founder.name, vanity_path(founder.username)}
+              ' #{link_to partner.name, vanity_path(partner.username)}
 
     .callout
       h5.bold.primary-text Product or service offering:
@@ -39,7 +39,7 @@
       h5.bold.primary-text Market served:
       p.indented-2.bold= @company.serving
 
-    - if current_user and current_user.founder?(@company)
+    - if current_user and current_user.partner?(@company)
       .callout
         h5.bold.primary-text
           .float-right
@@ -51,7 +51,7 @@
             - @okrs.each do |okr|
               li.indented-2
                 .bold= okr.objective
-                - if current_user and current_user.founder?(@company)
+                - if current_user and current_user.partner?(@company)
                   .float-right
                     = link_to edit_okr_path(okr, company_pid: @company.pid) do
                       i.fa.fa-pencil

@@ -29,8 +29,8 @@ class User < ApplicationRecord
     end
   end
 
-  def founder?(company)
-    company.founders.include? self
+  def partner?(company)
+    company.partners.include? self
   end
 
   def member?(alliance)

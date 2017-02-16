@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :add_founder, :remove_founder, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :add_partner, :remove_partner, :edit, :update, :destroy]
 
   before_action :authenticate_user!, except: [:show]
   load_and_authorize_resource
@@ -25,25 +25,25 @@ class CompaniesController < ApplicationController
   def edit
   end
 
-  # PUT /companies/1/add_founder
-  def add_founder
-    founder = User.find_by_username(params[:username])
-    if @company.founders.exists? founder.id
-      redirect_to :back, alert: 'Already a founder!'
+  # PUT /companies/1/add_partner
+  def add_partner
+    partner = User.find_by_username(params[:username])
+    if @company.partners.exists? partner.id
+      redirect_to :back, alert: 'Already a partner!'
     else
-      @company.founders << founder
-      redirect_to :back, notice: 'Founder added.'
+      @company.partners << partner
+      redirect_to :back, notice: 'partner added.'
     end
   end
 
   # DELETE
-  def remove_founder
-    founder = User.find_by_pid(params[:founder_pid])
-    if @company.founders.count > 1
-      @company.founders.delete(founder)
-      redirect_to :back, notice: 'Founder removed.'
+  def remove_partner
+    partner = User.find_by_pid(params[:partner_pid])
+    if @company.partners.count > 1
+      @company.partners.delete(partner)
+      redirect_to :back, notice: 'partner removed.'
     else
-      redirect_to :back, alert: 'Cannot remove the last founder, please contact support.'
+      redirect_to :back, alert: 'Cannot remove the last partner, please contact support.'
     end
   end
 
@@ -56,7 +56,7 @@ class CompaniesController < ApplicationController
       params[:company].delete [:founded]
       respond_to do |format|
         if @company.save
-          @company.founders << current_user
+          @company.partners << current_user
           format.html { redirect_to @company, notice: 'Company was successfully created.' }
           format.json { render :show, status: :created, location: @company }
         else

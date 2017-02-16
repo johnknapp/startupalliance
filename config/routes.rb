@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :companies do
     member do
-      put     :add_founder
-      delete  :remove_founder
+      put     :add_partner
+      delete  :remove_partner
     end
   end
   resources :alliances do
