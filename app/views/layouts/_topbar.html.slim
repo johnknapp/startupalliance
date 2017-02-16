@@ -1,7 +1,7 @@
 .top-bar
   - if !current_user and params[:action] == 'home'
     .top-bar-left
-      .indented-9.show-for-large= image_tag 'banner.svg', width: '360px'
+      .indented-6.show-for-large= image_tag 'banner.svg', width: '360px'
       .hide-for-large= image_tag 'banner.svg', width: '360px'
 
   - if current_user or params[:action] != 'home'
