@@ -1,70 +1,63 @@
 .row
   .medium-10.medium-offset-1.small-10.small-offset-1.columns
-    /- if !current_user
-      p &nbsp;
 
-    h1.bold.text-center.primary-text.little-space-top
-      ' Our mission:
-    h1.bold.text-center.tight-lead.space-bottom
-      span.warning-text
-        | Maximize your business success
-      br
-      ' no matter where you are.
+    p &nbsp;
 
-    .row
-      /h1.bold.primary-text.text-center This is how:
-      .medium-4.columns
-        .callout
+    .callout.secondary-background
+      h2.bold.white-text
+        ' Entrepreneurs are everywhere.
+      h2.bold.text-center.white-text
+        ' Leverage each others strengths.
+      h2.bold.text-right.white-text
+        ' No matter where you are.
+
+    p &nbsp;
+    h3.bold Use our tools to...
+    /h3.bold How it works:
+    .row data-equalizer=true
+      h3.bold
+      .large-4.columns
+        .callout.small.secondary data-equalizer-watch=true
           h1.bold.text-center.primary-text
-            i.fa.fa-handshake-o
-            /| &nbsp;
-            /| &nbsp;
-            /i.fa.fa-group
-          h4.bold.text-center
-            span.warning-text
-              ' We connect you
-            ' with the entrepreneurs that can help you most.
-      .medium-4.columns
-        .callout
+            i.fa.fa-diamond
+            /i.fa.fa-institution
+            /i.fa.fa-users
+            /i.fa.fa-briefcase
+          h4.bold.text-center Profile yourself and your business
+          p.text-center
+            ' No-nonsense profiles highlighting your strengths,
+            ' business focus, company performance and OKRs.
+            '
+            '
+
+      .large-4.columns
+        .callout.small.secondary data-equalizer-watch=true
           h1.bold.text-center.primary-text
-            /i.fa.fa-gears
-            /| &nbsp;
-            /| &nbsp;
-            i.fa.fa-line-chart
-          h4.bold.text-center
-            span.warning-text
-              ' We provide tools
-            ' to focus your efforts and track your progress.
-      .medium-4.columns
-        .callout
+            i.fa.fa-gears
+          h4.bold.text-center Get matched with the right people
+          p.text-center
+            ' Join small groups of entrepreneurs with complementary
+            ' skill sets to share information and ideas.
+            '
+
+      .large-4.columns
+        .callout.small.secondary data-equalizer-watch=true
           h1.bold.text-center.primary-text
-            i.fa.fa-thumbs-o-up
-            /| &nbsp;
-            /| &nbsp;
             /i.fa.fa-rocket
-          h4.bold.text-center
-            ' We help you help
-            br
-            ' others so you can
-            span.warning-text
-              ' pay&nbsp;it&nbsp;forward!
+            i.fa.fa-line-chart
+          h4.bold.text-center Work together, maximize your success
+          p.text-center
+            ' Secure online meetings, peer-mentoring and progress
+            ' tracking unlike anything you’ve seen online.
+            '
+            '
 
-    .callout.primary-background
-      h1.bold.text-center.success-text Better. Together.
+    p.snug-bottom &nbsp;
+
+    h1.bold.text-center.alert-text Better. Together.
 
     p &nbsp;
 
     - if !current_user
       p.snug-bottom.bold Become a Pre-launch Charter Member, free for life!
       = render 'partials/join_form'
-
-/.row.expanded
-  .row.secondary-background
-    .max-width-centered
-      .large-8.large-offset-2.medium-10.medium-offset-1.small-10.small-offset-1.columns
-        p.little-snug-top.snug-bottom &nbsp;
-        h4.bold.white-text Better&nbsp;Together
-        p.snug-top.snug-bottom &nbsp;
-
-
-

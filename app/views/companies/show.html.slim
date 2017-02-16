@@ -39,29 +39,29 @@
       h5.bold.primary-text Market served:
       p.indented-2.bold= @company.serving
 
-    .callout
-      h5.bold.primary-text
-        - if current_user and current_user.founder?(@company)
+    - if current_user and current_user.founder?(@company)
+      .callout
+        h5.bold.primary-text
           .float-right
             = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
               i.fa.fa-plus
-        ' Company objectives and key results:
-      - if @okrs.present?
-        ul
-          - @okrs.each do |okr|
-            li.indented-2
-              .bold= okr.objective
-              - if current_user and current_user.founder?(@company)
-                .float-right
-                  = link_to edit_okr_path(okr, company_pid: @company.pid) do
-                    i.fa.fa-pencil
-                  | &nbsp;
-                  | &nbsp;
-                  = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
-                    i.fa.fa-trash-o
-              ol
-                li= okr.key_result_1
-                li= okr.key_result_2
-                li= okr.key_result_3
-
-
+          ' Company objectives and key results:
+        - if @okrs.present?
+          ul
+            - @okrs.each do |okr|
+              li.indented-2
+                .bold= okr.objective
+                - if current_user and current_user.founder?(@company)
+                  .float-right
+                    = link_to edit_okr_path(okr, company_pid: @company.pid) do
+                      i.fa.fa-pencil
+                    | &nbsp;
+                    | &nbsp;
+                    = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
+                      i.fa.fa-trash-o
+                ol
+                  li= okr.key_result_1
+                  li= okr.key_result_2
+                  li= okr.key_result_3
+        - else
+          p.text-center No OKRs!

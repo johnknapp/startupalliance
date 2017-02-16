@@ -54,7 +54,7 @@
             .small-6.columns
               p.faint.text-right.snug-top= @user.created_at.strftime('%B %e, %Y')
             hr
-          - if @user.skills.present? or current_user == @user
+          - if current_user and @user.skills.present? or current_user == @user
             .float-right
               p.faint Level
             p
@@ -83,7 +83,7 @@
                     .float-right
                       .faint.snug-top= ut.level
             hr
-          - if @user.traits.present? or current_user == @user
+          - if current_user and @user.traits.present? or current_user == @user
             .float-right
               p.faint Level
             p

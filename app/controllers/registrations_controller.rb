@@ -124,7 +124,8 @@ class RegistrationsController < Devise::RegistrationsController
       if User.find_by_username(params[:username])
         @user = User.find_by_username(params[:username])
       else
-        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+        redirect_to root_path, alert: 'Not found!'
+        # render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       end
     end
   end
