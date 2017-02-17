@@ -75,13 +75,13 @@
                     .float-right
                       .faint.snug-top= render 'partials/skill_level', skill: skill
             - else
-              - @user.user_skills.each do |ut|
+              - @user.user_skills.each do |us|
                 .row
                   .small-6.columns
-                    p.faint.snug-top= ut.skill.name
+                    p.faint.snug-top= us.skill.name
                   .small-6.columns
                     .float-right
-                      .faint.snug-top= ut.level
+                      .faint.snug-top= us.level
             hr
           - if current_user and @user.traits.present? or current_user == @user
             .float-right
