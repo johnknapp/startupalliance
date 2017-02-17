@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     member do
       put     :add_partner
       delete  :remove_partner
+      put     :set_sakpi
+      delete  :unset_sakpi
     end
   end
   resources :alliances do

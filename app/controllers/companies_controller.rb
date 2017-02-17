@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :add_partner, :remove_partner, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :add_partner, :remove_partner, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
 
   before_action :authenticate_user!, except: [:show]
   load_and_authorize_resource
@@ -23,6 +23,24 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+  end
+
+  def set_sakpi
+    if @company and params[:sakpi_id] and params[:level]
+      CompanySakpi.create(
+          company_id:  @company.id,
+          sakpi_id: params[:sakpi_id],
+          level:    params[:level]
+      )
+    end
+    redirect_to :back, notice: 'You set your SAKPI'
+  end
+
+  def unset_sakpi
+    if @company and params[:sakpi_id]
+      CompanySakpi.where(company_id: @company.id, sakpi_id: params[:sakpi_id]).first.destroy
+    end
+    redirect_to :back, alert: 'You unset your SAKPI'
   end
 
   # PUT /companies/1/add_partner

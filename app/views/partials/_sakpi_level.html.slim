@@ -1,0 +1,62 @@
+- if current_user and @company.partners.include? current_user
+  ul.dropdown.menu data-dropdown-menu=true
+    li
+      a
+        - if @company.company_sakpis.where(sakpi_id: sakpi.id).present?
+          = @company.company_sakpis.where(sakpi_id: sakpi.id).first.level
+        ul.menu
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  1
+            li.active= link_to '1', set_sakpi_company_path(sakpi_id: sakpi.id, level: 1), method: :put
+          - else
+            li = link_to '1', set_sakpi_company_path(sakpi_id: sakpi.id, level: 1), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  2
+            li.active= link_to '2', set_sakpi_company_path(sakpi_id: sakpi.id, level: 2), method: :put
+          - else
+            li = link_to '2', set_sakpi_company_path(sakpi_id: sakpi.id, level: 2), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  3
+            li.active= link_to '3', set_sakpi_company_path(sakpi_id: sakpi.id, level: 3), method: :put
+          - else
+            li = link_to '3', set_sakpi_company_path(sakpi_id: sakpi.id, level: 3), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  4
+            li.active= link_to '4', set_sakpi_company_path(sakpi_id: sakpi.id, level: 4), method: :put
+          - else
+            li = link_to '4', set_sakpi_company_path(sakpi_id: sakpi.id, level: 4), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  5
+            li.active= link_to '5', set_sakpi_company_path(sakpi_id: sakpi.id, level: 5), method: :put
+          - else
+            li = link_to '5', set_sakpi_company_path(sakpi_id: sakpi.id, level: 5), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  6
+            li.active= link_to '6', set_sakpi_company_path(sakpi_id: sakpi.id, level: 6), method: :put
+          - else
+            li = link_to '6', set_sakpi_company_path(sakpi_id: sakpi.id, level: 6), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  7
+            li.active= link_to '7', set_sakpi_company_path(sakpi_id: sakpi.id, level: 7), method: :put
+          - else
+            li = link_to '7', set_sakpi_company_path(sakpi_id: sakpi.id, level: 7), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  8
+            li.active= link_to '8', set_sakpi_company_path(sakpi_id: sakpi.id, level: 8), method: :put
+          - else
+            li = link_to '8', set_sakpi_company_path(sakpi_id: sakpi.id, level: 8), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  9
+            li.active= link_to '9', set_sakpi_company_path(sakpi_id: sakpi.id, level: 9), method: :put
+          - else
+            li = link_to '9', set_sakpi_company_path(sakpi_id: sakpi.id, level: 9), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level == 10
+            li.active= link_to '10', set_sakpi_company_path(sakpi_id: sakpi.id, level: 10), method: :put
+          - else
+            li = link_to '10', set_sakpi_company_path(sakpi_id: sakpi.id, level: 10), method: :put
+
+          - if @company.company_sakpis.where(sakpi_id: sakpi.id).present?
+            li= link_to 'Unset', unset_sakpi_company_path(sakpi_id: sakpi.id), data: {:confirm => 'Really unset?'}, :method => :delete
+
+- elsif current_user and !@company.partners.include? current_user
+  = @company.company_sakpis.where(sakpi_id: sakpi.id).first.level
