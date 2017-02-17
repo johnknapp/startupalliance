@@ -3,35 +3,30 @@
     h3.show-for-medium-up &nbsp;
     h3 Update your Account
     hr.little-snug-top
-    ul.menu.align-right.snug-top
-      - if current_user.company.present?
-        li= link_to 'Update your company', edit_company_path(current_user.company), class: 'button small'
-      - else
-        li= link_to 'Create your company', new_company_path(current_user.company), class: 'button small'
-
-    /p.text-right.snug-top= link_to 'You look marvelous!', vanity_path(current_user.username)   if current_user.confirmed?
+    - if current_user.confirmed? and current_user.companies.blank?
+      ul.menu.align-right.snug-top
+        li= link_to 'Create your company', new_company_path(user_pid: current_user.pid), class: 'button small'
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
       .form-inputs
         .row
-          .row
-            .small-12.columns
-              = f.input :email, required: true
-          .row
-            .small-3.columns
-              = f.input :first_name, required: true
-            .small-3.columns
-              = f.input :last_name, required: true
-            .small-3.columns
-              = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
-            .small-3.columns
-              = f.input :time_zone, required: true
-          .row
-            .large-6.columns
-              = f.input :password, placeholder: 'New password'
-            .large-6.columns
-              = f.input :password_confirmation, placeholder: 'New password confirmation'
+          .small-12.columns
+            = f.input :email, required: true
+        .row
+          .small-3.columns
+            = f.input :first_name, required: true
+          .small-3.columns
+            = f.input :last_name, required: true
+          .small-3.columns
+            = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
+          .small-3.columns
+            = f.input :time_zone, required: true
+        .row
+          .large-6.columns
+            = f.input :password, placeholder: 'New password'
+          .large-6.columns
+            = f.input :password_confirmation, placeholder: 'New password confirmation'
         .callout.primary
           p
             ' Personal introduction

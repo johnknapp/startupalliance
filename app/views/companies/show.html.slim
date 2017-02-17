@@ -11,6 +11,10 @@
     .row
       .medium-8.columns
         .callout
+          - if current_user and @company.team_member(current_user).role == 'Owner'
+            .float-right
+              = link_to edit_company_path(@company) do
+                i.fa.fa-pencil
           h5.bold.primary-text Product or service offering:
           p.indented-2= @company.offering
 

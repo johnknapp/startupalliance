@@ -2,7 +2,7 @@ class CompanyUser < ApplicationRecord
   belongs_to :company
   belongs_to :user
   enum equity: {
-      no_equity:  0,
+      equity?:    0,
       under_5:    1,
       over_5:     2,
       over_10:    3,
