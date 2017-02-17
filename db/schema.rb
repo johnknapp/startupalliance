@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217130347) do
+ActiveRecord::Schema.define(version: 20170217231729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,14 @@ ActiveRecord::Schema.define(version: 20170217130347) do
     t.string   "location"
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "time_zone",  default: "Pacific Time (US & Canada)"
+    t.string   "time_zone",   default: "Pacific Time (US & Canada)"
     t.date     "founded"
-    t.string   "state",      default: "initialized"
-    t.string   "pid",                                               null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.integer  "phases",     default: 0
+    t.string   "state",       default: "initialized"
+    t.string   "pid",                                                null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "phases",      default: 0
+    t.string   "webmeet_url"
   end
 
   create_table "company_sakpis", force: :cascade do |t|
