@@ -15,18 +15,33 @@
       .medium-8.columns
 
         .callout
-          - if @user.companies.first.present?
-            h5.bold.primary-text My Company:
+          - if @user.companies.present?
+            h5.bold.primary-text My #{'Company'.pluralize(@user.companies.count)}
             ul
-              li.indented-2 Company name: #{link_to @user.companies.first.name, company_path(@user.companies.first)}
-              li.indented-2 Founded: #{@user.companies.first.founded.strftime('%B %e, %Y')}
-              li.indented-2 Company location: #{@user.companies.first.location}
+              - @user.companies.each do |company|
+                li.indented-2
+                  strong
+                    ' #{link_to company.name, company_path(company)}
+                  - if current_user and company.team_member(current_user)
+                    - if company.team_member(@user).role == 'Owner'
+                      ' (#{company.team_member(@user).role.humanize}, #{company.team_member(@user).equity.humanize.downcase}%)
+                    - else
+                      ' (#{company.team_member(@user).role.humanize})
+                  ul
+                    li
+                      ' Founded:
+                      strong
+                        ' #{company.founded.strftime('%B %e, %Y')}
+                    li
+                      ' Location:
+                      strong
+                        ' #{company.location}
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:
             ul
               - @user.alliances.each do |alliance|
                 li.indented-2
-                  = link_to alliance.name, alliance_path(alliance)
+                  strong= link_to alliance.name, alliance_path(alliance)
                   - if current_user and alliance.members.include? current_user
                     .float-right
                       = link_to edit_alliance_path(alliance) do

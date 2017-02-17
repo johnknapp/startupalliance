@@ -20,23 +20,25 @@
         - if current_user and current_user.team_member?(@company)
           .callout
             h5.bold.primary-text
-              .float-right
-                = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
-                  i.fa.fa-plus
+              - if current_user and @company.team_member(current_user).role == 'Owner'
+                .float-right
+                  = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
+                    i.fa.fa-plus
               ' Company objectives and key results:
             - if @okrs.present?
               ul
                 - @okrs.each do |okr|
                   li.indented-2
-                    .bold= okr.objective
-                    - if current_user and current_user.team_member?(@company)
+                    - if current_user and @company.team_member(current_user).role == 'Owner'
                       .float-right
                         = link_to edit_okr_path(okr, company_pid: @company.pid) do
                           i.fa.fa-pencil
                         | &nbsp;
                         | &nbsp;
+                        | &nbsp;
                         = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
                           i.fa.fa-trash-o
+                    .bold= okr.objective
                     ol
                       li= okr.key_result_1
                       li= okr.key_result_2
@@ -48,26 +50,39 @@
         .callout
 
 
-          - if current_user and @company.team.include? current_user
+          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
-              a data-open='add-team-member'
+              a data-open='update-team'
                 i.fa.fa-plus
-              .reveal#add-team-member data-reveal=true
+              .reveal#update-team data-reveal=true
                 p.bold To add a team member, provide their StartupAlliance username
                 = form_tag add_team_member_company_path, method: :put
                   = text_field_tag :username
+                  .row
+                    .medium-6.columns
+                      = select_tag :role, options_for_select(CompanyUser.roles.keys)
+                    .medium-6.columns
+                      = select_tag :equity, options_for_select(CompanyUser.equities.keys)
                   = submit_tag 'Add team member', class: 'button expanded secondary'
 
           p.bold.little-space-after Team #{'Member'.pluralize(@company.team.count)}:
           - @company.team.each do |team_member|
             .row
               .small-8.columns
-                p.faint.snug-top= link_to team_member.name, vanity_path(team_member.username)
+                p.faint.snug-top
+                  ' #{link_to team_member.name, vanity_path(team_member.username)}
+                  - if current_user and @company.team_member(current_user)
+                    - if @company.team_member(team_member).role == 'Owner'
+                      ' (#{@company.team_member(team_member).role.humanize}, #{@company.team_member(team_member).equity.humanize.downcase}%)
+                    - else
+                      ' (#{@company.team_member(team_member).role.humanize})
               .small-4.columns
                 - if current_user and current_user.team_member?(@company)
-                  .float-right
-                    p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: team_member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
-                      i.fa.fa-trash-o
+                  - if current_user and @company.team_member(current_user).role == 'Owner'
+                    .float-right
+                      p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: team_member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                        i.fa.fa-trash-o
+
           hr.snug-top
 
           p.bold.little-space-after Company summary:
@@ -94,7 +109,7 @@
             .small-6.columns
               p.faint.snug-top.text-right= @company.location
 
-          - if current_user
+          - if current_user and @company.team_member(current_user)
             hr.snug-top
             p.bold
               span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP

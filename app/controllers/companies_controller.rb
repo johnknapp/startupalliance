@@ -46,22 +46,27 @@ class CompaniesController < ApplicationController
   # PUT /companies/1/add_team_member
   def add_team_member
     team_member = User.find_by_username(params[:username])
-    if @company.team_members.exists? team_member.id
-      redirect_to :back, alert: 'Already a team_member!'
+    if @company.team.exists? team_member.id
+      redirect_to :back, alert: 'Already a team member!'
     else
-      @company.team_members << team_member
-      redirect_to :back, notice: 'team_member added.'
+      CompanyUser.create(
+          user_id: team_member.id,
+          company_id: @company.id,
+          role: params[:role],
+          equity: params[:equity]
+      )
+      redirect_to :back, notice: 'Team member added.'
     end
   end
 
   # DELETE
   def remove_team_member
     team_member = User.find_by_pid(params[:team_member_pid])
-    if @company.team_members.count > 1
-      @company.team_members.delete(team_member)
+    if @company.team.count > 1
+      @company.team.delete(team_member)
       redirect_to :back, notice: 'team_member removed.'
     else
-      redirect_to :back, alert: 'Cannot remove the last team_member, please contact support.'
+      redirect_to :back, alert: 'Cannot remove the last team member, please contact support.'
     end
   end
 

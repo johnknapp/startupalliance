@@ -12,9 +12,9 @@ class CompanyUser < ApplicationRecord
       over_75:    7
   }
   enum role:{
-      owner:      0,
-      employee:   1,
-      advisor:    2,
-      investor:   3
+      Owner:      0,
+      Employee:   1,
+      Advisor:    2,
+      Investor:   3
   }
 end
