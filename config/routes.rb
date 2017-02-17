@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :companies do
     member do
-      put     :add_partner
-      delete  :remove_partner
+      put     :add_team_member
+      delete  :remove_team_member
       put     :set_sakpi
       delete  :unset_sakpi
     end

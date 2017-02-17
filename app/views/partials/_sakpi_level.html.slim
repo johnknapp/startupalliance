@@ -1,4 +1,4 @@
-- if current_user and @company.partners.include? current_user
+- if current_user and @company.team.include? current_user
   ul.dropdown.menu data-dropdown-menu=true
     li
       a
@@ -58,5 +58,5 @@
           - if @company.company_sakpis.where(sakpi_id: sakpi.id).present?
             li= link_to 'Unset', unset_sakpi_company_path(sakpi_id: sakpi.id), data: {:confirm => 'Really unset?'}, :method => :delete
 
-- elsif current_user and !@company.partners.include? current_user
+- elsif current_user and !@company.team.include? current_user
   = @company.company_sakpis.where(sakpi_id: sakpi.id).first.level

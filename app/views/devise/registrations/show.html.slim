@@ -15,12 +15,12 @@
       .medium-8.columns
 
         .callout
-          - if @user.company.present?
+          - if @user.companies.first.present?
             h5.bold.primary-text My Company:
             ul
-              li.indented-2 Company name: #{link_to @user.company.name, company_path(@user.company)}
-              li.indented-2 Founded: #{@user.company.founded.strftime('%B %e, %Y')}
-              li.indented-2 Company location: #{@user.company.location}
+              li.indented-2 Company name: #{link_to @user.companies.first.name, company_path(@user.companies.first)}
+              li.indented-2 Founded: #{@user.companies.first.founded.strftime('%B %e, %Y')}
+              li.indented-2 Company location: #{@user.companies.first.location}
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:
             ul

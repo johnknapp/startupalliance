@@ -3,11 +3,18 @@ class CompanyUser < ApplicationRecord
   belongs_to :user
   enum equity: {
       no_equity:  0,
-      over_5:     1,
-      over_10:    2,
-      over_25:    3,
-      over_33:    4,
-      over_50:    5,
-      over_75:    6
+      under_5:    1,
+      over_5:     2,
+      over_10:    3,
+      over_25:    4,
+      over_33:    5,
+      over_50:    6,
+      over_75:    7
+  }
+  enum role:{
+      owner:      0,
+      employee:   1,
+      advisor:    2,
+      investor:   3
   }
 end

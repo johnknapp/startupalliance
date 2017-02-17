@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :add_partner, :remove_partner, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :add_team_member, :remove_team_member, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
 
   before_action :authenticate_user!, except: [:show]
   load_and_authorize_resource
@@ -43,25 +43,25 @@ class CompaniesController < ApplicationController
     redirect_to :back, alert: 'You unset your SAKPI'
   end
 
-  # PUT /companies/1/add_partner
-  def add_partner
-    partner = User.find_by_username(params[:username])
-    if @company.partners.exists? partner.id
-      redirect_to :back, alert: 'Already a partner!'
+  # PUT /companies/1/add_team_member
+  def add_team_member
+    team_member = User.find_by_username(params[:username])
+    if @company.team_members.exists? team_member.id
+      redirect_to :back, alert: 'Already a team_member!'
     else
-      @company.partners << partner
-      redirect_to :back, notice: 'partner added.'
+      @company.team_members << team_member
+      redirect_to :back, notice: 'team_member added.'
     end
   end
 
   # DELETE
-  def remove_partner
-    partner = User.find_by_pid(params[:partner_pid])
-    if @company.partners.count > 1
-      @company.partners.delete(partner)
-      redirect_to :back, notice: 'partner removed.'
+  def remove_team_member
+    team_member = User.find_by_pid(params[:team_member_pid])
+    if @company.team_members.count > 1
+      @company.team_members.delete(team_member)
+      redirect_to :back, notice: 'team_member removed.'
     else
-      redirect_to :back, alert: 'Cannot remove the last partner, please contact support.'
+      redirect_to :back, alert: 'Cannot remove the last team_member, please contact support.'
     end
   end
 
@@ -74,7 +74,7 @@ class CompaniesController < ApplicationController
       params[:company].delete [:founded]
       respond_to do |format|
         if @company.save
-          @company.partners << current_user
+          @company.team_members << current_user
           format.html { redirect_to @company, notice: 'Company was successfully created.' }
           format.json { render :show, status: :created, location: @company }
         else

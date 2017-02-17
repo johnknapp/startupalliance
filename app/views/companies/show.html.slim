@@ -17,7 +17,7 @@
           h5.bold.primary-text Market served:
           p.indented-2= @company.serving
 
-        - if current_user and current_user.partner?(@company)
+        - if current_user and current_user.team_member?(@company)
           .callout
             h5.bold.primary-text
               .float-right
@@ -29,7 +29,7 @@
                 - @okrs.each do |okr|
                   li.indented-2
                     .bold= okr.objective
-                    - if current_user and current_user.partner?(@company)
+                    - if current_user and current_user.team_member?(@company)
                       .float-right
                         = link_to edit_okr_path(okr, company_pid: @company.pid) do
                           i.fa.fa-pencil
@@ -48,25 +48,25 @@
         .callout
 
 
-          - if current_user and @company.partners.include? current_user
+          - if current_user and @company.team.include? current_user
             .float-right
-              a data-open='add-partner'
+              a data-open='add-team-member'
                 i.fa.fa-plus
-              .reveal#add-partner data-reveal=true
-                p.bold To add a partner, please provide their StartupAlliance username
-                = form_tag add_partner_company_path, method: :put
+              .reveal#add-team-member data-reveal=true
+                p.bold To add a team member, provide their StartupAlliance username
+                = form_tag add_team_member_company_path, method: :put
                   = text_field_tag :username
-                  = submit_tag 'Add partner', class: 'button expanded secondary'
+                  = submit_tag 'Add team member', class: 'button expanded secondary'
 
-          p.bold.little-space-after Company #{'partner'.pluralize(@company.partners.count)}:
-          - @company.partners.each do |partner|
+          p.bold.little-space-after Team #{'Member'.pluralize(@company.team.count)}:
+          - @company.team.each do |team_member|
             .row
               .small-8.columns
-                p.faint.snug-top= link_to partner.name, vanity_path(partner.username)
+                p.faint.snug-top= link_to team_member.name, vanity_path(team_member.username)
               .small-4.columns
-                - if current_user and current_user.partner?(@company)
+                - if current_user and current_user.team_member?(@company)
                   .float-right
-                    p.faint.snug-top= link_to remove_partner_company_path(partner_pid: partner.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                    p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: team_member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
                       i.fa.fa-trash-o
           hr.snug-top
 

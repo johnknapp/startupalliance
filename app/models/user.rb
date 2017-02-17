@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include Pid
-  has_one   :company_user
-  has_one   :company, through: :company_user
+  has_many  :company_users
+  has_many  :companies, through: :company_users
   has_many  :alliance_users
   has_many  :alliances, through: :alliance_users
   has_many  :user_traits
@@ -29,8 +29,8 @@ class User < ApplicationRecord
     end
   end
 
-  def partner?(company)
-    company.partners.include? self
+  def team_member?(company)
+    company.team.include? self
   end
 
   def member?(alliance)
