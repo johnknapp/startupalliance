@@ -1,44 +1,43 @@
 .row
   .medium-10.medium-offset-1.small-10.small-offset-1.columns
 
-    p &nbsp;
+    p.snug-bottom &nbsp;
 
-    .callout
-      h3 Free tools for entrepreneurs and businesses of all kinds
-      ol
-        li Entrepreneur profiles quantify business skills and personal traits
-        li Company profiles highlight product offering, market served, company stage and KPIs
+    h2.bold.warning-text
+      ' Entrepreneurs are everywhere.
+    h2.bold.text-center.warning-text
+      ' Leverage each others strengths.
+    h2.bold.text-right.warning-text
+      ' No matter where you are.
+
+    p.snug-bottom &nbsp;
+
+    .callout.accent
+      h3.bold.primary-text Free tools for entrepreneurs and businesses of all kinds
+      ul
+        li Entrepreneur Profiles quantify business skills and personal traits
+        li Company Profiles highlight product offering, market served, company stage
+        li Company Key Performance Indicators show company performance at a glance
         li Company Objectives and Key Results focus efforts and track progress
-        li Private web meetings for company team, advisors and investors
+        li Private Web Meetings for company team, advisors and investors
         li Find your next great hire
         li Find your next great company
+      p.bold And of course, sensitive information stays private
 
-    .callout
-      h3 Premium tools harness the brilliance of a global network
-      ol
-        li Expand your network beyond your staff and advisors
+    .callout.accent
+      h3.bold.primary-text Affordable tools harness the brilliance of a global network
+      ul
         li Form Private Alliances with business owners and entrepreneurs from around the world
-        li Overcome your toughest business challenges
-        li Analyze the KPIs and OKRs of your Private Alliance Partners
-        li Private web meetings and message threads connect you and your partners
-        li Alliance message threads on each partner company OKR
-        li Offer advice and share knowledge with your Private Alliance Partners
+        li Help each other achieve goals, overcome challenges, expand networks and maximize success
+        li Analyze and advise on the KPIs and OKRs of your Private Alliance Partner Companies
+        li Private Web Meetings and Distributed Comment Threads keep Private Alliance Partners and Companies connected
+        li Create and join unlimited Private Alliances for only $39.95 a year
+      p.bold Private Alliance Partners form trusted bonds and lasting relationships.
 
-
-
-
-    .callout.secondary-background
-      h2.bold.white-text
-        ' Entrepreneurs are everywhere.
-      h2.bold.text-center.white-text
-        ' Leverage each others strengths.
-      h2.bold.text-right.white-text
-        ' No matter where you are.
-
-    p &nbsp;
+    /p &nbsp;
     /h3.bold Use our tools to...
     /h3.bold How it works:
-    .row data-equalizer=true
+    /.row data-equalizer=true
       h3.bold
       .large-4.columns
         .callout.small.secondary data-equalizer-watch=true
@@ -52,8 +51,6 @@
             ' No-nonsense profiles highlighting your strengths,
             ' business focus, company performance and OKRs.
             '
-            '
-
       .large-4.columns
         .callout.small.secondary data-equalizer-watch=true
           h1.bold.text-center.primary-text
@@ -63,7 +60,6 @@
             ' Join small groups of entrepreneurs with complementary
             ' skill sets to share information and ideas.
             '
-
       .large-4.columns
         .callout.small.secondary data-equalizer-watch=true
           h1.bold.text-center.primary-text
@@ -74,14 +70,17 @@
             ' Secure online meetings, peer-mentoring and progress
             ' tracking – together online for the first time.
             '
-            '
 
     p.snug-bottom &nbsp;
 
-    h1.bold.text-center.alert-text Better. Together.
+    h1.bold.text-center.warning-text Better. Together.
 
     p &nbsp;
 
     - if !current_user
-      p.snug-bottom.bold Join now and become a charter member, it’s free!
-      = render 'partials/join_form'
+      .row
+        .medium-10.medium-offset-1.columns
+          p.snug-bottom.bold Join now and become a charter member, it’s free!
+          = render 'partials/join_form'
+
+    p &nbsp;

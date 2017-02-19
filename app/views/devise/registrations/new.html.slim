@@ -5,15 +5,6 @@
     h3.show-for-medium-up &nbsp;
 
     .snug-top= image_tag 'banner.svg', width: '360px'
-    /h5.bold.little-snug-top.space-bottom.indented-5 Get&nbsp;inspired. Build&nbsp;skills. Do&nbsp;great&nbsp;things.
-
-    /p.bold.primary-text.text-center.space-top
-      ' Join during our pre-launch and become a
-      span.alert-text
-        | charter member!
-    /p.snug-top.faint.text-center
-      em
-        ' (Pre-launch period ends without notice)
 
     p.bold.space-top.snug-bottom
       ' Join now and become a charter member, it’s free!
@@ -24,16 +15,14 @@
         .row.collapse
           .small-8.columns
             = f.input :email, placeholder: 'Enter your email', label: false, required: true, autofocus: true
-            p.snug-top.faint
-              em 100% privacy. No spam ever.
           .small-4.columns
             = f.button :submit, 'Sign me up!', class: 'bold postfix expanded'
-            .text-right.snug-top.faint
-              em
-                ' Already a member?
-                = link_to 'Sign-in', new_user_session_path
-
-      /.form-actions
-        .float-right
-          = render "devise/shared/links"
-
+        .row
+          .small-12.columns
+            .float-right
+              p.snug-top.faint
+                em
+                  ' Already a member?
+                  = link_to 'Sign-in', new_user_session_path
+            p.snug-top.faint
+              em 100% privacy. No spam ever.
