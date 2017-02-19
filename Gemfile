@@ -34,7 +34,7 @@ gem 'jquery-ui-rails'
 # gem 'omniauth'
 # gem 'nokogiri'                              # for premailer-rails
 # gem 'paranoia'
-# gem 'pg_search'
+gem 'pg_search'
 # gem 'premailer-rails'                       # needs nokogiri
 gem 'pretender'
 gem 'rack-attack'
