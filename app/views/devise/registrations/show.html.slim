@@ -57,7 +57,19 @@
                 | &nbsp;
                 i.fa.fa-user-secret
           p
-            strong Account summary:
+            strong Member summary:
+          - if @user.user_skills.present?
+            .row
+              .small-8.columns
+                p.faint.snug-top Skill index:
+              .small-4.columns
+                p.faint.text-right.snug-top= @user.skill_index
+          - if @user.user_traits.present?
+            .row
+              .small-8.columns
+                p.faint.snug-top Trait index:
+              .small-4.columns
+                p.faint.text-right.snug-top= @user.trait_index
           .row
             .small-4.columns
               p.faint.snug-top Username:

@@ -58,5 +58,7 @@
           - if @company.company_sakpis.where(sakpi_id: sakpi.id).present?
             li= link_to 'Unset', unset_sakpi_company_path(sakpi_id: sakpi.id), data: {:confirm => 'Really unset?'}, :method => :delete
 
-- elsif current_user and @company.team.include? current_user
+- elsif current_user and @company.team_member(current_user) and @company.company_sakpis.where(sakpi_id: sakpi.id).first.present?
   = @company.company_sakpis.where(sakpi_id: sakpi.id).first.level
+- else
+  ' –

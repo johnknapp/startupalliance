@@ -2,7 +2,7 @@ USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user partner advisor admin]
 
 COMPANY_STATES            = %w[initialized active paused]
-OKR_STATES                = %w[initialized future present past]
+OKR_STATES                = %w[initialized active paused]
 ALLIANCE_STATES           = %w[initialized active paused]
 
 USER_TRAIT_TIP            = 'Only traits where you have rated yourself appear to others.'
