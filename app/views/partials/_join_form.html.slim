@@ -6,9 +6,11 @@
   .row.collapse
     .small-8.columns
       = f.input :email, placeholder: 'Enter your email', label: false
+      p.snug-top.snug-bottom.faint
+        em 100% privacy. No spam ever.
     .small-4.columns
-      = f.button :submit, 'Join StartupAlliance', class: 'postfix expanded'
-  .row
-    p.snug-top.snug-bottom.faint
-      em 100% privacy. No spam ever.
-
+      = f.button :submit, 'Sign me up!', class: 'postfix expanded bold'
+      .text-right.snug-top.faint
+        em
+          ' Already a member?
+          = link_to 'Sign-in', new_user_session_path
