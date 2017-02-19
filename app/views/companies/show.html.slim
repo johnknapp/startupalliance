@@ -57,7 +57,9 @@
             - else
               p.text-center.space-top Add your first OKR.
           - else
-            p.text-center.space-top OKRs are only visible to the Company Team.
+            p.text-center.space-top
+              em
+                ' OKRs are visible to the Company Team.
 
       .medium-4.columns
         .callout
@@ -76,7 +78,7 @@
               p.faint.snug-top.text-right= @company.phases
           .row
             .small-6.columns
-              p.faint.snug-top SAKPI index
+              p.faint.snug-top KPI index
             .small-6.columns
               p.faint.snug-top.text-right= @company.sakpi_index
           .row
@@ -134,11 +136,11 @@
                     span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
                       ' Web Meeting link
 
+          hr.snug-top
+          p.bold
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
+              ' KPIs:
           - if current_user and @company.team_member(current_user)
-            hr.snug-top
-            p.bold
-              span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
-                ' SAKPIs:
             - sakpis = Sakpi.all.order(:name)
             - sakpis.each do |sakpi|
               .row
@@ -148,3 +150,9 @@
                   .float-right
                     .faint.snug-top= render 'partials/sakpi_level', sakpi: sakpi
 
+          - else
+            .row
+              .small-12.columns
+                p.text-center
+                  em
+                    ' KPIs are visible to the Company Team.

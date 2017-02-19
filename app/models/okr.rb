@@ -8,13 +8,13 @@ class Okr < ApplicationRecord
       days:      2
   }
 
-  def in_the_past?
+  def past?
   end
 
-  def in_the_present?
+  def present?
   end
 
-  def in_the_future?
+  def future?
   end
 
 end
