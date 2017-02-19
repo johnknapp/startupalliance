@@ -29,7 +29,7 @@ class User < ApplicationRecord
     end
   end
 
-  def team_member?(company)
+  def team?(company)
     company.team.include? self
   end
 

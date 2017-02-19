@@ -17,9 +17,10 @@
     tbody
       - @alliances.each do |alliance|
         tr
-          td= link_to alliance.name, alliance
-          td= alliance.purpose
           td{valign='top'}
+            = link_to alliance.name, alliance
+          td{valign='top'}
+            = alliance.purpose
             - if can? :manage, :all
               .float-right
                 = link_to edit_alliance_path(alliance) do
@@ -28,5 +29,6 @@
                 | &nbsp;
                 = link_to alliance, data: { confirm: 'Are you sure?' }, method: :delete do
                   i.fa.fa-trash-o
+          td{valign='top'}
             - alliance.members.each do |member|
-              p= link_to member.name, vanity_path(member.username)
+              p.snug-bottom= link_to member.name, vanity_path(member.username)

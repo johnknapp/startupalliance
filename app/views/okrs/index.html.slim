@@ -23,7 +23,7 @@ table.hover.stacked
         td= okr.mid_score
         td= okr.final_score
         td
-          = okr.company.name
+          = link_to okr.company.name, company_path(okr.company)
           - if can? :manage, :all
             .float-right
               = link_to edit_okr_path(okr) do
