@@ -5,10 +5,15 @@
       strong
         ' #{@user.name}
     hr.little-snug-top
-    - if @user.tagline.present?
-      p.snug-top.space-bottom.text-right #{@user.tagline}
+    - if @user.mission.present?
+      .row
+        .medium-8.medium-offset-4.columns
+          p.snug-top.space-bottom.text-right
+            strong
+              ' Personal mission:
+            ' #{@user.mission}
     - elsif current_user and @user == current_user and current_user.confirmed?
-      p.snug-top.space-bottom.text-right.faint= link_to 'Add your personal introduction', edit_user_registration_path
+      p.snug-top.space-bottom.text-right.faint= link_to 'Write your personal mission statement', edit_user_registration_path
     - else
       p.snug-top.space-bottom.text-right Member since #{@user.created_at.strftime('%B %e, %Y')}
     .row

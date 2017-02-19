@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
           :first_name,
           :last_name,
           :username,
-          :tagline,
+          :mission,
           :bio,
           :email,
           :password,
