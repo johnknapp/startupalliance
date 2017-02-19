@@ -36,6 +36,9 @@
               a data-open='add-member'
                 i.fa.fa-plus
               .reveal#add-member data-reveal=true
+                button data-close=true aria-label='Close' type='button' class='close-button'
+                  span aria-hidden=true
+                    ' &times;
                 p.bold To add a member, please provide their StartupAlliance username
                 = form_tag add_member_alliance_path, method: :put
                   = text_field_tag :username

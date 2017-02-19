@@ -20,19 +20,27 @@
           h5.bold.primary-text Market served:
           p.indented-2= @company.serving
 
-        - if current_user and current_user.team?(@company)
-          .callout
-            h5.bold.primary-text
-              - if current_user and @company.team_member(current_user).role == 'Owner'
-                .float-right
-                  = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
-                    i.fa.fa-plus
-              ' Objectives and key results:
+        .callout
+          h5.bold.primary-text
+            .float-right
+              a data-open='okr-info'
+                i.fa.fa-info-circle
+
+              = render 'partials/quick_reference_okr'
+
+              - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+                | &nbsp;
+                | &nbsp;
+                | &nbsp;
+                = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
+                  i.fa.fa-plus
+            ' Objectives and Key Results:
+          - if current_user and current_user.team?(@company)
             - if @okrs.present?
               ul
                 - @okrs.each do |okr|
                   li.indented-2
-                    - if current_user and @company.team_member(current_user).role == 'Owner'
+                    - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
                       .float-right
                         = link_to edit_okr_path(okr, company_pid: @company.pid) do
                           i.fa.fa-pencil
@@ -47,7 +55,9 @@
                       li= okr.key_result_2
                       li= okr.key_result_3
             - else
-              p.text-center No OKRs!
+              p.text-center.space-top Add your first OKR.
+          - else
+            p.text-center.space-top OKRs are only visible to the Company Team.
 
       .medium-4.columns
         .callout
@@ -86,6 +96,9 @@
               a data-open='update-team'
                 i.fa.fa-plus
               .reveal#update-team data-reveal=true
+                button data-close=true aria-label='Close' type='button' class='close-button'
+                  span aria-hidden=true
+                    ' &times;
                 p.bold To add a team member, provide their StartupAlliance username
                 = form_tag add_team_member_company_path, method: :put
                   = text_field_tag :username
