@@ -1,9 +1,9 @@
 .row
   .medium-10.medium-offset-1.small-10.small-offset-1.columns
 
-    p.snug-bottom &nbsp;
+    p &nbsp;
 
-    h1.bold.text-center.warning-text Free Tools for Entrepreneurs.
+    h1.bold.text-center.warning-text.tight-lead.space-bottom Power Tools for Entrepreneurs.
 
     .row
       .large-10.large-offset-1.medium-12.columns
@@ -13,15 +13,17 @@
           .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '100px'
         p
           ' I’m John Knapp, I created StartupAlliance to help entrepreneurs maximize their success.
-          ' It started out as a face-to-face group in Seattle and Silicon Valley.
+          ' It started as a face-to-face group in Seattle and Silicon Valley.
           ' But now that
           span.bold.warning-text
-            | entrepreneurship has become a global phenomenon
-          ' , we bring you this online resource to help your entrepreneurs journey regardless of location.
+            | entrepreneurship is a global phenomenon
+          ' , we created this online resource to support your entrepreneur’s journey,
+          span.scale-to-110.bold
+            'wherever you are.
           '
         p
-          ' Beginner and expert entrepreneurs alike will leverage a useful mix of tools to help grow their business.
-          ' And since you can never get enough good advice and helpful information, we make it easy to find the right people and build your team.
+          ' Beginner and expert entrepreneurs alike leverage a useful mix of tools to help grow their business.
+          ' And since good advice and helpful ideas makes a difference, we make it easy to find the right people and build your team.
           '
         h5.bold
           ' If you’re an entrepreneur or if you’re ready to become one,
@@ -67,9 +69,9 @@
       h3.bold
       .large-4.columns
         .callout.small.accent data-equalizer-watch=true
-          h1.bold.text-center.primary-text
+          h1.space-top.bold.text-center.primary-text
             i.fa-lg.fa.fa-diamond
-          h4.bold.text-center Showcase yourself and your business
+          h4.bold.text-center Showcase yourself and your company
           p.text-center
             ' No-nonsense profiles highlight your strengths,
             ' business focus, company performance and OKRs.
@@ -93,17 +95,32 @@
             ' Secure online meetings, peer-mentoring and progress
             ' tracking – together online for the first time.
             '
+    .callout.secondary-background
+      h4.bold.white-text.snug-top
+        ' Power Tool Spotlight:
+        span.success-text
+          ' Objectives and Key Results
+      p.bold.white-text
+        ' Used by top companies like Google, LinkedIn and Twitter, OKR software is a powerful tool companies use to
+        ' set and communicate primary Objectives throughout the organization and drive their achievement by
+        ' focusing the team on the accomplishment of measurable Key Results.
+        '
+      h5.bold.text-center.success-text
+        ' We’re dedicated to your success, that’s why all our members get
+        ' our OKR software for free.
+
+    /p.bold.snug-top.text-center Uniting entrepreneurs and amplifying their success.
 
     p.snug-bottom &nbsp;
 
     h1.bold.text-center.warning-text Better. Together.
 
-    p &nbsp;
+    p.show-for-medium &nbsp;
 
     - if !current_user
       .row
         .medium-10.medium-offset-1.columns
-          p.snug-bottom.bold Join now and become a charter member, it’s free!
+          p.snug-bottom.bold Join now as a charter member, it’s free!
           = render 'partials/join_form'
 
-    p &nbsp;
+    p.show-for-medium &nbsp;
