@@ -48,7 +48,7 @@ class ConfirmationsController < Devise::ConfirmationsController
         #     id:                 resource.pid,
         #     event:              'Activated'
         # )
-        # GibbonService.add_update(resource, ENV['MAILCHIMP_SKILLBANK_USERS_LIST'])
+        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       set_flash_message :notice, :confirmed
       sign_in(resource)

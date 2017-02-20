@@ -80,7 +80,7 @@ class RegistrationsController < Devise::RegistrationsController
         #     id:             current_user.pid,
         #     event:          'Signed up'
         # )
-        # GibbonService.add_update(current_user, ENV['MAILCHIMP_SKILLBANK_USERS_LIST'])
+        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       current_or_guest_user
     else
@@ -113,7 +113,7 @@ class RegistrationsController < Devise::RegistrationsController
         #     id:             resource.pid,
         #     event:          'Updated account'
         # )
-        # GibbonService.add_update(resource, ENV['MAILCHIMP_SKILLBANK_USERS_LIST'])
+        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
     end
     super
@@ -132,7 +132,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def destroy
     if Rails.env.production?
-      # GibbonService.unsubscribe(@user, ENV['MAILCHIMP_SKILLBANK_USERS_LIST'])
+      GibbonService.unsubscribe(@user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
     end
     super
   end
