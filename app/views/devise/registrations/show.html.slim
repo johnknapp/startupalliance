@@ -41,6 +41,9 @@
                       ' Location:
                       strong
                         ' #{company.location}
+          - else
+            p.text-center Not part of any Companies.
+
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:
             ul
@@ -51,6 +54,8 @@
                     .float-right
                       = link_to edit_alliance_path(alliance) do
                         i.fa.fa-pencil
+          - else
+            p.text-center Not part of any Private Alliances.
 
 
       .medium-4.columns
