@@ -36,24 +36,33 @@
                   i.fa.fa-plus
             ' Objectives and Key Results:
           - if current_user and current_user.team?(@company)
-            - if @okrs.present?
-              ul
-                - @okrs.each do |okr|
-                  li.indented-2
-                    - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-                      .float-right
-                        = link_to edit_okr_path(okr, company_pid: @company.pid) do
-                          i.fa.fa-pencil
-                        | &nbsp;
-                        | &nbsp;
-                        | &nbsp;
-                        = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
-                          i.fa.fa-trash-o
-                    .bold= okr.objective
-                    ol
-                      li= okr.key_result_1
-                      li= okr.key_result_2
-                      li= okr.key_result_3
+            - if @company.okrs.present?
+
+              ul.tabs#okr-tabs data-tabs=true
+                li.tabs-title
+                  a.bold href='#panel-1'
+                    ' Concluded
+                li.tabs-title.is-active
+                  a.bold href='#panel-2' aria-selected='true'
+                    ' Active
+                li.tabs-title
+                  a.bold href='#panel-3'
+                    ' Upcoming
+
+              .tabs-content data-tabs-content='okr-tabs'
+                .tabs-panel#panel-1
+                  - @company.okrs.each do |okr|
+                    - if okr.concluded?
+                      = render 'partials/okr_show', okr: okr
+                .tabs-panel.is-active#panel-2
+                  - @company.okrs.each do |okr|
+                    - if okr.active?
+                      = render 'partials/okr_show', okr: okr
+                .tabs-panel#panel-3
+                  - @company.okrs.each do |okr|
+                    - if okr.upcoming?
+                      = render 'partials/okr_show', okr: okr
+
             - else
               p.text-center.space-top Add your first OKR.
           - else
@@ -76,6 +85,11 @@
               p.faint.snug-top Lifecycle phase
             .small-6.columns
               p.faint.snug-top.text-right= @company.phases
+          .row
+            .small-6.columns
+              p.faint.snug-top Lifetime OKRs
+            .small-6.columns
+              p.faint.snug-top.text-right= number_with_delimiter(@company.okrs.count)
           .row
             .small-6.columns
               p.faint.snug-top KPI index

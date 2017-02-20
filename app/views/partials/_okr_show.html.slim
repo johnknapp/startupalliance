@@ -1,0 +1,38 @@
+.callout.accent
+  - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+    .float-right
+      = link_to edit_okr_path(okr, company_pid: @company.pid) do
+        i.fa.fa-pencil
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
+        i.fa.fa-trash-o
+  p.bold= okr.objective
+  hr.little-snug-top
+  .row
+    .small-6.columns
+      p.faint.snug-top
+        em #{okr.okr_duration} #{okr.okr_units} starting #{okr.okr_start.strftime('%B %e, %Y')}
+    .small-3.columns
+      p.faint.snug-top.text-right
+        ' Mid-period score:
+        - if okr.mid_score.present?
+          ' #{okr.mid_score}
+        - else
+          ' TBD
+    .small-3.columns
+      p.faint.snug-top.text-right
+        ' Final-period score:
+        - if okr.final_score.present?
+          ' #{okr.final_score}
+        - else
+          ' TBD
+  .row
+    .small-12.columns
+      ol.little-snug-top
+        li.indented-1= okr.key_result_1
+        li.indented-1= okr.key_result_2
+        li.indented-1= okr.key_result_3
+      - if okr.postmortem.present?
+        p.scale-to-90= okr.postmortem

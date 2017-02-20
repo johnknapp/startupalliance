@@ -8,13 +8,22 @@ class Okr < ApplicationRecord
       days:      2
   }
 
-  def past?
+  def concluded?
+    self.okr_end <= Date.today
   end
 
-  def present?
+  def active?
+    self.okr_start <= Date.today and self.okr_end >= Date.today
   end
 
-  def future?
+  def upcoming?
+    self.okr_start >= Date.today
+  end
+
+  def okr_end
+    d = self.okr_duration
+    u = self.okr_units
+    self.okr_start.advance(u.to_sym => d)
   end
 
 end
