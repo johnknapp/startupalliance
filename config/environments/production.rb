@@ -1,19 +1,19 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # ActionMailer::Base.delivery_method = :smtp
-  # ActionMailer::Base.smtp_settings = {
-  #     address:              'smtp.sendgrid.net',
-  #     port:                 '587',
-  #     authentication:       :plain,
-  #     user_name:            ENV['SENDGRID_USERNAME'],
-  #     password:             ENV['SENDGRID_PASSWORD'],
-  #     domain:               'skillbank.io',
-  #     enable_starttls_auto:  true
-  # }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      address:              'smtp.sendgrid.net',
+      port:                 '587',
+      authentication:       :plain,
+      user_name:            ENV['SENDGRID_USERNAME'],
+      password:             ENV['SENDGRID_PASSWORD'],
+      domain:               'startupalliance.com',
+      enable_starttls_auto:  true
+  }
 
-  # config.action_mailer.default_url_options = { :host => 'startupalliance.com' }
-  # Rails.application.routes.default_url_options[:host] = 'startupalliance.com'
+  config.action_mailer.default_url_options = { :host => 'startupalliance.com' }
+  Rails.application.routes.default_url_options[:host] = 'startupalliance.com'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
