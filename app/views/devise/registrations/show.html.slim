@@ -68,6 +68,16 @@
                 i.fa.fa-user-secret
           p
             strong Member summary:
+          - if @user.company_owner == true
+            .row
+              .small-8.columns
+                p.faint.snug-top Company owner:
+              .small-4.columns
+                p.faint.text-right.snug-top
+                  - if @user.company_owner == true
+                    ' Yes
+                  - else
+                    ' No
           - if @user.user_skills.present?
             .row
               .small-8.columns

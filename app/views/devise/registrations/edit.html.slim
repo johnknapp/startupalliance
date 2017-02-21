@@ -3,7 +3,7 @@
     h3.show-for-medium-up &nbsp;
     h3 Update your Account
     hr.little-snug-top
-    - if current_user.confirmed?
+    - if current_user.confirmed? and current_user.company_owner == true
       p.text-right.snug-top Own a company? #{link_to 'Create it now', new_company_path(user_pid: current_user.pid)}
       /ul.menu.align-right.snug-top
         li= link_to 'Create your company', new_company_path(user_pid: current_user.pid), class: 'button small'
@@ -15,7 +15,7 @@
           .small-8.columns
             = f.input :email, required: true
           .small-4.columns
-            .space-top= f.input :company_owner, required: true, label: 'I own my own company', boolean_style: :inline
+            .space-top= f.input :company_owner, required: true, label: 'I own my own company'
         .row
           .small-3.columns
             = f.input :first_name, required: true
