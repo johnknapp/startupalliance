@@ -1,4 +1,4 @@
-Trait.destroy_all
+# Trait.destroy_all
 
 traits = [
   'Creative',
@@ -13,6 +13,6 @@ traits = [
   'Resilient'
 ]
 
-traits.each do |t|
-  Trait.create(name: t)
-end
+# traits.each do |t|
+#   Trait.create(name: t)
+# end

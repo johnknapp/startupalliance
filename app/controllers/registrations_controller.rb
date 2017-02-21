@@ -4,12 +4,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def declare_trait
     if current_user and params[:trait_id] and params[:level]
-      trait = UserTrait.first_or_initialize(
+      trait = UserTrait.where(
           user_id:  current_user.id,
           trait_id: params[:trait_id]
-      )
-      trait.level = params[:level]
-      trait.save
+      ).first_or_create
+      trait.update(level: params[:level])
+      set_trait_index
     end
     redirect_to :back, notice: 'You set your level'
   end
@@ -23,12 +23,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def declare_skill
     if current_user and params[:skill_id] and params[:level]
-      skill = UserSkill.first_or_initialize(
+      skill = UserSkill.where(
           user_id:  current_user.id,
           skill_id: params[:skill_id]
-      )
-      skill.level = params[:level]
-      skill.save
+      ).first_or_create
+      skill.update(level: params[:level])
+      set_skill_index
     end
     redirect_to :back, notice: 'You set your level'
   end
@@ -159,6 +159,16 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
   private
+
+    def set_skill_index
+      us = current_user.user_skills
+      current_user.update(skill_index: us.sum(:level))
+    end
+
+    def set_trait_index
+      us = current_user.user_traits
+      current_user.update(trait_index: us.sum(:level))
+    end
 
     def valid_email?(email)
       valid_email_regex = /\A([-a-z0-9!\#$%&'*+\/=?^_`{|}~]+\.)*[-a-z0-9!\#$%&'*+\/=?^_`{|}~]+@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i

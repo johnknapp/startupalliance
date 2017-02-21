@@ -41,24 +41,6 @@ class User < ApplicationRecord
     self.role == 'admin'
   end
 
-  def skill_index
-    arr = []
-    user_skills = self.user_skills
-    user_skills.each do |us|
-      arr << us.level
-    end
-    arr.sum
-  end
-
-  def trait_index
-    arr = []
-    user_traits = self.user_traits
-    user_traits.each do |ut|
-      arr << ut.level
-    end
-    arr.sum
-  end
-
   # part of guest user
   def password_required?
     super if confirmed?

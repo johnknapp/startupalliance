@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219181042) do
+ActiveRecord::Schema.define(version: 20170221171926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,20 +37,21 @@ ActiveRecord::Schema.define(version: 20170219181042) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.string   "offering"
-    t.string   "serving"
+    t.string   "description"
+    t.string   "primary_market"
     t.string   "url"
     t.string   "location"
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "time_zone",   default: "Pacific Time (US & Canada)"
+    t.string   "time_zone",      default: "Pacific Time (US & Canada)"
     t.date     "founded"
-    t.string   "state",       default: "initialized"
-    t.string   "pid",                                                null: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.integer  "phases",      default: 0
+    t.string   "state",          default: "initialized"
+    t.string   "pid",                                                   null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.integer  "phases",         default: 0
     t.string   "webmeet_url"
+    t.integer  "sakpi_index",    default: 0
   end
 
   create_table "company_sakpis", force: :cascade do |t|
@@ -154,6 +155,9 @@ ActiveRecord::Schema.define(version: 20170219181042) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                                                    null: false
     t.datetime "updated_at",                                                    null: false
+    t.integer  "skill_index",            default: 0
+    t.integer  "trait_index",            default: 0
+    t.boolean  "company_owner",          default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

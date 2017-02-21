@@ -23,13 +23,4 @@ class Company < ApplicationRecord
     CompanyUser.where(user_id: user.id, company_id: self.id).first
   end
 
-  def sakpi_index
-    arr = []
-    sakpis = self.company_sakpis
-    sakpis.each do |kpi|
-      arr << kpi.level
-    end
-    arr.sum
-  end
-
 end

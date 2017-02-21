@@ -11,17 +11,17 @@
 table.hover.stacked
   thead
     tr
-      th{valign='top' width='20%'} Name
-      th{width='40%'} Product / service offering
+      th{width='20%'} Name
+      th{width='40%'} Description
       th{width='40%'} Market served
 
   tbody
     - @companies.each do |company|
       tr
-        td= link_to company.name, company
-        td= company.offering
-        td
-          = company.serving
+        td{valign='top'}= link_to company.name, company
+        td{valign='top'}= company.description
+        td{valign='top'}
+          = company.primary_market
           - if can? :manage, :all
             .float-right
               = link_to edit_company_path(company) do

@@ -14,11 +14,11 @@
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
-          h5.bold.primary-text Product or service offering:
-          p.indented-2= @company.offering
+          h5.bold.primary-text Company description:
+          p.indented-2= @company.description
 
-          h5.bold.primary-text Market served:
-          p.indented-2= @company.serving
+          h5.bold.primary-text Primary market served:
+          p.indented-2= @company.primary_market
 
         .callout
           h5.bold.primary-text

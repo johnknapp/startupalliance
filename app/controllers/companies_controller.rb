@@ -27,12 +27,12 @@ class CompaniesController < ApplicationController
 
   def set_sakpi
     if @company and params[:sakpi_id] and params[:level]
-      sakpi = CompanySakpi.first_or_initialize(
+      sakpi = CompanySakpi.where(
           company_id:  @company.id,
           sakpi_id: params[:sakpi_id]
-      )
-      sakpi.level = params[:level]
-      sakpi.save
+      ).first_or_create
+      sakpi.update(level: params[:level])
+      set_sakpi_index
     end
     redirect_to :back, notice: 'You set your SAKPI'
   end
@@ -41,6 +41,7 @@ class CompaniesController < ApplicationController
     if @company and params[:sakpi_id]
       CompanySakpi.where(company_id: @company.id, sakpi_id: params[:sakpi_id]).first.destroy
     end
+    set_sakpi_index
     redirect_to :back, alert: 'You unset your SAKPI'
   end
 
@@ -120,6 +121,12 @@ class CompaniesController < ApplicationController
   end
 
   private
+    # Update company.sakpi_index with new total
+    def set_sakpi_index
+      cs = @company.company_sakpis
+      @company.update(sakpi_index: cs.sum(:level))
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find_by_pid(params[:id])
@@ -127,6 +134,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:webmeet_url, :name, :offering, :serving, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :pid)
+      params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :pid)
     end
 end

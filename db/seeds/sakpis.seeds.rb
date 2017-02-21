@@ -1,4 +1,4 @@
-Sakpi.destroy_all
+#Sakpi.destroy_all
 
 sakpis = [
     'Capital',
@@ -9,6 +9,6 @@ sakpis = [
     'Team'
 ]
 
-sakpis.each do |sakpi|
-  Sakpi.create(name: sakpi)
-end
+# sakpis.each do |sakpi|
+#   Sakpi.create(name: sakpi)
+# end

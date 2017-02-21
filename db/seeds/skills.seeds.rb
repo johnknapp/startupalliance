@@ -1,4 +1,4 @@
-Skill.destroy_all
+# Skill.destroy_all
 
 skills = [
   'Collaboration',
@@ -21,6 +21,6 @@ skills = [
   'UX / UI'
 ]
 
-skills.each do |s|
-  Skill.create(name: s)
-end
+# skills.each do |s|
+#   Skill.create(name: s)
+# end
