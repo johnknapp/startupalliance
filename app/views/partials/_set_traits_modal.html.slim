@@ -1,0 +1,16 @@
+.reveal.small#set-traits data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+
+  p.bold These are your Traits
+  hr.little-snug-top
+  p.snug-top.text-right= USER_TRAIT_TIP
+
+  table.hover.stacked
+    tbody
+      - traits = Trait.all.order(:name)
+      - traits.each do |trait|
+        tr
+          td{width='50%' align='right'}= trait.name
+          td{width='50%'}= render 'partials/trait_level', trait: trait

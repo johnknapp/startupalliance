@@ -1,0 +1,16 @@
+.reveal.small#set-sakpis data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+
+  p.bold These are your StartupAlliance KPIs
+  hr.little-snug-top
+  p.snug-top.text-right= SAKPI_LEVEL_TIP
+
+  table.hover.stacked
+    tbody
+      - sakpis = Sakpi.all.order(:name)
+      - sakpis.each do |sakpi|
+        tr
+          td{width='50%' align='right'}= sakpi.name
+          td{width='50%'}= render 'partials/sakpi_level', sakpi: sakpi

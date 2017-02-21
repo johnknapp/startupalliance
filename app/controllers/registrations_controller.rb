@@ -4,11 +4,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def declare_trait
     if current_user and params[:trait_id] and params[:level]
-      UserTrait.create(
+      trait = UserTrait.first_or_initialize(
           user_id:  current_user.id,
-          trait_id: params[:trait_id],
-          level:    params[:level] 
+          trait_id: params[:trait_id]
       )
+      trait.level = params[:level]
+      trait.save
     end
     redirect_to :back, notice: 'You set your level'
   end
@@ -22,11 +23,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def declare_skill
     if current_user and params[:skill_id] and params[:level]
-      UserSkill.create(
+      skill = UserSkill.first_or_initialize(
           user_id:  current_user.id,
-          skill_id: params[:skill_id],
-          level:    params[:level]
+          skill_id: params[:skill_id]
       )
+      skill.level = params[:level]
+      skill.save
     end
     redirect_to :back, notice: 'You set your level'
   end

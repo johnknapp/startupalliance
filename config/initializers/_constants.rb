@@ -5,12 +5,13 @@ COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized active paused]
 ALLIANCE_STATES           = %w[initialized active paused]
 
-USER_TRAIT_TIP            = 'Only traits where you have rated yourself appear to others.'
-VIEWER_TRAIT_TIP          = 'This member has rated themselves for these traits.'
-USER_SKILL_TIP            = 'Only skills where you have rated yourself appear to others.'
-VIEWER_SKILL_TIP          = 'This member has rated themselves for these skills.'
+USER_TRAIT_TIP            = 'Only Traits where you have rated yourself appear to others.'
+VIEWER_TRAIT_TIP          = 'This member has rated themselves for these Traits.'
+USER_SKILL_TIP            = 'Only Tkills where you have rated yourself appear to others.'
+VIEWER_SKILL_TIP          = 'This member has rated themselves for these Skills.'
 WEBRTC_TIP                = 'WebRTC is live audio/video chat, available on supported browsers only.'
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
+SAKPI_LEVEL_TIP           = 'The level indicates relative strength of each Performance Indicator.'
 
 USERNAME_EXCLUSIONS = %w[
   about

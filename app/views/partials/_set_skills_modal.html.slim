@@ -1,0 +1,16 @@
+.reveal.small#set-skills data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+
+  p.bold These are your Skills
+  hr.little-snug-top
+  p.snug-top.text-right= USER_TRAIT_TIP
+
+  table.hover.stacked
+    tbody
+      - skills = Skill.all.order(:name)
+      - skills.each do |skill|
+        tr
+          td{width='50%' align='right'}= skill.name
+          td{width='50%'}= render 'partials/skill_level', skill: skill

@@ -27,11 +27,12 @@ class CompaniesController < ApplicationController
 
   def set_sakpi
     if @company and params[:sakpi_id] and params[:level]
-      CompanySakpi.create(
+      sakpi = CompanySakpi.first_or_initialize(
           company_id:  @company.id,
-          sakpi_id: params[:sakpi_id],
-          level:    params[:level]
+          sakpi_id: params[:sakpi_id]
       )
+      sakpi.level = params[:level]
+      sakpi.save
     end
     redirect_to :back, notice: 'You set your SAKPI'
   end

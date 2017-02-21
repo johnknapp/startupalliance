@@ -152,6 +152,18 @@
 
           hr.snug-top
           p.bold
+            .float-right
+              p.faint
+                - if current_user and @company.team_member(current_user).role == 'Owner'
+                  a data-open='set-sakpis'
+                    i.fa.fa-pencil
+                  | &nbsp;
+                  | &nbsp;
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_LEVEL_TIP
+                  ' Level
+                = render 'partials/set_sakpis_modal'
+
+
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
               ' KPIs:
           - if current_user and @company.team_member(current_user)
@@ -162,8 +174,12 @@
                   p.faint.snug-top= sakpi.name
                 .small-6.columns
                   .float-right
-                    .faint.snug-top= render 'partials/sakpi_level', sakpi: sakpi
-
+                    .faint.snug-top
+                      - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
+                      - if cs.present?
+                        = cs.level
+                      - else
+                        ' –
           - else
             .row
               .small-12.columns

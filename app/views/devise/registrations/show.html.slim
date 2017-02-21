@@ -42,7 +42,7 @@
                       strong
                         ' #{company.location}
           - else
-            p.text-center Not part of any Companies.
+            p.text-center Not part of any Companies yet.
 
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:
@@ -54,8 +54,8 @@
                     .float-right
                       = link_to edit_alliance_path(alliance) do
                         i.fa.fa-pencil
-          - else
-            p.text-center Not part of any Private Alliances.
+          /- else
+            p.text-center Not part of any Private Alliances yet.
 
 
       .medium-4.columns
@@ -91,9 +91,17 @@
             .small-6.columns
               p.faint.text-right.snug-top= @user.created_at.strftime('%B %e, %Y')
             hr
+
           - if current_user and @user.skills.present? or current_user == @user
             .float-right
-              p.faint Level
+              p.faint
+                - if current_user == @user
+                  a data-open='set-skills'
+                    i.fa.fa-pencil
+                  | &nbsp;
+                  | &nbsp;
+                ' Level
+                = render 'partials/set_skills_modal'
             p
               strong
                 - if current_user == @user
@@ -102,27 +110,25 @@
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_SKILL_TIP
                     ' Skills:
-            - if current_user == @user
-              - skills = Skill.all.order(:name)
-              - skills.each do |skill|
-                .row
-                  .small-6.columns
-                    p.faint.snug-top= skill.name
-                  .small-6.columns
-                    .float-right
-                      .faint.snug-top= render 'partials/skill_level', skill: skill
-            - else
-              - @user.user_skills.each do |us|
-                .row
-                  .small-6.columns
-                    p.faint.snug-top= us.skill.name
-                  .small-6.columns
-                    .float-right
-                      .faint.snug-top= us.level
+            - @user.user_skills.each do |us|
+              .row
+                .small-6.columns
+                  p.faint.snug-top= us.skill.name
+                .small-6.columns
+                  .float-right
+                    .faint.snug-top= us.level
             hr
+
           - if current_user and @user.traits.present? or current_user == @user
             .float-right
-              p.faint Level
+              p.faint
+                - if current_user == @user
+                  a data-open='set-traits'
+                    i.fa.fa-pencil
+                  | &nbsp;
+                  | &nbsp;
+                ' Level
+                = render 'partials/set_traits_modal'
             p
               strong
                 - if current_user == @user
@@ -131,24 +137,15 @@
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_TRAIT_TIP
                     ' Traits:
-            - if current_user == @user
-              - traits = Trait.all.order(:name)
-              - traits.each do |trait|
-                .row
-                  .small-6.columns
-                    p.faint.snug-top= trait.name
-                  .small-6.columns
-                    .float-right
-                      .faint.snug-top= render 'partials/trait_level', trait: trait
-            - else
-              - @user.user_traits.each do |ut|
-                .row
-                  .small-6.columns
-                    p.faint.snug-top= ut.trait.name
-                  .small-6.columns
-                    .float-right
-                      .faint.snug-top= ut.level
+            - @user.user_traits.each do |ut|
+              .row
+                .small-6.columns
+                  p.faint.snug-top= ut.trait.name
+                .small-6.columns
+                  .float-right
+                    .faint.snug-top= ut.level
             hr
+
           - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
             p
               strong Social profiles:
