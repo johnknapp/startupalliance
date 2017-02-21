@@ -4,6 +4,8 @@
       a
         - if @company.company_sakpis.where(sakpi_id: sakpi.id).present?
           = @company.company_sakpis.where(sakpi_id: sakpi.id).first.level
+        - else
+         ' –
         ul.menu
           - if @company.company_sakpis.where(sakpi_id: sakpi.id).present? and @company.company_sakpis.where(sakpi_id: sakpi.id).first.level ==  1
             li.active= link_to '1', set_sakpi_company_path(sakpi_id: sakpi.id, level: 1), method: :put

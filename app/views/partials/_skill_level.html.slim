@@ -4,6 +4,8 @@
       a
         - if current_user and current_user.user_skills.where(skill_id: skill.id).present?
           = current_user.user_skills.where(skill_id: skill.id).first.level
+        - else
+          ' –
         ul.menu
           - if current_user and current_user.user_skills.where(skill_id: skill.id).present? and current_user.user_skills.where(skill_id: skill.id).first.level ==  1
             li.active= link_to '1', declare_skill_path(skill_id: skill.id, level: 1), method: :put

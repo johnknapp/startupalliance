@@ -4,6 +4,8 @@
       a
         - if current_user and current_user.user_traits.where(trait_id: trait.id).present?
           = current_user.user_traits.where(trait_id: trait.id).first.level
+        - else
+          ' –
         ul.menu
           - if current_user and current_user.user_traits.where(trait_id: trait.id).present? and current_user.user_traits.where(trait_id: trait.id).first.level ==  1
             li.active= link_to '1', declare_trait_path(trait_id: trait.id, level: 1), method: :put
