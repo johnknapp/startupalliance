@@ -1,5 +1,3 @@
-# Skill.destroy_all
-
 skills = [
   'Collaboration',
   'Communication',
@@ -21,6 +19,11 @@ skills = [
   'UX / UI'
 ]
 
-# skills.each do |s|
-#   Skill.create(name: s)
-# end
+skills.each do |s|
+  skill = Skill.where(name: s).first_or_initialize
+  if skill.new_record?
+    skill.save
+  end
+end
+
+# See notes in traits seeds

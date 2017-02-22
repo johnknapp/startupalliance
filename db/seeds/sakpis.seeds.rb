@@ -1,5 +1,3 @@
-#Sakpi.destroy_all
-
 sakpis = [
     'Capital',
     'Cash flow',
@@ -9,6 +7,11 @@ sakpis = [
     'Team'
 ]
 
-# sakpis.each do |sakpi|
-#   Sakpi.create(name: sakpi)
-# end
+sakpis.each do |s|
+  sakpi = Sakpi.where(name: s).first_or_initialize
+  if sakpi.new_record?
+    sakpi.save
+  end
+end
+
+# See notes in traits seeds
