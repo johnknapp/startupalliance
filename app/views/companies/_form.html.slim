@@ -3,13 +3,14 @@
 
   .form-inputs
     .row
+      = f.hidden_field :creator_id, value: current_user.id if params[:action] == 'new'
       .medium-4.columns
         = f.input :name, placeholder: 'Company name'
       .medium-4.columns
         = f.input :url, label: 'URL', placeholder: 'Company website'
       .medium-4.columns
         = f.input :phases, label: 'Company phase', collection: Company.phases.keys, placeholder: 'Company website'
-    = f.input :description, label: 'Company description', placeholder: 'Brief description of the product or service'
+    = f.input :description, label: 'Company description', as: :text, input_html: { rows: '3' }, placeholder: 'Brief description of the product or service the company provides'
     = f.input :primary_market, label: 'Primary market', placeholder: 'Brief description of the primary market the company serves'
     .row
       .medium-4.columns
@@ -18,6 +19,14 @@
         = f.input :location, label: 'Company location', placeholder: 'Company location'
       .medium-4.columns
         = f.input :time_zone, label: 'Company time zone'
+    - if params[:action] == 'new'
+      .callout.small.accent
+        .row
+          .medium-6.columns
+            p.space-top.text-center I am an owner of this company:
+          .medium-6.columns
+            = f.simple_fields_for :company_user do |cu|
+              = cu.input :equity, collection: CompanyUser.equities.keys, label: 'My equity percentage'
 
   .form-actions
     .row

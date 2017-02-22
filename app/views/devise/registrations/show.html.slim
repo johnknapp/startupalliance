@@ -43,6 +43,8 @@
                         ' #{company.location}
           - else
             p.text-center Not part of any Companies yet.
+            - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
+              p.text-center= link_to 'Add your company now', new_company_path
 
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:

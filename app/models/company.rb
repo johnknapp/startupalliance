@@ -1,11 +1,12 @@
 class Company < ApplicationRecord
   include Pid
   include Webmeet
-  has_many  :company_users
-  has_many  :team, through: :company_users, source: :user
-  has_many  :okrs
-  has_many  :company_sakpis
-  has_many  :sakpis, through: :company_sakpis
+  has_many    :company_users
+  has_many    :team, through: :company_users, source: :user
+  belongs_to  :creator, class_name: :User
+  has_many    :okrs
+  has_many    :company_sakpis
+  has_many    :sakpis, through: :company_sakpis
 
   validates :url, url: { allow_nil: true, allow_blank: true, no_local: true }
   validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }

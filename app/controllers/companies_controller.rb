@@ -75,13 +75,13 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Company.first_or_initialize(company_params)
+    @company = Company.where(company_params).first_or_initialize
     if @company.new_record?
       @company.founded = Date.strptime(params[:company][:founded], '%m/%d/%Y')
       params[:company].delete [:founded]
       respond_to do |format|
         if @company.save
-          @company.team_members << current_user
+          @company.team << current_user
           format.html { redirect_to @company, notice: 'Company was successfully created.' }
           format.json { render :show, status: :created, location: @company }
         else
@@ -134,6 +134,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :pid)
+      params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :creator_id, :pid, [company_user: []])
     end
 end

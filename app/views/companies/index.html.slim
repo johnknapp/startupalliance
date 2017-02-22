@@ -5,7 +5,7 @@
     p.snug-top.space-bottom.text-right Member owned companies
 
 
-- if can? :manage, :all
+/- if can? :manage, :all
   = link_to 'New Company', new_company_path
 
 table.hover.stacked
@@ -18,8 +18,8 @@ table.hover.stacked
   tbody
     - @companies.each do |company|
       tr
-        td{valign='top'}= link_to company.name, company
-        td{valign='top'}= company.description
+        td{valign='top'} = link_to company.name, company
+        td{valign='top'} = company.description
         td{valign='top'}
           = company.primary_market
           - if can? :manage, :all

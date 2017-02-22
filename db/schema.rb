@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221171926) do
+ActiveRecord::Schema.define(version: 20170222164552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170221171926) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "primary_market"
     t.string   "url"
     t.string   "location"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170221171926) do
     t.integer  "phases",         default: 0
     t.string   "webmeet_url"
     t.integer  "sakpi_index",    default: 0
+    t.integer  "creator_id"
   end
 
   create_table "company_sakpis", force: :cascade do |t|
