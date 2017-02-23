@@ -10,7 +10,8 @@
 
   - if current_user or params[:action] != 'home'
     .top-bar-title
-      p= link_to (image_tag 'logotype.svg', width: '200px'), root_path
+      p.snug-bottom= link_to (image_tag 'logotype.svg', width: '200px'), root_path
+      p.primary-text Entrepreneurs, working together to maximize our success.
   .top-bar-right
     - if current_user
       ul.dropdown.menu data-dropdown-menu=true
