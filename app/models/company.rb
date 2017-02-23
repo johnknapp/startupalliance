@@ -8,6 +8,8 @@ class Company < ApplicationRecord
   has_many    :company_sakpis
   has_many    :sakpis, through: :company_sakpis
 
+  accepts_nested_attributes_for :company_users
+
   validates :url, url: { allow_nil: true, allow_blank: true, no_local: true }
   validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
