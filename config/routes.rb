@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
   get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
   get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
+  get 'matt_sandbox',               to: 'pages#matt_sandbox',         constraints: { format: 'html' }
 
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}
