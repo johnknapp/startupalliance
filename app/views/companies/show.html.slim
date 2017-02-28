@@ -92,7 +92,7 @@
               p.faint.snug-top.text-right= number_with_delimiter(@company.okrs.count)
           .row
             .small-6.columns
-              p.faint.snug-top KPI index
+              p.faint.snug-top SAKPI index
             .small-6.columns
               p.faint.snug-top.text-right= @company.sakpi_index
           .row
@@ -125,22 +125,22 @@
                       = select_tag :equity, options_for_select(CompanyUser.equities.keys)
                   = submit_tag 'Add team member', class: 'button expanded secondary'
 
-          p.bold.little-space-after Team #{'Member'.pluralize(@company.team.count)}:
-          - @company.team.each do |team_member|
+          p.bold.little-space-after Team:
+          - @company.team.each do |member|
             .row
               .small-8.columns
                 p.faint.snug-top
-                  ' #{link_to team_member.name, vanity_path(team_member.username)}
+                  ' #{link_to member.name, vanity_path(member.username)}
                   - if current_user and @company.team_member(current_user)
-                    - if @company.team_member(team_member).role == 'Owner'
-                      ' (#{@company.team_member(team_member).role.humanize}, #{@company.team_member(team_member).equity.humanize.downcase}%)
+                    - if @company.team_member(member).role == 'Owner'
+                      ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
                     - else
-                      ' (#{@company.team_member(team_member).role.humanize})
+                      ' (#{@company.team_member(member).role.humanize})
               .small-4.columns
                 - if current_user and current_user.team?(@company)
                   - if current_user and @company.team_member(current_user).role == 'Owner'
                     .float-right
-                      p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: team_member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                      p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
                         i.fa.fa-trash-o
           - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
             .row
@@ -154,7 +154,7 @@
           p.bold
             .float-right
               p.faint
-                - if current_user and @company.team_member(current_user).role == 'Owner'
+                - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
                   a data-open='set-sakpis'
                     i.fa.fa-pencil
                   | &nbsp;
@@ -165,7 +165,7 @@
 
 
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
-              ' KPIs:
+              ' SAKPIs:
           - if current_user and @company.team_member(current_user)
             - sakpis = Sakpi.all.order(:name)
             - sakpis.each do |sakpi|
@@ -185,4 +185,4 @@
               .small-12.columns
                 p.text-center
                   em
-                    ' KPIs are visible to the Company Team.
+                    ' SAKPIs are visible to the Company Team.

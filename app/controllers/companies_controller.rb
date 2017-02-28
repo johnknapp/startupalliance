@@ -82,6 +82,7 @@ class CompaniesController < ApplicationController
       respond_to do |format|
         if @company.save
           @company.team << current_user
+          CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
           format.html { redirect_to @company, notice: 'Company was successfully created.' }
           format.json { render :show, status: :created, location: @company }
         else
@@ -134,6 +135,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :creator_id, :pid, [company_user: []])
+      params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :creator_id, :pid)
     end
 end

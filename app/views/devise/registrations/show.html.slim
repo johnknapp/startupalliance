@@ -13,7 +13,7 @@
               ' Personal mission:
             ' #{@user.mission}
     - elsif current_user and @user == current_user and current_user.confirmed?
-      p.snug-top.space-bottom.text-right.faint= link_to 'Write your personal mission statement', edit_user_registration_path
+      p.snug-top.space-bottom.text-right.faint= link_to 'Add your personal mission statement', edit_user_registration_path
     - else
       p.snug-top.space-bottom.text-right Member since #{@user.created_at.strftime('%B %e, %Y')}
     .row
@@ -44,7 +44,9 @@
           - else
             p.text-center Not part of any Companies yet.
             - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
-              p.text-center= link_to 'Add your company now', new_company_path
+              p.text-center= link_to 'Add your company', new_company_path
+            - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
+              p.text-center Before you can add your company, #{link_to 'update your account', edit_user_registration_path} to mark yourself as an owner.
 
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:
