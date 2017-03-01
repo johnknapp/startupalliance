@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :okrs
 
   get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
+  get 'code_of_conduct',            to: 'pages#code_of_conduct',      constraints: { format: 'html' }
   get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
   get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
   get 'matt_sandbox',               to: 'pages#matt_sandbox',         constraints: { format: 'html' }

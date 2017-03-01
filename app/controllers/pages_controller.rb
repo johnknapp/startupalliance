@@ -15,6 +15,9 @@ class PagesController < ApplicationController
   def faq
   end
 
+  def code_of_conduct
+  end
+
   def matt_sandbox
   end
 
