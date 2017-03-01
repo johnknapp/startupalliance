@@ -40,8 +40,8 @@ class CompaniesController < ApplicationController
   def unset_sakpi
     if @company and params[:sakpi_id]
       CompanySakpi.where(company_id: @company.id, sakpi_id: params[:sakpi_id]).first.destroy
+      set_sakpi_index
     end
-    set_sakpi_index
     redirect_to :back, alert: 'You unset your SAKPI'
   end
 

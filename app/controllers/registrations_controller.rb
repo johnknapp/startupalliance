@@ -17,6 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
   def unset_trait
     if current_user and params[:trait_id]
       UserTrait.where(user_id: current_user.id, trait_id: params[:trait_id]).first.destroy
+      set_trait_index
     end
     redirect_to :back, alert: 'You unset your level'
   end
@@ -36,6 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
   def unset_skill
     if current_user and params[:skill_id]
       UserSkill.where(user_id: current_user.id, skill_id: params[:skill_id]).first.destroy
+      set_skill_index
     end
     redirect_to :back, alert: 'You unset your level'
   end

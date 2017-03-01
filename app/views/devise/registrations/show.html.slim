@@ -124,7 +124,7 @@
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_SKILL_TIP
                     ' Skills:
-            - @user.user_skills.each do |us|
+            - @user.user_skills.order(:skill_id).each do |us|
               .row
                 .small-6.columns
                   p.faint.snug-top= us.skill.name
@@ -151,7 +151,7 @@
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_TRAIT_TIP
                     ' Traits:
-            - @user.user_traits.each do |ut|
+            - @user.user_traits.order(:trait_id).each do |ut|
               .row
                 .small-6.columns
                   p.faint.snug-top= ut.trait.name
