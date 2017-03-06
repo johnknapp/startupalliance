@@ -15,12 +15,16 @@
     - else
       p.snug-top.text-right You are not signed in
 
-    p Next steps:
+    p.bold Your next steps:
 
     ol.indented-2
       li Make sure you’re #{link_to 'signed in', new_user_session_path}.
       - if current_user
-        li Check out your #{link_to 'StartupAlliance profile', vanity_path(current_user.username)}.
-      li Start exploring StartupAlliance and get involved!
+        li Complete your #{link_to 'members profile', vanity_path(current_user.username)}.
+      - else
+        li #{link_to 'Sign in', new_user_session_path} and complete your members profile.
+      li Build your Company Team or find another one to join!
+      li Work together to make your company more successful
+
 
     p.bold We’re glad to have you as a member!
