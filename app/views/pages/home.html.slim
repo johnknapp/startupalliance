@@ -10,37 +10,10 @@
       '
     /.text-center.little-space-top= image_tag 'sa_home.png', width: '750px'
 
-    p &nbsp;
+    p.snug-bottom &nbsp;
 
     h1.bold.text-center.warning-text.tight-lead.space-bottom
       ' Our mission is simple: Help entrepreneurs succeed, regardless of location.
-
-    /.row
-      .large-10.large-offset-1.medium-12.columns
-        p.snug-bottom &nbsp;
-        .float-left
-          .show-for-medium.little-space-right= image_tag 'jk_rnd_300x.png', width: '200px'
-          .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '100px'
-        p
-          ' I’m John Knapp, I created StartupAlliance to help entrepreneurs maximize their success.
-          ' It started as a face-to-face group in Seattle and Silicon Valley.
-          ' But now that
-          span.bold.warning-text
-            | entrepreneurship is a global phenomenon
-          ' , we created this online resource to support your entrepreneur’s journey,
-          span.scale-to-110.bold
-            'wherever you are.
-          '
-        p
-          ' Beginner and expert entrepreneurs alike leverage our useful mix of tools to help grow their business.
-          ' And since good advice and helpful ideas make a difference, we make it easy to find the right people and build your team.
-          '
-        h5.bold
-          ' If you’re an entrepreneur or if you’re ready to become one,
-          span.warning-text
-            | join us today
-          ' .
-          '
 
     /.callout.accent
       h3.bold.primary-text Free tools for entrepreneurs and businesses of all kinds
@@ -65,14 +38,13 @@
       p.bold Private Alliance Partners form trusted bonds and lasting relationships.
 
     h3.bold.little-snug-bottom.space-top.primary-text
-      ' See what we have for you...
-      /' Use our online tools to...
+      ' See what free membership gives you...
       '
     .row data-equalizer=true
       .large-4.columns
         .callout.small.primary data-equalizer-watch=true
           h1.bold.text-center.primary-text
-            i.fa-lg.fa.fa-gears
+            i.fa-lg.fa.fa-gears.little-space-top
           h4.bold.text-center.primary-text
             ' Collaborative business building tools for entrepreneurs
           p.text-center
@@ -82,7 +54,7 @@
       .large-4.columns
         .callout.small.primary data-equalizer-watch=true
           h1.bold.text-center.primary-text
-            i.fa-lg.fa.fa-users
+            i.fa-lg.fa.fa-users.little-space-top
           h4.bold.text-center.primary-text
             ' Connections with entrepreneurs with complementary skills
             '
@@ -92,9 +64,9 @@
       .large-4.columns
         .callout.small.primary data-equalizer-watch=true
           h1.bold.text-center.primary-text
-            i.fa-lg.fa.fa-line-chart
+            i.fa-lg.fa.fa-line-chart.little-space-top
           h4.bold.text-center.primary-text
-            ' Work together to maximize the success of each company
+            ' Greater success through more and better collaboration
           p.text-center
             ' Help each other achieve goals, overcome challenges,
             ' expand networks and maximize success.
@@ -153,16 +125,33 @@
 
     /p.bold.snug-top.text-center Uniting entrepreneurs and amplifying their success.
 
-    p.snug-bottom &nbsp;
+    p.show-for-medium &nbsp;
+    .row
+      .large-10.large-offset-1.medium-12.columns
+        .float-left
+          .show-for-medium.little-space-right= image_tag 'jk_rnd_300x.png', width: '200px'
+          .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '100px'
+        p
+          ' I’m John Knapp, I created StartupAlliance to help entrepreneurs maximize their success.
+          ' It started as a face-to-face group in Seattle and Silicon Valley.
+          ' But now that
+          span.bold.warning-text
+            | entrepreneurship is a global phenomenon
+          ' , we bring you this online resource to support your entrepreneur’s journey,
+          span.scale-to-110.bold
+            'wherever you are.
+          '
+        p
+          ' Beginner and expert entrepreneurs alike leverage our tools to help grow their business.
+          ' And since good advice and helpful ideas make a difference, we make it easy to find the right people and build your team.
+          '
+        - if !current_user
+          p.snug-bottom.bold
+            ' Use our tools and maximize your success.
+            span.warning-text
+              ' It’s free!
+          = render 'partials/join_form'
 
     h1.bold.text-center.warning-text Better. Together.
-
-    p.show-for-medium &nbsp;
-
-    - if !current_user
-      .row
-        .medium-10.medium-offset-1.columns
-          p.snug-bottom.bold Join now as a charter member, it’s free!
-          = render 'partials/join_form'
 
     p.show-for-medium &nbsp;

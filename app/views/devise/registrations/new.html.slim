@@ -7,7 +7,9 @@
     .snug-top= image_tag 'banner.svg', width: '360px'
 
     p.bold.space-top.snug-bottom
-      ' Join now as a charter member, it’s free!
+      ' Use our tools and maximize your success.
+      span.warning-text
+        ' It’s free!
     = simple_form_for(:user, url: registration_path(:user)) do |f|
       = f.error_notification
       .form-inputs
