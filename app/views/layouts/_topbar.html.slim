@@ -2,16 +2,16 @@
   - if !current_user and params[:action] == 'home'
     .top-bar-left
       .indented-6.show-for-large= image_tag 'banner.svg', width: '360px'
-      h5.bold.indented-6.show-for-large Entrepreneurs, working together to maximize our success.
+      h5.bold.indented-6.show-for-large Entrepreneurs working together towards mutual success.
       .show-for-medium-only= image_tag 'banner.svg', width: '300px'
-      h5.bold.show-for-medium-only Entrepreneurs, working together to maximize our success.
+      h5.bold.show-for-medium-only Entrepreneurs working together towards mutual success.
       .show-for-small-only= image_tag 'banner.svg', width: '200px'
-      h5.bold.show-for-small-only Entrepreneurs, working together to maximize our success.
+      h5.bold.show-for-small-only Entrepreneurs working together towards mutual success.
 
   - if current_user or params[:action] != 'home'
     .top-bar-title
       p.snug-bottom= link_to (image_tag 'logotype.svg', width: '200px'), root_path
-      p.primary-text Entrepreneurs, working together to maximize our success.
+      p.primary-text Entrepreneurs working together towards mutual success.
   .top-bar-right
     - if current_user
       ul.dropdown.menu data-dropdown-menu=true
