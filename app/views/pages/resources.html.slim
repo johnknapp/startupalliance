@@ -1,0 +1,31 @@
+- content_for :page_title do
+  ' StartupAlliance – Resources for Entrepreneurs
+
+.row
+  .medium-10.medium-offset-1.columns
+    h3.bold.space-top.primary-text Resources for Entrepreneurs
+    hr.little-snug-top
+    p.snug-top.space-botton.text-right
+      ' Events, organizations, products and services to help entrepreneurs maximize their success.
+    p.snug-top.show-for-medium &nbsp;
+
+
+    .row
+      /hr
+      .medium-4.columns
+        p.pad-right
+          strong Something missing?
+      .medium-8.columns
+        p
+          ' #{mail_to 'hello@startupalliance.com', 'Tell us about it!', subject: "A suggestion for the Resources list", encode: 'hex'}
+          '
+
+
+    /.row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Placeholder
+      .medium-8.columns
+        p
+          ' Placeholder

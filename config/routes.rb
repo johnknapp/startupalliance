@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
   root 'pages#home'
+
+  get 'resources',                  to: 'pages#resources',            constraints: { format: 'html' }
+  get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
+  get 'code_of_conduct',            to: 'pages#code_of_conduct',      constraints: { format: 'html' }
+  get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
+  get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
+
   resources :companies do
     member do
       put     :add_team_member
@@ -9,19 +16,15 @@ Rails.application.routes.draw do
       delete  :unset_sakpi
     end
   end
+
+  resources :okrs
+
   resources :alliances do
     member do
       put     :add_member
       delete  :remove_member
     end
   end
-  resources :okrs
-
-  get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
-  get 'code_of_conduct',            to: 'pages#code_of_conduct',      constraints: { format: 'html' }
-  get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
-  get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
-  get 'matt_sandbox',               to: 'pages#matt_sandbox',         constraints: { format: 'html' }
 
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}

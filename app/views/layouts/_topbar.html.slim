@@ -30,6 +30,7 @@
               li= link_to 'Alliances', alliances_path
               hr
             li= link_to current_user.companies.first.name, company_path(current_user.companies.first)  if current_user and current_user.companies.first.present?
+            li= link_to 'Resources', resources_path
             li= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
             li= link_to 'Account', edit_user_registration_path                        if current_user and current_user.confirmed?
             li= link_to 'Activate your account', new_confirmation_path(current_user)  if current_user and !current_user.confirmed?
@@ -39,8 +40,9 @@
         li
           .show-for-medium
             = link_to new_user_registration_path(acqsrc: 'header'), class: 'button secondary bold' do
-              ' Join StartupAlliance
+              ' Sign-up
           .show-for-small-only
-            = link_to new_user_registration_path(acqsrc: 'header'), class: 'tiny button secondary bold' do
-              ' Join StartupAlliance
+            = link_to new_user_registration_path(acqsrc: 'header'), class: 'small button secondary bold' do
+              ' Sign-up
+        li= link_to 'Resources', resources_path
         li= link_to 'Sign-in', new_user_session_path
