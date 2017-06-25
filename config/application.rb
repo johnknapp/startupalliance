@@ -28,6 +28,8 @@ module StartupAlliance
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
+    config.sass.preferred_syntax = :sass
+
     config.generators do |g|
       g.template_engine :slim
     end

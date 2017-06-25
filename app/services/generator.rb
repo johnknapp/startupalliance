@@ -4,22 +4,13 @@ class Generator
     rand(36**36).to_s(36) + '@skillbank.io'
   end
 
+  # See https://github.com/genericsteele/token_phrase for inspiration on uniqueness strategy
   def self.pid(object)
-    klass = object.class
-    ary_of_pids = klass.all.pluck(:pid)
-    pid = make_pid
-    while ary_of_pids.include?(pid) # verified unique before returning
+    begin
       pid = make_pid
-    end
+    end while object.class.exists?(pid: pid)
     pid
   end
-
-  # See https://github.com/genericsteele/token_phrase for inspiration on uniqueness strategy
-  # def self.upid
-  #   begin
-  #     pid = make_pid
-  #   end while self.class.exists?(pid: pid)
-  # end
 
   def self.code(length)
       array = %w[b c e f g h i j k n o p r s t v x y 1 2 3 4 5 6 7 8 9 0]

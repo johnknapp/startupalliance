@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
+  ActiveAdmin.routes(self)
+
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}
     put  :declare_trait,              to: 'registrations#declare_trait',  constraints: { format: 'html' }
