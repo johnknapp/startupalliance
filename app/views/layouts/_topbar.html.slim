@@ -2,16 +2,16 @@
   - if !current_user and params[:action] == 'home'
     .top-bar-left
       .indented-6.show-for-large= image_tag 'banner.svg', width: '360px'
-      h5.bold.indented-6.show-for-large Entrepreneurs working together towards mutual success.
+      h5.bold.indented-6.show-for-large Entrepreneurs working together towards startup success.
       .show-for-medium-only= image_tag 'banner.svg', width: '300px'
-      h5.bold.show-for-medium-only Entrepreneurs working together towards mutual success.
+      h5.bold.show-for-medium-only Entrepreneurs working together towards startup success.
       .show-for-small-only= image_tag 'banner.svg', width: '200px'
-      h5.bold.show-for-small-only Entrepreneurs working together towards mutual success.
+      h5.bold.show-for-small-only Entrepreneurs working together towards startup success.
 
   - if current_user or params[:action] != 'home'
     .top-bar-title
       p.snug-bottom= link_to (image_tag 'logotype.svg', width: '200px'), root_path
-      p.primary-text Entrepreneurs working together towards mutual success.
+      p.primary-text Entrepreneurs working together towards startup success.
   .top-bar-right
     - if current_user
       ul.dropdown.menu data-dropdown-menu=true
@@ -28,6 +28,7 @@
               li.little-space-top= link_to 'Companies', companies_path
               li= link_to 'OKRs', okrs_path
               li= link_to 'Alliances', alliances_path
+              li= link_to 'Admin', admin_root_path
               hr
             li= link_to current_user.companies.first.name, company_path(current_user.companies.first)  if current_user and current_user.companies.first.present?
             li= link_to 'Resources', resources_path
