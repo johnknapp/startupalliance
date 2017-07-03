@@ -45,6 +45,14 @@ class User < ApplicationRecord
     self.companies.where(creator_id: self.id).count
   end
 
+  def alliance_creator?
+    self.alliances.any? { |alliance| alliance.creator_id = self.id }
+  end
+
+  def alliances_created
+    self.alliances.where(creator_id: self.id).count
+  end
+
   def admin?
     self.role == 'admin'
   end
