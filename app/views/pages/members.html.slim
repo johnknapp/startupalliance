@@ -1,0 +1,38 @@
+- content_for :page_title do
+  ' Startup Alliance – Our members. Better. Together
+
+.row
+  /.medium-10.medium-offset-1.columns
+  .medium-12.columns
+    h3.bold.space-top.primary-text Startup Alliance Members
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right Better. Together.
+
+    - if current_user and current_user.confirmed? and @members.present?
+      table.hover.stacked
+        thead
+          tr
+            th{width='20%'} Name
+            th{width='65%'} Personal mission
+            th{width='15%'}
+              .text-center SI / TI
+        tbody
+          - @members.each do |member|
+            tr
+              td{valign='top'} = link_to member.name, vanity_path(member.username)
+              td{valign='top'}
+                - if member.mission.present?
+                  = member.mission
+                - else
+                  .faint-text Not set!
+              td{valign='top'}
+                .text-center
+                  ' #{member.skill_index} / #{member.trait_index}
+    - elsif current_user and !current_user.confirmed?
+      p.text-center You still need to activate your account to access the list of members.
+      p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
+      p.text-center Account activation is FREE and it only takes a minute.
+    - else
+      p.text-center Only Startup Alliance members can access the members list.
+      p.text-center Membership is FREE so #{link_to 'sign-up now', new_user_registration_path(acqsrc: 'members index')}!
+      p.text-center Already a member? #{link_to 'Sign-in', new_user_session_path}!

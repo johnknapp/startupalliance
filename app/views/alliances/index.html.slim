@@ -22,7 +22,7 @@
       p.text-center.primary-text Private Alliances are coming soon!
 
 
-    - if current_user and current_user.confirmed?
+    - if current_user and current_user.confirmed? and @alliances.present?
       table.hover.stacked
         thead
           tr

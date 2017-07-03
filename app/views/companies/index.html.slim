@@ -17,7 +17,7 @@
         '
         '
 
-    - if current_user and current_user.confirmed?
+    - if current_user and current_user.confirmed? and @companies.present?
       table.hover.stacked
         thead
           tr
