@@ -14,7 +14,7 @@
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
-          h5.bold.primary-text Company description:
+          h5.bold.primary-text Company summary:
           p.indented-2= @company.description
 
           h5.bold.primary-text Primary market served:
@@ -68,7 +68,7 @@
           - else
             p.text-center.space-top
               em
-                ' OKRs are visible to the Company Team.
+                ' OKRs are only visible to the Company Team.
 
       .medium-4.columns
         .callout
@@ -115,7 +115,7 @@
                 button data-close=true aria-label='Close' type='button' class='close-button'
                   span aria-hidden=true
                     ' &times;
-                p.bold To add a team member, provide their StartupAlliance username
+                p.bold To add a team member, provide their Startup Alliance username
                 = form_tag add_team_member_company_path, method: :put
                   = text_field_tag :username
                   .row
@@ -185,4 +185,4 @@
               .small-12.columns
                 p.text-center
                   em
-                    ' SAKPIs are visible to the Company Team.
+                    ' SAKPIs are only visible to the Company Team.

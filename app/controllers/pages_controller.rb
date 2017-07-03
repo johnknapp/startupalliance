@@ -5,6 +5,10 @@ class PagesController < ApplicationController
     # end
   end
 
+  def members
+    @members = User.all
+  end
+
   def join_thanks
   end
 
@@ -18,7 +22,7 @@ class PagesController < ApplicationController
   def code_of_conduct
   end
 
-  def matt_sandbox
+  def about
   end
 
 end

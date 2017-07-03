@@ -4,6 +4,7 @@ rails g subscription
 #rails g scaffold company name offering serving url location latitude longitude time_zone founded:date state pid
 #rails g scaffold okr objective key_result_1 key_result_2 key_result_3 period_start:date period_end:date mid_score:integer final_score:integer company_id:integer state pid
 #rails g scaffold alliance name purpose state pid
+rails g scaffold resource name description category url creator_id:integer state pid
 rails g scaffold meeting agenda start_at:datetime venue shared_doc state pid
 
 #rails g model company_users company_id:integer user_id:integer share:integer (share enum over_75 over_50 over_33 over_25 over_10 over_5 none)

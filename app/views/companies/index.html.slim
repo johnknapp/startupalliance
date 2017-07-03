@@ -1,33 +1,56 @@
+- content_for :page_title do
+  ' Startup Alliance – Member owned companies using our tools to get better results
+
 .row
+  /.medium-10.medium-offset-1.columns
   .medium-12.columns
-    h3.space-top Companies (#{number_with_delimiter(@companies.count)})
+    h3.bold.space-top.primary-text Member Owned Companies
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Member owned companies
+    p.snug-top.space-bottom.text-right Companies using our tools to get better results
 
+    /.callout.accent
+      h4.text-center.bold.little-space-bottom
+        ' Everybody works hard but it’s essential to work on the right things at the right time.
+      p.text-center
+        ' Our Company Tools keep the team aligned and doing the right work every day.
+        '
+        '
+        '
 
-/- if can? :manage, :all
-  = link_to 'New Company', new_company_path
+    - if current_user and current_user.confirmed?
+      table.hover.stacked
+        thead
+          tr
+            th{width='20%'} Entity
+            th{width='65%'} Summary
+            th{width='15%'}
+              .text-center Lifetime OKRs
+        tbody
+          - @companies.each do |company|
+            tr
+              td{valign='top'} = link_to company.name, company
+              td{valign='top'}
+                - if company.description
+                  = company.description
+                - else
+                  .faint-text Not set!
 
-table.hover.stacked
-  thead
-    tr
-      th{width='20%'} Name
-      th{width='40%'} Description
-      th{width='40%'} Market served
-
-  tbody
-    - @companies.each do |company|
-      tr
-        td{valign='top'} = link_to company.name, company
-        td{valign='top'} = company.description
-        td{valign='top'}
-          = company.primary_market
-          - if can? :manage, :all
-            .float-right
-              = link_to edit_company_path(company) do
-                i.fa.fa-pencil
-              | &nbsp;
-              | &nbsp;
-              = link_to company, data: { confirm: 'Are you sure?' }, method: :delete do
-                i.fa.fa-trash-o
+              td{valign='top'}
+                .text-center= number_with_delimiter(company.okrs.count)
+                /- if can? :manage, :all
+                  .float-right
+                    = link_to edit_company_path(company) do
+                      i.fa.fa-pencil
+                    | &nbsp;
+                    | &nbsp;
+                    = link_to company, data: { confirm: 'Are you sure?' }, method: :delete do
+                      i.fa.fa-trash-o
+    - elsif current_user and !current_user.confirmed?
+      p.text-center You still need to activate your account to access the list of companies.
+      p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
+      p.text-center Account activation is FREE and it only takes a minute.
+    - else
+      p.text-center Only Startup Alliance members can access the companies list.
+      p.text-center Membership is FREE so #{link_to 'sign-up now', new_user_registration_path(acqsrc: 'company index')}!
+      p.text-center Already a member? #{link_to 'Sign-in', new_user_session_path}!
 

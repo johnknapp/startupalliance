@@ -1,7 +1,7 @@
 .row
   .large-12.columns
     h3.space-top.primary-text
-      ' StartupAlliance Member:
+      ' Startup Alliance Member:
       strong
         ' #{@user.name}
     hr.little-snug-top
@@ -42,12 +42,21 @@
                       strong
                         ' #{company.location}
           - else
-            p.text-center Not part of any Companies yet.
+            p.text-center.bold Not part of any Company Teams yet!
             - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
-              p.text-center= link_to 'Add your company', new_company_path
+              p.text-center
+                ' Find your company on Startup Alliance and ask to be put on the team.
+              p.text-center
+                ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
             - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
-              p.text-center Before you can add your company, #{link_to 'update your account', edit_user_registration_path} to mark yourself as an owner.
+              p.text-center
+                ' Find your company on Startup Alliance and ask to be put on the team.
+              p.text-center
+                ' If your company isn’t listed yet, have an owner add it.
+                ' If you are an owner, mark yourself as an owner on your #{link_to 'account update page', edit_user_registration_path}
+                ' then come back here to list your company.
 
+        .callout
           - if @user.alliances.present?
             h5.bold.primary-text My Private Alliances:
             ul
@@ -58,8 +67,8 @@
                     .float-right
                       = link_to edit_alliance_path(alliance) do
                         i.fa.fa-pencil
-          /- else
-            p.text-center Not part of any Private Alliances yet.
+          - else
+            p.text-center.bold Not part of any Private Alliances yet!
 
 
       .medium-4.columns
@@ -147,10 +156,10 @@
               strong
                 - if current_user == @user
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=USER_TRAIT_TIP
-                    ' Traits:
+                    ' strengths:
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_TRAIT_TIP
-                    ' Traits:
+                    ' strengths:
             - @user.user_traits.order(:trait_id).each do |ut|
               .row
                 .small-6.columns

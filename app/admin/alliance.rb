@@ -1,6 +1,6 @@
 ActiveAdmin.register Alliance do
 
-  permit_params :id, :pid, :name, :purpose, :webmeet_url, :state
+  permit_params :id, :pid, :name, :purpose, :webmeet_url, :state, :creator_id
 
   controller do
     def find_resource

@@ -1,7 +1,7 @@
 class AlliancesController < ApplicationController
   before_action :set_alliance, only: [:show, :add_member, :remove_member, :edit, :update, :destroy]
 
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   load_and_authorize_resource
 
   # GET /alliances
@@ -94,6 +94,6 @@ class AlliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alliance_params
-      params.require(:alliance).permit(:name, :purpose, :webmeet_url, :state, :pid)
+      params.require(:alliance).permit(:name, :purpose, :webmeet_url, :state, :pid, :creator_id)
     end
 end

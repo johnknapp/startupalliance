@@ -1,44 +1,13 @@
 .row
   .small-10.small-offset-1.columns
 
-    /h4.snug-top.space-bottom.bold
-      ' Entrepreneurs working together towards startup success.
-      /' Entrepreneur peer-groups working together to achieve goals, overcome challenges,
-      /' build networks and maximize the success of their companies.
-      /' Entrepreneur peer-groups, working together
-      /' to maximize the success of their companies.
-      '
-    /.text-center.little-space-top= image_tag 'sa_home.png', width: '750px'
-
     p.snug-bottom &nbsp;
 
-    h2.bold.text-center.warning-text.tight-lead.space-bottom
-      ' Our mission: Your startup success.
+    h1.bold.text-center.warning-text
+      ' Better. Together.
 
-    /.callout.accent
-      h3.bold.primary-text Free tools for entrepreneurs and businesses of all kinds
-      ul
-        li Entrepreneur Profiles quantify business skills and personal traits
-        li Company Profiles highlight product offering, market served, company stage
-        li Company Key Performance Indicators show company performance at a glance
-        li Company Objectives and Key Results focus efforts and track progress
-        li Private Web Meetings for company team, advisors and investors
-        li Find your next great hire
-        li Find your next great company
-      p.bold And of course, sensitive information stays private
-
-    /.callout.accent
-      h3.bold.primary-text Affordable tools harness the brilliance of a global network
-      ul
-        li Form Private Alliances with business owners and entrepreneurs from around the world
-        li Help each other achieve goals, overcome challenges, expand networks and maximize success
-        li Analyze and advise on the KPIs and OKRs of your Private Alliance Partner Companies
-        li Private Web Meetings and Distributed Comment Threads keep Private Alliance Partners and Companies connected
-        li Create and join unlimited Private Alliances for only $39.95 a year
-      p.bold Private Alliance Partners form trusted bonds and lasting relationships.
-
-    h3.bold.little-snug-bottom.space-top.primary-text
-      ' FREE membership gives you...
+    h4.bold.little-snug-bottom.space-top.primary-text
+      ' FREE membership in this global entrepreneurs network gives you...
       '
     .row data-equalizer=true
       .large-4.columns
@@ -62,7 +31,7 @@
             '
           p.text-center
             ' Team up with the entrepreneurs, advisors and investors
-            ' who can help your company the most.
+            ' who can help you and your company the most.
       .large-4.columns
         .callout.small.accent data-equalizer-watch=true
           h1.bold.text-center.primary-text
@@ -74,89 +43,17 @@
             ' Help each other achieve goals, overcome challenges,
             ' expand networks and maximize success.
             '
-    /.row data-equalizer=true
-      .large-4.columns
-        .callout.small.primary data-equalizer-watch=true
-          h1.space-top.bold.text-center.primary-text
-            i.fa-lg.fa.fa-diamond
-          h4.bold.text-center Showcase yourself and your company
-          p.text-center
-            ' No-nonsense profiles highlight your strengths,
-            ' business focus, company performance and OKRs.
-            '
-      .large-4.columns
-        .callout.small.primary data-equalizer-watch=true
-          h1.bold.text-center.primary-text
-            i.fa-lg.fa.fa-gears
-            /i.fa-lg.fa.fa-users
-          h4.bold.text-center Get matched with the right people
-          /h4.bold.text-center Connect yourself with the right people
-          /h4.bold.text-center Assemble your ultimate dream team
-          p.text-center
-            ' Team up with the entrepreneurs, advisors and investors
-            ' that can help your company the most.
-            '
-      .large-4.columns
-        .callout.small.primary data-equalizer-watch=true
-          h1.bold.text-center.primary-text
-            /i.fa.fa-rocket
-            i.fa-lg.fa.fa-line-chart
-          h4.bold.text-center Work together, maximize your success
-          p.text-center
-            ' Secure online meetings, peer-mentoring and progress
-            ' tracking – together online for the first time.
-            '
-    /.callout.secondary-background
-      h4.bold.white-text.snug-top
-        ' Power Tool Spotlight:
-        span.success-text
-          ' Objectives and Key Results
-      p.bold.white-text
-        ' Top performing companies like Google, LinkedIn, Netflix and Twitter
-        /' , OKR software is a powerful tool
-        /' companies of all sizes
-        ' use OKR software to communicate
-        span.bold.success-text
-          ' Objectives
-        ' to the entire team and achieve them by focusing team
-        ' efforts on the accomplishment of measurable
-        span.bold.success-text
-          | Key Results
-        ' .
-        '
-      h4.bold.text-center.success-text
-        ' The OKR Module is FREE for all members.
 
     .row
       .large-10.large-offset-1.medium-12.columns
         p.show-for-medium &nbsp;
-        p
-          ' We created this unique collection of no-nonsense tools
-          /' for entrepreneurs, specifically designed
-          ' to help you focus on the right business goals and team up with the people most qualified to help you achieve them.
-          '
-        p.show-for-medium &nbsp;
-        /.float-left
-          .show-for-medium.little-space-right= image_tag 'jk_rnd_300x.png', width: '200px'
-          .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '100px'
-        /p
-          ' Hi, I’m John Knapp. I created StartupAlliance as a face-to-face peer group in Seattle and Silicon Valley.
-          ' We helped a lot of entrepreneurs grow their business and achieve their dreams.
-          ' Now that
-          span.bold.warning-text
-            | entrepreneurship is exploding worldwide
-          ' , we built this platform to support your entrepreneurial journey
-          span.bold
-            ' wherever you may be.
-          '
+        p.text-center= link_to 'Discover how Startup Alliance helps you maximize your success...', about_path, class: 'button large secondary bold'
 
         - if !current_user
+          p.show-for-medium &nbsp;
           p.snug-bottom.bold
-            ' Use our tools. Maximize your success.
+            ' Begin your journey to maximum success.
             span.warning-text
               ' It’s free!
           = render 'partials/join_form'
 
-    h1.bold.text-center.warning-text Better. Together.
-
-    /p.show-for-medium &nbsp;

@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :add_team_member, :remove_team_member, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
 
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   load_and_authorize_resource
 
   # GET /companies

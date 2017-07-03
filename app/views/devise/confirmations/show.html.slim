@@ -1,7 +1,7 @@
 .row
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
     h3.show-for-medium-up &nbsp;
-    h3 Activate your StartupAlliance account
+    h3 Activate your Startup Alliance account
     hr.little-snug-top
     p.text-right.snug-top All fields are required.
     - if params[:error] == 'true'
@@ -22,18 +22,18 @@
             span.form-error
               ' Last name is required
           .medium-4.columns
-            .space-top.indented-1= f.input :company_owner, required: true, label: 'I own my own company', hint: 'foo'
+            .space-top.indented-1= f.input :company_owner, required: true, label: 'I own my own company'
         .row
           .medium-6.columns
             = f.input :username, required: true, placeholder: 'lower case alphanumeric plus hyphen'
             span.form-error
               ' Username is required
           .medium-6.columns
-            = f.input :time_zone, required: true
+            = f.input :time_zone, required: true, priority: ActiveSupport::TimeZone.us_zones
         .row
           .medium-6.columns
             = f.input :password, required: true
           .medium-6.columns
             = f.input :password_confirmation, required: true
       .form-actions
-        = f.button :submit, 'Activate your StartupAlliance account', class: 'radius expand'
+        = f.button :submit, 'Activate your Startup Alliance account', class: 'radius expand'

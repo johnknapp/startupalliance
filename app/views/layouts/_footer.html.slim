@@ -4,8 +4,8 @@
   hr
   .small-6.columns
     ul.menu.simple.snug-top.faint
+      li=link_to 'About', about_path
       li= link_to 'FAQ', faq_path
-      li= link_to 'Resources for Entrepreneurs', resources_path
       li= link_to 'Code of Conduct', code_of_conduct_path
       li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
 

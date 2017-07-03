@@ -1,34 +1,54 @@
+- content_for :page_title do
+  ' Startup Alliance – Private Alliances maximizing success regardless of location
+
 .row
+  /.medium-10.medium-offset-1.columns
   .medium-12.columns
-    h3.space-top Private Alliances (#{number_with_delimiter(@alliances.count)})
+    h3.bold.space-top.primary-text Private Alliances
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Private Alliances for members helping members
+    p.snug-top.space-bottom.text-right Maximizing success regardless of location
+
+    .callout.accent
+      h4.text-center.bold.little-space-bottom
+        ' Entrepreneurship is exploding worldwide but it’s still about knowing the right people.
+      p.text-center
+        ' Our Private Alliance tools let you connect and collaborate
+        ' with entrepreneurs, advisors and investors from around the world.
+      p.text-center
+        ' Create or join a Private Alliance and
+        span.bold
+          ' become part of the global entrepreneurship revolution.
+        '
+      p.text-center.primary-text Private Alliances are coming soon!
 
 
-  = link_to 'New Alliance', new_alliance_path
-
-  table.hover.stacked
-    thead
-      tr
-        th Name
-        th Purpose
-        th Members
-
-    tbody
-      - @alliances.each do |alliance|
-        tr
-          td{valign='top'}
-            = link_to alliance.name, alliance
-          td{valign='top'}
-            = alliance.purpose
-            - if can? :manage, :all
-              .float-right
-                = link_to edit_alliance_path(alliance) do
-                  i.fa.fa-pencil
-                | &nbsp;
-                | &nbsp;
-                = link_to alliance, data: { confirm: 'Are you sure?' }, method: :delete do
-                  i.fa.fa-trash-o
-          td{valign='top'}
-            - alliance.members.each do |member|
-              p.snug-bottom= link_to member.name, vanity_path(member.username)
+    - if current_user and current_user.confirmed?
+      table.hover.stacked
+        thead
+          tr
+            th{width='20%'} Name
+            th{width='80%'} Purpose
+        tbody
+          - @alliances.each do |alliance|
+            tr
+              td{valign='top'}
+                = link_to alliance.name, alliance
+                - if can? :manage, :all
+              td{valign='top'}
+                = alliance.purpose
+                /- if can? :manage, :all
+                  .float-right
+                    = link_to edit_alliance_path(alliance) do
+                      i.fa.fa-pencil
+                    | &nbsp;
+                    | &nbsp;
+                    = link_to alliance, data: { confirm: 'Are you sure?' }, method: :delete do
+                    i.fa.fa-trash-o
+    - elsif current_user and !current_user.confirmed?
+      p.text-center You still need to activate your account to access the list of private alliances.
+      p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
+      p.text-center Account activation is FREE and it only takes a minute.
+    - else
+      p.text-center Only Startup Alliance members can access the private alliances list.
+      p.text-center Membership is FREE so #{link_to 'sign-up now', new_user_registration_path(acqsrc: 'alliance index')}!
+      p.text-center Already a member? #{link_to 'Sign-in', new_user_session_path}!

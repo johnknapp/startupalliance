@@ -2,48 +2,69 @@
   - if !current_user and params[:action] == 'home'
     .top-bar-left
       .indented-6.show-for-large= image_tag 'banner.svg', width: '360px'
-      h5.bold.indented-6.show-for-large Entrepreneurs working together towards startup success.
+      /h5.bold.indented-6.show-for-large Entrepreneurs working together towards startup success.
       .show-for-medium-only= image_tag 'banner.svg', width: '300px'
-      h5.bold.show-for-medium-only Entrepreneurs working together towards startup success.
+      /h5.bold.show-for-medium-only Entrepreneurs working together towards startup success.
       .show-for-small-only= image_tag 'banner.svg', width: '200px'
-      h5.bold.show-for-small-only Entrepreneurs working together towards startup success.
+      /h5.bold.show-for-small-only Entrepreneurs working together towards startup success.
 
   - if current_user or params[:action] != 'home'
     .top-bar-title
-      p.snug-bottom= link_to (image_tag 'logotype.svg', width: '200px'), root_path
-      p.primary-text Entrepreneurs working together towards startup success.
+      .show-for-small-only.little-snug-top.snug-bottom= link_to (image_tag 'sa_mark_master_125x.png', width: '48px'), root_path
+      .show-for-medium.little-snug-top.snug-bottom= link_to (image_tag 'sa_mark_master_125x.png', width: '60px'), root_path
+      /p.primary-text Entrepreneurs working together towards startup success.
   .top-bar-right
     - if current_user
       ul.dropdown.menu data-dropdown-menu=true
+        li= link_to 'Alliances', alliances_path
+        li= link_to 'Members', members_path
+        li= link_to 'Companies', companies_path
+        li= link_to 'About', about_path
         li.bold.primary-text
-          = menu_icon
           | &nbsp;
+          | &nbsp;
+          = menu_icon
           | &nbsp;
           | #{current_user.name.upcase}
           | &nbsp;
-          | &nbsp;
           i.fa.fa-bars.secondary
           ul.menu.normal
-            - if current_user.admin?
-              li.little-space-top= link_to 'Companies', companies_path
-              li= link_to 'OKRs', okrs_path
-              li= link_to 'Alliances', alliances_path
-              li= link_to 'Admin', admin_root_path
+            - if current_user and current_user.companies.present?
+              - current_user.companies.each do |company|
+                li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
+                li= link_to company.name, company_path(company)
               hr
-            li= link_to current_user.companies.first.name, company_path(current_user.companies.first)  if current_user and current_user.companies.first.present?
-            li= link_to 'Resources', resources_path
-            li= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
+
+            - if current_user and current_user.alliances.present?
+              li.little-space-top.bold.text &nbsp; My #{'alliance'.pluralize(current_user.alliances.count)}:
+              - current_user.alliances.each do |alliance|
+                li= link_to alliance.name, alliance_path(alliance)
+              hr
+
+            - if current_user.admin?
+              li.little-space-top= link_to 'Admin interface', admin_root_path
+              hr
+
+            - if current_user and (current_user.companies.blank? or current_user and !current_user.admin?)
+              li.little-space-top= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
+            - else
+              li= link_to 'Profile', vanity_path(current_user.username)                 if current_user and current_user.confirmed?
             li= link_to 'Account', edit_user_registration_path                        if current_user and current_user.confirmed?
             li= link_to 'Activate your account', new_confirmation_path(current_user)  if current_user and !current_user.confirmed?
-            li= link_to 'Sign-out', destroy_user_session_path
+            li.little-space-bottom= link_to 'Sign-out', destroy_user_session_path
     - else
-      ul.menu
-        li
+      ul.menu.simple
+        /li
           .show-for-medium
             = link_to new_user_registration_path(acqsrc: 'header'), class: 'button secondary bold' do
               ' Sign-up
           .show-for-small-only
             = link_to new_user_registration_path(acqsrc: 'header'), class: 'small button secondary bold' do
               ' Sign-up
-        li= link_to 'Resources', resources_path
+        li.bold.scale-to-130= link_to 'Join today!', new_user_registration_path(acqsrc: 'header')
+        li= link_to 'Alliances', alliances_path
+        li= link_to 'Members', members_path
+        li= link_to 'Companies', companies_path
+        li= link_to 'About', about_path
+        /li= link_to 'Resources', resources_path
         li= link_to 'Sign-in', new_user_session_path

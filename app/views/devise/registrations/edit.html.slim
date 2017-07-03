@@ -3,7 +3,7 @@
     h3.show-for-medium-up &nbsp;
     h3 Update your Account
     hr.little-snug-top
-    p.text-right.snug-top Each member makes StartupAlliance more useful to all of us!
+    p.text-right.snug-top Each member makes Startup Alliance more useful to all of us!
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
@@ -21,7 +21,7 @@
           .small-3.columns
             = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
           .small-3.columns
-            = f.input :time_zone, required: true
+            = f.input :time_zone, required: true, priority: ActiveSupport::TimeZone.us_zones
         .row
           .large-6.columns
             = f.input :password, placeholder: 'New password'

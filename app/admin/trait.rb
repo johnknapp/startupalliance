@@ -1,5 +1,5 @@
 ActiveAdmin.register Trait do
 
-  menu parent: 'User Characteristics'
+  menu parent: 'Attributes'
 
 end

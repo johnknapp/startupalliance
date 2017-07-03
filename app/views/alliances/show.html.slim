@@ -4,7 +4,7 @@
       ' Private Alliance:
       strong= @alliance.name
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Collaboration to maximize the success of each member’s company.
+    p.snug-top.space-bottom.text-right Collaboration to maximize the success of each member and their companies.
 
     .row
       .medium-8.columns
@@ -39,7 +39,7 @@
                 button data-close=true aria-label='Close' type='button' class='close-button'
                   span aria-hidden=true
                     ' &times;
-                p.bold To add a member, please provide their StartupAlliance username
+                p.bold To add a member, please provide their Startup Alliance username
                 = form_tag add_member_alliance_path, method: :put
                   = text_field_tag :username
                   = submit_tag 'Add member', class: 'button expanded secondary'
