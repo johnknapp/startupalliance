@@ -16,6 +16,7 @@
 //= require foundation
 //= require foundation-datepicker
 //= require foundation_datepicker_init
+//= require google_analytics
 
 
 $(function(){
