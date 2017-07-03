@@ -6,7 +6,7 @@
   .medium-12.columns
     h3.bold.space-top.primary-text Private Alliances
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Maximizing success regardless of location
+    p.snug-top.space-bottom.text-right Connecting you with the people that can help you the most
 
     .callout.accent
       h4.text-center.bold.little-space-bottom
@@ -15,14 +15,18 @@
         ' Our Private Alliance tools let you connect and collaborate
         ' with entrepreneurs, advisors and investors from around the world.
       p.text-center
-        ' Create or join a Private Alliance and
+        /' Create or join a Private Alliance and
         span.bold
-          ' become part of the global entrepreneurship revolution.
+          ' Go beyond the walls of your own company and maximize your success.
         '
-      p.text-center.primary-text Private Alliances are coming soon!
+      - if !current_user
+        p.text-center
+          ' Join now and be notified when they launch.
+      - else
+        p.text-center
+          ' Private Alliances launching soon!
 
-
-    - if current_user and current_user.confirmed? and @alliances.present?
+    /- if current_user and current_user.confirmed? and @alliances.present?
       table.hover.stacked
         thead
           tr
@@ -44,11 +48,11 @@
                     | &nbsp;
                     = link_to alliance, data: { confirm: 'Are you sure?' }, method: :delete do
                     i.fa.fa-trash-o
-    - elsif current_user and !current_user.confirmed?
+    /- elsif current_user and !current_user.confirmed?
       p.text-center You still need to activate your account to access the list of private alliances.
       p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
       p.text-center Account activation is FREE and it only takes a minute.
-    - else
+    /- else
       p.text-center Only Startup Alliance members can access the private alliances list.
       p.text-center Membership is FREE so #{link_to 'sign-up now', new_user_registration_path(acqsrc: 'alliance index')}!
       p.text-center Already a member? #{link_to 'Sign-in', new_user_session_path}!
