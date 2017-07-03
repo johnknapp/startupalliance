@@ -1,12 +1,23 @@
-h2
-  | Change your password
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
-  = f.input :reset_password_token, as: :hidden
-  = f.full_error :reset_password_token
-  .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
-  .form-actions
-    = f.button :submit, "Change my password"
-= render "devise/shared/links"
+.row
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
+    h3.show-for-medium-up &nbsp;
+    h3 Choose a new password
+    hr.little-snug-top
+    p.text-right.snug-top It will be nice to get you back in here!
+
+    p You will be immediately signed in using the new password you choose here.
+
+
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = f.error_notification
+      = f.input :reset_password_token, as: :hidden
+      = f.full_error :reset_password_token
+      .form-inputs
+        = f.input :password, label: "New password", placeholder: 'Type your new password', required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+        = f.input :password_confirmation, label: "Confirm your new password", placeholder: 'Retype your new password', required: true
+      .form-actions
+        .float-left
+          = f.button :submit, "Set my new password", class: 'small'
+        .float-right
+          = render "devise/shared/links"
+

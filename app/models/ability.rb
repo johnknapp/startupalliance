@@ -20,16 +20,19 @@ class Ability
 
       when 'admin'
         can :manage,                [:all]
+        cannot :create,             Alliance
 
       when 'user'
         cannot :index,              primary_objects
         can :crud,                  primary_objects
         can :set_sakpi,             Company
         can :unset_sakpi,           Company
+        cannot :create,             Alliance
 
       else # no role means they are non-auth
         cannot :index,              primary_objects
         can :read,                  public_content
+        cannot :create,             Alliance
 
     end
   end

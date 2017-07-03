@@ -12,7 +12,7 @@ VIEWER_SKILL_TIP          = 'This member has rated themselves for these Skills.'
 WEBRTC_TIP                = 'WebRTC is live audio/video chat, available on supported browsers only.'
 OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve their goals'
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
-SAKPI_LEVEL_TIP           = 'The level indicates relative strength of each Performance Indicator.'
+SAKPI_LEVEL_TIP           = 'The level indicates relative strength of each SAKPI. Only visible to company team.'
 
 USERNAME_EXCLUSIONS = %w[
   about

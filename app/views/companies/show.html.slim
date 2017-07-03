@@ -163,26 +163,21 @@
                   ' Level
                 = render 'partials/set_sakpis_modal'
 
-
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
               ' SAKPIs:
-          - if current_user and @company.team_member(current_user)
-            - sakpis = Sakpi.all.order(:name)
-            - sakpis.each do |sakpi|
-              .row
-                .small-6.columns
-                  p.faint.snug-top= sakpi.name
-                .small-6.columns
-                  .float-right
-                    .faint.snug-top
+          - sakpis = Sakpi.all.order(:name)
+          - sakpis.each do |sakpi|
+            .row
+              .small-6.columns
+                p.faint.snug-top= sakpi.name
+              .small-6.columns
+                .float-right
+                  .faint.snug-top
+                    - if current_user and current_user.confirmed? and @company.team_member(current_user)
                       - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
                       - if cs.present?
                         = cs.level
                       - else
-                        ' –
-          - else
-            .row
-              .small-12.columns
-                p.text-center
-                  em
-                    ' SAKPIs are only visible to the Company Team.
+                        ' Unset!
+                    - else
+                      ' — &nbsp;

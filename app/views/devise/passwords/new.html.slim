@@ -4,6 +4,9 @@
     h3 Forgot your password?
     hr.little-snug-top
     p.text-right.snug-top OMG!
+
+    p Enter the email address you used when you signed up and we will send an email with reset instructions.
+
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
       = f.error_notification
       .form-inputs
