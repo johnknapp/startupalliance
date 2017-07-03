@@ -7,7 +7,7 @@ ALLIANCE_STATES           = %w[initialized active paused]
 
 USER_TRAIT_TIP            = 'Only Traits where you have rated yourself appear to others.'
 VIEWER_TRAIT_TIP          = 'This member has rated themselves for these Traits.'
-USER_SKILL_TIP            = 'Only Tkills where you have rated yourself appear to others.'
+USER_SKILL_TIP            = 'Only Skills where you have rated yourself appear to others.'
 VIEWER_SKILL_TIP          = 'This member has rated themselves for these Skills.'
 WEBRTC_TIP                = 'WebRTC is live audio/video chat, available on supported browsers only.'
 OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve their goals'

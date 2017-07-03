@@ -156,10 +156,10 @@
               strong
                 - if current_user == @user
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=USER_TRAIT_TIP
-                    ' strengths:
+                    ' Traits:
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_TRAIT_TIP
-                    ' strengths:
+                    ' Traits:
             - @user.user_traits.order(:trait_id).each do |ut|
               .row
                 .small-6.columns
