@@ -1,14 +1,14 @@
 = render 'layouts/html_and_head'
-body.Site
+body.flex-site
   /= javascript_include_tag 'fb_js_sdk'
-  .Site-content
+  main.flex-content
     = render 'layouts/impersonation'
     .row
       .medium-12.columns
         = render 'layouts/alerts'
         = render 'layouts/topbar'
     = yield
-  .Site-footer
+  footer
     = render 'layouts/footer'
   /= javascript_include_tag 'foundation-select'
   - if Rails.env.production?

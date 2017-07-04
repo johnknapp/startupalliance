@@ -1,7 +1,7 @@
 = render 'layouts/html_and_head'
-body.Site
+body.flex-site
   /= javascript_include_tag 'fb_js_sdk'
-  .Site-content
+  main.flex-content
     .row
       .small-12.columns
         = render 'layouts/impersonation'
@@ -12,13 +12,13 @@ body.Site
             i.fa.fa-home.light-primary-text
         = render 'layouts/alerts'
         = yield
-  .Site-footer
-    - unless %w[sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
-      = render 'layouts/footer'
-= javascript_include_tag 'foundation-select'
-- if Rails.env.production?
-  = javascript_include_tag 'google_analytics'
-  = javascript_include_tag 'hotjar'
   - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
-    = javascript_include_tag('http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ab86e837d6b4bf', async: 'async')
+    footer
+      = render 'layouts/footer'
+  = javascript_include_tag 'foundation-select'
+  - if Rails.env.production?
+    = javascript_include_tag 'google_analytics'
+    = javascript_include_tag 'hotjar'
+    - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
+      = javascript_include_tag('http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ab86e837d6b4bf', async: 'async')
   / twitter
