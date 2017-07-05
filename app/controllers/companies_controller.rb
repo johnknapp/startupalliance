@@ -48,7 +48,9 @@ class CompaniesController < ApplicationController
   # PUT /companies/1/add_team_member
   def add_team_member
     team_member = User.find_by_username(params[:username])
-    if @company.team.exists? team_member.id
+    if !team_member
+      redirect_to :back, alert: 'Nobody with that username!'
+    elsif @company.team.exists? team_member.id
       redirect_to :back, alert: 'Already a team member!'
     else
       CompanyUser.create(
