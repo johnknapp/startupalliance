@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
   get 'about',                      to: 'pages#about',                constraints: { format: 'html' }
   get 'learn_more',                 to: 'pages#learn_more',           constraints: { format: 'html' }
-  get 'resources',                  to: 'pages#resources',            constraints: { format: 'html' }
+  get 'quick_start',                to: 'pages#quick_start',          constraints: { format: 'html' }
 
   get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
 

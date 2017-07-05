@@ -135,6 +135,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def destroy
+    departure_cleanup
     if Rails.env.production?
       GibbonService.unsubscribe(@user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
     end
@@ -161,6 +162,13 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
   private
+
+    def departure_cleanup
+      AllianceUser.where(user_id: @user.id).destroy_all
+      CompanyUser.where(user_id: @user.id).destroy_all
+      UserSkill.where(user_id: @user.id).destroy_all
+      UserTrait.where(user_id: @user.id).destroy_all
+    end
 
     def set_skill_index
       us = current_user.user_skills

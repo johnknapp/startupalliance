@@ -53,8 +53,9 @@
               ' Find your company on Startup Alliance and ask to be put on the team.
             p.text-center
               ' If your company isn’t listed yet, have an owner add it.
-              ' If you are an owner, mark yourself as an owner on your #{link_to 'account update page', edit_user_registration_path}
-              ' then come back here to list your company.
+            p.text-center
+              ' Are you an owner? Visit your #{link_to 'account update page', edit_user_registration_path} to certify ownership
+              ' then list your company here.
 
         /.callout
           - if @user.alliances.present?

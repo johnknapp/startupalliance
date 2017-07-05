@@ -25,4 +25,7 @@ class PagesController < ApplicationController
   def about
   end
 
+  def quick_start
+  end
+
 end
