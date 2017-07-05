@@ -5,17 +5,7 @@
       strong
         ' #{@user.name}
     hr.little-snug-top
-    - if @user.mission.present?
-      .row
-        .medium-8.medium-offset-4.columns
-          p.snug-top.space-bottom.text-right
-            strong
-              ' Personal mission:
-            ' #{@user.mission}
-    - elsif current_user and @user == current_user and current_user.confirmed?
-      p.snug-top.space-bottom.text-right.faint= link_to 'Add your personal mission statement', edit_user_registration_path
-    - else
-      p.snug-top.space-bottom.text-right Member since #{@user.created_at.strftime('%B %e, %Y')}
+    p.snug-top.space-bottom.text-right Member since #{@user.created_at.strftime('%B %e, %Y')}
     .row
       .medium-8.columns
 
@@ -76,6 +66,14 @@
                   ' Impersonate
                   | &nbsp;
                   i.fa.fa-user-secret
+          - if @user.mission.present?
+            p.bold Personal mission:
+            p.faint.snug-top= @user.mission
+          - elsif current_user and current_user.confirmed? and @user == current_user
+            p.faint.text-center.snug-top= link_to 'Add your personal mission statement', edit_user_registration_path
+          - else
+            p.faint.text-center.snug-top No personal mission statement!
+          hr
           p.bold Member summary:
           - if @user.company_owner == true
             .row

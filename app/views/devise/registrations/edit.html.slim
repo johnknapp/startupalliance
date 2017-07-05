@@ -32,7 +32,7 @@
             ' Personal mission statement
             em
               ' (Recommended)
-          = f.input :mission, label: false, placeholder: 'Personal mission statement, between 24 and 140 characters.'
+          = f.input :mission, label: false, as: :text, input_html: { rows: '2' }, placeholder: 'Personal mission statement, between 24 and 280 characters.'
           p
             ' Links to your social media accounts
             em
