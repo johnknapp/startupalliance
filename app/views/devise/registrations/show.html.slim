@@ -19,68 +19,63 @@
     .row
       .medium-8.columns
 
-        .callout
-          - if @user.companies.present?
-            h5.bold.primary-text My #{'Company'.pluralize(@user.companies.count)}
-            ul
+        - if @user.companies.present?
+          table.hover.stacked
+            thead
+              tr
+                th{width='40%'}
+                  - if @user.company_owner
+                    .float-right
+                      =link_to new_company_path do
+                        i.fa.fa-plus
+                  ' My #{'company'.pluralize(@user.companies.count)}
+                th{width='20%'} Life phase
+                th{width='20%'}
+                  .text-center SAKPI Index
+                th{width='20%'}
+                  .text-center Lifetime OKRs
+            tbody
               - @user.companies.each do |company|
-                li.indented-2
-                  strong
-                    ' #{link_to company.name, company_path(company)}
-                  - if current_user and company.team_member(current_user)
-                    - if company.team_member(@user).role == 'Owner'
-                      ' (#{company.team_member(@user).role.humanize}, #{company.team_member(@user).equity.humanize.downcase}%)
-                    - else
-                      ' (#{company.team_member(@user).role.humanize})
-                  ul
-                    li
-                      ' Founded:
-                      strong
-                        ' #{company.founded.strftime('%B %e, %Y')}
-                    li
-                      ' Location:
-                      strong
-                        ' #{company.location}
-          - else
-            p.text-center.bold Not part of any Company Teams yet!
-            - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
-              p.text-center
-                ' Find your company on Startup Alliance and ask to be put on the team.
-              p.text-center
-                ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
-            - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
-              p.text-center
-                ' Find your company on Startup Alliance and ask to be put on the team.
-              p.text-center
-                ' If your company isn’t listed yet, have an owner add it.
-                ' If you are an owner, mark yourself as an owner on your #{link_to 'account update page', edit_user_registration_path}
-                ' then come back here to list your company.
+                tr
+                  td{valign='top'}= link_to company.name, company_path(company)
+                  td{valign='top'}= company.phases
+                  td{valign='top' align='center'}= company.sakpi_index
+                  td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
+        - else
+          p.text-center.bold Not part of any Company Teams yet!
+          - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
+            p.text-center
+              ' Find your company on Startup Alliance and ask to be put on the team.
+            p.text-center
+              ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
+          - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
+            p.text-center
+              ' Find your company on Startup Alliance and ask to be put on the team.
+            p.text-center
+              ' If your company isn’t listed yet, have an owner add it.
+              ' If you are an owner, mark yourself as an owner on your #{link_to 'account update page', edit_user_registration_path}
+              ' then come back here to list your company.
 
-        .callout
+        /.callout
           - if @user.alliances.present?
-            h5.bold.primary-text My Private Alliances:
+            h5.bold.primary-text My Private #{'Alliance'.pluralize(@user.alliances.count)}
             ul
               - @user.alliances.each do |alliance|
                 li.indented-2
                   strong= link_to alliance.name, alliance_path(alliance)
-                  - if current_user and alliance.members.include? current_user
-                    .float-right
-                      = link_to edit_alliance_path(alliance) do
-                        i.fa.fa-pencil
           - else
             p.text-center.bold Not part of any Private Alliances yet!
-
 
       .medium-4.columns
         .callout
           - if current_user and current_user.admin? and current_user != @user
-            p.faint.text-center
-              = link_to users_impersonate_path(pid: @user.pid), method: :put do
-                ' Impersonate
-                | &nbsp;
-                i.fa.fa-user-secret
-          p
-            strong Member summary:
+            .callout.simple.alert
+              p.faint.text-center
+                = link_to users_impersonate_path(pid: @user.pid), method: :put do
+                  ' Impersonate
+                  | &nbsp;
+                  i.fa.fa-user-secret
+          p.bold Member summary:
           - if @user.company_owner == true
             .row
               .small-8.columns

@@ -8,25 +8,22 @@
 
     .row
       .medium-8.columns
-        .callout
-          h5.bold.primary-text
-            ' Member companies:
-          table.hover.stacked
-            thead
+        table.hover.stacked
+          thead
+            tr
+              th{width='40%'} Member #{'company'.pluralize(@alliance.member_companies.count)}
+              th{width='20%'} Life phase
+              th{width='20%'}
+                .text-center SAKPI Index
+              th{width='20%'}
+                .text-center Lifetime OKRs
+          tbody
+            - @alliance.member_companies.each do |company|
               tr
-                th{width='40%'} Name
-                th{width='20%'} Life phase
-                th{width='20%'}
-                  .text-center SAKPI Index
-                th{width='20%'}
-                  .text-center Lifetime OKRs
-            tbody
-              - @alliance.member_companies.each do |company|
-                tr
-                  td{valign='top'}= link_to company.name, company_path(company)
-                  td{valign='top'}= company.phases
-                  td{valign='top' align='center'}= company.sakpi_index
-                  td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
+                td{valign='top'}= link_to company.name, company_path(company)
+                td{valign='top'}= company.phases
+                td{valign='top' align='center'}= company.sakpi_index
+                td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
 
         .callout
           h5.bold.primary-text
@@ -100,7 +97,7 @@
                     = form_tag add_member_alliance_path, method: :put
                       = text_field_tag :username
                       = submit_tag 'Add member', class: 'button expanded secondary'
-              p.bold Alliance #{'Member'.pluralize(@alliance.members.count)}:
+              p.bold Private Alliance #{'Member'.pluralize(@alliance.members.count)}:
               - @alliance.members.each do |member|
                 - if current_user and current_user == @alliance.creator
                   .float-right.snug-top.scale-to-90

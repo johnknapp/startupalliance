@@ -147,9 +147,9 @@
           - sakpis = Sakpi.all.order(:name)
           - sakpis.each do |sakpi|
             .row
-              .small-6.columns
+              .small-8.columns
                 p.faint.snug-top= sakpi.name
-              .small-6.columns
+              .small-4.columns
                 .float-right
                   .faint.snug-top
                     - if current_user and current_user.confirmed? and @company.team_member(current_user)
@@ -182,17 +182,17 @@
           p.bold.little-space-after Company team:
           - @company.team.each do |member|
             .row
-              .small-8.columns
+              .small-10.columns
                 p.faint.snug-top
                   ' #{link_to member.name, vanity_path(member.username)}
                   - if current_user and @company.team_member(current_user)
-                    - if @company.team_member(member).role == 'Owner'
+                    - if @company.team_member(member).equity != 'no_equity'
                       ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
                     - else
                       ' (#{@company.team_member(member).role.humanize})
-              .small-4.columns
-                - if current_user and current_user.team?(@company)
-                  - if current_user and @company.team_member(current_user).role == 'Owner'
+              .small-2.columns
+                - if current_user and current_user.team?(@company) and @company.team_member(current_user).role == 'Owner'
+                  - unless current_user.id == member.id
                     .float-right
                       p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
                         i.fa.fa-trash-o
