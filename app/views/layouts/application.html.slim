@@ -5,20 +5,21 @@ body.flex-site
     .row
       .small-12.columns
         = render 'layouts/impersonation'
-        - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
-          = render 'layouts/topbar'
-        - else
+        - if params[:controller] == 'registrations' and params[:action] == 'new'
           .text-right.little-space-top= link_to root_path do
             i.fa.fa-home.light-primary-text
+        - else
+          = render 'layouts/topbar'
         = render 'layouts/alerts'
         = yield
-  - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
+  /- unless %w[sessions passwords confirmations].any? { |ctrlr| params[:controller] == ctrlr }
+  - unless params[:controller] == 'registrations' and params[:action] == 'new'
     footer
       = render 'layouts/footer'
   = javascript_include_tag 'foundation-select'
   - if Rails.env.production?
     = javascript_include_tag 'google_analytics'
     = javascript_include_tag 'hotjar'
-    - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
+    - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| params[:controller] == ctrlr }
       = javascript_include_tag('http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ab86e837d6b4bf', async: 'async')
   / twitter

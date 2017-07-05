@@ -1,7 +1,7 @@
 .row
   .large-12.columns
     h3.space-top.primary-text
-      ' Member company:
+      ' Company profile:
       strong
         ' #{@company.name}
     hr.little-snug-top
@@ -9,16 +9,6 @@
 
     .row
       .medium-8.columns
-        /.callout
-          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-            .float-right
-              = link_to edit_company_path(@company) do
-                i.fa.fa-pencil
-          h5.bold.primary-text Company summary:
-          p.indented-2= @company.description
-
-          h5.bold.primary-text Primary market served:
-          p.indented-2= @company.primary_market
 
         .callout
           h5.bold.primary-text

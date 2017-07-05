@@ -1,7 +1,7 @@
 .row
   .large-12.columns
     h3.space-top.primary-text
-      ' Startup Alliance Member:
+      ' Member profile:
       strong
         ' #{@user.name}
     hr.little-snug-top
@@ -14,7 +14,7 @@
             thead
               tr
                 th{width='40%'}
-                  - if @user.company_owner
+                  - if current_user and current_user == @user and current_user.company_owner
                     .float-right
                       =link_to new_company_path do
                         i.fa.fa-plus
@@ -68,7 +68,9 @@
                   i.fa.fa-user-secret
           - if @user.mission.present?
             p.bold Personal mission:
-            p.faint.snug-top= @user.mission
+            p.little-snug-top
+              em
+                = @user.mission
           - elsif current_user and current_user.confirmed? and @user == current_user
             p.faint.text-center.snug-top= link_to 'Add your personal mission statement', edit_user_registration_path
           - else
@@ -102,11 +104,6 @@
               p.faint.snug-top Username:
             .small-8.columns
               p.faint.text-right.snug-top= @user.username.upcase
-          .row
-            .small-6.columns
-              p.faint.snug-top Member since:
-            .small-6.columns
-              p.faint.text-right.snug-top= @user.created_at.strftime('%B %e, %Y')
             hr
 
           - if current_user and @user.skills.present? or current_user == @user
