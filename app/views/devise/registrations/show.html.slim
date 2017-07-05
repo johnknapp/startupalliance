@@ -18,7 +18,7 @@
                     .float-right
                       =link_to new_company_path do
                         i.fa.fa-plus
-                  ' My #{'company'.pluralize(@user.companies.count)}
+                  ' #{'Company'.pluralize(@user.companies.count)}
                 th{width='20%'} Life phase
                 th{width='20%'}
                   .text-center SAKPI Index
