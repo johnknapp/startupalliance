@@ -2,14 +2,17 @@
   /- if params[:action] != 'home' and current_or_guest_user.role == 'guest' and (current_or_guest_user.adjects.present? or current_or_guest_user.interests.present? or current_or_guest_user.proficiencies.present?)
     = render 'layouts/guest_reminder'
   hr
-  .small-6.columns
+  .small-8.columns
     ul.menu.simple.snug-top.faint
       li=link_to 'About', about_path
+      li= link_to 'Quick start', quick_start_path
       li= link_to 'FAQ', faq_path
       li= link_to 'Code of Conduct', code_of_conduct_path
       li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
+      li= link_to 'Follow @StartupAlliance', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'
+      li= link_to 'Read @StartupAlliance', 'http://medium.com/@startupalliance', target: '_blank'
 
-  .small-6.columns
+  .small-4.columns
     p.text-right.snug-top.faint
       ' Made with
       i.fi-heart.red-text

@@ -1,7 +1,12 @@
 .row
   .medium-8.medium-offset-2.columns
     h3.show-for-medium-up &nbsp;
-    h3 Update OKR for #{@company.name}
+    h3
+      .float-right
+        a data-open='okr-info'
+          i.fa.fa-info-circle
+        = render 'partials/quick_reference_okr'
+      ' Update OKR for #{@company.name}
     hr.little-snug-top
     p.text-right.snug-top.space-bottom
       ' Objective and key results

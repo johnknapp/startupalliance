@@ -25,11 +25,11 @@
             .space-top.indented-1= f.input :company_owner, required: true, label: 'I own my own company'
         .row
           .medium-6.columns
-            = f.input :username, required: true, placeholder: 'lower case alphanumeric plus hyphen'
+            = f.input :username,  label: 'Username (becomes part of your profile URL)', required: true, placeholder: 'lower case alphanumeric plus hyphen'
             span.form-error
               ' Username is required
           .medium-6.columns
-            = f.input :time_zone, required: true, priority: ActiveSupport::TimeZone.us_zones
+            = f.input :time_zone, label: 'Time zone where you live', required: true, priority: ActiveSupport::TimeZone.us_zones
         .row
           .medium-6.columns
             = f.input :password, required: true

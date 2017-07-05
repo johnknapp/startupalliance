@@ -14,12 +14,12 @@ class Company < ApplicationRecord
   validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
   enum phases: {
-      Ideation:         0,
-      Validation:       1,
-      Foundation:       2,
-      Fortification:    3,
-      Expansion:        4,
-      Diversification:  5
+      '1: Ideation':         0,
+      '2: Validation':       1,
+      '3: Foundation':       2,
+      '4: Fortification':    3,
+      '5: Expansion':        4,
+      '6: Diversification':  5
   }
 
   def team_member(user)
