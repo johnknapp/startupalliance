@@ -75,11 +75,11 @@
           - if @company.recruiting == true
             p.text-center
               em
-                ' Currently recruiting new team members
+                ' Currently recruiting
           - else
             p.text-center
               em
-                ' Not currently recruiting team members
+                ' Not currently recruiting
           hr
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
@@ -157,7 +157,7 @@
                       - if cs.present?
                         = cs.level
                       - else
-                        ' Unset!
+                        ' —
                     - else
                       ' — &nbsp;
 
