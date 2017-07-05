@@ -29,16 +29,15 @@
         thead
           tr
             th{width='20%'} Name
-            th{width='80%'} Purpose
+            th{width='80%'} Mission statement
         tbody
           - @alliances.each do |alliance|
             tr
               td{valign='top'}
                 = link_to alliance.name, alliance
-                - if can? :manage, :all
               td{valign='top'}
-                = alliance.purpose
-                /- if can? :manage, :all
+                = alliance.mission
+                - if can? :manage, :all
                   .float-right
                     = link_to edit_alliance_path(alliance) do
                       i.fa.fa-pencil

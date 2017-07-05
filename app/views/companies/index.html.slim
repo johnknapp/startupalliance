@@ -35,8 +35,7 @@
                 - else
                   .faint-text Not set!
 
-              td{valign='top'}
-                .text-center= number_with_delimiter(company.okrs.count)
+              td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
                 /- if can? :manage, :all
                   .float-right
                     = link_to edit_company_path(company) do

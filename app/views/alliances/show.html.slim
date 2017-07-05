@@ -9,59 +9,112 @@
     .row
       .medium-8.columns
         .callout
-          - if current_user and @alliance.members.include? current_user
-            .float-right
-              = link_to edit_alliance_path(@alliance) do
-                i.fa.fa-pencil
           h5.bold.primary-text
-            ' Purpose:
-          p.indented-2= @alliance.purpose
-        - if current_user and @alliance.members.include? current_user
-          .callout
-            h5.bold.primary-text
-              ' Message Summaries:
-            ul
-              li.indented-2 Coming soon.
-        - if current_user and @alliance.members.include? current_user
-          .callout
-            h5.bold.primary-text
-              ' Meetings:
-            ul
-              li.indented-2 Coming soon.
+            ' Member companies:
+          table.hover.stacked
+            thead
+              tr
+                th{width='40%'} Name
+                th{width='20%'} Life phase
+                th{width='20%'}
+                  .text-center SAKPI Index
+                th{width='20%'}
+                  .text-center Lifetime OKRs
+            tbody
+              - @alliance.member_companies.each do |company|
+                tr
+                  td{valign='top'}= link_to company.name, company_path(company)
+                  td{valign='top'}= company.phases
+                  td{valign='top' align='center'}= company.sakpi_index
+                  td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
+
+        .callout
+          h5.bold.primary-text
+            ' Discussions:
+          - if current_user and @alliance.members.include? current_user
+            p.text-center Launching soon
+          - elsif current_user and !current_user.confirmed?
+            p.text-center Discussions are only visible to the members of this Private Alliance.
+            p.text-center We couldn't help noticing you need to activate your account.
+            p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
+            p.text-center Account activation is FREE and it only takes a minute.
+          - else
+            p.text-center Discussions are only visible to the members of this Private Alliance.
+
+        .callout
+          h5.bold.primary-text
+            ' Meetings:
+          - if current_user and @alliance.members.include? current_user
+            p.text-center Launching soon
+          - elsif current_user and !current_user.confirmed?
+            p.text-center Meetings are only visible to the members of this Private Alliance.
+            p.text-center We couldn't help noticing you need to activate your account.
+            p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
+            p.text-center Account activation is FREE and it only takes a minute.
+          - else
+            p.text-center Meetings are only visible to the members of this Private Alliance.
 
       .medium-4.columns
         .callout
-          - if current_user and @alliance.members.include? current_user
-            .float-right
-              a data-open='add-member'
-                i.fa.fa-plus
-              .reveal#add-member data-reveal=true
-                button data-close=true aria-label='Close' type='button' class='close-button'
-                  span aria-hidden=true
-                    ' &times;
-                p.bold To add a member, please provide their Startup Alliance username
-                = form_tag add_member_alliance_path, method: :put
-                  = text_field_tag :username
-                  = submit_tag 'Add member', class: 'button expanded secondary'
-          p.bold.little-space-after Alliance #{'Member'.pluralize(@alliance.members.count)}:
-          - @alliance.members.each do |member|
-            .row
-              .small-8.columns
-                p.faint.snug-top= link_to member.name, vanity_path(member.username)
-              .small-4.columns
-                - if current_user and current_user.member?(@alliance)
-                  .float-right
-                    p.faint.snug-top= link_to remove_member_alliance_path(member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
-                      i.fa.fa-trash-o
-
+          .row
+            .small-12.columns
+              - if @alliance.recruiting == true
+                p.text-center
+                  em
+                    ' Currently recruiting new Alliance members
+              - else
+                p.text-center
+                  em
+                    ' Not currently recruiting Alliance members
+            hr
+          .row
+            .small-12.columns
+              - if current_user and current_user == @alliance.creator
+                .float-right
+                  = link_to edit_alliance_path(@alliance) do
+                    i.fa.fa-pencil
+              p.bold Mission statement:
+              p.little-snug-top
+                em
+                  = @alliance.mission
+            hr
           - if @alliance.webmeet_url.present? and current_user and @alliance.members.include? current_user
             .row
               .small-12.columns
-                p.fait.little-snug-top
+                p.text-center.faint.little-snug-top.snug-bottom
                   = link_to @alliance.webmeet_url, target: '_blank'
                     span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
                       ' Web Meeting link
-
+            hr
+          .row
+            .small-12.columns
+              - if current_user and current_user == @alliance.creator
+                .float-right
+                  a data-open='add-member'
+                    i.fa.fa-plus
+                  .reveal#add-member data-reveal=true
+                    button data-close=true aria-label='Close' type='button' class='close-button'
+                      span aria-hidden=true
+                        ' &times;
+                    p.bold To add a member, please provide their Startup Alliance username
+                    = form_tag add_member_alliance_path, method: :put
+                      = text_field_tag :username
+                      = submit_tag 'Add member', class: 'button expanded secondary'
+              p.bold Alliance #{'Member'.pluralize(@alliance.members.count)}:
+              - @alliance.members.each do |member|
+                - if current_user and current_user == @alliance.creator
+                  .float-right.snug-top.scale-to-90
+                    = link_to remove_member_alliance_path(member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
+                      i.fa.fa-trash-o
+                p.faint.snug-top
+                  = link_to member.name, vanity_path(member.username)
+                p.faint.snug-top.little-space-bottom.indented-1
+                  ' Personal mission:
+                  em
+                    - if member.mission
+                      = member.mission
+                    - else
+                      ' Not set!
 
 
 

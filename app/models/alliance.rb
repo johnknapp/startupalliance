@@ -7,4 +7,14 @@ class Alliance < ApplicationRecord
 
   validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
+  def member_companies
+    arr = []
+    self.members.each do |member|
+      member.companies.each do |company|
+        arr << company
+      end
+    end
+    arr.uniq
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703011507) do
+ActiveRecord::Schema.define(version: 20170705012855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,13 +27,14 @@ ActiveRecord::Schema.define(version: 20170703011507) do
 
   create_table "alliances", force: :cascade do |t|
     t.string   "name"
-    t.string   "purpose"
+    t.string   "mission"
     t.string   "webmeet_url"
     t.string   "state",       default: "initialized"
     t.string   "pid",                                 null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "creator_id"
+    t.boolean  "recruiting",  default: true
   end
 
   create_table "companies", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170703011507) do
     t.string   "webmeet_url"
     t.integer  "sakpi_index",    default: 0
     t.integer  "creator_id"
+    t.boolean  "recruiting",     default: true
   end
 
   create_table "company_sakpis", force: :cascade do |t|

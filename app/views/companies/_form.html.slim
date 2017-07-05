@@ -10,6 +10,7 @@
         = f.input :url, label: 'URL', placeholder: 'Company website'
       .medium-4.columns
         = f.input :phases, label: 'Company phase', collection: Company.phases.keys, placeholder: 'Company website'
+    = f.input :recruiting, label: 'Currently recruiting new team members'
     = f.input :description, label: 'Company description', as: :text, input_html: { rows: '3' }, placeholder: 'Brief description of the product or service the company provides'
     = f.input :primary_market, label: 'Primary market', placeholder: 'Brief description of the primary market the company serves'
     .row
