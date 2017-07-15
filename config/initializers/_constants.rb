@@ -1,3 +1,5 @@
+RECAPTCHA                 = '6LdpIikUAAAAAJNnvWYNYHrCVj2v-nclV-AG3CiJ'
+
 USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user partner advisor admin]
 

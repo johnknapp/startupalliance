@@ -49,7 +49,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-
     if params[:user][:email].present?
       email = params[:user][:email]
       user = User.find_by_email(email)
@@ -60,7 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to :back, alert: 'You need to enter a valid email address!' and return
     end
 
-    if valid_email?(params[:user][:email])
+    if valid_email?(params[:user][:email]) and verify_recaptcha(RECAPTCHA, params['g-recaptcha-response'])
       super
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
@@ -163,7 +162,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def departure_cleanup
+    def verify_recaptcha(secret_key, response)
+      status = `curl -X POST -d "secret=#{secret_key}&response=#{response}" "https://www.google.com/recaptcha/api/siteverify?"`
+      hash = JSON.parse(status)
+      hash["success"] == true ? true : false
+    end
+
+  def departure_cleanup
       AllianceUser.where(user_id: @user.id).destroy_all
       CompanyUser.where(user_id: @user.id).destroy_all
       UserSkill.where(user_id: @user.id).destroy_all
