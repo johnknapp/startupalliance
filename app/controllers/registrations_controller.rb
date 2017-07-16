@@ -59,7 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to :back, alert: 'You need to enter a valid email address!' and return
     end
 
-    if valid_email?(params[:user][:email]) and verify_recaptcha(RECAPTCHA, params['g-recaptcha-response'])
+    if valid_email?(params[:user][:email]) and valid_user?(params['g-recaptcha-response'])
       super
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
@@ -162,10 +162,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def verify_recaptcha(secret_key, response)
-      status = `curl -X POST -d "secret=#{secret_key}&response=#{response}" "https://www.google.com/recaptcha/api/siteverify?"`
-      hash = JSON.parse(status)
-      hash["success"] == true ? true : false
+    # jk@johnknapp.com registered at https://www.google.com/recaptcha
+    def valid_user?(input)
+      conn = Faraday.new('https://www.google.com/recaptcha/api/siteverify')
+      conn.params = { secret: 'RECAPTCHA', response: 'input' }
+      resp = JSON.parse(conn.post.body)
+      resp['success']
     end
 
   def departure_cleanup
