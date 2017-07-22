@@ -50,7 +50,7 @@
                       = render 'partials/okr_show', okr: okr
                 .tabs-panel#panel-3
                   - @company.okrs.each do |okr|
-                    - if okr.upcoming?
+                    - if okr.upcoming? or okr.date_unset?
                       = render 'partials/okr_show', okr: okr
 
             - else

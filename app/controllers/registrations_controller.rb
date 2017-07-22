@@ -170,7 +170,7 @@ class RegistrationsController < Devise::RegistrationsController
       resp['success']
     end
 
-  def departure_cleanup
+    def departure_cleanup
       AllianceUser.where(user_id: @user.id).destroy_all
       CompanyUser.where(user_id: @user.id).destroy_all
       UserSkill.where(user_id: @user.id).destroy_all

@@ -1,6 +1,8 @@
 ActiveAdmin.register User do
 
-  permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation, :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone
+  permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
+                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile,
+                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone
 
   controller do
     def find_resource
@@ -10,11 +12,11 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
+    column :created_at
     column :pid
     column :name do |user|
       "#{user.name}"
     end
-    column :last_name
     column :username do |user|
       link_to user.username, vanity_path(user.username)
     end
@@ -27,6 +29,14 @@ ActiveAdmin.register User do
     end
     actions
   end
+
+  filter :created_at
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :company_owner
+  filter :role
+  filter :state
 
   form do |f|
     f.inputs 'Edit User' do

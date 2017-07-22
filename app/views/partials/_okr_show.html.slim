@@ -13,7 +13,10 @@
   .row
     .small-6.columns
       p.faint.snug-top
-        em #{okr.okr_duration} #{okr.okr_units} starting #{okr.okr_start.strftime('%B %e, %Y')}
+        - if okr.okr_start
+          em #{okr.okr_duration} #{okr.okr_units} starting #{okr.okr_start.strftime('%B %e, %Y')}
+        - else
+          em No start date!
     .small-3.columns
       p.faint.snug-top.text-right
         ' Mid-period score:
