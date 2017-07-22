@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  include DateConverter
   before_action :set_company, only: [:show, :add_team_member, :remove_team_member, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
 
   before_action :authenticate_user!, except: [:show, :index]
@@ -137,6 +138,7 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
+      params[:company][:founded] = string_to_date(params[:company][:founded])
       params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :recruiting, :creator_id, :pid)
     end
 end

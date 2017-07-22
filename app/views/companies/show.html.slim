@@ -86,16 +86,17 @@
               = @company.primary_market
           hr
           p.bold.little-space-after Overview:
+          - if @company.url.present?
+            .row
+              .small-6.columns
+                p.faint.snug-top Website
+              .small-6.columns
+                p.faint.snug-top.text-right
+                  = link_to @company.url, target: '_blank' do
+                    ' #{@company.url}
           .row
             .small-6.columns
-              p.faint.snug-top Website
-            .small-6.columns
-              p.faint.snug-top.text-right
-                = link_to @company.url, target: '_blank' do
-                  ' #{@company.url}
-          .row
-            .small-6.columns
-              p.faint.snug-top Life phase
+              p.faint.snug-top Company stage
             .small-6.columns
               p.faint.snug-top.text-right= @company.phases
           .row
@@ -108,16 +109,18 @@
               p.faint.snug-top SAKPI index
             .small-6.columns
               p.faint.snug-top.text-right= @company.sakpi_index
-          .row
-            .small-6.columns
-              p.faint.snug-top Founded
-            .small-6.columns
-              p.faint.snug-top.text-right= @company.founded.strftime('%B %e, %Y')
-          .row
-            .small-6.columns
-              p.faint.snug-top Location
-            .small-6.columns
-              p.faint.snug-top.text-right= @company.location
+          - if @company.founded.present?
+            .row
+              .small-6.columns
+                p.faint.snug-top Founded
+              .small-6.columns
+                p.faint.snug-top.text-right= @company.founded.strftime('%B %e, %Y')
+          - if @company.location.present?
+            .row
+              .small-6.columns
+                p.faint.snug-top Location
+              .small-6.columns
+                p.faint.snug-top.text-right= @company.location
 
           hr.snug-top
           p.bold
