@@ -78,13 +78,21 @@
           p.bold.little-space-after Mission statement:
           p.little-snug-top.snug-top.space-bottom
             em
-              = @company.description
+              = @company.mission
           hr
+          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+            .float-right
+              = link_to edit_company_path(@company) do
+                i.fa.fa-pencil
           p.bold.little-space-after Primary market:
           p.little-snug-top.snug-top.space-bottom
             em
               = @company.primary_market
           hr
+          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+            .float-right
+              = link_to edit_company_path(@company) do
+                i.fa.fa-pencil
           p.bold.little-space-after Overview:
           - if @company.url.present?
             .row

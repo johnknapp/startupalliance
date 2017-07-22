@@ -1,6 +1,6 @@
 ActiveAdmin.register Company do
 
-  permit_params :id, :pid, :webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :recruiting, :state, :creator_id
+  permit_params :id, :pid, :webmeet_url, :name, :mission, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :recruiting, :state, :creator_id
 
   controller do
     def find_resource
@@ -12,7 +12,7 @@ ActiveAdmin.register Company do
     selectable_column
     column :pid
     column :name
-    column :description
+    column :mission
     column :recruiting
     column :primary_market
     column :site do |company|

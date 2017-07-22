@@ -139,6 +139,6 @@ class CompaniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params[:company][:founded] = string_to_date(params[:company][:founded])
-      params.require(:company).permit(:webmeet_url, :name, :description, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :recruiting, :creator_id, :pid)
+      params.require(:company).permit(:webmeet_url, :name, :mission, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :recruiting, :creator_id, :pid)
     end
 end
