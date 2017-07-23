@@ -5,7 +5,10 @@
       strong
         ' #{@user.name}
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Member since #{@user.created_at.strftime('%B %e, %Y')}
+    - if current_user and current_user.pid != @user.pid
+      p.snug-top.space-bottom.text-right= link_to "Start a conversation with #{@user.name}", conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post
+    - else
+      p.snug-top.space-bottom.text-right &nbsp;
     .row
       .medium-8.columns
 
@@ -77,6 +80,12 @@
             p.faint.text-center.snug-top No personal mission statement!
           hr
           p.bold Member summary:
+          .row
+            .small-6.columns
+              p.faint.snug-top Member since:
+            .small-6.columns
+              p.faint.text-right.snug-top
+                ' #{@user.created_at.strftime('%B %e, %Y')}
           - if @user.company_owner == true
             .row
               .small-8.columns

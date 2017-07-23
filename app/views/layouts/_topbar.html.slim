@@ -46,9 +46,11 @@
               hr
 
             - if current_user and (current_user.companies.blank? or current_user and !current_user.admin?)
-              li.little-space-top= link_to 'Profile', vanity_path(current_user.username)  if current_user and current_user.confirmed?
+              li.little-space-top= link_to 'Conversations', conversations_path                               if current_user and current_user.confirmed?
+              /li.little-space-top= link_to 'Profile', vanity_path(current_user.username)  if current_user and current_user.confirmed?
             - else
-              li= link_to 'Profile', vanity_path(current_user.username)                   if current_user and current_user.confirmed?
+              li= link_to 'Conversations', conversations_path                               if current_user and current_user.confirmed?
+            li= link_to 'Profile', vanity_path(current_user.username)                   if current_user and current_user.confirmed?
             li= link_to 'Account', edit_user_registration_path                            if current_user and current_user.confirmed?
             li= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
             li.little-space-bottom= link_to 'Sign-out', destroy_user_session_path

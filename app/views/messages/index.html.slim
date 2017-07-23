@@ -1,0 +1,36 @@
+- content_for :page_title do
+  ' StartupAlliance –
+  ' Conversation with #{@conversation.recipient.name}
+
+.row
+  .medium-12.columns
+    h3.bold.space-top.primary-text Conversation with #{@conversation.recipient.name}
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right
+      ' Your conversation with #{link_to @conversation.recipient.name, vanity_path(@conversation.recipient.username)} is private.
+
+    p.show-for-medium.snug-top &nbsp;
+
+    .row
+      .medium-8.medium-offset-2.columns
+        - @conversation.messages.each do |message|
+          - if message.body
+            - if message.author == current_user
+              p.text-right.faint #{link_to message.author.name, vanity_path(message.author.username)} sent at #{message.message_time}
+              hr.little-snug-top
+              p.text-right.snug-top= message.body
+            - else
+              p.faint #{link_to message.author.name, vanity_path(message.author.username)} sent at #{message.message_time}
+              hr.little-snug-top
+              p.snug-top= message.body
+            /p.faint #{link_to message.author.name, vanity_path(message.author.username)}
+
+        = simple_form_for @message, url: conversation_messages_path, method: :post do |f|
+          .form-inputs
+            = f.hidden_field :user_id, value: current_user.id
+            = f.input :body, autofocus: true, as: :string, label: false, placeholder: "Private message to #{@conversation.recipient.name}"
+          .form-actions
+            .row
+              .medium-12.columns
+                .button-group
+                  = f.button :submit, "Message #{@conversation.recipient.name}", class: 'button'

@@ -1,0 +1,25 @@
+- content_for :page_title do
+  ' StartupAlliance –
+  ' Your Conversations
+.row
+  .medium-12.columns
+    h3.bold.space-top.primary-text Your Conversations
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right
+      ' Private conversations with other Startup Alliance members
+
+    p.show-for-medium.snug-top &nbsp;
+
+    .row
+      .medium-10.medium-offset-1.columns
+        - if @conversations.count > 0
+          - @conversations.each do |conversation|
+            - if conversation.sender_id == current_user.id
+              - interlocutor = conversation.recipient
+            - else
+              - interlocutor = conversation.sender
+            p
+              ' #{link_to "With #{interlocutor.name}", conversation_messages_path(conversation)}
+              ' (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)})
+        - else
+          ' No conversations yet!
