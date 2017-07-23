@@ -185,6 +185,7 @@
             .row
               .small-10.columns
                 p.faint.snug-top
+                  ' #{image_tag gravatar_url("#{member.email}", 18)}
                   ' #{link_to member.name, vanity_path(member.username)}
                   - if current_user and @company.team_member(current_user)
                     - if @company.team_member(member).equity != 'no_equity'
