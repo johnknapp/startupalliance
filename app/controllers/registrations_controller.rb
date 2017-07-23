@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
       trait.update(level: params[:level])
       set_trait_index
     end
-    redirect_to :back, notice: 'You set your trait level'
+    redirect_back(fallback_location: vanity_path(current_user.username), notice: 'You set your trait level')
   end
 
   def unset_trait
@@ -19,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
       UserTrait.where(user_id: current_user.id, trait_id: params[:trait_id]).first.destroy
       set_trait_index
     end
-    redirect_to :back, alert: 'You unset your trait level'
+    redirect_back(fallback_location: vanity_path(current_user.username), alert: 'You unset your trait level')
   end
 
   def declare_skill
@@ -31,7 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
       skill.update(level: params[:level])
       set_skill_index
     end
-    redirect_to :back, notice: 'You set your skill level'
+    redirect_back(fallback_location: vanity_path(current_user.username), notice: 'You set your skill level')
   end
 
   def unset_skill
@@ -39,7 +39,7 @@ class RegistrationsController < Devise::RegistrationsController
       UserSkill.where(user_id: current_user.id, skill_id: params[:skill_id]).first.destroy
       set_skill_index
     end
-    redirect_to :back, alert: 'You unset your skill level'
+    redirect_back(fallback_location: vanity_path(current_user.username), alert: 'You unset your skill level')
   end
 
   # GET /resource/sign_up
@@ -56,7 +56,7 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to user_session_path, notice: 'You are already a member. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
-      redirect_to :back, alert: 'You need to enter a valid email address!' and return
+      redirect_back(fallback_location: root_path, alert: 'You need to enter a valid email address!') and return
     end
 
     if valid_email?(params[:user][:email]) and valid_user?(params['g-recaptcha-response'])
@@ -87,7 +87,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       current_or_guest_user
     else
-      redirect_to :back, alert: 'You need to enter a valid email address!' and return
+      redirect_back(fallback_location: root_path, alert: 'You need to enter a valid email address!') and return
     end
 
   end

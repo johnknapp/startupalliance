@@ -5,10 +5,13 @@
       strong
         ' #{@user.name}
     hr.little-snug-top
-    - if current_user and current_user.pid != @user.pid
-      p.snug-top.space-bottom.text-right= link_to "Start a conversation with #{@user.name}", conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post
+    - if current_user and current_user.confirmed? and current_user != @user
+      - if Conversation.between(current_user.id,@user.id).present?
+        p.snug-top.space-bottom.text-right= link_to "Continue the conversation with #{@user.name}", conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post
+      - else
+        p.snug-top.space-bottom.text-right= link_to "Start a conversation with #{@user.name}", conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post
     - else
-      p.snug-top.space-bottom.text-right &nbsp;
+      p.snug-top.space-bottom.text-right Startup Alliance members can send private messages to each other.
     .row
       .medium-8.columns
 

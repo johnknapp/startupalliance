@@ -28,10 +28,10 @@ class AlliancesController < ApplicationController
   def add_member
     member = User.find_by_username(params[:username])
     if @alliance.members.exists? member.id
-      redirect_to :back, alert: 'Already a member!'
+      redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
     else
       @alliance.members << member
-      redirect_to :back, notice: 'Member added.'
+      redirect_back(fallback_location: alliance_path, notice: 'Member added.')
     end
   end
 
@@ -39,9 +39,9 @@ class AlliancesController < ApplicationController
     member = User.find_by_pid(params[:member_pid])
     if @alliance.members.count > 1
       @alliance.members.delete(member)
-      redirect_to :back, notice: 'Member removed.'
+      redirect_back(fallback_location: alliance_path, notice: 'Member removed.')
     else
-      redirect_to :back, alert: 'Cannot remove the last member, please contact support.'
+      redirect_back(fallback_location: alliance_path, alert: 'Cannot remove the last member, please contact support.')
     end
   end
 

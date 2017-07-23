@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
       sakpi.update(level: params[:level])
       set_sakpi_index
     end
-    redirect_to :back, notice: 'You set your SAKPI'
+    redirect_back(fallback_location: company_path, notice: 'You set your SAKPI')
   end
 
   def unset_sakpi
@@ -43,16 +43,16 @@ class CompaniesController < ApplicationController
       CompanySakpi.where(company_id: @company.id, sakpi_id: params[:sakpi_id]).first.destroy
       set_sakpi_index
     end
-    redirect_to :back, alert: 'You unset your SAKPI'
+    redirect_back(fallback_location: company_path, alert: 'You unset your SAKPI')
   end
 
   # PUT /companies/1/add_team_member
   def add_team_member
     team_member = User.find_by_username(params[:username])
     if !team_member
-      redirect_to :back, alert: 'Nobody with that username!'
+      redirect_back(fallback_location: company_path, alert: 'Nobody with that username!')
     elsif @company.team.exists? team_member.id
-      redirect_to :back, alert: 'Already a team member!'
+      redirect_back(fallback_location: company_path, alert: 'Already a team member!')
     else
       CompanyUser.create(
           user_id: team_member.id,
@@ -60,7 +60,7 @@ class CompaniesController < ApplicationController
           role: params[:role],
           equity: params[:equity]
       )
-      redirect_to :back, notice: 'Team member added.'
+      redirect_back(fallback_location: company_path, notice: 'Team member added.')
     end
   end
 
@@ -69,9 +69,9 @@ class CompaniesController < ApplicationController
     team_member = User.find_by_pid(params[:team_member_pid])
     if @company.team.count > 1
       @company.team.delete(team_member)
-      redirect_to :back, notice: 'team_member removed.'
+      redirect_back(fallback_location: company_path, notice: 'team_member removed.')
     else
-      redirect_to :back, alert: 'Cannot remove the last team member, please contact support.'
+      redirect_back(fallback_location: company_path, alert: 'Cannot remove the last team member, please contact support.')
     end
   end
 
