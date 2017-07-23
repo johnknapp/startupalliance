@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many  :traits, through: :user_traits
   has_many  :user_skills
   has_many  :skills, through: :user_skills
+  has_many  :conversations, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable

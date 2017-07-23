@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
 
-  resources :conversations, only: [:index, :create],        constraints: { format: 'html' } do
-    resources :messages,    only: [:index, :new, :create],  constraints: { format: 'html' }
+  resources :conversations, only: [:index, :create, :destroy],        constraints: { format: 'html' } do
+    resources :messages,    only: [:index, :new, :create, :destroy],  constraints: { format: 'html' }
   end
 
   resources :companies do

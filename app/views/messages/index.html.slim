@@ -16,6 +16,11 @@
         - @conversation.messages.each do |message|
           - if message.body
             - if message.author == current_user
+              .float-right
+                | &nbsp;
+                | &nbsp;
+                = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
+                  i.fa.fa-trash-o.faint
               p.text-right.faint #{link_to message.author.name, vanity_path(message.author.username)} sent at #{message.message_time}
               hr.little-snug-top
               p.text-right.snug-top= message.body

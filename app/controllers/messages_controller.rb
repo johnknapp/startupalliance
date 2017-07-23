@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
 
   before_action :authenticate_user!
 
-  before_action :set_conversation, only: [:index, :new, :create]
+  before_action :set_conversation,  only: [:index, :new, :create]
+  before_action :set_message,       only: [:destroy]
 
   def index
     @messages = @conversation.messages
@@ -33,6 +34,13 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    if @message.author == current_user
+      @message.destroy
+    end
+    redirect_to conversation_messages_path
+  end
+
   private
 
     def message_params
@@ -41,6 +49,10 @@ class MessagesController < ApplicationController
 
     def set_conversation
       @conversation = Conversation.find_by_pid(params[:conversation_id])
+    end
+
+    def set_message
+      @message = Message.find_by_pid(params[:id])
     end
 
 end

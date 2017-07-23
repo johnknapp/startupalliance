@@ -11,9 +11,13 @@
     p.show-for-medium.snug-top &nbsp;
 
     .row
-      .medium-10.medium-offset-1.columns
+      .medium-8.medium-offset-2.columns
         - if @conversations.count > 0
           - @conversations.each do |conversation|
+            - if conversation.sender == current_user or conversation.recipient == current_user
+              .float-right
+                = link_to conversation, data: { confirm: 'Really destroy entire conversation and all messages?' }, method: :delete do
+                  i.fa.fa-trash-o.faint
             - if conversation.sender_id == current_user.id
               - interlocutor = conversation.recipient
             - else

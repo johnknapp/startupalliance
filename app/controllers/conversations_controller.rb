@@ -2,6 +2,7 @@ class ConversationsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_interlocutors
+  before_action :set_conversation, only: [:destroy]
 
   def index
     @conversations = Conversation.includes?(current_user)
@@ -20,6 +21,13 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def destroy
+    if @conversation.sender == current_user or @conversation.recipient == current_user
+      @conversation.destroy
+    end
+    redirect_to conversations_path
+  end
+
   private
 
     def conversation_params
@@ -31,6 +39,10 @@ class ConversationsController < ApplicationController
         @sender     = User.find_by_pid(params[:sender_pid])
         @recipient  = User.find_by_pid(params[:recipient_pid])
       end
+    end
+
+    def set_conversation
+      @conversation = Conversation.find_by_pid(params[:id])
     end
 
 end
