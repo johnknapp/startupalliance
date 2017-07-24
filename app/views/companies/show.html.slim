@@ -62,6 +62,16 @@
 
       .medium-4.columns
         .callout
+          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+            - if @company.is_unlisted == true
+              p.text-center
+                em
+                  ' This company is unlisted
+            - else
+              p.text-center
+                em
+                  ' This company is searchable
+            hr
           - if @company.recruiting == true
             p.text-center
               em

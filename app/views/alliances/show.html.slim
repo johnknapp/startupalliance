@@ -55,6 +55,16 @@
         .callout
           .row
             .small-12.columns
+              - if current_user and current_user == @alliance.creator
+                - if @alliance.is_unlisted == true
+                  p.text-center
+                    em
+                      ' This Private Alliance is unlisted
+                - else
+                  p.text-center
+                    em
+                      ' This Private Alliance is searchable
+                hr
               - if @alliance.recruiting == true
                 p.text-center
                   em
@@ -63,7 +73,7 @@
                 p.text-center
                   em
                     ' Not currently recruiting
-            hr
+              hr
           .row
             .small-12.columns
               - if current_user and current_user == @alliance.creator
