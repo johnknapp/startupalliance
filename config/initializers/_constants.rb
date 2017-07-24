@@ -26,6 +26,10 @@ USERNAME_EXCLUSIONS = %w[
   company
   companies
   content
+  conversation
+  conversations
+  discussion
+  discussions
   faq
   help
   image
@@ -36,6 +40,8 @@ USERNAME_EXCLUSIONS = %w[
   meetings
   member
   members
+  message
+  messages
   newrelic
   okr
   okrs

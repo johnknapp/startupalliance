@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
 
+  mount Thredded::Engine => '/discussions'
+
   resources :conversations, only: [:index, :create, :destroy],        constraints: { format: 'html' } do
     resources :messages,    only: [:index, :new, :create, :destroy],  constraints: { format: 'html' }
   end

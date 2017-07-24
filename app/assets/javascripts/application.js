@@ -18,6 +18,8 @@
 //= require foundation_datepicker_init
 //= require google_analytics
 //= require hotjar
+//= require rails-ujs
+//= require thredded
 
 
 $(function(){

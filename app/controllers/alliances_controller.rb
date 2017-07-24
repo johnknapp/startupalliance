@@ -7,7 +7,7 @@ class AlliancesController < ApplicationController
   # GET /alliances
   # GET /alliances.json
   def index
-    @alliances = Alliance.all
+    @alliances = Alliance.where(is_unlisted: false).all
   end
 
   # GET /alliances/1
@@ -94,6 +94,6 @@ class AlliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alliance_params
-      params.require(:alliance).permit(:name, :mission, :webmeet_url, :state, :pid, :recruiting, :creator_id)
+      params.require(:alliance).permit(:is_unlisted, :name, :mission, :webmeet_url, :state, :pid, :recruiting, :creator_id)
     end
 end
