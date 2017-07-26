@@ -21,7 +21,7 @@ Thredded.user_name_column = :username
 # the path or url to your user. This lambda is evaluated in the view context.
 Thredded.user_path = lambda do |user|
   user_path = :"#{Thredded.user_class_name.underscore}_path"
-  main_app.respond_to?(user_path) ? main_app.send(vanity_path(user.username), user) : root_path
+  respond_to?(user_path) ? main_app.vanity_path(user.username) : main_app.root_path
 end
 
 # This method is used by Thredded controllers and views to fetch the currently signed-in user
