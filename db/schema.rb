@@ -88,9 +88,10 @@ ActiveRecord::Schema.define(version: 20170727000203) do
   create_table "discussions", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "discussable_type"
-    t.integer  "discussable_id"
+    t.string   "discussable_type", null: false
+    t.integer  "discussable_id",   null: false
     t.string   "pid",              null: false
+    t.integer  "author_id",        null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["discussable_type", "discussable_id"], name: "index_discussions_on_discussable_type_and_discussable_id", using: :btree
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170727000203) do
     t.string   "body"
     t.integer  "discussion_id", null: false
     t.string   "pid",           null: false
+    t.integer  "author_id",     null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

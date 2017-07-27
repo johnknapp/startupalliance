@@ -1,5 +1,5 @@
 .row
-  .medium-10.medium-offset-1.columns
+  .large-10.large-offset-1.columns
     h3.space-top.primary-text
       - if @discussion.discussable_type == 'Company'
         ' Team Discussion:
@@ -8,19 +8,42 @@
     hr.little-snug-top
     .float-left
       p.snug-top.space-bottom
-        = link_to :back do
-          i.fa.fa-reply
+        - if @discussion.discussable_type == 'Company'
+          = link_to company_path(@discussion.discussable) do
+            i.fa.fa-reply
     p.snug-top.space-bottom.text-right
       = @discussion.description
 
     p.show-for-medium.snug-top &nbsp;
 
-    p.snug-bottom= link_to "New post in #{@discussion.title}", new_discussion_post_path(discussion_id: @discussion.pid)
+    = simple_form_for @post, url: discussion_posts_path(@post, discussion_id: @discussion.pid), method: :post do |f|
+      = f.hidden_field :discussion_id, value: @discussion.pid
+      .row.collapse
+        .small-9.columns
+          = f.input :body, placeholder: 'Continue the discussion', label: false
+        .small-3.columns
+          = f.button :submit, 'Post', class: 'postfix expanded bold secondary'
 
     - if @discussion.posts.present?
       - @discussion.posts.each do |post|
         .callout
-          p= post.body
+          .float-right
+            p.faint
+              - if current_user and current_user == post.author or current_user == post.discussion.discussable.creator
+                | &nbsp;
+                | &nbsp;
+                = link_to edit_discussion_post_path(post) do
+                  i.fa.fa-pencil
+                | &nbsp;
+                | &nbsp;
+                | &nbsp;
+                = link_to discussion_post_path(post.pid), data: { confirm: 'Really destroy this post?' }, method: :delete do
+                  i.fa.fa-trash-o
+          p.faint
+            ' #{link_to (image_tag gravatar_url("#{post.author.email}", 36)), vanity_path(post.author.username)}
+            | &nbsp;
+            ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
+          p.little-snug-top.indented-3= post.body
     - else
       .callout
         p.text-center No posts yet!

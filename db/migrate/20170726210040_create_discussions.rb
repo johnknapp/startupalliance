@@ -3,8 +3,10 @@ class CreateDiscussions < ActiveRecord::Migration[5.0]
     create_table :discussions do |t|
       t.string :title
       t.string :description
-      t.references :discussable, polymorphic: true
-      t.string :pid,                    null: false
+      t.references :discussable, polymorphic: true, null: false
+      t.string :pid,                                null: false
+      t.integer :author_id,                         null: false
+
 
       t.timestamps
     end

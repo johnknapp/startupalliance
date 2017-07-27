@@ -5,7 +5,7 @@ class DiscussionsController < ApplicationController
   before_action :set_discussion, only: [:show, :edit, :destroy]
 
   def new
-    @discussion = Discussion.new
+    @post = Post.new
   end
 
   def create
@@ -21,6 +21,7 @@ class DiscussionsController < ApplicationController
   end
 
   def show
+    @post = Post.new
   end
 
   def edit
@@ -45,7 +46,7 @@ class DiscussionsController < ApplicationController
   private
 
     def discussion_params
-      params.require(:discussion).permit(:title, :description, :discussable_id, :discussable_type, :pid)
+      params.require(:discussion).permit(:title, :description, :author_id, :discussable_id, :discussable_type, :pid)
     end
 
     def set_discussion

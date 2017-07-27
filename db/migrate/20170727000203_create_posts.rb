@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :body
       t.integer :discussion_id,         null: false
       t.string :pid,                    null: false
+      t.integer :author_id,             null: false
 
       t.timestamps
     end

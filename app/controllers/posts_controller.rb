@@ -19,10 +19,17 @@ class PostsController < InheritedResources::Base
     end
   end
 
+  def edit
+  end
+
+  def destroy
+
+  end
+
   private
 
     def post_params
-      params.require(:post).permit(:body, :discussion_id, :pid)
+      params.require(:post).permit(:body, :author_id, :discussion_id, :pid)
     end
 
     def set_post
