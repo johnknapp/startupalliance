@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20170727000203) do
 
   create_table "discussions", force: :cascade do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.string   "discussable_type", null: false
     t.integer  "discussable_id",   null: false
     t.string   "pid",              null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170727000203) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "body"
+    t.text     "body"
     t.integer  "discussion_id", null: false
     t.string   "pid",           null: false
     t.integer  "author_id",     null: false
