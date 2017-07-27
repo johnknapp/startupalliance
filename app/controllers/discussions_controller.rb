@@ -9,15 +9,27 @@ class DiscussionsController < ApplicationController
   end
 
   def create
+
     if params[:discussion][:company_pid]
       @discussable = Company.find_by_pid(params[:discussion][:company_pid])
       @discussion  = @discussable.discussions.build(discussion_params)
       if @discussion.save
-        redirect_to company_path(@discussable), notice: 'Discussion created'
+        redirect_to discussion_path(@discussion), notice: 'Discussion created'
       else
         redirect_to company_path(@discussable), alert: 'There was a problem'
       end
     end
+
+    if params[:discussion][:alliance_pid]
+      @discussable = Alliance.find_by_pid(params[:discussion][:alliance_pid])
+      @discussion  = @discussable.discussions.build(discussion_params)
+      if @discussion.save
+        redirect_to discussion_path(@discussion), notice: 'Discussion created'
+      else
+        redirect_to alliance_path(@discussable), alert: 'There was a problem'
+      end
+    end
+
   end
 
   def show
@@ -28,13 +40,10 @@ class DiscussionsController < ApplicationController
   end
 
   def update
-    if params[:discussion][:company_pid]
-      @company = Company.find_by_pid params[:discussion][:company_pid]
-      if @discussion.update(discussion_params)
-        redirect_to company_path(@company), notice: 'Discussion created'
-      else
-        redirect_to company_path(@company), alert: 'There was a problem'
-      end
+    if @discussion.update(discussion_params)
+      redirect_to discussion_path(@discussion), notice: 'Discussion updated'
+    else
+      redirect_to discussion_path(@discussion), alert: 'There was a problem'
     end
   end
 

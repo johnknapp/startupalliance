@@ -1,6 +1,8 @@
 .row
   .large-10.large-offset-1.columns
     h3.space-top.primary-text
+      - if @discussion.discussable_type == 'Alliance'
+        ' Member Discussion:
       - if @discussion.discussable_type == 'Company'
         ' Team Discussion:
       strong
@@ -8,6 +10,9 @@
     hr.little-snug-top
     .float-left
       p.snug-top.space-bottom
+        - if @discussion.discussable_type == 'Alliance'
+          = link_to alliance_path(@discussion.discussable) do
+            i.fa.fa-reply
         - if @discussion.discussable_type == 'Company'
           = link_to company_path(@discussion.discussable) do
             i.fa.fa-reply
@@ -18,11 +23,12 @@
 
     = simple_form_for @post, url: discussion_posts_path(@post, discussion_id: @discussion.pid), method: :post do |f|
       = f.hidden_field :discussion_id, value: @discussion.pid
+      = f.hidden_field :author_id,     value: current_user.id
       .row.collapse
         .small-9.columns
-          = f.input :body, placeholder: 'Continue the discussion', label: false
+          = f.input :body, placeholder: 'Contribute to the discussion', label: false
         .small-3.columns
-          = f.button :submit, 'Post', class: 'postfix expanded bold secondary'
+          = f.button :submit, 'Post!', class: 'postfix expanded bold secondary'
 
     - if @discussion.posts.present?
       - @discussion.posts.each do |post|

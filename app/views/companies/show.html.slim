@@ -230,17 +230,27 @@
                       ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
                     - else
                       ' (#{@company.team_member(member).role.humanize})
-              .small-2.columns
-                - if current_user and current_user.team?(@company) and @company.team_member(current_user).role == 'Owner'
-                  - unless current_user == member
-                    .float-right
-                      p.faint.snug-top
-                        = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid) do
+              - if current_user and current_user.team?(@company)
+                .small-2.columns
+                  .float-right
+                    p.faint.snug-top
+                      - if current_user != member
+                        = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid), method: :post do
                           i.fa.fa-comments-o
+                      - if @company.team_member(current_user).role == 'Owner'
                         = link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Really remove this person from the company team?'}, method: :delete do
                           | &nbsp;
                           | &nbsp;
                           i.fa.fa-trash-o
+            .row
+              .small-12.columns
+                p.faint.snug-top.space-bottom.indented-1
+                  ' Personal mission:
+                  em
+                    - if member.mission
+                      = member.mission
+                    - else
+                      ' Not set!
 
           - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
             hr.snug-top
