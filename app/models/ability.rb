@@ -13,26 +13,23 @@ class Ability
     alias_action :create, :read, :update,                       to: :cru
     alias_action :create, :read, :update, :destroy,             to: :crud
 
-    primary_objects = [Alliance,Company,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]
+    primary_objects = [Alliance,Company,Discussion,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]
     public_content  = [Alliance,Company] # user profiles are public by default
 
     case user.role
 
       when 'admin'
         can :manage,                [:all]
-        cannot :create,             Alliance
 
       when 'user'
         cannot :index,              primary_objects
         can :crud,                  primary_objects
         can :set_sakpi,             Company
         can :unset_sakpi,           Company
-        cannot :create,             Alliance
 
       else # no role means they are non-auth
         cannot :index,              primary_objects
         can :read,                  public_content
-        cannot :create,             Alliance
 
     end
   end

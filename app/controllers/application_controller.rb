@@ -68,9 +68,7 @@ class ApplicationController < ActionController::Base
           :location,
           :latitude,
           :longitude,
-          :time_zone,
-          :discussion_admin,
-          :discussion_moderator
+          :time_zone
       )
     end
 

@@ -9,6 +9,34 @@
 
     .row
       .medium-8.columns
+        .callout
+          h5.bold.primary-text
+            - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+              .float-right
+                = link_to new_discussion_path(company_pid: @company.pid), class: 'scale-to-80' do
+                  i.fa.fa-plus
+            ' Team Discussions:
+          - if current_user and current_user.team?(@company)
+            - if @company.discussions.present?
+              - @company.discussions.order(:updated_at).each do |disco|
+                - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+                  .float-right
+                    = link_to edit_discussion_path(disco, company_pid: @company.pid), class: 'scale-to-80' do
+                      i.fa.fa-pencil
+                    | &nbsp;
+                    | &nbsp;
+                    | &nbsp;
+                    = link_to disco, data: { confirm: 'Really destroy entire discussion and all posts?' }, class: 'scale-to-80', method: :delete do
+                      i.fa.fa-trash-o
+                p #{link_to disco.title, discussion_path(disco)} (12 posts, 3 unread)
+                p.snug-top.faint.indented-2= disco.description
+            - else
+              p.text-center.space-top Add your first discussion.
+          - else
+            p.text-center.space-top
+              em
+                ' Team discussions are only visible to the Company Team.
+
 
         .callout
           h5.bold.primary-text
@@ -204,10 +232,15 @@
                       ' (#{@company.team_member(member).role.humanize})
               .small-2.columns
                 - if current_user and current_user.team?(@company) and @company.team_member(current_user).role == 'Owner'
-                  - unless current_user.id == member.id
+                  - unless current_user == member
                     .float-right
-                      p.faint.snug-top= link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
-                        i.fa.fa-trash-o
+                      p.faint.snug-top
+                        = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid) do
+                          i.fa.fa-comments-o
+                        = link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Really remove this person from the company team?'}, method: :delete do
+                          | &nbsp;
+                          | &nbsp;
+                          i.fa.fa-trash-o
 
           - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
             hr.snug-top

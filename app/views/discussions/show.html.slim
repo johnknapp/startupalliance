@@ -1,0 +1,24 @@
+.row
+  .medium-10.medium-offset-1.columns
+    /.float-right
+    p.space-top.little-snug-bottom
+      = link_to :back do
+        i.fa.fa-reply
+    h3.primary-text
+      - if @discussion.discussable_type == 'Company'
+        ' Team Discussion:
+      strong
+        ' #{@discussion.title}
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right
+      = @discussion.description
+
+    p.show-for-medium.snug-top &nbsp;
+
+    - if nil
+
+    - else
+      .callout
+        p.text-center No posts yet!
+
+

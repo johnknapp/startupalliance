@@ -27,7 +27,7 @@
 
         .callout
           h5.bold.primary-text
-            ' Discussions:
+            ' Alliance discussions:
           - if current_user and @alliance.members.include? current_user
             p.text-center Launching soon
           - elsif current_user and !current_user.confirmed?
@@ -111,6 +111,11 @@
               - @alliance.members.each do |member|
                 - if current_user and current_user == @alliance.creator
                   .float-right.snug-top.scale-to-90
+                    - if current_user != member
+                      = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid) do
+                        i.fa.fa-comments-o
+                    | &nbsp;
+                    | &nbsp;
                     = link_to remove_member_alliance_path(member_pid: member.pid), data: {:confirm => 'Are you sure?'}, method: :delete do
                       i.fa.fa-trash-o
                 p.faint.snug-top

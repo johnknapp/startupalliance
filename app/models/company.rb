@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
   include Pid
   include Webmeet
+  has_many    :discussions, as: :discussable, dependent: :destroy
   has_many    :company_users
   has_many    :team, through: :company_users, source: :user
   belongs_to  :creator, class_name: :User
