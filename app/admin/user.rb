@@ -2,8 +2,7 @@ ActiveAdmin.register User do
 
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile,
-                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :discussion_admin,
-                :discussion_moderator
+                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone
 
   controller do
     def find_resource
@@ -24,8 +23,6 @@ ActiveAdmin.register User do
     column :mission
     column :skill_index
     column :trait_index
-    column :discussion_moderator
-    column :discussion_admin
     column :company_owner
     column :email do |user|
       mail_to user.email, user.email
@@ -37,8 +34,6 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
   filter :email
-  filter :discussion_moderator
-  filter :discussion_admin
   filter :company_owner
   filter :role
   filter :state
@@ -53,8 +48,6 @@ ActiveAdmin.register User do
       f.input :company_owner
       f.input :password
       f.input :password_confirmation
-      f.input :discussion_moderator
-      f.input :discussion_admin
       f.input :role
       f.input :state
     end
