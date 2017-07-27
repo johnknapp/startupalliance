@@ -60,7 +60,7 @@
             | &nbsp;
             ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
           p.little-snug-top.indented-3= post.body
-          ul.accordion.indented-3 data-accordion=true data-allow-all-closed=true
+          /ul.accordion.indented-3 data-accordion=true data-allow-all-closed=true
             li.accordion-item data-accordion-item=true
               a.accordion-title
                 ' #{@discussion.posts.count} #{'Reply'.pluralize(@discussion.posts.count)}
