@@ -4,7 +4,7 @@
   .form-inputs
     = f.hidden_field :author_id,     value: current_user.id         if current_user
     = f.hidden_field :discussion_id, value: params[:discussion_id]  if @post.new_record?
-    = f.input :body
+    = f.input :body, as: :text, input_html: { rows: '4' }, label: false
 
   .form-actions
     .row
