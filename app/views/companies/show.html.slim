@@ -11,11 +11,18 @@
       .medium-8.columns
         .callout
           h5.bold.primary-text
-            - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-              .float-right
+            .float-right
+              a data-open='disco-info'
+                i.fa.fa-info-circle
+              = render 'partials/quick_reference_disco'
+
+              - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+                | &nbsp;
+                | &nbsp;
+                | &nbsp;
                 = link_to new_discussion_path(company_pid: @company.pid), class: 'scale-to-80' do
                   i.fa.fa-plus
-            ' Team Discussions:
+            ' Company Team Discussions:
           - if current_user and current_user.team?(@company)
             - if @company.discussions.present?
               - @company.discussions.order(:updated_at).each do |disco|
@@ -43,7 +50,6 @@
             .float-right
               a data-open='okr-info'
                 i.fa.fa-info-circle
-
               = render 'partials/quick_reference_okr'
 
               - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'

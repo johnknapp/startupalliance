@@ -27,11 +27,17 @@
 
         .callout
           h5.bold.primary-text
-            - if current_user and @alliance.members.include?(current_user) and @alliance.members.include?(@alliance.creator)
-              .float-right
+            .float-right
+              a data-open='disco-info'
+                i.fa.fa-info-circle
+              = render 'partials/quick_reference_disco'
+              - if current_user and @alliance.members.include?(current_user) and @alliance.members.include?(@alliance.creator)
+                | &nbsp;
+                | &nbsp;
+                | &nbsp;
                 = link_to new_discussion_path(alliance_pid: @alliance.pid), class: 'scale-to-80' do
                   i.fa.fa-plus
-            ' Alliance Discussions:
+            ' Alliance Member Discussions:
           - if current_user and @alliance.members.include?(current_user)
             - if @alliance.discussions.present?
               - @alliance.discussions.order(:updated_at).each do |disco|
