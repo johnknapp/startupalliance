@@ -26,7 +26,7 @@
       = f.hidden_field :author_id,     value: current_user.id
       .row.collapse
         .small-9.columns
-          = f.input :body, placeholder: 'Contribute to the discussion', label: false
+          = f.input :body, placeholder: 'Contribute to this discussion', label: false
         .small-3.columns
           = f.button :submit, 'Post!', class: 'postfix expanded bold secondary'
 
@@ -38,12 +38,12 @@
               - if current_user and current_user == post.author or current_user == post.discussion.discussable.creator
                 | &nbsp;
                 | &nbsp;
-                = link_to edit_discussion_post_path(post) do
+                = link_to edit_discussion_post_path(discussion_id: @discussion.pid, id: post.pid) do
                   i.fa.fa-pencil
                 | &nbsp;
                 | &nbsp;
                 | &nbsp;
-                = link_to discussion_post_path(post.pid), data: { confirm: 'Really destroy this post?' }, method: :delete do
+                = link_to discussion_post_path(discussion_id: @discussion.pid, id: post.pid), data: { confirm: 'Really destroy this post?' }, method: :delete do
                   i.fa.fa-trash-o
           p.faint
             ' #{link_to (image_tag gravatar_url("#{post.author.email}", 36)), vanity_path(post.author.username)}

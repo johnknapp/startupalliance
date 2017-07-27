@@ -1,12 +1,12 @@
 class PostsController < InheritedResources::Base
   before_action :authenticate_user!
-  load_and_authorize_resource find_by: :pid
+  before_action :set_post, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
-  before_action :set_post, only: [:show, :edit, :destroy]
 
-  def new
-    @post = Post.new
-  end
+  # def new
+  #   @post = Post.new
+  # end
 
   def create
     discussion = Discussion.find_by_pid(params[:post][:discussion_id])
@@ -22,8 +22,17 @@ class PostsController < InheritedResources::Base
   def edit
   end
 
-  def destroy
+  def update
+    if @post.update(post_params)
+      redirect_to discussion_path(@post.discussion), notice: 'Post updated'
+    else
+      redirect_to discussion_path(@post.discussion), alert: 'There was a problem'
+    end
+  end
 
+  def destroy
+    @post.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   private

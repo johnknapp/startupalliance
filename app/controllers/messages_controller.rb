@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
-
   before_action :authenticate_user!
-
+  load_and_authorize_resource
   before_action :set_conversation,  only: [:index, :new, :create]
   before_action :set_message,       only: [:destroy]
 

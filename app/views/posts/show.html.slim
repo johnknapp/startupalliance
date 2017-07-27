@@ -5,11 +5,11 @@ p
   = @post.body
 p
   strong Discussion:
-  = @post.discussion_id
+  = @post.discussion.title
 p
   strong Pid:
   = @post.pid
 
-= link_to 'Edit', edit_post_path(@post)
-'|
-= link_to 'Back', posts_path
+/= link_to 'Edit', edit_post_path(@post)
+/'|
+/= link_to 'Back', posts_path

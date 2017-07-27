@@ -1,7 +1,6 @@
 class AlliancesController < ApplicationController
-  before_action :set_alliance, only: [:show, :add_member, :remove_member, :edit, :update, :destroy]
-
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_alliance, only: [:show, :add_member, :remove_member, :edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /alliances

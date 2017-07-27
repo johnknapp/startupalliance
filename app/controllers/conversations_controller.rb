@@ -1,8 +1,8 @@
 class ConversationsController < ApplicationController
-
-  before_action :authenticate_user!
   before_action :set_interlocutors
   before_action :set_conversation, only: [:destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @conversations = Conversation.includes?(current_user)

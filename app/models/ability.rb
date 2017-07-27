@@ -13,7 +13,7 @@ class Ability
     alias_action :create, :read, :update,                       to: :cru
     alias_action :create, :read, :update, :destroy,             to: :crud
 
-    primary_objects = [Alliance,Company,Discussion,Post,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]
+    primary_objects = [Alliance,Company,Conversation,Message,Discussion,Post,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]
     public_content  = [Alliance,Company] # user profiles are public by default
 
     case user.role
