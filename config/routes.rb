@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :posts
-  resources :discussions
   root 'pages#home'
 
   get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
@@ -15,6 +13,10 @@ Rails.application.routes.draw do
   get 'quick_start',                to: 'pages#quick_start',          constraints: { format: 'html' }
 
   get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
+
+  resources :discussions do
+    resources :posts
+  end
 
   resources :conversations, only: [:index, :create, :destroy],        constraints: { format: 'html' } do
     resources :messages,    only: [:index, :new, :create, :destroy],  constraints: { format: 'html' }

@@ -14,7 +14,6 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @okrs = Okr.where(company_id: @company.id).all
   end
 
   # GET /companies/new
