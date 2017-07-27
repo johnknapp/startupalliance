@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723234341) do
+ActiveRecord::Schema.define(version: 20170727000203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(version: 20170723234341) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "discussions", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "discussable_type"
+    t.integer  "discussable_id"
+    t.string   "pid",              null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["discussable_type", "discussable_id"], name: "index_discussions_on_discussable_type_and_discussable_id", using: :btree
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "conversation_id"
@@ -113,6 +124,14 @@ ActiveRecord::Schema.define(version: 20170723234341) do
     t.string   "pid",                                  null: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "discussion_id", null: false
+    t.string   "pid",           null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "sakpis", force: :cascade do |t|
