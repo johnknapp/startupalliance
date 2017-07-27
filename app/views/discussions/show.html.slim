@@ -45,11 +45,11 @@
             | &nbsp;
             ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
           p.little-snug-top.indented-3= post.body
-          ul.menu.simple.align-right.little-space-bottom
+          ul.menu.simple.align-right.snug-top.little-space-bottom
             li.faint= render 'partials/new_reply_modal', post: post
-            li.faint#reply-toggle
+            li.scale-to-90#reply-toggle
               - if post.replies.present?
-                ' #{post.replies.count} #{'Reply'.pluralize(post.replies.count)}
+                ' Show / hide #{post.replies.count} #{'reply'.pluralize(post.replies.count)}
 
           .indented-3#replies style='display:none;'
             - if post.replies.present?
