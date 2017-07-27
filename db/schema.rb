@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722210649) do
+ActiveRecord::Schema.define(version: 20170723234341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170722210649) do
     t.datetime "updated_at",                          null: false
     t.integer  "creator_id"
     t.boolean  "recruiting",  default: true
+    t.boolean  "is_unlisted", default: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170722210649) do
     t.integer  "sakpi_index",    default: 0
     t.integer  "creator_id"
     t.boolean  "recruiting",     default: true
+    t.boolean  "is_unlisted",    default: false
   end
 
   create_table "company_sakpis", force: :cascade do |t|
