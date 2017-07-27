@@ -18,7 +18,6 @@ class RepliesController < InheritedResources::Base
   end
 
   def update
-    raise('a need to poo')
     if @reply.update(reply_params)
       redirect_to discussion_path(@reply.post.discussion), notice: 'Reply updated'
     else

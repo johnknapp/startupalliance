@@ -1,8 +1,8 @@
-= simple_form_for @reply, url: discussion_post_path do |f|
+= simple_form_for @reply, url: discussion_post_reply_path do |f|
   = f.error_notification
 
   .form-inputs
-    = f.hidden_field :author_id,     value: current_user.id         if current_user
+    = f.hidden_field :author_id,     value: current_user.id         if current_user and @reply.new_record?
     = f.hidden_field :post_id,       value: params[:post_id]        if @reply.new_record?
     = f.input :body, as: :text, input_html: { rows: '4' }, label: false
 

@@ -45,11 +45,12 @@
             | &nbsp;
             ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
           p.little-snug-top.indented-3= post.body
-          ul.menu.simple.align-right.snug-top.little-space-bottom
-            li.faint= render 'partials/new_reply_modal', post: post
-            li.scale-to-90#reply-toggle
+
+          ul.menu.simple.indented-3
+            li.faint#reply-toggle
               - if post.replies.present?
                 ' Show / hide #{post.replies.count} #{'reply'.pluralize(post.replies.count)}
+            li.faint= render 'partials/new_reply_modal', post: post
 
           .indented-3#replies style='display:none;'
             - if post.replies.present?
@@ -74,10 +75,9 @@
                   p.little-snug-top.indented-3= reply.body
                 
             - else
-              p.text-center No replies!
+              .callout.small
+                p.text-center No replies yet!
 
     - else
       .callout
         p.text-center No posts yet!
-
-
