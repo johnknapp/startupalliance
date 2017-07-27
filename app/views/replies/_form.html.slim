@@ -1,0 +1,14 @@
+= simple_form_for @reply, url: discussion_post_path do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :author_id,     value: current_user.id         if current_user
+    = f.hidden_field :post_id,       value: params[:post_id]        if @reply.new_record?
+    = f.input :body, as: :text, input_html: { rows: '4' }, label: false
+
+  .form-actions
+    .row
+      .medium-12.columns
+        .button-group
+          = f.button :submit, class: 'button'
+          = link_to 'Exit', :back, class: 'button accent'

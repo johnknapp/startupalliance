@@ -15,7 +15,7 @@ class DiscussionsController < ApplicationController
       if @discussion.save
         redirect_to discussion_path(@discussion), notice: 'Discussion created'
       else
-        redirect_to company_path(@discussable), alert: 'There was a problem'
+        redirect_to company_path(@discussable), alert: 'There was a problem!'
       end
     end
 
@@ -25,7 +25,7 @@ class DiscussionsController < ApplicationController
       if @discussion.save
         redirect_to discussion_path(@discussion), notice: 'Discussion created'
       else
-        redirect_to alliance_path(@discussable), alert: 'There was a problem'
+        redirect_to alliance_path(@discussable), alert: 'There was a problem!'
       end
     end
 
@@ -33,6 +33,7 @@ class DiscussionsController < ApplicationController
 
   def show
     @post = Post.new
+    @reply = Reply.new
   end
 
   def edit
@@ -42,7 +43,7 @@ class DiscussionsController < ApplicationController
     if @discussion.update(discussion_params)
       redirect_to discussion_path(@discussion), notice: 'Discussion updated'
     else
-      redirect_to discussion_path(@discussion), alert: 'There was a problem'
+      redirect_to discussion_path(@discussion), alert: 'There was a problem!'
     end
   end
 

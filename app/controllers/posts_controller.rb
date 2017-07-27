@@ -26,7 +26,7 @@ class PostsController < InheritedResources::Base
     if @post.update(post_params)
       redirect_to discussion_path(@post.discussion), notice: 'Post updated'
     else
-      redirect_to discussion_path(@post.discussion), alert: 'There was a problem'
+      redirect_to discussion_path(@post.discussion), alert: 'There was a problem!'
     end
   end
 

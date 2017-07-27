@@ -24,22 +24,7 @@
 
     p.show-for-medium.snug-top &nbsp;
 
-    a data-open='new-post'
-      i.fa.fa-plus
-      | &nbsp;
-      | &nbsp;
-      ' Add new post
-      .reveal.large#new-post data-reveal=true
-        button data-close=true aria-label='Close' type='button' class='close-button'
-          span aria-hidden=true
-            ' &times;
-        p.bold Add a post to #{@discussion.title}
-        = simple_form_for @post, url: discussion_posts_path(@post, discussion_id: @discussion.pid), method: :post do |f|
-          = f.hidden_field :discussion_id, value: @discussion.pid
-          = f.hidden_field :author_id,     value: current_user.id
-          = f.input :body, placeholder: 'Contribute to this discussion', as: :text, input_html: { rows: '4' }, label: false
-          = f.button :submit, 'Post!', class: 'bold secondary'
-
+    = render 'partials/new_post_modal'
     - if @discussion.posts.present?
       - @discussion.posts.each do |post|
         .callout
@@ -60,9 +45,37 @@
             | &nbsp;
             ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
           p.little-snug-top.indented-3= post.body
-          p.text-right.snug-top.snug-bottom.faint#reply-toggle Replies
-          .callout.small.indented-3#replies style='display:none;'
-            p.text-center Such lovely replies!
+          ul.menu.simple.align-right.little-space-bottom
+            li.faint= render 'partials/new_reply_modal', post: post
+            li.faint#reply-toggle
+              - if post.replies.present?
+                ' #{post.replies.count} #{'Reply'.pluralize(post.replies.count)}
+
+          .indented-3#replies style='display:none;'
+            - if post.replies.present?
+              - post.replies.each do |reply|
+                .callout.small
+                  .float-right
+                    p.faint
+                      - if current_user and current_user == reply.author or current_user == reply.post.author
+                        | &nbsp;
+                        | &nbsp;
+                        = link_to edit_discussion_post_reply_path(discussion_id: post.discussion.pid, post_id: post.pid, id: reply.pid) do
+                          i.fa.fa-pencil
+                        | &nbsp;
+                        | &nbsp;
+                        | &nbsp;
+                        = link_to discussion_post_reply_path(discussion_id: post.discussion.pid, post_id: post.pid, id: reply.pid), data: { confirm: 'Really destroy this reply?' }, method: :delete do
+                          i.fa.fa-trash-o
+                  p.faint
+                    ' #{link_to (image_tag gravatar_url("#{reply.author.email}", 36)), vanity_path(reply.author.username)}
+                    | &nbsp;
+                    ' #{link_to reply.author.name, vanity_path(reply.author.username)} #{time_ago_in_words(reply.created_at)} ago
+                  p.little-snug-top.indented-3= reply.body
+                
+            - else
+              p.text-center No replies!
+
     - else
       .callout
         p.text-center No posts yet!

@@ -1,7 +1,6 @@
-class Post < ApplicationRecord
+class Reply < ApplicationRecord
   include Pid
-  has_many    :replies
-  belongs_to  :discussion
+  belongs_to  :post
   belongs_to  :author, class_name: :User
 
   validates :body, length: { maximum: 2048 }

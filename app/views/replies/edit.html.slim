@@ -1,0 +1,21 @@
+.row
+  .medium-8.medium-offset-2.columns
+    h3.show-for-medium-up &nbsp;
+    h3
+      ' Update your reply
+    hr.little-snug-top
+    p.text-right.snug-top.space-bottom
+      ' Keeping the discussion relevant improves your success
+
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' #{link_to (image_tag gravatar_url("#{@reply.post.author.email}", 36)), vanity_path(@reply.post.author.username)}
+        | &nbsp;
+        ' #{link_to @reply.post.author.name, vanity_path(@reply.post.author.username)} #{time_ago_in_words(@reply.post.created_at)} ago
+      p.little-snug-top.indented-3= @reply.post.body
+
+    p.snug-bottom.bold Update your reply
+    = render 'form'
