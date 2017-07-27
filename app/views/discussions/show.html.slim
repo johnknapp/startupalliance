@@ -47,12 +47,12 @@
           p.little-snug-top.indented-3= post.body
 
           ul.menu.simple.indented-3
-            li.faint#reply-toggle
+            li.faint.reply-toggle data-post-pid=post.pid
               - if post.replies.present?
                 ' Show / hide #{post.replies.count} #{'reply'.pluralize(post.replies.count)}
             li.faint= render 'partials/new_reply_modal', post: post
 
-          .indented-3#replies style='display:none;'
+          .indented-3 id="replies-post-pid-#{post.pid}" style='display:none;'
             - if post.replies.present?
               - post.replies.each do |reply|
                 .callout.small

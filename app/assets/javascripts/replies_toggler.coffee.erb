@@ -1,5 +1,6 @@
 $(document).ready ->
-  $('#reply-toggle').click ->
-    $('#replies').toggle 100
+  $('.reply-toggle').click (event) ->
+    pid = $(event.target).data('postPid')
+    $("#replies-post-pid-#{pid}").toggle 100
     return
   return

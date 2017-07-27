@@ -1,8 +1,8 @@
-a data-open='new-reply'
+a data-open="new-reply-#{post.pid}"
   i.fa.fa-plus
   ' New reply
 
-.reveal.large#new-reply data-reveal=true
+.reveal.large id="new-reply-#{post.pid}" data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
