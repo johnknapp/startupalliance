@@ -17,11 +17,11 @@
             = f.input :first_name, required: true, autofocus:true
             span.form-error
               ' First name is required
-          .medium-4.columns
+          .medium-4.columns.end
             = f.input :last_name, required: true
             span.form-error
               ' Last name is required
-          .medium-4.columns
+          /.medium-4.columns
             .space-top.indented-1= f.input :company_owner, required: true, label: 'I own my own company'
         .row
           .medium-6.columns

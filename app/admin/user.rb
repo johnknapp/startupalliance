@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
 
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
-                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile,
+                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :state,
                 :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :access_type
 
   controller do
@@ -12,7 +12,7 @@ ActiveAdmin.register User do
 
     def create
       if Rails.env.production?
-        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       super
     end
@@ -22,15 +22,17 @@ ActiveAdmin.register User do
         %w[password password_confirmation].each { |p| params[:user].delete(p) }
       end
       if Rails.env.production?
-        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       super
     end
 
     def destroy
+      resource.conversations.destroy_all
       if Rails.env.production?
-        GibbonService.unsubscribe(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+        GibbonService.unsubscribe(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
+      super
     end
 
   end
@@ -45,6 +47,8 @@ ActiveAdmin.register User do
     column :username do |user|
       link_to user.username, vanity_path(user.username)
     end
+    column :state
+    column :role
     column :access_type
     column :skill_index
     column :trait_index
@@ -59,10 +63,10 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
   filter :email
-  filter :company_owner
-  filter :role,         as: :select, collection: USER_ROLES
   filter :state,        as: :select, collection: USER_STATES
+  filter :role,         as: :select, collection: USER_ROLES
   filter :access_type,  as: :select, collection: USER_ACCESS_TYPES
+  filter :company_owner
 
   form do |f|
     f.inputs 'Edit User' do

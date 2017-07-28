@@ -46,17 +46,17 @@
 
           - else
             p.text-center.bold Not part of any Company Teams yet!
-            - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
+            - if current_user and current_user == @user and !current_user.company_creator?
               p.text-center
                 ' Find your company on Startup Alliance and ask to be put on the team.
               p.text-center
                 ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
-            - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
+            - elsif current_user and current_user == @userand !current_user.company_creator?
               p.text-center
                 ' Find your company on Startup Alliance and ask to be put on the team.
               p.text-center
                 ' If your company isn’t listed yet, have an owner add it.
-              p.text-center
+              /p.text-center
                 ' Are you an owner? Visit your #{link_to 'account update page', edit_user_registration_path} to certify ownership
                 ' then list your company here.
 
@@ -123,7 +123,7 @@
             .small-6.columns
               p.faint.text-right.snug-top
                 ' #{@user.created_at.strftime('%B %e, %Y')}
-          - if @user.company_owner == true
+          /- if @user.company_owner == true
             .row
               .small-8.columns
                 p.faint.snug-top Company owner:

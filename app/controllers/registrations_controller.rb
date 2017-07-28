@@ -87,7 +87,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       current_or_guest_user
     else
-      redirect_back(fallback_location: root_path, alert: 'Your email is invalid!') and return
+      redirect_back(fallback_location: root_path, alert: 'Either your email is invalid... or you’re a robot!') and return
     end
 
   end
@@ -170,11 +170,10 @@ class RegistrationsController < Devise::RegistrationsController
       resp['success']
     end
 
-    def departure_cleanup
-      AllianceUser.where(user_id: @user.id).destroy_all
-      CompanyUser.where(user_id: @user.id).destroy_all
-      UserSkill.where(user_id: @user.id).destroy_all
-      UserTrait.where(user_id: @user.id).destroy_all
+    def valid_email?(email)
+      valid_email_regex = /\A([-a-z0-9!\#$%&'*+\/=?^_`{|}~]+\.)*[-a-z0-9!\#$%&'*+\/=?^_`{|}~]+@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+      email =~ valid_email_regex
+      true
     end
 
     def set_skill_index
@@ -187,10 +186,12 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.update(trait_index: us.sum(:level))
     end
 
-    def valid_email?(email)
-      valid_email_regex = /\A([-a-z0-9!\#$%&'*+\/=?^_`{|}~]+\.)*[-a-z0-9!\#$%&'*+\/=?^_`{|}~]+@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-      email =~ valid_email_regex
-      true
+    def departure_cleanup
+      AllianceUser.where(user_id: @user.id).destroy_all
+      CompanyUser.where(user_id: @user.id).destroy_all
+      UserSkill.where(user_id: @user.id).destroy_all
+      UserTrait.where(user_id: @user.id).destroy_all
+      Conversation.includes?(@user).destroy_all
     end
 
 end

@@ -8,9 +8,9 @@ class User < ApplicationRecord
   has_many  :traits, through: :user_traits
   has_many  :user_skills
   has_many  :skills, through: :user_skills
-  has_many  :conversations, dependent: :destroy
-  has_many  :posts,         dependent: :destroy
-  has_many  :replies,       dependent: :destroy
+  has_many  :conversations
+  has_many  :posts,         foreign_key: :author_id, dependent: :destroy
+  has_many  :replies,       foreign_key: :author_id, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable
@@ -25,6 +25,10 @@ class User < ApplicationRecord
   validates :twitter_profile, url: { allow_nil: true, allow_blank: true, no_local: true },    format: { with: /twitter.com/, allow_blank: true}
   validates :linkedin_profile, url: { allow_nil: true, allow_blank: true, no_local: true },   format: { with: /linkedin.com/, allow_blank: true}
   validates :website, url: { allow_nil: true, allow_blank: true, no_local: true }
+
+  def conversations
+    Conversation.includes?(self)
+  end
 
   def name
     if self.first_name or self.last_name
