@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def members
-    @members = User.where(state: 'confirmed').all
+    @members = User.where(state: 'active').all
   end
 
   def join_thanks
