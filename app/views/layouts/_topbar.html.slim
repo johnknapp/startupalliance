@@ -13,10 +13,10 @@
   .top-bar-right
     - if current_user
       ul.dropdown.menu data-dropdown-menu=true
-        li= link_to 'Alliances', main_app.alliances_path
-        li= link_to 'Members', main_app.members_path
-        li= link_to 'Companies', main_app.companies_path
-        li= link_to 'About', main_app.about_path
+        li= link_to 'Alliances', alliances_path
+        li= link_to 'Members', members_path
+        li= link_to 'Companies', companies_path
+        li= link_to 'About', about_path
         li.bold.primary-text
           | &nbsp;
           | &nbsp;
@@ -29,32 +29,32 @@
             - if current_user and current_user.companies.present?
               - current_user.companies.each do |company|
                 li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
-                li= link_to company.name, main_app.company_path(company)
+                li= link_to company.name, company_path(company)
               hr
 
             - if current_user and current_user.alliances.present?
               li.little-space-top.bold.text &nbsp; My #{'alliance'.pluralize(current_user.alliances.count)}:
               - current_user.alliances.each do |alliance|
-                li= link_to alliance.name, main_app.alliance_path(alliance)
+                li= link_to alliance.name, alliance_path(alliance)
               hr
 
             - if current_user.admin?
-              li.little-space-top= link_to 'Admin interface', main_app.admin_root_path
+              li.little-space-top= link_to 'Admin interface', admin_root_path
               hr
 
             - if current_user and (current_user.companies.blank? or current_user and !current_user.admin?)
-              li.little-space-top= link_to 'Conversations', main_app.conversations_path                               if current_user and current_user.confirmed?
+              li.little-space-top= link_to 'Conversations', conversations_path                               if current_user and current_user.confirmed?
             - else
-              li= link_to 'Conversations', main_app.conversations_path                               if current_user and current_user.confirmed?
-            li= link_to 'Profile', main_app.vanity_path(current_user.username)                   if current_user and current_user.confirmed?
-            li= link_to 'Account', main_app.edit_user_registration_path                            if current_user and current_user.confirmed?
-            li= link_to 'Request activation link', main_app.new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
-            li.little-space-bottom= link_to 'Sign-out', main_app.destroy_user_session_path
+              li= link_to 'Conversations', conversations_path                               if current_user and current_user.confirmed?
+            li= link_to 'Profile', vanity_path(current_user.username)                   if current_user and current_user.confirmed?
+            li= link_to 'Account', edit_user_registration_path                            if current_user and current_user.confirmed?
+            li= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
+            li.little-space-bottom= link_to 'Sign-out', destroy_user_session_path
     - else
       ul.menu.simple
-        li.bold.scale-to-120= link_to 'Join for free!', main_app.new_user_registration_path(acqsrc: 'header')
-        li= link_to 'Alliances', main_app.alliances_path
-        li= link_to 'Members', main_app.members_path
-        li= link_to 'Companies', main_app.companies_path
-        li= link_to 'About', main_app.about_path
-        li= link_to 'Sign-in', main_app.new_user_session_path
+        li.bold.scale-to-120= link_to 'Join for free!', new_user_registration_path(acqsrc: 'header')
+        li= link_to 'Alliances', alliances_path
+        li= link_to 'Members', members_path
+        li= link_to 'Companies', companies_path
+        li= link_to 'About', about_path
+        li= link_to 'Sign-in', new_user_session_path

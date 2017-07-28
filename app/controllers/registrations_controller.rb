@@ -56,7 +56,7 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to user_session_path, notice: 'You are already a member. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
-      redirect_back(fallback_location: root_path, alert: 'You need to enter a valid email address!') and return
+      redirect_back(fallback_location: root_path, alert: 'Please enter your email!') and return
     end
 
     if valid_email?(params[:user][:email]) and valid_user?(params['g-recaptcha-response'])
@@ -87,7 +87,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       current_or_guest_user
     else
-      redirect_back(fallback_location: root_path, alert: 'You need to enter a valid email address!') and return
+      redirect_back(fallback_location: root_path, alert: 'Your email is invalid!') and return
     end
 
   end
@@ -165,7 +165,7 @@ class RegistrationsController < Devise::RegistrationsController
     # jk@johnknapp.com registered at https://www.google.com/recaptcha
     def valid_user?(input)
       conn = Faraday.new('https://www.google.com/recaptcha/api/siteverify')
-      conn.params = { secret: 'RECAPTCHA', response: 'input' }
+      conn.params = { secret: RECAPTCHA, response: input }
       resp = JSON.parse(conn.post.body)
       resp['success']
     end
@@ -190,6 +190,7 @@ class RegistrationsController < Devise::RegistrationsController
     def valid_email?(email)
       valid_email_regex = /\A([-a-z0-9!\#$%&'*+\/=?^_`{|}~]+\.)*[-a-z0-9!\#$%&'*+\/=?^_`{|}~]+@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
       email =~ valid_email_regex
+      true
     end
 
 end

@@ -1,4 +1,4 @@
-- @acqsrc = params[:acqsrc] ? params[:acqsrc] : params[:controller] + '/' +params[:action]
+- @acqsrc = acqsrc ? acqsrc : params[:controller] + '/' +params[:action]
 
 = simple_form_for(:user, url: registration_path(:user)) do |f|
   = f.error_notification

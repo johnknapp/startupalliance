@@ -50,10 +50,18 @@
                 - else
                   ' —
     - elsif current_user and !current_user.confirmed?
-      p.text-center You still need to activate your account to access the list of private alliances.
-      p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
-      p.text-center Account activation is FREE and it only takes a minute.
+      = render 'partials/inactive_browse_roadblock'
     - else
-      p.text-center Only Startup Alliance members can access the private alliances list.
-      p.text-center Membership is FREE so #{link_to 'sign-up now', new_user_registration_path(acqsrc: 'alliance index')}!
-      p.text-center Already a member? #{link_to 'Sign-in', new_user_session_path}!
+      .row
+        .medium-8.medium-offset-2.columns
+          p.show-for-medium.snug-top &nbsp;
+          .callout.secondary
+            h4.bold Go ahead, join a Private Alliance and start collaborating!
+            p.bold.indented-2 But you must become a member first:
+            ol.snug-top.indented-4
+              li
+                ' Join
+                span.bold for free
+                '  and activate your membership
+              li Browse and join the alliance that can help you the most
+            = render 'partials/join_form', acqsrc: 'alliance_index'
