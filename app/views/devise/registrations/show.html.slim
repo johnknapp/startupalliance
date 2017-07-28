@@ -51,7 +51,7 @@
                 ' Find your company on Startup Alliance and ask to be put on the team.
               p.text-center
                 ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
-            - elsif current_user and current_user == @userand !current_user.company_creator?
+            - elsif current_user and current_user == @user and !current_user.company_creator?
               p.text-center
                 ' Find your company on Startup Alliance and ask to be put on the team.
               p.text-center
