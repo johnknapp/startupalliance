@@ -52,7 +52,7 @@ ActiveAdmin.register User do
     column :access_type
     column :skill_index
     column :trait_index
-    column :company_owner
+    # column :company_owner
     column :email do |user|
       mail_to user.email, user.email
     end
@@ -81,6 +81,7 @@ ActiveAdmin.register User do
       f.input :role,          collection: USER_ROLES
       f.input :state,         collection: USER_STATES
       f.input :access_type,   collection: USER_ACCESS_TYPES
+      f.input :acqsrc
     end
     f.actions
   end
