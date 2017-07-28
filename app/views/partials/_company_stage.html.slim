@@ -1,9 +1,16 @@
 .callout
-  - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+  h5.bold.primary-text
     .float-right
-      = link_to edit_company_path(@company) do
-        i.fa.fa-pencil
-  h5.bold.primary-text Company stage:
+      a data-open='stage-info'
+        i.fa.fa-info-circle
+      - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+        | &nbsp;
+        | &nbsp;
+        | &nbsp;
+        = link_to edit_company_path(@company) do
+          i.fa.fa-pencil
+    ' Company Stage:
+  = render 'partials/quick_reference_stages'
   - if @company.phases
     .row.collapse
       .large-2.columns

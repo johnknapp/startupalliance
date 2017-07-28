@@ -10,105 +10,14 @@
     .row
       .medium-8.columns
 
-        = render 'partials/company_stage_boxes'
+        = render 'partials/company_stage'
 
-        .callout
-          h5.bold.primary-text
-            .float-right
-              a data-open='disco-info'
-                i.fa.fa-info-circle
-              = render 'partials/quick_reference_disco'
+        = render 'partials/company_team_discussions'
 
-              - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-                | &nbsp;
-                | &nbsp;
-                | &nbsp;
-                = link_to new_discussion_path(company_pid: @company.pid), class: 'scale-to-80' do
-                  i.fa.fa-plus
-            ' Company Team Discussions:
-          - if current_user and current_user.team?(@company)
-            - if @company.discussions.present?
-              - @company.discussions.order(:updated_at).each do |disco|
-                - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-                  .float-right
-                    = link_to edit_discussion_path(disco, company_pid: @company.pid), class: 'scale-to-80' do
-                      i.fa.fa-pencil
-                    | &nbsp;
-                    | &nbsp;
-                    | &nbsp;
-                    = link_to disco, data: { confirm: 'Really destroy entire discussion and all posts?' }, class: 'scale-to-80', method: :delete do
-                      i.fa.fa-trash-o
-                p #{link_to disco.title, discussion_path(disco)} (#{disco.posts.count} #{'post'.pluralize(disco.posts.count)})
-                p.snug-top.faint.indented-2= disco.description
-            - else
-              p.text-center.space-top Add your first discussion.
-          - else
-            p.text-center.space-top
-              em
-                ' Team discussions are only visible to the Company Team.
-
-
-        .callout
-          h5.bold.primary-text
-            .float-right
-              a data-open='okr-info'
-                i.fa.fa-info-circle
-              = render 'partials/quick_reference_okr'
-
-              - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-                | &nbsp;
-                | &nbsp;
-                | &nbsp;
-                = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
-                  i.fa.fa-plus
-            ' Objectives and Key Results:
-          - if current_user and current_user.team?(@company)
-            - if @company.okrs.present?
-
-              ul.tabs#okr-tabs data-tabs=true
-                li.tabs-title
-                  a.bold href='#panel-1'
-                    ' Concluded
-                li.tabs-title.is-active
-                  a.bold href='#panel-2' aria-selected='true'
-                    ' Active
-                li.tabs-title
-                  a.bold href='#panel-3'
-                    ' Upcoming
-
-              .tabs-content data-tabs-content='okr-tabs'
-                .tabs-panel#panel-1
-                  - @company.okrs.each do |okr|
-                    - if okr.concluded?
-                      = render 'partials/okr_show', okr: okr
-                .tabs-panel.is-active#panel-2
-                  - @company.okrs.each do |okr|
-                    - if okr.active?
-                      = render 'partials/okr_show', okr: okr
-                .tabs-panel#panel-3
-                  - @company.okrs.each do |okr|
-                    - if okr.upcoming? or okr.date_unset?
-                      = render 'partials/okr_show', okr: okr
-
-            - else
-              p.text-center.space-top Add your first OKR.
-          - else
-            p.text-center.space-top
-              em
-                ' OKRs are only visible to the Company Team.
+        = render 'partials/company_okrs'
 
       .medium-4.columns
         .callout
-          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
-            - if @company.is_unlisted == true
-              p.text-center
-                em
-                  ' This company is unlisted
-            - else
-              p.text-center
-                em
-                  ' This company is searchable
-            hr
           - if @company.recruiting == true
             p.text-center
               em
@@ -206,7 +115,16 @@
                     - else
                       ' — &nbsp;
 
-          hr.snug-top
+          - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
+            hr.snug-top
+            .row
+              .small-12.columns
+                p.text-center.faint.little-snug-top.snug-bottom
+                  = link_to @company.webmeet_url, target: '_blank' do
+                    span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
+                      ' Web Meeting link
+
+          hr
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               a data-open='update-team'
@@ -258,11 +176,3 @@
                     - else
                       ' Not set!
 
-          - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
-            hr.snug-top
-            .row
-              .small-12.columns
-                p.text-center.faint.little-snug-top.snug-bottom
-                  = link_to @company.webmeet_url, target: '_blank' do
-                    span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
-                      ' Web Meeting link
