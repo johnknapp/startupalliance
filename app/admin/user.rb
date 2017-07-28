@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :state,
-                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :access_type
+                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :access_type, :acqsrc
 
   controller do
 
