@@ -61,19 +61,6 @@
 
         /.callout
           h5.bold.primary-text
-            ' Alliance discussions:
-          - if current_user and @alliance.members.include? current_user
-            p.text-center Launching soon
-          - elsif current_user and !current_user.confirmed?
-            p.text-center Discussions are only visible to the members of this Private Alliance.
-            p.text-center We couldn't help noticing you need to activate your account.
-            p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
-            p.text-center Account activation is FREE and it only takes a minute.
-          - else
-            p.text-center Discussions are only visible to the members of this Private Alliance.
-
-        /.callout
-          h5.bold.primary-text
             ' Meetings:
           - if current_user and @alliance.members.include? current_user
             p.text-center Launching soon
@@ -102,7 +89,9 @@
               - if @alliance.recruiting == true
                 p.text-center
                   em
-                    ' Currently recruiting new Alliance members
+                    ' Currently recruiting!
+                    br
+                    ' Message a member and ask to join!
               - else
                 p.text-center
                   em

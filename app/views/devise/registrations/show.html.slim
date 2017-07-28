@@ -15,53 +15,87 @@
     .row
       .medium-8.columns
 
-        - if @user.companies.present?
-          table.hover.stacked
-            thead
-              tr
-                th{width='40%'}
-                  - if current_user and current_user == @user and current_user.company_owner
-                    .float-right
-                      =link_to new_company_path do
-                        i.fa.fa-plus
-                  ' #{'Company'.pluralize(@user.companies.count)}
-                th{width='20%'} Life phase
-                th{width='20%'}
-                  .text-center SAKPI Index
-                th{width='20%'}
-                  .text-center Lifetime OKRs
-            tbody
-              - @user.companies.each do |company|
+        .callout.small
+          - if @user.companies.present?
+            table.hover.stacked
+              thead
                 tr
-                  td{valign='top'}= link_to company.name, company_path(company)
-                  td{valign='top'}= company.phases
-                  td{valign='top' align='center'}= company.sakpi_index
-                  td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
-        - else
-          p.text-center.bold Not part of any Company Teams yet!
-          - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
-            p.text-center
-              ' Find your company on Startup Alliance and ask to be put on the team.
-            p.text-center
-              ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
-          - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
-            p.text-center
-              ' Find your company on Startup Alliance and ask to be put on the team.
-            p.text-center
-              ' If your company isn’t listed yet, have an owner add it.
-            p.text-center
-              ' Are you an owner? Visit your #{link_to 'account update page', edit_user_registration_path} to certify ownership
-              ' then list your company here.
+                  th{width='40%'}
+                    /- if current_user and current_user == @user and current_user.company_owner
+                      .float-right
+                        =link_to new_company_path do
+                          i.fa.fa-plus
+                    ' My #{'Company'.pluralize(@user.companies.count)}
+                  th{width='20%'}
+                    .text-center Stage
+                  th{width='20%'}
+                    .text-center SAKPI Index
+                  th{width='20%'}
+                    .text-center Recruiting
+              tbody
+                - @user.companies.each do |company|
+                  tr
+                    td{valign='top'}= link_to company.name, company_path(company)
+                    td{valign='top' align='center'}= company.phases
+                    td{valign='top' align='center'}= company.sakpi_index
+                    td{valign='top' align='center'}
+                      - if company.recruiting
+                        ' Yes
+                      - else
+                        ' —
 
-        /.callout
+          - else
+            p.text-center.bold Not part of any Company Teams yet!
+            - if current_user and current_user == @user and current_user.company_owner and !current_user.company_creator?
+              p.text-center
+                ' Find your company on Startup Alliance and ask to be put on the team.
+              p.text-center
+                ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
+            - elsif current_user and current_user == @user and !current_user.company_owner and !current_user.company_creator?
+              p.text-center
+                ' Find your company on Startup Alliance and ask to be put on the team.
+              p.text-center
+                ' If your company isn’t listed yet, have an owner add it.
+              p.text-center
+                ' Are you an owner? Visit your #{link_to 'account update page', edit_user_registration_path} to certify ownership
+                ' then list your company here.
+
+        .callout.small
           - if @user.alliances.present?
-            h5.bold.primary-text My Private #{'Alliance'.pluralize(@user.alliances.count)}
-            ul
-              - @user.alliances.each do |alliance|
-                li.indented-2
-                  strong= link_to alliance.name, alliance_path(alliance)
+
+            table.hover.stacked
+              thead
+                tr
+                  th{width='40%'}
+                    /- if current_user and current_user == @user and current_user.company_owner
+                      .float-right
+                        =link_to new_company_path do
+                          i.fa.fa-plus
+                    ' My Private #{'Alliance'.pluralize(@user.alliances.count)}
+                  th{width='20%'}
+                    .text-center Members
+                  th{width='20%'}
+                    .text-center Companies
+                  th{width='20%'}
+                    .text-center Recruiting
+              tbody
+                - @user.alliances.each do |alliance|
+                  tr
+                    td{valign='top'}= link_to alliance.name, alliance_path(alliance)
+                    td{valign='top' align='center'}= alliance.members.count
+                    td{valign='top' align='center'}= alliance.member_companies.count
+                    td{valign='top' align='center'}
+                      - if alliance.recruiting
+                        ' Yes
+                      - else
+                        ' —
           - else
             p.text-center.bold Not part of any Private Alliances yet!
+            - if current_user and current_user == @user
+              p.text-center
+                ' Find some you like and ask to join.
+              p.text-center
+                ' If you can’t find any you like, create your own and invite your people!
 
       .medium-4.columns
         .callout

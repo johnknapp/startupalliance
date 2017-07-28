@@ -1,8 +1,6 @@
 .row
-  /- if params[:action] != 'home' and current_or_guest_user.role == 'guest' and (current_or_guest_user.adjects.present? or current_or_guest_user.interests.present? or current_or_guest_user.proficiencies.present?)
-    = render 'layouts/guest_reminder'
   hr
-  .small-8.columns
+  .small-12.columns
     ul.menu.simple.snug-top.faint
       li=link_to 'About', main_app.about_path
       li= link_to 'Quick start', main_app.quick_start_path

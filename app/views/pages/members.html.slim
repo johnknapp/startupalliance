@@ -13,7 +13,11 @@
         thead
           tr
             th{width='20%'} Name
-            th{width='65%'} Personal mission statement
+            th{width='50%'} Personal mission statement
+            th{width='10%'}
+              .text-center Companies
+            th{width='10%'}
+              .text-center Alliances
             th{width='15%'}
               .text-center SI / TI
         tbody
@@ -28,8 +32,11 @@
                 - else
                   .faint-text Not set!
               td{valign='top'}
-                .text-center
-                  ' #{member.skill_index} / #{member.trait_index}
+                .text-center = member.companies.count
+              td{valign='top'}
+                .text-center = member.alliances.count
+              td{valign='top'}
+                .text-center #{member.skill_index} / #{member.trait_index}
     - elsif current_user and !current_user.confirmed?
       p.text-center You still need to activate your account to access the list of members.
       p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)

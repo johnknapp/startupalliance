@@ -8,23 +8,19 @@
     hr.little-snug-top
     p.snug-top.space-bottom.text-right Companies using our tools to get better results
 
-    /.callout.accent
-      h4.text-center.bold.little-space-bottom
-        ' Everybody works hard but it’s essential to work on the right things at the right time.
-      p.text-center
-        ' Our Company Tools keep the team aligned and doing the right work every day.
-        '
-        '
-        '
 
     - if current_user and current_user.confirmed? and @companies.present?
       table.hover.stacked
         thead
           tr
-            th{width='20%'} Entity
-            th{width='65%'} Mission statement
+            th{width='20%'} Company name
+            th{width='50%'} Mission statement
+            th{width='10%'}
+              .text-center Stage
             th{width='15%'}
-              .text-center Lifetime OKRs
+              .text-center SAKPI index
+            th{width='10%'}
+              .text-center Recruiting
         tbody
           - @companies.each do |company|
             tr
@@ -34,16 +30,13 @@
                   = company.mission
                 - else
                   .faint-text Not set!
-
-              td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
-                /- if can? :manage, :all
-                  .float-right
-                    = link_to edit_company_path(company) do
-                      i.fa.fa-pencil
-                    | &nbsp;
-                    | &nbsp;
-                    = link_to company, data: { confirm: 'Are you sure?' }, method: :delete do
-                      i.fa.fa-trash-o
+              td{valign='top' align='center'}= company.phases
+              td{valign='top' align='center'}= number_with_delimiter(company.sakpi_index)
+              td{valign='top' align='center'}
+                - if company.recruiting
+                  ' Yes
+                - else
+                  ' —
     - elsif current_user and !current_user.confirmed?
       p.text-center You still need to activate your account to access the list of companies.
       p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)

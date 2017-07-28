@@ -7,7 +7,7 @@
     hr.little-snug-top
     p.snug-top.space-bottom.text-right Lasting partnerships with the people that can help you most
 
-    .callout.accent
+    /.callout.accent
       h4.text-center.bold.little-space-bottom
         ' Entrepreneurship is exploding worldwide but it’s still about knowing the right people.
       p.text-center
@@ -24,32 +24,36 @@
         p.text-center
           ' Private Alliances launching soon!
 
-    /- if current_user and current_user.confirmed? and @alliances.present?
+    - if current_user and current_user.confirmed? and @alliances.present?
       table.hover.stacked
         thead
           tr
-            th{width='20%'} Name
-            th{width='80%'} Mission statement
+            th{width='20%'} Alliance name
+            th{width='50%'} Mission statement
+            th{width='10%'}
+              .text-center Members
+            th{width='15%'}
+              .text-center Companies
+            th{width='10%'}
+              .text-center Recruiting
+
         tbody
           - @alliances.each do |alliance|
             tr
-              td{valign='top'}
-                = link_to alliance.name, alliance
-              td{valign='top'}
-                = alliance.mission
-                - if can? :manage, :all
-                  .float-right
-                    = link_to edit_alliance_path(alliance) do
-                      i.fa.fa-pencil
-                    | &nbsp;
-                    | &nbsp;
-                    = link_to alliance, data: { confirm: 'Are you sure?' }, method: :delete do
-                    i.fa.fa-trash-o
-    /- elsif current_user and !current_user.confirmed?
+              td{valign='top'}= link_to alliance.name, alliance
+              td{valign='top'}= alliance.mission
+              td{valign='top' align='center'}= number_with_delimiter(alliance.member_companies.count)
+              td{valign='top' align='center'}= number_with_delimiter(alliance.members.count)
+              td{valign='top' align='center'}
+                - if alliance.recruiting
+                  ' Yes
+                - else
+                  ' —
+    - elsif current_user and !current_user.confirmed?
       p.text-center You still need to activate your account to access the list of private alliances.
       p.text-center We’d be thrilled if you let us #{link_to 'resend your account activation email', new_confirmation_path(current_user)}! :-)
       p.text-center Account activation is FREE and it only takes a minute.
-    /- else
+    - else
       p.text-center Only Startup Alliance members can access the private alliances list.
       p.text-center Membership is FREE so #{link_to 'sign-up now', new_user_registration_path(acqsrc: 'alliance index')}!
       p.text-center Already a member? #{link_to 'Sign-in', new_user_session_path}!
