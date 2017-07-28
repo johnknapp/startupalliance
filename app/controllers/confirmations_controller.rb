@@ -23,7 +23,7 @@ class ConfirmationsController < Devise::ConfirmationsController
   def confirm
     self.resource = resource_class.find_by_confirmation_token(params[resource_name][:confirmation_token]) if params[resource_name][:confirmation_token].present?
     resource.assign_attributes(permitted_params) unless params[resource_name].nil?
-    resource.update(state: 'active', role: 'user')
+    resource.update(state: 'active', role: 'user', access_type: 'free')
     if resource.valid? && resource.password_match?
       self.resource.confirm
       if Rails.env.production?

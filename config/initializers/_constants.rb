@@ -2,7 +2,7 @@ RECAPTCHA                 = '6LdpIikUAAAAAJNnvWYNYHrCVj2v-nclV-AG3CiJ'
 
 USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user admin]
-USER_ACCESS_TYPES         = %w[free supporter owner_6 owner_25 vip_supporter vip_owner_25]
+USER_ACCESS_TYPES         = %w[guest free supporter owner_6 owner_25 vip_supporter vip_owner_25]
 
 COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized active paused]
