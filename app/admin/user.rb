@@ -5,9 +5,34 @@ ActiveAdmin.register User do
                 :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :access_type
 
   controller do
+
     def find_resource
       scoped_collection.where(pid: params[:id]).first!
     end
+
+    def create
+      if Rails.env.production?
+        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+      end
+      super
+    end
+
+    def update
+      if params[:user][:password].blank?
+        %w[password password_confirmation].each { |p| params[:user].delete(p) }
+      end
+      if Rails.env.production?
+        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+      end
+      super
+    end
+
+    def destroy
+      if Rails.env.production?
+        GibbonService.unsubscribe(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+      end
+    end
+
   end
 
   index do
