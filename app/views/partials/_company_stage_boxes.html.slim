@@ -1,0 +1,52 @@
+.callout
+  - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+    .float-right
+      = link_to edit_company_path(@company) do
+        i.fa.fa-pencil
+  h5.bold.primary-text Company stage:
+  - if @company.phases
+    .row.collapse
+      .large-2.columns
+        - if @company.phases == 'Ideation'
+          .callout.small.primary
+            p.text-center.bold Ideation
+        - else
+          .callout.small
+            p.text-center.faint-text Ideation
+      .large-2.columns
+        - if @company.phases == 'Validation'
+          .callout.small.primary
+            p.text-center.bold Validation
+        - else
+          .callout.small
+            p.text-center.faint-text Validation
+      .large-2.columns
+        - if @company.phases == 'Foundation'
+          .callout.small.primary
+            p.text-center.bold Foundation
+        - else
+          .callout.small
+            p.text-center.faint-text Foundation
+      .large-2.columns
+        - if @company.phases == 'Fortification'
+          .callout.small.primary
+            p.text-center.bold Fortification
+        - else
+          .callout.small
+            p.text-center.faint-text Fortification
+      .large-2.columns
+        - if @company.phases == 'Expansion'
+          .callout.small.primary
+            p.text-center.bold Expansion
+        - else
+          .callout.small
+            p.text-center.faint-text Expansion
+      .large-2.columns
+        - if @company.phases == 'Diversification'
+          .callout.small.primary
+            p.text-center.bold Diversification
+        - else
+          .callout.small
+            p.text-center.faint-text Diversification
+  - else
+    p.text-center.faint-text Company stage not set!

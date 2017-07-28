@@ -9,6 +9,9 @@
 
     .row
       .medium-8.columns
+
+        = render 'partials/company_stage_boxes'
+
         .callout
           h5.bold.primary-text
             .float-right
@@ -148,11 +151,6 @@
                 p.faint.snug-top.text-right
                   = link_to @company.url, target: '_blank' do
                     ' #{@company.url}
-          .row
-            .small-6.columns
-              p.faint.snug-top Company stage
-            .small-6.columns
-              p.faint.snug-top.text-right= @company.phases
           .row
             .small-6.columns
               p.faint.snug-top Lifetime OKRs

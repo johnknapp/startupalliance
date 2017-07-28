@@ -13,12 +13,12 @@ ActiveAdmin.register Company do
     column :pid
     column :name
     column :mission
-    column :recruiting
     column :primary_market
     column :site do |company|
       link_to company.url, company.url
     end
     column :is_unlisted
+    column :recruiting
     column :state
     actions
   end
