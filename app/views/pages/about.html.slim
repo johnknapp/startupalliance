@@ -46,42 +46,40 @@
             span.bold
               ' Latest news:
             ' Startup Alliance is beta testing and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
-            ' Private Alliances are launching soon.
+            ' Video Conferencing, Personal Messaging and Community Discussions are up and running. Private Alliances just launched.
+            ' There’s a lot more functionality in te pipeline. All designed for entrepreneurs.
             ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, check them out to learn more.
         /p.snug-bottom.show-for-medium &nbsp;
-        h4.bold.primary-text Free Membership lets you do a lot:
-        ul
-          li Unite your company team for better collaboration and results
-          li
-            ' Focus your efforts using our specialized
-            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
-              ' SAKPI
-            '  and
-            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
-              ' OKR
-            '  tracking tools
-          li Achieve goals and solve problems using our Video Conferencing tool
-          li Explore Members — find your next great team member
-          li Explore Companies — find your next great partnership
-          li Explore Alliances — find and join the Private Alliance that can help you most
+        /h4.bold.primary-text Free Membership lets you do a lot:
+        /ul
+        /  li Unite your company team for better collaboration and results
+        /  li
+        /    ' Focus your efforts using our specialized
+        /    span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
+        /      ' SAKPI
+        /    '  and
+        /    span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
+        /      ' OKR
+        /    '  tracking tools
+        /  li Achieve goals and solve problems using our Video Conferencing tool
+        /  li Explore Members — find your next great team member
+        /  li Explore Companies — find your next great partnership
+        /  li Explore Alliances — find and join the Private Alliance that can help you most
 
-        h4.bold.primary-text Subscribe to create and join Private Alliances:
-        ul
-          li
-            span.bold
-              ' Go beyond the walls of your own company
-            ' to form trusted bonds and lasting partnerships
-          li Help each other achieve goals, overcome challenges, expand networks and maximize success
-          li Advise on the KPIs and OKRs of your Private Alliance Partner Companies
-          li Get answers and share information with our unique distributed discussion system
-          li Have face-to-face video conferences with your Private Alliance partners as often as you want
+        /h4.bold.primary-text Subscribe to create and join Private Alliances:
+        /ul
+        /  li
+        /    span.bold
+        /      ' Go beyond the walls of your own company
+        /    ' to form trusted bonds and lasting partnerships
+        /  li Help each other achieve goals, overcome challenges, expand networks and maximize success
+        /  li Advise on the KPIs and OKRs of your Private Alliance Partner Companies
+        /  li Get answers and share information with our unique distributed discussion system
+        /  li Have face-to-face video conferences with your Private Alliance partners as often as you want
 
         /p.bold Create and join unlimited Private Alliances for only $39.95 a year
 
-        .callout.accent.small
-          p.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
-
-        - if !current_user
+        /- if !current_user
           p.show-for-medium &nbsp;
           p.snug-bottom.bold
             ' Begin your journey to maximum success.
@@ -130,7 +128,7 @@
             i.fa-lg.fa.fa-line-chart
           h4.bold.text-center Work together, maximize your success
           p.text-center
-            ' Secure online video conferences, peer-mentoring and progress
+            ' Secure online meetings, peer-mentoring and progress
             ' tracking – together online for the first time.
 
             '

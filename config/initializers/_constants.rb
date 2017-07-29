@@ -2,7 +2,7 @@ RECAPTCHA                 = '6LdpIikUAAAAAJNnvWYNYHrCVj2v-nclV-AG3CiJ'
 
 USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user admin]
-USER_PLANS                = %w[guest associate alliance company_6 company_25 vip_alliance vip_company_25]
+USER_PLANS                = %w[guest associate alliance company vip_alliance vip_company]
 
 COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized active paused]
@@ -14,6 +14,7 @@ USER_SKILL_TIP            = 'Only Startup Skills where you have rated yourself a
 VIEWER_SKILL_TIP          = 'This member has rated themselves for these Startup Skills.'
 WEBRTC_TIP                = 'WebRTC is live audio/video chat, available on supported browsers only.'
 OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve their goals'
+SAKPI_SHORT_TIP           = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI.'
 SAKPI_LEVEL_TIP           = 'The level indicates relative strength of each SAKPI. Only visible to company team.'
 

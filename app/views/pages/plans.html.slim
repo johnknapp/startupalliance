@@ -1,0 +1,86 @@
+- content_for :page_title do
+  ' Startup Alliance –
+  ' Three Membership Plans, something for every entrepreneur
+
+.row
+  .medium-12.columns
+    h3.bold.space-top.primary-text Three Membership Plans, something for every entrepreneur
+    hr.little-snug-top
+    p.snug-top.space-bottom.text-right
+      ' Helping entrepreneurs succeed, regardless of their location
+    p.show-for-medium.snug-top &nbsp;
+
+    .row data-equalizer=true
+      .medium-4.columns
+        .plan-wrapper
+          h4.bold.text-center Associate Membership
+          hr.little-snug-top
+          p.faint.text-center.snug-top For individuals
+          .plan-box data-equalizer-watch=true
+            ul
+              li Entrepreneurs profile, custom URL
+              li Browse Alliances, Companies, Members
+              li Receive private messages
+              li Can be added to Company Teams
+              li Can be added to Private Alliances
+              li Access all Company and Alliance tools
+          p.little-snug-bottom &nbsp;
+          .callout.primary
+            p.bold.snug-bottom.text-center Associate Memberships are
+            p.bold.text-center FREE for life!
+            p.little-space-top= link_to 'Become an Associate Member', '#', class: 'button expanded bold'
+            p.snug-top.text-center &nbsp;
+      .medium-4.columns
+        .plan-wrapper
+          h4.bold.text-center Alliance Membership
+          hr.little-snug-top
+          p.faint.text-center.snug-top For individuals
+          .plan-box data-equalizer-watch=true
+            ul
+              li.bold All Associate Member benefits
+              li.bold Send Private Messages
+              li.bold Create your own Private Alliances
+              li Alliance profile and mission statement
+              li Private Alliance stealth mode
+              li You control who joins your Private Alliances
+              li Create and manage Alliance Discussions
+              li Participate in private Video Conferences
+          p.little-snug-bottom &nbsp;
+          .callout.primary
+            p.bold.snug-bottom.text-center Alliance Memberships are
+            p.bold.text-center $7.99 a month or $79 a year
+            p.little-space-top= link_to 'Become an Alliance Member', '#', class: 'button expanded bold'
+            p.snug-top.text-center 10 day free trial
+      .medium-4.columns
+        .plan-wrapper
+          h4.bold.text-center Company Membership
+          hr.little-snug-top
+          p.faint.text-center.snug-top For companies
+          .plan-box data-equalizer-watch=true
+            ul
+              li.bold All Associate Member benefits
+              li.bold All Alliance Member benefits
+              li.bold Add your Companies
+              li Company profile to showcase your company
+              li Company stealth mode
+              li Manage your Company Teams
+              li
+                ' Create and manage
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
+                  ' OKRs
+              li
+                ' Create and manage
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
+                  ' SAKPIs
+              li Create and manage Company Discussions
+              li Participate in private Video Conferences
+          p.little-snug-bottom &nbsp;
+          .callout.primary
+            p.bold.snug-bottom.text-center Company Memberships are
+            p.bold.text-center $19.99 a month or $199 a year
+            p.little-space-top= link_to 'Become a Company Member', '#', class: 'button expanded bold'
+            p.snug-top.text-center 10 day free trial
+
+
+    .callout.small
+      p.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
