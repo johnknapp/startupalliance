@@ -16,7 +16,7 @@ skills = [
   'Sales',
   'Strategy',
   'Time Mgmt.',
-  'UX / UI'
+  'UX&nbsp;/&nbsp;UI'
 ]
 
 skills.each do |s|

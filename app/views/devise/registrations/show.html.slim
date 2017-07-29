@@ -192,7 +192,7 @@
             - @user.user_skills.order(:skill_id).each do |us|
               .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
                 .progress-meter style="width: #{us.level*10}%"
-                  p.meter-text= us.skill.name
+                  p.meter-text= us.skill.name.html_safe
             hr
           - if current_user and @user.traits.present? or current_user == @user
             .float-right
@@ -215,7 +215,7 @@
             - @user.user_traits.order(:trait_id).each do |ut|
               .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
                 .progress-meter style="width: #{ut.level*10}%"
-                  p.meter-text= ut.trait.name
+                  p.meter-text= ut.trait.name.html_safe
             hr
 
           - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
