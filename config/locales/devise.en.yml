@@ -3,7 +3,7 @@
 en:
   devise:
     confirmations:
-      confirmed: "Your StartupAlliance account has been successfully activated."
+      confirmed: "Your Startup Alliance Membership has been successfully activated."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
@@ -18,9 +18,9 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "[StartupAlliance] Account activation"
+        subject: "[Startup Alliance] Account activation"
       reset_password_instructions:
-        subject: "[StartupAlliance] Password reset"
+        subject: "[Startup Alliance] Password reset"
       unlock_instructions:
         subject: "Unlock instructions"
       password_change:

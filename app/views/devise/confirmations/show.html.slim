@@ -1,9 +1,11 @@
 .row
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
     h3.show-for-medium-up &nbsp;
-    h3 Activate your Startup Alliance account
+    h3 Activate your Startup Alliance Membership
     hr.little-snug-top
-    p.text-right.snug-top All fields are required.
+    .float-right
+      p.snug-top You joined using #{resource.email}
+    p.snug-top All fields are required.
     - if params[:error] == 'true'
       .callout.alert
         p.text-center
@@ -13,11 +15,11 @@
       .form-inputs
         = f.hidden_field :confirmation_token, value: params[:confirmation_token]
         .row
-          .medium-4.columns
+          .medium-6.columns
             = f.input :first_name, required: true, autofocus:true
             span.form-error
               ' First name is required
-          .medium-4.columns.end
+          .medium-6.columns
             = f.input :last_name, required: true
             span.form-error
               ' Last name is required
@@ -36,4 +38,4 @@
           .medium-6.columns
             = f.input :password_confirmation, required: true
       .form-actions
-        = f.button :submit, 'Activate your Startup Alliance account', class: 'radius expand'
+        = f.button :submit, 'Activate your Startup Alliance Membership', class: 'radius expand'
