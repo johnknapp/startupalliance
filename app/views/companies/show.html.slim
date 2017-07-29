@@ -122,7 +122,7 @@
                 p.text-center.faint.little-snug-top.snug-bottom
                   = link_to @company.webmeet_url, target: '_blank' do
                     span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
-                      ' Web Meeting link
+                      ' Video Conference Room
 
           hr
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
