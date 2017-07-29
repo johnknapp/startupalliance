@@ -12,13 +12,13 @@
       p.snug-top.space-bottom
         - if @discussion.discussable_type == 'Alliance'
           = link_to alliance_path(@discussion.discussable) do
-            i.fa.fa-reply
+            i.fa.fa-arrow-left
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
         - if @discussion.discussable_type == 'Company'
           = link_to company_path(@discussion.discussable) do
-            i.fa.fa-reply
+            i.fa.fa-arrow-left
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}

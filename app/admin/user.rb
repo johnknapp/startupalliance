@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :state,
-                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :access_type, :acqsrc
+                :linkedin_profile, :website, :location, :latitude, :longitude, :time_zone, :plan, :acqsrc
 
   controller do
 
@@ -49,7 +49,7 @@ ActiveAdmin.register User do
     end
     column :state
     column :role
-    column :access_type
+    column :plan
     column :skill_index
     column :trait_index
     # column :company_owner
@@ -65,7 +65,7 @@ ActiveAdmin.register User do
   filter :email
   filter :state,        as: :select, collection: USER_STATES
   filter :role,         as: :select, collection: USER_ROLES
-  filter :access_type,  as: :select, collection: USER_ACCESS_TYPES
+  filter :plan,         as: :select, collection: USER_PLANS
   filter :company_owner
 
   form do |f|
@@ -80,7 +80,7 @@ ActiveAdmin.register User do
       f.input :password_confirmation
       f.input :role,          collection: USER_ROLES
       f.input :state,         collection: USER_STATES
-      f.input :access_type,   collection: USER_ACCESS_TYPES
+      f.input :plan,          collection: USER_PLANS
       f.input :acqsrc
     end
     f.actions
