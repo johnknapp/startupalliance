@@ -90,10 +90,6 @@
                 - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
                   a data-open='set-sakpis'
                     i.fa.fa-pencil
-                  | &nbsp;
-                  | &nbsp;
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_LEVEL_TIP
-                  ' Level
                 = render 'partials/set_sakpis_modal'
 
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
