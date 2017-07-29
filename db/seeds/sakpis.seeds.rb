@@ -1,9 +1,9 @@
 sakpis = [
     'Capital',
-    'Cash flow',
+    'Cash&nbsp;flow',
     'Differentiation',
     'Growth',
-    'Product/Market fit',
+    'Product/Market&nbsp;fit',
     'Team'
 ]
 

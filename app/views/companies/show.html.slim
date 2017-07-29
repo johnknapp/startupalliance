@@ -100,7 +100,21 @@
               ' SAKPIs:
           - sakpis = Sakpi.all.order(:name)
           - sakpis.each do |sakpi|
-            .row
+            - if current_user and current_user.confirmed? and @company.team_member(current_user)
+              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+                - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
+                - if cs.present?
+                  .progress-meter style="width: #{cs.level*10}%"
+                    p.meter-text= sakpi.name.html_safe
+                - else
+                  .progress-meter style="width: 1%"
+                    p.meter-text= sakpi.name.html_safe
+            - else
+              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+                .progress-meter style="width: 1%"
+                  p.meter-text= sakpi.name.html_safe
+
+            /.row
               .small-8.columns
                 p.faint.snug-top= sakpi.name
               .small-4.columns
@@ -116,7 +130,7 @@
                       ' — &nbsp;
 
           - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
-            hr.snug-top
+            hr
             .row
               .small-12.columns
                 p.text-center.faint.little-snug-top.snug-bottom

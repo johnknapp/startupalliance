@@ -7,13 +7,32 @@
     hr.little-snug-top
     - if current_user and current_user.confirmed? and current_user != @user
       - if Conversation.between(current_user.id,@user.id).present?
-        p.snug-top.space-bottom.text-right= link_to "Continue the conversation with #{@user.name}", conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post
+        p.snug-top.space-bottom.text-right
+          = link_to  conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+            i.fa.fa-comments-o
+            | &nbsp;
+            | &nbsp;
+            ' Continue the conversation with #{@user.name}
       - else
-        p.snug-top.space-bottom.text-right= link_to "Start a conversation with #{@user.name}", conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post
+        p.snug-top.space-bottom.text-right
+          = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+            i.fa.fa-comments-o
+            | &nbsp;
+            | &nbsp;
+            ' Start a conversation with #{@user.name}
     - else
       p.snug-top.space-bottom.text-right Startup Alliance members can send private messages to each other.
     .row
       .medium-8.columns
+
+        /.callout.small
+          h4.bold.primary Startup Skills
+          - if @user.skills.present?
+            - @user.skills.each do |skill|
+              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+                .progress-meter style='width: 10%'
+                  p.progress-meter-text.align-left= skill.name
+
 
         .callout.small
           - if @user.companies.present?
@@ -162,23 +181,19 @@
                   | &nbsp;
                 ' Level
                 = render 'partials/set_skills_modal'
-            p
+            p.little-more-snug-bottom
               strong
                 - if current_user == @user
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=USER_SKILL_TIP
-                    ' Skills:
+                    ' Startup Skills:
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_SKILL_TIP
-                    ' Skills:
+                    ' Startup Skills:
             - @user.user_skills.order(:skill_id).each do |us|
-              .row
-                .small-6.columns
-                  p.faint.snug-top= us.skill.name
-                .small-6.columns
-                  .float-right
-                    .faint.snug-top= us.level
+              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+                .progress-meter style="width: #{us.level*10}%"
+                  p.meter-text= us.skill.name
             hr
-
           - if current_user and @user.traits.present? or current_user == @user
             .float-right
               p.faint
@@ -189,21 +204,18 @@
                   | &nbsp;
                 ' Level
                 = render 'partials/set_traits_modal'
-            p
+            p.little-more-snug-bottom
               strong
                 - if current_user == @user
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=USER_TRAIT_TIP
-                    ' Traits:
+                    ' Personal Traits:
                 - else
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_TRAIT_TIP
-                    ' Traits:
+                    ' Personal Traits:
             - @user.user_traits.order(:trait_id).each do |ut|
-              .row
-                .small-6.columns
-                  p.faint.snug-top= ut.trait.name
-                .small-6.columns
-                  .float-right
-                    .faint.snug-top= ut.level
+              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+                .progress-meter style="width: #{ut.level*10}%"
+                  p.meter-text= ut.trait.name
             hr
 
           - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?

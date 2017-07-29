@@ -16,7 +16,6 @@ traits = [
 traits.each do |t|
   trait = Trait.where(name: t).first_or_initialize
   if trait.new_record?
-    # Welcome aboard!
     trait.save
   end
 end

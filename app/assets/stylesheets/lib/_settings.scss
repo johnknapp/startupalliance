@@ -513,10 +513,10 @@ $pagination-arrows: true;
 // 27. Progress Bar
 // ----------------
 
-$progress-height: 1rem;
-$progress-background: $medium-gray;
-$progress-margin-bottom: $global-margin;
-$progress-meter-background: $primary-color;
+$progress-height: 1.65rem;
+$progress-background: $light-gray;
+$progress-margin-bottom: 0.35rem;
+$progress-meter-background: $medium-gray;
 $progress-radius: $global-radius;
 
 // 28. Responsive Embed
