@@ -28,62 +28,55 @@
             p.text-center
               em
                 ' Not currently recruiting
-          hr
+
+          hr.little-snug-top
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
           p.bold.little-space-after Mission statement:
-          p.little-snug-top.snug-top.space-bottom
-            em
-              = @company.mission
-          hr
+          p.little-snug-top.space-bottom
+            em= @company.mission
+
+          hr.little-snug-top
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
           p.bold.little-space-after Primary market:
-          p.little-snug-top.snug-top.space-bottom
-            em
-              = @company.primary_market
-          hr
+          p.little-snug-top.space-bottom
+            em= @company.primary_market
+
+          hr.little-snug-top
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
           p.bold.little-space-after Overview:
           - if @company.url.present?
-            .row
-              .small-6.columns
-                p.faint.snug-top Website
-              .small-6.columns
-                p.faint.snug-top.text-right
-                  = link_to @company.url, target: '_blank' do
-                    ' #{@company.url}
-          .row
-            .small-6.columns
-              p.faint.snug-top Lifetime OKRs
-            .small-6.columns
-              p.faint.snug-top.text-right= number_with_delimiter(@company.okrs.count)
-          .row
-            .small-6.columns
-              p.faint.snug-top SAKPI index
-            .small-6.columns
-              p.faint.snug-top.text-right= @company.sakpi_index
+            .float-right
+              p.faint.snug-top
+                = link_to @company.url, target: '_blank' do
+                  ' #{@company.url}
+            p.faint.snug-top Website
+          - if @company.okrs
+            .float-right
+              p.faint.snug-top= number_with_delimiter(@company.okrs.count)
+            p.faint.snug-top Lifetime OKRs
+          - if @company.sakpi_index
+            .float-right
+              p.faint.snug-top= @company.sakpi_index
+            p.faint.snug-top SAKPI index
           - if @company.founded.present?
-            .row
-              .small-6.columns
-                p.faint.snug-top Founded
-              .small-6.columns
-                p.faint.snug-top.text-right= @company.founded.strftime('%B %e, %Y')
+            .float-right
+              p.faint.snug-top= @company.founded.strftime('%B %e, %Y')
+            p.faint.snug-top Founded
           - if @company.location.present?
-            .row
-              .small-6.columns
-                p.faint.snug-top Location
-              .small-6.columns
-                p.faint.snug-top.text-right= @company.location
+            .float-right
+              p.faint.snug-top= @company.location
+            p.faint.snug-top Location
 
-          hr.snug-top
+          hr.little-snug-top
           p.bold
             .float-right
               p.faint
@@ -110,29 +103,12 @@
                 .progress-meter style="width: 1%"
                   p.meter-text= sakpi.name.html_safe
 
-            /.row
-              .small-8.columns
-                p.faint.snug-top= sakpi.name
-              .small-4.columns
-                .float-right
-                  .faint.snug-top
-                    - if current_user and current_user.confirmed? and @company.team_member(current_user)
-                      - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
-                      - if cs.present?
-                        = cs.level
-                      - else
-                        ' —
-                    - else
-                      ' — &nbsp;
-
           - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
             hr
-            .row
-              .small-12.columns
-                p.text-center.faint.little-snug-top.snug-bottom
-                  = link_to @company.webmeet_url, target: '_blank' do
-                    span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
-                      ' Video Conference Room
+              p.text-center.faint.little-snug-top.snug-bottom
+                = link_to @company.webmeet_url, target: '_blank' do
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
+                    ' Video Conference Room
 
           hr
           - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
@@ -152,37 +128,32 @@
                     .medium-6.columns
                       = select_tag :equity, options_for_select(CompanyUser.equities.keys)
                   = submit_tag 'Add team member', class: 'button expanded secondary'
-          p.bold.little-space-after Company team:
+          p.bold.space-after Company team:
           - @company.team.each do |member|
-            .row
-              .small-10.columns
+            - if current_user and @company.team.include?(current_user)
+              .float-right
                 p.faint.snug-top
-                  ' #{image_tag gravatar_url("#{member.email}", 30)}
-                  ' #{link_to member.name, vanity_path(member.username)}
-                  - if current_user and @company.team_member(current_user)
-                    - if @company.team_member(member).equity != 'no_equity'
-                      ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
-                    - else
-                      ' (#{@company.team_member(member).role.humanize})
-              - if current_user and current_user.team?(@company)
-                .small-2.columns
-                  .float-right
-                    p.faint.snug-top
-                      - if current_user != member
-                        = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid), method: :post do
-                          i.fa.fa-comments-o
-                      - if @company.team_member(current_user).role == 'Owner'
-                        = link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Really remove this person from the company team?'}, method: :delete do
-                          | &nbsp;
-                          | &nbsp;
-                          i.fa.fa-trash-o
-            .row
-              .small-12.columns
-                p.faint.snug-top.space-bottom.indented-1
-                  ' Personal mission:
-                  em
-                    - if member.mission
-                      = member.mission
-                    - else
-                      ' Not set!
+                  - if current_user != member
+                    = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid), method: :post do
+                      i.fa.fa-comments-o
+                  - if current_user == @company.creator and member != current_user
+                    = link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Really remove this person from the company team?'}, method: :delete do
+                      | &nbsp;
+                      | &nbsp;
+                      i.fa.fa-trash-o
+            p.faint.snug-top
+              ' #{image_tag gravatar_url("#{member.email}", 30)}
+              ' #{link_to member.name, vanity_path(member.username)}
+              - if current_user and @company.team_member(current_user)
+                - if @company.team_member(member).equity != 'no_equity'
+                  ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
+                - else
+                  ' (#{@company.team_member(member).role.humanize})
+            p.faint.snug-top.space-bottom.indented-1
+              ' Personal mission:
+              em
+                - if member.mission
+                  = member.mission
+                - else
+                  ' Not set!
 
