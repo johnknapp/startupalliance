@@ -1,8 +1,14 @@
 .top-bar
   - if !current_user and params[:action] == 'home'
     .top-bar-title
-      .show-for-small-only= image_tag 'banner.svg', width: '250px'
-      .show-for-medium= image_tag 'banner.svg', width: '300px'
+      .show-for-small-only
+        = image_tag 'banner.svg', width: '250px'
+        br
+        .faint &nbsp; &nbsp; βeta
+      .show-for-medium
+        = image_tag 'banner.svg', width: '300px'
+        br
+        .faint &nbsp; &nbsp; βeta
       ul.menu.simple.show-for-small-only
         li= link_to 'Alliances', alliances_path
         li= link_to 'Members', members_path
@@ -15,6 +21,8 @@
   - if current_user or params[:action] != 'home'
     .top-bar-title
       = link_to (image_tag 'sa_mark_master_125x.png', width: '60px'), root_path
+      br
+      .faint &nbsp; &nbsp; βeta
     .top-bar-left
       ul.menu.simple.show-for-small-only
         li= link_to 'Alliances', alliances_path

@@ -53,10 +53,17 @@
             ' Startup Alliance is beta testing and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
             ' Video Conferencing, Personal Messaging and Community Discussions are up and running. Private Alliances just launched.
             ' There’s a lot more functionality in the pipeline. All designed for entrepreneurs.
-            ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, check them out to learn more.
+        p
+          em
+            ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, check them out to learn more about Startup Alliance.
+        p
+          em
+            ' We will be implementing a payment system before long but for today at least, all membership plans are free during the beta period.
+            ' This period will end without notice at which time beta users will transition to the free Associate Membership.
+            ' You will of course be able to upgrade your Membership if you choose.
 
         p.show-for-medium &nbsp;
         - if !current_user
-          p.text-center= link_to 'Explore membership plans and join us today...', plans_path, class: 'button large secondary expanded bold'
+          p.text-center= link_to 'Explore Membership Plans and join us today...', plans_path, class: 'button large secondary expanded bold'
         - else
-          p.text-center= link_to 'Explore membership plans...', plans_path, class: 'button large secondary expanded bold'
+          p.text-center= link_to 'Explore Membership Plans...', plans_path, class: 'button large secondary expanded bold'
