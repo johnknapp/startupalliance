@@ -10,6 +10,8 @@ ALLIANCE_STATES           = %w[initialized active paused]
 
 PRIVATE_ALLIANCE_TIP      = 'Where entrepreneurs collaborate to achieve goals, overcome challenges, expand networks and maximize success.'
 STEALTH_MODE_TIP          = 'In case you want to keep your Private Alliances and Companies from appearing in search results.'
+STARTUP_SKILL_TIP         = 'Showcase your strengths using our standard set of 18 startup skills.'
+PERSONAL_TRAIT_TIP        = 'Highlight your qualities using our standard set of 12 personal traits.'
 VIDEO_CONFERENCE_TIP      = 'Conduct private online video meetings whenever you want with people from all around the world.'
 USER_TRAIT_TIP            = 'Only Personal Traits where you have rated yourself appear to others.'
 VIEWER_TRAIT_TIP          = 'This member has rated themselves for these Personal Traits.'
