@@ -47,9 +47,7 @@
             h4.bold Find an amazing entrepreneur and team up!
             p.bold.indented-2 It’s free and easy to do:
             ol.snug-top.indented-4
-              li
-                ' Join
-                span.bold for free
-                '  and activate your membership
+              li Choose the Membership Plan that’s right for you
+              li Join and activate your membership
               li Find the people that can help you the most
-            = render 'partials/join_form', acqsrc: 'member_index'
+            = link_to 'Explore the Membership Plans', plans_path, class: 'button bold expanded'

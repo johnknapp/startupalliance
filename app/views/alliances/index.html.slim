@@ -59,9 +59,7 @@
             h4.bold Join a Private Alliance and start collaborating!
             p.bold.indented-2 It’s free and easy to do:
             ol.snug-top.indented-4
-              li
-                ' Join
-                span.bold for free
-                '  and activate your membership
+              li Choose the Membership Plan that’s right for you
+              li Join and activate your membership
               li Browse and join the alliance that can take you to the next level
-            = render 'partials/join_form', acqsrc: 'alliance_index'
+            = link_to 'Explore the Membership Plans', plans_path, class: 'button bold expanded'

@@ -47,10 +47,8 @@
             h4.bold Find your next great company!
             p.bold.indented-2 It’s free and easy to do:
             ol.snug-top.indented-4
-              li
-                ' Join
-                span.bold for free
-                '  and activate your membership
+              li Choose the Membership Plan that’s right for you
+              li Join and activate your membership
               li Explore the companies owned by Startup Alliance members
-            = render 'partials/join_form', acqsrc: 'company_index'
+            = link_to 'Explore the Membership Plans', plans_path, class: 'button bold expanded'
 
