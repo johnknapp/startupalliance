@@ -1,12 +1,10 @@
 .row
   .small-10.small-offset-1.columns
 
-    p.snug-bottom &nbsp;
-
     h1.bold.text-center.warning-text
       ' Better. Together.
 
-    h4.bold.little-snug-bottom.space-top.primary-text
+    h4.bold.text-center.little-snug-bottom.primary-text
       ' Membership in this Global Entrepreneurs Community gives you...
       '
     .row data-equalizer=true
@@ -45,13 +43,20 @@
             '
 
     .row
-      .large-10.large-offset-1.medium-12.columns
+      .medium-8.medium-offset-2.columns
         p.show-for-medium &nbsp;
-        p.text-center= link_to 'Discover how Startup Alliance helps maximize your success...', about_path, class: 'button large secondary bold'
+        h4.bold Latest news:
+        hr.little-snug-top
+        p.snug-top.text-right July 31, 2017
+        p
+          em
+            ' Startup Alliance is beta testing and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
+            ' Video Conferencing, Personal Messaging and Community Discussions are up and running. Private Alliances just launched.
+            ' There’s a lot more functionality in the pipeline. All designed for entrepreneurs.
+            ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, check them out to learn more.
 
+        p.show-for-medium &nbsp;
         - if !current_user
-          p.show-for-medium &nbsp;
-          p.snug-bottom.bold
-            ' Begin your journey to maximum success.
-          = render 'partials/join_form', acqsrc: 'home_page'
-
+          p.text-center= link_to 'Explore membership plans and join us today...', plans_path, class: 'button large secondary expanded bold'
+        - else
+          p.text-center= link_to 'Explore membership plans...', plans_path, class: 'button large secondary expanded bold'

@@ -5,8 +5,14 @@
     h3.show-for-medium-up &nbsp;
 
     .snug-top= image_tag 'banner.svg', width: '300px'
-    h5.little-space-top.space-bottom.bold Establish your Startup Alliance Membership now.
-    /h5.bold Welcome to our global community of entrepreneurs!
+    - if params[:plan] == 'associate'
+      h5.little-space-top.space-bottom.bold Associate Membership is FREE for life!
+    - if params[:plan] == 'alliance'
+      h5.little-space-top.space-bottom.bold Alliance Membership is FREE during beta!
+    - if params[:plan] == 'company'
+      h5.little-space-top.space-bottom.bold Company Membership is FREE during beta!
+
+    = render 'partials/join_form', acqsrc: @acqsrc
 
     /p &nbsp;
     /.callout
@@ -23,7 +29,6 @@
       ' Use our tools. Maximize your success.
       span.warning-text
         ' It’s free!
-    = render 'partials/join_form', acqsrc: 'join_form'
     /= simple_form_for(:user, url: registration_path(:user)) do |f|
       = f.error_notification
       .form-inputs

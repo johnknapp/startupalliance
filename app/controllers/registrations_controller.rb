@@ -62,6 +62,7 @@ class RegistrationsController < Devise::RegistrationsController
     if valid_email?(params[:user][:email]) and valid_user?(params['g-recaptcha-response'])
       super
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
+      current_user.update_attribute(:plan, params[:user][:plan])
       if Rails.env.production?
         # $analytics.identify(
         #     anonymous_id:   current_user.pid,

@@ -27,10 +27,16 @@
               li Access all Company and Alliance tools
           p.little-snug-bottom &nbsp;
           .callout
-            p.bold.snug-bottom.text-center Associate Memberships are
-            p.bold.text-center FREE for life!
-            p.little-space-top= link_to 'Become an Associate Member', '#', class: 'button expanded bold'
-            p.snug-top.text-center &nbsp;
+            h4.bold.text-center FREE for life!
+            - if current_user and current_user.plan == 'associate'
+              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
+            - else
+              p.little-space-top= link_to 'Get started for FREE', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold success-text'
+            p.scale-to-90.text-center
+              - if current_user and current_user.plan == 'associate'
+                ' (You can always upgrade.)
+              - else
+                ' (You can always upgrade later.)
 
       .medium-4.columns
         .callout.primary
@@ -49,10 +55,18 @@
               li Participate in private Video Conferences
           p.little-snug-bottom &nbsp;
           .callout
-            p.bold.snug-bottom.text-center Alliance Memberships are
-            p.bold.text-center $7.99 a month or $79 a year
-            p.little-space-top= link_to 'Become an Alliance Member', '#', class: 'button expanded bold'
-            p.snug-top.text-center 10 day free trial
+            /h4.bold.text-center $6.50 a month!
+            h4.bold.text-center
+              del $6.50 a month!
+            /h4.bold.text-center Free during beta
+            - if current_user and current_user.plan == 'alliance'
+              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
+            - else
+              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'FREE during beta, sign up today!', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
+            p.scale-to-90.text-center
+              /' (Paid annually. $7.99 paid monthly.)
+              ' (After beta ends, $7.99/mth or $78/yr.)
 
       .medium-4.columns
         .callout.primary
@@ -79,10 +93,18 @@
               li Participate in private Video Conferences
           p.little-snug-bottom &nbsp;
           .callout
-            p.bold.snug-bottom.text-center Company Memberships are
-            p.bold.text-center $19.99 a month or $199 a year
-            p.little-space-top= link_to 'Become a Company Member', '#', class: 'button expanded bold'
-            p.snug-top.text-center 10 day free trial
+            /h4.bold.text-center $16.50 a month!
+            h4.bold.text-center
+              del $16.50 a month!
+            /h4.bold.text-center Free during beta
+            - if current_user and current_user.plan == 'company'
+              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
+            - else
+              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'FREE during beta, sign up today!', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
+            p.scale-to-90.text-center
+              /' (Paid annually. $19.99 paid monthly.)
+              ' (After beta ends, $19.99/mth or $198/yr.)
 
     .callout.small
       p.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.

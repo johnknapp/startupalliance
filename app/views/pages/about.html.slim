@@ -39,16 +39,6 @@
             '
           p.little-snug-top Join our global entrepreneurs community and maximize your success.
 
-    .row
-      .medium-8.medium-offset-2.columns
-        p
-          em
-            span.bold
-              ' Latest news:
-            ' Startup Alliance is beta testing and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
-            ' Video Conferencing, Personal Messaging and Community Discussions are up and running. Private Alliances just launched.
-            ' There’s a lot more functionality in te pipeline. All designed for entrepreneurs.
-            ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, check them out to learn more.
         /p.snug-bottom.show-for-medium &nbsp;
         /h4.bold.primary-text Free Membership lets you do a lot:
         /ul
@@ -77,8 +67,6 @@
         /  li Get answers and share information with our unique distributed discussion system
         /  li Have face-to-face video conferences with your Private Alliance partners as often as you want
 
-        /p.bold Create and join unlimited Private Alliances for only $39.95 a year
-
         /- if !current_user
           p.show-for-medium &nbsp;
           p.snug-bottom.bold
@@ -87,16 +75,15 @@
               ' It’s free!
           = render 'partials/join_form', acqsrc: 'about'
 
-        /p
-          ' We created this unique collection of no-nonsense tools
-          /' for entrepreneurs, specifically designed
-          ' to help you focus on the right business goals and team up with the people most qualified to help you achieve them.
+
+        /p We created this unique collection of no-nonsense tools to help you focus on the right business goals and team up with the people most qualified to help you achieve them.
+
+
+        /h4.bold
+          ' Entrepreneurs working together towards startup success.
+          ' Entrepreneur peer-groups working together to achieve goals, overcome challenges,
+          ' build networks and maximize the success of their companies.
           '
-    /h4.bold
-    /  ' Entrepreneurs working together towards startup success.
-      /' Entrepreneur peer-groups working together to achieve goals, overcome challenges,
-      /' build networks and maximize the success of their companies.
-      '
     /.text-center.little-space-top= image_tag 'sa_home.png', width: '750px'
 
     /.row data-equalizer=true

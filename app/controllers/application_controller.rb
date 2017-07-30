@@ -40,7 +40,21 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(
-          :email, :acqsrc, :latitude, :longitude
+          :email, :acqsrc, :plan, :latitude, :longitude
+      )
+    end
+
+    # TODO This doesn't work, not sure what symbol to 'permit'. :-(
+    #   As it stands, time_zone fails so user cannot set it on confirmation
+    #     which flows through confirmations controller confirm action.
+    devise_parameter_sanitizer.permit(:confirm) do |user_params|
+      user_params.permit(
+          :first_name,
+          :last_name,
+          :username,
+          :time_zone,
+          :password,
+          :password_confirmation
       )
     end
 
