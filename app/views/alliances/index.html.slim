@@ -64,8 +64,10 @@
           p.show-for-medium.snug-top &nbsp;
           p.little-snug-bottom
             em
-              '(You must sign in to see the listing.)
+              ' (You must #{link_to 'sign-in', new_user_session_path} to see the listing.)
           .callout.secondary
+            .float-right
+              p.faint= link_to 'Sign-in', new_user_session_path
             h4.bold Join a Private Alliance and start collaborating!
             p.bold.indented-2 It’s easy to do:
             ol.snug-top.indented-4
