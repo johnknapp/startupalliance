@@ -49,6 +49,9 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
+          p.little-snug-bottom
+            em
+              '(You must sign in to see the listing.)
           .callout.secondary
             h4.bold Find your next great company!
             p.bold.indented-2 It’s easy to do:
@@ -56,6 +59,7 @@
               li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
               li Join and activate your membership
               li Explore the companies owned by Startup Alliance members
+              li To really get the most out of Startup Alliance, check out the #{link_to 'Quick Start'}.
             = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
           p.text-center
             ' Join Startup Alliance as a FREE Associate Member and discover your next great company!

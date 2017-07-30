@@ -43,24 +43,30 @@
             '
 
     .row
-      .medium-8.medium-offset-2.columns
+      .medium-10.medium-offset-1.columns
         p.show-for-medium &nbsp;
-        h4.bold Latest news:
+        h4.bold Latest news from Startup Alliance:
         hr.little-snug-top
         p.snug-top.text-right July 31, 2017
         p
           em
-            ' Startup Alliance is beta testing and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
-            ' Video Conferencing, Personal Messaging and Community Discussions are up and running. Private Alliances just launched.
-            ' There’s a lot more functionality in the pipeline. All designed for entrepreneurs.
+            ' Startup Alliance just entered beta and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
         p
           em
-            ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, check them out to learn more about Startup Alliance.
+            strong
+              ' All #{link_to 'Membership Plans', plans_path} are FREE during beta so try it out.
+            ' This period will end without notice at which time all beta users will be transitioned to the free Associate Membership.
+            ' You will be able to upgrade your Associate Membership if you choose.
         p
           em
-            ' We will be implementing a payment system before long but for today at least, all membership plans are free during the beta period.
-            ' This period will end without notice at which time beta users will be transitioned to the free Associate Membership.
-            ' You will of course be able to upgrade your Membership if you choose.
+            ' Video Conferencing, Personal Messaging and Group Discussions are up and running. Private Alliances just launched.
+            ' There’s more functionality in the pipeline. All designed for entrepreneurs.
+            ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, please check them out to learn more about Startup Alliance.
+        p
+          em
+            ' Also, please tell your friends about us and follow #{link_to '@StartupAlliance on Twitter', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'}.
+
+
 
         p.show-for-medium &nbsp;
         - if !current_user

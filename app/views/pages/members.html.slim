@@ -6,7 +6,15 @@
   .medium-12.columns
     h3.bold.space-top.primary-text Startup Alliance Members
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right It’s about who you know. All of us are better. Together.
+    .float-right
+      p.snug-top.space-bottom It’s about who you know. All of us are better. Together.
+    p.snug-top.space-bottom
+      = link_to plans_path do
+        i.fa.fa-plus
+        | &nbsp;
+        | &nbsp;
+        ' Become a member
+
 
     - if current_user and current_user.confirmed? and @members.present?
       table.hover.stacked
@@ -43,6 +51,9 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
+          p.little-snug-bottom
+            em
+              '(You must sign in to see the listing.)
           .callout.secondary
             h4.bold Find an amazing entrepreneur and team up!
             p.bold.indented-2 It’s easy to do:
@@ -50,6 +61,7 @@
               li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
               li Join and activate your membership
               li Find the people that can help you the most
+              li To really get the most out of Startup Alliance, check out the #{link_to 'Quick Start'}.
             = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
           p.text-center
             ' Join as a FREE Associate Membership let’s you discover amazing entrepreneurs.
