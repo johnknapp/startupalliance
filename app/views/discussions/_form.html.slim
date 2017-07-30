@@ -2,11 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    = f.hidden_field :author_id,    value: current_user.id       if current_user
-    = f.hidden_field :company_pid,  value: params[:company_pid]  if params[:company_pid]
-    = f.hidden_field :alliance_pid, value: params[:alliance_pid] if params[:alliance_pid]
-    = f.input :title
-    = f.input :description
+    = f.hidden_field :author_id,    value: current_user.id       if current_user          and @discussion.new_record?
+    = f.hidden_field :company_pid,  value: params[:company_pid]  if params[:company_pid]  and @discussion.new_record?
+    = f.hidden_field :alliance_pid, value: params[:alliance_pid] if params[:alliance_pid] and @discussion.new_record?
+    = f.input :title, label: 'Discussion topic', placeholder: 'Clearly define the discussion topic'
+    = f.input :description, label: 'Mission statement', placeholder: 'Set the mission statement for this discussion topic'
 
   .form-actions
     .row

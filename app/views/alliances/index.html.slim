@@ -5,7 +5,14 @@
   .medium-12.columns
     h3.bold.space-top.primary-text Private Alliances
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Lasting partnerships with the people that can help you most
+    .float-right
+      p.snug-top.space-bottom Private Alliances are where entrepreneurs form lasting partnerships with the people that can help them most
+    p.snug-top.space-bottom
+      = link_to new_alliance_path do
+        i.fa.fa-plus
+        | &nbsp;
+        | &nbsp;
+        ' Add an alliance
 
     /.callout.accent
       h4.text-center.bold.little-space-bottom
@@ -57,9 +64,11 @@
           p.show-for-medium.snug-top &nbsp;
           .callout.secondary
             h4.bold Join a Private Alliance and start collaborating!
-            p.bold.indented-2 It’s free and easy to do:
+            p.bold.indented-2 It’s easy to do:
             ol.snug-top.indented-4
-              li Choose the Membership Plan that’s right for you
+              li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
               li Join and activate your membership
-              li Browse and join the alliance that can take you to the next level
-            = link_to 'Explore the Membership Plans', plans_path, class: 'button bold expanded'
+              li Take part in Private Alliances to take your success to the next level
+            = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
+          p.text-center
+            ' Free Associate Membership let’s you discover and join the Private Alliance you need.

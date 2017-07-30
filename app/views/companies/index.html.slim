@@ -6,8 +6,14 @@
   .medium-12.columns
     h3.bold.space-top.primary-text Member Owned Companies
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Amazing companies using our tools to get better results
-
+    .float-right
+      p.snug-top.space-bottom Amazing companies join Startup Alliance and use our tools to get better results
+    p.snug-top.space-bottom
+      = link_to new_company_path do
+        i.fa.fa-plus
+        | &nbsp;
+        | &nbsp;
+        ' Add a company
 
     - if current_user and current_user.confirmed? and @companies.present?
       table.hover.stacked
@@ -45,10 +51,12 @@
           p.show-for-medium.snug-top &nbsp;
           .callout.secondary
             h4.bold Find your next great company!
-            p.bold.indented-2 It’s free and easy to do:
+            p.bold.indented-2 It’s easy to do:
             ol.snug-top.indented-4
-              li Choose the Membership Plan that’s right for you
+              li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
               li Join and activate your membership
               li Explore the companies owned by Startup Alliance members
-            = link_to 'Explore the Membership Plans', plans_path, class: 'button bold expanded'
+            = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
+          p.text-center
+            ' Join Startup Alliance as a FREE Associate Member and discover your next great company!
 

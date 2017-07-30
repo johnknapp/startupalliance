@@ -22,8 +22,22 @@
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
-    p.snug-top.space-bottom.text-right
-      = @discussion.description
+    p.snug-top.space-bottom.text-right Ask questions, get answers and share information and ideas
+
+    .row
+      .medium-10.medium-offset-1.columns
+        .callout.small
+          .float-right
+            = link_to edit_discussion_path(@discussion) do
+              i.fa.fa-pencil
+            /- if @discussion.discussable.class.name == 'Company'
+              = link_to edit_discussion_path(@discussion, company_pid: @discussion.discussable.pid) do
+                i.fa.fa-pencil
+            /- if @discussion.discussable.class.name == 'Alliance'
+              = link_to edit_discussion_path(@discussion, alliance_pid: @discussion.discussable.pid) do
+                i.fa.fa-pencil
+          p.bold Mission statement for “#{@discussion.title}” discussion:
+          p= @discussion.description
 
     p.show-for-medium.snug-top &nbsp;
 
@@ -61,7 +75,7 @@
                 .callout.small
                   .float-right
                     p.faint
-                      - if current_user and current_user == reply.author or current_user == reply.post.author
+                      - if current_user and current_user == reply.author or current_user == reply.post.author or current_user == post.discussion.discussable.creator
                         | &nbsp;
                         | &nbsp;
                         = link_to edit_discussion_post_reply_path(discussion_id: post.discussion.pid, post_id: post.pid, id: reply.pid) do

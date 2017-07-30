@@ -43,7 +43,7 @@
               - @alliance.discussions.order(:updated_at).each do |disco|
                 - if current_user and @alliance.members.include?(current_user) and @alliance.members.include?(@alliance.creator)
                   .float-right
-                    = link_to edit_discussion_path(disco, alliance_pid: @alliance.pid), class: 'scale-to-80' do
+                    = link_to edit_discussion_path(disco), class: 'scale-to-80' do
                       i.fa.fa-pencil
                     | &nbsp;
                     | &nbsp;

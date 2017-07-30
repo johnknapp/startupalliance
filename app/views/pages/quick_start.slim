@@ -14,9 +14,26 @@
       /hr
       .medium-4.columns
         p.pad-right
-          strong Joining and Activating
+          strong Getting the most from Startup Alliance
       .medium-8.columns
         ol
+          li Remember: entrepreneurship isn’t easy and we’re here to work together
+          li Explore Alliances, Companies and Members and make new connections
+          li Join Private Alliances and collaborate to maximize the success of each member
+          li Join Company Teams and work with together to maximize the company success
+          li Read below and make full use of all the tools we offer
+          li Be helpful to other members whenever possible and don't be afraid to offer help
+          li Accept help from other members and don’t be afraid to ask for help
+          li Invite your friends and colleagues to join
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Becoming a Member
+      .medium-8.columns
+        ol
+          li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
           li Sign-up using your email address
           li Click the link in the account activation email
           li Activate your account for full privileges
@@ -26,25 +43,33 @@
       .medium-4.columns
         p.pad-right
           strong Finishing your member profile
+        p.little-snug-top.faint.pad-right= link_to 'Sample', vanity_path('john')
       .medium-8.columns
         ol
           li Write your personal mission statement
-          li Add a list of your business skills, rate yourself for each
+          li Add a list of your startup skills, rate yourself for each
           li Add a list of your personal traits, rate yourself for each
           li Visit Gravatar.com to attach a profile photo to your email
           li Add your social media accounts
+          li Remember that your username determines your profile URL
+          ul.no-bullet
+            li.faint
+              ' (For example, username “john” makes the URL #{link_to vanity_url('john'), vanity_url('john')}.)
 
     .row
       hr
       .medium-4.columns
         p.pad-right
           strong Messaging another member
+        p.little-snug-top.faint.pad-right
+          em Alliance membership required
+        p.snug-top.faint.pad-right
+          em Associates can only receive
       .medium-8.columns
         ol
-          li You must be signed in
-          li Visit a member profile and click “Start a conversation...”
+          li Click their conversation link or conversation icon
           li Type a private message and send
-          li Access your conversations on the main menu
+          li Access your conversations on your main menu
           li Each member can delete their own messages from the conversation
           li Either member can delete the entire conversation and all messages
 
@@ -52,23 +77,140 @@
       hr
       .medium-4.columns
         p.pad-right
-          strong Listing your company
+          strong Maximizing Private Alliance results
+        p.little-snug-top.faint.pad-right
+          em Alliance membership required.
+        p.little-snug-top.faint.pad-right
+          em Private Alliance members go beyond the walls of their own company to achieve goals, overcome challenges, expand networks and maximize success
       .medium-8.columns
         ol
-          li On your account settings, mark yourself as a company owner
-          li On your profile, click the link to add your company
-          li Complete the form and submit your listing
+          li
+            ' Patterned after
+            ' #{link_to 'Master Mind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
+            ' a Private Alliance is a group of entrepreneurs who build a long term partnership to help each other become more successful
+          li Any Startup Alliance member can join any Private Alliance
+          li Members are added to a Private Alliance by the creator of the Alliance
+          li If you want to join a Private Alliance, message one of the members and ask to be added
+          li Within the Private Alliance, make full use of the collaboration tools:
+          ul.indented-2
+            li Private Group Discussions
+            li Private Messages
+            li Video Conferencing
+          li As a Private Alliance member, you are encouraged to collaborate to maximize the success of the companies you and your fellow members own. To facilitate this you are able to review some information found on the member company profiles.
+          li As a Startup Alliance member, you are bound to the #{link_to 'Startup Alliance Code of Conduct', code_of_conduct_path} and encouraged to maintain confidentiality of member information at all times.
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Creating a Private Alliance
+        p.little-snug-top.faint.pad-right
+          em Alliance membership required
+      .medium-8.columns
+        ol
+          li Visit the Alliance listings and click the +
+          li Complete the form and create your Private Alliance
+          li Complete your Private Alliance profile
+          li As the creator, you decide who can and who cannot join your Private Alliance
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Adding Private Alliance Members
+        p.little-snug-top.faint.pad-right
+          em Alliance membership required.
+      .medium-8.columns
+        ol
+          li Only the creator of the Private Alliance can add members
+          li Decide who to add
+          ul.no-bullet
+            li.faint
+              em
+                ' (Any Startup Alliance member can be added)
+          li Make a note of their Startup Alliance username
+          li Visit the Private Alliance profile and click the + in the Members section
+          li Enter their username
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Using the Video Conferencing tool
+        p.little-snug-top.faint.pad-right
+          em Available for unlimited use by Company Teams and Alliance Members
+      .medium-8.columns
+        ol
+          li We recommend the Chrome web browser
+          li Video conferences use the microphone and camera on your computer
+          li Coordinate the meeting time with your team members
+          li Visit your company or alliance proflie and click the Video Conference Room link
+          li Take advantage of the chat and screen sharing features
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Using Private Group Discussions
+        p.little-snug-top.faint.pad-right
+          em Available for unlimited use by Company Teams and Alliance Members
+      .medium-8.columns
+        ol
+          li Create a discussion for each topic you want to discuss
+          li Create a helpful mission statement for each topic to keep the discussion on track
+          li Post within each discussion
+          li Reply to each post
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Maximizing Company results
+        p.little-snug-top.faint.pad-right
+          em Alliance membership required.
+        p.little-snug-top.faint.pad-right
+          em A Company is where the team collaborates
+      .medium-8.columns
+        ol
+          li Startup Alliance is all about collaboration and Company Teams are provided with several collaboration and success optimization tools:
+          ul
+            li Startup Alliance Key Performance Indicators (learn more below and in the #{link_to 'FAQ', faq_path})
+            li Objectives and Key Results (learn more below and in the #{link_to 'FAQ', faq_path})
+            li Private Group Discussions
+            li Private Messages
+            li Video Conferencing
+          li Any Startup Alliance member can join any Company Team
+          li If you want to join a Company Team, message a member of the team and ask to be added
+          li If you also belong to a Private Alliance, that membership gives your fellow Alliance members access to certain information found on the company profile
+          li As a Startup Alliance member, you are bound to the #{link_to 'Startup Alliance Code of Conduct', code_of_conduct_path} and encouraged to maintain confidentiality of member information at all times.
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
+          strong Adding your company
+        p.little-snug-top.faint.pad-right
+          em Company membership required
+      .medium-8.columns
+        ol
+          li Visit the Company listings and click the +
+          li Complete the form and submit your company
+          li Complete your Company profile
+          li As the creator, you decide who can and who cannot join your Company Team
 
     .row
       hr
       .medium-4.columns
         p.pad-right
           strong Assembling your company team
+        p.little-snug-top.faint.pad-right
+          em Company membership required
       .medium-8.columns
         ol
+          li Complete your Company profile first
           li Decide which owners, employees, advisors and investors to invite
           li Make a list of their Startup Alliance usernames
-          li Visit your company listing and click the + in the team section
+          li Visit the Company profile and click the + in the team section
           li Enter their username
           li Assign their team role
           li Set their equity (if that applies)
@@ -77,37 +219,21 @@
       hr
       .medium-4.columns
         p.pad-right
-          strong Getting the most from your OKRs
+          strong Making the most of Company OKRs
+        p.little-snug-top.faint.pad-right
+          em Available to all Company Teams
       .medium-8.columns
         ol
-          li Only the member that listed the company can create and update OKRs
-          li Visit your company listing and click the + in the OKR section
+          li Refer to them frequently and let them guide your daily activities
           li The Objective should be ambitious but remain within reach
-          li The Key Results should be quantifiable and numerically measurable
+          li Key Results should be quantifiable and numerically measurable
           li We recommend your OKRs should last one calendar quarter
-          li Score your OKR at the half way point and at the finish
+          li We recommend you not have more than 3 OKRs active concurrently
+          li Score your OKR (1 — 10) half way through and at the finish
+          li If you consistently score 8 or above, your Objectives are probably too easy! :-)
           li Write a postmortem you can refer to in the future
-
-    .row
-      hr
-      .medium-4.columns
-        p.pad-right
-          strong Using the Video Conferencing tool
-      .medium-8.columns
-        ol
-          li We recommend the Chrome web browser
-          li Video conferences use the microphone and your camera on your computer
-          li Coordinate the meeting time with your team members
-          li Visit your company or alliance listing and click the Video Conference Room button
-          li Take advantage of the chat and screen sharing features
-
-    .row
-      hr
-      .medium-4.columns
-        p.pad-right
-          strong Private Alliances
-      .medium-8.columns
-        p Private Alliances are launching soon
+          li Retain your earlier OKRs to track your improvements
+          li Only the member that added the Company can create and update OKRs
 
     .row
       hr
@@ -115,8 +241,10 @@
         p.pad-right
           strong Need something else?
       .medium-8.columns
-        p
-          ' #{mail_to 'hello@startupalliance.com', 'Let us know what you need!', subject: "A suggestion for the quick start", encode: 'hex'}
+        ul
+          li We’re always looking for ways to make the platform more useful to our members.
+          li So by all means, please, #{mail_to 'hello@startupalliance.com', 'let us know what you need', subject: "A suggestion for the quick start", encode: 'hex'}!
+          li.no-bullet &nbsp;
 
     /.row
       hr

@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_discussion, only: [:show, :edit, :destroy]
+  before_action :set_discussion, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
   def new
