@@ -8,6 +8,9 @@ COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized active paused]
 ALLIANCE_STATES           = %w[initialized active paused]
 
+PRIVATE_ALLIANCE_TIP      = 'Where entrepreneurs collaborate to achieve goals, overcome challenges, expand networks and maximize success.'
+STEALTH_MODE_TIP          = 'In case you want to keep your Private Alliances and Companies from appearing in search results.'
+VIDEO_CONFERENCE_TIP      = 'Conduct private online video meetings whenever you want with people from all around the world.'
 USER_TRAIT_TIP            = 'Only Personal Traits where you have rated yourself appear to others.'
 VIEWER_TRAIT_TIP          = 'This member has rated themselves for these Personal Traits.'
 USER_SKILL_TIP            = 'Only Startup Skills where you have rated yourself appear to others.'

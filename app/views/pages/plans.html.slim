@@ -10,6 +10,43 @@
       ' Helping entrepreneurs succeed, regardless of their location
     p.show-for-medium.snug-top &nbsp;
 
+    .row.show-for-small-only data-equalizer-watch=true
+      .small-4.columns
+        .callout.primary data-equalizer-watch=true
+          p.text-center.bold
+            ' Associate
+            br
+            ' Membership
+          p.text-center.bold
+            ' FREE
+            br
+            ' for life!
+          p.text-center Scroll down...
+      .small-4.columns
+        .callout.primary data-equalizer-watch=true
+          p.text-center.bold
+            ' Alliance
+            br
+            ' Membership
+          p.text-center.bold
+            ' FREE
+            br
+            ' during beta!
+          p.text-center Scroll down...
+      .small-4.columns
+        .callout.primary data-equalizer-watch=true
+          p.text-center.bold
+            ' Company
+            br
+            ' Membership
+          p.text-center.bold
+            ' FREE
+            br
+            ' during beta!
+          p.text-center Scroll down...
+      h3 &nbsp;
+      h3 &nbsp;
+
     .row data-equalizer=true
 
       .medium-4.columns
@@ -23,7 +60,10 @@
               li Browse Alliances, Companies, Members
               li Receive private messages
               li Can be added to Company Teams
-              li Can be added to Private Alliances
+              li
+                ' Can be added to
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
+                  ' Private Alliances
               li Access all Company and Alliance tools
           p.little-snug-bottom &nbsp;
           .callout
@@ -47,12 +87,22 @@
             ul
               li.bold All Associate Member benefits
               li.bold Send Private Messages
-              li.bold Create your own Private Alliances
+              li.bold
+                ' Create your own
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
+                  ' Private Alliances
               li Alliance profile and mission statement
-              li Private Alliance stealth mode
+              li
+                ' Private Alliance
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+                  ' stealth mode
+              li Set a flag if your Private Alliance is recruiting
               li You control who joins your Private Alliances
               li Create and manage Alliance Discussions
-              li Participate in private Video Conferences
+              li
+                ' Participate in private
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIDEO_CONFERENCE_TIP
+                  ' Video Conferences
           p.little-snug-bottom &nbsp;
           .callout
             /h4.bold.text-center $6.50 a month!
@@ -66,7 +116,7 @@
               p.little-space-top= link_to 'FREE during beta, sign up today!', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
               /' (Paid annually. $7.99 paid monthly.)
-              ' (After beta ends, $7.99/mth or $78/yr.)
+              ' (After beta ends it’s $7.99/mth or $78/yr.)
 
       .medium-4.columns
         .callout.primary
@@ -79,8 +129,12 @@
               li.bold All Alliance Member benefits
               li.bold Add your Companies
               li Company profile to showcase your company
-              li Company stealth mode
+              li
+                ' Company
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+                  ' stealth mode
               li Manage your Company Teams
+              li Set a flag if your Company is recruiting
               li
                 ' Create and manage
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
@@ -90,7 +144,10 @@
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
                   ' SAKPIs
               li Create and manage Company Discussions
-              li Participate in private Video Conferences
+              li
+                ' Participate in private
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIDEO_CONFERENCE_TIP
+                  ' Video Conferences
           p.little-snug-bottom &nbsp;
           .callout
             /h4.bold.text-center $16.50 a month!
@@ -104,7 +161,7 @@
               p.little-space-top= link_to 'FREE during beta, sign up today!', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
               /' (Paid annually. $19.99 paid monthly.)
-              ' (After beta ends, $19.99/mth or $198/yr.)
+              ' (After beta ends it’s $19.99/mth or $198/yr.)
 
     .callout.small
       h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask us about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
