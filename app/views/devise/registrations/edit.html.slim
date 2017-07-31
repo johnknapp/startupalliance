@@ -9,10 +9,10 @@
       = f.error_notification
       .form-inputs
         .row
-          .small-12.columns
+          .small-8.columns
             = f.input :email, required: true
-          /.small-4.columns
-            .space-top.indented-1= f.input :company_owner, required: true, label: 'I own my own company'
+          .small-4.columns
+            .space-top.indented-1= f.input :company_owner, required: false, label: 'I own my own company'
         .row
           .small-3.columns
             = f.input :first_name, required: true
