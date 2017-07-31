@@ -30,6 +30,7 @@ class OkrsController < ApplicationController
   # POST /okrs.json
   def create
     @okr = Okr.new(okr_params)
+    @okr.okr_start = string_to_date(params[:okr][:okr_start])
     @company = Company.find @okr.company_id
 
     respond_to do |format|
@@ -47,7 +48,10 @@ class OkrsController < ApplicationController
   # PATCH/PUT /okrs/1.json
   def update
     respond_to do |format|
+      okr_start = string_to_date(params[:okr][:okr_start])
+      params[:okr].delete :okr_start
       if @okr.update(okr_params)
+        @okr.update_attribute(:okr_start, okr_start)
         @company = Company.find @okr.company_id
         format.html { redirect_to company_path(@company), notice: 'OKR was successfully updated.' }
         format.json { render :show, status: :ok, location: @okr }
@@ -76,7 +80,6 @@ class OkrsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def okr_params
-      params[:okr][:okr_start] = string_to_date(params[:okr][:okr_start])
       params.require(:okr).permit(:objective, :key_result_1, :key_result_2, :key_result_3, :postmortem, :okr_duration, :okr_units, :okr_start, :mid_score, :final_score, :company_id, :pid, :state)
     end
 end

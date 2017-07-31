@@ -88,8 +88,7 @@ class CompaniesController < ApplicationController
     if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
       @company = Company.where(company_params).first_or_initialize
       if @company.new_record?
-        @company.founded = Date.strptime(params[:company][:founded], '%m/%d/%Y')
-        params[:company].delete [:founded]
+        @company.founded = string_to_date(params[:company][:founded])
         respond_to do |format|
           if @company.save
             @company.team << current_user
@@ -114,8 +113,11 @@ class CompaniesController < ApplicationController
   def update
     if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
       respond_to do |format|
+        founded = string_to_date(params[:company][:founded])
+        params[:company].delete :founded
         if current_user == @company.creator
           if @company.update(company_params)
+            @company.update_attribute(:founded, founded)
             format.html { redirect_to @company, notice: 'Company was successfully updated.' }
             format.json { render :show, status: :ok, location: @company }
           else
@@ -155,7 +157,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      # params[:company][:founded] = string_to_date(params[:company][:founded])
       params.require(:company).permit(:is_unlisted, :name, :mission, :primary_market, :webmeet_url, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :state, :recruiting, :creator_id, :pid)
     end
 end

@@ -1,34 +1,34 @@
 User.destroy_all
 
-admin = User.new(first_name: 'Ima', last_name: 'Admin', email: 'admin@example.com', username: 'admin',
+admin = User.new(first_name: 'Ima', last_name: 'Admin', email: 'admin@example.com', username: 'ima-admin',
                  time_zone: 'Pacific Time (US & Canada)', role: 'admin', state: 'active',
                  password: 'password', password_confirmation: 'password'
               )
 admin.skip_confirmation!
 admin.save
 
-guest = User.new(first_name: 'Guest', last_name: 'User', email: 'guest@example.com', username: 'guest',
+guest = User.new(first_name: 'Guest', last_name: 'User', email: 'guest@example.com', username: 'ima-guest',
                 time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'guest',
                 password: 'password', password_confirmation: 'password'
               )
 guest.skip_confirmation!
 guest.save
 
-associate = User.new(first_name: 'Associate', last_name: 'User', email: 'user@example.com', username: 'associate',
+associate = User.new(first_name: 'Associate', last_name: 'User', email: 'user@example.com', username: 'ima-associate',
                 time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'associate',
                 password: 'password', password_confirmation: 'password'
               )
 associate.skip_confirmation!
 associate.save
 
-alliance = User.new(first_name: 'Alliance', last_name: 'User', email: 'alliance@example.com', username: 'alliance',
+alliance = User.new(first_name: 'Alliance', last_name: 'User', email: 'alliance@example.com', username: 'ima-alliance',
                 time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'alliance',
                 password: 'password', password_confirmation: 'password'
               )
 alliance.skip_confirmation!
 alliance.save
 
-company = User.new(first_name: 'Company', last_name: 'User', email: 'company@example.com', username: 'company',
+company = User.new(first_name: 'Company', last_name: 'User', email: 'company@example.com', username: 'ima-company',
                 time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'company',
                 password: 'password', password_confirmation: 'password'
               )
