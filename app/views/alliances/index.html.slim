@@ -49,8 +49,8 @@
             tr
               td{valign='top'}= link_to alliance.name, alliance
               td{valign='top'}= alliance.mission
-              td{valign='top' align='center'}= number_with_delimiter(alliance.member_companies.count)
               td{valign='top' align='center'}= number_with_delimiter(alliance.members.count)
+              td{valign='top' align='center'}= number_with_delimiter(alliance.member_companies.count)
               td{valign='top' align='center'}
                 - if alliance.recruiting
                   ' Yes!
