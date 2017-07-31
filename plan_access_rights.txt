@@ -2,7 +2,7 @@ non-auth limitations
   no index listings
 
 associate limitations
-  no message sender
+  no conversation create
   no company crud
   no alliance crud
 
