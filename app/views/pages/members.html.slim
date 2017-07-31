@@ -8,12 +8,13 @@
     hr.little-snug-top
     .float-right
       p.snug-top.space-bottom It’s about who you know. All of us are better. Together.
-    p.snug-top.space-bottom
-      = link_to plans_path do
-        i.fa.fa-plus
-        | &nbsp;
-        | &nbsp;
-        ' Become a member
+    - if !current_user
+      p.snug-top.space-bottom
+        = link_to plans_path do
+          i.fa.fa-plus
+          | &nbsp;
+          | &nbsp;
+          ' Become a member
 
 
     - if current_user and current_user.confirmed? and @members.present?

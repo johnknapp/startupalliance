@@ -10,12 +10,16 @@ class ConversationsController < ApplicationController
 
   def create
     if params[:sender_pid].present? and params[:recipient_pid].present?
-      if Conversation.between(@sender.id,@recipient.id).present?
-        @conversation = Conversation.between(@sender.id,@recipient.id).first
+      if %w[alliance company].any? { |necessary_plans| @sender.plan == necessary_plans }
+        if Conversation.between(@sender.id,@recipient.id).present?
+          @conversation = Conversation.between(@sender.id,@recipient.id).first
+        else
+            @conversation = Conversation.create!(sender_id: @sender.id, recipient_id: @recipient.id)
+        end
+        redirect_to conversation_messages_path(@conversation)
       else
-        @conversation = Conversation.create!(sender_id: @sender.id, recipient_id: @recipient.id)
+        redirect_to plans_path(goal: 'message'), alert: 'Please upgrade to an Alliance or Company Membership!' and return
       end
-      redirect_to conversation_messages_path(@conversation)
     else
       redirect_to :back, alert: 'There was a problem!'
     end

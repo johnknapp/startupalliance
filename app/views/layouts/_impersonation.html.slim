@@ -1,7 +1,7 @@
 - if current_user != true_user
   .callout.simple.alert
     p.text-center
-      ' #{true_user.username.upcase} signed in as #{link_to current_user.username.upcase, vanity_path(current_user.username)}.
+      ' #{true_user.username} signed in as #{link_to current_user.username, vanity_path(current_user.username)}.
       | &nbsp;
       | &nbsp;
       | &nbsp;

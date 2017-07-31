@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
   before_action :set_conversation,  only: [:index, :new, :create]
   before_action :set_message,       only: [:destroy]
+  load_and_authorize_resource
 
   def index
     @messages = @conversation.messages
@@ -35,6 +35,12 @@ class MessagesController < ApplicationController
 
   def destroy
     if @message.author == current_user
+      if @message.conversation.messages.count == 1 # it's about to become empty so ditch the convo!
+        convo = @message.conversation
+        @message.destroy
+        convo.destroy
+        redirect_to vanity_path(current_user.username), notice: 'That conversation became empty and was deleted.' and return
+      end
       @message.destroy
     end
     redirect_to conversation_messages_path

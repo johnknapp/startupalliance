@@ -1,6 +1,6 @@
 class AlliancesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_alliance, only: [:show, :add_member, :remove_member, :edit, :update, :destroy]
+  before_action :set_alliance, only: [:show, :add_alliance_member, :remove_alliance_member, :edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /alliances
@@ -16,17 +16,26 @@ class AlliancesController < ApplicationController
 
   # GET /alliances/new
   def new
-    @alliance = Alliance.new
+    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      @alliance = Alliance.new
+    else
+      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+    end
   end
 
   # GET /alliances/1/edit
   def edit
+    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      true
+    else
+      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+    end
   end
 
   # PUT /alliances/1/add_member
-  def add_member
+  def add_alliance_member
     member = User.find_by_username(params[:username])
-    if @alliance.members.exists? member.id
+    if @alliance.members.exists? member.username
       redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
     else
       @alliance.members << member
@@ -34,7 +43,7 @@ class AlliancesController < ApplicationController
     end
   end
 
-  def remove_member
+  def remove_alliance_member
     member = User.find_by_pid(params[:member_pid])
     if @alliance.members.count > 1
       @alliance.members.delete(member)
@@ -47,31 +56,43 @@ class AlliancesController < ApplicationController
   # POST /alliances
   # POST /alliances.json
   def create
-    @alliance = Alliance.new(alliance_params)
+    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      @alliance = Alliance.new(alliance_params)
 
-    respond_to do |format|
-      if @alliance.save
-        @alliance.members << current_user
-        format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }
-        format.json { render :show, status: :created, location: @alliance }
-      else
-        format.html { render :new }
-        format.json { render json: @alliance.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @alliance.save
+          @alliance.members << current_user
+          format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }
+          format.json { render :show, status: :created, location: @alliance }
+        else
+          format.html { render :new }
+          format.json { render json: @alliance.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
   # PATCH/PUT /alliances/1
   # PATCH/PUT /alliances/1.json
   def update
-    respond_to do |format|
-      if @alliance.update(alliance_params)
-        format.html { redirect_to @alliance, notice: 'Alliance was successfully updated.' }
-        format.json { render :show, status: :ok, location: @alliance }
-      else
-        format.html { render :edit }
-        format.json { render json: @alliance.errors, status: :unprocessable_entity }
+    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      respond_to do |format|
+        if current_user == @alliance.creator
+          if @alliance.update(alliance_params)
+            format.html { redirect_to @alliance, notice: 'Alliance was successfully updated.' }
+            format.json { render :show, status: :ok, location: @alliance }
+          else
+            format.html { render :edit }
+            format.json { render json: @alliance.errors, status: :unprocessable_entity }
+          end
+        else
+          redirect_back(fallback_location: root_path, alert: 'You are not the creator of this Alliance!')
+        end
       end
+    else
+      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
@@ -80,7 +101,7 @@ class AlliancesController < ApplicationController
   def destroy
     @alliance.destroy
     respond_to do |format|
-      format.html { redirect_to alliances_url, notice: 'Alliance was successfully destroyed.' }
+      format.html { redirect_to vanity_path(current_user.username), notice: 'Alliance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

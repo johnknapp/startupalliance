@@ -1,0 +1,17 @@
+non-auth limitations
+  no index listings
+
+associate limitations
+  no message sender
+  no company crud
+  no alliance crud
+
+alliance limitations
+  no company crud
+
+  alliance members gain no special rights
+
+company limitations
+  none for the company creator
+
+  company team gains no special rights

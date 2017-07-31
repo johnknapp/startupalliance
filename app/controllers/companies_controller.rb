@@ -17,11 +17,20 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    @company = Company.new
+    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      @company = Company.new
+    else
+      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
+    end
   end
 
   # GET /companies/1/edit
   def edit
+    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      true
+    else
+      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
+    end
   end
 
   def set_sakpi
@@ -76,39 +85,49 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Company.where(company_params).first_or_initialize
-    if @company.new_record?
-      @company.founded = Date.strptime(params[:company][:founded], '%m/%d/%Y')
-      params[:company].delete [:founded]
-      respond_to do |format|
-        if @company.save
-          @company.team << current_user
-          CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
-          format.html { redirect_to @company, notice: 'Company was successfully created.' }
-          format.json { render :show, status: :created, location: @company }
-        else
-          format.html { render :new }
-          format.json { render json: @company.errors, status: :unprocessable_entity }
+    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      @company = Company.where(company_params).first_or_initialize
+      if @company.new_record?
+        @company.founded = Date.strptime(params[:company][:founded], '%m/%d/%Y')
+        params[:company].delete [:founded]
+        respond_to do |format|
+          if @company.save
+            @company.team << current_user
+            CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
+            format.html { redirect_to @company, notice: 'Company was successfully created.' }
+            format.json { render :show, status: :created, location: @company }
+          else
+            format.html { render :new }
+            format.json { render json: @company.errors, status: :unprocessable_entity }
+          end
         end
+      else
+        redirect_to company_path(@company), notice: 'Company already exists!'
       end
     else
-      redirect_to vanity_path(current_user.username), notice: 'Company already exists!'
+      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
     end
-
-
   end
 
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
-    respond_to do |format|
-      if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
-        format.json { render :show, status: :ok, location: @company }
-      else
-        format.html { render :edit }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+      respond_to do |format|
+        if current_user == @company.creator
+          if @company.update(company_params)
+            format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+            format.json { render :show, status: :ok, location: @company }
+          else
+            format.html { render :edit }
+            format.json { render json: @company.errors, status: :unprocessable_entity }
+          end
+        else
+          redirect_back(fallback_location: root_path, alert: 'You are not the creator of this Company!')
+        end
       end
+    else
+      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
     end
   end
 
@@ -117,7 +136,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to edit_user_registration_path(current_user), notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to vanity_path(current_user.username), notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -135,7 +135,7 @@
             .small-4.columns
               p.faint.snug-top Username:
             .small-8.columns
-              p.faint.text-right.snug-top= @user.username.upcase
+              p.faint.text-right.snug-top= @user.username
             hr
 
           - if current_user and @user.skills.present? or current_user == @user

@@ -11,11 +11,11 @@ skills = [
   'Negotiation',
   'Operations',
   'Partnerships',
-  'Product Mgmt.',
+  'Product&nbsp;Mgmt.',
   'Recruiting',
   'Sales',
   'Strategy',
-  'Time Mgmt.',
+  'Time&nbsp;Mgmt.',
   'UX&nbsp;/&nbsp;UI'
 ]
 

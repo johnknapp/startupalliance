@@ -38,8 +38,8 @@ Rails.application.routes.draw do
 
   resources :alliances do
     member do
-      put     :add_member
-      delete  :remove_member
+      put     :add_alliance_member
+      delete  :remove_alliance_member
     end
   end
 
