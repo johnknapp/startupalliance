@@ -12,7 +12,7 @@
         = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
           i.fa.fa-plus
     ' Objectives and Key Results:
-  - if current_user and current_user.team?(@company)
+  - if current_user and @company.team.incude?(current_user)
     - if @company.okrs.present?
 
       ul.tabs#okr-tabs data-tabs=true

@@ -26,42 +26,19 @@ class User < ApplicationRecord
   validates :linkedin_profile, url: { allow_nil: true, allow_blank: true, no_local: true },   format: { with: /linkedin.com/, allow_blank: true}
   validates :website, url: { allow_nil: true, allow_blank: true, no_local: true }
 
-  def conversations
-    Conversation.includes?(self)
-  end
-
   def name
     if self.first_name or self.last_name
       self.first_name + ' ' + self.last_name
     end
   end
 
-  def team?(company)
-    company.team.include? self
-  end
-
-  def member?(alliance)
-    alliance.members.include? self
-  end
-
-  def company_creator?
-    self.companies.any? { |company| company.creator_id = self.id }
-  end
-
-  def companies_created
-    self.companies.where(creator_id: self.id).count
-  end
-
-  def alliance_creator?
-    self.alliances.any? { |alliance| alliance.creator_id = self.id }
-  end
-
-  def alliances_created
-    self.alliances.where(creator_id: self.id).count
-  end
-
   def admin?
     self.role == 'admin'
+  end
+
+  # part of messaging system
+  def conversations
+    Conversation.includes?(self)
   end
 
   # part of guest user

@@ -52,19 +52,13 @@
                         ' Yes
                       - else
                         ' —
-
           - else
             p.text-center.bold Not part of any Company Teams yet!
-            - if current_user and current_user == @user and !current_user.company_creator?
+            - if current_user and current_user == @user
               p.text-center
                 ' Find your company on Startup Alliance and ask to be put on the team.
               p.text-center
-                ' If your company isn’t listed yet, #{link_to 'add your company', new_company_path}.
-            - elsif current_user and current_user == @user and !current_user.company_creator?
-              p.text-center
-                ' Find your company on Startup Alliance and ask to be put on the team.
-              p.text-center
-                ' If your company isn’t listed yet, have an owner add it.
+                ' If your company isn’t listed yet, add it.
 
         .callout.small
           - if @user.alliances.present?

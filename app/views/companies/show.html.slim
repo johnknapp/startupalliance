@@ -103,7 +103,7 @@
                 .progress-meter style="width: 1%"
                   p.meter-text= sakpi.name.html_safe
 
-          - if @company.webmeet_url.present? and current_user and current_user.team?(@company)
+          - if current_user and @company.webmeet_url.present? and @company.team.includes?(current_user)
             hr
               p.text-center.faint.little-snug-top.snug-bottom
                 = link_to @company.webmeet_url, target: '_blank' do
