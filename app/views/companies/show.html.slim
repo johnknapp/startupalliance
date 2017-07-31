@@ -30,7 +30,7 @@
                 ' Not currently recruiting
 
           hr.little-snug-top
-          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
@@ -39,7 +39,7 @@
             em= @company.mission
 
           hr.little-snug-top
-          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
@@ -48,7 +48,7 @@
             em= @company.primary_market
 
           hr.little-snug-top
-          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               = link_to edit_company_path(@company) do
                 i.fa.fa-pencil
@@ -80,7 +80,7 @@
           p.bold
             .float-right
               p.faint
-                - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+                - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
                   a data-open='set-sakpis'
                     i.fa.fa-pencil
                 = render 'partials/set_sakpis_modal'
@@ -111,7 +111,7 @@
                     ' Video Conference Room
 
           hr
-          - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
             .float-right
               a data-open='update-team'
                 i.fa.fa-plus

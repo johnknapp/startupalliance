@@ -23,6 +23,7 @@ class Company < ApplicationRecord
       Diversification:  5
   }
 
+  # used to test company_user.role (enum)
   def team_member(user)
     CompanyUser.where(user_id: user.id, company_id: self.id).first
   end

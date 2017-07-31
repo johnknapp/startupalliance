@@ -3,7 +3,7 @@
     .float-right
       a data-open='stage-info'
         i.fa.fa-info-circle
-      - if current_user and @company.team_member(current_user) and @company.team_member(current_user).role == 'Owner'
+      - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
         | &nbsp;
         | &nbsp;
         | &nbsp;
