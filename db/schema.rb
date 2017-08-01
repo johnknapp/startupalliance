@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 20170801165920) do
     t.integer  "skill_index",            default: 0
     t.integer  "trait_index",            default: 0
     t.boolean  "company_owner",          default: false
-    t.string   "plan",                   default: "guest"
+    t.string   "plan",                   default: "associate"
     t.index "lower((username)::text) text_pattern_ops", name: "users_username_lower", unique: true, using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
