@@ -23,7 +23,10 @@
             - else
               - interlocutor = conversation.sender
             p
-              ' #{link_to "With #{interlocutor.name}", conversation_messages_path(conversation)}
-              ' (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)})
+              = link_to conversation_messages_path(conversation) do
+                = image_tag gravatar_url(interlocutor.email, 36)
+                | &nbsp;
+                = interlocutor.name
+                '  (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)})
         - else
           ' No conversations yet!

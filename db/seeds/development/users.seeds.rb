@@ -14,7 +14,7 @@ guest = User.new(first_name: 'Guest', last_name: 'User', email: 'guest@example.c
 guest.skip_confirmation!
 guest.save
 
-associate = User.new(first_name: 'Associate', last_name: 'User', email: 'user@example.com', username: 'ima-associate',
+associate = User.new(first_name: 'Associate', last_name: 'User', email: 'associate@example.com', username: 'ima-associate',
                 time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'associate',
                 password: 'password', password_confirmation: 'password'
               )
