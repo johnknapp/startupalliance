@@ -30,11 +30,11 @@
                 | &nbsp;
                 = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
                   i.fa.fa-trash-o.faint
-              p.text-right.faint You wrote at #{message.message_time}
+              p.text-right.faint Written #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
               p.text-right.snug-top= message.body
             - else
-              p.faint They wrote at #{message.message_time}
+              p.faint Written #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
               p.snug-top= message.body
 
