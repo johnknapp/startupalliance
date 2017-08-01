@@ -35,11 +35,13 @@ class AlliancesController < ApplicationController
   # PUT /alliances/1/add_member
   def add_alliance_member
     member = User.find_by_username(params[:username])
-    if @alliance.members.exists? member.username
+    if @alliance.members.exists? member
       redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
-    else
+    elsif member
       @alliance.members << member
       redirect_back(fallback_location: alliance_path, notice: 'Member added.')
+    else
+      redirect_back(fallback_location: alliance_path, alert: 'No member with that username!')
     end
   end
 

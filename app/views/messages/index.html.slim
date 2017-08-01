@@ -1,17 +1,22 @@
+- if @message.conversation.sender_id == current_user.id
+  - interlocutor = @message.conversation.recipient
+- else
+  - interlocutor = @message.conversation.sender
+
 - content_for :page_title do
   ' Startup Alliance –
-  ' Conversation with #{@conversation.recipient.name}
+  ' Conversation with #{interlocutor.name}
 
 .row
   .medium-12.columns
     h3.space-top.primary-text
-      ' #{image_tag gravatar_url("#{@conversation.recipient.email}", 60)}
+      ' #{image_tag gravatar_url("#{interlocutor.email}", 60)}
       strong
-        ' #{@conversation.recipient.name}
+        ' #{interlocutor.name}
 
     hr.little-snug-top
     p.snug-top.space-bottom.text-right
-      ' Your conversation with #{link_to @conversation.recipient.name, vanity_path(@conversation.recipient.username)} is private.
+      ' Your conversation with #{link_to interlocutor.name, vanity_path(interlocutor.username)} is private.
 
     p.show-for-medium.snug-top &nbsp;
 
@@ -37,6 +42,6 @@
           = f.hidden_field :user_id, value: current_user.id
           .row.collapse
             .small-10.columns
-              = f.input :body, autofocus: true, as: :string, label: false, placeholder: "Private message to #{@conversation.recipient.name}"
+              = f.input :body, autofocus: true, as: :string, label: false, placeholder: "Private message to #{interlocutor.name}"
             .small-2.columns
               = f.button :submit, "Send", class: 'button postfix accent expanded'
