@@ -66,8 +66,6 @@ class ApplicationController < ActionController::Base
           :linkedin_profile,
           :website,
           :location,
-          :latitude,
-          :longitude,
           :time_zone
       )
     end

@@ -1,6 +1,6 @@
 ActiveAdmin.register Company do
 
-  permit_params :id, :pid, :webmeet_url, :name, :mission, :primary_market, :sakpi_index, :phases, :url, :location, :latitude, :longitude, :time_zone, :founded, :recruiting, :state, :creator_id, :is_unlisted
+  permit_params :id, :pid, :webmeet_url, :name, :mission, :primary_market, :sakpi_index, :phases, :url, :location, :time_zone, :founded, :recruiting, :creator_id, :is_unlisted
 
   controller do
     def find_resource
@@ -19,7 +19,6 @@ ActiveAdmin.register Company do
     end
     column :is_unlisted
     column :recruiting
-    column :state
     actions
   end
 
