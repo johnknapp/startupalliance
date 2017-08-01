@@ -40,21 +40,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(
-          :email, :acqsrc, :plan, :latitude, :longitude
-      )
-    end
-
-    # TODO This doesn't work, not sure what symbol to 'permit'. :-(
-    #   As it stands, time_zone fails so user cannot set it on confirmation
-    #     which flows through confirmations controller confirm action.
-    devise_parameter_sanitizer.permit(:confirm) do |user_params|
-      user_params.permit(
-          :first_name,
-          :last_name,
-          :username,
-          :time_zone,
-          :password,
-          :password_confirmation
+          :email, :acqsrc, :plan, :time_zone
       )
     end
 
@@ -101,17 +87,17 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def store_current_location
-    store_location_for(:user, request.url)
-  end
+    def store_current_location
+      store_location_for(:user, request.url)
+    end
 
-  def create_guest_user
-    u = User.new(first_name: 'Guest', last_name: 'User', role: 'guest', email: "guest_#{Time.zone.now.to_i}#{rand(100..999)}@example.com")
-    u.pid = Generator.pid(u)
-    u.username = 'guest-' + u.pid
-    u.skip_confirmation_notification!
-    u.save!(:validate => false)
-    u
+    def create_guest_user
+      u = User.new(first_name: 'Guest', last_name: 'User', role: 'guest', email: "guest_#{Time.zone.now.to_i}#{rand(100..999)}@example.com")
+      u.pid = Generator.pid(u)
+      u.username = 'guest-' + u.pid
+      u.skip_confirmation_notification!
+      u.save!(:validate => false)
+      u
     end
 
 end
