@@ -5,7 +5,7 @@
     .row
       = f.hidden_field :creator_id, value: current_user.id if params[:action] == 'new'
       .medium-4.columns
-        = f.input :name, label: 'Company name', placeholder: 'Company name'
+        = f.input :name, label: 'Company name', placeholder: 'Company name', required: true
       .medium-4.columns
         = f.input :url, label: 'URL', placeholder: 'Company website'
       .medium-4.columns
@@ -25,10 +25,10 @@
       .callout.small.accent
         .row
           .medium-6.columns
-            p.space-top.text-center I am an owner of this company:
+            p.space-top.text-center Please specify your ownership equity:
           .medium-6.columns
             = f.simple_fields_for :company_user do |cu|
-              = cu.input :equity, collection: CompanyUser.equities.keys, label: 'My equity percentage'
+              = cu.input :equity, collection: CompanyUser.equities.keys, label: 'My equity percentage', default: false
 
   .form-actions
     .row

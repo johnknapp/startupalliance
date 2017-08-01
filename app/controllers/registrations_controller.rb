@@ -187,6 +187,7 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.update(trait_index: us.sum(:level))
     end
 
+    # Specifically not destroying any companies or alliances they created
     def departure_cleanup
       AllianceUser.where(user_id: @user.id).destroy_all
       CompanyUser.where(user_id: @user.id).destroy_all

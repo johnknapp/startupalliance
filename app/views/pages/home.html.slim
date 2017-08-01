@@ -9,9 +9,6 @@
           h3.indented-2.bold.success-text It’s about who you know.
           h3.indented-2.bold.success-text.tight-lead It shouldn’t be about where you live.
 
-    /h1.bold.text-center.warning-text
-      ' Better. Together.
-
     h4.bold.little-space-top.little-snug-bottom.primary-text
       ' Join this Global Entrepreneurs Community and get...
       '
@@ -22,7 +19,6 @@
             i.fa-lg.fa.fa-gears.little-space-top
           h4.bold.text-center.primary-text
             ' The right tools
-            /' Collaborative business building tools for entrepreneurs
           p.text-center
             ' Video conferencing, collaboration tools and progress
             ' tracking – all designed specifically for entrepreneurs.
@@ -33,8 +29,6 @@
             i.fa-lg.fa.fa-users.little-space-top
           h4.bold.text-center.primary-text
             ' The right connections
-            /' Connections with entrepreneurs with complementary skills
-            '
           p.text-center
             ' Team up with the entrepreneurs, advisors and investors
             ' who can help you and your company the most.
@@ -44,7 +38,6 @@
             i.fa-lg.fa.fa-line-chart.little-space-top
           h4.bold.text-center.primary-text
             ' The right outcomes
-            /' Greater success through more and better collaboration
           p.text-center
             ' Help each other achieve goals, overcome challenges,
             ' expand networks and maximize success.
@@ -74,9 +67,7 @@
           em
             ' Also, please tell your friends about us and follow #{link_to '@StartupAlliance on Twitter', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'}.
 
-
-
-        p.show-for-medium &nbsp;
+        p.show-for-large &nbsp;
         - if !current_user
           p.text-center= link_to 'Explore Membership Plans and join us today...', plans_path, class: 'button large secondary expanded bold'
         - else

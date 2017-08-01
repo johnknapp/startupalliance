@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Pid
+  # Specifically not destroying any companies or alliances they created
   has_many  :company_users
   has_many  :companies, through: :company_users
   has_many  :alliance_users
@@ -8,7 +9,7 @@ class User < ApplicationRecord
   has_many  :traits, through: :user_traits
   has_many  :user_skills
   has_many  :skills, through: :user_skills
-  has_many  :conversations
+  has_many  :conversations,                          dependent: :destroy
   has_many  :posts,         foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, dependent: :destroy
 
