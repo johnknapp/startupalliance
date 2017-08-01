@@ -26,8 +26,10 @@
               i.fa.fa-trash-o
         p #{link_to disco.title, discussion_path(disco)} (#{disco.posts.count} #{'post'.pluralize(disco.posts.count)})
         p.snug-top.faint.indented-2= disco.description
-    - else
+    - elsif current_user and @company.creator == current_user
       p.text-center.space-top Add your first discussion.
+    - else
+      p.text-center.space-top The member who listed the company will create the first discussion soon.
   - else
     p.text-center.space-top
       em
