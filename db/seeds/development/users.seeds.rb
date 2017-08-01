@@ -1,6 +1,6 @@
 User.destroy_all
 
-admin = User.new(first_name: 'Ima', last_name: 'Admin', email: 'admin@example.com', username: 'ima-admin',
+admin = User.new(first_name: 'Ima', last_name: 'Admin', email: 'admin@example.com', username: 'john',
                  time_zone: 'Pacific Time (US & Canada)', role: 'admin', state: 'active',
                  password: 'password', password_confirmation: 'password'
               )

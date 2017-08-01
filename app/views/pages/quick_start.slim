@@ -43,13 +43,20 @@
       .medium-4.columns
         p.pad-right
           strong Finishing your member profile
-        p.little-snug-top.faint.pad-right= link_to 'Sample', vanity_path('john')
+        p.little-snug-top.faint.pad-right= link_to 'Sample profile', vanity_path('john')
+        /p.little-snug-top.faint.pad-right.indented-2
+          = image_tag gravatar_url("startupalliance@example.com", 60)
+
       .medium-8.columns
         ol
           li Write your personal mission statement
           li Add a list of your startup skills, rate yourself for each
           li Add a list of your personal traits, rate yourself for each
           li Visit Gravatar.com to attach a profile photo to your email
+          ul.no-bullet
+            li.faint
+              em
+                ' (That’ll replace your default cartoon face, we recommend that. :-)
           li Add your social media accounts
           li Remember that your username determines your profile URL
           ul.no-bullet
