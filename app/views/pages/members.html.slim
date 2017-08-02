@@ -2,12 +2,11 @@
   ' Startup Alliance – Our members. Better. Together.
 
 .row
-  /.medium-10.medium-offset-1.columns
   .medium-12.columns
-    h3.bold.space-top.primary-text Startup Alliance Members
+    h3.bold.primary-text Startup Alliance Members
     hr.little-snug-top
     .float-right
-      p.snug-top.space-bottom It’s about who you know. All of us are better. Together.
+      p.snug-top.space-bottom Better. Together.
     - if !current_user
       p.snug-top.space-bottom
         = link_to plans_path do
@@ -15,7 +14,6 @@
           | &nbsp;
           | &nbsp;
           ' Become a member
-
 
     - if current_user and current_user.confirmed? and @members.present?
       table.hover.stacked
@@ -55,19 +53,16 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
-          p.little-snug-bottom
+          p.little-snug-bottom.faint
             em
-              ' (You must #{link_to 'sign-in', new_user_session_path} to see the listing.)
+              ' (Only active members may see the listing.)
           .callout.secondary
-            .float-right
-                p.faint= link_to 'Sign-in', new_user_session_path
-            h4.bold Find an amazing entrepreneur and team up!
-            p.bold.indented-2 It’s easy to do:
-            ol.snug-top.indented-4
-              li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
-              li Join and activate your membership
-              li Find the people that can help you the most
-              li To really get the most out of Startup Alliance, check out the #{link_to 'Quick Start'}.
-            = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
-          p.text-center
-            ' Join as a FREE Associate Membership let’s you discover amazing entrepreneurs.
+            h4.bold Committed entrepreneurs doing outstanding work
+            p
+              ' Membership in Startup Alliance is open to all entrepreneurs regardless of location or level of experience.
+              ' Each member can publish a profile that uniquely quantifies their startup skills,
+              ' personal traits and lists the Companies and Private Alliances they’re part of.
+            p
+              ' Private messaging facilitates direct member to member conversations.
+
+          = render 'partials/join_form', acqsrc: 'member_index'

@@ -21,7 +21,7 @@
             ' Maximize your success — wherever you are.
 
     h4.bold.little-space-top.little-snug-bottom.primary-text
-      ' Join this Global Entrepreneurs Community and get...
+      ' Members of this Global Entrepreneurs Community get...
     .row data-equalizer=true
       .large-4.columns
         .callout.small.accent data-equalizer-watch=true
@@ -52,29 +52,30 @@
             ' expand networks and maximize success.
     .row
       .large-10.large-offset-1.columns
-        h4.text-center.bold All  Membership Plans are FREE during beta.
-        p.text-center.faint.little-snug-top
+        /h4.text-center.bold All  Membership Plans are FREE during beta.
+        /p.text-center.faint.little-snug-top
           em
             ' (Beta ends without notice. Beta members will then transition to the FREE FOREVER Associate Membership plan.)
         - if !current_user
-          p.text-center= link_to 'Explore Membership Plans and join us today...', plans_path, class: 'button large secondary expanded bold'
+          = render 'partials/join_form', acqsrc: 'home_page'
+          /p.text-center= link_to 'Explore Membership Plans and join us today...', plans_path, class: 'button large secondary expanded bold'
         - else
-          p.text-center= link_to 'Explore Membership Plans...', plans_path, class: 'button large secondary expanded bold'
+          /p.text-center= link_to 'Explore Membership Plans...', plans_path, class: 'button large secondary expanded bold'
 
-        p.show-for-medium &nbsp;
-        /.news-box
-          /h4.bold Latest news from Startup Alliance:
-          /hr.little-snug-top
-          /p.snug-top.text-right July 31, 2017
-          /p
-            em
-              ' Startup Alliance just entered beta and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
-          /p
-            em
-              ' Video Conferencing, Personal Messaging and Group Discussions are up and running. Private Alliances just launched.
-              ' There’s more functionality in the pipeline. All designed for entrepreneurs.
-              ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, please check them out to learn more about Startup Alliance.
-          /p
-            em
-              ' Also, please tell your friends about us and follow #{link_to '@StartupAlliance on Twitter', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'}.
+          p.show-for-medium &nbsp;
+          .news-box
+            h4.bold Latest news:
+            hr.little-snug-top
+            p.snug-top.text-right July 31, 2017
+            /p
+              em
+                ' Startup Alliance just entered beta and #{mail_to 'hello@startupalliance.com', 'welcomes your feedback', subject: 'Beta feedback', encode: 'hex'}.
+            p
+              em
+                ' Video Conferencing, Personal Messaging and Group Discussions are up and running. Private Alliances just launched.
+                ' There’s more functionality in the pipeline. All designed for entrepreneurs.
+                ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, please check them out to learn more about Startup Alliance.
+            p
+              em
+                ' Tell your friends about us and follow #{link_to '@StartupAlliance on Twitter', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'}.
 

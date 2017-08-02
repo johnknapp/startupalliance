@@ -1,40 +1,45 @@
 .top-bar
-  - if !current_user and params[:action] == 'home'
+  - if !current_user
     .top-bar-title
-      .show-for-small-only
-        = image_tag 'banner.svg', width: '250px'
-        br
-        .faint &nbsp; &nbsp; βeta
-      .show-for-medium
-        = image_tag 'banner.svg', width: '300px'
-        br
-        .faint &nbsp; &nbsp; βeta
-      /ul.menu.simple.show-for-small-only
-        li= link_to 'Alliances', alliances_path
-        li= link_to 'Members', members_path
-        li= link_to 'Companies', companies_path
-      /ul.menu.show-for-medium
-        li= link_to 'Alliances', alliances_path
-        li= link_to 'Members', members_path
-        li= link_to 'Companies', companies_path
+      - if params[:action] == 'home'
+        = link_to (image_tag 'banner.svg', width: '350px'), root_path
+        p.little-snug-top.faint &nbsp; &nbsp; &nbsp; βeta
+      - else
+        = link_to (image_tag 'sa_mark_master_125x.png', width: '77px'), root_path
+        p.faint &nbsp; &nbsp; &nbsp; βeta
 
-  - if current_user or params[:action] != 'home'
-    .top-bar-title
-      = link_to (image_tag 'sa_mark_master_125x.png', width: '60px'), root_path
-      br
-      .faint &nbsp; &nbsp; βeta
-    .top-bar-left
-      ul.menu.simple.show-for-small-only
-        li= link_to 'Alliances', alliances_path
+    .top-bar-right
+      ul.menu.simple.snug-top.show-for-small-only
         li= link_to 'Members', members_path
+        li= link_to 'Alliances', alliances_path
+        li= link_to 'Companies', companies_path
+        li= link_to 'Pricing', plans_path
+        li.bold= link_to 'Sign-up', plans_path
+        li= link_to 'Sign-in', new_user_session_path
+      ul.menu.show-for-medium
+        li= link_to 'Members', members_path
+        li= link_to 'Alliances', alliances_path
+        li= link_to 'Companies', companies_path
+        li= link_to 'Pricing', plans_path
+        li.bold= link_to 'Sign-up', plans_path
+        li= link_to 'Sign-in', new_user_session_path
+
+  - else
+    .top-bar-title
+      = link_to (image_tag 'sa_mark_master_125x.png', width: '80px'), root_path
+      p.faint &nbsp; &nbsp; &nbsp; βeta
+
+    .top-bar-left
+      ul.menu.snug-top.show-for-small-only
+        li= link_to 'Members', members_path
+        li= link_to 'Alliances', alliances_path
         li= link_to 'Companies', companies_path
       ul.menu.show-for-medium
-        li= link_to 'Alliances', alliances_path
         li= link_to 'Members', members_path
+        li= link_to 'Alliances', alliances_path
         li= link_to 'Companies', companies_path
 
-  .top-bar-right
-    - if current_user
+    .top-bar-right
       ul.dropdown.menu data-dropdown-menu=true
         li.bold.primary-text
           | &nbsp;
@@ -70,18 +75,3 @@
             li= link_to 'Membership Plans', plans_path                                    if current_user and current_user.confirmed?
             li= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
             li.little-space-bottom= link_to 'Sign-out', destroy_user_session_path
-    - else
-      ul.menu.simple.show-for-small-only
-        li= link_to 'Alliances', alliances_path
-        li= link_to 'Members', members_path             if params[:action] == 'home'
-        li= link_to 'Companies', companies_path         if params[:action] == 'home'
-        li= link_to 'Pricing', plans_path
-        li.bold= link_to 'Sign-up', plans_path
-        li= link_to 'Sign-in', new_user_session_path    if params[:action] == 'home'
-      ul.menu.show-for-medium
-        li= link_to 'Alliances', alliances_path         if params[:action] == 'home'
-        li= link_to 'Members', members_path             if params[:action] == 'home'
-        li= link_to 'Companies', companies_path         if params[:action] == 'home'
-        li= link_to 'Pricing', plans_path
-        li.bold= link_to 'Sign-up', plans_path
-        li= link_to 'Sign-in', new_user_session_path

@@ -5,13 +5,13 @@
 .row
   .medium-12.columns
     - if current_user and params[:goal] == 'message'
-      h3.bold.space-top.primary-text Alliance or Company Membership Required! Please upgrade.
+      h3.bold.primary-text Alliance or Company Membership Required! Please upgrade.
     - elsif current_user and params[:goal] == 'alliance'
-      h3.bold.space-top.primary-text Alliance or Company Membership Required! Please upgrade.
+      h3.bold.primary-text Alliance or Company Membership Required! Please upgrade.
     - elsif current_user and params[:goal] == 'company'
-      h3.bold.space-top.primary-text Company Membership Required! Please upgrade.
+      h3.bold.primary-text Company Membership Required! Please upgrade.
     - else
-      h3.bold.space-top.primary-text Three Membership Plans, something for every entrepreneur
+      h3.bold.primary-text Three Membership Plans, something for every entrepreneur
     hr.little-snug-top
     p.snug-top.space-bottom.text-right
       ' Helping entrepreneurs succeed, regardless of their location

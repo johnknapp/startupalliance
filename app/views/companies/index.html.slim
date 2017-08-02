@@ -2,12 +2,11 @@
   ' Startup Alliance – Member owned companies using our tools to get better results
 
 .row
-  /.medium-10.medium-offset-1.columns
   .medium-12.columns
-    h3.bold.space-top.primary-text Member Owned Companies
+    h3.bold.primary-text Member Owned Companies
     hr.little-snug-top
     .float-right
-      p.snug-top.space-bottom Amazing companies join Startup Alliance and use our tools to get better results
+      p.snug-top.space-bottom Amazing companies join Startup Alliance to use our tools to get better results
     p.snug-top.space-bottom
       = link_to new_company_path do
         i.fa.fa-plus
@@ -49,20 +48,22 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
-          p.little-snug-bottom
+          p.little-snug-bottom.faint
             em
-              ' (You must #{link_to 'sign-in', new_user_session_path} to see the listing.)
+              ' (Only active members may see the listing.)
           .callout.secondary
-            .float-right
-              p.faint= link_to 'Sign-in', new_user_session_path
-            h4.bold Find your next great company!
-            p.bold.indented-2 It’s easy to do:
-            ol.snug-top.indented-4
-              li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
-              li Join and activate your membership
-              li Explore the companies owned by Startup Alliance members
-              li To really get the most out of Startup Alliance, check out the #{link_to 'Quick Start'}.
-            = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
-          p.text-center
-            ' Join Startup Alliance as a FREE Associate Member and discover your next great company!
+            h4.bold Discover growing businesses focused on superior results
+            p
+              ' Startup Alliance Member Owned Companies gain access to a unique set of progress tracking and
+              ' collaboration tools to unite their team efforts and drive superior results.
+              ' Tools include
+              span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
+                ' OKR
+              '  and
+              span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
+                ' SAKPI
+              '  management and tracking as well as video conferencing and discussion boards.
+            p
+              ' All Startup Alliance members can become part of any Company Team.
 
+          = render 'partials/join_form', acqsrc: 'company_index'

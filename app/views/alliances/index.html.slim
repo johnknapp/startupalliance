@@ -3,33 +3,16 @@
 
 .row
   .medium-12.columns
-    h3.bold.space-top.primary-text Private Alliances
+    h3.bold.primary-text Private Alliances
     hr.little-snug-top
     .float-right
-      p.snug-top.space-bottom Private Alliances are where entrepreneurs form lasting partnerships with the people that can help them most
+      p.snug-top.space-bottom Collaboration to maximize the success of each member and their companies
     p.snug-top.space-bottom
       = link_to new_alliance_path do
         i.fa.fa-plus
         | &nbsp;
         | &nbsp;
         ' Add an alliance
-
-    /.callout.accent
-      h4.text-center.bold.little-space-bottom
-        ' Entrepreneurship is exploding worldwide but it’s still about knowing the right people.
-      p.text-center
-        ' Our Private Alliance tools let you connect and collaborate
-        ' with entrepreneurs, advisors and investors from around the world.
-      p.text-center
-        span.bold
-          ' Go beyond the walls of your own company and maximize your success.
-        '
-      - if !current_user
-        p.text-center
-          ' Join now and be notified when they launch.
-      - else
-        p.text-center
-          ' Private Alliances launching soon!
 
     - if current_user and current_user.confirmed? and @alliances.present?
       table.hover.stacked
@@ -62,19 +45,17 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
-          p.little-snug-bottom
+          p.little-snug-bottom.faint
             em
-              ' (You must #{link_to 'sign-in', new_user_session_path} to see the listing.)
+              ' (Only active members may see the listing.)
           .callout.secondary
-            .float-right
-              p.faint= link_to 'Sign-in', new_user_session_path
-            h4.bold Join a Private Alliance and start collaborating!
-            p.bold.indented-2 It’s easy to do:
-            ol.snug-top.indented-4
-              li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
-              li Join and activate your membership
-              li Take part in Private Alliances to take your success to the next level
-              li To really get the most out of Startup Alliance, check out the #{link_to 'Quick Start'}.
-            = link_to 'Explore Membership Plans and start today!', plans_path, class: 'button bold expanded'
-          p.text-center
-            ' Free Associate Membership let’s you discover and join the Private Alliance you need.
+            h4.bold Get connected with the group that can help you most
+            p
+              ' Inspired by
+              ' #{link_to 'Masterind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
+              ' a Private Alliance is a group of entrepreneurs who build long term partnerships to help each other become more successful.
+              ' Private Alliances include collaboration tools to help members achieve goals, overcome challenges, expand networks and maximize success.
+            p
+              ' All Startup Alliance members can take part in any Private Alliance.
+
+          = render 'partials/join_form', acqsrc: 'alliance_index'
