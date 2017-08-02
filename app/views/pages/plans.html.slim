@@ -11,7 +11,7 @@
     - elsif current_user and params[:goal] == 'company'
       h3.bold.primary-text Company Membership Required! Please upgrade.
     - else
-      h3.bold.primary-text Three Membership Plans, something for every entrepreneur
+      h3.bold.primary-text Choose your membership plan
     hr.little-snug-top
     p.snug-top.space-bottom.text-right
       ' Helping entrepreneurs succeed, regardless of their location
@@ -58,7 +58,7 @@
 
       .medium-4.columns
         .callout.primary
-          h4.bold.text-center Associate
+          h4.bold.text-center Associate Membership
           hr.little-snug-top
           p.faint.text-center.snug-top For individuals
           .plan-box data-equalizer-watch=true
@@ -72,11 +72,14 @@
                   ' traits
               li Browse Alliances, Companies, Members
               li Respond to private messages
-              li Become part of Company Teams
+              ul.no-bullet.little-snug-top
+                li.faint
+                  ' (Cannot initiate conversations)
+              li Become part of any Company Team
               li
-                ' Take an active role in
+                ' Take an active role in any
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
-                  ' Private Alliances
+                  ' Private Alliance
               li Access all Company and Alliance tools
           p.little-snug-bottom &nbsp;
           .callout
@@ -84,16 +87,13 @@
             - if current_user and current_user.plan == 'associate'
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
             - else
-              p.little-space-top= link_to 'Get started for FREE', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
-              - if current_user and current_user.plan == 'associate'
-                ' (You can always upgrade.)
-              - else
-                ' (You can always upgrade later.)
+              ' (Upgrade any time)
 
       .medium-4.columns
         .callout.primary
-          h4.bold.text-center Alliance
+          h4.bold.text-center Alliance Membership
           hr.little-snug-top
           p.faint.text-center.snug-top For individuals
           .plan-box data-equalizer-watch=true
@@ -105,12 +105,12 @@
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
                   ' Private Alliances
               li Alliance profile and mission statement
+              li Set a flag if your Private Alliance is recruiting
+              li Control who joins your Private Alliances
               li
-                ' Private Alliance
+                ' Optional Private Alliance
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
                   ' stealth mode
-              li Set a flag if your Private Alliance is recruiting
-              li You control who joins your Private Alliances
               li Create and manage Alliance Discussions
               li
                 ' Participate in private
@@ -119,35 +119,34 @@
           p.little-snug-bottom &nbsp;
           .callout
             /h4.bold.text-center $6.50 a month!
-            h4.bold.text-center
-              del $6.50/mth for 12 months!
-            /h4.bold.text-center Free during beta
+            h4.bold.text-center FREE during beta
             - if current_user and current_user.plan == 'alliance'
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
             - else
               /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
-              p.little-space-top= link_to 'FREE during beta, sign up today!', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
               /' (Paid annually. $7.99 paid monthly.)
               ' (After beta: $7.99/mthly or $78/yrly)
 
       .medium-4.columns
         .callout.primary
-          h4.bold.text-center Company
+          h4.bold.text-center Company Membership
           hr.little-snug-top
           p.faint.text-center.snug-top For companies
           .plan-box data-equalizer-watch=true
             ul
               li.bold All Associate Member benefits
               li.bold All Alliance Member benefits
-              li.bold Add your Companies
+              li.bold List your Companies
+              li Progress tracking and collaboration tools
               li Company profile to showcase your company
+              li Set a flag if your Company is recruiting
+              li Manage your Company Teams
               li
-                ' Company
+                ' Optional Company
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
                   ' stealth mode
-              li Manage your Company Teams
-              li Set a flag if your Company is recruiting
               li
                 ' Create and manage
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
@@ -164,17 +163,17 @@
           p.little-snug-bottom &nbsp;
           .callout
             /h4.bold.text-center $16.50 a month!
-            h4.bold.text-center
-              del $16.50/mth for 12 months!
-            /h4.bold.text-center Free during beta
+            h4.bold.text-center FREE during beta
             - if current_user and current_user.plan == 'company'
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
             - else
               /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
-              p.little-space-top= link_to 'FREE during beta, sign up today!', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
               /' (Paid annually. $19.99 paid monthly.)
               ' (After beta: $19.99/mthly or $198/yrly)
-
+    .row
+      .small-12.columns
+        p.text-center Beta period ends without notice. Members who choose Alliance or Company Memberships during the beta period convert to Free Associate Membership.
     .callout.small
-      h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask us about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
+      h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
