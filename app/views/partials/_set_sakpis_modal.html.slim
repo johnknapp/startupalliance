@@ -12,5 +12,5 @@
       - sakpis = Sakpi.all.order(:name)
       - sakpis.each do |sakpi|
         tr
-          td{width='50%' align='right'}= sakpi.name
+          td{width='50%' align='right'}= sakpi.name.html_safe
           td{width='50%'}= render 'partials/sakpi_level', sakpi: sakpi

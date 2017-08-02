@@ -12,5 +12,5 @@
       - skills = Skill.all.order(:name)
       - skills.each do |skill|
         tr
-          td{width='50%' align='right'}= skill.name
+          td{width='50%' align='right'}= skill.name.html_safe
           td{width='50%'}= render 'partials/skill_level', skill: skill
