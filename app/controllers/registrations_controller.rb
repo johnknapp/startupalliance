@@ -59,7 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_back(fallback_location: root_path, alert: 'Please enter your email!') and return
     end
 
-    if valid_email?(params[:user][:email]) and valid_user?(params['g-recaptcha-response'])
+    if valid_email?(params[:user][:email]) == 0 and valid_user?(params['g-recaptcha-response'])
       super
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
       current_user.update_attribute(:plan, params[:user][:plan])
@@ -166,7 +166,7 @@ class RegistrationsController < Devise::RegistrationsController
     # jk@johnknapp.com registered at https://www.google.com/recaptcha
     def valid_user?(input)
       conn = Faraday.new('https://www.google.com/recaptcha/api/siteverify')
-      conn.params = { secret: RECAPTCHA, response: input }
+      conn.params = { secret: RECAPTCHA_SECRET, response: input }
       resp = JSON.parse(conn.post.body)
       resp['success']
     end
@@ -174,7 +174,6 @@ class RegistrationsController < Devise::RegistrationsController
     def valid_email?(email)
       valid_email_regex = /\A([-a-z0-9!\#$%&'*+\/=?^_`{|}~]+\.)*[-a-z0-9!\#$%&'*+\/=?^_`{|}~]+@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
       email =~ valid_email_regex
-      true
     end
 
     def set_skill_index

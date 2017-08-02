@@ -72,14 +72,16 @@
             li.little-space-bottom= link_to 'Sign-out', destroy_user_session_path
     - else
       ul.menu.simple.show-for-small-only
-        li.bold= link_to 'Become a member!', plans_path
         li= link_to 'Alliances', alliances_path
         li= link_to 'Members', members_path             if params[:action] == 'home'
         li= link_to 'Companies', companies_path         if params[:action] == 'home'
+        li= link_to 'Pricing', plans_path
+        li.bold= link_to 'Sign-up', plans_path
         li= link_to 'Sign-in', new_user_session_path    if params[:action] == 'home'
       ul.menu.show-for-medium
-        li.bold.scale-to-130= link_to 'Become a member!', plans_path
         li= link_to 'Alliances', alliances_path         if params[:action] == 'home'
         li= link_to 'Members', members_path             if params[:action] == 'home'
         li= link_to 'Companies', companies_path         if params[:action] == 'home'
+        li= link_to 'Pricing', plans_path
+        li.bold= link_to 'Sign-up', plans_path
         li= link_to 'Sign-in', new_user_session_path

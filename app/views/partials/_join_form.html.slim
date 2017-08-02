@@ -8,12 +8,5 @@
     .small-8.columns
       = f.input :email, placeholder: 'Enter your email', label: false
     .small-4.columns
-      = f.button :submit, "Join as #{params[:plan].humanize} Member", class: 'postfix expanded bold secondary'
-  .row
-    .small-12.columns
-      .float-right
-        p.snug-top.faint
-          em
-            ' Already a member?
-            = link_to 'Sign-in', new_user_session_path
-      .g-recaptcha.little-snug-top data-sitekey='6LdpIikUAAAAAA7kJ0Nd5lYDve5mPx1IDiG1U80k'
+      = f.button :submit, "Get started for FREE!", class: 'postfix expanded bold secondary'
+  .g-recaptcha.little-snug-top data-sitekey=RECAPTCHA_SITE
