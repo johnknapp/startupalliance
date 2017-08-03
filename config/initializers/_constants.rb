@@ -3,7 +3,7 @@ RECAPTCHA_SECRET          = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
 USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user admin]
-USER_PLANS                = %w[guest associate alliance company vip_alliance vip_company]
+USER_PLANS                = %w[associate alliance company]
 
 COMPANY_STATES            = %w[initialized active paused]
 OKR_STATES                = %w[initialized active paused]
