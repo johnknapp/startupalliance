@@ -27,10 +27,15 @@
           .small-3.columns
             = f.input :time_zone, required: true, priority: ActiveSupport::TimeZone.us_zones
         .row
+          .small-6.columns
+            .indented-2= f.input :public_skills, required: false, label: 'Allow my skills to be publicly visible'
+          .small-6.columns
+            .indented-2= f.input :public_traits, required: false, label: 'Allow my traits to be publicly visible'
+        .row
           .large-6.columns
-            = f.input :password, placeholder: 'New password'
+            = f.input :password, label: 'New password', placeholder: 'New password'
           .large-6.columns
-            = f.input :password_confirmation, placeholder: 'New password confirmation'
+            = f.input :password_confirmation, label: 'New password confirmation', placeholder: 'New password confirmation'
         .callout.primary
           p
             ' Personal mission statement
@@ -56,6 +61,6 @@
           .form-actions
             ul.menu
               li= f.button :submit, 'Update your settings', class: 'button radius'
-        .large-4.columns
+        /.large-4.columns
           p.text-right.scale-to-80
             em #{link_to 'Delete your account', registration_path(resource_name), data: { confirm: 'Delete your account and all your data?' }, method: :delete}

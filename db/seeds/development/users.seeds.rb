@@ -1,7 +1,7 @@
 User.destroy_all
 
 admin = User.new(first_name: 'Ima', last_name: 'Admin', email: 'admin@example.com', username: 'john',
-                 time_zone: 'Pacific Time (US & Canada)', role: 'admin', state: 'active',
+                 time_zone: 'Pacific Time (US & Canada)', role: 'admin', state: 'active', plan: 'company',
                  password: 'password', password_confirmation: 'password'
               )
 admin.skip_confirmation!

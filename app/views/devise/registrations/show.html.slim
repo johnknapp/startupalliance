@@ -1,6 +1,6 @@
 .row
   .large-12.columns
-    h3.space-top.primary-text
+    h3.primary-text
       ' #{image_tag gravatar_url("#{@user.email}", 80)}
       strong
         ' #{@user.name}
@@ -115,38 +115,33 @@
             p.faint.text-center.snug-top No personal mission statement!
           hr
           p.bold Member summary:
-          .row
-            .small-6.columns
-              p.faint.snug-top Member since:
-            .small-6.columns
+          - if @user.created_at
+            .float-right
               p.faint.text-right.snug-top
                 ' #{@user.created_at.strftime('%B %e, %Y')}
+            p.faint.snug-top Member since:
           - if @user.user_skills.present?
-            .row
-              .small-8.columns
-                p.faint.snug-top Skill index:
-              .small-4.columns
-                p.faint.text-right.snug-top= @user.skill_index
+            .float-right
+              p.faint.text-right.snug-top= @user.skill_index
+            p.faint.snug-top Skill index:
           - if @user.user_traits.present?
-            .row
-              .small-8.columns
-                p.faint.snug-top Trait index:
-              .small-4.columns
-                p.faint.text-right.snug-top= @user.trait_index
-          .row
-            .small-4.columns
-              p.faint.snug-top Username:
-            .small-8.columns
+            .float-right
+              p.faint.text-right.snug-top= @user.trait_index
+            p.faint.snug-top Trait index:
+          - if @user.username
+            .float-right
               p.faint.text-right.snug-top= @user.username
-            hr
+            p.faint.snug-top Username:
 
-          - if current_user and @user.skills.present? or current_user == @user
+            hr
+          - if current_user and current_user == @user
             .float-right
               p.faint
                 - if current_user == @user
                   a data-open='set-skills'
                     i.fa.fa-pencil
                 = render 'partials/set_skills_modal'
+          - if (current_user or @user.public_skills == true) and (@user.skills.present? or @user == current_user)
             p.little-more-snug-bottom
               strong
                 - if current_user == @user
@@ -159,14 +154,16 @@
               .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
                 .progress-meter style="width: #{us.level*10}%"
                   p.meter-text= us.skill.name.html_safe
+
             hr
-          - if current_user and @user.traits.present? or current_user == @user
+          - if current_user and current_user == @user
             .float-right
               p.faint
                 - if current_user == @user
                   a data-open='set-traits'
                     i.fa.fa-pencil
                 = render 'partials/set_traits_modal'
+          - if (current_user or @user.public_traits == true) and (@user.traits.present? or @user == current_user)
             p.little-more-snug-bottom
               strong
                 - if current_user == @user
@@ -179,8 +176,8 @@
               .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
                 .progress-meter style="width: #{ut.level*10}%"
                   p.meter-text= ut.trait.name.html_safe
-            hr
 
+            hr
           - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
             p
               strong Social profiles:

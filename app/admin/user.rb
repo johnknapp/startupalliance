@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role,
-                :linkedin_profile, :website, :location, :time_zone, :plan, :acqsrc
+                :linkedin_profile, :website, :location, :time_zone, :plan, :acqsrc, :public_skills, :public_traits
 
   controller do
 
@@ -76,6 +76,8 @@ ActiveAdmin.register User do
       f.input :mission
       f.input :email
       f.input :company_owner
+      f.input :public_skills
+      f.input :public_traits
       f.input :password
       f.input :password_confirmation
       f.input :role,          collection: USER_ROLES
