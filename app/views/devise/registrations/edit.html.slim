@@ -1,9 +1,13 @@
 .row
   .large-10.large-offset-1.medium-12.columns
-    h3.show-for-medium-up &nbsp;
-    h3 Update your Account
+    h3.bold.primary-text Update your Account
     hr.little-snug-top
-    p.text-right.snug-top Each member makes Startup Alliance more useful to all of us!
+    .float-right
+      p.text-right.snug-top Each member makes Startup Alliance more useful to all of us!
+    p.snug-top.faint
+      ' You have #{@user.plan.humanize} Membership
+      - if @user.plan == 'associate'
+        ' (#{link_to 'Change plan', plans_path})
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
