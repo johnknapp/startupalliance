@@ -26,7 +26,7 @@
           p.snug-top.space-bottom Hey #{@user.name}, Startup Alliance is glad you’re here!
         - else
           p.snug-top.space-bottomStartup Alliance members can send private messages to each other.
-    p.snug-top.space-bottom.faint #{@user.plan.humanize} Member
+    p.snug-top.space-bottom.faint= link_to "#{@user.plan.humanize} Member", plans_path
     .row
       .medium-8.columns
 

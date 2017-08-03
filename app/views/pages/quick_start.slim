@@ -44,14 +44,14 @@
         p.pad-right
           strong Finishing your member profile
         p.little-snug-top.faint.pad-right= link_to 'Sample profile', vanity_path('john')
-        /p.little-snug-top.faint.pad-right.indented-2
-          = image_tag gravatar_url("startupalliance@example.com", 60)
-
       .medium-8.columns
         ol
-          li Write your personal mission statement
-          li Add a list of your startup skills, rate yourself for each
-          li Add a list of your personal traits, rate yourself for each
+          li Visit account settings and write your personal mission statement
+          li Visit your profile and rate your startup skills and personal traits
+          ul.no-bullet
+            li.faint.pad-right
+              ' Only rated skills and traits are shown to other members.
+              ' Visit account settings if you want to make them visible to the public.
           li Visit Gravatar.com to attach a profile photo to your email
           ul.no-bullet
             li.faint

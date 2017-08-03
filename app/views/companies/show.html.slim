@@ -5,8 +5,9 @@
       strong
         ' #{@company.name}
     hr.little-snug-top
-    p.snug-top.space-bottom.text-right Member since #{@company.created_at.strftime('%B %e, %Y')}
-
+    .float-right
+      p.snug-top.space-bottom Listed on #{@company.created_at.strftime('%B %e, %Y')}
+    p.snug-top.space-bottom.faint Listed by #{link_to @company.creator.name, vanity_path(@company.creator.username)}
     .row
       .medium-8.columns
 
