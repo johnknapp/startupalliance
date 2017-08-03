@@ -2,14 +2,14 @@ class User < ApplicationRecord
   include Pid
   # Specifically not destroying any companies or alliances they created
   has_many  :company_users
-  has_many  :companies, through: :company_users
+  has_many  :companies, through: :company_users          # Keeping their companies
   has_many  :alliance_users
-  has_many  :alliances, through: :alliance_users
-  has_many  :user_traits
+  has_many  :alliances, through: :alliance_users         # Keeping their alliances
+  has_many  :user_traits                                 # See registrations#destroy
   has_many  :traits, through: :user_traits
-  has_many  :user_skills
+  has_many  :user_skills                                 # See registrations#destroy
   has_many  :skills, through: :user_skills
-  has_many  :conversations,                          dependent: :destroy
+  has_many  :conversations                               # See registrations#destroy
   has_many  :posts,         foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, dependent: :destroy
 

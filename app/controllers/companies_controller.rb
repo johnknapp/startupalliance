@@ -136,6 +136,7 @@ class CompaniesController < ApplicationController
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy
+    # TODO what about the team, CompanySakpis and OKRs?
     @company.destroy
     respond_to do |format|
       format.html { redirect_to vanity_path(current_user.username), notice: 'Company was successfully destroyed.' }

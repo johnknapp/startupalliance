@@ -101,6 +101,7 @@ class AlliancesController < ApplicationController
   # DELETE /alliances/1
   # DELETE /alliances/1.json
   def destroy
+    # TODO what should be done with the membership?
     @alliance.destroy
     respond_to do |format|
       format.html { redirect_to vanity_path(current_user.username), notice: 'Alliance was successfully destroyed.' }
