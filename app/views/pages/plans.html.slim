@@ -85,11 +85,13 @@
           .callout
             h4.bold.text-center FREE FOREVER!
             - if current_user and current_user.plan == 'associate'
-              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
+              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
+            - elsif current_user and current_user.plan != 'associate'
+              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold success-text'
             - else
               p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
-              ' (Upgrade any time)
+              ' (Associate membership never expires)
 
       .medium-4.columns
         p.show-for-small-only &nbsp;
@@ -121,8 +123,12 @@
           .callout
             /h4.bold.text-center $6.50 a month!
             h4.bold.text-center FREE during beta
-            - if current_user and current_user.plan == 'alliance'
-              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
+            - if current_user and (current_user.plan == 'alliance' or current_user.plan == 'vip_alliance')
+              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
+            - elsif current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
+              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold success-text'
+            - elsif current_user and current_user.plan == 'associate'
+              p.little-space-top= link_to 'Upgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold success-text'
             - else
               /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
               p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
@@ -167,8 +173,10 @@
           .callout
             /h4.bold.text-center $16.50 a month!
             h4.bold.text-center FREE during beta
-            - if current_user and current_user.plan == 'company'
-              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold accent'
+            - if current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
+              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
+            - elsif current_user and current_user.plan != 'company'
+              p.little-space-top= link_to 'Upgrade to Company Membership', change_plan_path(desired_plan: 'company'), method: :put, class: 'button expanded bold success-text'
             - else
               /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
               p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'

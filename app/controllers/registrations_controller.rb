@@ -42,6 +42,13 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_back(fallback_location: vanity_path(current_user.username), alert: 'You unset your skill level')
   end
 
+  def change_plan
+    if current_user and params[:desired_plan]
+      current_user.update_attribute(:plan, params[:desired_plan])
+    end
+    redirect_back(fallback_location: plans_path, alert: 'You changed your plan')
+  end
+
   # GET /resource/sign_up
   def new
     super
