@@ -10,6 +10,8 @@
       h3.bold.primary-text Alliance or Company Membership Required! Please upgrade.
     - elsif current_user and params[:goal] == 'company'
       h3.bold.primary-text Company Membership Required! Please upgrade.
+    - elsif current_user
+      h3.bold.primary-text You have #{current_user.plan.humanize} Membership
     - else
       h3.bold.primary-text Choose your membership plan
     hr.little-snug-top
