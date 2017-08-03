@@ -4,8 +4,7 @@
 .row
   .large-8.large-offset-2.columns
 
-    h3.show-for-medium-up &nbsp;
-    h3.bold Your Startup Alliance account is open
+    h3.bold.primary-text Your Startup Alliance account is open
     hr.little-snug-top
     p.snug-top.text-right An important step in your business success!
 
@@ -15,4 +14,15 @@
       li Click the account activation link in the email we sent (check your spam folder!)
       li Add your name, choose a username and password
 
-    p.bold You must activate your account to gain full privileges
+    p
+      em
+        ' (You must activate your account to gain full privileges)
+
+    .callout.small.primary
+      - if current_user
+        p
+          ' Your current membership plan is
+          strong
+            | #{current_user.plan.humanize}
+          ' , you can change your plan any time.
+      = link_to 'Explore Membership Plans', plans_path, class: 'button bold expanded'

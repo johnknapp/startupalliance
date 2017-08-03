@@ -3,7 +3,8 @@
 = simple_form_for(:user, url: registration_path(:user)) do |f|
   = f.error_notification
   = f.hidden_field :acqsrc, value: @acqsrc
-  = f.hidden_field :plan,   value: params[:plan]
+  - if params[:plan] ? plan = params[:plan] : plan = 'associate'
+  = f.hidden_field :plan, value: plan
   .row.collapse
     .small-8.columns
       = f.input :email, placeholder: 'Enter your email...', label: false
