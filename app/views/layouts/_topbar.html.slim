@@ -53,13 +53,13 @@
             - if current_user and current_user.companies.present?
               - current_user.companies.each do |company|
                 li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
-                li= link_to company.name, company_path(company)
+                li.little-snug-top= link_to company.name, company_path(company)
               hr
 
             - if current_user and current_user.alliances.present?
               li.little-space-top.bold.text &nbsp; My #{'alliance'.pluralize(current_user.alliances.count)}:
               - current_user.alliances.each do |alliance|
-                li= link_to alliance.name, alliance_path(alliance)
+                li.little-snug-top= link_to alliance.name, alliance_path(alliance)
               hr
 
             - if current_user.admin?

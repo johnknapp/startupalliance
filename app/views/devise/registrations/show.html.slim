@@ -98,7 +98,7 @@
       .medium-4.columns
         .callout
           - if current_user and current_user.admin? and current_user != @user
-            .callout.simple.alert
+            .callout.small.alert
               p.faint.text-center
                 = link_to users_impersonate_path(pid: @user.pid), method: :put do
                   ' Impersonate
@@ -152,7 +152,7 @@
                     ' Startup Skills:
             - @user.user_skills.order(:skill_id).each do |us|
               .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-                .progress-meter style="width: #{us.level*10}%"
+                .progress-meter.light-primary-background style="width: #{us.level*10}%"
                   p.meter-text= us.skill.name.html_safe
 
             hr
@@ -174,7 +174,7 @@
                     ' Personal Traits:
             - @user.user_traits.order(:trait_id).each do |ut|
               .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-                .progress-meter style="width: #{ut.level*10}%"
+                .progress-meter.light-primary-background style="width: #{ut.level*10}%"
                   p.meter-text= ut.trait.name.html_safe
 
             hr
