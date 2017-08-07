@@ -20,6 +20,8 @@
         ' Helping entrepreneurs succeed, regardless of their location
     - if current_user
       p.snug-top.space-bottom Signed in as #{current_user.name}
+    - else
+      p.snug-top.space-bottom &nbsp;
     p.show-for-medium.snug-top &nbsp;
 
     .row.show-for-small-only data-equalizer-watch=true
