@@ -128,7 +128,7 @@
                   ' Video Conferences
           p.little-snug-bottom &nbsp;
           .callout
-            /h4.bold.text-center $6.50 a month!
+            /h4.bold.text-center $8.50 a month!
             h4.bold.text-center FREE during beta
             - if current_user and (current_user.plan == 'alliance' or current_user.plan == 'vip_alliance')
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
@@ -140,8 +140,8 @@
               /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
               p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
-              /' (Paid annually. $7.99 paid monthly.)
-              ' (After beta: from $6.50 a month)
+              /' (Paid annually. $9.99 paid monthly.)
+              ' (After beta: from $8.50 a month)
         p.text-center.show-for-small-only Beta period ends without notice. Members who choose Alliance or Company Memberships during the beta period convert to Free Associate Membership.
 
       .medium-4.columns
@@ -178,7 +178,7 @@
                   ' Video Conferences
           p.little-snug-bottom &nbsp;
           .callout
-            /h4.bold.text-center $16.50 a month!
+            /h4.bold.text-center $24.99 a month!
             h4.bold.text-center FREE during beta
             - if current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
@@ -188,8 +188,8 @@
               /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
               p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
             p.scale-to-90.text-center
-              /' (Paid annually. $19.99 paid monthly.)
-              ' (After beta: from $16.50 a month)
+              /' (Paid annually. $29.99 paid monthly.)
+              ' (After beta: from $24.99 a month)
     .row
       .small-12.columns
         p.text-center Beta period ends without notice. Members who choose Alliance or Company Memberships during the beta period convert to Free Associate Membership.
