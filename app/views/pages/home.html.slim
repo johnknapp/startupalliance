@@ -3,8 +3,39 @@
 
     .row
       .large-10.large-offset-1.medium-12.columns
+        .callout.small.primary-background.text-center
+          h1.bold.success-text.little-snug-bottom Success.
+          h3.bold.white-text It’s about who you know.
+          h3.bold.white-text It shouldn’t be about where you live.
+          hr
+          h5.bold.white-text.snug-top
+            ' Let’s maximize your business success, regardless of your location.
+            span.success-text
+              i.fa.fa-rocket
 
-        .row
+        /.callout.primary-background
+            ' Entrepreneurship is exploding worldwide, we built this platform to maximize your entrepreneurial success — wherever you are and no matter what kind of business you run.
+          h3.bold.text-center.success-text
+        /.callout.primary-background
+          h4.bold.text-center.success-text
+            ' Startup success comes easier when you know the right people.
+          h4.bold.text-center.success-text
+            ' That’s much harder if you don’t live in a startup hub.
+          h4.bold.text-center.success-text
+            ' Startup Alliance is changing that.
+
+        /p
+          ' If you don’t live in a startup hub, you have less access to the advice and help you need to achieve
+          ' top results. Moving to silicon valley can help but that’s impractical for most people.
+          /' Entrepreneurs not living in a startup hub have less access to the advice and help they need to achieve top results.
+          /' In this situation, success can be elusive and value is diminished. Relocating can help but is an impractical choice for most people.
+          /' When entrepreneurs connect and collaborate with the right people without relocating, success comes easier and communities benefit.
+          /' Maximize entrepreneurial results, regardless of location.
+          /| &nbsp;
+          /span.alert-text
+            i.fa.fa-rocket
+
+        /.row
           .medium-10.medium-offset-1.columns
             ul.accordion data-accordion=true
               li.accordion-item.primary-background.is-active data-accordion-item=true
@@ -32,14 +63,8 @@
                     span.alert-text.scale-to-120
                       i.fa.fa-rocket
 
-        /.callout.small.primary-background.text-center
-          h4.bold.white-text Our mission is simple:
-          hr.little-snug-top.little-snug-bottom
-          h3.bold.success-text
-            ' Maximize your success — wherever you are.
-
     h4.bold.little-space-top.little-snug-bottom.primary-text
-      ' Members of this Global Entrepreneurs Community get...
+      ' Members of our Global Entrepreneurs Community get...
     .row data-equalizer=true
       .large-4.columns
         .callout.small.accent data-equalizer-watch=true
@@ -68,14 +93,14 @@
           p.text-center
             ' Help each other achieve goals, overcome challenges,
             ' expand networks and maximize success.
+
     .row
       .large-10.large-offset-1.columns
         - if !current_user
           p &nbsp;
           = render 'partials/join_form', acqsrc: 'home_page'
+          p &nbsp;
         - else
-          /p.text-center= link_to 'Explore Membership Plans...', plans_path, class: 'button large secondary expanded bold'
-
           p.show-for-medium &nbsp;
           .news-box
             h4.bold Latest news:
