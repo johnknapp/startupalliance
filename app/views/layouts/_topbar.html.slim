@@ -67,9 +67,21 @@
               hr
 
             - if current_user and (current_user.companies.blank? or current_user and !current_user.admin?)
-              li.little-space-top= link_to 'Conversations', conversations_path            if current_user and current_user.confirmed?
+              li.little-space-top
+                - if current_user and current_user.confirmed?
+                  = link_to conversations_path do
+                    ' Conversations
+                    - if current_user.unread_message_count != 0
+                      | &nbsp;
+                      i.fa.fa-envelope.red-text
             - else
-              li= link_to 'Conversations', conversations_path                             if current_user and current_user.confirmed?
+              li
+                - if current_user and current_user.confirmed?
+                  = link_to conversations_path do
+                    ' Conversations
+                    - if current_user.unread_message_count != 0
+                      | &nbsp;
+                      i.fa.fa-envelope.red-text.bold
             li= link_to 'Profile', vanity_path(current_user.username)                     if current_user and current_user.confirmed?
             li= link_to 'Account', edit_user_registration_path                            if current_user and current_user.confirmed?
             li= link_to 'Membership Plans', plans_path                                    if current_user and current_user.confirmed?

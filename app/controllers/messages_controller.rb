@@ -6,14 +6,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
-    if @messages.length > 10
-      @over_ten = true
-      @messages = @messages[-10..-1]
-    end
-    if params[:m]
-      @over_ten = false
-      @messages = @conversation.messages
-    end
+    mark_received_as_read
     @message = @conversation.messages.new
   end
 
@@ -53,6 +46,14 @@ class MessagesController < ApplicationController
 
     def set_message
       @message = Message.find_by_pid(params[:id])
+    end
+
+    def mark_received_as_read
+      @messages.each do |m|
+        if m.author != current_user
+          m.update(read: true)
+        end
+      end
     end
 
 end

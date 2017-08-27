@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many  :conversations                               # See registrations#destroy
   has_many  :posts,         foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, dependent: :destroy
+  has_many  :messages
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable
@@ -37,9 +38,20 @@ class User < ApplicationRecord
     self.role == 'admin'
   end
 
-  # part of messaging system
   def conversations
     Conversation.includes?(self)
+  end
+
+  def unread_message_count
+    i = 0
+    conversations.each do |c|
+      c.messages.each do |m|
+        if m.author != self and m.read == false
+          i += 1
+        end
+      end
+    end
+    i
   end
 
   # part of guest user
