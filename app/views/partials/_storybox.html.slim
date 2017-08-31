@@ -17,12 +17,12 @@
     ' .
     '
   p.little-snug-top
-    ' Unlike any other platform, this global entrepreneurs community provides a unique set of tools
-    ' and gives you the ability to find and connect with the people that can help you most.
+    ' Unlike other platforms, this global entrepreneurs community provides a unique set of tools
+    ' and makes it easy to find and connect with the people that can help you most.
+    span.faint
+    ' #{link_to 'Learn more...', faq_path}
   p.little-snug-top.bold
     - if !current_user
-      ' Accept my invitation — join our global entrepreneurs community and maximize your success.
-    - elsif current_user and current_user.first_name.present?
-      ' #{current_user.first_name}, I’m glad you’re part of our global entrepreneurs community and wish you every success!
+      ' Join us to maximize your success — no matter where you live.
     - else
       ' I’m glad you’re part of our global entrepreneurs community and wish you every success!
