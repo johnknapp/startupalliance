@@ -9,7 +9,7 @@
           h3.bold.white-text It shouldn’t matter where you live.
           hr
           h5.bold.white-text.snug-top
-            ' Let’s maximize your business success, regardless of your location.
+            ' Let us help you maximize your success, regardless of your location.
             /span.success-text
               i.fa.fa-rocket
 
@@ -64,7 +64,15 @@
                       i.fa.fa-rocket
 
     h4.bold.little-space-top.little-snug-bottom.primary-text
-      ' Join this Global Entrepreneurs Community and you’ll get...
+      /' Join this Global Entrepreneurs Community and you’ll get...
+      /' Join Startup Alliance and you’ll get...
+      /' As a member, you’ll get...
+      /' Startup Alliance Members get...
+      /' We provide our members with...
+      /' Join us and you’ll get...
+      ' Our entrepreneurs platform provides our members with...
+      '
+      '
     .row data-equalizer=true
       .large-4.columns
         .callout.small.accent data-equalizer-watch=true
@@ -94,10 +102,11 @@
             ' Help each other achieve goals, overcome challenges,
             ' expand networks and maximize success.
 
+    = render 'partials/storybox'
+
     .row
       .large-10.large-offset-1.columns
         - if !current_user
-          p &nbsp;
           = render 'partials/join_form', acqsrc: 'home_page'
           p &nbsp;
         - else

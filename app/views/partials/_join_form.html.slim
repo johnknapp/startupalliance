@@ -7,6 +7,8 @@
   = f.hidden_field :acqsrc, value: @acqsrc
   - if params[:plan] ? plan = params[:plan] : plan = 'associate'
   = f.hidden_field :plan, value: plan
+  p.faint.snug-bottom
+    em Membership is open to entrepreneurs, advisors and investors
   .row.collapse
     .small-8.columns
       = f.input :email, placeholder: 'Enter your email...', label: false
