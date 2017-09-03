@@ -132,10 +132,13 @@
             .float-right
               p.faint.text-right.snug-top= @user.username
             p.faint.snug-top Username:
+          - if @user.time_zone.present?
+            .float-right
+              p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)
+            p.faint.snug-top Time zone:
           - if @user.country_code.present?
             .float-right
-              p.faint.snug-top= ISO3166::Country[@user.country_code].name
-            /p.faint.snug-top= @user.country_code.country_name
+              p.faint.snug-top= ISO3166::Country(@user.country_code).name
             p.faint.snug-top Country:
 
             hr
