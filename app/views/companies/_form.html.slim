@@ -20,7 +20,7 @@
       .medium-4.columns
         = f.input :country_code, label: 'Country', include_blank: 'Select a country'
       .medium-4.columns
-        = f.input :time_zone, label: 'Time zone', priority: ActiveSupport::TimeZone.us_zones
+        = f.input :time_zone, label: 'Time zone', priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select a time zone'
     - if params[:action] == 'new'
       .callout.small.accent
         .row
