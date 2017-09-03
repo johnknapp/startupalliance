@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
   include Pid
+  include CountryName
   include Webmeet
   has_many    :discussions, as: :discussable, dependent: :destroy
   has_many    :company_users

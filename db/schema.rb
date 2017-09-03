@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827205701) do
+ActiveRecord::Schema.define(version: 20170903201853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170827205701) do
     t.text     "mission"
     t.string   "primary_market"
     t.string   "url"
-    t.string   "location"
+    t.string   "country_code"
     t.string   "time_zone",      default: "Pacific Time (US & Canada)"
     t.date     "founded"
     t.string   "pid",                                                   null: false
@@ -122,6 +122,15 @@ ActiveRecord::Schema.define(version: 20170827205701) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text     "body"
     t.integer  "discussion_id", null: false
@@ -186,7 +195,7 @@ ActiveRecord::Schema.define(version: 20170827205701) do
     t.string   "role",                   default: "guest"
     t.string   "pid",                                                           null: false
     t.string   "acqsrc"
-    t.string   "location"
+    t.string   "country_code"
     t.string   "time_zone",              default: "Pacific Time (US & Canada)"
     t.string   "email",                  default: "",                           null: false
     t.string   "encrypted_password",     default: "",                           null: false

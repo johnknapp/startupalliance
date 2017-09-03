@@ -132,14 +132,18 @@
             .float-right
               p.faint.text-right.snug-top= @user.username
             p.faint.snug-top Username:
+          - if @user.country_code.present?
+            .float-right
+              p.faint.snug-top= ISO3166::Country[@user.country_code].name
+            /p.faint.snug-top= @user.country_code.country_name
+            p.faint.snug-top Country:
 
             hr
           - if current_user and current_user == @user
             .float-right
               p.faint
-                - if current_user == @user
-                  a data-open='set-skills'
-                    i.fa.fa-pencil
+                a data-open='set-skills'
+                  i.fa.fa-pencil
                 = render 'partials/set_skills_modal'
           - if (current_user or @user.public_skills == true) and (@user.skills.present? or @user == current_user)
             p.little-more-snug-bottom
@@ -159,9 +163,8 @@
           - if current_user and current_user == @user
             .float-right
               p.faint
-                - if current_user == @user
-                  a data-open='set-traits'
-                    i.fa.fa-pencil
+                a data-open='set-traits'
+                  i.fa.fa-pencil
                 = render 'partials/set_traits_modal'
           - if (current_user or @user.public_traits == true) and (@user.traits.present? or @user == current_user)
             p.little-more-snug-bottom

@@ -59,23 +59,24 @@
               p.faint.snug-top
                 = link_to @company.url, target: '_blank' do
                   ' #{@company.url}
-            p.faint.snug-top Website
+            p.faint.snug-top Website:
           - if @company.okrs
             .float-right
               p.faint.snug-top= number_with_delimiter(@company.okrs.count)
-            p.faint.snug-top Lifetime OKRs
+            p.faint.snug-top Lifetime OKRs:
           - if @company.sakpi_index
             .float-right
               p.faint.snug-top= @company.sakpi_index
-            p.faint.snug-top SAKPI index
+            p.faint.snug-top SAKPI index:
           - if @company.founded.present?
             .float-right
               p.faint.snug-top= @company.founded.strftime('%B %e, %Y')
-            p.faint.snug-top Founded
-          - if @company.location.present?
+            p.faint.snug-top Founded:
+          - if @company.country_code.present?
             .float-right
-              p.faint.snug-top= @company.location
-            p.faint.snug-top Location
+              p.faint.snug-top= ISO3166::Country[@company.country_code].name
+              /p.faint.snug-top= @company.country_code.country_name
+            p.faint.snug-top Country:
 
           hr.little-snug-top
           p.bold

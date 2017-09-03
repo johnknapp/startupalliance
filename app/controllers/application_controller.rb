@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
           :twitter_profile,
           :linkedin_profile,
           :website,
-          :location,
+          :country_code,
           :time_zone,
           :public_skills,
           :public_traits

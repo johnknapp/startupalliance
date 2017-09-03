@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Pid
+  include CountryName
   # Specifically not destroying any companies or alliances they created
   has_many  :company_users
   has_many  :companies, through: :company_users          # Keeping their companies
