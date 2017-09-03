@@ -76,7 +76,7 @@
             .float-right
               p.faint.snug-top= ActiveSupport::TimeZone.new(@company.time_zone)
             p.faint.snug-top Time zone:
-          - if @company.country_code.present?
+          - if !@company.country_code.nil?
             .float-right
               p.faint.snug-top= ISO3166::Country(@company.country_code).try(:name)
               /p.faint.snug-top= @company.country_code.country_name
