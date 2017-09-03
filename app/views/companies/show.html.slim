@@ -78,7 +78,7 @@
             p.faint.snug-top Time zone:
           - if @company.country_code.present?
             .float-right
-              p.faint.snug-top= ISO3166::Country(@company.country_code).name
+              p.faint.snug-top= ISO3166::Country(@company.country_code).try(:name)
               /p.faint.snug-top= @company.country_code.country_name
             p.faint.snug-top Country:
 
