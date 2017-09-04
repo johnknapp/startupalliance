@@ -22,7 +22,6 @@ WEBRTC_TIP                = 'WebRTC is live audio/video chat, available on suppo
 OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve their goals'
 SAKPI_SHORT_TIP           = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
-SAKPI_LEVEL_TIP           = 'The level indicates relative strength of each SAKPI. Only visible to company team.'
 
 USERNAME_EXCLUSIONS = %w[
   about
