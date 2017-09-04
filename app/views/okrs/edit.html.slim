@@ -1,12 +1,14 @@
 .row
-  .medium-8.medium-offset-2.columns
-    h3.show-for-medium-up &nbsp;
-    h3
-      .float-right
-        a data-open='okr-info'
-          i.fa.fa-info-circle
-        = render 'partials/quick_reference_okr'
-      ' Update OKR
+  .medium-10.medium-offset-1.columns
+    .row
+      .medium-9.column
+        h3.little-snug-bottom.bold.primary-text
+          ' Update OKR
+      .medium-3.column
+        h4.little-snug-bottom.text-right
+          a data-open='okr-info'
+            i.fa.fa-info-circle
+          = render 'partials/quick_reference_okr'
     hr.little-snug-top
     p.text-right.snug-top.space-bottom
       ' Objective and key results
