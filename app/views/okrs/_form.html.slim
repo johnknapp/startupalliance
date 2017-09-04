@@ -9,7 +9,7 @@
       .medium-4.columns
         = f.input :okr_duration, label: 'OKR duration is', placeholder: 'Number between 3 and 6'
       .medium-4.columns
-        = f.input :okr_units, label: 'OKR period is', collection: Okr.okr_units.keys, placeholder: 'Choose a unit'
+        = f.input :okr_units, label: 'OKR period is', collection: Okr.okr_units.keys, include_blank: 'Choose a period'
 
     = f.input :objective, placeholder: 'An objective for this period'
     = f.input :key_result_1, placeholder: 'A numerically quantifiable result'

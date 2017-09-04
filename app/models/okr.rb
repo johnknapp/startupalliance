@@ -3,9 +3,9 @@ class Okr < ApplicationRecord
   belongs_to :company
 
   enum okr_units: {
-      months:    0,
-      weeks:     1,
-      days:      2
+      Months:    0,
+      Weeks:     1,
+      Days:      2
   }
 
   def concluded?
