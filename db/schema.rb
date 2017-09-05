@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903222813) do
+ActiveRecord::Schema.define(version: 20170904202307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,13 +113,18 @@ ActiveRecord::Schema.define(version: 20170903222813) do
     t.integer  "okr_duration"
     t.integer  "okr_units"
     t.date     "okr_start"
-    t.integer  "mid_score"
-    t.integer  "final_score"
+    t.integer  "status",       default: 0
     t.text     "postmortem"
-    t.integer  "company_id",   null: false
-    t.string   "pid",          null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "company_id",                 null: false
+    t.string   "pid",                        null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.float    "score",        default: 0.0
+    t.float    "kr1_score",    default: 0.0
+    t.float    "kr2_score",    default: 0.0
+    t.float    "kr3_score",    default: 0.0
+    t.integer  "owner_id"
+    t.integer  "sakpi_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

@@ -73,9 +73,10 @@ class CompaniesController < ApplicationController
 
   # DELETE
   def remove_team_member
-    team_member = User.find_by_pid(params[:team_member_pid])
+    @team_member = User.find_by_pid(params[:team_member_pid])
+    reassign_okr_ownership
     if @company.team.count > 1
-      @company.team.delete(team_member)
+      @company.team.delete(@team_member)
       redirect_back(fallback_location: company_path, notice: 'team_member removed.')
     else
       redirect_back(fallback_location: company_path, alert: 'Cannot remove the last team member, please contact support.')
@@ -145,6 +146,16 @@ class CompaniesController < ApplicationController
   end
 
   private
+
+    def reassign_okr_owner
+      okrs = Okr.where(owner_id: @team_member.id).all
+      if okrs.present?
+        Okr.where(owner_id: @team_member.id).each do |okr|
+          okr.update(owner_id: okr.company.creator.id)
+        end
+      end
+    end
+
     # Update company.sakpi_index with new total
     def set_sakpi_index
       cs = @company.company_sakpis

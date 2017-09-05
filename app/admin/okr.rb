@@ -1,6 +1,6 @@
 ActiveAdmin.register Okr do
 
-  permit_params :id, :objective, :key_result_1, :key_result_2, :key_result_3, :postmortem, :okr_duration, :okr_units, :okr_start, :mid_score, :final_score, :company_id, :pid
+  permit_params :id, :objective, :key_result_1, :key_result_2, :key_result_3, :kr1_score, :kr2_score, :kr3_score, :postmortem, :okr_duration, :okr_units, :okr_start, :status, :score, :owner_id, :company_id, :pid
 
   controller do
     def find_resource

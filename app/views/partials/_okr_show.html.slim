@@ -11,24 +11,39 @@
   p.bold= okr.objective
   hr.little-snug-top
   .row
-    .small-6.columns
+    .small-4.columns
       p.faint.snug-top
         - if okr.okr_start
-          em #{okr.okr_duration} #{okr.okr_units.downcase} starting #{okr.okr_start.strftime('%B %e, %Y')}
+          em #{okr.okr_duration} #{okr.okr_units.downcase} starting #{okr.okr_start.strftime('%b %e, %Y')}
         - else
           em No start date!
-    .small-3.columns
+    .small-8.columns
+      ul.menu.align-right.snug-top
+        li.faint
+          ' Score:
+          - if okr.score != 0.0
+            ' #{okr.score}
+          - else
+            ' TBD
+        li.faint.pad-right
+          ' Status:
+          - if okr.status.present?
+            ' #{okr.status}
+          - else
+            ' TBD
+        li.faint.pad-right
+          ' Owner:
+          - if okr.owner.present?
+            ' #{okr.owner.name}
+          - else
+            ' TBD
+    /.small-3.columns
       p.faint.snug-top.text-right
-        ' Mid-period score:
-        - if okr.mid_score.present?
-          ' #{okr.mid_score}
-        - else
-          ' TBD
-    .small-3.columns
+    /.small-3.columns
       p.faint.snug-top.text-right
         ' Final-period score:
-        - if okr.final_score.present?
-          ' #{okr.final_score}
+        - if okr.score.present?
+          ' #{okr.score}
         - else
           ' TBD
   .row

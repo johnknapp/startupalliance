@@ -52,6 +52,7 @@ class OkrsController < ApplicationController
       params[:okr].delete :okr_start
       if @okr.update(okr_params)
         @okr.update_attribute(:okr_start, okr_start)
+        @okr.set_score
         @company = Company.find @okr.company_id
         format.html { redirect_to company_path(@company), notice: 'OKR was successfully updated.' }
         format.json { render :show, status: :ok, location: @okr }
@@ -80,6 +81,6 @@ class OkrsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def okr_params
-      params.require(:okr).permit(:objective, :key_result_1, :key_result_2, :key_result_3, :postmortem, :okr_duration, :okr_units, :okr_start, :mid_score, :final_score, :company_id, :pid)
+      params.require(:okr).permit(:objective, :key_result_1, :key_result_2, :key_result_3, :kr1_score, :kr2_score, :kr3_score, :postmortem, :okr_duration, :okr_units, :okr_start, :status, :score, :owner_id, :sakpi_id, :company_id, :pid)
     end
 end

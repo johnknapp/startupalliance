@@ -193,8 +193,14 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.update(trait_index: us.sum(:level))
     end
 
-    # Specifically not destroying any companies or alliances they created
+    # Specifically not destroying any companies, okrs or alliances they created
     def departure_cleanup
+      okrs = Okr.where(owner_id: @user.id).all
+      if okrs.present?
+        okrs.each do |okr|
+          okr.update(owner_id: okr.company.creator.id)
+        end
+      end
       AllianceUser.where(user_id: @user.id).destroy_all
       CompanyUser.where(user_id: @user.id).destroy_all
       UserSkill.where(user_id: @user.id).destroy_all
