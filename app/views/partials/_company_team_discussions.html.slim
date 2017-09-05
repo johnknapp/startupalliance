@@ -5,7 +5,7 @@
         i.fa.fa-info-circle
       = render 'partials/quick_reference_disco'
 
-      - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+      - if current_user and @company.team.include?(current_user)
         | &nbsp;
         | &nbsp;
         | &nbsp;
@@ -15,7 +15,7 @@
   - if current_user and @company.team.include?(current_user)
     - if @company.discussions.present?
       - @company.discussions.order(:updated_at).each do |disco|
-        - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+        - if current_user and @company.team.include?(current_user)
           .float-right
             = link_to edit_discussion_path(disco, company_pid: @company.pid), class: 'scale-to-80' do
               i.fa.fa-pencil

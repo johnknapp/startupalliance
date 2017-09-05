@@ -5,7 +5,7 @@
         i.fa.fa-info-circle
       = render 'partials/quick_reference_okr'
 
-      - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+      - if current_user and @company.team.include?(current_user)
         | &nbsp;
         | &nbsp;
         | &nbsp;

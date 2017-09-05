@@ -5,10 +5,6 @@ USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                = %w[guest user admin]
 USER_PLANS                = %w[associate alliance company]
 
-COMPANY_STATES            = %w[initialized active paused]
-OKR_STATES                = %w[initialized active paused]
-ALLIANCE_STATES           = %w[initialized active paused]
-
 PRIVATE_ALLIANCE_TIP      = 'Where entrepreneurs collaborate to achieve goals, overcome challenges, expand networks and maximize success.'
 STEALTH_MODE_TIP          = 'In case you want to keep your Private Alliances and Companies from appearing in search results.'
 STARTUP_SKILL_TIP         = 'Showcase your strengths using our standard set of 18 startup skills.'
@@ -19,7 +15,7 @@ VIEWER_TRAIT_TIP          = 'This member has rated themselves for these Personal
 USER_SKILL_TIP            = 'Only Startup Skills where you have rated yourself appear to others.'
 VIEWER_SKILL_TIP          = 'This member has rated themselves for these Startup Skills.'
 WEBRTC_TIP                = 'WebRTC is live audio/video chat, available on supported browsers only.'
-OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve their goals'
+OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve goals and communicate priorities throughout the company'
 SAKPI_SHORT_TIP           = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
 
