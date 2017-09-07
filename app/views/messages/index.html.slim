@@ -32,11 +32,15 @@
                   i.fa.fa-trash-o.faint
               p.text-right.faint Written #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
-              p.text-right.snug-top= message.body
+              .row
+                .small-6.small-offset-6.columns
+                  p.text-right.snug-top= message.body
             - else
               p.faint Written #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
-              p.snug-top= message.body
+              .row
+                .small-6.columns
+                  p.snug-top= message.body
 
         = simple_form_for @message, url: conversation_messages_path, method: :post do |f|
           = f.hidden_field :user_id, value: current_user.id
