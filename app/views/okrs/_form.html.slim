@@ -21,31 +21,31 @@
     - if @okr.new_record?
       .row
         .medium-12.column
-          = f.input :key_result_1, placeholder: 'A numerically quantifiable result'
+          = f.input :key_result_1, placeholder: 'A quantifiable result'
     - else
       .row
         .medium-9.column
-          = f.input :key_result_1, placeholder: 'A numerically quantifiable result'
+          = f.input :key_result_1, placeholder: 'A quantifiable result'
         .medium-3.column
           = f.input :kr1_score, label: 'Final score KR 1'
     - if @okr.new_record?
       .row
         .medium-12.column
-          = f.input :key_result_2, placeholder: 'A numerically quantifiable result'
+          = f.input :key_result_2, placeholder: 'A quantifiable result'
     - else
       .row
         .medium-9.column
-          = f.input :key_result_2, placeholder: 'A numerically quantifiable result'
+          = f.input :key_result_2, placeholder: 'A quantifiable result'
         .medium-3.column
           = f.input :kr2_score, label: 'Final score KR 2'
     - if @okr.new_record?
       .row
         .medium-12.column
-          = f.input :key_result_3, placeholder: 'A numerically quantifiable result'
+          = f.input :key_result_3, placeholder: 'A quantifiable result'
     - else
       .row
         .medium-9.column
-          = f.input :key_result_3, placeholder: 'A numerically quantifiable result'
+          = f.input :key_result_3, placeholder: 'A quantifiable result'
         .medium-3.column
           = f.input :kr3_score, label: 'Final score KR 3'
 
