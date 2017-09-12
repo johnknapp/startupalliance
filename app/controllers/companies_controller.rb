@@ -92,6 +92,7 @@ class CompaniesController < ApplicationController
         @company.founded = string_to_date(params[:company][:founded])
         respond_to do |format|
           if @company.save
+            @company.update(invite_token: SecureRandom.urlsafe_base64)
             @company.team << current_user
             CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
             format.html { redirect_to @company, notice: 'Company was successfully created.' }

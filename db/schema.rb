@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904202307) do
+ActiveRecord::Schema.define(version: 20170912145650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(version: 20170904202307) do
     t.string   "name"
     t.string   "mission"
     t.string   "webmeet_url"
-    t.string   "pid",                         null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "pid",                          null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "creator_id"
-    t.boolean  "recruiting",  default: true
-    t.boolean  "is_unlisted", default: false
+    t.boolean  "recruiting",   default: true
+    t.boolean  "is_unlisted",  default: false
+    t.string   "invite_token"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170904202307) do
     t.integer  "creator_id"
     t.boolean  "recruiting",     default: true
     t.boolean  "is_unlisted",    default: false
+    t.string   "invite_token"
   end
 
   create_table "company_sakpis", force: :cascade do |t|
