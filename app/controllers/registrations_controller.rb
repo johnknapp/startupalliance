@@ -64,7 +64,7 @@ class RegistrationsController < Devise::RegistrationsController
       if user
         # create membership for existing non-auth user
         create_membership_for_user(user,entity,token)
-        redirect_to user_session_path, notice: 'You are a member. Please sign-in!' and return
+        redirect_to user_session_path, notice: 'You are now a member. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
       redirect_back(fallback_location: root_path, alert: 'Please enter your email!') and return
