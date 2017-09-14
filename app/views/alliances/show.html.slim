@@ -137,10 +137,17 @@
                     button data-close=true aria-label='Close' type='button' class='close-button'
                       span aria-hidden=true
                         ' &times;
-                    p.bold To add a member, please provide their Startup Alliance username
+                    p.snug-bottom Eitehr provide their Startup Alliance username:
                     = form_tag add_alliance_member_alliance_path, method: :put
-                      = text_field_tag :username
-                      = submit_tag 'Add member', class: 'button expanded secondary'
+                      .row.collapse
+                        .medium-8.columns
+                          = text_field_tag :username
+                        .medium-4.columns
+                          = submit_tag 'Add to my Alliance', class: 'postfix button expanded accent'
+                    p
+                      ' Or email this confidential invitation link to anybody:
+                      br
+                      = link_to "#{alliance_url(@alliance)}?invite=#{@alliance.invite_token}", alliance_url(@alliance, invite: @alliance.invite_token)
               p.bold Private Alliance #{'Member'.pluralize(@alliance.members.count)}:
               - @alliance.members.each do |member|
                 .float-right.snug-top

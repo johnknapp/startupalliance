@@ -51,8 +51,8 @@
           i.fa.fa-bars.secondary
           ul.menu.normal
             - if current_user and current_user.companies.present?
+              li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
               - current_user.companies.each do |company|
-                li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
                 li.little-snug-top= link_to company.name, company_path(company)
               hr
 

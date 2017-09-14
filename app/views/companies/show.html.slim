@@ -95,7 +95,7 @@
           p.bold
             .float-right
               p.faint
-                - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+                - if current_user and current_user == @company.creator
                   a data-open='set-sakpis'
                     i.fa.fa-pencil
                 = render 'partials/set_sakpis_modal'
@@ -134,15 +134,22 @@
                 button data-close=true aria-label='Close' type='button' class='close-button'
                   span aria-hidden=true
                     ' &times;
-                p.bold To add a team member, provide their Startup Alliance username
+                p.snug-bottom Either provide their Startup Alliance username:
                 = form_tag add_team_member_company_path, method: :put
-                  = text_field_tag :username
-                  .row
+                  .row.collapse
+                    .medium-8.columns
+                      = text_field_tag :username
+                    .medium-4.columns
+                      = submit_tag 'Add to my team', class: 'postfix button expanded accent'
+                  /.row
                     .medium-6.columns
                       = select_tag :role, options_for_select(CompanyUser.roles.keys)
                     .medium-6.columns
                       = select_tag :equity, options_for_select(CompanyUser.equities.keys)
-                  = submit_tag 'Add team member', class: 'button expanded secondary'
+                p
+                  ' Or email this confidential invitation link to anybody:
+                  br
+                  = link_to "#{company_url(@company)}?invite=#{@company.invite_token}", company_url(@company, invite: @company.invite_token)
           p.bold.space-after Company team:
           - @company.team.each do |member|
             /- if current_user and @company.team.include?(current_user)
@@ -159,7 +166,7 @@
             p.faint.snug-top
               ' #{image_tag gravatar_url("#{member.email}", 30)}
               ' #{link_to member.name, vanity_path(member.username)}
-              - if current_user and @company.team_member(current_user)
+              /- if current_user and @company.team_member(current_user)
                 - if @company.team_member(member).equity != 'no_equity'
                   ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
                 - else
