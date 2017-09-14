@@ -59,8 +59,12 @@ class RegistrationsController < Devise::RegistrationsController
     if params[:user][:email].present?
       email = params[:user][:email]
       user = User.find_by_email(email)
+      entity = params[:user][:entity].singularize
+      token = params[:user][:token]
       if user
-        redirect_to user_session_path, notice: 'You are already a member. Please sign-in!' and return
+        # create membership for existing non-auth user
+        create_membership_for_user(user,entity,token)
+        redirect_to user_session_path, notice: 'You are a member. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
       redirect_back(fallback_location: root_path, alert: 'Please enter your email!') and return
@@ -94,6 +98,8 @@ class RegistrationsController < Devise::RegistrationsController
         GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       current_or_guest_user
+      # create membership for new user
+      create_membership_for_user(current_or_guest_user,entity,token)
     else
       redirect_back(fallback_location: root_path, alert: 'Either your email is invalid... or you’re a robot!') and return
     end
@@ -169,6 +175,17 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
   private
+
+    def create_membership_for_user(user,entity,token)
+      if entity == 'company'
+        company = Company.find_by_invite_token(token)
+        company.team << user
+      end
+      if entity == 'alliance'
+        alliance = Alliance.find_by_invite_token(token)
+        alliance.member << user
+      end
+    end
 
     # jk@johnknapp.com registered at https://www.google.com/recaptcha
     def valid_user?(input)

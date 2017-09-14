@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post  '/accept',              to: 'application#accept_invitation',  constraints: { format: 'html' }
   ActiveAdmin.routes(self)
 
   devise_scope :user do

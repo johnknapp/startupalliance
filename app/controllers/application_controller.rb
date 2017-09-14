@@ -6,6 +6,20 @@ class ApplicationController < ActionController::Base
 
   impersonates :user
 
+  # POST /accept
+  def accept_invitation
+    user = User.find_by_pid(params[:user][:user_pid])
+    entity = params[:user][:entity].singularize
+    token = params[:user][:token]
+    create_membership_for_user(user,entity,token)
+    if entity == 'company'
+      redirect_to company_path(@company), notice: 'Added to the Company team.'
+    end
+    if entity == 'alliance'
+      redirect_to alliance_path(@alliance), notice: 'Added to the Alliance members.'
+    end
+  end
+
   # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
     if current_user
@@ -86,6 +100,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def create_membership_for_user(user,entity,token)
+      if entity == 'company'
+        @company = Company.find_by_invite_token(token)
+        @company.team << user unless @company.team.include? user
+      end
+      if entity == 'alliance'
+        @alliance = Alliance.find_by_invite_token(token)
+        @alliance.members << user unless @alliance.members.include? user
+      end
+    end
 
     def store_current_location
       store_location_for(:user, request.url)

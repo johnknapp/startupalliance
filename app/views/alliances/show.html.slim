@@ -7,7 +7,16 @@
     .float-right
       p.snug-top.space-bottom Created on #{@alliance.created_at.strftime('%B %e, %Y')}
     p.snug-top.space-bottom.faint Created by #{link_to @alliance.creator.name, vanity_path(@alliance.creator.username)}
-
+    - if params[:invite] and params[:invite] == @alliance.invite_token and !@alliance.members.include? current_user
+      .row
+        .medium-8.medium-offset-2.columns
+          .callout
+            p.bold Become a member of #{@alliance.name}
+            - if current_user
+              = render 'partials/accept_invitation_form'
+            - else
+              = render 'partials/join_form', acqsrc: 'alliance_invite'
+          p.snug-bottom &nbsp;
     .row
       .medium-8.columns
         table.hover.stacked

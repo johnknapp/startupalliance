@@ -1,4 +1,4 @@
-- @acqsrc = acqsrc ? acqsrc : params[:controller] + '/' +params[:action]
+- @acqsrc = acqsrc ? acqsrc : params[:controller] + '/' + params[:action]
 
 /p.snug-bottom.faint
   em All entrepreneurs are welcome to join
@@ -6,7 +6,11 @@
   = f.error_notification
   = f.hidden_field :acqsrc, value: @acqsrc
   - if params[:plan] ? plan = params[:plan] : plan = 'associate'
-  = f.hidden_field :plan, value: plan
+  = f.hidden_field :plan,   value: plan
+  = f.hidden_field :token,  value: params[:invite]     if params[:controller] == 'companies'
+  = f.hidden_field :token,  value: params[:invite]     if params[:controller] == 'alliances'
+  = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'companies'
+  = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'alliances'
   p.faint.snug-bottom
     em Membership is open to entrepreneurs, advisors and investors
   .row.collapse

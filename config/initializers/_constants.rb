@@ -20,6 +20,7 @@ SAKPI_SHORT_TIP           = 'Startup Alliance Key Performance Indicators are tra
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
 
 USERNAME_EXCLUSIONS = %w[
+  accept
   about
   admin
   administrator
