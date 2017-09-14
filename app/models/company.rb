@@ -16,12 +16,12 @@ class Company < ApplicationRecord
   validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
   enum phases: {
-      Ideation:         0,
-      Validation:       1,
-      Foundation:       2,
-      Fortification:    3,
-      Expansion:        4,
-      Diversification:  5
+      Ideation:       0,
+      Experimenting:  1,
+      Operational:    2,
+      Sustainable:    3,
+      Accelerating:   4,
+      Diversifying:   5
   }
 
   # used to test company_user.role (enum)

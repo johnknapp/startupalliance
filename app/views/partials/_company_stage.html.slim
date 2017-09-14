@@ -21,39 +21,39 @@
           .callout.small
             p.text-center.faint-text Ideation
       .large-2.columns
-        - if @company.phases == 'Validation'
+        - if @company.phases == 'Experimenting'
           .callout.small.primary
-            p.text-center.bold Validation
+            p.text-center.bold Experimenting
         - else
           .callout.small
-            p.text-center.faint-text Validation
+            p.text-center.faint-text Experimenting
       .large-2.columns
-        - if @company.phases == 'Foundation'
+        - if @company.phases == 'Operational'
           .callout.small.primary
-            p.text-center.bold Foundation
+            p.text-center.bold Operational
         - else
           .callout.small
-            p.text-center.faint-text Foundation
+            p.text-center.faint-text Operational
       .large-2.columns
-        - if @company.phases == 'Fortification'
+        - if @company.phases == 'Sustainable'
           .callout.small.primary
-            p.text-center.bold Fortification
+            p.text-center.bold Sustainable
         - else
           .callout.small
-            p.text-center.faint-text Fortification
+            p.text-center.faint-text Sustainable
       .large-2.columns
-        - if @company.phases == 'Expansion'
+        - if @company.phases == 'Accelerating'
           .callout.small.primary
-            p.text-center.bold Expansion
+            p.text-center.bold Accelerating
         - else
           .callout.small
-            p.text-center.faint-text Expansion
+            p.text-center.faint-text Accelerating
       .large-2.columns
-        - if @company.phases == 'Diversification'
+        - if @company.phases == 'Diversifying'
           .callout.small.primary
-            p.text-center.bold Diversification
+            p.text-center.bold Diversifying
         - else
           .callout.small
-            p.text-center.faint-text Diversification
+            p.text-center.faint-text Diversifying
   - else
     p.text-center.faint-text Company stage not set!

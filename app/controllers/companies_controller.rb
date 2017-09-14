@@ -114,21 +114,23 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
-      respond_to do |format|
-        founded = string_to_date(params[:company][:founded])
-        params[:company].delete :founded
-        if current_user == @company.creator
-          if @company.update(company_params)
-            @company.update_attribute(:founded, founded)
+      founded = string_to_date(params[:company][:founded])
+      params[:company].delete :founded
+      if current_user == @company.creator
+        if @company.update(company_params)
+          @company.update_attribute(:founded, founded)
+          respond_to do |format|
             format.html { redirect_to @company, notice: 'Company was successfully updated.' }
             format.json { render :show, status: :ok, location: @company }
-          else
+          end
+        else
+          respond_to do |format|
             format.html { render :edit }
             format.json { render json: @company.errors, status: :unprocessable_entity }
           end
-        else
-          redirect_back(fallback_location: root_path, alert: 'You are not the creator of this Company!')
         end
+      else
+        redirect_back(fallback_location: root_path, alert: 'You are not the creator of this Company!')
       end
     else
       redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
