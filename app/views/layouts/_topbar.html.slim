@@ -49,7 +49,7 @@
           | #{current_user.name}
           | &nbsp;
           i.fa.fa-bars.secondary
-          ul.menu.normal
+          ul.menu.normal data-dropdown-menu=true
             - if current_user and current_user.companies.present?
               li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
               - current_user.companies.each do |company|
