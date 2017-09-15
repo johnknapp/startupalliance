@@ -13,6 +13,7 @@ class PostsController < InheritedResources::Base
     @post = Post.new(post_params)
     @post.discussion_id = discussion.id
     if @post.save
+      Notifier.tell_jk(@post).deliver
       redirect_to discussion_path(discussion), alert: 'Your post was saved.'
     else
       redirect_to discussion_path(discussion), alert: 'There was a problem!'

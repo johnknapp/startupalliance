@@ -1,6 +1,6 @@
 ActiveAdmin.register Conversation do
 
-  menu parent: 'Interactions'
+  menu parent: 'Messaging'
 
   actions :all, except: [:new, :edit]
 

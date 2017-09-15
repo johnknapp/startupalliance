@@ -13,6 +13,7 @@ class DiscussionsController < ApplicationController
       @discussable = Company.find_by_pid(params[:discussion][:company_pid])
       @discussion  = @discussable.discussions.build(discussion_params)
       if @discussion.save
+        Notifier.tell_jk(@discussion).deliver
         redirect_to discussion_path(@discussion), notice: 'Discussion created'
       else
         redirect_to company_path(@discussable), alert: 'There was a problem!'

@@ -8,6 +8,7 @@ class RepliesController < InheritedResources::Base
     @reply = Reply.new(reply_params)
     @reply.post_id = post.id
     if @reply.save
+      Notifier.tell_jk(@reply).deliver
       redirect_to discussion_path(post.discussion), alert: 'Reply created'
     else
       redirect_to discussion_path(post.discussion), alert: 'There was a problem!'

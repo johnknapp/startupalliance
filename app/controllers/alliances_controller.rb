@@ -63,6 +63,7 @@ class AlliancesController < ApplicationController
 
       respond_to do |format|
         if @alliance.save
+          Notifier.tell_jk(@alliance).deliver
           @alliance.update(invite_token: SecureRandom.urlsafe_base64)
           @alliance.members << current_user
           format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }

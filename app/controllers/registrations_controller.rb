@@ -59,7 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
     if params[:user][:email].present?
       email = params[:user][:email]
       user = User.find_by_email(email)
-      entity = params[:user][:entity].singularize
+      entity = params[:user][:entity].singularize if params[:user][:entity]
       token = params[:user][:token]
       if user
         # create membership for existing non-auth user
