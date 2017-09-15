@@ -30,13 +30,13 @@
                 | &nbsp;
                 = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
                   i.fa.fa-trash-o.faint
-              p.text-right.faint Written #{time_ago_in_words(message.created_at)} ago
+              p.text-right.faint Written by you #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
               .row
                 .small-6.small-offset-6.columns
                   p.text-right.snug-top= message.body
             - else
-              p.faint Written #{time_ago_in_words(message.created_at)} ago
+              p.faint Written by them #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
               .row
                 .small-6.columns
