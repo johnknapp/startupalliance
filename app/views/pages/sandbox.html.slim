@@ -1,11 +1,13 @@
-p Zurb Dropdown Menu Test
+.callout.small
+  p.bold Zurb for Sites 6.3.0 Dropdown Menu
+  p On iOS, the tap to select menu item will activate a link behind the menu!
 
 ul.dropdown.menu data-dropdown-menu=true
   li
     = link_to 'dropdown menu', '#'
     ul.menu
-      li= link_to 'faq', faq_path
-      li= link_to 'home', root_path
+      li= link_to 'link to faq', faq_path
+      li= link_to 'link to home', root_path
 
-p= link_to 'companies link behind the dropdown', companies_path
-p= link_to 'members link behind the dropdown', members_path
+p= link_to 'link to privacy policy', companies_path
+p= link_to 'link to terms of service', members_path
