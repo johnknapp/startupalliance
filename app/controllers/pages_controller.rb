@@ -37,4 +37,7 @@ class PagesController < ApplicationController
   def quick_start
   end
 
+  def sandbox
+  end
+
 end
