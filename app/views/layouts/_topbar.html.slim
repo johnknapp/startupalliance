@@ -42,13 +42,14 @@
     .top-bar-right
       ul.dropdown.menu data-dropdown-menu=true
         li.bold.primary-text
-          | &nbsp;
-          | &nbsp;
-          = menu_icon
-          | &nbsp;
-          | #{current_user.name}
-          | &nbsp;
-          i.fa.fa-bars.secondary
+          = link_to '#' do
+            | &nbsp;
+            | &nbsp;
+            = menu_icon
+            | &nbsp;
+            | #{current_user.name}
+            | &nbsp;
+            i.fa.fa-bars.secondary
           ul.menu.normal data-dropdown-menu=true
             - if current_user and current_user.companies.present?
               li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
