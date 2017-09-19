@@ -1,32 +1,38 @@
 - content_for :page_title do
-  ' Startup Alliance – Quick start
+  ' Startup Alliance – Quick start guide
 
 .row
   .medium-10.medium-offset-1.columns
-    h3.bold.space-top.primary-text Startup Alliance Quick Start
+    h3.bold.space-top.primary-text Quick Start Guide
     hr.little-snug-top
     p.snug-top.space-botton.text-right
-      ' Helping our members get the most out of Startup Alliance
+      ' Helping members get the most out of Startup Alliance
     p.snug-top.show-for-medium &nbsp;
 
 
-    /.row
+    .row
       /hr
       .medium-4.columns
         p.pad-right
-          strong Getting the most from Startup Alliance
+          strong Things to remember
       .medium-8.columns
         ol
-          li Entrepreneurship isn’t easy but here you’re not alone
-          li Explore Alliances, Companies and Members and make new connections
-          li Join Private Alliances and collaborate to maximize your mutual success
-          li Join Company Teams and work with together to move the company ahead
+          li On Startup Alliance, you’re not alone
+          li We are here to help each other
+          li Helping others helps you too
+          li Invite people who can help
+          li Invite people you can help
+
+
+          /li Entrepreneurship isn’t easy but here you’re not alone
+          /li Explore Alliances, Companies and Members and make new connections
+          /li Join Private Alliances and collaborate to maximize your mutual success
+          /li Join Company Teams and work with together to move the company ahead
           /li Read below and make full use of all the tools we offer
-          li Ask for help, that’s why we’re here
-          li Offer help to those you can benefit
+          /li Ask for help, that’s why we’re here
+          /li Offer help to those you can benefit
           /li Be helpful to other members whenever possible and don't be afraid to offer help
           /li Accept help from other members and don’t be afraid to ask for help
-          li Invite your friends and colleagues to join
 
     .row
       hr
@@ -38,6 +44,9 @@
           li #{link_to 'Choose the Membership Plan', plans_path} that’s right for you
           li Sign-up with your email address
           li Find your account activation email and activate your account
+          ul.no-bullet
+            li.faint.pad-right
+              ' Your capabilities are limited until you activate
 
     .row
       hr
@@ -51,8 +60,8 @@
           li Rate your startup skills and personal traits
           ul.no-bullet
             li.faint.pad-right
-              ' Only rated skills and traits are shown to other members
-              ' Optionally, make them visible to the public in account settings
+              ' Only rated skills and traits are visible to other members
+              ' Optionally, you can make them visible to the general public (in account settings)
           li Visit Gravatar.com to attach a profile photo to your email
           ul.no-bullet
             li.faint
@@ -88,6 +97,24 @@
       hr
       .medium-4.columns
         p.pad-right
+          strong Create a Private Alliance
+        p.little-snug-top.faint.pad-right
+          em Alliance or Company membership required
+      .medium-8.columns
+        ol
+          li Visit the Alliance listings and click the +
+          li Complete and submit the Alliance creation form
+          li Complete your Private Alliance profile
+          li
+            ' You have the option to activate
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+              ' stealth mode
+          li Only the Alliance creator can invite members
+
+    .row
+      hr
+      .medium-4.columns
+        p.pad-right
           strong Maximize Private Alliance results
         p.little-snug-top.faint.pad-right
           em Go beyond the walls of your own company to achieve goals, overcome challenges, expand networks and maximize success
@@ -102,24 +129,6 @@
           li If you find an Alliance you want to join, ask a member for an invite
           li To help each other, Private Alliance Members can review a restricted set of Alliance Member Company information
           li Alliance Members must abide by our #{link_to 'Code of Conduct', code_of_conduct_path} and maintain the confidentiality of Member information
-
-    .row
-      hr
-      .medium-4.columns
-        p.pad-right
-          strong Create a Private Alliance
-        p.little-snug-top.faint.pad-right
-          em Alliance or Company membership required
-      .medium-8.columns
-        ol
-          li Visit the Alliance listings and click the +
-          li Complete and submit the Alliance creation form
-          li Complete your Private Alliance profile
-          li
-            ' You have the option to activate
-            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
-              ' stealth mode
-          li Only the Alliance creator can invite members
 
     .row
       hr
@@ -246,15 +255,15 @@
           ' Indepth: #{link_to 'Google’s OKR guide', 'https://rework.withgoogle.com/guides/set-goals-with-okrs/steps/introduction/', target: '_blank'}
       .medium-8.columns
         ol
-          li Refer to them frequently and let them guide your daily activities
+          /li Refer to them frequently and let them guide your daily activities
           li The Objective should be ambitious but not impossible
           li Key Results should be quantifiable and measurable
           li Recommended OKR duration is one calendar quarter
           li Do not have too many OKRs active at the same time
-          li If you are stuggling with your OKR, set status to Yellow or Red and tell the team
+          li If you are struggling with an OKR, set the status to Yellow or Red and tell the team
           li Score each Key Result at the end of the period on a scale of 0 to 1
           li If you consistently score above 0.8, your OKRs are too easy
-          li Write a postmortem you can refer to in the future
+          li Write a postmortem to help you learn from your experience
           li Retain your concluded OKRs to track your improvements
 
     .row
