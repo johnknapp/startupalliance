@@ -147,7 +147,7 @@
                       = form_tag add_alliance_member_alliance_path, method: :put
                         .row.collapse
                           .medium-8.columns
-                            = text_field_tag :username
+                            = text_field_tag :username, nil, placeholder: 'Enter a Startup Alliance username'
                           .medium-4.columns
                             = submit_tag 'Add to my Alliance', class: 'postfix button expanded accent'
                   - else
