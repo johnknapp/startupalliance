@@ -1,10 +1,10 @@
 - content_for :page_title do
-  ' Thanks for activating your Startup Alliance account!
+  ' Your Membership is now active!
 
 .row
   .large-8.large-offset-2.columns
 
-    h3.bold.primary-text Your Startup Alliance Membership is now active
+    h3.bold.primary-text Your Membership is now active!
     hr.little-snug-top
     - if current_user
       p.snug-top.text-right
@@ -14,20 +14,28 @@
     - else
       p.snug-top.text-right You are not signed in
 
-    h4.bold Next steps:
+    h4.bold Recommended next steps:
 
     ol.indented-2
       - if current_user
         li
-          ' #{link_to 'Sign in', new_user_session_path}
-          ' and complete your #{link_to 'members profile', vanity_path(current_user.username)}
+          ' Complete your #{link_to 'members profile', vanity_path(current_user.username)}
       - else
         li #{link_to 'Sign in', new_user_session_path} and complete your members profile
-      li Create or join a #{link_to 'Private Alliance', alliances_path} to maximize your success
-      li List your Company to take advantage of the tools we provide
-      li Check out the #{link_to 'Quick Start Guide', quick_start_path} to get the most out of Startup Alliance.
+      li Introduce yourself to #{link_to 'Startup Alliance founder John Knapp', vanity_path('john')} with a private message
+      ul.no-bullet
+          li.faint
+            em
+              ' “I look forward to helping you personally!” –John
+      li #{link_to 'List your Company', companies_path} and take advantage of the company tools we provide
+      ul.no-bullet
+          li.faint
+            em
+              ' If your company is already listed, add yourself to the team
+      li Create or join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
+      li Visit the #{link_to 'Quick Start Guide', quick_start_path} to quickly learn Startup Alliance
       /li And if you haven’t already, head over to Gravatar.com and attach a photo to your email address.
-      li Visit Gravatar.com and attach a photo to your email address
+      li Visit #{link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'} and attach a photo to your email address
 
 
     p.bold We’re glad to have you as a member of Startup Alliance!
