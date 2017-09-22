@@ -34,13 +34,13 @@
               hr.little-snug-top
               .row
                 .small-6.small-offset-6.columns
-                  p.text-right.snug-top= message.body
+                  p.text-right.snug-top= auto_link(message.body, html: { target: '_blank' })
             - else
               p.faint Written by them #{time_ago_in_words(message.created_at)} ago
               hr.little-snug-top
               .row
                 .small-6.columns
-                  p.snug-top= message.body
+                  p.snug-top= auto_link(message.body, html: { target: '_blank' })
 
         = simple_form_for @message, url: conversation_messages_path, method: :post do |f|
           = f.hidden_field :user_id, value: current_user.id

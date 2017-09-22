@@ -260,6 +260,8 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_autolink (1.1.6)
+      rails (> 3.1)
     railties (5.0.1)
       actionpack (= 5.0.1)
       activesupport (= 5.0.1)
@@ -379,6 +381,7 @@ DEPENDENCIES
   rack-attack
   rack-livereload
   rails (>= 5.0.1, < 5.1)
+  rails_autolink
   sass-rails (~> 5.0)
   seedbank
   simple_form

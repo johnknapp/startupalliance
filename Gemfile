@@ -41,6 +41,7 @@ gem 'pg_search'
 # gem 'premailer-rails'                       # needs nokogiri
 gem 'pretender'
 gem 'rack-attack'
+gem 'rails_autolink'
 # gem 'rails-jquery-autocomplete'
 # gem 'rails-ujs'
 # gem 'redactor-rails'
