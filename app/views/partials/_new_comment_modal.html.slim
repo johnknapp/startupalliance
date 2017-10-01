@@ -1,9 +1,9 @@
-a data-open='new-post'
+a data-open='new-comment'
   i.fa.fa-plus
   | &nbsp;
   | &nbsp;
-  ' New comment
-  .reveal.large#new-post data-reveal=true
+  ' Add your comment
+  .reveal.large#new-comment data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
         ' &times;
@@ -12,4 +12,4 @@ a data-open='new-post'
       = f.hidden_field :discussion_id, value: @discussion.pid
       = f.hidden_field :author_id,     value: current_user.id
       = f.input :body, placeholder: 'Contribute to this discussion', as: :text, input_html: { rows: '4' }, label: false
-      = f.button :submit, 'Comment!', class: 'bold secondary'
+      = f.button :submit, 'Add your Comment', class: 'bold secondary'
