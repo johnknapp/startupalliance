@@ -1,12 +1,9 @@
 .row
-  .large-10.large-offset-1.columns
+  .large-12.columns
     h3.space-top.primary-text
-      - if @discussion.discussable_type == 'Alliance'
-        ' Alliance Member Discussion:
-      - if @discussion.discussable_type == 'Company'
-        ' Company Team Discussion:
+      ' Discussion:
       strong
-        ' #{@discussion.title}
+        ' #{@discussion.topic}
     hr.little-snug-top
     .float-left
       p.snug-top.space-bottom
@@ -23,21 +20,6 @@
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
     p.snug-top.space-bottom.text-right Ask questions, get answers, share information and ideas
-
-    /.row
-      .medium-10.medium-offset-1.columns
-        .callout.small
-          .float-right
-            = link_to edit_discussion_path(@discussion) do
-              i.fa.fa-pencil
-            /- if @discussion.discussable.class.name == 'Company'
-              = link_to edit_discussion_path(@discussion, company_pid: @discussion.discussable.pid) do
-                i.fa.fa-pencil
-            /- if @discussion.discussable.class.name == 'Alliance'
-              = link_to edit_discussion_path(@discussion, alliance_pid: @discussion.discussable.pid) do
-                i.fa.fa-pencil
-          p.bold Mission statement for “#{@discussion.title}” discussion:
-          p= @discussion.description
 
     p.show-for-medium.snug-top &nbsp;
 
@@ -97,4 +79,4 @@
 
     - else
       .callout
-        p.text-center No posts yet!
+        p.text-center No comments yet!

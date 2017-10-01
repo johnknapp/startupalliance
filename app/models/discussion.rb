@@ -4,7 +4,6 @@ class Discussion < ApplicationRecord
   belongs_to  :author, class_name: :User
   has_many    :posts, dependent: :destroy
 
-  validates :title,       length: { maximum: 255 }
-  validates :description, length: { maximum: 1024 }
+  validates :topic,       length: { maximum: 255 }
 
 end
