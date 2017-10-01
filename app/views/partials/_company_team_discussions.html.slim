@@ -26,7 +26,7 @@
               i.fa.fa-trash-o
         p #{link_to disco.topic, discussion_path(disco)} (#{disco.comments.count} #{'comment'.pluralize(disco.comments.count)})
     - elsif current_user and @company.creator == current_user
-      p.text-center.space-top Add your first discussion.
+      p.text-center.space-top Add the first discussion
     - else
       p.text-center.space-top The member who listed the company will create the first discussion soon.
   - else
