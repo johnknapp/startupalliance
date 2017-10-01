@@ -2,14 +2,14 @@ a data-open='new-post'
   i.fa.fa-plus
   | &nbsp;
   | &nbsp;
-  ' New post
+  ' New comment
   .reveal.large#new-post data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
         ' &times;
-    p.bold Add a post to #{@discussion.topic}
-    = simple_form_for @post, url: discussion_posts_path(@post, discussion_id: @discussion.pid), method: :post do |f|
+    p.bold Add a comment to #{@discussion.topic}
+    = simple_form_for @comment, url: discussion_comments_path(@comment, discussion_id: @discussion.pid), method: :comment do |f|
       = f.hidden_field :discussion_id, value: @discussion.pid
       = f.hidden_field :author_id,     value: current_user.id
       = f.input :body, placeholder: 'Contribute to this discussion', as: :text, input_html: { rows: '4' }, label: false
-      = f.button :submit, 'Post!', class: 'bold secondary'
+      = f.button :submit, 'Comment!', class: 'bold secondary'

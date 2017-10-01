@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
 
   resources :discussions, except: [:index],        constraints: { format: 'html' } do
-    resources :posts,     except: [:index],        constraints: { format: 'html' } do
+    resources :comments,     except: [:index],        constraints: { format: 'html' } do
       resources :replies, except: [:index],        constraints: { format: 'html' }
     end
   end

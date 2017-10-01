@@ -59,9 +59,9 @@
                     | &nbsp;
                     | &nbsp;
                     | &nbsp;
-                    = link_to disco, data: { confirm: 'Really destroy entire discussion and all posts?' }, class: 'scale-to-80', method: :delete do
+                    = link_to disco, data: { confirm: 'Really destroy entire discussion and all comments?' }, class: 'scale-to-80', method: :delete do
                       i.fa.fa-trash-o
-                p #{link_to disco.topic, discussion_path(disco)} (#{disco.posts.count} #{'post'.pluralize(disco.posts.count)})
+                p #{link_to disco.topic, discussion_path(disco)} (#{disco.comments.count} #{'comment'.pluralize(disco.comments.count)})
             - else
               p.text-center.space-top Add your first discussion.
           - else

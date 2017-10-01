@@ -15,7 +15,7 @@ class Ability
     alias_action :add_alliance_member, :remove_alliance_member, to: :manage_members
     alias_action :add_team_member, :remove_team_member,         to: :manage_team
 
-    primary_objects = [Alliance,Company,Conversation,Message,Discussion,Post,Reply,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]
+    primary_objects = [Alliance,Company,Conversation,Message,Discussion,Comment,Reply,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]
     public_content  = [Alliance,Company] # user profiles are public by default
 
     case user.role

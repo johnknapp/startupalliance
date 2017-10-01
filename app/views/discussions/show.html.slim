@@ -23,49 +23,49 @@
 
     p.show-for-medium.snug-top &nbsp;
 
-    = render 'partials/new_post_modal'
-    - if @discussion.posts.present?
-      - @discussion.posts.each do |post|
+    = render 'partials/new_comment_modal'
+    - if @discussion.comments.present?
+      - @discussion.comments.each do |comment|
         .callout
           .float-right
             p.faint
-              - if current_user and current_user == post.author or current_user == post.discussion.discussable.creator
+              - if current_user and current_user == comment.author or current_user == comment.discussion.discussable.creator
                 | &nbsp;
                 | &nbsp;
-                = link_to edit_discussion_post_path(discussion_id: @discussion.pid, id: post.pid) do
+                = link_to edit_discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid) do
                   i.fa.fa-pencil
                 | &nbsp;
                 | &nbsp;
                 | &nbsp;
-                = link_to discussion_post_path(discussion_id: @discussion.pid, id: post.pid), data: { confirm: 'Really destroy this post?' }, method: :delete do
+                = link_to discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid), data: { confirm: 'Really destroy this comment?' }, method: :delete do
                   i.fa.fa-trash-o
           p.faint
-            ' #{link_to (image_tag gravatar_url("#{post.author.email}", 36)), vanity_path(post.author.username)}
+            ' #{link_to (image_tag gravatar_url("#{comment.author.email}", 36)), vanity_path(comment.author.username)}
             | &nbsp;
-            ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
-          p.little-snug-top.indented-3= post.body
+            ' #{link_to comment.author.name, vanity_path(comment.author.username)} #{time_ago_in_words(comment.created_at)} ago
+          p.little-snug-top.indented-3= comment.body
 
           ul.menu.simple.indented-3
-            li.faint.reply-toggle data-post-pid=post.pid
-              - if post.replies.present?
-                ' Show / hide #{post.replies.count} #{'reply'.pluralize(post.replies.count)}
-            li.faint= render 'partials/new_reply_modal', post: post
+            li.faint.reply-toggle data-comment-pid=comment.pid
+              /- if comment.replies.present?
+              /  ' Show / hide #{comment.replies.count} #{'reply'.pluralize(comment.replies.count)}
+            li.faint= render 'partials/new_reply_modal', comment: comment
 
-          .indented-3 id="replies-post-pid-#{post.pid}" style='display:none;'
-            - if post.replies.present?
-              - post.replies.each do |reply|
+          .indented-3 id="replies-comment-pid-#{comment.pid}" style='display:none;'
+            /- if comment.replies.present?
+            /  - comment.replies.each do |reply|
                 .callout.small
                   .float-right
                     p.faint
-                      - if current_user and current_user == reply.author or current_user == reply.post.author or current_user == post.discussion.discussable.creator
+                      - if current_user and current_user == reply.author or current_user == reply.comment.author or current_user == comment.discussion.discussable.creator
                         | &nbsp;
                         | &nbsp;
-                        = link_to edit_discussion_post_reply_path(discussion_id: post.discussion.pid, post_id: post.pid, id: reply.pid) do
+                        = link_to edit_discussion_comment_reply_path(discussion_id: comment.discussion.pid, comment_id: comment.pid, id: reply.pid) do
                           i.fa.fa-pencil
                         | &nbsp;
                         | &nbsp;
                         | &nbsp;
-                        = link_to discussion_post_reply_path(discussion_id: post.discussion.pid, post_id: post.pid, id: reply.pid), data: { confirm: 'Really destroy this reply?' }, method: :delete do
+                        = link_to discussion_comment_reply_path(discussion_id: comment.discussion.pid, comment_id: comment.pid, id: reply.pid), data: { confirm: 'Really destroy this reply?' }, method: :delete do
                           i.fa.fa-trash-o
                   p.faint
                     ' #{link_to (image_tag gravatar_url("#{reply.author.email}", 36)), vanity_path(reply.author.username)}
@@ -73,7 +73,7 @@
                     ' #{link_to reply.author.name, vanity_path(reply.author.username)} #{time_ago_in_words(reply.created_at)} ago
                   p.little-snug-top.indented-3= reply.body
                 
-            - else
+            /- else
               .callout.small
                 p.text-center No replies yet!
 

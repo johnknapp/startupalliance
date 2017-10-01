@@ -1,20 +1,20 @@
-a data-open="new-reply-#{post.pid}"
+a data-open="new-reply-#{comment.pid}"
   i.fa.fa-plus
   ' New reply
 
-.reveal.large id="new-reply-#{post.pid}" data-reveal=true
+.reveal.large id="new-reply-#{comment.pid}" data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
 
   p.faint
-    ' #{link_to (image_tag gravatar_url("#{post.author.email}", 36)), vanity_path(post.author.username)}
+    ' #{link_to (image_tag gravatar_url("#{comment.author.email}", 36)), vanity_path(comment.author.username)}
     | &nbsp;
-    ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
-  p.little-snug-top.indented-3= post.body
+    ' #{link_to comment.author.name, vanity_path(comment.author.username)} #{time_ago_in_words(comment.created_at)} ago
+  p.little-snug-top.indented-3= comment.body
 
-  .indented-3= simple_form_for @reply, url: discussion_post_replies_path(@reply, discussion_id: post.discussion.pid, post_id: post.pid), method: :post do |f|
-    = f.hidden_field :post_id,   value: post.pid
+  .indented-3= simple_form_for @reply, url: discussion_comment_replies_path(@reply, discussion_id: comment.discussion.pid, comment_id: comment.pid), method: :comment do |f|
+    = f.hidden_field :comment_id,   value: comment.pid
     = f.hidden_field :author_id, value: current_user.id
-    = f.input :body, placeholder: 'Add a reply to this post', as: :text, input_html: { rows: '4' }, label: false
+    = f.input :body, placeholder: 'Add a reply to this comment', as: :text, input_html: { rows: '4' }, label: false
     = f.button :submit, 'Reply!', class: 'bold secondary'
