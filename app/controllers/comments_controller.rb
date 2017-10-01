@@ -1,6 +1,6 @@
 class CommentsController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
   load_and_authorize_resource
 
 
@@ -10,7 +10,7 @@ class CommentsController < InheritedResources::Base
 
   def create
     discussion = Discussion.find_by_pid(params[:comment][:discussion_id])
-    @comment = Comment.new(post_params)
+    @comment = Comment.new(comment_params)
     @comment.discussion_id = discussion.id
     if @comment.save
       Notifier.tell_jk(@comment).deliver
@@ -24,7 +24,7 @@ class CommentsController < InheritedResources::Base
   end
 
   def update
-    if @comment.update(post_params)
+    if @comment.update(comment_params)
       redirect_to discussion_path(@comment.discussion), notice: 'Comment updated'
     else
       redirect_to discussion_path(@comment.discussion), alert: 'There was a problem!'
@@ -38,11 +38,11 @@ class CommentsController < InheritedResources::Base
 
   private
 
-    def post_params
+    def comment_params
       params.require(:comment).permit(:body, :author_id, :discussion_id, :pid)
     end
 
-    def set_post
+    def set_comment
       @comment = Comment.find_by_pid(params[:id])
     end
 
