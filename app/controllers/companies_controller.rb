@@ -151,7 +151,7 @@ class CompaniesController < ApplicationController
 
   private
 
-    def reassign_okr_owner
+    def reassign_okr_ownership
       okrs = Okr.where(owner_id: @team_member.id).all
       if okrs.present?
         Okr.where(owner_id: @team_member.id).each do |okr|

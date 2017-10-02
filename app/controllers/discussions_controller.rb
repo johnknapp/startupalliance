@@ -34,7 +34,6 @@ class DiscussionsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @reply = Reply.new
   end
 
   def edit

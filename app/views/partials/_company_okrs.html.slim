@@ -40,10 +40,8 @@
             - if okr.upcoming? or okr.date_unset?
               = render 'partials/okr_show', okr: okr
 
-    - elsif current_user and @company.creator == current_user
-      p.text-center.space-top Add your first OKR.
-    - else
-      p.text-center.space-top The member who listed the company will create the first OKR soon.
+    - elsif current_user and @company.team.include?(current_user)
+      p.text-center.space-top Add the first OKR
   - else
     p.text-center.space-top
       em

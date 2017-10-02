@@ -26,8 +26,6 @@
     - if @discussion.comments.present?
       = nested_comments @discussion.comments.arrange(order: :created_at)
 
-
-
       /- @discussion.comments.each do |comment|
         hr.little-snug-bottom
         .float-right

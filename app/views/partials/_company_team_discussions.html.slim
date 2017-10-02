@@ -25,10 +25,8 @@
             = link_to disco, data: { confirm: 'Really destroy entire discussion and all comments?' }, class: 'scale-to-80', method: :delete do
               i.fa.fa-trash-o
         p #{link_to disco.topic, discussion_path(disco)} (#{disco.comments.count} #{'comment'.pluralize(disco.comments.count)})
-    - elsif current_user and @company.creator == current_user
+    - elsif current_user and @company.team.include?(current_user)
       p.text-center.space-top Add the first discussion
-    - else
-      p.text-center.space-top The member who listed the company will create the first discussion soon.
   - else
     p.text-center.space-top
       em
