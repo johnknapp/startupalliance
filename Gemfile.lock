@@ -71,6 +71,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    ancestry (3.0.1)
+      activerecord (>= 3.2.0)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
@@ -350,6 +352,7 @@ PLATFORMS
 DEPENDENCIES
   actionview-encoded_mail_to
   activeadmin!
+  ancestry
   awesome_print
   better_errors
   binding_of_caller

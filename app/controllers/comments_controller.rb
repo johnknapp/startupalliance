@@ -4,11 +4,8 @@ class CommentsController < InheritedResources::Base
   load_and_authorize_resource
 
 
-  # def new
-  #   @comment = Comment.new
-  # end
-
   def create
+    # raise('Chinese finger trap')
     discussion = Discussion.find_by_pid(params[:comment][:discussion_id])
     @comment = Comment.new(comment_params)
     @comment.discussion_id = discussion.id
@@ -39,7 +36,7 @@ class CommentsController < InheritedResources::Base
   private
 
     def comment_params
-      params.require(:comment).permit(:body, :author_id, :discussion_id, :pid)
+      params.require(:comment).permit(:body, :author_id, :discussion_id, :parent_id, :read, :pid)
     end
 
     def set_comment

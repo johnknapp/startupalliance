@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001205305) do
+ActiveRecord::Schema.define(version: 20171002000324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,14 @@ ActiveRecord::Schema.define(version: 20171001205305) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
-    t.integer  "discussion_id", null: false
-    t.string   "pid",           null: false
-    t.integer  "author_id",     null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "discussion_id",                 null: false
+    t.string   "pid",                           null: false
+    t.integer  "author_id",                     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "ancestry"
+    t.boolean  "read",          default: false
+    t.index ["ancestry"], name: "index_comments_on_ancestry", using: :btree
   end
 
   create_table "companies", force: :cascade do |t|

@@ -1,0 +1,17 @@
+/hr.little-snug-bottom
+.float-right
+  p.faint
+    - if current_user and current_user == comment.author or current_user == comment.discussion.discussable.creator
+      | &nbsp;
+      | &nbsp;
+      = link_to edit_discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid) do
+        i.fa.fa-pencil
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      = link_to discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid), data: { confirm: 'Really destroy this comment?' }, method: :delete do
+        i.fa.fa-trash-o
+p.little-snug-bottom.faint
+  ' #{link_to comment.author.name, vanity_path(comment.author.username)} #{time_ago_in_words(comment.created_at)} ago
+p= comment.body
+p.faint.little-snug-top.little-space-bottom= render 'partials/new_reply_modal', comment: comment
