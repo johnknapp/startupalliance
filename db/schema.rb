@@ -40,13 +40,12 @@ ActiveRecord::Schema.define(version: 20171002030708) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
-    t.integer  "discussion_id",                 null: false
-    t.string   "pid",                           null: false
-    t.integer  "author_id",                     null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "discussion_id", null: false
+    t.string   "pid",           null: false
+    t.integer  "author_id",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "ancestry"
-    t.boolean  "read",          default: false
     t.index ["ancestry"], name: "index_comments_on_ancestry", using: :btree
   end
 
