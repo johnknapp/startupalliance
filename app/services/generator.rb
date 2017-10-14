@@ -17,6 +17,10 @@ class Generator
       array.sample(length).join
   end
 
+  def url_safe_token(length=24)
+    SecureRandom.urlsafe_base64(length)
+  end
+
   private
 
     # 13,585,136 unique pids, add 6 to length array for 340,278,128 unique pids

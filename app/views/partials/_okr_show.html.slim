@@ -1,5 +1,5 @@
 .callout.accent
-  - if current_user and @company.team.include?(current_user)
+  - if current_user and okr.owner == current_user
     .float-right
       = link_to edit_okr_path(okr, company_pid: @company.pid) do
         i.fa.fa-pencil

@@ -11,6 +11,12 @@
       | &nbsp;
       = link_to discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid), data: { confirm: 'Really destroy this comment?' }, method: :delete do
         i.fa.fa-trash-o
+/- if comment.subtree.present?
+  ul.menu.simple.snug-bottom
+    li.faint.subtree-toggle data-comment-pid=comment.pid
+      ' Show / hide #{comment.subtree.count} #{'comment'.pluralize(comment.subtree.count)}
+  /li.faint= render 'partials/new_reply_modal', post: post
+
 p.little-snug-bottom.faint
   ' #{link_to comment.author.name, vanity_path(comment.author.username)} #{time_ago_in_words(comment.created_at)} ago
 p= comment.body

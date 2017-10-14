@@ -26,6 +26,12 @@
     - if @discussion.comments.present?
       = nested_comments @discussion.comments.arrange(order: :created_at)
 
+      /ul.menu.simple.indented-3
+        li.faint.reply-toggle data-post-pid=post.pid
+          - if post.replies.present?
+            ' Show / hide #{post.replies.count} #{'reply'.pluralize(post.replies.count)}
+        li.faint= render 'partials/new_reply_modal', post: post
+
       /- @discussion.comments.each do |comment|
         hr.little-snug-bottom
         .float-right
