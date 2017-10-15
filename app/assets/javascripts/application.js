@@ -18,7 +18,8 @@
 //= require foundation_datepicker_init
 //= require google_analytics
 //= require hotjar
-//= require subtree_toggler.coffee
+//= require freshchat
+//= require subtree_toggler
 
 $(function(){
   $(document).foundation();
