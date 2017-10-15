@@ -24,6 +24,7 @@
     = render 'partials/new_comment_modal'
     p.show-for-medium.snug-top &nbsp;
     - if @discussion.comments.present?
+      / The arrange method of the ancestry gem returns the entire subtree as nested hashes
       = nested_comments @discussion.comments.arrange(order: :created_at)
 
       /ul.menu.simple.indented-3

@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:quick_start]
+
   def home
     # respond_to do |format|
     #   format.html { render layout: 'wide_layout'}
