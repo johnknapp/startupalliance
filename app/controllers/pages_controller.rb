@@ -39,4 +39,7 @@ class PagesController < ApplicationController
   def quick_start
   end
 
+  def community_canvas
+  end
+
 end

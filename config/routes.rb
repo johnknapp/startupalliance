@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'terms',                      to: 'pages#terms',                constraints: { format: 'html' }
   get 'learn_more',                 to: 'pages#learn_more',           constraints: { format: 'html' }
   get 'quick_start',                to: 'pages#quick_start',          constraints: { format: 'html' }
+  get 'community_canvas',           to: 'pages#community_canvas',     constraints: { format: 'html' }
 
   get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
 
