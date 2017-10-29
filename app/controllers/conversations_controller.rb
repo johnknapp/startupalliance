@@ -18,7 +18,7 @@ class ConversationsController < ApplicationController
         end
         redirect_to conversation_messages_path(@conversation)
       else
-        redirect_to plans_path(goal: 'message'), alert: 'Please upgrade to an Alliance or Company Membership!' and return
+        redirect_to plans_path(goal: 'message'), alert: 'To start a conversation, please upgrade to an Alliance or Company Membership!' and return
       end
     else
       redirect_to :back, alert: 'There was a problem!'

@@ -9,7 +9,7 @@
       - if current_user and current_user.confirmed? and current_user != @user
         - if Conversation.between(current_user.id,@user.id).present?
           p.snug-top.space-bottom
-            = link_to  conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+            = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
               i.fa.fa-comments-o
               | &nbsp;
               | &nbsp;
