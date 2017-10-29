@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :okrs
+  resources :okrs, except: [:index]
 
   resources :alliances do
     member do

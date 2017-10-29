@@ -66,10 +66,6 @@
                 li.little-snug-top= link_to alliance.name, alliance_path(alliance)
               hr
 
-            - if current_user.admin?
-              li.little-space-top= link_to 'Admin interface', admin_root_path
-              hr
-
             - if current_user and (current_user.companies.blank? or current_user and !current_user.admin?)
               li.little-space-top
                 - if current_user and current_user.confirmed?

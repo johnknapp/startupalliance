@@ -9,8 +9,8 @@ table.hover.stacked
   thead
     tr
       th Objective
-      th Mid score
-      th Final score
+      th Status
+      th Score
       th Company
       th
       th
@@ -20,8 +20,8 @@ table.hover.stacked
     - @okrs.each do |okr|
       tr
         td= link_to okr.objective, okr
-        td= okr.mid_score
-        td= okr.final_score
+        td= okr.status
+        td= okr.score
         td
           = link_to okr.company.name, company_path(okr.company)
           - if can? :manage, :all

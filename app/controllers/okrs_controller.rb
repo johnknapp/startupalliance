@@ -6,9 +6,9 @@ class OkrsController < ApplicationController
 
   # GET /okrs
   # GET /okrs.json
-  def index
-    @okrs = Okr.all # TODO limit to company!
-  end
+  # def index
+  #   @okrs = Okr.all
+  # end
 
   # GET /okrs/1
   # GET /okrs/1.json
