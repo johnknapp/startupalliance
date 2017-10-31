@@ -18,6 +18,7 @@ class CommentsController < InheritedResources::Base
   end
 
   def edit
+    render 'comments/edit'
   end
 
   def update
