@@ -10,7 +10,7 @@ class CommentsController < InheritedResources::Base
     @comment = Comment.new(comment_params)
     @comment.discussion_id = discussion.id
     if @comment.save
-      Notifier.tell_jk(@comment).deliver
+      # Notifier.tell_jk(@comment).deliver
       redirect_to discussion_path(discussion), alert: 'Your comment was saved.'
     else
       redirect_to discussion_path(discussion), alert: 'There was a problem!'
