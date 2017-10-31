@@ -3,6 +3,6 @@ module CommentsHelper
     # comments is a nested hash from the ancestry arrange method
     comments.map do |comment, sub_comments|
       render('partials/comment', comment: comment) + content_tag(:div, nested_comments(sub_comments), class: 'nested_comments')
-    end.join.html_safe
+    end.join
   end
 end

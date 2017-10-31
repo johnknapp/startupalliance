@@ -19,7 +19,7 @@
 
 p.little-snug-bottom.faint
   ' #{link_to comment.author.name, vanity_path(comment.author.username)} #{time_ago_in_words(comment.created_at)} ago
-p= comment.body
+p= comment.body.html_safe
 ul.menu.simple
   li.faint.little-snug-top= render 'partials/new_reply_modal', comment: comment
   /- if comment.subtree.count > 1
