@@ -1,6 +1,6 @@
 class CommentsController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
 
@@ -17,8 +17,10 @@ class CommentsController < InheritedResources::Base
     end
   end
 
+  def show
+  end
+
   def edit
-    render 'comments/edit'
   end
 
   def update
