@@ -55,7 +55,7 @@ class CompaniesController < ApplicationController
 
   # PUT /companies/1/add_team_member
   def add_team_member
-    team_member = User.find_by_username(params[:username])
+    team_member = User.where('lower(username) = ?', params[:username].downcase)
     if !team_member
       redirect_back(fallback_location: company_path, alert: 'Nobody with that username!')
     elsif @company.team.exists? team_member.id
