@@ -1,0 +1,14 @@
+= simple_form_for @comment, url: discussion_comment_path do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :author_id,     value: current_user.id         if current_user and @comment.new_record?
+    = f.hidden_field :discussion_id, value: params[:discussion_id]  if @comment.new_record?
+    = f.input :body, as: :text, input_html: { rows: '4' }, label: false
+
+  .form-actions
+    .row
+      .medium-12.columns
+        .button-group
+          = f.button :submit, class: 'button'
+          = link_to 'Exit', :back, class: 'button accent'
