@@ -93,7 +93,7 @@
                   ' (For the teams you’re on)
           p.little-snug-bottom &nbsp;
           .callout
-            h4.bold.text-center FREE FOREVER!
+            h4.bold.text-center FREE FOR LIFE!
             - if current_user and current_user.plan == 'associate'
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and current_user.plan != 'associate'
@@ -114,10 +114,10 @@
               li.bold All Associate Member benefits
               li.bold Send Private Messages
               li.bold
-                ' Create your own
+                ' Create and manage
                 span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
-                  ' Private Alliance
-              li Alliance profile and mission statement
+                  ' Private Alliances
+              /li Alliance profile and mission statement
               li Set a flag if your Private Alliance is recruiting
               li Expand your Alliance membership up to 12
               ul.no-bullet.little-snug-top
@@ -161,9 +161,9 @@
             ul
               li.bold All Associate Member benefits
               li.bold All Alliance Member benefits
-              li.bold List your Company
+              li.bold Company Collaboration Workspace
               li Progress tracking and collaboration tools
-              li Company profile to showcase your company
+              /li Company mission, market, lifecycle
               li Set a flag if your Company is recruiting
               li Expand your Company team up to 24
               ul.no-bullet.little-snug-top
