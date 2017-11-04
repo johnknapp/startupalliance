@@ -2,9 +2,63 @@
   .medium-10.medium-offset-1.columns
 
     .row
-      .large-10.large-offset-1.medium-12.columns
-        /p.bold.text-center.snug-top
+      .medium-12.columns
         .callout.primary-background.text-center
+          h3.h1.bold.white-text.wide-line-height
+            ' Startup Alliance is a
+            span.alert-text
+              ' collaboration toolbox
+            ' where global entrepreneurs work together to stay focused, make connections, overcome challenges and win.
+          h2.h1.bold.alert-text Regardless of where they live.
+
+        h3.bold.space-top.snug-bottom See what we have for you&thinsp;:
+        .callout.small.accent
+          h3.h1.bold.primary-text
+            ' Collaboration Workspaces for Companies
+          p
+            strong
+              ' Keep your team on track.
+            ' Startup Alliance provides companies with online collaboration workspaces where staff, advisors and investors collaborate to set objectives, discuss and overcome challenges and track their progress.
+            strong No other platform combines this powerful collection of tools:
+          ul.little-snug-top.indented-3
+            li
+              strong
+                ' Private Messaging
+              ' to keep the team connected
+            li
+              strong
+                ' Discussion Forums
+              ' to ask questions, get answers and capture knowledge
+            li
+              strong
+                ' Web Conferencing
+              ' enabling live interactions among global teams
+            li
+              strong
+                ' SAKPIs
+              ' to track and optimize key performance indicators
+            li
+              strong
+                ' Objectives and Key Results
+              ' to keep the team focused on priorities
+        .callout.small.accent
+          h3.h1.bold.primary-text
+            ' Private Alliances for Global Entrepreneurs
+          p
+            strong
+              ' Expand beyond your company walls.
+            ' Inspired by Mastermind Groups, our Private Alliances are collaboration spaces where entrepreneurs form trusted partnerships to help each other make better decisions, achieve goals, overcome challenges and maximize their success.
+            ' Private Alliances include private messaging, discussion forum and web conferencing tools and limited information on each alliance member company.
+        .callout.small.accent
+          h3.h1.bold.primary-text
+            ' Entrepreneur Showcase
+          p
+            strong
+              ' Find your people.
+            ' In addition to summarizing each member’s activities and highlighting their personal mission statement, each profile showcases the members strength on our standardized set of startup skills and personal traits.
+
+        /p.bold.text-center.snug-top
+        /.callout.primary-background.text-center
           h2.h1.bold.white-text Global Entrepreneurs Community
           h3.h2.bold.light-primary-text
             /' We maximize your business success
@@ -13,7 +67,8 @@
             /' We help startups succeed.
             /' We ramp up startups of any kind.
             /' We ramp up startups.
-            ' Our members help each other stay focused, make connections, overcome challenges and win.
+            ' This is a one-of-a-kind collaboration toolbox helping entrepreneurs work together to stay focused, make connections, overcome challenges and win.
+            /' Our members help each other stay focused, make connections, overcome challenges and win.
             /' Members of this global entrepreneurs community help each other stay focused, make connections, overcome challenges and win.
             /' We help global entrepreneurs stay focused, make connections, overcome challenges and win.
             /'>Helping entrepreneurs focus, connect, achieve goals and win.
@@ -79,30 +134,31 @@
             ul.accordion data-accordion=true
               li.accordion-item.primary-background.is-active data-accordion-item=true
                 a.accordion-title
-                  h4.bold.success-text.little-snug-top.snug-bottom Fact:
-                .accordion-content data-tab-content=true
-                  h5.text-center.bold Entrepreneurs not living in a startup hub have less access to the advice and help they need to achieve top results.
-              li.accordion-item.primary-background data-accordion-item=true
-                a.accordion-title
-                  h4.bold.success-text.little-snug-top.snug-bottom Problem:
-                .accordion-content data-tab-content=true
-                  h5.text-center.bold In this situation, success can be elusive and value is diminished. Relocating can help but is an impractical choice for most people.
-              li.accordion-item.primary-background data-accordion-item=true
-                a.accordion-title
-                  h4.bold.success-text.little-snug-top.snug-bottom Solution:
-                .accordion-content data-tab-content=true
-                  h5.text-center.bold When entrepreneurs connect and collaborate with the right people without relocating, success comes easier and communities benefit.
-              li.accordion-item.primary-background data-accordion-item=true
-                a.accordion-title
-                  h4.bold.success-text.little-snug-top.snug-bottom Our mission:
+                  h4.bold.success-text.little-snug-top.snug-bottom The problem we couldn’t ignore&thinsp;:
                 .accordion-content data-tab-content=true
                   h5.text-center.bold
-                    ' Maximize entrepreneurial results, regardless of location.
+                    ' Entrepreneurs that don’t live in a startup hub can’t get all the advice and support they need.
+                    ' This makes it hard for them to succeed and relocating is an impractical choice for most people.
+                    '
+              li.accordion-item.primary-background data-accordion-item=true
+                a.accordion-title
+                  h4.bold.success-text.little-snug-top.snug-bottom The solution we had to provide&thinsp;:
+                .accordion-content data-tab-content=true
+                  h5.text-center.bold
+                    ' Make it easy for entrepreneurs to connect online and collaborate with the people that can help them the most.
+                    ' Their success comes easier and their local communities benefit because they didn’t move away.
+                    '
+              li.accordion-item.primary-background data-accordion-item=true
+                a.accordion-title
+                  h4.bold.success-text.little-snug-top.snug-bottom The mission that motivates us&thinsp;:
+                .accordion-content data-tab-content=true
+                  h5.text-center.bold
+                    ' Helping entrepreneurs succeed, regardless of their location.
                     | &nbsp;
                     span.alert-text.scale-to-120
                       i.fa.fa-rocket
 
-    h3.h2.bold.little-space-top.little-snug-bottom.primary-text
+    /h3.h2.bold.little-space-top.little-snug-bottom.primary-text
       /' Our members enjoy better&thinsp;:
       ' Membership benefits include&thinsp;:
       /' Member benefits include&thinsp;:
@@ -117,7 +173,7 @@
       /' Become a member and get...
       '
       '
-    .row data-equalizer=true
+    /.row data-equalizer=true
       .large-4.columns
         .callout.small.accent data-equalizer-watch=true
           h1.bold.text-center.primary-text
@@ -162,7 +218,6 @@
       .large-10.large-offset-1.columns
         - if !current_user
           = render 'partials/join_form', acqsrc: 'home_page'
-          p &nbsp;
         - else
           p.show-for-medium &nbsp;
           .news-box
