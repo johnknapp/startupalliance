@@ -106,10 +106,9 @@ ActiveRecord::Schema.define(version: 20171123140527) do
   end
 
   create_table "fact_strats", force: :cascade do |t|
-    t.integer  "factor_id"
-    t.integer  "strategy_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer "fast_id"
+    t.integer "strategy_id"
+    t.index ["fast_id", "strategy_id"], name: "index_fact_strats_on_fast_id_and_strategy_id", unique: true, using: :btree
   end
 
   create_table "fasts", force: :cascade do |t|
