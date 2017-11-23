@@ -7,7 +7,7 @@ class Fast < ApplicationRecord
   has_many    :fact_strats
   has_many    :strategies, through: :fact_strats
 
-  has_many    :factors, class_name: :FastStrat, foreign_key: :factor_id
+  has_many    :fact_strats, class_name: :FactStrat, foreign_key: :strategy_id
   has_many    :factors, through: :fact_strats, source: :fast
 
 end
