@@ -55,10 +55,10 @@ class CompaniesController < ApplicationController
 
   # PUT /companies/1/add_team_member
   def add_team_member
-    team_member = User.where('lower(username) = ?', params[:username].downcase)
-    if !team_member
+    team_member = User.where('lower(username) = ?', params[:username].downcase).first
+    if team_member.blank?
       redirect_back(fallback_location: company_path, alert: 'Nobody with that username!')
-    elsif @company.team.exists? team_member.id
+    elsif @company.team.include? team_member
       redirect_back(fallback_location: company_path, alert: 'Already a team member!')
     else
       CompanyUser.create(
@@ -95,7 +95,7 @@ class CompaniesController < ApplicationController
             Notifier.tell_jk(@company).deliver
             @company.update(invite_token: SecureRandom.urlsafe_base64)
             @company.team << current_user
-            CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
+            # CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
             format.html { redirect_to @company, notice: 'Company was successfully created.' }
             format.json { render :show, status: :created, location: @company }
           else

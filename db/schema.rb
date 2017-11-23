@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002030708) do
+ActiveRecord::Schema.define(version: 20171123140527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,25 @@ ActiveRecord::Schema.define(version: 20171002030708) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["discussable_type", "discussable_id"], name: "index_discussions_on_discussable_type_and_discussable_id", using: :btree
+  end
+
+  create_table "fact_strats", force: :cascade do |t|
+    t.integer  "factor_id"
+    t.integer  "strategy_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "fasts", force: :cascade do |t|
+    t.string   "body"
+    t.boolean  "is_factor"
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.string   "pid",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_fasts_on_company_id", using: :btree
+    t.index ["user_id"], name: "index_fasts_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|

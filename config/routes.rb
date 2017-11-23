@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :fasts, except: [:index]
   resources :okrs, except: [:index]
 
   resources :alliances do

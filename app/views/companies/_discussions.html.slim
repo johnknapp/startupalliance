@@ -1,0 +1,32 @@
+h5.bold.primary-text
+  .float-right
+    a data-open='disco-info'
+      i.fa.fa-info-circle
+    = render 'partials/quick_reference_disco'
+
+    - if current_user and @company.team.include?(current_user)
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      = link_to new_discussion_path(company_pid: @company.pid), class: 'scale-to-80' do
+        i.fa.fa-plus
+  ' Team discussions:
+- if current_user and @company.team.include?(current_user)
+  - if @company.discussions.present?
+    - @company.discussions.order(:updated_at).each do |disco|
+      - if current_user and @company.team.include?(current_user)
+        .float-right
+          = link_to edit_discussion_path(disco, company_pid: @company.pid), class: 'scale-to-80' do
+            i.fa.fa-pencil
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          = link_to disco, data: { confirm: 'Really destroy entire discussion and all comments?' }, class: 'scale-to-80', method: :delete do
+            i.fa.fa-trash-o
+      p #{link_to disco.topic, discussion_path(disco)} (#{disco.comments.count} #{'comment'.pluralize(disco.comments.count)})
+  - elsif current_user and @company.team.include?(current_user)
+    p.text-center.space-top Add the first discussion
+- else
+  p.text-center.space-top
+    em
+      ' Team discussions are only visible to the Company Team.

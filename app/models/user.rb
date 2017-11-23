@@ -11,8 +11,9 @@ class User < ApplicationRecord
   has_many  :user_skills                                 # See registrations#destroy
   has_many  :skills, through: :user_skills
   has_many  :conversations                               # See registrations#destroy
+  has_many  :fasts
   has_many  :okrs,          foreign_key: :owner_id       # See registrations#destroy
-  has_many  :comments,         foreign_key: :author_id, dependent: :destroy
+  has_many  :comments,      foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, dependent: :destroy
   has_many  :messages
 

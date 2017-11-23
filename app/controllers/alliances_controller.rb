@@ -34,14 +34,14 @@ class AlliancesController < ApplicationController
 
   # PUT /alliances/1/add_member
   def add_alliance_member
-    member =  User.where('lower(username) = ?', params[:username].downcase)
-    if @alliance.members.exists? member
+    member =  User.where('lower(username) = ?', params[:username].downcase).first
+    if member.blank?
+      redirect_back(fallback_location: alliance_path, alert: 'Nobody with that username!')
+    elsif @alliance.members.include? member
       redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
-    elsif member
+    else
       @alliance.members << member
       redirect_back(fallback_location: alliance_path, notice: 'Member added.')
-    else
-      redirect_back(fallback_location: alliance_path, alert: 'No member with that username!')
     end
   end
 

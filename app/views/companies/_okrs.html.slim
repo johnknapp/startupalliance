@@ -1,0 +1,73 @@
+h5.bold.primary-text
+  .float-right
+    a data-open='okr-info'
+      i.fa.fa-info-circle
+    = render 'partials/quick_reference_okr'
+
+    - if current_user and @company.team.include?(current_user)
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      = link_to new_okr_path(company_pid: @company.pid), class: 'scale-to-80' do
+        i.fa.fa-plus
+  ' Objectives and Key Results:
+- if current_user and @company.team.include?(current_user)
+  - if @company.okrs.present?
+
+    ul.accordion data-accordion=true
+      li.accordion-item.primary-background data-accordion-item=true
+        a.accordion-title
+          h5.bold.white-text.little-snug-top.snug-bottom Upcoming
+        .accordion-content data-tab-content=true
+          - @company.okrs.each do |okr|
+            - if okr.upcoming? or okr.date_unset?
+              = render 'partials/okr_show', okr: okr
+
+      li.accordion-item.primary-background.is-active data-accordion-item=true
+        a.accordion-title
+          h5.bold.white-text.little-snug-top.snug-bottom Active
+        .accordion-content data-tab-content=true
+          - @company.okrs.each do |okr|
+            - if okr.active?
+              = render 'partials/okr_show', okr: okr
+
+      li.accordion-item.primary-background data-accordion-item=true
+        a.accordion-title
+          h5.bold.white-text.little-snug-top.snug-bottom Concluded
+        .accordion-content data-tab-content=true
+          - @company.okrs.each do |okr|
+            - if okr.concluded?
+              = render 'partials/okr_show', okr: okr
+
+
+    /ul.tabs#okr-tabs data-tabs=true
+      li.tabs-title
+        a.bold href='#panel-1'
+          ' Concluded
+      li.tabs-title.is-active
+        a.bold href='#panel-2' aria-selected='true'
+          ' Active
+      li.tabs-title
+        a.bold href='#panel-3'
+          ' Upcoming
+
+    /.tabs-content data-tabs-content='okr-tabs'
+      .tabs-panel#panel-1
+        - @company.okrs.each do |okr|
+          - if okr.concluded?
+            = render 'partials/okr_show', okr: okr
+      .tabs-panel.is-active#panel-2
+        - @company.okrs.each do |okr|
+          - if okr.active?
+            = render 'partials/okr_show', okr: okr
+      .tabs-panel#panel-3
+        - @company.okrs.each do |okr|
+          - if okr.upcoming? or okr.date_unset?
+            = render 'partials/okr_show', okr: okr
+
+  - elsif current_user and @company.team.include?(current_user)
+    p.text-center.space-top Add the first OKR
+- else
+  p.text-center.space-top
+    em
+      ' OKRs are only visible to the Company Team.

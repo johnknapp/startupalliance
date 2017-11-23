@@ -1,0 +1,11 @@
+.card
+  .card-divider.accent-background
+    - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+      .float-right
+        = render 'add_to_team'
+    h4.bold.text-center Team
+
+  .card-section
+    .row
+      .medium-10.medium-offset-1.columns
+        = render 'team_member_card'

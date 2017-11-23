@@ -1,0 +1,12 @@
+= simple_form_for(@fast) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :body
+    = f.input :is_factor
+    = f.input :company_id
+    = f.input :user_id
+    = f.input :pid
+
+  .form-actions
+    = f.button :submit

@@ -35,6 +35,8 @@ USERNAME_EXCLUSIONS = %w[
   discussion
   discussions
   faq
+  factor
+  factors
   help
   image
   images
@@ -57,6 +59,8 @@ USERNAME_EXCLUSIONS = %w[
   split
   splits
   startupalliance
+  strategy
+  strategies
   resource
   resources
   resque

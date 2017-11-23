@@ -7,6 +7,7 @@ class Company < ApplicationRecord
   has_many    :team, through: :company_users, source: :user
   belongs_to  :creator, class_name: :User
   has_many    :okrs
+  has_many    :fasts
   has_many    :company_sakpis
   has_many    :sakpis, through: :company_sakpis
 
@@ -16,12 +17,11 @@ class Company < ApplicationRecord
   validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
   enum phases: {
-      Ideation:       0,
-      Experimenting:  1,
-      Operational:    2,
-      Sustainable:    3,
-      Accelerating:   4,
-      Diversifying:   5
+      Ideation:         0,
+      Validation:       1,
+      Operational:      2,
+      Growth:           3,
+      Diversification:  4
   }
 
   # used to test company_user.role (enum)

@@ -1,0 +1,36 @@
+- if @company.team.size <= 24
+  a data-open='update-team'
+    i.fa.fa-plus
+  .reveal#update-team data-reveal=true
+    button data-close=true aria-label='Close' type='button' class='close-button'
+      span aria-hidden=true
+        ' &times;
+    p
+      strong
+        ' Email this confidential invitation link to anybody:
+      br
+      = link_to "#{company_url(@company)}?invite=#{@company.invite_token}", company_url(@company, invite: @company.invite_token)
+    p.snug-bottom Or provide a Startup Alliance username:
+    = form_tag add_team_member_company_path, method: :put
+      .row.collapse
+        .medium-8.columns
+          = text_field_tag :username, nil, placeholder: 'Enter a Startup Alliance username'
+        .medium-4.columns
+          = submit_tag 'Add to my team', class: 'postfix button expanded accent'
+
+- else
+  a data-open='reached-cap'
+    i.fa.fa-exclamation-triangle
+  .reveal#reached-cap data-reveal=true
+    button data-close=true aria-label='Close' type='button' class='close-button'
+      span aria-hidden=true
+        ' &times;
+    p.bold You have reached your team size limit!
+    p.little-snug-bottom
+      ' Standard Company plans are limited to 24 people.
+      ' You have some choices:
+    ol.indented-2
+      li Keep the team at the current size.
+      li Ask if any team members are willing to resign.
+      li As the person who listed the Company, you can remove people.
+      li Contact us for an expanded Company plan.

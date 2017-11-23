@@ -1,197 +1,33 @@
 .row
-  .large-12.columns
-    h3.primary-text
-      ' Company profile:
-      strong
-        ' #{@company.name}
-    hr.little-snug-top
-    .float-right
-      p.snug-top.space-bottom Listed on #{@company.created_at.strftime('%B %e, %Y')}
-    p.snug-top.space-bottom.faint Listed by #{link_to @company.creator.name, vanity_path(@company.creator.username)}
-    - if params[:invite] and params[:invite] == @company.invite_token
-      .row
-        .medium-8.medium-offset-2.columns
-          .callout
-            p.bold Become a team member at #{@company.name}
-            - if current_user
-              = render 'partials/accept_invitation_form'
-            - else
-              = render 'partials/join_form', acqsrc: 'company_invite'
-          p.snug-bottom &nbsp;
-    .row
-      .medium-8.columns
+  .large-8.large-offset-2
+    = render 'company_card'
+    = render 'team_card'
 
-        = render 'partials/company_stage'
+    ul.tabs.accent-background#tool-tabs data-tabs=true
+      li.tabs-title
+        a.bold href='#panel-1'
+          ' SAKPIs
+      li.tabs-title.is-active
+        a.bold href='#panel-2' aria-selected='true'
+          ' Factors & Strategies
+      li.tabs-title
+        a.bold href='#panel-3'
+          ' OKRs
+      li.tabs-title
+        a.bold href='#panel-4'
+          ' Discussions
+      li.tabs-title
+        a.bold href='#panel-5'
+          ' Video Conferencing
 
-        = render 'partials/company_team_discussions'
-
-        = render 'partials/company_okrs'
-
-      .medium-4.columns
-        .callout
-          - if @company.recruiting == true
-            p.text-center
-              em
-                ' Currently recruiting!
-                br
-                ' Message a member to inquire.
-          - else
-            p.text-center
-              em
-                ' Not currently recruiting
-
-          hr.little-snug-top
-          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-            .float-right
-              = link_to edit_company_path(@company) do
-                i.fa.fa-pencil
-          p.bold.little-space-after Mission statement:
-          p.little-snug-top.space-bottom
-            em= @company.mission
-
-          hr.little-snug-top
-          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-            .float-right
-              = link_to edit_company_path(@company) do
-                i.fa.fa-pencil
-          p.bold.little-space-after Primary market:
-          p.little-snug-top.space-bottom
-            em= @company.primary_market
-
-          hr.little-snug-top
-          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-            .float-right
-              = link_to edit_company_path(@company) do
-                i.fa.fa-pencil
-          p.bold.little-space-after Overview:
-          - if @company.url.present?
-            .float-right
-              p.faint.snug-top
-                = link_to @company.url, target: '_blank' do
-                  ' #{@company.url}
-            p.faint.snug-top Website:
-          - if @company.okrs
-            .float-right
-              p.faint.snug-top= number_with_delimiter(@company.okrs.count)
-            p.faint.snug-top Lifetime OKRs:
-          - if @company.sakpi_index
-            .float-right
-              p.faint.snug-top= @company.sakpi_index
-            p.faint.snug-top SAKPI index:
-          - if @company.founded.present?
-            .float-right
-              p.faint.snug-top= @company.founded.strftime('%B %e, %Y')
-            p.faint.snug-top Founded:
-          - if @company.time_zone.present?
-            .float-right
-              p.faint.snug-top= ActiveSupport::TimeZone.new(@company.time_zone)
-            p.faint.snug-top Time zone:
-          - if @company.country_code.present?
-            .float-right
-              p.faint.snug-top= ISO3166::Country(@company.country_code).try(:name)
-            p.faint.snug-top Country:
-
-          hr.little-snug-top
-          p.bold
-            .float-right
-              p.faint
-                - if current_user and current_user == @company.creator
-                  a data-open='set-sakpis'
-                    i.fa.fa-pencil
-                = render 'partials/set_sakpis_modal'
-
-            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
-              ' SAKPIs:
-          - sakpis = Sakpi.all.order(:name)
-          - sakpis.each do |sakpi|
-            - if current_user and current_user.confirmed? and @company.team_member(current_user)
-              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-                - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
-                - if cs.present?
-                  .progress-meter.light-primary-background style="width: #{cs.level*10}%"
-                    p.meter-text= sakpi.name.html_safe
-                - else
-                  .progress-meter style="width: 1%"
-                    p.meter-text= sakpi.name.html_safe
-            - else
-              .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-                .progress-meter.light-primary-background style="width: 1%"
-                  p.meter-text= sakpi.name.html_safe
-
-          - if current_user and @company.webmeet_url.present? and @company.team.include?(current_user)
-            hr
-              p.text-center.faint.little-snug-top.snug-bottom
-                = link_to @company.webmeet_url, target: '_blank' do
-                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
-                    ' Video Conference Room
-
-          hr
-          - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-            .float-right
-              - if @company.team.size <= 24
-                a data-open='update-team'
-                  i.fa.fa-plus
-                .reveal#update-team data-reveal=true
-                  button data-close=true aria-label='Close' type='button' class='close-button'
-                    span aria-hidden=true
-                      ' &times;
-                  p
-                    strong
-                      ' Email this confidential invitation link to anybody:
-                    br
-                    = link_to "#{company_url(@company)}?invite=#{@company.invite_token}", company_url(@company, invite: @company.invite_token)
-                  p.snug-bottom Or provide a Startup Alliance username:
-                  = form_tag add_team_member_company_path, method: :put
-                    .row.collapse
-                      .medium-8.columns
-                        = text_field_tag :username, nil, placeholder: 'Enter a Startup Alliance username'
-                      .medium-4.columns
-                        = submit_tag 'Add to my team', class: 'postfix button expanded accent'
-
-              - else
-                a data-open='reached-cap'
-                  i.fa.fa-exclamation-triangle
-                .reveal#reached-cap data-reveal=true
-                  button data-close=true aria-label='Close' type='button' class='close-button'
-                    span aria-hidden=true
-                      ' &times;
-                  p.bold You have reached your team size limit!
-                  p.little-snug-bottom
-                    ' Standard Company plans are limited to 24 people.
-                    ' You have some choices:
-                  ol.indented-2
-                    li Keep the team at the current size.
-                    li Ask if any team members are willing to resign.
-                    li As the person who listed the Company, you can remove people.
-                    li Contact us for an expanded Company plan.
-
-
-          p.bold.space-after Company team:
-          - @company.team.each do |member|
-            /- if current_user and @company.team.include?(current_user)
-            .float-right
-              p.faint.snug-top
-                - if current_user and current_user != member
-                  = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid), method: :post do
-                    i.fa.fa-comments-o
-                - if current_user == @company.creator and member != current_user
-                  = link_to remove_team_member_company_path(team_member_pid: member.pid), data: {:confirm => 'Really remove this team member?'}, method: :delete do
-                    | &nbsp;
-                    | &nbsp;
-                    i.fa.fa-trash-o
-            p.faint.snug-top
-              ' #{image_tag gravatar_url("#{member.email}", 30)}
-              ' #{link_to member.name, vanity_path(member.username)}
-              /- if current_user and @company.team_member(current_user)
-                - if @company.team_member(member).equity != 'no_equity'
-                  ' (#{@company.team_member(member).role.humanize}, #{@company.team_member(member).equity.humanize.downcase}%)
-                - else
-                  ' (#{@company.team_member(member).role.humanize})
-            p.faint.snug-top.space-bottom.indented-1
-              ' Personal mission:
-              em
-                - if member.mission
-                  = member.mission
-                - else
-                  ' Not set!
-
+    .tabs-content data-tabs-content='tool-tabs'
+      .tabs-panel#panel-1
+        = render 'sakpis'
+      .tabs-panel.is-active#panel-2
+        = render 'fasts'
+      .tabs-panel#panel-3
+        = render 'okrs'
+      .tabs-panel#panel-4
+        = render 'discussions'
+      .tabs-panel#panel-5
+        = render 'video_conferencing'
