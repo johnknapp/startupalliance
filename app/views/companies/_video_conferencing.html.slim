@@ -1,7 +1,8 @@
-h5.bold.primary-text Live Video Conferencing:
-/p We use Web RTC for live audio/video conferencing. We recommend Google Chrome browser.
+h5.bold.primary-text
+  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
+    ' Live Video Conferencing:
 - if current_user and @company.webmeet_url.present? and @company.team.include?(current_user)
   p.text-center.snug-bottom= link_to 'Access the Video Conference', @company.webmeet_url, target: '_blank', class: 'button'
 - else
-  p.text-center
+  p.space-top.text-center
     em Video conferencing only available to the company team.

@@ -1,1 +1,39 @@
-p.text-center Factors & Strategies coming soon
+h5.bold.primary-text
+  .float-right
+    a data-open='okr-info'
+      i.fa.fa-info-circle
+    = render 'partials/quick_reference_okr'
+
+    - if current_user and @company.team.include?(current_user)
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      = link_to new_fast_path(company_pid: @company.pid), class: 'scale-to-80' do
+        i.fa.fa-plus
+  ' Factors & Strategies:
+- if current_user and @company.team.include?(current_user)
+  - if @company.okrs.present?
+
+    ul.accordion data-accordion=true
+      li.accordion-item.primary-background.is-active data-accordion-item=true
+        a.accordion-title
+          h5.bold.white-text.little-snug-top.snug-bottom Success Factors
+        .accordion-content data-tab-content=true
+          - @company.okrs.each do |okr|
+            - if okr.upcoming? or okr.date_unset?
+              = render 'partials/okr_show', okr: okr
+
+      li.accordion-item.primary-background data-accordion-item=true
+        a.accordion-title
+          h5.bold.white-text.little-snug-top.snug-bottom Risk Factors
+        .accordion-content data-tab-content=true
+          - @company.okrs.each do |okr|
+            - if okr.active?
+              = render 'partials/okr_show', okr: okr
+
+  - elsif current_user and @company.team.include?(current_user)
+    p.text-center.space-top Add the first OKR
+  - else
+    p.text-center.space-top
+      em
+        ' Factors & Strategies are only visible to the Company Team.
