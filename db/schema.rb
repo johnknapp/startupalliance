@@ -114,12 +114,13 @@ ActiveRecord::Schema.define(version: 20171123140527) do
 
   create_table "fasts", force: :cascade do |t|
     t.string   "body"
-    t.boolean  "is_factor"
+    t.boolean  "is_success", default: true
+    t.boolean  "is_factor",  default: true
     t.integer  "company_id"
     t.integer  "user_id"
-    t.string   "pid",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "pid",                       null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["company_id"], name: "index_fasts_on_company_id", using: :btree
     t.index ["user_id"], name: "index_fasts_on_user_id", using: :btree
   end
