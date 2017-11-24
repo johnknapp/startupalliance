@@ -52,7 +52,7 @@ class FastsController < ApplicationController
   def destroy
     @fast.destroy
     respond_to do |format|
-      format.html { redirect_to company_path(company), notice: 'FAST was successfully destroyed.' }
+      format.html { redirect_to company_path(@fast.company), notice: 'FAST was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
