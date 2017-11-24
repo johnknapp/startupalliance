@@ -11,9 +11,33 @@
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'sufa').present?
           - @company.fasts.where(type_code: 'sufa').each do |sufa|
+            .float-right
+              ul.vertical.dropdown.menu data-dropdown-menu=true
+                li
+                  = link_to '#' do
+                    i.fa.fa-ellipsis-v.faint
+                  ul.menu data-dropdown-menu=true
+                    li
+                      = link_to edit_fast_path(sufa, company_pid: sufa.company.pid) do
+                        i.fa.fa-pencil
+                    li
+                      = link_to sufa, data: { confirm: 'Really delete this item?' }, method: :delete do
+                        i.fa.fa-trash-o
             p.bold= sufa.body
             - if sufa.strategies.present?
               - sufa.strategies.each do |mast|
+                .float-right
+                  ul.dropdown.menu data-dropdown-menu=true
+                    li
+                      = link_to '#' do
+                        i.fa.fa-ellipsis-v
+                      ul.menu data-dropdown-menu=true
+                        li
+                          = link_to edit_fast_path(mast, company_pid: mast.company.pid) do
+                            i.fa.fa-pencil
+                        li
+                          = link_to mast, data: { confirm: 'Really delete this item?' }, method: :delete do
+                            i.fa.fa-trash-o
                 p.indented-2.snug-top
                   = mast.body
             p.indented-2.snug-top= link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
@@ -41,6 +65,18 @@
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'rifa').present?
           - @company.fasts.where(type_code: 'rifa').each do |rifa|
+            .float-right
+              ul.dropdown.menu data-dropdown-menu=true
+                li
+                  = link_to '#' do
+                    i.fa.fa-ellipsis-v.faint
+                  ul.menu data-dropdown-menu=true
+                    li
+                      = link_to edit_fast_path(rifa, company_pid: rifa.company.pid) do
+                        i.fa.fa-pencil
+                    li
+                      = link_to rifa, data: { confirm: 'Really delete this item?' }, method: :delete do
+                        i.fa.fa-trash-o
             p.bold= rifa.body
             - if rifa.strategies.present?
               - rifa.strategies.each do |mist|
