@@ -5,7 +5,7 @@ class Fast < ApplicationRecord
   belongs_to  :user
 
   has_many    :fastrs
-  has_many    :strategies, through: :fastrs
+  has_many    :strategies, through: :fastrs, dependent: :destroy
 
   has_many    :factor_strats, class_name: :Fastr, foreign_key: :strategy_id
   has_many    :factors, through: :factor_strats, source: :fast
