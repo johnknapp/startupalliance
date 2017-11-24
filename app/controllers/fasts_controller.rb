@@ -18,12 +18,13 @@ class FastsController < ApplicationController
   # POST /fasts.json
   def create
     @fast = Fast.new(fast_params)
-    company = Company.find @fast.company_id
-    factor = Fast.find_by_pid(params[:fast][:factor_pid])
+    company = Company.find_by_pid params[:fast][:company_pid]
+    factor = Fast.find_by_pid params[:fast][:factor_pid]
 
     respond_to do |format|
       if @fast.save
         @fast.factors << factor if factor.present?
+        @fast.update(company_id: company.id)
         format.html { redirect_to company_path(company), notice: 'FAST was successfully created.' }
         format.json { redirect_to company_path(company), status: :created, location: @fast }
       else

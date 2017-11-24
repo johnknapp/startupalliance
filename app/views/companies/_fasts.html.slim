@@ -5,8 +5,8 @@
       h5.bold.primary-text Success Factors & Maximization Strategies
       p.faint.little-snug-top
         ' Success Factors benefit your business — pursue strategies to maximize them.
-        ' For a restaurant, a talented chef is a Success Factor.
-        ' To successfully hire and retain a talented chef, providing them with quality ingredients is a Maximization Strategy.
+        ' Having money in the bank is a Success Factor.
+        ' Having positive cash flow is a good Maximization Strategy for that.
         '
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'sufa').present?
@@ -40,11 +40,33 @@
                             i.fa.fa-trash-o
                 p.indented-2.snug-top
                   = mast.body
-            p.indented-2.snug-top= link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
-              i.fa.fa-plus
-              | &nbsp;
-              ' Add Maximization Strategy
-        p.bold= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa'), class: 'faint' do
+            p.indented-2.snug-top
+              = link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
+                i.fa.fa-plus
+                | &nbsp;
+                ' Add Maximization Strategy
+        a.faint data-open='add-sufa'
+          i.fa.fa-plus
+          | &nbsp;
+          ' Add Success Factor
+        .reveal#add-sufa data-reveal=true
+          button data-close=true aria-label='Close' type='button' class='close-button'
+            span aria-hidden=true
+              ' &times;
+          p.bold Add Success Factor
+          = simple_form_for(@fast) do |f|
+            = f.hidden_field :type_code,   value: 'sufa'
+            /= f.hidden_field :factor_pid,  value: sufa.factor.pid  if sufa.factor
+            = f.hidden_field :user_id,     value: current_user.id  if current_user
+            = f.hidden_field :company_pid, value: @company.pid
+            = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
+            .row
+              .medium-12.columns
+                .button-group
+                  = submit_tag 'Create', class: 'button expanded accent'
+
+
+      /p= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa'), class: 'faint' do
           i.fa.fa-plus
           | &nbsp;
           ' Add Success Factor
@@ -59,8 +81,8 @@
       h5.bold.primary-text Risk Factors & Minimization Strategies
       p.faint.little-snug-top
         ' Risk Factors hurt your business — pursue strategies to minimize them.
-        ' For a restaurant, a rude staff is a Risk Factor.
-        ' To avoid hiring rude staff, careful reference checking is a Minimization Strategy.
+        ' Having a product nobody wants is a Risk Factor.
+        ' Asking customers what they want is a good Minimization Strategy for that.
         '
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'rifa').present?
@@ -82,11 +104,31 @@
               - rifa.strategies.each do |mist|
                 p.indented-2.snug-top
                   = mist.body
-            p.indented-2.snug-top= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
-              i.fa.fa-plus
-              | &nbsp;
-              ' Add Minimization Strategy
-        p.bold= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
+            p.indented-2.snug-top
+              = link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
+                i.fa.fa-plus
+                | &nbsp;
+                ' Add Minimization Strategy
+        a.faint data-open='add-rifa'
+          i.fa.fa-plus
+          | &nbsp;
+          ' Add Risk Factor
+        .reveal#add-rifa data-reveal=true
+          button data-close=true aria-label='Close' type='button' class='close-button'
+            span aria-hidden=true
+              ' &times;
+          p.bold Add Risk Factor
+          = simple_form_for(@fast) do |f|
+            = f.hidden_field :type_code,   value: 'rifa'
+            /= f.hidden_field :factor_pid,  value: rifa.factor.pid  if rifa.factor
+            = f.hidden_field :user_id,     value: current_user.id  if current_user
+            = f.hidden_field :company_pid, value: @company.pid
+            = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
+            .row
+              .medium-12.columns
+                .button-group
+                  = submit_tag 'Create', class: 'button expanded accent'
+        /p= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
           i.fa.fa-plus
           | &nbsp;
           ' Add Risk Factor
