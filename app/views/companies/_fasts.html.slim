@@ -1,39 +1,58 @@
-h5.bold.primary-text
-  .float-right
-    a data-open='okr-info'
-      i.fa.fa-info-circle
-    = render 'partials/quick_reference_okr'
-
-    - if current_user and @company.team.include?(current_user)
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      = link_to new_fast_path(company_pid: @company.pid), class: 'scale-to-80' do
-        i.fa.fa-plus
-  ' Factors & Strategies:
 - if current_user and @company.team.include?(current_user)
-  - if @company.okrs.present?
+  ul.accordion data-accordion=true
+    li.accordion-item.primary-background.is-active data-accordion-item=true
+      a.accordion-title
+        h5.bold.white-text.little-snug-top.snug-bottom Success Factors and Maximization Strategies
+      .accordion-content data-tab-content=true
+        = link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa'), class: 'faint' do
+          i.fa.fa-plus
+          | &nbsp;
+          ' Success Factor
 
-    ul.accordion data-accordion=true
-      li.accordion-item.primary-background.is-active data-accordion-item=true
-        a.accordion-title
-          h5.bold.white-text.little-snug-top.snug-bottom Success Factors
-        .accordion-content data-tab-content=true
-          - @company.okrs.each do |okr|
-            - if okr.upcoming? or okr.date_unset?
-              = render 'partials/okr_show', okr: okr
+        - if @company.fasts.where(type_code: 'sufa').present?
+          .row.small-up-2.medium-up-3
+            - @company.fasts.where(type_code: 'sufa').each do |sufa|
+              .column
+                .card
+                  .card-divider.accent-background
+                    p.bold.text-center= sufa.body
+                  .card-section
+                    = link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
+                      i.fa.fa-plus
+                      | &nbsp;
+                      ' Maximization Strategy
+                    - if sufa.strategies.present?
+                      ul
+                        - sufa.strategies.each do |mast|
+                          li= mast.body
 
-      li.accordion-item.primary-background data-accordion-item=true
-        a.accordion-title
-          h5.bold.white-text.little-snug-top.snug-bottom Risk Factors
-        .accordion-content data-tab-content=true
-          - @company.okrs.each do |okr|
-            - if okr.active?
-              = render 'partials/okr_show', okr: okr
+    li.accordion-item.primary-background data-accordion-item=true
+      a.accordion-title
+        h5.bold.white-text.little-snug-top.snug-bottom Risk Factors and Mitigation Strategies
+      .accordion-content data-tab-content=true
+        = link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
+          i.fa.fa-plus
+          | &nbsp;
+          ' Risk Factor
 
-  - elsif current_user and @company.team.include?(current_user)
-    p.text-center.space-top Add the first OKR
-  - else
-    p.text-center.space-top
-      em
-        ' Factors & Strategies are only visible to the Company Team.
+        - if @company.fasts.where(type_code: 'rifa').present?
+          .row.small-up-2.medium-up-3
+            - @company.fasts.where(type_code: 'rifa').each do |rifa|
+              .column
+                .card
+                  .card-divider.accent-background
+                    p.bold.text-center= rifa.body
+                  .card-section
+                    = link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
+                      i.fa.fa-plus
+                      | &nbsp;
+                      ' Mitigation Strategy
+                    - if rifa.strategies.present?
+                      ul
+                        - rifa.strategies.each do |mist|
+                          li= mist.body
+
+- else
+  p.text-center.space-top
+    em
+      ' Factors & Strategies are only visible to the Company Team.

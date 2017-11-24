@@ -1,21 +1,7 @@
 .card
-  .card-divider.primary-background
-    .row
-      .large-12.columns
-        - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-          .float-right
-            = link_to edit_company_path(@company) do
-              i.fa.fa-pencil.white-text
-        h1.bold.white-text.wide-line-height.text-center
-          = @company.name
-    - if @company.recruiting
-      .row
-        .large-12.columns
-          p.bold.alert-text.text-right.snug-top.snug-bottom We’re recruiting!
-
   .card-section
     .row
-      .medium-10.medium-offset-1.columns
+      .medium-8.medium-offset-2.columns
 
         - if params[:invite] and params[:invite] == @company.invite_token
           .callout

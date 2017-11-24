@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123140527) do
+ActiveRecord::Schema.define(version: 20171125155802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,21 +105,20 @@ ActiveRecord::Schema.define(version: 20171123140527) do
     t.index ["discussable_type", "discussable_id"], name: "index_discussions_on_discussable_type_and_discussable_id", using: :btree
   end
 
-  create_table "fact_strats", force: :cascade do |t|
+  create_table "fastrs", force: :cascade do |t|
     t.integer "fast_id"
     t.integer "strategy_id"
-    t.index ["fast_id", "strategy_id"], name: "index_fact_strats_on_fast_id_and_strategy_id", unique: true, using: :btree
+    t.index ["fast_id", "strategy_id"], name: "index_fastrs_on_fast_id_and_strategy_id", unique: true, using: :btree
   end
 
   create_table "fasts", force: :cascade do |t|
     t.string   "body"
-    t.boolean  "is_success", default: true
-    t.boolean  "is_factor",  default: true
+    t.integer  "type_code",  default: 0
     t.integer  "company_id"
     t.integer  "user_id"
-    t.string   "pid",                       null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "pid",                    null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["company_id"], name: "index_fasts_on_company_id", using: :btree
     t.index ["user_id"], name: "index_fasts_on_user_id", using: :btree
   end

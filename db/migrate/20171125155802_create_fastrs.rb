@@ -1,6 +1,6 @@
-class CreateFactStrats < ActiveRecord::Migration[5.0]
+class CreateFastrs < ActiveRecord::Migration[5.0]
   def change
-    create_table :fact_strats do |t|
+    create_table :fastrs do |t|
       t.integer :fast_id
       t.integer :strategy_id
 

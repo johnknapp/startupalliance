@@ -4,10 +4,17 @@ class Fast < ApplicationRecord
   belongs_to  :company
   belongs_to  :user
 
-  has_many    :fact_strats
-  has_many    :strategies, through: :fact_strats
+  has_many    :fastrs
+  has_many    :strategies, through: :fastrs
 
-  has_many    :fact_strats, class_name: :FactStrat, foreign_key: :strategy_id
-  has_many    :factors, through: :fact_strats, source: :fast
+  has_many    :factor_strats, class_name: :Fastr, foreign_key: :strategy_id
+  has_many    :factors, through: :factor_strats, source: :fast
+
+  enum type_code: {
+      sufa: 0,
+      rifa: 2,
+      mast: 3,
+      mist: 4
+  }
 
 end

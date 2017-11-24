@@ -1,5 +1,25 @@
-h1 New fast
+.row
+  .medium-8.medium-offset-2.columns
+    h3.show-for-medium-up &nbsp;
+    h3.bold.primary
+      - if @factor
+        - if params[:type_code] == 'mist'
+          ' New Mitigation Strategy
+        - else
+          ' New Maximization Strategy
+      - else
+        - if params[:type_code] == 'sufa'
+          ' New Success Factor
+        - else
+          ' New Risk Factor
+    hr.little-snug-top
+    p.text-right.snug-top.space-bottom It’s important to write these things down!
 
-== render 'form'
-
-= link_to 'Back', fasts_path
+    - if @factor
+      p.bold.snug-bottom
+        - if params[:type_code] == 'sufa'
+          ' Related to Success Factor:
+        - else
+          ' Related to Risk Factor:
+      h4.bold.primary “#{@factor.body}”
+    = render 'form'
