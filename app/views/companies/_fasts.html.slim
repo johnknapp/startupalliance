@@ -6,8 +6,8 @@ h5.bold.primary-text FActors & STrategies
       a.accordion-title
         h5.bold.white-text.little-snug-top.snug-bottom Success Factors & Maximization Strategies
       .accordion-content data-tab-content=true
-        - if @company.fasts.where(type_code: 'sufa').present?
-          .row.small-up-2.medium-up-3
+        .row.small-up-2.medium-up-3
+          - if @company.fasts.where(type_code: 'sufa').present?
             - @company.fasts.where(type_code: 'sufa').each do |sufa|
               .column
                 .card
@@ -22,7 +22,6 @@ h5.bold.primary-text FActors & STrategies
                         i.fa.fa-plus
                         | &nbsp;
                         ' Add Maximization Strategy
-        .row.small-up-2.medium-up-3
           .column
             .card
               .card-divider.accent-background
@@ -36,13 +35,16 @@ h5.bold.primary-text FActors & STrategies
       a.accordion-title
         h5.bold.white-text.little-snug-top.snug-bottom Risk Factors & Mitigation Strategies
       .accordion-content data-tab-content=true
-        - if @company.fasts.where(type_code: 'rifa').present?
-          .row.small-up-2.medium-up-3
+        .row.small-up-2.medium-up-3
+          - if @company.fasts.where(type_code: 'rifa').present?
             - @company.fasts.where(type_code: 'rifa').each do |rifa|
               .column
                 .card
                   .card-divider.accent-background
-                    p.bold.text-center= rifa.body
+                    .float-right
+                      i.fa.fa-ellipsis-v
+                    p.bold.text-center
+                      = rifa.body
                   .card-section
                     ul
                       - if rifa.strategies.present?
@@ -52,7 +54,6 @@ h5.bold.primary-text FActors & STrategies
                         i.fa.fa-plus
                         | &nbsp;
                         ' Add Mitigation Strategy
-        .row.small-up-2.medium-up-3
           .column
             .card
               .card-divider.accent-background
@@ -60,8 +61,6 @@ h5.bold.primary-text FActors & STrategies
                   i.fa.fa-plus
                   | &nbsp;
                   ' Add Risk Factor
-
-
 - else
   p.text-center.space-top
     em
