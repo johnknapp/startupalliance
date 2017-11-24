@@ -4,11 +4,6 @@
       a.accordion-title
         h5.bold.white-text.little-snug-top.snug-bottom Success Factors and Maximization Strategies
       .accordion-content data-tab-content=true
-        = link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa'), class: 'faint' do
-          i.fa.fa-plus
-          | &nbsp;
-          ' Success Factor
-
         - if @company.fasts.where(type_code: 'sufa').present?
           .row.small-up-2.medium-up-3
             - @company.fasts.where(type_code: 'sufa').each do |sufa|
@@ -17,24 +12,27 @@
                   .card-divider.accent-background
                     p.bold.text-center= sufa.body
                   .card-section
-                    = link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
-                      i.fa.fa-plus
-                      | &nbsp;
-                      ' Maximization Strategy
-                    - if sufa.strategies.present?
                       ul
-                        - sufa.strategies.each do |mast|
-                          li= mast.body
+                        - if sufa.strategies.present?
+                          - sufa.strategies.each do |mast|
+                            li= mast.body
+                        li= link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'scale-to-90' do
+                          i.fa.fa-plus
+                          | &nbsp;
+                          ' Add Maximization Strategy
+            .column
+              .card
+                .card-divider.accent-background
+                  p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa') do
+                    i.fa.fa-plus
+                    | &nbsp;
+                    ' Add Success Factor
+
 
     li.accordion-item.primary-background data-accordion-item=true
       a.accordion-title
         h5.bold.white-text.little-snug-top.snug-bottom Risk Factors and Mitigation Strategies
       .accordion-content data-tab-content=true
-        = link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
-          i.fa.fa-plus
-          | &nbsp;
-          ' Risk Factor
-
         - if @company.fasts.where(type_code: 'rifa').present?
           .row.small-up-2.medium-up-3
             - @company.fasts.where(type_code: 'rifa').each do |rifa|
@@ -43,14 +41,22 @@
                   .card-divider.accent-background
                     p.bold.text-center= rifa.body
                   .card-section
-                    = link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
-                      i.fa.fa-plus
-                      | &nbsp;
-                      ' Mitigation Strategy
-                    - if rifa.strategies.present?
                       ul
-                        - rifa.strategies.each do |mist|
-                          li= mist.body
+                        - if rifa.strategies.present?
+                          - rifa.strategies.each do |mist|
+                            li= mist.body
+                        li= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'scale-to-90' do
+                          i.fa.fa-plus
+                          | &nbsp;
+                          ' Add Mitigation Strategy
+            .column
+              .card
+                .card-divider.accent-background
+                  p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa') do
+                    i.fa.fa-plus
+                    | &nbsp;
+                    ' Add Risk Factor
+
 
 - else
   p.text-center.space-top

@@ -1,8 +1,10 @@
 .row
-  .large-10.large-offset-1
-    = render 'masthead_card'
-    = render 'overview_card'
+  .large-12.columns
+    table.stack
+      tbody
+        tr
+          td.primary-background= render 'masthead'
+          td= render 'overview'
     = render 'team_card'
-    = render 'tools'
-
-
+    - if current_user and @company.team.include?(current_user)
+      = render 'tools'
