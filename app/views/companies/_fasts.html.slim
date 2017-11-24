@@ -1,8 +1,10 @@
+h5.bold.primary-text FActors & STrategies
+
 - if current_user and @company.team.include?(current_user)
   ul.accordion data-accordion=true
     li.accordion-item.primary-background.is-active data-accordion-item=true
       a.accordion-title
-        h5.bold.white-text.little-snug-top.snug-bottom Success Factors and Maximization Strategies
+        h5.bold.white-text.little-snug-top.snug-bottom Success Factors & Maximization Strategies
       .accordion-content data-tab-content=true
         - if @company.fasts.where(type_code: 'sufa').present?
           .row.small-up-2.medium-up-3
@@ -31,7 +33,7 @@
 
     li.accordion-item.primary-background data-accordion-item=true
       a.accordion-title
-        h5.bold.white-text.little-snug-top.snug-bottom Risk Factors and Mitigation Strategies
+        h5.bold.white-text.little-snug-top.snug-bottom Risk Factors & Mitigation Strategies
       .accordion-content data-tab-content=true
         - if @company.fasts.where(type_code: 'rifa').present?
           .row.small-up-2.medium-up-3

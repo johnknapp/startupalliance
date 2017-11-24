@@ -1,49 +1,49 @@
 - if @company.phases.present?
   .float-right
-    p.faint
+    p
       a data-open='stage-info'
         = @company.phases
         | &nbsp;
-        i.fa.fa-info-circle.faint
+        i.fa.fa-info-circle
       = render 'partials/quick_reference_stages'
-  p.faint Company stage:
+  p Company stage:
 
 - if @company.url.present?
   .float-right
-    p.faint.snug-top
+    p.snug-top
       = link_to @company.url, target: '_blank' do
         ' #{@company.url}
-  p.faint.snug-top Website:
+  p.snug-top Website:
 
 - if @company.okrs
   .float-right
-    p.faint.snug-top= number_with_delimiter(@company.okrs.count)
-  p.faint.snug-top Lifetime OKRs:
+    p.snug-top= number_with_delimiter(@company.okrs.count)
+  p.snug-top Lifetime OKRs:
 
 - if @company.sakpi_index
   .float-right
-    p.faint.snug-top= @company.sakpi_index
-  p.faint.snug-top SAKPI index:
+    p.snug-top= @company.sakpi_index
+  p.snug-top SAKPI index:
 
 - if @company.founded.present?
   .float-right
-    p.faint.snug-top= @company.founded.strftime('%B %e, %Y')
-  p.faint.snug-top Founded:
+    p.snug-top= @company.founded.strftime('%B %e, %Y')
+  p.snug-top Founded:
 
 - if @company.time_zone.present?
   .float-right
-    p.faint.snug-top= ActiveSupport::TimeZone.new(@company.time_zone)
-  p.faint.snug-top Time zone:
+    p.snug-top= ActiveSupport::TimeZone.new(@company.time_zone)
+  p.snug-top Time zone:
 
 - if @company.country_code.present?
   .float-right
-    p.faint.snug-top= ISO3166::Country(@company.country_code).try(:name)
-  p.faint.snug-top Country:
+    p.snug-top= ISO3166::Country(@company.country_code).try(:name)
+  p.snug-top Country:
 
 .float-right
-  p.faint.snug-top= link_to @company.creator.name, vanity_path(@company.creator.username)
-p.faint.snug-top Listed by:
+  p.snug-top= link_to @company.creator.name, vanity_path(@company.creator.username)
+p.snug-top Listed by:
 
 .float-right
-  p.faint.snug-top.snug-bottom= @company.created_at.strftime('%B %e, %Y')
-p.faint.snug-top.snug-bottom Listed on:
+  p.snug-top.snug-bottom= @company.created_at.strftime('%B %e, %Y')
+p.snug-top.snug-bottom Listed on:
