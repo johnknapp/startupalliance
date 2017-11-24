@@ -22,13 +22,14 @@ h5.bold.primary-text FActors & STrategies
                         i.fa.fa-plus
                         | &nbsp;
                         ' Add Maximization Strategy
-            .column
-              .card
-                .card-divider.accent-background
-                  p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa') do
-                    i.fa.fa-plus
-                    | &nbsp;
-                    ' Add Success Factor
+        .row.small-up-2.medium-up-3
+          .column
+            .card
+              .card-divider.accent-background
+                p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa') do
+                  i.fa.fa-plus
+                  | &nbsp;
+                  ' Add Success Factor
 
 
     li.accordion-item.primary-background data-accordion-item=true
@@ -43,21 +44,22 @@ h5.bold.primary-text FActors & STrategies
                   .card-divider.accent-background
                     p.bold.text-center= rifa.body
                   .card-section
-                      ul
-                        - if rifa.strategies.present?
-                          - rifa.strategies.each do |mist|
-                            li= mist.body
-                        li= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'scale-to-90' do
-                          i.fa.fa-plus
-                          | &nbsp;
-                          ' Add Mitigation Strategy
-            .column
-              .card
-                .card-divider.accent-background
-                  p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa') do
-                    i.fa.fa-plus
-                    | &nbsp;
-                    ' Add Risk Factor
+                    ul
+                      - if rifa.strategies.present?
+                        - rifa.strategies.each do |mist|
+                          li= mist.body
+                      li= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'scale-to-90' do
+                        i.fa.fa-plus
+                        | &nbsp;
+                        ' Add Mitigation Strategy
+        .row.small-up-2.medium-up-3
+          .column
+            .card
+              .card-divider.accent-background
+                p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa') do
+                  i.fa.fa-plus
+                  | &nbsp;
+                  ' Add Risk Factor
 
 
 - else

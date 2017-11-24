@@ -32,8 +32,7 @@
           ' #{image_tag gravatar_url("#{member.email}", 36)}
           ' #{link_to member.name, vanity_path(member.username)}
   - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-      .column
-        .card
-          .card-divider.accent-background
-            .bold.text-center.snug-bottom= render 'add_to_team'
-
+    .column
+      .card
+        .card-divider.accent-background
+          .bold.text-center.snug-bottom= render 'add_to_team'
