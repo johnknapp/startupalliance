@@ -27,7 +27,7 @@
             - if sufa.strategies.present?
               - sufa.strategies.each do |mast|
                 .float-right
-                  ul.dropdown.menu data-dropdown-menu=true
+                  ul.dropdown.menu.snug-top data-dropdown-menu=true
                     li
                       = link_to '#' do
                         i.fa.fa-ellipsis-v
@@ -41,10 +41,29 @@
                 p.indented-2.snug-top
                   = mast.body
             p.indented-2.snug-top
-              = link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
+              a.faint data-open='add-mast'
                 i.fa.fa-plus
                 | &nbsp;
                 ' Add Maximization Strategy
+              .reveal#add-mast data-reveal=true
+                button data-close=true aria-label='Close' type='button' class='close-button'
+                  span aria-hidden=true
+                    ' &times;
+                p.bold.primary-text Add Maximization Strategy
+                p For the Success Factor:
+                p.bold.snug-top.indented-2
+                  = sufa.body
+
+                = simple_form_for(@fast) do |f|
+                  = f.hidden_field :type_code,   value: 'mast'
+                  = f.hidden_field :factor_pid,  value: sufa.pid        if sufa
+                  = f.hidden_field :user_id,     value: current_user.id if current_user
+                  = f.hidden_field :company_pid, value: @company.pid
+                  = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
+                  .row
+                    .medium-12.columns
+                      .button-group
+                        = submit_tag 'Create', class: 'button expanded accent'
         a.faint data-open='add-sufa'
           i.fa.fa-plus
           | &nbsp;
@@ -53,10 +72,9 @@
           button data-close=true aria-label='Close' type='button' class='close-button'
             span aria-hidden=true
               ' &times;
-          p.bold Add Success Factor
+          p.bold.primary-text Add Success Factor
           = simple_form_for(@fast) do |f|
             = f.hidden_field :type_code,   value: 'sufa'
-            /= f.hidden_field :factor_pid,  value: sufa.factor.pid  if sufa.factor
             = f.hidden_field :user_id,     value: current_user.id  if current_user
             = f.hidden_field :company_pid, value: @company.pid
             = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
@@ -64,12 +82,6 @@
               .medium-12.columns
                 .button-group
                   = submit_tag 'Create', class: 'button expanded accent'
-
-
-      /p= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa'), class: 'faint' do
-          i.fa.fa-plus
-          | &nbsp;
-          ' Add Success Factor
       - else
         p.text-center.space-top
           em
@@ -81,7 +93,7 @@
       h5.bold.primary-text Risk Factors & Minimization Strategies
       p.faint.little-snug-top
         ' Risk Factors hurt your business — pursue strategies to minimize them.
-        ' Having a product nobody wants is a Risk Factor.
+        ' Offering a product nobody wants is a Risk Factor.
         ' Asking customers what they want is a good Minimization Strategy for that.
         '
       - if current_user and @company.team.include?(current_user)
@@ -102,13 +114,44 @@
             p.bold= rifa.body
             - if rifa.strategies.present?
               - rifa.strategies.each do |mist|
+                .float-right
+                  ul.dropdown.menu.snug-top data-dropdown-menu=true
+                    li
+                      = link_to '#' do
+                        i.fa.fa-ellipsis-v
+                      ul.menu data-dropdown-menu=true
+                        li
+                          = link_to edit_fast_path(mist, company_pid: mist.company.pid) do
+                            i.fa.fa-pencil
+                        li
+                          = link_to mist, data: { confirm: 'Really delete this item?' }, method: :delete do
+                            i.fa.fa-trash-o
                 p.indented-2.snug-top
                   = mist.body
             p.indented-2.snug-top
-              = link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
+              a.faint data-open='add-mist'
                 i.fa.fa-plus
                 | &nbsp;
                 ' Add Minimization Strategy
+              .reveal#add-mist data-reveal=true
+                button data-close=true aria-label='Close' type='button' class='close-button'
+                  span aria-hidden=true
+                    ' &times;
+                p.bold.primary-text Add Minimization Strategy
+                p For the Risk Factor:
+                p.bold.snug-top.indented-2
+                  = rifa.body
+
+                = simple_form_for(@fast) do |f|
+                  = f.hidden_field :type_code,   value: 'mist'
+                  = f.hidden_field :factor_pid,  value: rifa.pid        if rifa
+                  = f.hidden_field :user_id,     value: current_user.id if current_user
+                  = f.hidden_field :company_pid, value: @company.pid
+                  = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
+                  .row
+                    .medium-12.columns
+                      .button-group
+                        = submit_tag 'Create', class: 'button expanded accent'
         a.faint data-open='add-rifa'
           i.fa.fa-plus
           | &nbsp;
@@ -117,10 +160,9 @@
           button data-close=true aria-label='Close' type='button' class='close-button'
             span aria-hidden=true
               ' &times;
-          p.bold Add Risk Factor
+          p.bold.primary-text Add Risk Factor
           = simple_form_for(@fast) do |f|
             = f.hidden_field :type_code,   value: 'rifa'
-            /= f.hidden_field :factor_pid,  value: rifa.factor.pid  if rifa.factor
             = f.hidden_field :user_id,     value: current_user.id  if current_user
             = f.hidden_field :company_pid, value: @company.pid
             = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
@@ -128,116 +170,7 @@
               .medium-12.columns
                 .button-group
                   = submit_tag 'Create', class: 'button expanded accent'
-        /p= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
-          i.fa.fa-plus
-          | &nbsp;
-          ' Add Risk Factor
       - else
         p.text-center.space-top
           em
             ' These Factors & Strategies are only visible to the Team.
-
-  /ul.accordion data-accordion=true
-    li.accordion-item.primary-background.is-active data-accordion-item=true
-      a.accordion-title
-        h5.bold.white-text.little-snug-top.snug-bottom Success Factors & Maximization Strategies
-      .accordion-content data-tab-content=true
-        .row.small-up-2.medium-up-3
-          - if @company.fasts.where(type_code: 'sufa').present?
-            - @company.fasts.where(type_code: 'sufa').each do |sufa|
-              .column
-                .card
-                  .card-divider.accent-background
-                    .float-right
-                      ul.dropdown.menu data-dropdown-menu=true
-                        li
-                          = link_to '#' do
-                            i.fa.fa-ellipsis-v
-                          ul.menu data-dropdown-menu=true
-                            li
-                              = link_to edit_fast_path(sufa, company_pid: sufa.company.pid) do
-                                i.fa.fa-pencil
-                            li
-                              = link_to sufa, data: { confirm: 'Really delete this item?' }, method: :delete do
-                                i.fa.fa-trash-o
-                    p.bold.text-center= sufa.body
-                  .card-section
-                    - if sufa.strategies.present?
-                      - sufa.strategies.each do |mast|
-                        p
-                          .float-right
-                            ul.dropdown.menu data-dropdown-menu=true
-                              li
-                                = link_to '#' do
-                                  i.fa.fa-ellipsis-v
-                                ul.menu data-dropdown-menu=true
-                                  li
-                                    = link_to edit_fast_path(mast, company_pid: mast.company.pid) do
-                                      i.fa.fa-pencil
-                                  li
-                                    = link_to mast, data: { confirm: 'Really delete this item?' }, method: :delete do
-                                      i.fa.fa-trash-o
-                        p= mast.body
-                    p= link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'scale-to-90' do
-                      i.fa.fa-plus
-                      | &nbsp;
-                      ' Add Maximization Strategy
-          .column
-            .card
-              .card-divider.accent-background
-                p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa') do
-                  i.fa.fa-plus
-                  | &nbsp;
-                  ' Add Success Factor
-    li.accordion-item.primary-background data-accordion-item=true
-      a.accordion-title
-        h5.bold.white-text.little-snug-top.snug-bottom Risk Factors & Minimization Strategies
-      .accordion-content data-tab-content=true
-        .row.small-up-2.medium-up-3
-          - if @company.fasts.where(type_code: 'rifa').present?
-            - @company.fasts.where(type_code: 'rifa').each do |rifa|
-              .column
-                .card
-                  .card-divider.accent-background
-                    .float-right
-                      ul.dropdown.menu data-dropdown-menu=true
-                        li
-                          = link_to '#' do
-                            i.fa.fa-ellipsis-v
-                          ul.menu data-dropdown-menu=true
-                            li
-                              = link_to edit_fast_path(rifa, company_pid: rifa.company.pid) do
-                                i.fa.fa-pencil
-                            li
-                              = link_to rifa, data: { confirm: 'Really delete this item?' }, method: :delete do
-                                i.fa.fa-trash-o
-                    p.bold.text-center
-                      = rifa.body
-                  .card-section
-                    - if rifa.strategies.present?
-                      - rifa.strategies.each do |mist|
-                        p
-                          .float-right
-                            ul.dropdown.menu data-dropdown-menu=true
-                              li
-                                = link_to '#' do
-                                  i.fa.fa-ellipsis-v
-                                ul.menu data-dropdown-menu=true
-                                  li
-                                    = link_to edit_fast_path(mist, company_pid: mist.company.pid) do
-                                      i.fa.fa-pencil
-                                  li
-                                    = link_to mist, data: { confirm: 'Really delete this item?' }, method: :delete do
-                                      i.fa.fa-trash-o
-                        p= mist.body
-                    p= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'scale-to-90' do
-                      i.fa.fa-plus
-                      | &nbsp;
-                      ' Add Minimization Strategy
-          .column
-            .card
-              .card-divider.accent-background
-                p.bold.text-center= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa') do
-                  i.fa.fa-plus
-                  | &nbsp;
-                  ' Add Risk Factor
