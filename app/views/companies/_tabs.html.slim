@@ -1,0 +1,38 @@
+ul.tabs.accent-background#tool-tabs data-tabs=true
+  li.tabs-title
+    a.bold href='#overview'
+      ' Overview
+  li.tabs-title
+    a.bold href='#team'
+      ' Team
+  li.tabs-title
+    a.bold href='#sakpis'
+      ' SAKPIs
+  li.tabs-title.is-active
+    a.bold href='#fasts' aria-selected='true'
+      ' Factors & Strategies
+  li.tabs-title
+    a.bold href='#okrs'
+      ' OKRs
+  li.tabs-title
+    a.bold href='#discussions'
+      ' Discussions
+  li.tabs-title
+    a.bold href='#conferencing'
+      ' Video Conferencing
+
+.tabs-content data-tabs-content='tool-tabs'
+  .tabs-panel#overview
+    = render 'overview'
+  .tabs-panel#team
+    = render 'team'
+  .tabs-panel#sakpis
+    = render 'sakpis'
+  .tabs-panel.is-active#fasts
+    = render 'fasts'
+  .tabs-panel#okrs
+    = render 'okrs'
+  .tabs-panel#discussions
+    = render 'discussions'
+  .tabs-panel#conferencing
+    = render 'video_conferencing'

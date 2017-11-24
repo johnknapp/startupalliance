@@ -1,13 +1,11 @@
 
-.row
-  .large-12.columns
+.card
+  .card-divider.primary-background
     - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
       .float-right
         .pad-right= link_to edit_company_path(@company) do
           i.fa.fa-pencil.white-text
     h1.bold.white-text.wide-line-height.text-center
       = @company.name
-- if @company.recruiting
-  .row
-    .large-10.large-offset-1.columns
-      h4.bold.alert-text.text-center.snug-bottom We’re recruiting!
+    - if @company.recruiting
+      h4.bold.alert-text.text-center We’re recruiting!

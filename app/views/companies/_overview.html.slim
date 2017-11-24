@@ -1,13 +1,5 @@
 .row
-  .medium-12.columns
-
-    - if params[:invite] and params[:invite] == @company.invite_token
-      .callout
-        p.bold You are invited to join our team
-        - if current_user
-          = render 'partials/accept_invitation_form'
-        - else
-          = render 'partials/join_form', acqsrc: 'company_invite'
+  .medium-8.medium-offset-2.columns
 
     - if @company.mission.present?
        p.bold.little-space-top Mission statement:
@@ -18,3 +10,6 @@
       p.snug-top= @company.primary_market
 
     = render 'summary'
+/.row
+  .medium-12.columns
+    p.smace-top= render 'team'

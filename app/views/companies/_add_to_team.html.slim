@@ -1,6 +1,8 @@
 - if @company.team.size <= 24
   a data-open='update-team'
     i.fa.fa-plus
+    | &nbsp;
+    ' Add Team Member
   .reveal#update-team data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true

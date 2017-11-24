@@ -1,10 +1,6 @@
 .row
   .large-12.columns
-    table.stack
-      tbody
-        tr
-          td.primary-background= render 'masthead'
-          td= render 'overview'
-    = render 'team_card'
-    - if current_user and @company.team.include?(current_user)
-      = render 'tools'
+    = render 'masthead'
+    - if params[:invite] and params[:invite] == @company.invite_token
+      = render 'invited'
+    = render 'tabs'
