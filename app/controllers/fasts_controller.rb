@@ -11,6 +11,7 @@ class FastsController < ApplicationController
 
   # GET /fasts/1/edit
   def edit
+    @company = Company.find_by_pid(params[:company_pid])
   end
 
   # POST /fasts
@@ -23,8 +24,8 @@ class FastsController < ApplicationController
     respond_to do |format|
       if @fast.save
         @fast.factors << factor if factor.present?
-        format.html { redirect_to company_path(company), notice: 'FaSt was successfully created.' }
-        format.json { render :show, status: :created, location: @fast }
+        format.html { redirect_to company_path(company), notice: 'FAST was successfully created.' }
+        format.json { redirect_to company_path(company), status: :created, location: @fast }
       else
         format.html { render :new }
         format.json { render json: @fast.errors, status: :unprocessable_entity }
@@ -37,7 +38,7 @@ class FastsController < ApplicationController
   def update
     respond_to do |format|
       if @fast.update(fast_params)
-        format.html { redirect_to company_path(@fast.company), notice: 'FaSt was successfully updated.' }
+        format.html { redirect_to company_path(@fast.company), notice: 'FAST was successfully updated.' }
         format.json { render :show, status: :ok, location: @fast }
       else
         format.html { render :edit }
@@ -51,7 +52,7 @@ class FastsController < ApplicationController
   def destroy
     @fast.destroy
     respond_to do |format|
-      format.html { redirect_to fasts_url, notice: 'Fast was successfully destroyed.' }
+      format.html { redirect_to company_path(company), notice: 'FAST was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

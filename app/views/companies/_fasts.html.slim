@@ -12,6 +12,18 @@ h5.bold.primary-text FActors & STrategies
               .column
                 .card
                   .card-divider.accent-background
+                    .float-right
+                      ul.dropdown.menu data-dropdown-menu=true
+                        li
+                          = link_to '#' do
+                            i.fa.fa-ellipsis-v
+                          ul.menu data-dropdown-menu=true
+                            li
+                              = link_to edit_fast_path(sufa, company_pid: sufa.company.pid) do
+                                i.fa.fa-pencil
+                            li
+                              = link_to sufa, data: { confirm: 'Really delete this item?' }, method: :delete do
+                                i.fa.fa-trash-o
                     p.bold.text-center= sufa.body
                   .card-section
                     ul
@@ -42,7 +54,17 @@ h5.bold.primary-text FActors & STrategies
                 .card
                   .card-divider.accent-background
                     .float-right
-                      i.fa.fa-ellipsis-v
+                      ul.dropdown.menu data-dropdown-menu=true
+                        li
+                          = link_to '#' do
+                            i.fa.fa-ellipsis-v
+                          ul.menu data-dropdown-menu=true
+                            li
+                              = link_to edit_fast_path(rifa, company_pid: rifa.company.pid) do
+                                i.fa.fa-pencil
+                            li
+                              = link_to rifa, data: { confirm: 'Really delete this item?' }, method: :delete do
+                                i.fa.fa-trash-o
                     p.bold.text-center
                       = rifa.body
                   .card-section

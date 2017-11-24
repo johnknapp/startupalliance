@@ -2,10 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.hidden_field :type_code,  value: params[:type_code]
+    = f.hidden_field :type_code,  value: params[:type_code]   if params[:type_code]
     = f.hidden_field :factor_pid, value: params[:factor_pid]  if params[:factor_pid]
-    = f.hidden_field :user_id,    value: current_user.id      if current_user
-    = f.hidden_field :company_id, value: @company.id
+    = f.hidden_field :user_id,    value: current_user.id      if current_user and params[:action] == 'new'
+    = f.hidden_field :company_id, value: @company.id          if @company
     = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
 
   .form-actions
