@@ -32,11 +32,11 @@
 
   .medium-6.columns
     .callout
-      h5.bold.primary-text Risk Factors & Mitigation Strategies
+      h5.bold.primary-text Risk Factors & Minimization Strategies
       p.faint.little-snug-top
         ' Risk Factors hurt your business — pursue strategies to minimize them.
         ' For a restaurant, a rude staff is a Risk Factor.
-        ' To avoid hiring rude staff, careful reference checking is a Mitigation Strategy.
+        ' To avoid hiring rude staff, careful reference checking is a Minimization Strategy.
         '
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'rifa').present?
@@ -49,7 +49,7 @@
             p.indented-2.snug-top= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
               i.fa.fa-plus
               | &nbsp;
-              ' Add Mitigation Strategy
+              ' Add Minimization Strategy
         p.bold= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
           i.fa.fa-plus
           | &nbsp;
@@ -113,7 +113,7 @@
                   ' Add Success Factor
     li.accordion-item.primary-background data-accordion-item=true
       a.accordion-title
-        h5.bold.white-text.little-snug-top.snug-bottom Risk Factors & Mitigation Strategies
+        h5.bold.white-text.little-snug-top.snug-bottom Risk Factors & Minimization Strategies
       .accordion-content data-tab-content=true
         .row.small-up-2.medium-up-3
           - if @company.fasts.where(type_code: 'rifa').present?
@@ -155,7 +155,7 @@
                     p= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'scale-to-90' do
                       i.fa.fa-plus
                       | &nbsp;
-                      ' Add Mitigation Strategy
+                      ' Add Minimization Strategy
           .column
             .card
               .card-divider.accent-background
