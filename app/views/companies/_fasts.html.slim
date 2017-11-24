@@ -1,7 +1,65 @@
-h5.bold.primary-text FActors & STrategies
 
-- if current_user and @company.team.include?(current_user)
-  ul.accordion data-accordion=true
+.row
+  .medium-6.columns
+    .callout
+      h5.bold.primary-text Success Factors & Maximization Strategies
+      p.faint.little-snug-top
+        ' Success Factors benefit your business — pursue strategies to maximize them.
+        ' For a restaurant, a talented chef is a Success Factor.
+        ' To successfully hire and retain a talented chef, providing them with quality ingredients is a Maximization Strategy.
+        '
+      - if current_user and @company.team.include?(current_user)
+        - if @company.fasts.where(type_code: 'sufa').present?
+          - @company.fasts.where(type_code: 'sufa').each do |sufa|
+            p.bold= sufa.body
+            - if sufa.strategies.present?
+              - sufa.strategies.each do |mast|
+                p.indented-2.snug-top
+                  = mast.body
+            p.indented-2.snug-top= link_to new_fast_path(factor_pid: sufa.pid, company_pid: @company.pid, type_code: 'mast'), class: 'faint' do
+              i.fa.fa-plus
+              | &nbsp;
+              ' Add Maximization Strategy
+        p.bold= link_to new_fast_path(company_pid: @company.pid, type_code: 'sufa'), class: 'faint' do
+          i.fa.fa-plus
+          | &nbsp;
+          ' Add Success Factor
+      - else
+        p.text-center.space-top
+          em
+            ' These Factors & Strategies are only visible to the Team.
+
+
+  .medium-6.columns
+    .callout
+      h5.bold.primary-text Risk Factors & Mitigation Strategies
+      p.faint.little-snug-top
+        ' Risk Factors hurt your business — pursue strategies to minimize them.
+        ' For a restaurant, a rude staff is a Risk Factor.
+        ' To avoid hiring rude staff, careful reference checking is a Mitigation Strategy.
+        '
+      - if current_user and @company.team.include?(current_user)
+        - if @company.fasts.where(type_code: 'rifa').present?
+          - @company.fasts.where(type_code: 'rifa').each do |rifa|
+            p.bold= rifa.body
+            - if rifa.strategies.present?
+              - rifa.strategies.each do |mist|
+                p.indented-2.snug-top
+                  = mist.body
+            p.indented-2.snug-top= link_to new_fast_path(factor_pid: rifa.pid, company_pid: @company.pid, type_code: 'mist'), class: 'faint' do
+              i.fa.fa-plus
+              | &nbsp;
+              ' Add Mitigation Strategy
+        p.bold= link_to new_fast_path(company_pid: @company.pid, type_code: 'rifa'), class: 'faint' do
+          i.fa.fa-plus
+          | &nbsp;
+          ' Add Risk Factor
+      - else
+        p.text-center.space-top
+          em
+            ' These Factors & Strategies are only visible to the Team.
+
+  /ul.accordion data-accordion=true
     li.accordion-item.primary-background.is-active data-accordion-item=true
       a.accordion-title
         h5.bold.white-text.little-snug-top.snug-bottom Success Factors & Maximization Strategies
@@ -53,8 +111,6 @@ h5.bold.primary-text FActors & STrategies
                   i.fa.fa-plus
                   | &nbsp;
                   ' Add Success Factor
-
-
     li.accordion-item.primary-background data-accordion-item=true
       a.accordion-title
         h5.bold.white-text.little-snug-top.snug-bottom Risk Factors & Mitigation Strategies
@@ -107,7 +163,3 @@ h5.bold.primary-text FActors & STrategies
                   i.fa.fa-plus
                   | &nbsp;
                   ' Add Risk Factor
-- else
-  p.text-center.space-top
-    em
-      ' Factors & Strategies are only visible to the Company Team.

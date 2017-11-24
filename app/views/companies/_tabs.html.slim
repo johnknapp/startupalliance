@@ -1,16 +1,26 @@
 ul.tabs.accent-background#tool-tabs data-tabs=true
-  li.tabs-title.is-active
-    a.bold href='#overview' aria-selected='true'
-      ' Overview
+  - if !current_user
+    li.tabs-title.is-active
+      a.bold href='#overview' aria-selected='true'
+        ' Overview
+  - else
+    li.tabs-title
+      a.bold href='#overview'
+        ' Overview
   li.tabs-title
     a.bold href='#team'
       ' Team
   li.tabs-title
     a.bold href='#sakpis'
       ' SAKPIs
-  li.tabs-title
-    a.bold href='#fasts'
-      ' FAST
+  - if current_user and @company.team.include? current_user
+    li.tabs-title.is-active
+      a.bold href='#fasts' aria-selected='true'
+        ' FAST
+  - else
+    li.tabs-title
+      a.bold href='#fasts'
+        ' FAST
   li.tabs-title
     a.bold href='#okrs'
       ' OKRs
@@ -22,14 +32,22 @@ ul.tabs.accent-background#tool-tabs data-tabs=true
       ' Video Conferencing
 
 .tabs-content data-tabs-content='tool-tabs'
-  .tabs-panel.is-active#overview
-    = render 'overview'
+  - if !current_user
+    .tabs-panel.is-active#overview
+      = render 'overview'
+  - else
+    .tabs-panel#overview
+      = render 'overview'
   .tabs-panel#team
     = render 'team'
   .tabs-panel#sakpis
     = render 'sakpis'
-  .tabs-panel#fasts
-    = render 'fasts'
+  - if current_user and @company.team.include? current_user
+    .tabs-panel.is-active#fasts
+      = render 'fasts'
+  - else
+    .tabs-panel#fasts
+      = render 'fasts'
   .tabs-panel#okrs
     = render 'okrs'
   .tabs-panel#discussions
