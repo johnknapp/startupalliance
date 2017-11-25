@@ -3,6 +3,8 @@ class Fast < ApplicationRecord
 
   belongs_to  :company
   belongs_to  :user
+  belongs_to  :sakpi
+  belongs_to  :okr
 
   has_many    :fastrs
   has_many    :strategies, through: :fastrs, dependent: :destroy

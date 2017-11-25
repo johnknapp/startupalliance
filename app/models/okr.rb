@@ -3,6 +3,8 @@ class Okr < ApplicationRecord
   belongs_to :company
   belongs_to :owner, foreign_key: :owner_id,    class_name: 'User'
 
+  has_many :fasts
+
   enum okr_units: {
       Months:    0,
       Weeks:     1,
