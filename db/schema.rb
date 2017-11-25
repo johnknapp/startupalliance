@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125155802) do
+ActiveRecord::Schema.define(version: 20171125202529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 20171125155802) do
     t.string   "pid",                    null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "okr_id"
+    t.integer  "sakpi_id"
     t.index ["company_id"], name: "index_fasts_on_company_id", using: :btree
     t.index ["user_id"], name: "index_fasts_on_user_id", using: :btree
   end

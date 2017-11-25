@@ -66,6 +66,6 @@ class FastsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fast_params
-      params.require(:fast).permit(:body, :type_code, :company_id, :user_id)
+      params.require(:fast).permit(:body, :type_code, :company_id, :user_id, :okr_id, :sakpi_id)
     end
 end

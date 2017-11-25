@@ -10,7 +10,7 @@
         '
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'sufa').present?
-          - @company.fasts.where(type_code: 'sufa').each_with_index do |sufa, i|
+          - @company.fasts.order(updated_at: :desc).where(type_code: 'sufa').each_with_index do |sufa, i|
             .float-right
               ul.vertical.dropdown.menu data-dropdown-menu=true
                 li
@@ -28,6 +28,11 @@
                         = simple_form_for(sufa) do |f|
                           = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
                           .row
+                            .medium-6.columns
+                              = f.input :sakpi_id, label: 'SAKPI to favorably impact', as: :select, collection: spaced_sakpis, include_blank: 'Choose...', input_html: { value: f.object.sakpi_id }
+                            .medium-6.columns
+                              = f.input :okr_id, label: 'OKR to favorably impact', as: :select, collection: @company.okrs, include_blank: 'Choose...', input_html: { value: f.object.okr_id }
+                          .row
                             .medium-12.columns
                               .button-group
                                 = submit_tag 'Update', class: 'button expanded accent'
@@ -36,7 +41,7 @@
                         i.fa.fa-trash-o
             p.bold= sufa.body
             - if sufa.strategies.present?
-              - sufa.strategies.each_with_index do |mast,ii|
+              - sufa.strategies.order(updated_at: :desc).each_with_index do |mast,ii|
                 .float-right
                   ul.dropdown.menu.snug-top data-dropdown-menu=true
                     li
@@ -103,6 +108,11 @@
             = f.hidden_field :company_pid, value: @company.pid
             = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
             .row
+              .medium-6.columns
+                = f.input :sakpi_id, label: 'SAKPI to favorably impact', as: :select, collection: spaced_sakpis, include_blank: 'Choose...', input_html: { value: f.object.sakpi_id }
+              .medium-6.columns
+                = f.input :okr_id, label: 'OKR to favorably impact', as: :select, collection: @company.okrs, include_blank: 'Choose...', input_html: { value: f.object.okr_id }
+            .row
               .medium-12.columns
                 .button-group
                   = submit_tag 'Create', class: 'button expanded accent'
@@ -122,7 +132,7 @@
         '
       - if current_user and @company.team.include?(current_user)
         - if @company.fasts.where(type_code: 'rifa').present?
-          - @company.fasts.where(type_code: 'rifa').each_with_index do |rifa,i|
+          - @company.fasts.order(updated_at: :desc).where(type_code: 'rifa').each_with_index do |rifa,i|
             .float-right
               ul.dropdown.menu data-dropdown-menu=true
                 li
@@ -140,6 +150,11 @@
                         = simple_form_for(rifa) do |f|
                           = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
                           .row
+                            .medium-6.columns
+                              = f.input :sakpi_id, label: 'SAKPI to favorably impact', as: :select, collection: spaced_sakpis, include_blank: 'Choose...', input_html: { value: f.object.sakpi_id }
+                            .medium-6.columns
+                              = f.input :okr_id, label: 'OKR to favorably impact', as: :select, collection: @company.okrs, include_blank: 'Choose...', input_html: { value: f.object.okr_id }
+                          .row
                             .medium-12.columns
                               .button-group
                                 = submit_tag 'Update', class: 'button expanded accent'
@@ -148,7 +163,7 @@
                         i.fa.fa-trash-o
             p.bold= rifa.body
             - if rifa.strategies.present?
-              - rifa.strategies.each_with_index do |mist,ii|
+              - rifa.strategies.order(updated_at: :desc).each_with_index do |mist,ii|
                 .float-right
                   ul.dropdown.menu.snug-top data-dropdown-menu=true
                     li
@@ -214,6 +229,11 @@
             = f.hidden_field :user_id,     value: current_user.id  if current_user
             = f.hidden_field :company_pid, value: @company.pid
             = f.input :body, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
+            .row
+              .medium-6.columns
+                = f.input :sakpi_id, label: 'SAKPI to favorably impact', as: :select, collection: spaced_sakpis, include_blank: 'Choose...', input_html: { value: f.object.sakpi_id }
+              .medium-6.columns
+                = f.input :okr_id, label: 'OKR to favorably impact', as: :select, collection: @company.okrs, include_blank: 'Choose...', input_html: { value: f.object.okr_id }
             .row
               .medium-12.columns
                 .button-group
