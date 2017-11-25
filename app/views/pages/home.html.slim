@@ -2,65 +2,91 @@
   .medium-10.medium-offset-1.columns
 
     .row
-      .medium-12.columns
-        .callout.primary-background.text-center
-          h3.h1.bold.white-text.wide-line-height
+      .medium-8.medium-offset-2.columns
+        .callout
+          h3.h1.bold.text-center What we are:
+          h4.h1.text-center
             ' Startup Alliance is a
-            span.alert-text
+            span.bold.alert-text
               ' collaboration toolbox
             ' where global entrepreneurs work together to stay focused, make connections, overcome challenges and win.
-          h2.h1.bold.alert-text
-            ' Regardless of where you live.
-            '
 
-        /= render 'partials/storybox'
+    .row
+      .medium-12.columns
+        h3.h1.bold.text-center.space-top.space-bottom What we offer&thinsp;:
 
-        /h3.bold.space-top.snug-bottom See how we help&thinsp;:
-        h3.h1.bold.primary-text.space-top.little-snug-bottom
-          ' Keep your team focused&thinsp;:
-        .callout.accent
-          h4.bold.little-snug-top
-            ' Collaboration Workspaces for Companies
-          p
-            ' Startup Alliance provides companies with online collaboration workspaces where staff, advisors and investors collaborate to set objectives, discuss and overcome challenges and track their progress.
-            strong No other platform combines this powerful collection of objective setting and solution finding tools:
-          ul.snug-top.indented-3
-            li
-              strong
-                ' Private Messaging
-              ' to keep the team connected
-            li
-              strong
-                ' Discussion Forums
-              ' to ask questions, get answers and capture knowledge
-            li
-              strong
-                ' Web Conferencing
-              ' enabling live interactions among global teams
-            li
-              strong
-                ' SAKPIs
-              ' to track and optimize key performance indicators
-            li
-              strong
-                ' Objectives and Key Results
-              ' to keep the team focused on priorities
-        h3.h1.bold.primary-text.space-top.little-snug-bottom
-          ' Gain insight from beyond your company walls&thinsp;:
-        .callout.accent
-          h3.h1.bold.primary-text
-          h4.bold.little-snug-top
-            ' Private Alliances for Global Entrepreneurs
-          p
-            ' Inspired by Mastermind Groups, our Private Alliances are global collaboration spaces where entrepreneurs form trusted partnerships to help each other make better decisions, achieve goals, overcome challenges and maximize their success.
-            ' Private Alliances include private messaging, discussion forum and web conferencing tools and select information on each alliance member company.
-        h3.h1.bold.primary-text.space-top.little-snug-bottom
-          ' Connect with the people who can help you most&thinsp;:
-        .callout.accent
-          h4.bold.little-snug-top
-            ' Entrepreneurs Showcase
-          p
-            ' In addition to summarizing each member’s activities and highlighting their personal mission statement, each profile showcases member strengths on our standardized set of highly relevant startup skills and personal traits.
+        .card
+          .card-divider.primary-background.text-center
+            h2.h1.bold.white-text.little-snug-top
+              ' Collaboration Workspaces for Companies
+            h3.bold.alert-text
+              ' Keeping your team on track
+          .card-section
+            p
+              ' Startup Alliance provides companies with online collaboration workspaces where staff, advisors and investors collaborate to set objectives, discuss and overcome challenges and track their progress.
+            p.little-snug-top.bold No other platform combines this powerful collection of objective setting and solution finding tools:
+            .row.medium-up-2
+              .column
+                .card
+                  .card-divider.accent-background.text-center
+                    h4.bold Tools to help you focus&thinsp;:
+                  .card-section
+                    ul
+                      li
+                        strong
+                          ' SAKPIs
+                        ' our standard set of KPIs keeping the team focused on making constant improvements
+                      li
+                        strong
+                          ' Factors & Strategies tool
+                        ' keeping the team focused on overall priorities and implementing optimal strategies
+                      li
+                        strong
+                          ' Objectives and Key Results tool
+                        ' keeping the team focused on their deliverables and aware of team mate responsibilities
+              .column
+                .card
+                  .card-divider.accent-background.text-center
+                    h4.bold Tools to help you collaborate&thinsp;:
+                  .card-section
+                    ul
+                      li
+                        strong
+                          ' Private Messaging
+                        ' keeping the team connected with unlimited direct messages
+                      li
+                        strong
+                          ' Discussion Forums
+                        ' to ask questions, get answers and capture knowledge
+                      li
+                        strong
+                          ' Web Conferencing
+                        ' enabling unlimited live team interactions regardless of their location
+            p.text-right.snug-top.snug-bottom= link_to 'Explore membership plans...', plans_path
+
+
+        .card
+          .card-divider.primary-background.text-center
+            h2.h1.bold.white-text.little-snug-top
+              ' Private Alliances for Global Entrepreneurs
+            h3.bold.alert-text
+              ' Gaining insight from beyond your company walls
+          .card-section
+            p
+              ' Inspired by Mastermind Groups, our Private Alliances are global collaboration spaces where entrepreneurs form trusted partnerships to help each other make better decisions, achieve goals, overcome challenges and maximize their success.
+              ' Private Alliances include private messaging, discussion forum and web conferencing tools and select information on companies owned by each Private Alliance member.
+            p.text-right.snug-top.snug-bottom= link_to 'Explore membership plans...', plans_path
+
+        .card
+          .card-divider.primary-background.text-center
+            h2.h1.bold.white-text.little-snug-top
+              ' Entrepreneurs Showcase
+            h3.bold.alert-text
+              ' Connecting with the people who can help you most
+          .card-section
+            p
+              ' In addition to summarizing each member’s activities and highlighting their personal mission statement, each profile showcases member strengths on our standardized set of highly relevant startup skills and personal traits.
+            p.text-right.snug-top.snug-bottom= link_to 'Explore membership plans...', plans_path
 
         /p.bold.text-center.snug-top
         /.callout.primary-background.text-center

@@ -23,8 +23,9 @@ class FastsController < ApplicationController
 
     respond_to do |format|
       if @fast.save
-        @fast.factors << factor if factor.present?
+        @fast.update(body: 'default') if @fast.body.blank?
         @fast.update(company_id: company.id)
+        @fast.factors << factor if factor.present?
         format.html { redirect_to company_path(company), notice: 'FAST was successfully created.' }
         format.json { redirect_to company_path(company), status: :created, location: @fast }
       else
@@ -39,6 +40,7 @@ class FastsController < ApplicationController
   def update
     respond_to do |format|
       if @fast.update(fast_params)
+        @fast.update(body: 'default') if @fast.body.blank?
         format.html { redirect_to company_path(@fast.company), notice: 'FAST was successfully updated.' }
         format.json { render :show, status: :ok, location: @fast }
       else
