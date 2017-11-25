@@ -2,9 +2,24 @@
   .medium-8.medium-offset-2.columns
     h3.show-for-medium-up &nbsp;
     h3.bold.primary
-      ' Create New Factor
+      - if @factor
+        - if params[:type_code] == 'mist'
+          ' Update Minimization Strategy
+        - else
+          ' Update Maximization Strategy
+      - else
+        - if params[:type_code] == 'sufa'
+          ' Update Success Factor
+        - else
+          ' Update Risk Factor
     hr.little-snug-top
-    p.text-right.snug-top.space-bottom
-      ' Factors make or break your company.
+    p.text-right.snug-top.space-bottom It’s important to write these things down!
 
+    - if @factor
+      p.bold.snug-bottom
+        - if params[:type_code] == 'sufa'
+          ' Related to Success Factor:
+        - else
+          ' Related to Risk Factor:
+      h4.bold.primary “#{@factor.body}”
     = render 'form'

@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @fast = Fast.new
+    # @fast = Fast.new
   end
 
   # GET /companies/new
