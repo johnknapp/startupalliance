@@ -1,0 +1,14 @@
+.row
+  .large-6.large-offset-3.medium-8.medium-offset-2.columns
+
+    - if @alliance.mission.present?
+       p.bold.little-space-top Mission statement:
+       p.snug-top= @alliance.mission
+
+    .float-right
+      p= @alliance.created_at.strftime('%B %e, %Y')
+    p Created on:
+
+    .float-right
+      p= link_to @alliance.creator.name, vanity_path(@alliance.creator.username)
+    p Created by:

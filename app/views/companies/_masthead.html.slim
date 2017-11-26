@@ -5,6 +5,12 @@
       .float-right
         .pad-right= link_to edit_company_path(@company) do
           i.fa.fa-pencil.white-text
+    - if @company.is_unlisted
+      .float-left
+        p.bold.alert-text.text-right.space-bottom
+          i.fa.fa-user-secret
+          | &nbsp;
+          ' Stealth mode
     h1.bold.white-text.wide-line-height.text-center
       = @company.name
     - if @company.recruiting

@@ -1,0 +1,23 @@
+.row
+  .medium-10.medium-offset-1.columns
+    h5.bold.primary-text
+      /' Member companies
+    table.hover.stacked
+        thead
+          tr
+            th{width='35%'} Member #{'company'.pluralize(@alliance.member_companies.count)}
+            th Alliance member
+            th{width='20%'} Life phase
+            th{width='15%'}
+              .text-center SAKPI Index
+            th{width='15%'}
+              .text-center Lifetime OKRs
+        tbody
+          - @alliance.member_companies.each do |company|
+            tr
+              td{valign='top'}= link_to company.name, company_path(company)
+              td{valign='top'}= link_to company.creator.name, vanity_path(company.creator.username)
+              td{valign='top'}= company.phases
+              td{valign='top' align='center'}= company.sakpi_index
+              td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
+

@@ -1,0 +1,28 @@
+ul.tabs.accent-background#tool-tabs data-tabs=true
+  li.tabs-title.is-active
+    a.bold href='#overview' aria-selected='true'
+      ' Overview
+  li.tabs-title
+    a.bold href='#members'
+      ' Members
+  li.tabs-title
+    a.bold href='#member_companies'
+      ' Member Companies
+  li.tabs-title
+    a.bold href='#discussions'
+      ' Discussions
+  li.tabs-title
+    a.bold href='#conferencing'
+      ' Video Conferencing
+
+.tabs-content data-tabs-content='tool-tabs'
+  .tabs-panel.is-active#overview
+    = render 'overview'
+  .tabs-panel#members
+    = render 'members'
+  .tabs-panel#member_companies
+    = render 'member_companies'
+  .tabs-panel#discussions
+    = render 'discussions'
+  .tabs-panel#conferencing
+    = render 'video_conferencing'

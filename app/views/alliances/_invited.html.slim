@@ -1,0 +1,8 @@
+.row
+  .medium-8.medium-offset-2.columns
+    .callout
+      p.bold You are invited to join us
+      - if current_user
+        = render 'partials/accept_invitation_form'
+      - else
+        = render 'partials/join_form', acqsrc: 'alliance_invite'

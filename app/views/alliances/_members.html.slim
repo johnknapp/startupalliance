@@ -1,0 +1,52 @@
+.row.small-up-2.medium-up-3
+  - @alliance.members.each do |member|
+    .column
+      .callout.small
+        - if current_user != member
+          .float-right
+            ul.menu.simple.little-space-top
+              - if current_user and current_user != member
+                li
+                  = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid), method: :post do
+                    i.fa.fa-comments-o
+              - if current_user == @alliance.creator and member != current_user
+                li
+                  = link_to remove_alliance_member_alliance_path(member_pid: member.pid), data: {:confirm => 'Really remove this member?'}, method: :delete do
+                    i.fa.fa-trash-o
+
+        p
+          ' #{image_tag gravatar_url("#{member.email}", 48)}
+          | &nbsp;
+          ' #{link_to member.name, vanity_path(member.username), class: 'bold'}
+
+        - if member.user_skills.present?
+          .float-right
+            p.little-snug-top.faint= member.okrs.count
+          p.little-snug-top.faint OKR ownership:
+  
+          .float-right
+            p.little-snug-top.faint= member.skill_index
+          p.little-snug-top.faint Skill index:
+
+        - if member.user_traits.present?
+          .float-right
+            p.little-snug-top.faint= member.trait_index
+          p.little-snug-top.faint Trait index:
+
+        - if member.time_zone.present?  
+          .float-right
+            p.little-snug-top.faint= ActiveSupport::TimeZone.new(member.time_zone)
+          p.little-snug-top.faint Time zone:
+
+        - if member.country_code.present?
+          .float-right
+            p.little-snug-top.faint= ISO3166::Country(member.country_code).name
+          p.little-snug-top.faint Country:
+
+
+
+
+  - if current_user and @alliance.creator == current_user
+    .column
+      .callout
+        .bold.text-center.snug-bottom= render 'add_member'

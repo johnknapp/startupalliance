@@ -1,5 +1,13 @@
 .row
   .large-12.columns
+    = render 'masthead'
+    - if params[:invite] and params[:invite] == @alliance.invite_token
+      = render 'invited'
+    = render 'tabs'
+
+
+/.row
+  .large-12.columns
     h3.primary-text
       ' Alliance profile:
       strong= @alliance.name
@@ -18,7 +26,7 @@
               = render 'partials/join_form', acqsrc: 'alliance_invite'
           p.snug-bottom &nbsp;
     .row
-      .medium-8.columns
+      /.medium-8.columns
         table.hover.stacked
           thead
             tr
@@ -36,7 +44,7 @@
                 td{valign='top' align='center'}= company.sakpi_index
                 td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
 
-        .callout
+        /.callout
           h5.bold.primary-text
             .float-right
               a data-open='disco-info'
@@ -82,7 +90,7 @@
           - else
             p.text-center Meetings are only visible to the members of this Private Alliance.
 
-      .medium-4.columns
+      /.medium-4.columns
         .callout
           .row
             .small-12.columns
