@@ -1,7 +1,7 @@
 ul.tabs.accent-background#tool-tabs data-tabs=true
   li.tabs-title.is-active
-    a.bold href='#summary' aria-selected='true'
-      ' Summary
+    a.bold href='#overview' aria-selected='true'
+      ' Overview
   li.tabs-title
     a.bold href='#skills'
       ' Startup Skills (SI: #{@user.skill_index})
@@ -16,8 +16,8 @@ ul.tabs.accent-background#tool-tabs data-tabs=true
       ' Alliances (#{number_with_delimiter(@user.alliances.count)})
 
 .tabs-content data-tabs-content='tool-tabs'
-  .tabs-panel.is-active#summary
-    = render 'summary'
+  .tabs-panel.is-active#overview
+    = render 'overview'
   .tabs-panel#skills
     = render 'skills'
   .tabs-panel#traits
