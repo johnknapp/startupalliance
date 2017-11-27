@@ -1,0 +1,21 @@
+.row
+  .medium-10.medium-offset-1.columns
+    - if current_user and current_user == @user
+      .float-right
+        p.faint
+          a data-open='set-traits'
+            i.fa.fa-pencil
+          = render 'partials/set_traits_modal'
+    - if (current_user or @user.public_traits == true) and (@user.traits.present? or @user == current_user)
+      h5.bold.primary-text.little-space-bottom
+        - if current_user == @user
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=USER_TRAIT_TIP
+            ' Personal Traits:
+        - else
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIEWER_TRAIT_TIP
+              ' Personal Traits:
+      - @user.user_traits.order(:trait_id).each do |ut|
+        .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+          .progress-meter.light-primary-background style="width: #{ut.level*10}%"
+            p.meter-text= ut.trait.name.html_safe
+

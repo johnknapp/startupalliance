@@ -1,0 +1,32 @@
+.row
+  .medium-10.medium-offset-1.columns
+    - if @user.companies.present?
+      table.hover.stacked
+        thead
+          tr
+            th{width='40%'}
+              ' My #{'Company'.pluralize(@user.companies.count)}
+            th{width='20%'}
+              .text-center Stage
+            th{width='20%'}
+              .text-center SAKPI Index
+            th{width='20%'}
+              .text-center Recruiting
+        tbody
+          - @user.companies.each do |company|
+            tr
+              td{valign='top'}= link_to company.name, company_path(company)
+              td{valign='top' align='center'}= company.phases
+              td{valign='top' align='center'}= company.sakpi_index
+              td{valign='top' align='center'}
+                - if company.recruiting
+                  ' Yes
+                - else
+                  ' —
+    - else
+      p.text-center.bold Not part of any Company Teams yet!
+      - if current_user and current_user == @user
+        p.text-center
+          ' Find your company on Startup Alliance and ask to be put on the team.
+        p.text-center
+          ' If your company isn’t listed yet, add it.

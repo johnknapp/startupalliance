@@ -1,0 +1,28 @@
+ul.tabs.accent-background#tool-tabs data-tabs=true
+  li.tabs-title.is-active
+    a.bold href='#summary' aria-selected='true'
+      ' Summary
+  li.tabs-title
+    a.bold href='#skills'
+      ' Startup Skills (SI: #{@user.skill_index})
+  li.tabs-title
+    a.bold href='#traits'
+      ' Personal Traits (TI: #{@user.trait_index})
+  li.tabs-title
+    a.bold href='#companies'
+      ' Companies (#{number_with_delimiter(@user.companies.count)})
+  li.tabs-title
+    a.bold href='#alliances'
+      ' Alliances (#{number_with_delimiter(@user.alliances.count)})
+
+.tabs-content data-tabs-content='tool-tabs'
+  .tabs-panel.is-active#summary
+    = render 'summary'
+  .tabs-panel#skills
+    = render 'skills'
+  .tabs-panel#traits
+    = render 'traits'
+  .tabs-panel#companies
+    = render 'companies'
+  .tabs-panel#alliances
+    = render 'alliances'

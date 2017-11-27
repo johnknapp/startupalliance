@@ -1,0 +1,96 @@
+.row
+  .medium-12.columns
+    .float-right
+      - if current_user and current_user.confirmed? and current_user != @user
+        - if Conversation.between(current_user.id,@user.id).present?
+          p.snug-top.space-bottom
+            = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+              i.fa.fa-comments-o
+              | &nbsp;
+              | &nbsp;
+              ' Continue the conversation with #{@user.name}
+        - else
+          p.snug-top.space-bottom
+            = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+              i.fa.fa-comments-o
+              | &nbsp;
+              | &nbsp;
+              ' Start a conversation with #{@user.name}
+      - else
+        - if current_user and current_user == @user
+          p.snug-top.space-bottom Hey #{@user.first_name}, Startup Alliance is glad you’re here!
+        - else
+          p.snug-top.space-bottomStartup Alliance members can send private messages to each other.
+
+
+.row
+  .large-6.large-offset-3.medium-8.medium-offset-2.columns
+
+
+    p.bold.little-space-top Personal mission:
+    - if @user.mission.present?
+      p.snug-top= @user.mission
+    - else
+      p.snug-top.faint #{@user.name} has not written their personal mission!
+
+    p.bold.little-space-top Member summary:
+    - if @user.created_at
+      .float-right
+        p.snug-top.faint.text-right
+          ' #{@user.created_at.strftime('%B %e, %Y')}
+      p.snug-top.faint Member since:
+    - if @user.user_skills.present?
+      .float-right
+        p.faint.text-right.snug-top= @user.skill_index
+      p.faint.snug-top Skill index:
+    - if @user.user_traits.present?
+      .float-right
+        p.faint.text-right.snug-top= @user.trait_index
+      p.faint.snug-top Trait index:
+    - if @user.username
+      .float-right
+        p.faint.text-right.snug-top= @user.username
+      p.faint.snug-top Username:
+    - if @user.companies.present?
+      .float-right
+        p.faint.text-right.snug-top= @user.okrs.count
+      p.faint.snug-top OKR ownership:
+    - if @user.time_zone.present?
+      .float-right
+        p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)
+      p.faint.snug-top Time zone:
+    - if @user.country_code.present?
+      .float-right
+        p.faint.snug-top= ISO3166::Country(@user.country_code).name
+      p.faint.snug-top Country:
+    .float-right
+      p.snug-top.faint.text-right
+        = link_to "#{@user.plan.humanize} Member", plans_path
+    p.snug-top.faint Membership plan:
+
+    p
+      strong Social profiles:
+    - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
+      h5.snug-top.space-bottom
+        - if @user.twitter_profile.present?
+          = link_to @user.twitter_profile, target: '_blank'
+            span.fa.fa-twitter
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+        - if @user.linkedin_profile.present?
+          = link_to @user.linkedin_profile, target: '_blank'
+            span.fa.fa-linkedin
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+        - if @user.website.present?
+          = link_to @user.website, target: '_blank'
+            span.fa.fa-globe
+    - elsif current_user and @user == current_user and current_user.confirmed?
+      p.text-center= link_to 'Add your social profiles', edit_user_registration_path
+    - else
+      p.snug-top.faint #{@user.name} has not listed their social profiles
+

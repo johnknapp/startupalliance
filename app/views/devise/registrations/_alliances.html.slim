@@ -1,0 +1,34 @@
+.row
+  .medium-10.medium-offset-1.columns
+    - if @user.alliances.present?
+
+      table.hover.stacked
+        thead
+          tr
+            th{width='40%'}
+              ' My Private #{'Alliance'.pluralize(@user.alliances.count)}
+            th{width='20%'}
+              .text-center Members
+            th{width='20%'}
+              .text-center Companies
+            th{width='20%'}
+              .text-center Recruiting
+        tbody
+          - @user.alliances.each do |alliance|
+            tr
+              td{valign='top'}= link_to alliance.name, alliance_path(alliance)
+              td{valign='top' align='center'}= alliance.members.count
+              td{valign='top' align='center'}= alliance.member_companies.count
+              td{valign='top' align='center'}
+                - if alliance.recruiting
+                  ' Yes
+                - else
+                  ' —
+    - else
+      p.text-center.bold Not part of any Private Alliances yet!
+      - if current_user and current_user == @user
+        p.text-center
+          ' Find some you like and ask to join.
+        p.text-center
+          ' If you can’t find any you like, create your own and invite your people!
+
