@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :companies do
     member do
       put     :add_team_member
+      put     :update_team_member
       delete  :remove_team_member
       put     :set_sakpi
       delete  :unset_sakpi

@@ -15,9 +15,11 @@
     p.snug-bottom Or provide a Startup Alliance username:
     = form_tag add_team_member_company_path, method: :put
       .row.collapse
-        .medium-8.columns
+        .medium-6.columns
           = text_field_tag :username, nil, placeholder: 'Enter a Startup Alliance username'
-        .medium-4.columns
+        .medium-3.columns
+          = select_tag :role, options_for_select(team_roles), include_blank: 'Choose role...'
+        .medium-3.columns
           = submit_tag 'Add to my team', class: 'postfix button expanded accent'
 
 - else

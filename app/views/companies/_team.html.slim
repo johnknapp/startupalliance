@@ -1,5 +1,5 @@
 .row.small-up-2.medium-up-3
-  - @company.team.each do |member|
+  - @company.team.order(created_at: :desc).each_with_index do |member,i|
     .column
       .callout.small
         - if current_user != member
@@ -19,11 +19,33 @@
           | &nbsp;
           ' #{link_to member.name, vanity_path(member.username), class: 'bold'}
 
-        - if member.user_skills.present?
+        .float-right
+          p.little-snug-top.faint
+            = team_role(@company, member)
+            - if current_user and current_user == @company.creator
+              a.faint data-open="edit-team-role-#{i}"
+                | &nbsp;
+                i.fa.fa-pencil
+              .reveal id="edit-team-role-#{i}" data-reveal=true
+                button data-close=true aria-label='Close' type='button' class='close-button'
+                  span aria-hidden=true
+                    ' &times;
+                p.bold.primary-text Update team role for #{member.name}
+                = simple_form_for member.company_users.first, url: update_team_member_company_path(user_pid: member.pid) , method: :put do |f|
+                  = f.input :role, label: false, include_blank: false, collection: team_roles, input_html: { value: f.object.role }
+                  .row
+                    .medium-12.columns
+                      .button-group
+                        = submit_tag 'Update team role', class: 'button expanded accent'
+
+        p.little-snug-top.faint Role:
+
+        - if member.okrs.present?
           .float-right
             p.little-snug-top.faint= member.okrs.count
           p.little-snug-top.faint OKR ownership:
-  
+
+        - if member.user_skills.present?
           .float-right
             p.little-snug-top.faint= member.skill_index
           p.little-snug-top.faint Skill index:

@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   include DateConverter
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_company, only: [:show, :add_team_member, :remove_team_member, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :add_team_member, :update_team_member, :remove_team_member, :set_sakpi, :unset_sakpi, :edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /companies
@@ -62,13 +62,30 @@ class CompaniesController < ApplicationController
     elsif @company.team.include? team_member
       redirect_back(fallback_location: company_path, alert: 'Already a team member!')
     else
+      if params[:role].present?
+        role = params[:role]
+      else
+        role = 'Employee'
+      end
       CompanyUser.create(
           user_id: team_member.id,
           company_id: @company.id,
-          role: params[:role],
+          role: role,
           equity: params[:equity]
       )
       redirect_back(fallback_location: company_path, notice: 'Team member added.')
+    end
+  end
+
+  # PUT /companies/1/update_team_member
+  def update_team_member
+    user = User.find_by_pid(params[:user_pid])
+    if user
+      company_user = CompanyUser.where(company_id: @company.id).where(user_id: user.id)
+      if company_user
+        company_user.update(role: params[:company_user][:role])
+      end
+      redirect_back(fallback_location: company_path, notice: 'Team role updated.')
     end
   end
 
@@ -78,7 +95,7 @@ class CompaniesController < ApplicationController
     reassign_okr_ownership
     if @company.team.count > 1
       @company.team.delete(@team_member)
-      redirect_back(fallback_location: company_path, notice: 'team_member removed.')
+      redirect_back(fallback_location: company_path, notice: 'Team member removed.')
     else
       redirect_back(fallback_location: company_path, alert: 'Cannot remove the last team member, please contact support.')
     end
