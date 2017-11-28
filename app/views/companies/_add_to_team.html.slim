@@ -9,10 +9,24 @@
         ' &times;
     p
       strong
-        ' Email this confidential invitation link to anybody:
-      br
-      = link_to "#{company_url(@company)}?invite=#{@company.invite_token}", company_url(@company, invite: @company.invite_token)
-    p.snug-bottom Or provide a Startup Alliance username:
+        ' Email any of these invitation links:
+    p.little-snug-top.indented-1
+      ' Invite as an owner:
+    p.faint.snug-top.indented-2
+      = link_to "#{company_url(@company)}?r=0&invite=#{@company.invite_token}", company_url(@company, r: 0, invite: @company.invite_token)
+    p.little-snug-top.indented-1
+      ' Invite as an employee:
+    p.faint.snug-top.indented-2
+      = link_to "#{company_url(@company)}?r=1&invite=#{@company.invite_token}", company_url(@company, r: 1, invite: @company.invite_token)
+    p.little-snug-top.indented-1
+      ' Invite as an advisor:
+    p.faint.snug-top.indented-2
+      = link_to "#{company_url(@company)}?r=2&invite=#{@company.invite_token}", company_url(@company, r: 2, invite: @company.invite_token)
+    p.little-snug-top.indented-1
+      ' Invite as an investor:
+    p.faint.snug-top.indented-2
+      = link_to "#{company_url(@company)}?r=3&invite=#{@company.invite_token}", company_url(@company, r: 3, invite: @company.invite_token)
+    p.snug-bottom.bold Or provide a Startup Alliance username:
     = form_tag add_team_member_company_path, method: :put
       .row.collapse
         .medium-6.columns

@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
     user = User.find_by_pid(params[:user][:user_pid])
     entity = params[:user][:entity].singularize
     token = params[:user][:token]
-    create_membership_for_user(user,entity,token)
+    role = params[:user][:r]
+    create_membership_for_user(user,entity,token,role)
     if entity == 'company'
       redirect_to company_path(@company), notice: 'Added to the Company team.'
     end
@@ -101,10 +102,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def create_membership_for_user(user,entity,token)
+    def create_membership_for_user(user,entity,token,r)
       if entity == 'company'
+        role = 'Owner'    if r == '0'
+        role = 'Employee' if r == '1'
+        role = 'Advisor'  if r == '2'
+        role = 'Investor' if r == '3'
         @company = Company.find_by_invite_token(token)
         @company.team << user unless @company.team.include? user
+        company_user = CompanyUser.where(company_id: @company.id).where(user_id: user.id)
+        company_user.update(role: role)
       end
       if entity == 'alliance'
         @alliance = Alliance.find_by_invite_token(token)

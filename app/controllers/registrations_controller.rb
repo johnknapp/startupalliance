@@ -61,9 +61,10 @@ class RegistrationsController < Devise::RegistrationsController
       user = User.find_by_email(email)
       entity = params[:user][:entity].singularize if params[:user][:entity]
       token = params[:user][:token]
+      role = params[:user][:r]
       if user
         # create membership for existing non-auth user
-        create_membership_for_user(user,entity,token)
+        create_membership_for_user(user,entity,token,role)
         redirect_to user_session_path, notice: 'You are now a member. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
@@ -99,7 +100,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       current_or_guest_user
       # create membership for new user
-      create_membership_for_user(current_or_guest_user,entity,token)
+      create_membership_for_user(current_or_guest_user,entity,token,role)
     else
       redirect_back(fallback_location: root_path, alert: 'Either your email is invalid... or you’re a robot!') and return
     end
@@ -176,10 +177,16 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def create_membership_for_user(user,entity,token)
+    def create_membership_for_user(user,entity,token,r)
       if entity == 'company'
+        role = 'Owner'    if r == '0'
+        role = 'Employee' if r == '1'
+        role = 'Advisor'  if r == '2'
+        role = 'Investor' if r == '3'
         company = Company.find_by_invite_token(token)
         company.team << user
+        company_user = CompanyUser.where(company_id: company.id).where(user_id: user.id)
+        company_user.update(role: role)
       end
       if entity == 'alliance'
         alliance = Alliance.find_by_invite_token(token)

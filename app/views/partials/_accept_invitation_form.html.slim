@@ -1,4 +1,5 @@
 = simple_form_for(:user, url: accept_path) do |f|
+  = f.hidden_field :r,      value: params[:r]          if params[:controller] == 'companies'
   = f.hidden_field :token,  value: params[:invite]     if params[:controller] == 'companies'
   = f.hidden_field :token,  value: params[:invite]     if params[:controller] == 'alliances'
   = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'companies'
