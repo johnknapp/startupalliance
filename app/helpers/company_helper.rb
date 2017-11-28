@@ -14,6 +14,7 @@ module CompanyHelper
       ['Owner','Owner'],
       ['Employee','Employee'],
       ['Advisor','Advisor'],
+      ['Consultant','Consultant'],
       ['Investor','Investor']
     ]
   end

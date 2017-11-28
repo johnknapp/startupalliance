@@ -104,10 +104,11 @@ class ApplicationController < ActionController::Base
 
     def create_membership_for_user(user,entity,token,r)
       if entity == 'company'
-        role = 'Owner'    if r == '0'
-        role = 'Employee' if r == '1'
-        role = 'Advisor'  if r == '2'
-        role = 'Investor' if r == '3'
+        role = 'Owner'      if r == '0'
+        role = 'Employee'   if r == '1'
+        role = 'Advisor'    if r == '2'
+        role = 'Consultant' if r == '3'
+        role = 'Investor'   if r == '4'
         @company = Company.find_by_invite_token(token)
         @company.team << user unless @company.team.include? user
         company_user = CompanyUser.where(company_id: @company.id).where(user_id: user.id)

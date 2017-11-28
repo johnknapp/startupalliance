@@ -23,9 +23,13 @@
     p.faint.snug-top.indented-2
       = link_to "#{company_url(@company)}?r=2&invite=#{@company.invite_token}", company_url(@company, r: 2, invite: @company.invite_token)
     p.little-snug-top.indented-1
-      ' Invite as an investor:
+      ' Invite as an consultant:
     p.faint.snug-top.indented-2
       = link_to "#{company_url(@company)}?r=3&invite=#{@company.invite_token}", company_url(@company, r: 3, invite: @company.invite_token)
+    p.little-snug-top.indented-1
+      ' Invite as an investor:
+    p.faint.snug-top.indented-2
+      = link_to "#{company_url(@company)}?r=4&invite=#{@company.invite_token}", company_url(@company, r: 3, invite: @company.invite_token)
     p.snug-bottom.bold Or provide a Startup Alliance username:
     = form_tag add_team_member_company_path, method: :put
       .row.collapse

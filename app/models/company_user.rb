@@ -15,6 +15,7 @@ class CompanyUser < ApplicationRecord
       Owner:      0,
       Employee:   1,
       Advisor:    2,
-      Investor:   3
+      Consultant: 3,
+      Investor:   4
   }
 end
