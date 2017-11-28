@@ -15,7 +15,10 @@
         tbody
           - @user.companies.each do |company|
             tr
-              td{valign='top'}= link_to company.name, company_path(company)
+              td{valign='top'}
+                ' #{link_to company.name, company_path(company)}
+                span.faint
+                  ' (#{team_role(company,@user)})
               td{valign='top' align='center'}= company.phases
               td{valign='top' align='center'}= company.sakpi_index
               td{valign='top' align='center'}

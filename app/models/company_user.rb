@@ -11,6 +11,7 @@ class CompanyUser < ApplicationRecord
       over_50:    6,
       over_75:    7
   }
+  # see company helper
   enum role:{
       Owner:      0,
       Employee:   1,

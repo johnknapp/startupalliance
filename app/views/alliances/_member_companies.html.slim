@@ -5,9 +5,9 @@
     table.hover.stacked
         thead
           tr
-            th{width='35%'} Member #{'company'.pluralize(@alliance.member_companies.count)}
-            th Alliance member
-            th{width='20%'} Life phase
+            th Member #{'company'.pluralize(@alliance.member_companies.count)}
+            /th Alliance member
+            th{width='15%'} Life phase
             th{width='15%'}
               .text-center SAKPI Index
             th{width='15%'}
@@ -15,8 +15,12 @@
         tbody
           - @alliance.member_companies.each do |company|
             tr
-              td{valign='top'}= link_to company.name, company_path(company)
-              td{valign='top'}= link_to company.creator.name, vanity_path(company.creator.username)
+              td{valign='top'}
+                = link_to company.name, company_path(company)
+                .faint.indented-1
+                  = link_to company.creator.name, vanity_path(company.creator.username)
+                  | &nbsp;
+                  ' (#{team_role(company,company.creator)})
               td{valign='top'}= company.phases
               td{valign='top' align='center'}= company.sakpi_index
               td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
