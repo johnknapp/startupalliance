@@ -7,30 +7,52 @@
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
         ' &times;
+    p.bold Two easy ways to add people to your company team:
     p
       strong
-        ' Email any of these invitation links:
-    p.little-snug-top.indented-1
-      ' Invite as an owner:
-    p.faint.snug-top.indented-2
-      = link_to "#{company_url(@company)}?r=0&invite=#{@company.invite_token}", company_url(@company, r: 0, invite: @company.invite_token)
-    p.little-snug-top.indented-1
-      ' Invite as an employee:
-    p.faint.snug-top.indented-2
-      = link_to "#{company_url(@company)}?r=1&invite=#{@company.invite_token}", company_url(@company, r: 1, invite: @company.invite_token)
-    p.little-snug-top.indented-1
-      ' Invite as an advisor:
-    p.faint.snug-top.indented-2
-      = link_to "#{company_url(@company)}?r=2&invite=#{@company.invite_token}", company_url(@company, r: 2, invite: @company.invite_token)
-    p.little-snug-top.indented-1
-      ' Invite as an consultant:
-    p.faint.snug-top.indented-2
-      = link_to "#{company_url(@company)}?r=3&invite=#{@company.invite_token}", company_url(@company, r: 3, invite: @company.invite_token)
-    p.little-snug-top.indented-1
-      ' Invite as an investor:
-    p.faint.snug-top.indented-2
-      = link_to "#{company_url(@company)}?r=4&invite=#{@company.invite_token}", company_url(@company, r: 3, invite: @company.invite_token)
-    p.snug-bottom.bold Or provide a Startup Alliance username:
+        ' 1. Click a button to prepare an email invite:
+      br
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      | &nbsp;
+      span.faint
+        em
+          ' (You will be able to modify the email before sending.)
+    .row
+      .medium-8.medium-offset-2.columns
+        p.text-center
+          = mail_to nil,
+            'Invite someone as an Owner',
+            class: 'button accent expanded',
+            subject: 'Please join my company team on Startup Alliance',
+            body: "Hello,\r\n\r\nMy company is listed on Startup Alliance and I want to add you to our team.\r\n\r\nSimply follow this link to become listed as an owner:\r\n    #{company_url(@company)}?r=0&invite=#{@company.invite_token}\r\n\r\nThanks!"
+        p.little-snug-top.text-center
+          = mail_to nil,
+            'Invite someone as an Employee',
+            class: 'button accent expanded',
+            subject: 'Please join my company team on Startup Alliance',
+            body: "Hello,\r\n\r\nMy company is listed on Startup Alliance and I want to add you to our team.\r\n\r\nSimply follow this link to become listed as an employee:\r\n    #{company_url(@company)}?r=1&invite=#{@company.invite_token}\r\n\r\nThanks!"
+        p.little-snug-top.text-center
+          = mail_to nil,
+            'Invite someone as an Advisor',
+            class: 'button accent expanded',
+            subject: 'Please join my company team on Startup Alliance',
+            body: "Hello,\r\n\r\nMy company is listed on Startup Alliance and I want to add you to our team.\r\n\r\nSimply follow this link to become listed as an advisor:\r\n    #{company_url(@company)}?r=2&invite=#{@company.invite_token}\r\n\r\nThanks!"
+        p.little-snug-top.text-center
+          = mail_to nil,
+            'Invite someone as a Consultant',
+            class: 'button accent expanded',
+            subject: 'Please join my company team on Startup Alliance',
+            body: "Hello,\r\n\r\nMy company is listed on Startup Alliance and I want to add you to our team.\r\n\r\nSimply follow this link to become listed as a consultant:\r\n    #{company_url(@company)}?r=3&invite=#{@company.invite_token}\r\n\r\nThanks!"
+        p.little-snug-top.text-center
+          = mail_to nil,
+            'Invite someone as an Investor',
+            class: 'button accent expanded',
+            subject: 'Please join my company team on Startup Alliance',
+            body: "Hello,\r\n\r\nMy company is listed on Startup Alliance and I want to add you to our team.\r\n\r\nSimply follow this link to become listed as an investor:\r\n    #{company_url(@company)}?r=4&invite=#{@company.invite_token}\r\n\r\nThanks!"
+    p.little-snug-bottom.bold 2. Provide a Startup Alliance username:
     = form_tag add_team_member_company_path, method: :put
       .row.collapse
         .medium-6.columns
