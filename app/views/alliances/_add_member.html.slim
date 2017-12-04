@@ -12,19 +12,14 @@
       strong
         ' 1. Click the button to prepare an email invite:
       br
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      span.faint
+      span.faint.indented-1
         em
-          ' (You will be able to modify the email before sending.)
+          ' (You can modify the email before sending.)
     .row
       .medium-8.medium-offset-2.columns
         p.text-center
           = mail_to nil,
-            'Invite someone to join your Private Alliance',
+            'Prepare an invitation email',
             class: 'button accent expanded',
             subject: 'Please join my Private Alliance on Startup Alliance',
             body: "Hello,\r\n\r\nI have a Private Alliance on Startup Alliance. Please become a member so we can collaborate using the tools they provide.\r\n\r\nThis link will take you there so you can join:\r\n    #{alliance_url(@alliance)}?invite=#{@alliance.invite_token}\r\n\r\nThanks!"
