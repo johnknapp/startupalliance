@@ -10,10 +10,10 @@ ul.tabs.accent-background#tool-tabs data-tabs=true
       ' Personal Traits (TI: #{@user.trait_index})
   li.tabs-title
     a.bold href='#companies'
-      ' Companies (#{number_with_delimiter(@user.companies.count)})
+      ' Companies (#{number_with_delimiter(@user.companies.where(is_unlisted: false).count)})
   li.tabs-title
     a.bold href='#alliances'
-      ' Alliances (#{number_with_delimiter(@user.alliances.count)})
+      ' Alliances (#{number_with_delimiter(@user.alliances.where(is_unlisted: false).count)})
 
 .tabs-content data-tabs-content='tool-tabs'
   .tabs-panel.is-active#overview

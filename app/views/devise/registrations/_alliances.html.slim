@@ -6,7 +6,7 @@
         thead
           tr
             th{width='40%'}
-              ' My Private #{'Alliance'.pluralize(@user.alliances.count)}
+              ' My Private #{'Alliance'.pluralize(@user.alliances.where(is_unlisted: false).count)}
             th{width='20%'}
               .text-center Members
             th{width='20%'}

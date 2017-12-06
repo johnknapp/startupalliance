@@ -5,7 +5,7 @@
         thead
           tr
             th{width='40%'}
-              ' My #{'Company'.pluralize(@user.companies.count)}
+              ' My #{'Company'.pluralize(@user.companies.where(is_unlisted: false).count)}
             th{width='20%'}
               .text-center Stage
             th{width='20%'}
