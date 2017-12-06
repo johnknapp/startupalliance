@@ -1,3 +1,11 @@
+- if current_user and @alliance.members.include?(current_user)
+  .small-12.columns
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' Threaded discussions are a source of knowledge and answers. (Any member can modify this information.)
 .row
   .medium-10.medium-offset-1.columns
     h5.bold.primary-text
