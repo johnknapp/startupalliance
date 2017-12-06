@@ -8,28 +8,31 @@
         ' Get to know the companies your alliance members operate. (Automatic summary of each member company.)
 .row
   .medium-10.medium-offset-1.columns
-    h5.bold.primary-text
-      /' Member companies
     table.hover.stacked
-        thead
+      thead
+        tr
+          th Member #{'company'.pluralize(@alliance.member_companies.count)}
+          /th Alliance member
+          th{width='15%'} Life phase
+          th{width='15%'}
+            .text-center SAKPI Index
+          th{width='15%'}
+            .text-center Lifetime OKRs
+      tbody
+        - @alliance.member_companies.each do |company|
           tr
-            th Member #{'company'.pluralize(@alliance.member_companies.count)}
-            /th Alliance member
-            th{width='15%'} Life phase
-            th{width='15%'}
-              .text-center SAKPI Index
-            th{width='15%'}
-              .text-center Lifetime OKRs
-        tbody
-          - @alliance.member_companies.each do |company|
-            tr
-              td{valign='top'}
-                = link_to company.name, company_path(company)
+            td{valign='top'}
+              = link_to company.name, company_path(company)
+              - alliance_company_team(@alliance,company).each do |member|
                 .faint.indented-1
-                  = link_to company.creator.name, vanity_path(company.creator.username)
+                  = link_to member.user.name, vanity_path(member.user.username)
                   | &nbsp;
-                  ' (#{team_role(company,company.creator)})
-              td{valign='top'}= company.phases
-              td{valign='top' align='center'}= company.sakpi_index
-              td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
+                  ' (#{member.role})
+              /.faint.indented-1
+                = link_to company.creator.name, vanity_path(company.creator.username)
+                | &nbsp;
+                ' (#{team_role(company,company.creator)})
+            td{valign='top'}= company.phases
+            td{valign='top' align='center'}= company.sakpi_index
+            td{valign='top' align='center'}= number_with_delimiter(company.okrs.count)
 

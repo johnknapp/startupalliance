@@ -11,7 +11,7 @@ class Alliance < ApplicationRecord
   def member_companies
     arr = []
     self.members.each do |member|
-      member.companies.each do |company|
+      member.companies.where(is_unlisted: false).each do |company|
         arr << company
       end
     end
