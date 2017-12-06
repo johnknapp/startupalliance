@@ -1,3 +1,11 @@
+- if current_user and @company.team.include?(current_user)
+  .small-12.columns
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' Helping the community understand your business helps the right people find you. (#{link_to @company.creator.name, vanity_path(@company.creator.username)} can modify this information.)
 .row
   .large-6.large-offset-3.medium-8.medium-offset-2.columns
 

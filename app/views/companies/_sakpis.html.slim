@@ -1,3 +1,11 @@
+- if current_user and @company.team.include?(current_user)
+  .small-12.columns
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' Your internal health check and report card — your SAKPIs help track your progress. (#{link_to @company.creator.name, vanity_path(@company.creator.username)} can modify this information.)
 .row
   .medium-10.medium-offset-1.columns
     h5.bold.primary-text.little-space-bottom

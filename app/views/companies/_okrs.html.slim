@@ -1,3 +1,11 @@
+- if current_user and @company.team.include?(current_user)
+  .small-12.columns
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' The team must focus on achieving their essential duties. Your OKRs spell them out. (All team member can create and modify their own OKRs.)
 .row
   .medium-10.medium-offset-1.columns
     h5.bold.primary-text
