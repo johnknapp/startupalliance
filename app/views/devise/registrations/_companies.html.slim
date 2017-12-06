@@ -1,3 +1,11 @@
+- if current_user and @user == current_user
+  .small-12.columns
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' The only Companies that appear here are those which are not in stealth mode
 .row
   .medium-10.medium-offset-1.columns
     - if @user.companies.present?

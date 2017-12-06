@@ -1,3 +1,11 @@
+- if current_user and @user == current_user
+  .small-12.columns
+    .callout data-closable=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.faint
+        ' The more traits you list, the higher your Trait Index (SI) becomes which helps people get to know you.
 .row
   .medium-10.medium-offset-1.columns
     - if current_user and current_user == @user
