@@ -5,7 +5,7 @@
         span aria-hidden=true
           ' &times;
       p.faint
-        ' Invite and involve your people to help build a more successful company. (#{link_to @company.creator.name, vanity_path(@company.creator.username)} can add or remove team members.)
+        ' Invite and involve your people — use these tools and build a more successful company. (#{link_to @company.creator.name, vanity_path(@company.creator.username)} can add or remove team members.)
 .row.small-up-2.medium-up-3
   - @company.team.order(created_at: :desc).each_with_index do |member,i|
     .column
