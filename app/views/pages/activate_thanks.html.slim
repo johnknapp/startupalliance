@@ -22,19 +22,19 @@
           ' Complete your #{link_to 'members profile', vanity_path(current_user.username)}
       - else
         li #{link_to 'Sign in', new_user_session_path} and complete your members profile
-      li Introduce yourself to #{link_to 'Startup Alliance founder John Knapp', vanity_path('john')} with a private message
+      li Check out the #{link_to 'membership plans', plans_path} to make sure you’re on the right one
+      li Introduce yourself to Startup Alliance founder, #{link_to 'John Knapp', vanity_path('john')} with a private message
       ul.no-bullet
-          li.faint
-            em
-              ' “I look forward to helping you personally!” –John
+        li.faint
+          em
+            ' “I look forward to helping you personally!” –John
       li #{link_to 'List your Company', companies_path} and take advantage of the company tools we provide
       ul.no-bullet
-          li.faint
-            em
-              ' If your company is already listed, add yourself to the team
+        li.faint
+          em
+            ' If your company is already listed, add yourself to the team
       li Create or join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
-      li Visit the #{link_to 'Quick Start Guide', quick_start_path} to quickly learn Startup Alliance
-      /li And if you haven’t already, head over to Gravatar.com and attach a photo to your email address.
+      li Visit the #{link_to 'Quick Start Guide', quick_start_path} to learn how to get the most out of your membership
       li Visit #{link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'} and attach a photo to your email address
 
 

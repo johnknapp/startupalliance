@@ -37,6 +37,9 @@ USERNAME_EXCLUSIONS = %w[
   faq
   factor
   factors
+  fast
+  fastr
+  fasts
   help
   image
   images
