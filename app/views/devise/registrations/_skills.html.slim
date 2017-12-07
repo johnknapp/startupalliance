@@ -5,7 +5,7 @@
         span aria-hidden=true
           ' &times;
       p.faint
-        ' The more skills you list, the higher your Skill Index (SI) becomes which tells people about your talents.
+        ' The more skills you list, the higher your Skill Index (SI) becomes which tells people about your talents. (This private message only seen by #{@user.first_name}.)
 .row
   .medium-10.medium-offset-1.columns
     - if current_user and current_user == @user

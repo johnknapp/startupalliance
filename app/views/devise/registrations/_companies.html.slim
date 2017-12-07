@@ -5,7 +5,7 @@
         span aria-hidden=true
           ' &times;
       p.faint
-        ' The only Companies that appear here are those which are not in stealth mode
+        ' The only Companies appearing here are those which are not in stealth mode. (This private message only seen by #{@user.first_name}.)
 .row
   .medium-10.medium-offset-1.columns
     - if @user.companies.present?
