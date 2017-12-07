@@ -5,7 +5,7 @@
         span aria-hidden=true
           ' &times;
       p.faint
-        ' The only Private Alliances appearing here are those which are not in stealth mode. (This private message only seen by #{@user.first_name}.)
+        ' The only Private Alliances appearing here are those which are not in stealth mode. (This private message only seen by the profile owner, you! :-)
 .row
   .medium-10.medium-offset-1.columns
     - if @user.alliances.present?
