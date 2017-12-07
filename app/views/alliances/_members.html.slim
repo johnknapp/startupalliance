@@ -4,7 +4,7 @@
       button data-close=true aria-label='Close' type='button' class='close-button'
         span aria-hidden=true
           ' &times;
-      p.faint
+      p.faint.pad-right
         ' Connect and engage with the right people and help each other maximize your mutual success. (#{link_to @alliance.creator.name, vanity_path(@alliance.creator.username)} can add or remove members.)
 .row.small-up-2.medium-up-3
   - @alliance.members.each do |member|
