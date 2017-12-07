@@ -1,5 +1,5 @@
-module TopbarHelper
-  def menu_icon
+module IconHelper
+  def topbar_icon
     [
       "<i class='fa fa-thumbs-o-up'></i>",
       "<i class='fa fa-thumbs-o-up'></i>",
@@ -20,6 +20,14 @@ module TopbarHelper
       "<i class='fa fa-hand-scissors-o'></i>"
     ].sample.html_safe
   end
+
+  def impersonate_icon
+    [
+      "<i class='fa fa-superpowers white-text'></i>",
+      "<i class='fa fa-user-circle-o white-text'></i>",
+      "<i class='fa fa-id-card-o white-text'></i>",
+      "<i class='fa fa-sign-in white-text'></i>"
+    ].sample.html_safe
+  end
+
 end
-
-
