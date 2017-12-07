@@ -1,5 +1,10 @@
 .card
   .card-divider.primary-background
+    - if current_user and current_user.admin? and current_user != @user
+      .float-left
+        h4.bold
+          = link_to users_impersonate_path(pid: @user.pid), method: :put do
+            = impersonate_icon
 
     - if current_user and current_user.confirmed? and current_user == @user
       .float-right
@@ -21,7 +26,3 @@
       ' #{image_tag gravatar_url("#{@user.email}", 96)}
       strong
         ' #{@user.name}
-    - if current_user and current_user.admin? and current_user != @user
-      h3.bold.snug-top.snug-bottom
-        = link_to users_impersonate_path(pid: @user.pid), method: :put do
-          = impersonate_icon
