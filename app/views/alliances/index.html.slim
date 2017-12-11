@@ -1,17 +1,17 @@
 - content_for :page_title do
-  ' Startup Alliance – Private Alliances maximizing success regardless of location
+  ' Startup Alliance – Global entrepreneurs join Startup Alliance to gain insight from beyond their company walls
 
 .row
   .medium-12.columns
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
         ' Private Alliances
+      - if !current_user
+        h5.bold.alert-text.text-center
+          ' (Sign-in to browse)
 
-
-    /h3.bold.primary-text Private Alliances
-    /hr.little-snug-top
     .float-right
-      p.snug-top.space-bottom Collaboration to maximize the success of each member and their companies
+      p.snug-top.space-bottom Global entrepreneurs join Startup Alliance to gain insight from beyond their company walls
     p.snug-top.space-bottom
       = link_to new_alliance_path do
         i.fa.fa-plus
@@ -50,18 +50,10 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
-          p.little-snug-bottom.faint
-            em
-              ' (You must be a member to browse Alliances.)
-          .callout.secondary
-            h4.bold Connect with the Alliance that can help you most
+          .callout
             p
-              ' Inspired by
-              ' #{link_to 'Masterind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
-              ' a Private Alliance is a group of entrepreneurs who form partnerships to help each other become more successful.
-              ' Private Alliances are provided with a set of collaboration tools to help members achieve goals, overcome challenges, expand networks and maximize success.
-            p
-              ' All Startup Alliance members can take part in any Private Alliance.
+              ' Inspired by #{link_to 'Masterind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'}, Private Alliances are global collaboration spaces where entrepreneurs form trusted partnerships to help each other make better decisions, achieve goals, overcome challenges and maximize their success.
+              ' Private Alliances include private messaging, discussion forum and web conferencing tools and select information on companies owned by each Private Alliance member.
 
           p &nbsp;
           = render 'partials/join_form', acqsrc: 'alliance_index'

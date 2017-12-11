@@ -2,10 +2,10 @@
   ' Your Membership is now active!
 
 .row
-  .large-8.large-offset-2.columns
-
-    h3.bold.primary-text Your Membership is now active!
-    hr.little-snug-top
+  .large-10.large-offset-1.columns
+    .callout.primary-background
+      h1.bold.white-text.wide-line-height.text-center
+        ' Your Membership is now active!
     - if current_user
       p.snug-top.text-right
         ' You are signed in as #{@user.name}

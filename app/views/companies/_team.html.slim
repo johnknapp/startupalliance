@@ -13,7 +13,7 @@
         - if current_user != member
           .float-right
             ul.menu.simple.little-space-top
-              - if current_user and current_user != member
+              - if current_user and current_user.confirmed? and current_user != member
                 li
                   = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: member.pid), method: :post do
                     i.fa.fa-comments-o

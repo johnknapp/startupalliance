@@ -1,13 +1,17 @@
 - content_for :page_title do
-  ' Startup Alliance – Our members. Better. Together.
+  ' Startup Alliance – Members showcase of committed entrepreneurs doing important work
 
 .row
   .medium-12.columns
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
         ' Startup Alliance Members
+      - if !current_user
+        h5.bold.alert-text.text-center
+          ' (Sign-in to browse)
+
     .float-right
-      p.snug-top.space-bottom Better. Together.
+      p.snug-top.space-bottom A showcase of committed entrepreneurs doing important work
     - if !current_user
       p.snug-top.space-bottom
         = link_to plans_path do
@@ -54,16 +58,14 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
-          p.little-snug-bottom.faint
-            em
-              ' (You must be a member to browse Members.)
-          .callout.secondary
-            h4.bold Committed entrepreneurs doing important work
+          .callout
             p
+              ' In addition to summarizing each member’s activities and highlighting their personal mission statement, each profile showcases member strengths on our standardized set of highly relevant startup skills and personal traits.
+            /p
               ' Membership in Startup Alliance is open to all entrepreneurs regardless of location or level of experience.
               ' Each member has a profile that uniquely quantifies their startup skills,
               ' personal traits and lists the Companies and Private Alliances they’re part of.
-            p
+            /p
               ' Private messaging facilitates direct member to member conversations.
 
           p &nbsp;

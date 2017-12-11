@@ -1,13 +1,17 @@
 - content_for :page_title do
-  ' Startup Alliance – Member owned companies using our tools to get better results
+  ' Startup Alliance – Amazing companies join Startup Alliance to keep their team on track
 
 .row
   .medium-12.columns
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
         ' Member Companies
+      - if !current_user
+        h5.bold.alert-text.text-center
+          ' (Sign-in to browse)
+
     .float-right
-      p.snug-top.space-bottom Amazing companies join Startup Alliance to use our tools to get better results
+      p.snug-top.space-bottom Amazing companies join Startup Alliance to keep their team on track
     p.snug-top.space-bottom
       = link_to new_company_path do
         i.fa.fa-plus
@@ -49,10 +53,51 @@
       .row
         .medium-8.medium-offset-2.columns
           p.show-for-medium.snug-top &nbsp;
-          p.little-snug-bottom.faint
-            em
-              ' (You must be a member to browse Companies.)
-          .callout.secondary
+
+          .callout
+            p
+              ' Startup Alliance provides companies with online collaboration workspaces where staff, advisors and investors collaborate to set objectives, discuss and overcome challenges and track their progress.
+            p.little-snug-top.bold No other platform combines this powerful collection of objective setting and solution finding tools:
+            .row.medium-up-2
+              .column
+                .card
+                  .card-divider.accent-background.text-center
+                    h4.bold Tools to help you focus&thinsp;:
+                  .card-section
+                    ul
+                      li
+                        strong
+                          ' SAKPIs
+                        ' our standard set of KPIs keeping the team focused on making constant improvements
+                      li
+                        strong
+                          ' Factors & Strategies tool
+                        ' keeping the team focused on overall priorities and implementing optimal strategies
+                      li
+                        strong
+                          ' Objectives and Key Results tool
+                        ' keeping the team focused on their deliverables and aware of team mate responsibilities
+              .column
+                .card
+                  .card-divider.accent-background.text-center
+                    h4.bold Collaboration tools&thinsp;:
+                  .card-section
+                    ul
+                      li
+                        strong
+                          ' Private Messaging
+                        ' keeping the team connected with unlimited direct messages
+                      li
+                        strong
+                          ' Discussion Forums
+                        ' to ask questions, get answers and capture knowledge
+                      li
+                        strong
+                          ' Web Conferencing
+                        ' enabling unlimited live team interactions regardless of geographical location
+
+
+          /.callout.secondary
             h4.bold Join growing businesses focused on superior results
             p
               ' Companies use our collaborative workspaces with a unique set of progress tracking and

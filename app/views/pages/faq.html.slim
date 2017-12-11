@@ -3,10 +3,11 @@
 
 .row
   .medium-10.medium-offset-1.columns
-    h3.bold.space-top.primary-text Frequently Asked Questions
-    hr.little-snug-top
+    .callout.primary-background
+      h1.bold.white-text.wide-line-height.text-center
+        ' Frequently Asked Questions
     p.snug-top.space-botton.text-right
-      ' Have another question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
+      ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
     p.snug-top.show-for-medium &nbsp;
 
     /.row
@@ -42,7 +43,7 @@
                     ' This is a section
 
     .row
-      /hr
+      hr
       .medium-4.columns
         p.pad-right
           strong The Startup Alliance mission:
