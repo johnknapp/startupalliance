@@ -9,7 +9,7 @@
       .medium-3.columns
         = f.input :okr_duration, label: 'OKR duration is', placeholder: 'Recommend 3', input_html: {value: f.object.okr_duration || '3'}
       .medium-3.columns
-        = f.input :okr_units, label: 'OKR period is', collection: Okr.okr_units.keys, include_blank: 'Choose a period', selected: 'Months'
+        = f.input :okr_units, label: 'OKR period is', collection: Okr.okr_units.keys, include_blank: 'Choose...', selected: 'Months'
       .medium-3.columns
         = f.input :owner_id, label: 'OKR owner', as: :select, collection: @company.team, include_blank: 'Choose...', input_html: { value: f.object.owner_id || current_user.id }
 

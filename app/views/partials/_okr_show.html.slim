@@ -1,6 +1,6 @@
-.callout.accent
+.callout
   - if current_user and okr.owner == current_user or @company.team_member(current_user).role == 'Owner'
-    .float-right
+    .float-right.scale-to-90
       = link_to edit_okr_path(okr, company_pid: @company.pid) do
         i.fa.fa-pencil
       | &nbsp;
@@ -8,17 +8,25 @@
       | &nbsp;
       = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
         i.fa.fa-trash-o
-  p.bold= okr.objective
-  hr.little-snug-top
+  h5.bold.primary-text.pad-right= okr.objective
+  /hr.little-snug-top
+  .row
+    .small-12.columns
+      ol.little-snug-top
+        li.indented-1= okr.key_result_1
+        li.indented-1= okr.key_result_2
+        li.indented-1= okr.key_result_3
+      - if okr.postmortem.present?
+        p.scale-to-90= okr.postmortem
   .row
     .small-4.columns
-      p.faint.snug-top
+      p.faint.snug-bottom
         - if okr.okr_start
-          em #{okr.okr_duration} #{okr.okr_units.downcase} starting #{okr.okr_start.strftime('%b %e, %Y')}
+          ' #{okr.okr_start.strftime('%m/%d/%Y')} for #{okr.okr_duration} #{okr.okr_units.downcase}
         - else
           em No start date!
     .small-8.columns
-      ul.menu.align-right.snug-top
+      ul.menu.align-right.snug-bottom
         li.faint
           ' Score:
           - if okr.score != 0.0
@@ -37,20 +45,3 @@
             ' #{okr.owner.name}
           - else
             ' TBD
-    /.small-3.columns
-      p.faint.snug-top.text-right
-    /.small-3.columns
-      p.faint.snug-top.text-right
-        ' Final-period score:
-        - if okr.score.present?
-          ' #{okr.score}
-        - else
-          ' TBD
-  .row
-    .small-12.columns
-      ol.little-snug-top
-        li.indented-1= okr.key_result_1
-        li.indented-1= okr.key_result_2
-        li.indented-1= okr.key_result_3
-      - if okr.postmortem.present?
-        p.scale-to-90= okr.postmortem

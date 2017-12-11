@@ -5,7 +5,7 @@
         span aria-hidden=true
           ' &times;
       p.faint.pad-right
-        ' The team must focus on achieving their essential duties. Your OKRs spell them out. (All team member can create and modify their own OKRs.)
+        ' The team must focus on achieving their essential duties. Your OKRs spell them out. (All team members can create and modify their own OKRs.)
 .row
   .medium-10.medium-offset-1.columns
     h5.bold.primary-text
@@ -25,30 +25,30 @@
     - if current_user and @company.team.include?(current_user)
       - if @company.okrs.present?
 
-        ul.accordion data-accordion=true
-          li.accordion-item.primary-background data-accordion-item=true
-            a.accordion-title
-              h5.bold.white-text.little-snug-top.snug-bottom Upcoming
-            .accordion-content data-tab-content=true
-              - @company.okrs.each do |okr|
-                - if okr.upcoming? or okr.date_unset?
-                  = render 'partials/okr_show', okr: okr
+        ul.tabs.accent-background#okr-tabs data-tabs=true
+          li.tabs-title
+            a.bold href='#concluded'
+              ' Concluded
+          li.tabs-title.is-active
+            a.bold href='#active'
+              ' Active
+          li.tabs-title
+            a.bold href='#upcoming'
+              ' Upcoming
 
-          li.accordion-item.primary-background.is-active data-accordion-item=true
-            a.accordion-title
-              h5.bold.white-text.little-snug-top.snug-bottom Active
-            .accordion-content data-tab-content=true
-              - @company.okrs.each do |okr|
-                - if okr.active?
-                  = render 'partials/okr_show', okr: okr
-
-          li.accordion-item.primary-background data-accordion-item=true
-            a.accordion-title
-              h5.bold.white-text.little-snug-top.snug-bottom Concluded
-            .accordion-content data-tab-content=true
-              - @company.okrs.each do |okr|
-                - if okr.concluded?
-                  = render 'partials/okr_show', okr: okr
+        .tabs-content data-tabs-content='okr-tabs'
+          .tabs-panel#concluded
+            - @company.okrs.each do |okr|
+              - if okr.concluded?
+                = render 'partials/okr_show', okr: okr
+          .tabs-panel.is-active#active
+            - @company.okrs.each do |okr|
+              - if okr.active?
+                = render 'partials/okr_show', okr: okr
+          .tabs-panel#upcoming
+            - @company.okrs.each do |okr|
+              - if okr.upcoming? or okr.date_unset?
+                = render 'partials/okr_show', okr: okr
 
       - elsif current_user and @company.team.include?(current_user)
         p.text-center.space-top Add the first OKR
