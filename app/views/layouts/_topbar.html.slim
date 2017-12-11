@@ -1,6 +1,6 @@
 .top-bar
   - if !current_user
-    .top-bar-title
+    .top-bar-left
       - if params[:action] == 'home'
         = link_to (image_tag 'banner.svg', width: '350px'), root_path
         p.little-snug-top.faint &nbsp; &nbsp; &nbsp; βeta
@@ -53,37 +53,24 @@
           ul.menu.normal data-dropdown-menu=true
             li.little-space-top= link_to 'Quick start guide', quick_start_path
             hr
-
             - if current_user and current_user.companies.present?
-              li.little-space-top.bold.text &nbsp; My #{'company'.pluralize(current_user.companies.count)}:
+              li.bold.menu-text My #{'company'.pluralize(current_user.companies.count)}:
               - current_user.companies.each do |company|
-                li.little-snug-top= link_to company.name, company_path(company)
-              hr
-
+                li.pad-left= link_to company.name, company_path(company)
             - if current_user and current_user.alliances.present?
-              li.little-space-top.bold.text &nbsp; My #{'alliance'.pluralize(current_user.alliances.count)}:
+              li.bold.menu-text My #{'alliance'.pluralize(current_user.alliances.count)}:
               - current_user.alliances.each do |alliance|
-                li.little-snug-top= link_to alliance.name, alliance_path(alliance)
-              hr
-
-            - if current_user and (current_user.companies.blank? or current_user and !current_user.admin?)
-              li.little-space-top
-                - if current_user and current_user.confirmed?
-                  = link_to conversations_path do
-                    ' Conversations
-                    - if current_user.unread_message_count != 0
-                      | &nbsp;
-                      i.fa.fa-envelope.red-text
-            - else
-              li
-                - if current_user and current_user.confirmed?
-                  = link_to conversations_path do
-                    ' Conversations
-                    - if current_user.unread_message_count != 0
-                      | &nbsp;
-                      i.fa.fa-envelope.red-text.bold
-            li= link_to 'Profile', vanity_path(current_user.username)                     if current_user and current_user.confirmed?
-            li= link_to 'Account', edit_user_registration_path                            if current_user and current_user.confirmed?
-            li= link_to 'Membership Plans', plans_path                                    if current_user and current_user.confirmed?
-            li= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
-            li.little-space-bottom= link_to 'Sign-out', destroy_user_session_path
+                li.pad-left= link_to alliance.name, alliance_path(alliance)
+            - if current_user and current_user.confirmed?
+            li.bold.menu-text Main menu:
+            li.pad-left
+              = link_to conversations_path do
+                ' Conversations
+                - if current_user.unread_message_count != 0
+                  | &nbsp;
+                  i.fa.fa-envelope.red-text
+            li.pad-left= link_to 'Profile', vanity_path(current_user.username)                     if current_user and current_user.confirmed?
+            li.pad-left= link_to 'Account', edit_user_registration_path                            if current_user and current_user.confirmed?
+            li.pad-left= link_to 'Membership Plans', plans_path                                    if current_user and current_user.confirmed?
+            li.pad-left= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
+            li.pad-left.little-space-bottom= link_to 'Sign-out', destroy_user_session_path

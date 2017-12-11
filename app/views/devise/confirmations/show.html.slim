@@ -3,7 +3,7 @@
     /h3.show-for-medium-up &nbsp;
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
-        ' Activate your Startup Alliance Membership
+        ' Activate your account
     .float-right
       p.snug-top You joined using #{resource.email}
     p.snug-top All fields are required.
@@ -42,4 +42,4 @@
           .medium-6.columns
             = f.input :password_confirmation, required: true
       .form-actions
-        = f.button :submit, 'Activate your Startup Alliance Membership', class: 'radius expand'
+        = f.button :submit, 'Activate your account', class: 'radius expand'
