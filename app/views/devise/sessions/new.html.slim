@@ -1,7 +1,8 @@
 .row
   .medium-8.medium-offset-2.columns
-    h3.bold.primary-text Sign-in to Startup Alliance
-    hr.little-snug-top
+    .callout.primary-background
+      h1.bold.white-text.wide-line-height.text-center
+        ' Sign-in to Startup Alliance
     p.text-right.snug-top Welcome back!
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-inputs

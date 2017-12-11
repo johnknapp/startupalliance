@@ -4,17 +4,18 @@
 
 .row
   .medium-12.columns
-    - if current_user and params[:goal] == 'message'
-      h3.bold.primary-text Alliance or Company Membership Required! Please upgrade.
-    - elsif current_user and params[:goal] == 'alliance'
-      h3.bold.primary-text Alliance or Company Membership Required! Please upgrade.
-    - elsif current_user and params[:goal] == 'company'
-      h3.bold.primary-text Company Membership Required! Please upgrade.
-    - elsif current_user
-      h3.bold.primary-text You have #{current_user.plan.humanize} Membership
-    - else
-      h3.bold.primary-text Choose your membership plan
-    hr.little-snug-top
+    .callout.primary-background
+      h1.bold.white-text.wide-line-height.text-center
+        - if current_user and params[:goal] == 'message'
+          ' You need Alliance or Company Membership for that!
+        - elsif current_user and params[:goal] == 'alliance'
+          ' You need Alliance or Company Membership for that!
+        - elsif current_user and params[:goal] == 'company'
+          ' You need Company Membership for that!
+        - elsif current_user
+          ' You have #{current_user.plan.humanize} Membership
+        - else
+          ' Choose your membership plan
     .float-right
       p.snug-top.space-bottom
         ' Helping entrepreneurs succeed, regardless of their location
