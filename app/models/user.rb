@@ -41,6 +41,12 @@ class User < ApplicationRecord
     self.role == 'admin'
   end
 
+  # Can I message this person?
+  #   Am I on the right plan or does conversation exist?
+  def messagable_by(current_user)
+    true if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans } or Conversation.between(self.id,current_user.id).present?
+  end
+
   def conversations
     Conversation.includes?(self)
   end

@@ -12,7 +12,7 @@
 
     .row
       .medium-8.medium-offset-2.columns
-        - if @conversations.count > 0
+        - if @conversations.present?
           - @conversations.each do |conversation|
             - unread_count = conversation.messages.where.not(user_id: current_user).where(read: false).count
             - if conversation.sender == current_user or conversation.recipient == current_user

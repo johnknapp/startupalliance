@@ -7,20 +7,15 @@
             = impersonate_icon
 
     - if current_user and current_user.confirmed? and current_user == @user
-      .float-right
-        .pad-right
-          = link_to edit_user_registration_path(@user) do
-            i.fa.fa-pencil.white-text
+      .float-right.pad-right
+        = link_to edit_user_registration_path(@user) do
+          i.fa.fa-pencil.white-text
     - else
-
-      .float-right
-        - if current_user and current_user.confirmed? and current_user != @user
-          - if Conversation.between(current_user.id,@user.id).present?
-            h4.bold.text-right.white-text.little-snug-top
-              = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
-                i.fa.fa-comments-o.white-text
-        - else
-          p.bold.text-right.white-text.little-snug-top Sign in to message this user.
+      - if current_user and current_user.confirmed? and current_user != @user
+        .float-right.pad-right
+          h4.bold.text-right.white-text.little-snug-top
+            = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+              i.fa.fa-comments-o.white-text
 
     h1.bold.white-text.wide-line-height.text-center
       ' #{image_tag gravatar_url("#{@user.email}", 96)}
