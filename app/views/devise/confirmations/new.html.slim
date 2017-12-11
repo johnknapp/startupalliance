@@ -1,18 +1,18 @@
 .row
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
-    h3.show-for-medium-up &nbsp;
+    /h3.show-for-medium-up &nbsp;
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
         ' Resend activation email
-    p.text-right.snug-top We’re glad you’re doing this
+    p.text-right.snug-top You must activate your membership for full privileges
 
-    p Request an email linking to a page where you can activate your free Startup Alliance membership.
+    p We’re happy to resend the account activation email
 
     = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
       = f.error_notification
       = f.full_error :confirmation_token
       .form-inputs
-        = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Enter the email you used when you signed-up'
+        = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Enter the email you signed-up with'
       .form-actions
         .float-left
           = f.button :submit, "Resend activation email", class: 'small'

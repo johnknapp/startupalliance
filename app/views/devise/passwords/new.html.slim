@@ -1,17 +1,17 @@
 .row
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
-    h3.show-for-medium-up &nbsp;
+    /h3.show-for-medium-up &nbsp;
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
         ' Forgot your password?
     p.text-right.snug-top OMG!
 
-    p Enter the email address you used when you signed up and we will send an email with reset instructions.
+    p We’re happy to send password reset instructions
 
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
       = f.error_notification
       .form-inputs
-        = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Enter your email'
+        = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Enter the email you signed-up with'
       .form-actions
         .float-left
           = f.button :submit, "Send password reset instructions", class: 'small'

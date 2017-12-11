@@ -2,8 +2,9 @@
   .medium-8.medium-offset-2.columns
     .callout.primary-background
       h1.bold.white-text.wide-line-height.text-center
-        ' Sign-in to Startup Alliance
-    p.text-right.snug-top Welcome back!
+        ' Welcome back!
+    p.text-right.snug-top You are a valued member of the Startup Alliance community
+    p Sign-in with your email and password
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-inputs
         = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Enter your email'
