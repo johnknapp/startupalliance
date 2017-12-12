@@ -1,47 +1,49 @@
-.callout
-  - if current_user and okr.owner == current_user or @company.team_member(current_user).role == 'Owner'
-    .float-right.scale-to-90
-      = link_to edit_okr_path(okr, company_pid: @company.pid) do
-        i.fa.fa-pencil
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
-        i.fa.fa-trash-o
-  h5.bold.primary-text.pad-right= okr.objective
-  /hr.little-snug-top
-  .row
-    .small-12.columns
-      ol.little-snug-top
-        li.indented-1= okr.key_result_1
-        li.indented-1= okr.key_result_2
-        li.indented-1= okr.key_result_3
-      - if okr.postmortem.present?
-        p.scale-to-90= okr.postmortem
-  .row
-    .small-4.columns
-      p.faint.snug-bottom
-        - if okr.okr_start
-          ' #{okr.okr_start.strftime('%m/%d/%Y')} for #{okr.okr_duration} #{okr.okr_units.downcase}
-        - else
-          em No start date!
-    .small-8.columns
-      ul.menu.align-right.snug-bottom
-        li.faint
-          ' Score:
-          - if okr.score != 0.0
-            ' #{okr.score}
-          - else
-            ' TBD
-        li.faint.pad-right
-          ' Status:
-          - if okr.status.present?
-            ' #{okr.status}
-          - else
-            ' TBD
-        li.faint.pad-right
-          ' Owner:
-          - if okr.owner.present?
-            ' #{okr.owner.name}
-          - else
-            ' TBD
+.row.small-up-1.medium-up-2
+  .column
+    .callout
+      - if current_user and okr.owner == current_user or @company.team_member(current_user).role == 'Owner'
+        .float-right.scale-to-90
+          = link_to edit_okr_path(okr, company_pid: @company.pid) do
+            i.fa.fa-pencil
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
+            i.fa.fa-trash-o
+      h5.bold.primary-text.pad-right= okr.objective
+      /hr.little-snug-top
+      .row
+        .small-12.columns
+          ol.little-snug-top
+            li.indented-1= okr.key_result_1
+            li.indented-1= okr.key_result_2
+            li.indented-1= okr.key_result_3
+          - if okr.postmortem.present?
+            p.scale-to-90= okr.postmortem
+      .row
+        .small-4.columns
+          p.faint.snug-bottom
+            - if okr.okr_start
+              ' #{okr.okr_start.strftime('%m/%d/%Y')} for #{okr.okr_duration} #{okr.okr_units.downcase}
+            - else
+              em No start date!
+        .small-8.columns
+          ul.menu.align-right.snug-bottom
+            li.faint
+              ' Score:
+              - if okr.score != 0.0
+                ' #{okr.score}
+              - else
+                ' TBD
+            li.faint.pad-right
+              ' Status:
+              - if okr.status.present?
+                ' #{okr.status}
+              - else
+                ' TBD
+            li.faint.pad-right
+              ' Owner:
+              - if okr.owner.present?
+                ' #{okr.owner.name}
+              - else
+                ' TBD
