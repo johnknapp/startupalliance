@@ -5,6 +5,10 @@ class Okr < ApplicationRecord
 
   has_many :fasts
 
+  before_validation do
+    update_attribute(:okr_finish, okr_end)
+  end
+
   enum okr_units: {
       Months:    0,
       Weeks:     1,
@@ -29,6 +33,10 @@ class Okr < ApplicationRecord
     self.okr_start >= Date.today if self.okr_start
   end
 
+  scope :upcoming,  -> { where('okr_start >= ?',Time.now).where.not(okr_start: nil) }
+  scope :active,    -> { where('okr_start <= ?',Time.now).where('okr_finish >= ?',Time.now) }
+  scope :concluded, -> { where('okr_finish <= ?',Time.now) }
+
   def date_unset?
     self.okr_start.nil?
   end
@@ -46,5 +54,4 @@ class Okr < ApplicationRecord
     arr << self.kr3_score if self.kr3_score != 0
     self.update(score: ((arr.sum)/arr.count).round(2)) if !arr.empty?
   end
-
 end

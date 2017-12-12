@@ -38,17 +38,14 @@
 
         .tabs-content data-tabs-content='okr-tabs'
           .tabs-panel#concluded
-            - @company.okrs.each do |okr|
-              - if okr.concluded?
-                = render 'partials/okr_show', okr: okr
+            - @company.okrs.concluded.each do |okr|
+              = render 'partials/okr_show', okr: okr
           .tabs-panel.is-active#active
-            - @company.okrs.each do |okr|
-              - if okr.active?
-                = render 'partials/okr_show', okr: okr
+            - @company.okrs.active.each do |okr|
+              = render 'partials/okr_show', okr: okr
           .tabs-panel#upcoming
-            - @company.okrs.each do |okr|
-              - if okr.upcoming? or okr.date_unset?
-                = render 'partials/okr_show', okr: okr
+            - @company.okrs.upcoming.each do |okr|
+              = render 'partials/okr_show', okr: okr
 
       - elsif current_user and @company.team.include?(current_user)
         p.text-center.space-top Add the first OKR
