@@ -16,6 +16,7 @@ USER_SKILL_TIP            = 'Only Startup Skills where you have rated yourself a
 VIEWER_SKILL_TIP          = 'This member has rated themselves for these Startup Skills.'
 WEBRTC_TIP                = 'We use Web RTC for live audio/video conferencing. We recommend the Google Chrome browser.'
 OKR_TIP                   = 'Companies use our Objectives and Key Results tool to set and achieve goals and communicate priorities throughout the company'
+FAST_TIP                  = 'Companies use our FActors & STrategies tool to keep the team focused on overall priorities and optimal strategies'
 SAKPI_SHORT_TIP           = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                 = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
 
