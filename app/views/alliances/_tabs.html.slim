@@ -1,4 +1,4 @@
-ul.tabs.accent-background#tool-tabs data-tabs=true
+ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
   li.tabs-title.is-active
     a.bold href='#overview' aria-selected='true'
       ' Overview
@@ -15,7 +15,7 @@ ul.tabs.accent-background#tool-tabs data-tabs=true
     a.bold href='#conferencing'
       ' Video Conferencing
 
-.tabs-content data-tabs-content='tool-tabs'
+.tabs-content.shadow data-tabs-content='tool-tabs'
   .tabs-panel.is-active#overview
     = render 'overview'
   .tabs-panel#members

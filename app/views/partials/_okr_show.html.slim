@@ -1,4 +1,4 @@
-.callout
+.callout.shadow
   - if current_user and okr.owner == current_user or @company.team_member(current_user).role == 'Owner'
     .float-right.scale-to-90
       = link_to edit_okr_path(okr, company_pid: @company.pid) do

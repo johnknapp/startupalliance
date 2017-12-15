@@ -9,7 +9,7 @@
 .row.small-up-2.medium-up-3
   - @alliance.members.each do |member|
     .column
-      .callout.small
+      .callout.small.shadow
         - if current_user != member
           .float-right
             ul.menu.simple.little-space-top
@@ -56,5 +56,5 @@
 
   - if current_user and @alliance.creator == current_user
     .column
-      .callout
+      .callout.shadow
         .bold.text-center.snug-bottom= render 'add_member'

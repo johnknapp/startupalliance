@@ -9,7 +9,7 @@
 .row.small-up-2.medium-up-3
   - @company.team.order(created_at: :desc).each_with_index do |member,i|
     .column
-      .callout.small
+      .callout.small.shadow
         - if current_user != member
           .float-right
             ul.menu.simple.little-space-top
@@ -78,5 +78,5 @@
 
   - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
     .column
-      .callout
+      .callout.shadow
         .bold.text-center.snug-bottom= render 'add_to_team'
