@@ -1,6 +1,9 @@
 .row
   .medium-10.medium-offset-1.columns
-    .row
+    .callout.primary-background
+      h3.bold.white-text.text-center
+        ' Create OKR
+    /.row
       .medium-9.column
         h3.little-snug-bottom.bold.primary-text
           ' Create OKR
@@ -9,8 +12,8 @@
           a data-open='okr-info'
             i.fa.fa-info-circle
           = render 'partials/quick_reference_okr'
-    hr.little-snug-top
+    /hr.little-snug-top
     p.text-right.snug-top.space-bottom
-      ' Objective and key results
+      ' Objective and Key Results help team members focus and remain aware of team mate responsibilities
 
     = render 'form'
