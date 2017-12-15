@@ -1,10 +1,8 @@
 .row
   .large-12.columns
-    h3.space-top.primary-text
-      ' Topic:
-      strong
+    .callout.primary-background
+      h1.bold.white-text.wide-line-height.text-center
         ' #{@discussion.topic}
-    hr.little-snug-top
     .float-left
       p.snug-top.space-bottom
         - if @discussion.discussable_type == 'Alliance'

@@ -1,34 +1,30 @@
 - content_for :page_title do
   ' Startup Alliance –
   ' Private Conversations
+
 .row
-  .medium-12.columns
+  .medium-10.medium-offset-1.columns
     .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
+      h3.bold.white-text.wide-line-height.text-center
         ' Private Conversations
     p.snug-top.space-bottom.text-right
       ' Private conversations with other Startup Alliance members
-
-    p.show-for-medium.snug-top &nbsp;
-
-    .row
-      .medium-8.medium-offset-2.columns
-        - if @conversations.present?
-          - @conversations.each do |conversation|
-            - unread_count = conversation.messages.where.not(user_id: current_user).where(read: false).count
-            - if conversation.sender == current_user or conversation.recipient == current_user
-              .float-right
-                = link_to conversation, data: { confirm: 'Really destroy entire conversation and all messages?' }, method: :delete do
-                  i.fa.fa-trash-o.faint
-            - if conversation.sender_id == current_user.id
-              - interlocutor = conversation.recipient
-            - else
-              - interlocutor = conversation.sender
-            p
-              = link_to conversation_messages_path(conversation) do
-                = image_tag gravatar_url(interlocutor.email, 36)
-                | &nbsp;
-                = interlocutor.name
-                '  (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}, #{number_with_delimiter(unread_count)} unread)
+    - if @conversations.present?
+      - @conversations.each do |conversation|
+        - unread_count = conversation.messages.where.not(user_id: current_user).where(read: false).count
+        - if conversation.sender == current_user or conversation.recipient == current_user
+          .float-right
+            = link_to conversation, data: { confirm: 'Really destroy entire conversation and all messages?' }, method: :delete do
+              i.fa.fa-trash-o.faint
+        - if conversation.sender_id == current_user.id
+          - interlocutor = conversation.recipient
         - else
-          ' No conversations yet!
+          - interlocutor = conversation.sender
+        p
+          = link_to conversation_messages_path(conversation) do
+            = image_tag gravatar_url(interlocutor.email, 36)
+            | &nbsp;
+            = interlocutor.name
+            '  (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}, #{number_with_delimiter(unread_count)} unread)
+    - else
+      ' No conversations yet!
