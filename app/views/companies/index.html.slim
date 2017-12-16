@@ -50,7 +50,7 @@
     - elsif current_user and !current_user.confirmed?
       = render 'partials/inactive_browse_roadblock'
     - else
-      .row
+      .row data-equalizer=true
         .medium-10.medium-offset-1.columns
           p.show-for-medium.snug-top &nbsp;
 
@@ -60,7 +60,7 @@
             p.little-snug-top.bold No other platform combines this powerful collection of objective setting and solution finding tools:
             .row.medium-up-2
               .column
-                .card
+                .card data-equalizer-watch=true
                   .card-divider.accent-background.text-center
                     h4.bold Tools to help you focus&thinsp;:
                   .card-section
@@ -78,7 +78,7 @@
                           ' Objectives and Key Results tool
                         ' keeping the team focused on their deliverables and aware of team mate responsibilities
               .column
-                .card
+                .card data-equalizer-watch=true
                   .card-divider.accent-background.text-center
                     h4.bold Collaboration tools&thinsp;:
                   .card-section
