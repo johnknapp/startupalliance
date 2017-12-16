@@ -7,7 +7,7 @@ body.flex-site
         = render 'layouts/impersonation'
         - if params[:controller] == 'registrations' and params[:action] == 'new'
           .text-right.little-space-top= link_to root_path do
-            i.fa.fa-home.light-primary-text
+            i.fa.fa-home.accent-text
         - else
           = render 'layouts/topbar'
         = render 'layouts/alerts'

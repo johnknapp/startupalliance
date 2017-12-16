@@ -25,16 +25,16 @@
           .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
             - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
             - if cs.present?
-              .progress-meter.light-primary-background style="width: #{cs.level*10}%"
-                p.meter-text= sakpi.name.html_safe
+              .progress-meter.accent-background style="width: #{cs.level*10}%"
+                p.bold.meter-text= sakpi.name.html_safe
             - else
               .progress-meter style="width: 1%"
-                p.meter-text= sakpi.name.html_safe
+                p.bold.meter-text= sakpi.name.html_safe
     - else
       p.text-center.space-top
         em
           ' OKRs are only visible to the Company Team.
 
         /.progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-          .progress-meter.light-primary-background style="width: 1%"
+          .progress-meter.accent-background style="width: 1%"
             p.meter-text= sakpi.name.html_safe

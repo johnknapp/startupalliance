@@ -94,9 +94,9 @@
             - if current_user and current_user.plan == 'associate'
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and current_user.plan != 'associate'
-              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold secondary-background'
             - else
-              p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold secondary-background'
             p.scale-to-90.text-center
               ' (Associate membership never expires)
 
@@ -140,12 +140,12 @@
             - if current_user and (current_user.plan == 'alliance' or current_user.plan == 'vip_alliance')
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
-              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold secondary-background'
             - elsif current_user and current_user.plan == 'associate'
-              p.little-space-top= link_to 'Upgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Upgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold secondary-background'
             - else
-              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
-              p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold success-text'
+              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold secondary-background'
+              p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold secondary-background'
             p.scale-to-90.text-center
               /' (Paid annually. $9.99 paid monthly.)
               ' (After beta: from $8.50 a month)
@@ -201,10 +201,10 @@
             - if current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
               p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and current_user.plan != 'company'
-              p.little-space-top= link_to 'Upgrade to Company Membership', change_plan_path(desired_plan: 'company'), method: :put, class: 'button expanded bold success-text'
+              p.little-space-top= link_to 'Upgrade to Company Membership', change_plan_path(desired_plan: 'company'), method: :put, class: 'button expanded bold secondary-background'
             - else
-              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
-              p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold success-text'
+              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold secondary-background'
+              p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold secondary-background '
             p.scale-to-90.text-center
               /' (Paid annually. $29.99 paid monthly.)
               ' (After beta: from $24.99 a month)

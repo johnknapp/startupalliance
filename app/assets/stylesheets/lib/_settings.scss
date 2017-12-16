@@ -47,7 +47,10 @@
 // https://developers.google.com/fonts/docs/getting_started
 //@import url(https://fonts.googleapis.com/css?family=Open+Sans:normal,bold);
 @import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans:normal,bold);
+//@import url(https://fonts.googleapis.com/css?family=Montserrat:normal,bold);
+//@import url(https://fonts.googleapis.com/css?family=Roboto:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Noto+Sans:normal,bold);
+//@import url(https://fonts.googleapis.com/css?family=Fira+Sans:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Ubuntu:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Lato:normal,bold);
 
@@ -63,36 +66,43 @@ $foundation-palette: (
   //  success: #3adb76,
   //  warning: #ffae00,
   //  alert: #ec5840,
-  //      https://www.materialpalette.com/indigo/cyan
-        primary: #303f9f,
-        secondary: #3f51b5,
-        success: #ffeb3b,
-        warning: #e64a19,
-        alert: #ff5722,
-        accent: #00bcd4,
-        light-primary: #c5cae9,
-        mars: #D7525C,
-        saturn: #E4B884,
-        neptune: #5147D7,
+  // https://www.materialpalette.com/indigo/cyan
+   primary: #303f9f,
+   accent: #00bcd4,
+   secondary: #3f51b5,
+   success: #ffeb3b,
+   alert: #ff5722,
+   warning: #e64a19,
+//    primary: #6d7993,
+//    accent: #9099a2,
+//    secondary: #96858f,
+//    success: #ffce00,
+//    alert: #ff5722,
+//    warning: #e64a19,
 );
+
+// Color usage
+//    primary       links and masthead backgrounds
+//    accent        tabs, table headers and quick reference callout background
+//                  keep accent a lighter relative of primary
+//    secondary     join and plans button backgrounds
+//    success       unused
+//    alert         masthead background accent text
+//    warning       storybox red text (darker than alert)
 
 // making these colors usable anywhere
 .primary { color: map-get($foundation-palette, primary); }
+.accent { color: map-get($foundation-palette, accent); }
 .secondary { color: map-get($foundation-palette, secondary); }
 .success { color: map-get($foundation-palette, success); }
-.warning { color: map-get($foundation-palette, warning); }
 .alert { color: map-get($foundation-palette, alert); }
-.accent { color: map-get($foundation-palette, accent); }
-.light-primary { color: map-get($foundation-palette, light-primary); }
-.mars { color: map-get($foundation-palette, mars); }
-.saturn { color: map-get($foundation-palette, saturn); }
-.neptune { color: map-get($foundation-palette, neptune); }
+.warning { color: map-get($foundation-palette, warning); }
 
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
-$white: #fefefe;
+$white: #fafafa;
 $body-background: $white;
 $body-font-color: $black;
 $body-font-family: 'Quattrocento+Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -583,7 +593,8 @@ $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-h
 $table-is-striped: true;
 $table-striped-background: smart-scale($table-background, $table-color-scale);
 $table-stripe: even;
-$table-head-background: smart-scale($table-background, $table-color-scale / 2);
+$table-head-background: map-get($foundation-palette, accent);
+//$table-head-background: smart-scale($table-background, $table-color-scale / 2);
 $table-head-row-hover: darken($table-head-background, $table-hover-scale);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-foot-row-hover: darken($table-foot-background, $table-hover-scale);

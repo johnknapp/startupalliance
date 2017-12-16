@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'code_of_conduct',            to: 'pages#code_of_conduct',      constraints: { format: 'html' }
   get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
   get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
-  get 'about',                      to: 'pages#about',                constraints: { format: 'html' }
   get 'plans',                      to: 'pages#plans',                constraints: { format: 'html' }
   get 'privacy',                    to: 'pages#privacy',              constraints: { format: 'html' }
   get 'terms',                      to: 'pages#terms',                constraints: { format: 'html' }

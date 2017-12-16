@@ -15,7 +15,7 @@
             i.fa.fa-pencil
           = render 'partials/set_skills_modal'
     - if (current_user or @user.public_skills == true) and (@user.skills.present? or @user == current_user)
-      h5.bold.primary-text.little-space-bottomg
+      h5.bold.primary-text.little-space-bottom
         - if current_user == @user
           span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=USER_SKILL_TIP
             ' Startup Skills:
@@ -25,7 +25,7 @@
       .callout.shadow
         - @user.user_skills.order(:skill_id).each do |us|
           .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-            .progress-meter.light-primary-background style="width: #{us.level*10}%"
-              p.meter-text= us.skill.name.html_safe
+            .progress-meter.accent-background style="width: #{us.level*10}%"
+              p.bold.meter-text= us.skill.name.html_safe
     - else
       p.space-top.text-center #{@user.name} has not listed any startup skills or is keeping them private
