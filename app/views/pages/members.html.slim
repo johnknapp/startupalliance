@@ -56,9 +56,9 @@
       = render 'partials/inactive_browse_roadblock'
     - else
       .row
-        .medium-8.medium-offset-2.columns
+        .medium-10.medium-offset-1.columns
           p.show-for-medium.snug-top &nbsp;
-          .callout
+          .callout.shadow
             p
               ' In addition to summarizing each member’s activities and highlighting their personal mission statement, each profile showcases member strengths on our standardized set of highly relevant startup skills and personal traits.
             /p
@@ -68,5 +68,7 @@
             /p
               ' Private messaging facilitates direct member to member conversations.
 
+      .row
+        .medium-8.medium-offset-2.columns
           p &nbsp;
-          = render 'partials/join_form', acqsrc: 'member_index'
+          = render 'partials/join_form', acqsrc: 'alliance_index'

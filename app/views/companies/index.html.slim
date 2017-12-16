@@ -51,10 +51,10 @@
       = render 'partials/inactive_browse_roadblock'
     - else
       .row
-        .medium-8.medium-offset-2.columns
+        .medium-10.medium-offset-1.columns
           p.show-for-medium.snug-top &nbsp;
 
-          .callout
+          .callout.shadow
             p
               ' Startup Alliance provides companies with online collaboration workspaces where staff, advisors and investors collaborate to set objectives, discuss and overcome challenges and track their progress.
             p.little-snug-top.bold No other platform combines this powerful collection of objective setting and solution finding tools:
@@ -96,5 +96,7 @@
                           ' Web Conferencing
                         ' enabling unlimited live team interactions regardless of geographical location
 
-          p &nbsp;
-          = render 'partials/join_form', acqsrc: 'company_index'
+          .row
+            .medium-8.medium-offset-2.columns
+              p &nbsp;
+              = render 'partials/join_form', acqsrc: 'company_index'

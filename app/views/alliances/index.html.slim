@@ -48,12 +48,14 @@
       = render 'partials/inactive_browse_roadblock'
     - else
       .row
-        .medium-8.medium-offset-2.columns
+        .medium-10.medium-offset-1.columns
           p.show-for-medium.snug-top &nbsp;
-          .callout
+          .callout.shadow
             p
               ' Inspired by #{link_to 'Masterind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'}, Private Alliances are global collaboration spaces where entrepreneurs form trusted partnerships to help each other make better decisions, achieve goals, overcome challenges and maximize their success.
               ' Private Alliances include private messaging, discussion forum and web conferencing tools and select information on companies owned by each Private Alliance member.
 
+      .row
+        .medium-8.medium-offset-2.columns
           p &nbsp;
           = render 'partials/join_form', acqsrc: 'alliance_index'
