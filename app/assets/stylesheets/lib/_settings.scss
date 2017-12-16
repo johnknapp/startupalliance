@@ -68,12 +68,15 @@ $foundation-palette: (
   //  warning: #ffae00,
   //  alert: #ec5840,
   // https://www.materialpalette.com/indigo/cyan
-   primary: #303f9f,
-   accent: #00bcd4,
+//   primary: #303f9f,
+   primary: #3454d1,
+   accent: #8ef9f3,
    secondary: #3f51b5,
    success: #ffeb3b,
-   alert: #ff5722,
-   warning: #e64a19,
+//   alert: #ff5722,
+   alert: #fb3640,
+//   warning: #e64a19,
+   warning: #d32e36,        // darker version of alert
 //    primary: #6d7993,
 //    accent: #9099a2,
 //    secondary: #96858f,
@@ -99,11 +102,11 @@ $foundation-palette: (
 .alert { color: map-get($foundation-palette, alert); }
 .warning { color: map-get($foundation-palette, warning); }
 
-$light-gray: #e6e6e6;
+$light-gray: #efefef;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
-$black: #0a0a0a;
-$white: #fafafa;
+$black: #023c40;
+$white: #fffffa ;
 $body-background: $white;
 $body-font-color: $black;
 $title-font-family: 'Quattrocento', Helvetica, Arial, sans-serif;
@@ -590,13 +593,12 @@ $table-color-scale: 5%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
-$table-row-hover: darken($table-background, $table-hover-scale);
-$table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
+$table-row-hover: lighten(map-get($foundation-palette, accent), $table-hover-scale);
+$table-row-stripe-hover: lighten(map-get($foundation-palette, accent), $table-color-scale + $table-hover-scale);
 $table-is-striped: true;
-$table-striped-background: smart-scale($table-background, $table-color-scale);
+$table-striped-background: lighten(map-get($foundation-palette, accent), $table-color-scale * 3);
 $table-stripe: even;
 $table-head-background: map-get($foundation-palette, accent);
-//$table-head-background: smart-scale($table-background, $table-color-scale / 2);
 $table-head-row-hover: darken($table-head-background, $table-hover-scale);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-foot-row-hover: darken($table-foot-background, $table-hover-scale);
