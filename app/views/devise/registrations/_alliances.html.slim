@@ -9,12 +9,11 @@
 .row
   .medium-10.medium-offset-1.columns
     - if @user.alliances.present?
-
       table.hover.stacked.shadow
         thead
           tr
             th{width='40%'}
-              ' My Private #{'Alliance'.pluralize(@user.alliances.where(is_unlisted: false).count)}
+              ' Private #{'Alliance'.pluralize(@user.alliances.where(is_unlisted: false).count)}
             th{width='20%'}
               .text-center Members
             th{width='20%'}

@@ -1,6 +1,6 @@
 - if current_user != true_user
-  .callout.small.primary
-    p.text-center
+  .callout.small.alert
+    h5.bold.text-center
       ' #{true_user.username} signed in as #{link_to current_user.username, vanity_path(current_user.username)}.
       | &nbsp;
       | &nbsp;
