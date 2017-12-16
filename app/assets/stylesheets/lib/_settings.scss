@@ -45,12 +45,13 @@
 
 // https://www.google.com/fonts
 // https://developers.google.com/fonts/docs/getting_started
+@import url(https://fonts.googleapis.com/css?family=Roboto:normal,bold);
+@import url(https://fonts.googleapis.com/css?family=Quattrocento:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Open+Sans:normal,bold);
-@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans:normal,bold);
+//@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Montserrat:normal,bold);
-//@import url(https://fonts.googleapis.com/css?family=Roboto:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Noto+Sans:normal,bold);
-//@import url(https://fonts.googleapis.com/css?family=Fira+Sans:normal,bold);
+//@import url(https://fonts.googleapis.com/css?family=Libre+Franklin:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Ubuntu:normal,bold);
 //@import url(https://fonts.googleapis.com/css?family=Lato:normal,bold);
 
@@ -105,7 +106,8 @@ $black: #0a0a0a;
 $white: #fafafa;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Quattrocento+Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$title-font-family: 'Quattrocento', Helvetica, Arial, sans-serif;
+$body-font-family: 'Roboto', Helvetica, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
