@@ -2,10 +2,10 @@
   - if !current_user
     .top-bar-left
       - if params[:action] == 'home'
-        = link_to (image_tag 'banner_2018.svg', width: '300px'), root_path
+        = link_to (image_tag 'banner_2018.svg', width: '280px'), root_path
         p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
       - else
-        = link_to (image_tag 'sa_mark_master_125x.png', width: '78px'), root_path
+        = link_to (image_tag 'sa_mark.svg', width: '78px'), root_path
         p.faint &nbsp; &nbsp; &nbsp; βeta
 
     .top-bar-right
@@ -26,7 +26,7 @@
 
   - else
     .top-bar-title
-      = link_to (image_tag 'sa_mark_master_125x.png', width: '78px'), root_path
+      = link_to (image_tag 'sa_mark.svg', width: '78px'), root_path
       p.faint &nbsp; &nbsp; &nbsp; βeta
 
     .top-bar-left
