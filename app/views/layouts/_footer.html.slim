@@ -1,23 +1,24 @@
-.row
-  .small-12.columns
-    .callout.small
-      ul.menu.simple.faint
+.callout.accent-background.text-center
+  .row
+    .small-12.columns
+      ul.menu.simple.align-center.little-space-top.little-space-bottom
         li= link_to 'Admin', admin_root_path if current_user and current_user.admin?
         li= link_to 'FAQ', faq_path
         li= link_to 'Quick start', quick_start_path
         li= link_to 'Community Canvas', community_canvas_path
-        li= link_to 'Code of Conduct', code_of_conduct_path
-        li= link_to 'Privacy', privacy_path
-        li= link_to 'Terms', terms_path
+      ul.menu.simple.align-center.little-space-top.little-space-bottom
         li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
         li= link_to 'Follow @StartupAlliance', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'
         li= link_to 'Read @StartupAlliance', 'http://medium.com/@startupalliance', target: '_blank'
-  /.small-4.columns
-    p.text-right.snug-top.faint
-      ' Made with
-      i.fi-heart.red-text
-      |  in Silicon Valley
-      - if params[:action] == 'home'
-       .float-right
+      ul.menu.simple.align-center.little-space-top.little-space-bottom
+        li= link_to 'Code of Conduct', code_of_conduct_path
+        li= link_to 'Privacy Policy', privacy_path
+        li= link_to 'Terms of Service', terms_path
+      p.primary-text
+        ' Made with
+        | &thinsp;
+        i.fi-heart.red-text
+        |  in Silicon Valley
+      /- if params[:action] == 'home'
           a href="https://mixpanel.com/f/partner"
             img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" width='90px'
