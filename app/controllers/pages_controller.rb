@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:quick_start]
 
   def home
-    render layout: 'application_wide'
+    # render layout: 'application_wide'
   end
 
   def members

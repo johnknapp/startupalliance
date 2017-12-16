@@ -14,11 +14,12 @@
         li= link_to 'Code of Conduct', code_of_conduct_path
         li= link_to 'Privacy Policy', privacy_path
         li= link_to 'Terms of Service', terms_path
-      p.primary-text
-        ' Made with
-        | &thinsp;
-        i.fi-heart.red-text
-        |  in Silicon Valley
+      ul.menu.simple.align-center.little-space-top.little-space-bottom
+        li= link_to root_path do
+          ' Made with
+          | &nbsp;
+          i.fi-heart.red-text
+          |  in Silicon Valley
       /- if params[:action] == 'home'
           a href="https://mixpanel.com/f/partner"
             img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" width='90px'

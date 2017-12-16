@@ -2,9 +2,9 @@
 body.flex-site
   /= javascript_include_tag 'fb_js_sdk'
   main.flex-content
+    = render 'layouts/impersonation'
     .row
       .small-12.columns
-        = render 'layouts/impersonation'
         - if params[:controller] == 'registrations' and params[:action] == 'new'
           .text-right.little-space-top= link_to root_path do
             i.fa.fa-home.accent-text
