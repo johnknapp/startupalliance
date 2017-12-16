@@ -28,13 +28,13 @@
         ul.tabs.accent-background#okr-tabs data-tabs=true
           li.tabs-title
             a.bold href='#concluded'
-              ' Concluded
+              ' Concluded (#{number_with_delimiter(@company.okrs.concluded.count)})
           li.tabs-title.is-active
             a.bold href='#active'
-              ' Active
+              ' Active (#{number_with_delimiter(@company.okrs.active.count)})
           li.tabs-title
             a.bold href='#upcoming'
-              ' Upcoming
+              ' Upcoming (#{number_with_delimiter(@company.okrs.upcoming.count)})
 
         .tabs-content data-tabs-content='okr-tabs'
           .tabs-panel#concluded

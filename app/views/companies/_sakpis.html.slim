@@ -17,7 +17,7 @@
           = render 'partials/set_sakpis_modal'
 
       span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_TIP
-        ' Startup Alliance Key Performance Indicators:
+        ' Key Performance Indicators:
     - if current_user and current_user.confirmed? and @company.team_member(current_user)
       - sakpis = Sakpi.all.order(:name)
       .callout.shadow

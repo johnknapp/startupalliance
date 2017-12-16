@@ -7,7 +7,8 @@
             = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
             p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
           - else
-            = link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
+            /= link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
+            = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
             .faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
 
         .top-bar-right
@@ -27,16 +28,10 @@
             li= link_to 'Sign-in', new_user_session_path
 
       - else
-        .top-bar-title
-          = link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
+        .top-bar-left
+          /= link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
+          = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
           .faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
-
-        /.top-bar-left
-          /ul.menu.snug-top.show-for-small-only
-            li= link_to 'Members', members_path
-            li= link_to 'Alliances', alliances_path
-            li= link_to 'Companies', companies_path
-          /ul.menu.show-for-medium
 
         .top-bar-right
           ul.dropdown.menu data-dropdown-menu=true
