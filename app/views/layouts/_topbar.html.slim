@@ -4,12 +4,13 @@
       - if !current_user
         .top-bar-left
           - if params[:action] == 'home'
-            = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
-            p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
+            = link_to (image_tag 'banner_2018.svg', width: '180px'), root_path
+            /= link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
+            /p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
           - else
+            = link_to (image_tag 'sa_mark.svg', width: '51px'), root_path
             /= link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
-            = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
-            .faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
+            /.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
 
         .top-bar-right
           ul.menu.simple.show-for-small-only
@@ -19,7 +20,7 @@
             li= link_to 'Pricing', plans_path
             li.bold= link_to 'Sign-up', plans_path
             li= link_to 'Sign-in', new_user_session_path
-          ul.menu.show-for-medium
+          ul.menu.simple.show-for-medium
             li= link_to 'Members', members_path
             li= link_to 'Alliances', alliances_path
             li= link_to 'Companies', companies_path
@@ -30,12 +31,13 @@
       - else
         .top-bar-left
           - if params[:action] == 'home'
-            = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
-            p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
+            = link_to (image_tag 'banner_2018.svg', width: '180px'), root_path
+            /= link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
+            /p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
           - else
+            = link_to (image_tag 'sa_mark.svg', width: '51px'), root_path
             /= link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
-            = link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
-            .faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
+            /.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
 
         .top-bar-right
           ul.dropdown.menu data-dropdown-menu=true
