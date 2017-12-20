@@ -71,6 +71,7 @@ $foundation-palette: (
    primary:   #5873D9,
    accent:    #8EF9F3,
    secondary: #5873D9,
+//   alert:     #FB4851,
    alert:     #FB3640,
    warning:   #E5323B,
    success:   #FFEB3B,
@@ -85,6 +86,8 @@ $foundation-palette: (
 //    alert         masthead background accent text
 //    warning       unused
 //    success       unused
+//    light-gray    header & footer
+//    white         body background
 
 // making these colors usable anywhere
 .primary { color: map-get($foundation-palette, primary); }
@@ -97,8 +100,10 @@ $foundation-palette: (
 $light-gray: #f1eef7;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
-$black: #023c40;
-$white: #fffffa ;
+//$black: #023c40;
+$black: #02282c;
+$white: #FCFDFC;
+//$white: #fffffa;
 $body-background: $white;
 $body-font-color: $black;
 $title-font-family: 'Quattrocento', Helvetica, Arial, sans-serif;
