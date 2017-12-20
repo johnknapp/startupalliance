@@ -68,28 +68,20 @@ $foundation-palette: (
   //  warning: #ffae00,
   //  alert: #ec5840,
   // https://www.materialpalette.com/indigo/cyan
-//   primary: #303f9f,
-   primary: #3454d1,
-   accent: #8ef9f3,
-   secondary: #3f51b5,
-   success: #ffeb3b,
-//   alert: #ff5722,
-   alert: #fb3640,
-//   warning: #e64a19,
-   warning: #d32e36,        // darker version of alert
-//    primary: #6d7993,
-//    accent: #9099a2,
-//    secondary: #96858f,
-//    success: #ffce00,
-//    alert: #ff5722,
-//    warning: #e64a19,
+   primary:   #5873D9,
+   accent:    #8EF9F3,
+   secondary: #5873D9,
+   success:   #FFEB3B,
+   alert:     #FB3640,
+   warning:   #E5323B,        // darker version of alert
 );
 
 // Color usage
-//    primary       links and masthead backgrounds
+//    primary       links, subheads and masthead backgrounds
 //    accent        tabs, table headers and quick reference callout background
 //                  keep accent a lighter relative of primary
 //    secondary     join and plans button backgrounds
+//                  it can be the same as primary
 //    success       unused
 //    alert         masthead background accent text
 //    warning       storybox red text (darker than alert)
@@ -102,7 +94,7 @@ $foundation-palette: (
 .alert { color: map-get($foundation-palette, alert); }
 .warning { color: map-get($foundation-palette, warning); }
 
-$light-gray: #efefef;
+$light-gray: #f1eef7;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #023c40;
