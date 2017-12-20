@@ -71,9 +71,9 @@ $foundation-palette: (
    primary:   #5873D9,
    accent:    #8EF9F3,
    secondary: #5873D9,
-   success:   #FFEB3B,
    alert:     #FB3640,
-   warning:   #E5323B,        // darker version of alert
+   warning:   #E5323B,
+   success:   #FFEB3B,
 );
 
 // Color usage
@@ -82,9 +82,9 @@ $foundation-palette: (
 //                  keep accent a lighter relative of primary
 //    secondary     join and plans button backgrounds
 //                  it can be the same as primary
-//    success       unused
 //    alert         masthead background accent text
-//    warning       storybox red text (darker than alert)
+//    warning       unused
+//    success       unused
 
 // making these colors usable anywhere
 .primary { color: map-get($foundation-palette, primary); }
