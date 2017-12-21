@@ -68,10 +68,14 @@ $foundation-palette: (
   //  warning: #ffae00,
   //  alert: #ec5840,
   // https://www.materialpalette.com/indigo/cyan
-   primary:   #5873D9,
-   accent:    #8EF9F3,
-   secondary: #5873D9,
-//   alert:     #FB4851,
+
+   primary:   #1b4995,    // kyle 1c
+   accent:    #99C7E3,    // kyle 1e lightened
+   secondary: #1b4995,    // kyle 1c
+
+//   primary:   #5873D9,
+//   accent:    #8EF9F3,
+//   secondary: #5873D9,
    alert:     #FB3640,
    warning:   #E5323B,
    success:   #FFEB3B,
@@ -97,7 +101,8 @@ $foundation-palette: (
 .alert { color: map-get($foundation-palette, alert); }
 .warning { color: map-get($foundation-palette, warning); }
 
-$light-gray: #f1eef7;
+$light-gray: #f8f8f8;
+//$light-gray: #f1eef7;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 //$black: #023c40;
@@ -330,10 +335,10 @@ $callout-link-tint: 30%;
 // 14. Card
 // --------
 
-$card-background: $white;
+$card-background: #fff;
 $card-font-color: $body-font-color;
 $card-divider-background: $light-gray;
-$card-border: 1px solid $light-gray;
+$card-border: 1px solid lighten($medium-gray, 10%);
 $card-shadow: none;
 $card-border-radius: $global-radius;
 $card-padding: $global-padding;
@@ -590,13 +595,13 @@ $table-color-scale: 5%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
-$table-row-hover: darken($white, $table-hover-scale );
-$table-row-stripe-hover: map-get($foundation-palette, accent);
+$table-row-hover: darken($white, $table-hover-scale);
 $table-is-striped: true;
 $table-striped-background: lighten(map-get($foundation-palette, accent), $table-color-scale * 3);
+$table-row-stripe-hover: darken($table-striped-background, $table-hover-scale);
 $table-stripe: even;
-$table-head-background: map-get($foundation-palette, accent);
-$table-head-row-hover: darken($table-head-background, $table-color-scale * 3);
+$table-head-background: darken(map-get($foundation-palette, accent), $table-color-scale);
+$table-head-row-hover: darken($table-head-background, $table-color-scale);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-foot-row-hover: darken($table-foot-background, $table-hover-scale);
 $table-head-font-color: $body-font-color;
