@@ -324,7 +324,7 @@ $buttongroup-radius-on-each: true;
 
 $callout-background: $white;
 $callout-background-fade: 85%;
-$callout-border: 1px solid rgba($black, 0.25);
+$callout-border: 1px solid lighten($medium-gray, 10%);
 $callout-margin: 0 0 1rem 0;
 $callout-padding: 1rem;
 $callout-font-color: $body-font-color;
@@ -621,7 +621,7 @@ $tab-item-background-hover: $light-gray;
 $tab-item-padding: 1.25rem 1.5rem;
 $tab-expand-max: 6;
 $tab-content-background: $white;
-$tab-content-border: $light-gray;
+$tab-content-border: lighten($medium-gray, 10%);
 $tab-content-color: $body-font-color;
 $tab-content-padding: 1rem;
 
