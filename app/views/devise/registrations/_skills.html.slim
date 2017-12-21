@@ -24,8 +24,8 @@
             ' Startup Skills:
       .callout.shadow
         - @user.user_skills.order(:skill_id).each do |us|
-          .progress role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
-            .progress-meter.accent-background style="width: #{us.level*10}%"
+          .progress.accent role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+            .progress-meter style="width: #{us.level*10}%"
               p.bold.meter-text= us.skill.name.html_safe
     - else
       p.space-top.text-center #{@user.name} has not listed any startup skills or is keeping them private

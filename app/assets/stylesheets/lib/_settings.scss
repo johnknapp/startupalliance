@@ -590,7 +590,7 @@ $table-color-scale: 5%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
-$table-row-hover: lighten($light-gray, $table-hover-scale * 2);
+$table-row-hover: darken($white, $table-hover-scale );
 $table-row-stripe-hover: map-get($foundation-palette, accent);
 $table-is-striped: true;
 $table-striped-background: lighten(map-get($foundation-palette, accent), $table-color-scale * 3);
@@ -659,7 +659,7 @@ $tooltip-radius: $global-radius;
 
 $topbar-padding: 0.75rem 0.5rem 0.0rem;
 $topbar-background: $light-gray;
-$topbar-submenu-background: $topbar-background;
+$topbar-submenu-background: $white;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
