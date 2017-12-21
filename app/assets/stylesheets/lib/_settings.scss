@@ -531,7 +531,7 @@ $pagination-arrows: true;
 // ----------------
 
 $progress-height: 1.65rem;
-$progress-background: $light-gray;
+$progress-background: lighten($medium-gray, 12%);
 $progress-margin-bottom: 0.35rem;
 $progress-meter-background: $medium-gray;
 $progress-radius: $global-radius;
