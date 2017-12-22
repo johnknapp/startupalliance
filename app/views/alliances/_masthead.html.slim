@@ -9,7 +9,10 @@
         i.fa.fa-user-secret
         | &nbsp;
         ' Stealth mode
-  h2.bold.white-text.text-center
-    = @alliance.name
-  - if @alliance.recruiting
+  - if !@alliance.recruiting
+    h2.bold.little-space-top.little-space-bottom.white-text.text-center
+      = @alliance.name
+  - else
+    h2.bold.little-space-top.white-text.text-center
+      = @alliance.name
     h4.bold.medium-grey-text.text-center We’re recruiting!
