@@ -1,8 +1,8 @@
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' #{@discussion.topic}
 .row
   .large-12.columns
-    .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
-        ' #{@discussion.topic}
     .float-left
       p.snug-top.space-bottom
         - if @discussion.discussable_type == 'Alliance'

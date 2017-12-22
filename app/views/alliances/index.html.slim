@@ -1,15 +1,15 @@
 - content_for :page_title do
   ' Startup Alliance – Global entrepreneurs join Startup Alliance to gain insight from beyond their company walls
 
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Private Alliances
+  - if !current_user
+    h5.bold.medium-grey-text.text-center
+      ' (Sign-in to browse)
+
 .row
   .medium-12.columns
-    .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
-        ' Private Alliances
-      - if !current_user
-        h5.bold.alert-text.text-center
-          ' (Sign-in to browse)
-
     .float-right
       p.snug-top.space-bottom Global entrepreneurs join Startup Alliance to gain insight from beyond their company walls
     p.snug-top.space-bottom

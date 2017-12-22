@@ -23,13 +23,13 @@ module IconHelper
 
   def impersonate_icon
     [
-      "<i class='fa fa-hand-o-right white-text'></i>",
-      "<i class='fa fa-hand-o-right white-text'></i>",
-      "<i class='fa fa-superpowers white-text'></i>",
-      "<i class='fa fa-superpowers white-text'></i>",
-      "<i class='fa fa-user-circle-o white-text'></i>",
-      "<i class='fa fa-id-card-o white-text'></i>",
-      "<i class='fa fa-sign-in white-text'></i>"
+      "<i class='fa fa-hand-o-right alert-text'></i>",
+      "<i class='fa fa-hand-o-right alert-text'></i>",
+      "<i class='fa fa-superpowers alert-text'></i>",
+      "<i class='fa fa-superpowers alert-text'></i>",
+      "<i class='fa fa-user-circle-o alert-text'></i>",
+      "<i class='fa fa-id-card-o alert-text'></i>",
+      "<i class='fa fa-sign-in alert-text'></i>"
     ].sample.html_safe
   end
 

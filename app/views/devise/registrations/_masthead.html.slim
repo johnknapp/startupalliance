@@ -1,4 +1,4 @@
-.card
+- content_for :page_header do
   .card-divider.primary-background
     - if current_user and current_user.admin? and current_user != @user
       .float-left
@@ -17,7 +17,7 @@
             = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
               i.fa.fa-comments-o.white-text
 
-    h1.bold.white-text.wide-line-height.text-center
-      ' #{image_tag gravatar_url("#{@user.email}", 96)}
+    h2.bold.white-text.text-center
+      ' #{image_tag gravatar_url("#{@user.email}", 72)}
       strong
         ' #{@user.name}

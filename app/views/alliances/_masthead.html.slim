@@ -1,15 +1,15 @@
-.callout.primary-background
+- content_for :page_header do
   - if current_user and @alliance.creator == current_user
     .float-right
       .pad-right= link_to edit_alliance_path(@alliance) do
         i.fa.fa-pencil.white-text
   - if @alliance.is_unlisted
     .float-left
-      p.bold.alert-text.text-right.space-bottom
+      p.bold.medium-grey-text.text-right.space-bottom
         i.fa.fa-user-secret
         | &nbsp;
         ' Stealth mode
-  h1.bold.white-text.wide-line-height.text-center
+  h2.bold.white-text.text-center
     = @alliance.name
   - if @alliance.recruiting
-    h4.bold.alert-text.text-center We’re recruiting!
+    h4.bold.medium-grey-text.text-center We’re recruiting!

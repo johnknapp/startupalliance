@@ -1,14 +1,10 @@
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Update your comment in
+    br
+    ' #{@comment.discussion.topic}
 .row
   .medium-8.medium-offset-2.columns
-    .callout.primary-background
-      h3.bold.white-text.wide-line-height.text-center
-        ' Update your comment in
-        br
-        ' #{@comment.discussion.topic}
-    /h3.show-for-medium-up &nbsp;
-    /h3
-    /  ' Update your comment in #{@comment.discussion.topic}
-    /hr.little-snug-top
     p.text-right.snug-top.space-bottom
       ' Keeping the discussion relevant improves your success
 

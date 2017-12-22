@@ -3,12 +3,15 @@ body.flex-site
   /= javascript_include_tag 'fb_js_sdk'
   main.flex-content
     .callout.snug-bottom.snug-top.light-grey-background
+      = render 'layouts/alerts'
       = render 'layouts/topbar'
       = render 'layouts/impersonation'
+    .callout.primary-background.text-center
+      .row
+        .small-12.columns
+          = yield :page_header
     .row
       .small-12.columns
-        p.show-for-medium-up.snug-top &nbsp;
-        = render 'layouts/alerts'
         = yield
   /- unless %w[sessions passwords confirmations].any? { |ctrlr| params[:controller] == ctrlr }
   - unless params[:controller] == 'registrations' and params[:action] == 'new'

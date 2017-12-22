@@ -1,11 +1,11 @@
 - content_for :page_title do
   ' Your Membership is now active!
 
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Your Membership is now active!
 .row
   .large-10.large-offset-1.columns
-    .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
-        ' Your Membership is now active!
     - if current_user
       p.snug-top.text-right
         ' You are signed in as #{@user.name}

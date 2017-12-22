@@ -1,18 +1,17 @@
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    - if @factor
+      - if params[:type_code] == 'mist'
+        ' New Minimization Strategy
+      - else
+        ' New Maximization Strategy
+    - else
+      - if params[:type_code] == 'sufa'
+        ' New Success Factor
+      - else
+        ' New Risk Factor
 .row
   .medium-8.medium-offset-2.columns
-    h3.show-for-medium-up &nbsp;
-    h3.bold.primary
-      - if @factor
-        - if params[:type_code] == 'mist'
-          ' New Minimization Strategy
-        - else
-          ' New Maximization Strategy
-      - else
-        - if params[:type_code] == 'sufa'
-          ' New Success Factor
-        - else
-          ' New Risk Factor
-    hr.little-snug-top
     p.text-right.snug-top.space-bottom It’s important to write these things down!
 
     - if @factor

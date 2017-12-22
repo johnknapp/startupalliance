@@ -1,31 +1,29 @@
 - content_for :page_title do
   ' Startup Alliance – Community Canvas
 
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Community Canvas
 .row
   .medium-10.medium-offset-1.columns
-    .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
-        ' Community Canvas
     p.snug-top.text-right
       ' Last updated October 30, 2017
 
     .row
-      .medium-9.medium-offset-3.columns
-        .row
-          .medium-6.columns
-            p.faint
-              em
-                ' Like the Business Model and Lean Canvas’ for startups, the
-                ' #{link_to 'Community Canvas', 'https://community-canvas.org', target: '_blank' }
-                ' was created as a framework to help communities articulate their purpose and maximize
-                ' the value they deliver to their membership.
-            p.faint
-              em
-                ' Our Community Canvas will help your understand what we're about and how participation
-                ' will benefit you. We welcome your comments and questions.
-                '
-          .medium-6.columns
-            = image_tag 'community_canvas.png', width: '360px'
+      .medium-3.columns
+        p
+          em
+            ' Like the Business Model and Lean Canvas’ for startups, the
+            ' #{link_to 'Community Canvas', 'https://community-canvas.org', target: '_blank' }
+            ' was created as a framework to help communities articulate their purpose and maximize
+            ' the value they deliver to their membership.
+        p
+          em
+            ' Our Community Canvas will help your understand what we're about and how participation
+            ' will benefit you. We welcome your comments and questions.
+            '
+      .medium-9.columns
+        = image_tag 'community_canvas.png'
 
     .row
       .medium-3.columns

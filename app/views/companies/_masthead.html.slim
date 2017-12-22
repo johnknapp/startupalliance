@@ -1,17 +1,16 @@
 
-.card
-  .card-divider.primary-background
-    - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
-      .float-right
-        .pad-right= link_to edit_company_path(@company) do
-          i.fa.fa-pencil.white-text
-    - if @company.is_unlisted
-      .float-left
-        p.bold.alert-text.text-right.space-bottom
-          i.fa.fa-user-secret
-          | &nbsp;
-          ' Stealth mode
-    h1.bold.white-text.wide-line-height.text-center
-      = @company.name
-    - if @company.recruiting
-      h4.bold.alert-text.text-center We’re recruiting!
+- content_for :page_header do
+  - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+    .float-right
+      .pad-right= link_to edit_company_path(@company) do
+        i.fa.fa-pencil.white-text
+  - if @company.is_unlisted
+    .float-left
+      p.bold.medium-grey-text.text-right.space-bottom
+        i.fa.fa-user-secret
+        | &nbsp;
+        ' Stealth mode
+  h2.bold.white-text.text-center
+    = @company.name
+  - if @company.recruiting
+    h4.bold.medium-grey-text.text-center We’re recruiting!

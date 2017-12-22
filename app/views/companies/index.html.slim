@@ -1,15 +1,14 @@
 - content_for :page_title do
   ' Startup Alliance – Amazing companies join Startup Alliance to keep their team on track
 
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Member Companies
+  - if !current_user
+    h5.bold.medium-grey-text.text-center
+      ' (Sign-in to browse)
 .row
   .medium-12.columns
-    .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
-        ' Member Companies
-      - if !current_user
-        h5.bold.alert-text.text-center
-          ' (Sign-in to browse)
-
     .float-right
       p.snug-top.space-bottom Amazing companies join Startup Alliance to keep their team on track
     p.snug-top.space-bottom

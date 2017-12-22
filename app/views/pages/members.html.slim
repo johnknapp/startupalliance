@@ -1,15 +1,15 @@
 - content_for :page_title do
   ' Startup Alliance – Members showcase of committed entrepreneurs doing important work
 
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Startup Alliance Members
+  - if !current_user
+    h5.bold.medium-grey-text.text-center
+      ' (Sign-in to browse)
+
 .row
   .medium-12.columns
-    .callout.primary-background
-      h1.bold.white-text.wide-line-height.text-center
-        ' Startup Alliance Members
-      - if !current_user
-        h5.bold.alert-text.text-center
-          ' (Sign-in to browse)
-
     .float-right
       p.snug-top.space-bottom A showcase of committed entrepreneurs doing important work
     - if !current_user
