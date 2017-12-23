@@ -1,16 +1,17 @@
 .card.shadow
-  .card-section.title-font.scale-to-105
+  .card-section.title-font
     .float-left
       .show-for-medium.little-space-right= image_tag 'jk_rnd_300x.png', width: '200px'
       .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '150px'
+    i.fa.fa-quote-left.fa-lg.fa-pull-left.medium-grey-text
     p
-      ' Hi, I’m John Knapp, founder of Startup Alliance. I’m an entrepreneur and firm believer that entrepreneurship is one of the greatest powers for good in this world.
+      ' For years, I’ve mentored entrepreneurs, helping them turn their ideas into successful companies. I’ve seen how distractions slow them down and diminish their success. I’ve also seen that outside of a startup hub, they struggle to find and connect with the right people.
+      /' Hi, Hi’m John Knapp, founder of Startup Alliance. I’m an entrepreneur and firm believer that entrepreneurship is one of the greatest powers for good in this world.
       /' Originally a face-to-face peer group in Seattle and Silicon Valley, Startup Alliance helped entrepreneurs
       /' living there to make the right connections, grow their businesses and achieve their dreams.
-      /' For years, I’ve mentored entrepreneurs, helping them turn their ideas into successful companies. I’ve seen how distractions slow them down and diminish their success. I’ve also seen that outside of a startup hub, they struggle to find and connect with the right people.
     /p.little-snug-top
       ' Startup Alliance exists to address these problems.
-    p.little-snug-top
+    /p.little-snug-top
       ' Since
       span.bold
         | entrepreneurship is exploding worldwide
@@ -20,14 +21,14 @@
       ' .
       '
     p.little-snug-top
-      ' We offer this unique one-of-a-kind collaboration toolbox specifically for entrepreneurs,
-      ' our goal is to make it easier than ever to find and collaborate with the people that can help you most.
+      ' That’s why we created this unique collaboration toolbox for entrepreneurs,
+      ' our goal is to maximize your success and make it easier to find and collaborate with the people that can help you most.
     p.little-snug-top.bold
       - if !current_user
         ' Join us and maximize your success — no matter where you live.
       - else
         ' I’m glad you’re part of our global entrepreneurs community and wish you every success!
-    /p.little-snug-top.text-right
+    p.snug-top.text-right
       ' — John Knapp, founder
       /span.faint
         ' #{link_to 'Learn more...', faq_path}
