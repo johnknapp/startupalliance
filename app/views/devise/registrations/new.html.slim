@@ -1,16 +1,50 @@
 - @acqsrc = params[:acqsrc] ? params[:acqsrc] : params[:controller] + '/' +params[:action]
 
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    - if params[:plan] == 'associate'
+      ' Associate Membership is FREE FOR LIFE!
+    - if params[:plan] == 'alliance'
+      ' Alliance Membership is FREE during beta!
+    - if params[:plan] == 'company'
+      ' Company Membership is FREE during beta!
+
 .row
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
     h3.show-for-medium-up &nbsp;
 
-    .snug-top= image_tag 'sa_banner_2018.svg', width: '300px'
-    - if params[:plan] == 'associate'
-      h5.little-space-top.space-bottom.bold Associate Membership is FREE FOREVER!
-    - if params[:plan] == 'alliance'
-      h5.little-space-top.space-bottom.bold Alliance Membership is FREE during beta!
-    - if params[:plan] == 'company'
-      h5.little-space-top.space-bottom.bold Company Membership is FREE during beta!
+    p.bold
+      - if params[:plan] == 'associate'
+        ' Associate Membership is FREE FOR LIFE!
+      - if params[:plan] == 'alliance'
+        ' Alliance Membership is FREE during beta!
+      - if params[:plan] == 'company'
+        ' Company Membership is FREE during beta!
 
-    = render 'partials/join_form', acqsrc: @acqsrc
+    = simple_form_for(:user, url: registration_path(:user)) do |f|
+      = f.error_notification
+      = f.hidden_field :acqsrc, value: @acqsrc
+      = f.hidden_field :plan,   value: params[:plan]
 
+      p.faint.snug-bottom
+        em Membership is open to entrepreneurs, advisors and investors
+
+      .row.collapse
+        .small-8.columns
+          = f.input :email, placeholder: 'Enter your email...', label: false
+        .small-4.columns
+          - if params[:plan] == 'associate'
+            = f.button :submit, "Become an Associate Member", class: 'postfix expanded bold accent'
+          - if params[:plan] == 'alliance'
+            = f.button :submit, "Become an Alliance Member", class: 'postfix expanded bold accent'
+          - if params[:plan] == 'company'
+            = f.button :submit, "Become a Company Member", class: 'postfix expanded bold accent'
+
+      .row
+        .small-12.columns
+          .float-right
+            p.snug-top.faint
+              em
+                ' Already a member?
+                = link_to 'Sign-in', new_user_session_path
+          .g-recaptcha.little-snug-top data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"

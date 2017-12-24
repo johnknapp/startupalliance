@@ -5,213 +5,153 @@
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     - if current_user and params[:goal] == 'message'
-      ' You need Alliance or Company Membership for that!
+      ' You must upgrade your plan
     - elsif current_user and params[:goal] == 'alliance'
-      ' You need Alliance or Company Membership for that!
+      ' You must upgrade your plan
     - elsif current_user and params[:goal] == 'company'
-      ' You need Company Membership for that!
+      ' You must upgrade your plan
     - elsif current_user
       ' You have #{current_user.plan.humanize} Membership
     - else
-      ' Choose your membership plan
+      ' Choose the plan that’s right for you
 
 .row
   .medium-12.columns
     .float-right
       p.snug-top.space-bottom
-        ' Helping entrepreneurs succeed, regardless of their location
-    - if current_user
-      p.snug-top.space-bottom Signed in as #{current_user.name}
-    - else
-      p.snug-top.space-bottom &nbsp;
+        ' Our mission is to maximize your success
+    p.snug-top.space-bottom &nbsp;
     p.show-for-medium.snug-top &nbsp;
 
-    .row.show-for-small-only data-equalizer-watch=true
-      .small-4.columns
-        .callout.primary data-equalizer-watch=true
-          p.text-center.bold
-            ' Associate
-            br
-            ' Membership
-          p.text-center.bold
-            ' FREE
-            br
-            ' FOREVER!
-          p.text-center Scroll down...
-      .small-4.columns
-        .callout.primary data-equalizer-watch=true
-          p.text-center.bold
-            ' Alliance
-            br
-            ' Membership
-          p.text-center.bold
-            ' FREE
-            br
-            ' during beta!
-          p.text-center Scroll down...
-      .small-4.columns
-        .callout.primary data-equalizer-watch=true
-          p.text-center.bold
-            ' Company
-            br
-            ' Membership
-          p.text-center.bold
-            ' FREE
-            br
-            ' during beta!
-          p.text-center Scroll down...
-      h3 &nbsp;
-      h3 &nbsp;
+    .row.large-up-3 data-equalizer=true
 
-    .row data-equalizer=true
-
-      .medium-4.columns
-        .callout.primary
-          h4.bold.text-center.primary-text Associate Membership
-          hr.little-snug-top
-          p.faint.text-center.snug-top For individuals
-          .plan-box data-equalizer-watch=true
-            ul
-              li
-                ' A listing in the Entrepreneur’s Showcase uniquely quantifies your
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STARTUP_SKILL_TIP
-                  ' skills
-                '  and
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PERSONAL_TRAIT_TIP
-                  ' traits
-              li Browse Alliances, Companies, Members
-              li Respond to private messages
-              ul.no-bullet.little-snug-top
-                li.faint
-                  ' (Cannot initiate conversations)
-              li Become part of any Company Team
-              li
-                ' Participate in any
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
-                  ' Private Alliance
-          p.little-snug-bottom &nbsp;
-          .callout
-            h4.bold.text-center FREE FOR LIFE!
+      .column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center Associate Membership
+            p.text-center For individuals
+          .card-section
+            .plan-box data-equalizer-watch=true
+              ul
+                li.bold A listing in the Entrepreneur’s Showcase
+                li.bold Browse Alliances, Companies, Members
+                li Respond to private messages
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' (Cannot start conversations)
+                li Become part of any Company Team
+                li Become part of any Private Alliance
+          .callout.small.accent
+            h5.bold.text-center FREE FOR LIFE!
             - if current_user and current_user.plan == 'associate'
-              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
+              p.little-space-top= link_to 'Your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and current_user.plan != 'associate'
-              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold secondary-background'
+              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold accent shadow-4dp'
             - else
-              p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold secondary-background'
+              p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold accent shadow-4dp'
             p.scale-to-90.text-center
               ' (Associate membership never expires)
 
-      .medium-4.columns
-        p.show-for-small-only &nbsp;
-        .callout.primary
-          h4.bold.text-center.primary-text Alliance Membership
-          hr.little-snug-top
-          p.faint.text-center.snug-top For individuals
-          .plan-box data-equalizer-watch=true
-            ul
-              li.bold All Associate Member benefits
-              li.bold Send Private Messages
-              li.bold
-                ' Create and manage
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
-                  ' Private Alliances
-              /li Alliance profile and mission statement
-              li Set a flag if your Private Alliance is recruiting
-              li Expand your Alliance membership up to 12
-              ul.no-bullet.little-snug-top
-                li.faint
-                  ' (Ask about larger plans)
-              li Control who joins your Private Alliance
-              ul.no-bullet.little-snug-top
-                li.faint
-                  ' (Even Associate members can parcipate)
-              li
-                ' Optional Private Alliance
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
-                  ' stealth mode
-              li Private Alliance Discussion Forums
-              li
-                ' Participate in private
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIDEO_CONFERENCE_TIP
-                  ' Video Conferences
-          p.little-snug-bottom &nbsp;
-          .callout
+      .column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center.primary-text Alliance Membership
+            p.text-center For committed entrepreneurs
+          .card-section
+            .plan-box data-equalizer-watch=true
+              ul
+                li.bold All Associate Member benefits
+                li.bold Send Private Messages
+                li.bold
+                  ' Create and manage your own
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
+                    ' Private Alliances
+                /li Set a flag if your Private Alliance is recruiting
+                li Expand your Alliance membership up to 12
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' (Larger plans available)
+                /li Control who joins your Private Alliance
+                li
+                  ' Optional
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+                    ' stealth mode
+                li Threaded Discussion Forums
+                li Unlimited Video Conferences
+                li Information on member owned companies
+          .callout.small.accent
             /h4.bold.text-center $8.50 a month!
-            h4.bold.text-center FREE during beta
-            - if current_user and (current_user.plan == 'alliance' or current_user.plan == 'vip_alliance')
-              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
-            - elsif current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
-              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold secondary-background'
+            h5.bold.text-center FREE during beta
+            - if current_user and current_user.plan == 'alliance'
+              p.little-space-top= link_to 'Your current plan', '#' , class: 'button expanded bold disabled'
+            - elsif current_user and current_user.plan == 'company'
+              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold accent shadow-4dp'
             - elsif current_user and current_user.plan == 'associate'
-              p.little-space-top= link_to 'Upgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold secondary-background'
+              p.little-space-top= link_to 'Upgrade to Alliance Membership', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'button expanded bold accent shadow-4dp'
             - else
-              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold secondary-background'
-              p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold secondary-background'
+              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold accent shadow-4dp'
+              p.little-space-top= link_to 'Choose Alliance Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'button expanded bold accent shadow-4dp'
             p.scale-to-90.text-center
               /' (Paid annually. $9.99 paid monthly.)
               ' (After beta: from $8.50 a month)
-        p.text-center.show-for-small-only After the beta period, Alliance and Company Members will convert to Associate Membership and have the option to upgrade.
+        /p.text-center.show-for-small.show-for-medium-only After the beta period, Alliance and Company Members will convert to Associate Membership and have the option to upgrade.
 
-      .medium-4.columns
-        p.show-for-small-only &nbsp;
-        .callout.primary
-          h4.bold.text-center.primary-text Company Membership
-          hr.little-snug-top
-          p.faint.text-center.snug-top For companies
-          .plan-box data-equalizer-watch=true
-            ul
-              li.bold All Associate Member benefits
-              li.bold All Alliance Member benefits
-              li.bold Company Collaboration Workspace
-              li Progress tracking and collaboration tools
-              /li Company mission, market, lifecycle
-              li Set a flag if your Company is recruiting
-              li Expand your Company team up to 24
-              ul.no-bullet.little-snug-top
-                li.faint
-                  ' (Ask about larger plans)
-              li Manage your Company Team
-              ul.no-bullet.little-snug-top
-                li.faint
-                  ' (Even Associate members can parcipate)
-              li
-                ' Optional Company
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
-                  ' stealth mode
-              li
-                ' Create and manage
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
-                  ' OKRs
-              li
-                ' Create and manage
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=FAST_TIP
-                  ' FASTs
-              li
-                ' Create and manage
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
-                  ' SAKPIs
-              li Private Company Discussion Forums
-              li
-                ' Participate in private
-                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIDEO_CONFERENCE_TIP
-                  ' Video Conferences
-          p.little-snug-bottom &nbsp;
-          .callout
+      .column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center Company Membership
+            p.text-center For company owners
+          .card-section
+            .plan-box data-equalizer-watch=true
+              ul
+                li.bold All Associate Member benefits
+                li.bold All Alliance Member benefits
+                li.bold
+                  ' Create and manage your own
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=COLLABORATION_WORKSPACE_TIP
+                    ' Company Collaboration Workspaces
+                /li Focus and collaboration enhancing tools
+                /li Set a flag if your Company is recruiting
+                li Expand your Company team up to 24
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' (Larger plans available)
+                /li Manage your Company Team
+                li
+                  ' Optional
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+                    ' stealth mode
+                li
+                  ' Create and manage
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
+                    ' OKRs
+                li
+                  ' Create and manage
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=FAST_TIP
+                    ' FASTs
+                li
+                  ' Create and manage
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
+                    ' SAKPIs
+                li Threaded Discussion Forums
+                li Unlimited Video Conferences
+          .callout.small.accent
             /h4.bold.text-center $24.99 a month!
-            h4.bold.text-center FREE during beta
-            - if current_user and (current_user.plan == 'company' or current_user.plan == 'vip_company')
-              p.little-space-top= link_to 'This is your current plan', '#' , class: 'button expanded bold disabled'
+            h5.bold.text-center FREE during beta
+            - if current_user and current_user.plan == 'company'
+              p.little-space-top= link_to 'Your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and current_user.plan != 'company'
-              p.little-space-top= link_to 'Upgrade to Company Membership', change_plan_path(desired_plan: 'company'), method: :put, class: 'button expanded bold secondary-background'
+              p.little-space-top= link_to 'Upgrade to Company Membership', change_plan_path(desired_plan: 'company'), method: :put, class: 'button expanded bold accent shadow-4dp'
             - else
-              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold secondary-background'
-              p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold secondary-background '
+              /p.little-space-top= link_to 'Start your 10 day FREE trial', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold accent shadow-4dp'
+              p.little-space-top= link_to 'Choose Company Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'button expanded bold accent shadow-4dp'
             p.scale-to-90.text-center
               /' (Paid annually. $29.99 paid monthly.)
               ' (After beta: from $24.99 a month)
-    .row
+
+    /.row
       .small-12.columns
         /p.text-center Members who choose Alliance or Company Memberships during the beta period will convert to Free Associate Membership.
         p.text-center After the beta period, Alliance and Company Members will convert to Associate Membership and have the option to upgrade.
-    .callout.small
+    .callout
       h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.

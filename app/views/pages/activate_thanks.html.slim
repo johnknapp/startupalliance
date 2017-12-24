@@ -28,14 +28,21 @@
         li.faint
           em
             ' “I look forward to helping you personally!” –John
-      li #{link_to 'List your Company', companies_path} and take advantage of the company tools we provide
+      li #{link_to 'List your Company', companies_path} and take advantage of the focus and collaboration enhancement tools we provide
       ul.no-bullet
         li.faint
           em
             ' If your company is already listed, add yourself to the team
       li Create or join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
+      li Invite your people to join you in your Private Alliances and Company Collaboration Workspaces
       li Visit the #{link_to 'Quick Start Guide', quick_start_path} to learn how to get the most out of your membership
       li Visit #{link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'} and attach a photo to your email address
 
 
-    p.bold We’re glad to have you as a member of Startup Alliance!
+    .callout.small.primary.text-center
+      - if current_user
+        p
+          ' Your currently have
+          strong
+            | #{current_user.plan.humanize} Membership
+          ' , you can change your membership plan any time.

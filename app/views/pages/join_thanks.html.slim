@@ -6,24 +6,24 @@
     ' Thank you for joining us!
 .row
   .large-10.large-offset-1.columns
-    p.snug-top.text-right You have taken an important step in your business success!
+    p.snug-top.text-right You’ve taken an important step in your entrepreneurial journey!
 
     h4.bold Activate your account:
 
-    ol.indented-2
-      li Click account activation link in the email we sent (check spam folder and give it time to arrive!)
-      li On the activation page, add your name, choose a username and password
-      li Check the plan options to get the most out of Startup Alliance
-
     p
       em
-        ' (You must activate your account to gain full privileges)
+        ' (You must activate your account for full privileges)
 
-    .callout.small.primary
+    ol.indented-2
+      li Click the account activation link in the email we sent (check spam folder and give it time to arrive!)
+      li On the activation page, add your name, choose a username and password
+      /li Take part in Private Alliances and Company Collaboration Workspaces
+
+    .callout.small.primary.text-center
       - if current_user
         p
           ' Your currently have
           strong
             | #{current_user.plan.humanize} Membership
           ' , you can change your membership plan any time.
-      = link_to 'Explore Membership Plans', plans_path, class: 'button bold expanded'
+      /= link_to 'Explore Membership Plans', plans_path, class: 'button bold expanded'
