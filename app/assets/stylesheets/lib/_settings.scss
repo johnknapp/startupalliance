@@ -101,7 +101,8 @@ $foundation-palette: (
 .alert { color: map-get($foundation-palette, alert); }
 .warning { color: map-get($foundation-palette, warning); }
 
-$light-gray: #f8f8f8;
+$light-gray: #f4f4f4;
+//$light-gray: #f8f8f8;
 //$light-gray: #f1eef7;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
