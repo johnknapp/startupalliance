@@ -38,9 +38,9 @@
                 li Respond to private messages
                 ul.no-bullet.little-snug-top
                   li.faint
-                    ' (Cannot start conversations)
-                li Become part of any Company Team
-                li Become part of any Private Alliance
+                    ' (Can’t start conversations but can converse)
+                li Participate on any Company Team
+                li Participate on any Private Alliance
           .callout.small.accent
             h5.bold.text-center FREE FOR LIFE!
             - if current_user and current_user.plan == 'associate'
@@ -61,7 +61,7 @@
             .plan-box data-equalizer-watch=true
               ul
                 li.bold All Associate Member benefits
-                li.bold Send Private Messages
+                li.bold Send and receive Private Messages
                 li.bold
                   ' Create and manage your own
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
