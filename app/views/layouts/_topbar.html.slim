@@ -40,7 +40,7 @@
             /.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
 
         .top-bar-right
-          ul.dropdown.menu.little-snug-top data-dropdown-menu=true
+          ul.dropdown.menu data-dropdown-menu=true
             li.show-for-medium= link_to 'Members', members_path
             li.show-for-medium= link_to 'Alliances', alliances_path
             li.show-for-medium= link_to 'Companies', companies_path
@@ -58,6 +58,7 @@
                 li.show-for-small-only= link_to 'Members', members_path
                 li.show-for-small-only= link_to 'Alliances', alliances_path
                 li.show-for-small-only= link_to 'Companies', companies_path
+                li= link_to 'Admin', admin_root_path if current_user.admin?
                 hr
                 - if current_user and current_user.companies.present?
                   li.bold.menu-text My #{'company'.pluralize(current_user.companies.count)}:

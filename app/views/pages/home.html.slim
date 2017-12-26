@@ -112,7 +112,7 @@
       .large-10.large-offset-1.columns
         - if !current_user
           .space-top= render 'partials/join_form', acqsrc: 'home_page'
-        - else
+        /- else
           p.show-for-medium &nbsp;
           .news-box
             h4.bold Platform updates:
