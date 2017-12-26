@@ -1,26 +1,26 @@
-.card.shadow-6dp
-  .card-section.title-font
-    .float-left
-      .show-for-medium.little-space-right= image_tag 'jk_rnd_300x.png', width: '180px'
-      .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '160px'
-    i.fa.fa-quote-left.fa-3x.fa-pull-left.medium-grey-text
-    p
-      ' For years, I’ve mentored entrepreneurs,
-      ' helping them turn their ideas into successful companies.
-      ' I’ve seen how distractions slow them down and diminish their success.
-      ' I’ve also seen them frequently struggle to find and connect with the right people.
-    p.little-snug-top
-      ' That’s why we created this unique collaboration toolbox for entrepreneurs,
-      ' our mission is to maximize your success
-      ' while making it easier to find and collaborate with the people that can help you most.
-    p.little-snug-top.bold.scale-to-110
-      - if !current_user
-        ' It’s simple, we want you to maximize your success — no matter where you live.
-      - else
-        ' Hey #{current_user.first_name}, you’re an important part of our global entrepreneurs community!
-    p.little-snug-top.text-right
-      ' — John Knapp, founder
-      /span.faint
-        ' #{link_to 'Learn more...', faq_path}
-/My friends recognize the depth of my passion. Here’s a text message a friend sent me this morning to share their perspective. She sums it up well:
-/You’re doing this because you have a passion for helping people realize dreams, helping people create financial hope, helping people create better futures for themselves and the world around them, helping people create economic independence, helping people develop business resilience.
+.callout.shadow-6dp.title-font
+  h5.bold.title-font The Startup Alliance backstory:
+  .float-left
+    .show-for-medium.little-space-right= image_tag 'jk_rnd_300x.png', width: '180px'
+    .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '160px'
+  i.fa.fa-quote-left.fa-3x.fa-pull-left.medium-grey-text
+  p
+    ' For years, I’ve mentored entrepreneurs,
+    ' helping them turn their ideas into successful companies.
+    ' I’ve seen how distractions slow them down and diminish their success.
+    ' I’ve also seen them frequently struggle to find and connect with the right people.
+  p.little-snug-top
+    ' That’s why we created this unique collaboration toolbox for entrepreneurs,
+    ' our mission is to maximize your success
+    ' while making it easier to find and collaborate with the people that can help you most.
+  p.little-snug-top.bold.scale-to-110
+    - if !current_user
+      ' We want to help you realize your entrepreneurial dreams — no matter where you live.
+    - else
+      ' Hey #{current_user.first_name}, you’re an important part of our global entrepreneurs community!
+  p.little-snug-top.text-right
+    ' — John Knapp, founder
+    /span.faint
+      ' #{link_to 'Learn more...', faq_path}
+/' My friends recognize the depth of my passion. Here’s a text message a friend sent me this morning to share their perspective. She sums it up well:
+/' You’re doing this because you have a passion for helping people realize dreams, helping people create financial hope, helping people create better futures for themselves and the world around them, helping people create economic independence, helping people develop business resilience.
