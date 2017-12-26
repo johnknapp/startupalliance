@@ -5,31 +5,20 @@
       .show-for-small-only.little-space-right= image_tag 'jk_rnd_300x.png', width: '160px'
     i.fa.fa-quote-left.fa-3x.fa-pull-left.medium-grey-text
     p
-      ' For years, I’ve mentored entrepreneurs, helping them turn their ideas into successful companies. I’ve seen how distractions slow them down and diminish their success. I’ve also seen that outside of a startup hub, they struggle to find and connect with the right people.
-      /' Hi, Hi’m John Knapp, founder of Startup Alliance. I’m an entrepreneur and firm believer that entrepreneurship is one of the greatest powers for good in this world.
-      /' Originally a face-to-face peer group in Seattle and Silicon Valley, Startup Alliance helped entrepreneurs
-      /' living there to make the right connections, grow their businesses and achieve their dreams.
-    /p.little-snug-top
-      ' Startup Alliance exists to address these problems.
-    /p.little-snug-top
-      ' Since
-      span.bold
-        | entrepreneurship is exploding worldwide
-      ' , we built this platform to maximize the success of your business —
-      span.bold
-        | wherever you are and no matter what kind of business you run
-      ' .
-      '
+      ' For years, I’ve mentored entrepreneurs,
+      ' helping them turn their ideas into successful companies.
+      ' I’ve seen how distractions slow them down and diminish their success.
+      ' I’ve also seen that far too often, they struggle to find and connect with the right people.
     p.little-snug-top
       ' That’s why we created this unique collaboration toolbox for entrepreneurs,
       ' our mission is to maximize your success
       ' while making it easier to find and collaborate with the people that can help you most.
-    p.little-snug-top.bold
+    p.little-snug-top.bold.scale-to-120
       - if !current_user
-        ' Join us and maximize your success — no matter where you live.
+        ' It’s simple, we want you to maximize your success — no matter where you live.
       - else
-        ' I’m glad you’re part of our global entrepreneurs community and wish you every success!
-    p.snug-top.text-right
+        ' Hey #{current_user.first_name}, you’re an important part of our global entrepreneurs community&thinsp;!
+    p.little-snug-top.text-right
       ' — John Knapp, founder
       /span.faint
         ' #{link_to 'Learn more...', faq_path}

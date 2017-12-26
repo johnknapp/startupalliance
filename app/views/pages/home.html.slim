@@ -13,24 +13,27 @@
     ' overcome challenges
     ' and win.
     '
-    i.success-text.fa.fa-trophy
+    i.success-text.fa.fa-lg.fa-trophy
 
 .row
-  .medium-10.medium-offset-1.columns
-    h3.bold.text-center.space-top.space-bottom
-      ' Something for every entrepreneur:
+  .large-10.large-offset-1.columns
+
+    .space-top= render 'partials/storybox'
+
+    h3.bold.primary-text.text-center.space-top.space-bottom
+      ' Something for every committed entrepreneur...
 
     .card.shadow
       .card-divider.primary-background.text-center
-        h2.h1.bold.white-text.little-snug-top
+        h3.bold.accent-text
           ' Collaboration Workspaces for&nbsp;Companies
-        h3.bold.accent-text.little-snug-top
+        h2.bold.white-text.little-snug-top
           ' Help your team focus and achieve more
       .card-section#company-section
         p
           ' Collaboration Workspaces are where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.
-        h5.little-snug-top.bold Take advantage of this specialized toolbox for startup success:
-        .row.medium-up-2 data-equalizer=true
+        h5.little-snug-top.bold Take advantage of this specialized toolbox for business success:
+        .row.large-up-2 data-equalizer=true
           .column
             .card data-equalizer-watch=true
               .card-divider.accent-background.text-center
@@ -72,9 +75,9 @@
 
     .card.space-top.shadow
       .card-divider.primary-background.text-center
-        h2.h1.bold.white-text.little-snug-top
+        h3.bold.accent-text
           ' Private Alliances for&nbsp;Entrepreneurs
-        h3.bold.accent-text.little-snug-top
+        h2.bold.white-text.little-snug-top
           ' Superior connections, superior outcomes
       .card-section#alliance-section
         p
@@ -90,23 +93,25 @@
 
     .card.space-top.shadow
       .card-divider.primary-background.text-center
-        h2.h1.bold.white-text.little-snug-top
+        h3.bold.accent-text
           ' Entrepreneur’s Showcase
-        h3.bold.accent-text.little-snug-top
+        h2.bold.white-text.little-snug-top
           ' Find the people who can help you most
       .card-section#entrepreneur-section
         p
-          ' In addition to listing the companies and private alliances each member is associated with, and highlighting their personal mission statement, each profile showcases member strengths on our standard set of highly relevant startup skills and personal traits.
+          ' Each profile uniquely showcases member strengths on our standard set of startup skills and personal traits,
+          ' highlights their personal mission statement and
+          ' lists the companies and private alliances each member is associated with.
         p.little-snug-top
           ' Membership in Startup Alliance is open to all entrepreneurs regardless of location or level of experience.
         p.text-right.snug-top.snug-bottom= link_to 'Join now for FREE...', plans_path
 
-    .space-top= render 'partials/storybox'
+    /.space-top= render 'partials/storybox'
 
     .row
       .large-10.large-offset-1.columns
         - if !current_user
-          = render 'partials/join_form', acqsrc: 'home_page'
+          .space-top= render 'partials/join_form', acqsrc: 'home_page'
         - else
           p.show-for-medium &nbsp;
           .news-box
