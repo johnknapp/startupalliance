@@ -291,6 +291,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    scout_apm (2.3.4)
     seedbank (0.4.0)
     shellany (0.0.1)
     simple_form (3.4.0)
@@ -389,6 +390,7 @@ DEPENDENCIES
   rails_autolink
   route_downcaser
   sass-rails (~> 5.0)
+  scout_apm
   seedbank
   simple_form
   slim-rails
