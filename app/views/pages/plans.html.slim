@@ -46,11 +46,11 @@
             - if current_user and current_user.plan == 'associate'
               p.little-space-top= link_to 'Your current plan', '#' , class: 'button expanded bold disabled'
             - elsif current_user and current_user.plan != 'associate'
-              p.little-space-top= link_to 'Downgrade to Alliance Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold accent shadow-4dp'
+              p.little-space-top= link_to 'Downgrade to Associate Membership', change_plan_path(desired_plan: 'associate'), method: :put , class: 'button expanded bold accent shadow-4dp'
             - else
               p.little-space-top= link_to 'Choose Associate Membership', new_user_registration_path(acqsrc: 'plans_page', plan: 'associate'), class: 'button expanded bold accent shadow-4dp'
             p.scale-to-90.text-center
-              ' (Associate membership never expires)
+              ' (Associate membership is free for life)
 
       .column
         .card.primary.shadow
