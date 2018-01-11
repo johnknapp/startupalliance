@@ -1,10 +1,10 @@
 - content_for :page_title do
   ' Startup Alliance –
-  ' Something for every global entrepreneur
+  ' Something for every committed entrepreneur
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Something for every global entrepreneur
+    ' Something for every committed entrepreneur
 
 .row
   .medium-12.columns
@@ -34,9 +34,9 @@
                     ' (Get recruited onto Alliances and Teams)
           .callout.small.accent
             h5.bold.text-center Free forever!
-            p= link_to 'Become a Member', new_user_registration_path(acqsrc: 'plans_page', plan: 'member'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p= link_to 'Become a Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'member'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
-              ' Membership is open to committed entrepreneurs
+              ' Membership is open to all committed entrepreneurs
 
       .column
         .card.primary.shadow
@@ -54,13 +54,13 @@
                 li Threaded Discussion Forums
                 li Unlimited Video Conferences
                 li Information on member companies
-                li Members have full private messaging
+                li The Members have full private messaging
                 ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
             h5.bold.text-center 15 day free trial
-            p= link_to 'Lead a Private Alliance', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p= link_to 'Lead a Private Alliance', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' $9.95 a month (paid annually,) $11.95 paid monthly
 
@@ -91,13 +91,13 @@
                     ' SAKPIs
                 li Threaded Discussion Forums
                 li Unlimited Video Conferences
-                li Team has full private messaging
+                li The Team has full private messaging
                 ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
             h5.bold.text-center 15 day free trial
-            p= link_to 'Lead a Company Workspace', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p= link_to 'Lead a Company Workspace', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' $24.95 a month (paid annually,) $29.95 paid monthly
 
