@@ -1,0 +1,105 @@
+- content_for :page_title do
+  ' Startup Alliance –
+  ' Something for every global entrepreneur
+
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Something for every global entrepreneur
+
+.row
+  .medium-12.columns
+    .float-right
+      p.snug-top.space-bottom
+        ' Our mission is to help entrepreneurs succeed, regardless of their location
+    p.snug-top.space-bottom &nbsp;
+    p.show-for-medium.snug-top &nbsp;
+
+    .row.large-up-3 data-equalizer=true
+
+      .column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center Become a Member
+            p.bold.text-center Showcase your talents and take an active role in our global entrepreneurial community
+          .card-section
+            .plan-box data-equalizer-watch=true
+              ul
+                li Free listing in the Entrepreneur’s Showcase
+                li Browse Alliances, Companies, Members
+                li Become part of any Private Alliance
+                li Become part of any Company Team
+                li Limited private messaging (receive only)
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' (Get recruited onto Alliances and Teams)
+          .callout.small.accent
+            h5.bold.text-center Free forever!
+            p= link_to 'Become a Member', new_user_registration_path(acqsrc: 'plans_page', plan: 'member'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p.scale-to-90.text-center
+              ' Membership is open to committed entrepreneurs
+
+      .column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center.primary-text Lead a Private Alliance
+            p.bold.text-center Unite committed entrepreneurs to share advice, provide insight and overcome challenges
+          .card-section
+            .plan-box data-equalizer-watch=true
+              ul
+                li Manage your Private Alliance members
+                li
+                  ' Operate in
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+                    ' stealth mode
+                li Threaded Discussion Forums
+                li Unlimited Video Conferences
+                li Information on member companies
+                li Members have full private messaging
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' (Contact any Startup Alliance member)
+          .callout.small.accent
+            h5.bold.text-center 15 day free trial
+            p= link_to 'Lead a Private Alliance', new_user_registration_path(acqsrc: 'plans_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p.scale-to-90.text-center
+              ' $9.95 a month (paid annually,) $11.95 paid monthly
+
+      .column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center Lead a Company Workspace
+            p.bold.text-center Unite your team to enhance focus, improve outcomes and collaborate more fully
+          .card-section
+            .plan-box data-equalizer-watch=true
+              ul
+                li Manage your Company team members
+                li
+                  ' Operate in
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
+                    ' stealth mode
+                li
+                  ' Create and manage
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=OKR_TIP
+                    ' OKRs
+                li
+                  ' Create and manage
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=FAST_TIP
+                    ' FASTs
+                li
+                  ' Create and manage
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
+                    ' SAKPIs
+                li Threaded Discussion Forums
+                li Unlimited Video Conferences
+                li Team has full private messaging
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' (Contact any Startup Alliance member)
+          .callout.small.accent
+            h5.bold.text-center 15 day free trial
+            p= link_to 'Lead a Company Workspace', new_user_registration_path(acqsrc: 'plans_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p.scale-to-90.text-center
+              ' $24.95 a month (paid annually,) $29.95 paid monthly
+
+    .callout
+      h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.

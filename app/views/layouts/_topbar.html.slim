@@ -17,15 +17,15 @@
             li= link_to 'Members', members_path
             li= link_to 'Alliances', alliances_path
             li= link_to 'Companies', companies_path
-            li= link_to 'Pricing', plans_path
-            li.bold= link_to 'Sign-up', plans_path
+            li= link_to 'Pricing', pricing_path
+            li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
           ul.menu.simple.show-for-medium
             li= link_to 'Members', members_path
             li= link_to 'Alliances', alliances_path
             li= link_to 'Companies', companies_path
-            li= link_to 'Pricing', plans_path
-            li.bold= link_to 'Sign-up', plans_path
+            li= link_to 'Pricing', pricing_path
+            li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
 
       - else
@@ -78,6 +78,6 @@
                       i.fa.fa-envelope.red-text
                 li.pad-left= link_to 'Profile', vanity_path(current_user.username)                     if current_user and current_user.confirmed?
                 li.pad-left= link_to 'Account', edit_user_registration_path                            if current_user and current_user.confirmed?
-                li.pad-left= link_to 'Membership Plans', plans_path                                    if current_user and current_user.confirmed?
+                li.pad-left= link_to 'Membership Plans', pricing_path                                    if current_user and current_user.confirmed?
                 li.pad-left= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
                 li.pad-left.little-space-bottom= link_to 'Sign-out', destroy_user_session_path

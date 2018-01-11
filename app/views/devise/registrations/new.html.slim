@@ -2,24 +2,24 @@
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    - if params[:plan] == 'associate'
-      ' Associate Membership is FREE FOR LIFE!
+    - if params[:plan] == 'member'
+      ' Membership is FREE FOREVER!
     - if params[:plan] == 'alliance'
-      ' Alliance Membership is FREE during beta!
+      ' Private Alliances are FREE during beta!
     - if params[:plan] == 'company'
-      ' Company Membership is FREE during beta!
+      ' Company Workspaces are FREE during beta!
 
 .row
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
     h3.show-for-medium-up &nbsp;
 
     p.bold
-      - if params[:plan] == 'associate'
-        ' Associate Membership is FREE FOR LIFE!
+      - if params[:plan] == 'member'
+        ' Showcase your talents and take an active role in our global entrepreneurial community
       - if params[:plan] == 'alliance'
-        ' Alliance Membership is FREE during beta!
+        ' Unite committed entrepreneurs to share advice, provide insight and overcome challenges
       - if params[:plan] == 'company'
-        ' Company Membership is FREE during beta!
+        ' Unite your team to enhance focus, improve outcomes and collaborate more fully
 
     = simple_form_for(:user, url: registration_path(:user)) do |f|
       = f.error_notification
@@ -27,18 +27,18 @@
       = f.hidden_field :plan,   value: params[:plan]
 
       p.faint.snug-bottom
-        em Membership is open to entrepreneurs, advisors and investors
+        em Membership is open to committed entrepreneurs, advisors and investors
 
       .row.collapse
         .small-8.columns
           = f.input :email, placeholder: 'Enter your email...', label: false
         .small-4.columns
-          - if params[:plan] == 'associate'
-            = f.button :submit, "Become an Associate Member", class: 'postfix expanded bold accent'
+          - if params[:plan] == 'member'
+            = f.button :submit, "Become a Member", class: 'postfix expanded bold accent'
           - if params[:plan] == 'alliance'
-            = f.button :submit, "Become an Alliance Member", class: 'postfix expanded bold accent'
+            = f.button :submit, "Lead a Private Alliance", class: 'postfix expanded bold accent'
           - if params[:plan] == 'company'
-            = f.button :submit, "Become a Company Member", class: 'postfix expanded bold accent'
+            = f.button :submit, "Lead a Company Workspace", class: 'postfix expanded bold accent'
 
       .row
         .small-12.columns

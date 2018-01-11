@@ -17,7 +17,10 @@
     ol.indented-2
       li Click the account activation link in the email we sent (check spam folder and give it time to arrive!)
       li On the activation page, add your name, choose a username and password
-      /li Take part in Private Alliances and Company Collaboration Workspaces
+      - if current_user and current_user.plan == 'alliance'
+        li= link_to 'Create your Private Alliance' new_alliance_path
+      - if current_user and current_user.plan == 'company'
+        li= link_to 'Create your Private Alliance' new_company_path
 
     .callout.small.primary.text-center
       - if current_user
@@ -26,4 +29,4 @@
           strong
             | #{current_user.plan.humanize} Membership
           ' , you can change your membership plan any time.
-      /= link_to 'Explore Membership Plans', plans_path, class: 'button bold expanded'
+      /= link_to 'Explore Membership Plans', pricing_path, class: 'button bold expanded'

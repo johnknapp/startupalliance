@@ -13,12 +13,12 @@
   = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'companies'
   = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'alliances'
   p.faint.snug-bottom
-    em Membership is open to entrepreneurs, advisors and investors
+    em Membership is open to committed entrepreneurs, advisors and investors
   .row.collapse
     .small-8.columns
       = f.input :email, placeholder: 'Enter your email...', label: false
     .small-4.columns
-      = f.button :submit, "Get started for FREE!", class: 'postfix expanded bold accent'
+      = f.button :submit, "Get started for FREE!", class: 'postfix expanded bold success'
   .row
     .small-12.columns
       .float-right

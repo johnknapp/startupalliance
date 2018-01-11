@@ -22,7 +22,7 @@ class PagesController < ApplicationController
   def code_of_conduct
   end
 
-  def plans
+  def pricing
   end
 
   def privacy

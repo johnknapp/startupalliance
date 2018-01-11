@@ -7,7 +7,7 @@ USER_PLANS                  = %w[associate alliance company]
 
 PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
-STEALTH_MODE_TIP            = 'In case you want to keep your Private Alliances and Companies from appearing in search results.'
+STEALTH_MODE_TIP            = 'In case you want to keep your Private Alliance and Company from appearing in directories and elsewhere on the site.'
 STARTUP_SKILL_TIP           = 'Showcase your strengths using our standard set of 18 startup skills.'
 PERSONAL_TRAIT_TIP          = 'Highlight your qualities using our standard set of 12 personal traits.'
 VIDEO_CONFERENCE_TIP        = 'Conduct private online video meetings whenever you want with people from all around the world.'
