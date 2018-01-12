@@ -2,7 +2,7 @@
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    - if params[:plan] == 'member'
+    - if params[:plan] == 'free'
       ' Membership is FREE FOREVER!
     - if params[:plan] == 'alliance'
       ' Private Alliances are FREE during beta!
@@ -14,7 +14,7 @@
     h3.show-for-medium-up &nbsp;
 
     p.bold
-      - if params[:plan] == 'member'
+      - if params[:plan] == 'free'
         ' Showcase your talents and take an active role in our global entrepreneurial community
       - if params[:plan] == 'alliance'
         ' Unite committed entrepreneurs to share advice, provide insight and overcome challenges
@@ -31,14 +31,14 @@
 
       .row.collapse
         .small-8.columns
-          = f.input :email, placeholder: 'Enter your email...', label: false
+          = f.input :email, placeholder: 'Enter your email...', autofocus: true, label: false
         .small-4.columns
-          - if params[:plan] == 'member'
-            = f.button :submit, "Become a Member", class: 'postfix expanded bold accent'
+          - if params[:plan] == 'free'
+            = f.button :submit, "Become a Member", class: 'postfix expanded bold success'
           - if params[:plan] == 'alliance'
-            = f.button :submit, "Lead a Private Alliance", class: 'postfix expanded bold accent'
+            = f.button :submit, "Create Private Alliances", class: 'postfix expanded bold success'
           - if params[:plan] == 'company'
-            = f.button :submit, "Lead a Company Workspace", class: 'postfix expanded bold accent'
+            = f.button :submit, "Create Company Workspaces", class: 'postfix expanded bold success'
 
       .row
         .small-12.columns

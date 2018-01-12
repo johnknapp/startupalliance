@@ -7,8 +7,8 @@ admin = User.new(first_name: 'Ima', last_name: 'Admin', email: 'admin@example.co
 admin.skip_confirmation!
 admin.save
 
-associate = User.new(first_name: 'Associate', last_name: 'User', email: 'associate@example.com', username: 'ima-associate',
-                time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'associate',
+associate = User.new(first_name: 'Free', last_name: 'Member', email: 'free@example.com', username: 'ima-free',
+                time_zone: 'Eastern Time (US & Canada)', role: 'user', state: 'active', plan: 'member',
                 password: 'password', password_confirmation: 'password'
               )
 associate.skip_confirmation!

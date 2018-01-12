@@ -28,12 +28,29 @@ ActiveAdmin.register User do
     end
 
     def destroy
-      resource.conversations.destroy_all
+      departure_cleanup
       if Rails.env.production?
         GibbonService.unsubscribe(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       super
     end
+
+    private
+
+      # Specifically not destroying any companies, okrs or alliances they created
+      def departure_cleanup
+        okrs = Okr.where(owner_id: @user.id).all
+        if okrs.present?
+          okrs.each do |okr|
+            okr.update(owner_id: okr.company.creator.id)
+          end
+        end
+        AllianceUser.where(user_id: @user.id).destroy_all
+        CompanyUser.where(user_id: @user.id).destroy_all
+        UserSkill.where(user_id: @user.id).destroy_all
+        UserTrait.where(user_id: @user.id).destroy_all
+        Conversation.includes?(@user).destroy_all
+      end
 
   end
 
@@ -66,7 +83,6 @@ ActiveAdmin.register User do
   filter :state,        as: :select, collection: USER_STATES
   filter :role,         as: :select, collection: USER_ROLES
   filter :plan,         as: :select, collection: USER_PLANS
-  filter :company_owner
 
   form do |f|
     f.inputs 'Edit User' do

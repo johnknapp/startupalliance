@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211235005) do
+ActiveRecord::Schema.define(version: 20180111181225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 20171211235005) do
     t.integer  "skill_index",            default: 0
     t.integer  "trait_index",            default: 0
     t.boolean  "company_owner",          default: false
-    t.string   "plan",                   default: "associate"
+    t.string   "plan",                   default: "free"
     t.boolean  "public_skills",          default: false
     t.boolean  "public_traits",          default: false
     t.index "lower((username)::text) text_pattern_ops", name: "users_username_lower", unique: true, using: :btree

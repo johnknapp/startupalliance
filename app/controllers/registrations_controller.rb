@@ -46,7 +46,7 @@ class RegistrationsController < Devise::RegistrationsController
     if current_user and params[:desired_plan]
       current_user.update_attribute(:plan, params[:desired_plan])
     end
-    redirect_back(fallback_location: plans_path, alert: 'You changed your plan')
+    redirect_back(fallback_location: pricing_path, alert: 'You changed your plan')
   end
 
   # GET /resource/sign_up

@@ -11,19 +11,21 @@
     h4.bold Next steps:
 
     ol.indented-2
-      li You will receive an email containing an account activation link (check your spam folder and give it time to arrive!)
-      li Visit the account activation page, add your name, choose a username and password
-      - if current_user and current_user.plan == 'alliance'
-        li #{link_to 'Create your Private Alliance', new_alliance_path} and invite your people
-      - elsif current_user and current_user.plan == 'company'
-        li #{link_to 'Create your Company Workspace', new_company_path} and invite your people
-      li Browse the directories, make new connections and get involved with the community!
+      li Watch for the account activation email (check spam folder and give it time to arrive!)
+      li Click the link to visit the account activation page, add your name, choose a username and password
+      li
+        - if current_user and current_user.plan == 'alliance'
+          span.bold
+            ' Important:
+          ' After you activate, go ahead and create your Private Alliance
+          li Invite your people to become part of your Private Alliance
+        - elsif current_user and current_user.plan == 'company'
+          span.bold
+            ' Important:
+          ' After you activate, go ahead and create your Company Workspace
+          li Invite your people to become part of your Company Workspace
+          li Don’t forget — you can create a Private Alliance too!
+        - else
+          ' Browse the directories, make new connections and get involved with the community!
 
-    /.callout.small.primary.text-center
-      - if current_user
-        p
-          ' Your currently have
-          strong
-            | #{current_user.plan.humanize} Membership
-          ' , you can change your membership plan any time.
-      /= link_to 'Explore Membership Plans', pricing_path, class: 'button bold expanded'
+    p If you ever need help, visit #{link_to 'support.startupalliance.com', 'http://support.startupalliance.com', target: '_blank'}.

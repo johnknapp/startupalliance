@@ -3,7 +3,7 @@ RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
 USER_STATES               = %w[unconfirmed active paused]
 USER_ROLES                  = %w[guest user admin]
-USER_PLANS                  = %w[associate alliance company]
+USER_PLANS                  = %w[free alliance company]
 
 PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
@@ -28,6 +28,8 @@ USERNAME_EXCLUSIONS = %w[
   administrator
   alliance
   alliances
+  change_plan
+  change_plans
   code_of_conduct
   company
   companies
