@@ -28,12 +28,10 @@
           .small-4.columns
             = f.input :time_zone, label: 'Time zone where you live', required: true, priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select a time zone'
         .row
-          .small-12.columns
+          .small-4.columns
             .indented-1= f.input :public_skills, required: false, label: 'Make my skills visible to everybody'
+          .small-4.columns.end
             .indented-1= f.input :public_traits, required: false, label: 'Make my traits visible to everybody'
-          /.small-4.columns
-          /.small-4.columns
-            .indented-1= f.input :company_owner, required: false, label: 'I own my own company'
         .row
           .large-6.columns
             = f.input :password, label: 'New password', placeholder: 'New password'
