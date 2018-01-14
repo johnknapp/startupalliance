@@ -3,8 +3,9 @@
     .small-12.columns
       ul.menu.simple.align-center.little-space-top.little-space-bottom
         li= link_to 'Admin', admin_root_path if current_user and current_user.admin?
+        li= link_to 'Help Center', 'http://support.startupalliance.com'
         li= link_to 'FAQ', faq_path
-        li= link_to 'Quick start', quick_start_path
+        /li= link_to 'Quick start', quick_start_path
         li= link_to 'Community Canvas', community_canvas_path
       ul.menu.simple.align-center.little-space-bottom
         li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
