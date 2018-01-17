@@ -6,7 +6,7 @@ class Okr < ApplicationRecord
   has_many :fasts
 
   before_validation do
-    update_attribute(:okr_finish, okr_end)
+    self.update_attribute(:okr_finish, self.okr_end)
   end
 
   enum okr_units: {
