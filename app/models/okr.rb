@@ -6,7 +6,7 @@ class Okr < ApplicationRecord
   has_many :fasts
 
   before_validation do
-    self.update_attribute(:okr_finish, self.okr_end)
+    set_okr_finish
   end
 
   enum okr_units: {
@@ -41,12 +41,6 @@ class Okr < ApplicationRecord
     self.okr_start.nil?
   end
 
-  def okr_end
-    d = self.okr_duration
-    u = self.okr_units.downcase
-    self.okr_start.advance(u.to_sym => d) if self.okr_start
-  end
-
   def set_score
     arr = []
     arr << self.kr1_score if self.kr1_score != 0
@@ -54,4 +48,17 @@ class Okr < ApplicationRecord
     arr << self.kr3_score if self.kr3_score != 0
     self.update(score: ((arr.sum)/arr.count).round(2)) if !arr.empty?
   end
+
+  private
+
+    def set_okr_finish
+      update_attribute(:okr_finish, okr_end)
+    end
+
+    def okr_end
+      d = self.okr_duration
+      u = self.okr_units.downcase
+      self.okr_start.advance(u.to_sym => d) if self.okr_start
+    end
+
 end
