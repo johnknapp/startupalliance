@@ -30,7 +30,9 @@
         li.faint
           ' Score:
           - if okr.score != 0.0
-            ' #{okr.score}
+            /' #{number_with_precision okr.score, precision: 2}
+            ' #{sprintf('%.2f',okr.score)}
+            /' #{'%.2f' % okr.score}
           - else
             ' TBD
         li.faint.pad-right

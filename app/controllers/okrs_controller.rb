@@ -35,6 +35,7 @@ class OkrsController < ApplicationController
 
     respond_to do |format|
       if @okr.save
+        @okr.set_okr_finish
         Notifier.tell_jk(@okr).deliver
         format.html { redirect_to company_path(@company), notice: 'OKR was successfully created.' }
         format.json { render :show, status: :created, location: @okr }
@@ -53,6 +54,7 @@ class OkrsController < ApplicationController
       params[:okr].delete :okr_start
       if @okr.update(okr_params)
         @okr.update_attribute(:okr_start, okr_start)
+        @okr.set_okr_finish
         @okr.set_score
         @company = Company.find @okr.company_id
         format.html { redirect_to company_path(@company), notice: 'OKR was successfully updated.' }
