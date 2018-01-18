@@ -21,18 +21,6 @@ class Okr < ApplicationRecord
       Red:      2
   }
 
-  def concluded?
-    self.okr_end <= Date.today if self.okr_end
-  end
-
-  def active?
-    self.okr_start <= Date.today and self.okr_end >= Date.today if self.okr_start
-  end
-
-  def upcoming?
-    self.okr_start >= Date.today if self.okr_start
-  end
-
   scope :upcoming,  -> { where('okr_start >= ?',Time.now).where.not(okr_start: nil) }
   scope :active,    -> { where('okr_start <= ?',Time.now).where('okr_finish >= ?',Time.now) }
   scope :concluded, -> { where('okr_finish <= ?',Time.now) }
