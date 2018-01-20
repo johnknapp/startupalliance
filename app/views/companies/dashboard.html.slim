@@ -4,18 +4,19 @@
       .medium-12.columns
         h1.white-text.text-center.bold= @company.name
         h4.accent-text.text-center.bold #{@company.phases} stage
-        .float-left
-          = link_to company_path(@company), class: 'indented-1 snug-top accent-text' do
-            i.fa.fa-arrow-left
-            | &nbsp;
-            | &nbsp;
-            ' Exit dashboard
+  .row
+    .medium-12.columns
+      p.little-snug-top.snug-bottom.scale-to-90.text-center= link_to company_path(@company), class: 'accent-text' do
+        i.fa.fa-arrow-left
+        | &nbsp;
+        | &nbsp;
+        ' Workspace
 
   .row
     .medium-12.columns
       .float-right
-        h5.bold.space-top.primary-text Index: #{@company.sakpi_index}
-      h5.bold.space-top.primary-text
+        h5.bold.little-space-top.little-snug-bottom.primary-text Index: #{@company.sakpi_index}
+      h5.bold.little-space-top.little-snug-bottom.primary-text
         ' SAKPIs:
       .callout.shadow
         - sakpis = Sakpi.all.order(:name)
@@ -32,9 +33,9 @@
   .row
     .medium-12.columns
       .float-right
-        h5.bold.space-top.primary-text Lifetime OKRs: #{number_with_delimiter(@company.okrs.count)}
-      h5.bold.space-top.primary-text
-        ' Active OKRs (#{number_with_delimiter(@company.okrs.active.count)}):
+        h5.bold.space-top.little-snug-bottom.primary-text Lifetime OKRs: #{number_with_delimiter(@company.okrs.count)}
+      h5.bold.space-top.little-snug-bottom.primary-text
+        ' Currently Active OKRs (#{number_with_delimiter(@company.okrs.active.count)}):
       .callout.shadow
         - if @company.okrs.active.present?
           .row.small-up-1.medium-up-2
@@ -84,11 +85,11 @@
 
   .row
     .medium-12.columns
-      h5.bold.space-top.primary-text
+      h5.bold.space-top.little-snug-bottom.primary-text
         ' Factors and Strategies:
       .callout.shadow
         .row
-          .medium-6.columns
+          .large-6.columns
             - if @company.fasts.where(type_code: 'sufa').present?
               .callout.shadow
                 h5.bold.primary-text Success FActors & Maximization STrategies
@@ -102,7 +103,7 @@
             - else
               p.text-center None!
 
-          .medium-6.columns
+          .large-6.columns
             - if @company.fasts.where(type_code: 'rifa').present?
               .callout.shadow
                 h5.bold.primary-text Risk FActors & Minimization STrategies

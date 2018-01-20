@@ -3,4 +3,12 @@
     = render 'masthead'
     - if params[:invite] and params[:invite] == @company.invite_token
       = render 'invited'
+.row
+  .medium-12.columns
+    p.little-snug-top.scale-to-90.text-center= link_to dashboard_company_path(@company), class: 'accent-text' do
+      i.fa.fa-arrow-left
+      | &nbsp;
+      | &nbsp;
+      ' Dashboard
+
     = render 'tabs'

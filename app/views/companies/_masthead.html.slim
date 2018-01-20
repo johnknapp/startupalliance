@@ -13,21 +13,7 @@
   - if !@company.recruiting
     h2.bold.little-space-top.little-space-bottom.white-text.text-center
       = @company.name
-    - if current_user and @company.team.include?(current_user)
-      .float-left
-        = link_to dashboard_company_path(@company), class: 'accent-text' do
-          i.fa.fa-arrow-left
-          | &nbsp;
-          | &nbsp;
-          ' Dashboard
   - else
     h2.bold.little-space-top.white-text.text-center
       = @company.name
     h4.bold.medium-grey-text.text-center We’re recruiting!
-    - if current_user and @company.team.include?(current_user)
-      .float-left
-        = link_to dashboard_company_path(@company), class: 'accent-text' do
-          i.fa.fa-arrow-left
-          | &nbsp;
-          | &nbsp;
-          ' Dashboard
