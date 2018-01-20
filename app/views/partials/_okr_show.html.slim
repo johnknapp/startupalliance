@@ -1,15 +1,20 @@
 .callout.shadow
+
   - if current_user and okr.owner == current_user or @company.team_member(current_user).role == 'Owner'
-    .float-right.scale-to-90
-      = link_to edit_okr_path(okr, company_pid: @company.pid) do
-        i.fa.fa-pencil
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
-        i.fa.fa-trash-o
+    .float-right
+      ul.dropdown.menu data-dropdown-menu=true
+        li
+          = link_to '#' do
+            i.fa.fa-ellipsis-v.fainter
+          ul.menu data-dropdown-menu=true
+            li
+              = link_to edit_okr_path(okr, company_pid: @company.pid) do
+                i.fa.fa-pencil
+            li
+              = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
+                i.fa.fa-trash-o
+
   h5.bold.primary-text.pad-right= okr.objective
-  /hr.little-snug-top
   .row
     .small-12.columns
       ol.little-snug-top

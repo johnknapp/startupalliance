@@ -1,0 +1,116 @@
+- if current_user and @company.team.include?(current_user)
+  .callout.primary-background
+    .row
+      .medium-12.columns
+        h1.white-text.text-center.bold= @company.name
+        h4.accent-text.text-center.bold #{@company.phases} stage
+        .float-left
+          = link_to company_path(@company), class: 'indented-1 snug-top accent-text' do
+            i.fa.fa-arrow-left
+            | &nbsp;
+            | &nbsp;
+            ' Exit dashboard
+
+  .row
+    .medium-12.columns
+      .float-right
+        h5.bold.space-top.primary-text Index: #{@company.sakpi_index}
+      h5.bold.space-top.primary-text
+        ' SAKPIs:
+      .callout.shadow
+        - sakpis = Sakpi.all.order(:name)
+        - sakpis.each do |sakpi|
+          .progress.accent role='progressbar' tabindex='0' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'
+            - cs = CompanySakpi.where(company_id: @company.id, sakpi_id: sakpi.id).first
+            - if cs.present?
+              .progress-meter style="width: #{cs.level*10}%"
+                p.bold.meter-text= sakpi.name.html_safe
+            - else
+              .progress-meter style="width: 0%"
+                p.bold.meter-text= sakpi.name.html_safe
+
+  .row
+    .medium-12.columns
+      .float-right
+        h5.bold.space-top.primary-text Lifetime OKRs: #{number_with_delimiter(@company.okrs.count)}
+      h5.bold.space-top.primary-text
+        ' Active OKRs (#{number_with_delimiter(@company.okrs.active.count)}):
+      .callout.shadow
+        - if @company.okrs.active.present?
+          .row.small-up-1.medium-up-2
+            - @company.okrs.active.each do |okr|
+              .column
+                .callout.shadow
+                  h5.bold.primary-text.pad-right= okr.objective
+                  .row
+                    .small-12.columns
+                      ol.little-snug-top
+                        li.indented-1= okr.key_result_1
+                        li.indented-1= okr.key_result_2
+                        li.indented-1= okr.key_result_3
+                      - if okr.postmortem.present?
+                        p.scale-to-90= okr.postmortem
+                  .row
+                    .small-4.columns
+                      p.faint.snug-bottom
+                        - if okr.okr_start
+                          ' #{okr.okr_start.strftime('%m/%d/%Y')} for #{okr.okr_duration} #{okr.okr_units.downcase}
+                        - else
+                          em No start date!
+                    .small-8.columns
+                      ul.menu.align-right.snug-bottom
+                        li.faint
+                          ' Score:
+                          - if okr.score != 0.0
+                            /' #{number_with_precision okr.score, precision: 2}
+                            ' #{sprintf('%.2f',okr.score)}
+                          /' #{'%.2f' % okr.score}
+                          - else
+                            ' TBD
+                        li.faint.pad-right
+                          ' Status:
+                          - if okr.status.present?
+                            ' #{okr.status}
+                          - else
+                            ' TBD
+                        li.faint.pad-right
+                          ' Owner:
+                          - if okr.owner.present?
+                            ' #{okr.owner.name}
+                          - else
+                            ' TBD
+        - else
+          p.text-center None!
+
+  .row
+    .medium-12.columns
+      h5.bold.space-top.primary-text
+        ' Factors and Strategies:
+      .callout.shadow
+        .row
+          .medium-6.columns
+            - if @company.fasts.where(type_code: 'sufa').present?
+              .callout.shadow
+                h5.bold.primary-text Success FActors & Maximization STrategies
+                - @company.fasts.order(updated_at: :desc).where(type_code: 'sufa').each_with_index do |sufa, i|
+                  p.bold
+                    = sufa.body
+                  - if sufa.strategies.present?
+                    - sufa.strategies.order(updated_at: :desc).each_with_index do |mast,ii|
+                      p.indented-1.snug-top
+                        = mast.body
+            - else
+              p.text-center None!
+
+          .medium-6.columns
+            - if @company.fasts.where(type_code: 'rifa').present?
+              .callout.shadow
+                h5.bold.primary-text Risk FActors & Minimization STrategies
+                - @company.fasts.order(updated_at: :desc).where(type_code: 'rifa').each_with_index do |rifa,i|
+                  p.bold= rifa.body
+                  - if rifa.strategies.present?
+                    - rifa.strategies.order(updated_at: :desc).each_with_index do |mist,ii|
+                      p.indented-1.snug-top
+                        = mist.body
+            - else
+              p.text-center None!

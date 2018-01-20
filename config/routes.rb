@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :companies do
     member do
+      get     :dashboard
       put     :add_team_member
       put     :update_team_member
       delete  :remove_team_member

@@ -28,6 +28,7 @@ class Ability
       when 'user'
         cannot :index,              primary_objects
         can :crud,                  primary_objects
+        can :dashboard,             Company
         can :set_sakpi,             Company
         can :unset_sakpi,           Company
         can :manage_members,        Alliance
