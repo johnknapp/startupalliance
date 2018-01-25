@@ -11,10 +11,27 @@ rails g scaffold meeting agenda start_at:datetime venue shared_doc state pid
 #rails g model alliance_users alliance_id:integer user_id:integer
 
 ## STRIPE ##
-rails g model plan stripe_plan_id name display_price.decimal timestamps
-rails g migration extend_users_for_stripe stripe_customer_id plan_id:integer subscribed_at:datetime subscription_expires_at:datetime subscription_state
-rails g resource stripe_event_log event_id processed:boolean created_at:datetime
+
+  User has many invoices
+  User belongs to plan
+
+  Invoice belongs to user
+  Invoice belongs to plan
+
+  Plan has many invoices
+  Plan has many users
+
 SUBSCRIPTION_STATES = %w[trialing active past_due canceled unpaid]
+rails g model Plan name amount:integer stripe_id
+rails g model Invoice user_id:integer plan_id:integer stripe_invoice_id stripe_invoice_date:integer amount_due:integer
+
+rails g migration extend_users_for_stripe stripe_customer_id subscribed_at:datetime subscription_expires_at:datetime subscription_state plan_id:integer
+
+
+
+
+
+rails g resource stripe_event_log event_id processed:boolean created_at:datetime
 app/services/subscription_service.rb (is where the magic happens!)
 
 

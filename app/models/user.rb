@@ -17,6 +17,9 @@ class User < ApplicationRecord
   has_many  :replies,       foreign_key: :author_id, class_name: :Comment, dependent: :destroy
   has_many  :messages
 
+  belongs_to :plan
+  has_many :invoices
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,

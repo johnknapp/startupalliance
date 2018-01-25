@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111181225) do
+ActiveRecord::Schema.define(version: 20180124234012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,19 @@ ActiveRecord::Schema.define(version: 20180111181225) do
     t.index ["user_id"], name: "index_fasts_on_user_id", using: :btree
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "plan_id"
+    t.string   "stripe_subscription_id"
+    t.integer  "stripe_invoice_date"
+    t.string   "stripe_invoice_id"
+    t.integer  "amount_due"
+    t.string   "currency"
+    t.string   "paid"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "conversation_id"
@@ -169,6 +182,14 @@ ActiveRecord::Schema.define(version: 20180111181225) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "amount"
+    t.string   "stripe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sakpis", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -204,25 +225,25 @@ ActiveRecord::Schema.define(version: 20180111181225) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",             default: ""
-    t.string   "last_name",              default: ""
-    t.string   "username",               default: ""
-    t.string   "mission",                default: ""
-    t.string   "twitter_profile",        default: ""
-    t.string   "linkedin_profile",       default: ""
-    t.string   "website",                default: ""
-    t.string   "state",                  default: "unconfirmed"
-    t.string   "role",                   default: "guest"
-    t.string   "pid",                                            null: false
+    t.string   "first_name",              default: ""
+    t.string   "last_name",               default: ""
+    t.string   "username",                default: ""
+    t.string   "mission",                 default: ""
+    t.string   "twitter_profile",         default: ""
+    t.string   "linkedin_profile",        default: ""
+    t.string   "website",                 default: ""
+    t.string   "state",                   default: "unconfirmed"
+    t.string   "role",                    default: "guest"
+    t.string   "pid",                                             null: false
     t.string   "acqsrc"
     t.string   "country_code"
     t.string   "time_zone"
-    t.string   "email",                  default: "",            null: false
-    t.string   "encrypted_password",     default: "",            null: false
+    t.string   "email",                   default: "",            null: false
+    t.string   "encrypted_password",      default: "",            null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,             null: false
+    t.integer  "sign_in_count",           default: 0,             null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -231,14 +252,20 @@ ActiveRecord::Schema.define(version: 20180111181225) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.integer  "skill_index",            default: 0
-    t.integer  "trait_index",            default: 0
-    t.boolean  "company_owner",          default: false
-    t.string   "plan",                   default: "free"
-    t.boolean  "public_skills",          default: false
-    t.boolean  "public_traits",          default: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "skill_index",             default: 0
+    t.integer  "trait_index",             default: 0
+    t.boolean  "company_owner",           default: false
+    t.string   "plan",                    default: "free"
+    t.boolean  "public_skills",           default: false
+    t.boolean  "public_traits",           default: false
+    t.string   "stripe_customer_id"
+    t.integer  "plan_id"
+    t.datetime "subscribed_at"
+    t.datetime "subscription_expires_at"
+    t.string   "subscription_state"
+    t.string   "stripe_coupon_code"
     t.index "lower((username)::text) text_pattern_ops", name: "users_username_lower", unique: true, using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

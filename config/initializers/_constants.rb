@@ -1,9 +1,11 @@
 RECAPTCHA_SITE              = '6LcfhSsUAAAAAKUUu0v5dd-YFBWq-qQ_nSBpjdAL'
 RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
-USER_STATES               = %w[unconfirmed active paused]
+USER_STATES                 = %w[unconfirmed active paused]
 USER_ROLES                  = %w[guest user admin]
 USER_PLANS                  = %w[free alliance company]
+
+SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid]
 
 PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
@@ -68,6 +70,10 @@ USERNAME_EXCLUSIONS = %w[
   startupalliance
   strategy
   strategies
+  stripe
+  stripes
+  stripe_webhook
+  stripe_webhooks
   resource
   resources
   resque

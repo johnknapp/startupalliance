@@ -1,5 +1,7 @@
 ActiveAdmin.register User do
 
+  menu parent: 'Subscribers'
+
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role,
                 :linkedin_profile, :website, :country_code, :time_zone, :plan, :acqsrc, :public_skills, :public_traits
