@@ -257,7 +257,6 @@ ActiveRecord::Schema.define(version: 20180124234012) do
     t.integer  "skill_index",             default: 0
     t.integer  "trait_index",             default: 0
     t.boolean  "company_owner",           default: false
-    t.string   "plan",                    default: "free"
     t.boolean  "public_skills",           default: false
     t.boolean  "public_traits",           default: false
     t.string   "stripe_customer_id"
