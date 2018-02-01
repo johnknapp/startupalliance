@@ -41,17 +41,17 @@ ActiveAdmin.register User do
 
       # Specifically not destroying any companies, okrs or alliances they created
       def departure_cleanup
-        okrs = Okr.where(owner_id: @user.id).all
+        okrs = Okr.where(owner_id: resource.id).all
         if okrs.present?
           okrs.each do |okr|
             okr.update(owner_id: okr.company.creator.id)
           end
         end
-        AllianceUser.where(user_id: @user.id).destroy_all
-        CompanyUser.where(user_id: @user.id).destroy_all
-        UserSkill.where(user_id: @user.id).destroy_all
-        UserTrait.where(user_id: @user.id).destroy_all
-        Conversation.includes?(@user).destroy_all
+        AllianceUser.where(user_id: resource.id).destroy_all
+        CompanyUser.where(user_id: resource.id).destroy_all
+        UserSkill.where(user_id: resource.id).destroy_all
+        UserTrait.where(user_id: resource.id).destroy_all
+        Conversation.includes?(resource).destroy_all
       end
 
   end
