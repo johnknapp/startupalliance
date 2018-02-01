@@ -1,10 +1,10 @@
 ActiveAdmin.register User do
 
-  menu parent: 'Subscribers'
+  menu parent: 'Subscriptions'
 
   permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role,
-                :linkedin_profile, :website, :country_code, :time_zone, :plan, :acqsrc, :public_skills, :public_traits
+                :linkedin_profile, :website, :country_code, :time_zone, :plan_id, :acqsrc, :public_skills, :public_traits
 
   controller do
 
@@ -58,6 +58,7 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
+    column :id
     column :created_at
     column :pid
     column :name do |user|
@@ -84,7 +85,7 @@ ActiveAdmin.register User do
   filter :email
   filter :state,        as: :select, collection: USER_STATES
   filter :role,         as: :select, collection: USER_ROLES
-  filter :plan,         as: :select, collection: USER_PLANS
+  filter :plan
 
   form do |f|
     f.inputs 'Edit User' do
@@ -100,7 +101,7 @@ ActiveAdmin.register User do
       f.input :password_confirmation
       f.input :role,          collection: USER_ROLES
       f.input :state,         collection: USER_STATES
-      f.input :plan,          collection: USER_PLANS
+      f.input :plan
       f.input :acqsrc
     end
     f.actions
