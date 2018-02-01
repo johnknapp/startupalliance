@@ -27,16 +27,16 @@
         li.faint.indented-1
           em
             ' “I look forward to helping you personally!” –John
-      - if current_user and current_user.plan == 'alliance'
+      - if current_user and current_user.plan_name == 'alliance'
         li Go ahead and #{link_to 'create your Private Alliance', new_alliance_path}
         li Once you do, visit the team tab in your Private Alliance and invite your people
         li If your company is already on Startup Alliance, contact them and join the team
-      - elsif current_user and current_user.plan == 'company'
+      - elsif current_user and current_user.plan_name == 'company'
         li Go ahead and #{link_to 'create your Company Workspace', new_company_path}
         li Once you do, visit the team tab in your Company Workspace and invite your people
       li Browse the directories, make new connections and get involved with the community!
       li Create or join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
-      li Visit the #{link_to 'support.startupalliance.com', 'http://support.startupalliance.com', target: '_blank'} to learn how to get the most out of your membership
+      li Visit the #{link_to 'Startup Alliance Help Center', 'http://support.startupalliance.com', target: '_blank'} for tips on getting the most out of your membership
       li Visit #{link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'} and attach a photo to your email address
 
 
@@ -45,5 +45,5 @@
         p
           ' Your currently have
           strong
-            | #{current_user.plan.humanize} Membership
+            | #{current_user.plan_name.humanize} Membership
           ' , you can change your membership plan any time.

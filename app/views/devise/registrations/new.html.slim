@@ -1,4 +1,4 @@
-- @acqsrc = params[:acqsrc] ? params[:acqsrc] : params[:controller] + '/' +params[:action]
+- @acqsrc = params[:acqsrc] ? params[:acqsrc] : params[:controller] + '/' + params[:action]
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
@@ -23,8 +23,14 @@
 
     = simple_form_for(:user, url: registration_path(:user)) do |f|
       = f.error_notification
-      = f.hidden_field :acqsrc, value: @acqsrc
-      = f.hidden_field :plan,   value: params[:plan]
+
+      - desired_plan  = params[:plan] ? params[:plan] : 'free'
+      - plan_interval = 'year'
+      - plan_name     = desired_plan + '_' + plan_interval
+      - plan          = Plan.where(name: plan_name).first
+
+      = f.hidden_field :acqsrc,   value: @acqsrc
+      = f.hidden_field :plan_id,  value: plan.id
 
       p.faint.snug-bottom
         em Membership is open to committed entrepreneurs, advisors and investors

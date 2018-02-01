@@ -1,17 +1,24 @@
 - @acqsrc = acqsrc ? acqsrc : params[:controller] + '/' + params[:action]
 
-/p.snug-bottom.faint
-  em All entrepreneurs are welcome to join
 = simple_form_for(:user, url: registration_path(:user)) do |f|
   = f.error_notification
-  = f.hidden_field :acqsrc, value: @acqsrc
-  - if params[:plan] ? plan = params[:plan] : plan = 'associate'
-  = f.hidden_field :plan,   value: plan
-  = f.hidden_field :r,      value: params[:r]          if params[:controller] == 'companies'
-  = f.hidden_field :token,  value: params[:invite]     if params[:controller] == 'companies'
-  = f.hidden_field :token,  value: params[:invite]     if params[:controller] == 'alliances'
-  = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'companies'
-  = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'alliances'
+
+  - desired_plan  = params[:plan] ? params[:plan] : 'free'
+  - plan_interval = 'year'
+  - plan_name     = desired_plan + '_' + plan_interval
+  - plan          = Plan.where(name: plan_name).first
+
+  - if desired_plan == 'free'
+    /= render 'partials/stripe_checkout', plan: 'free-year'
+    /<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_As4q7e0EyphQP9ncUqCCBlPJ" data-image="#{image_tag( 'sa_mark_2.svg', width: '63px')}" data-name="Emma's Farm CSA" data-description="free-year" data-amount="12345" data-label="Sign Me Up!"></script>
+
+  = f.hidden_field :acqsrc,   value: @acqsrc
+  = f.hidden_field :plan_id,  value: plan.id
+  = f.hidden_field :r,        value: params[:r]          if params[:controller] == 'companies'
+  = f.hidden_field :token,    value: params[:invite]     if params[:controller] == 'companies'
+  = f.hidden_field :token,    value: params[:invite]     if params[:controller] == 'alliances'
+  = f.hidden_field :entity,   value: params[:controller] if params[:controller] == 'companies'
+  = f.hidden_field :entity,   value: params[:controller] if params[:controller] == 'alliances'
   p.faint.snug-bottom
     em Membership is open to committed entrepreneurs, advisors and investors
   .row.collapse

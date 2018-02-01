@@ -11,7 +11,7 @@ class GibbonService
             LNAME:    user.last_name,
             USERNAME: user.username,
             STATE:    user.state,
-            PLAN:     user.plan,
+            PLAN:     user.plan_name,
             ACQSRC:   user.acqsrc
           }
         }

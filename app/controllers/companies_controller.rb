@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
   load_and_authorize_resource
 
   def dashboard
-    render layout: 'application_blank'
+    # render layout: 'application_blank'
   end
 
 
@@ -23,19 +23,19 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       @company = Company.new
     else
-      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
+      redirect_to pricing_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
     end
   end
 
   # GET /companies/1/edit
   def edit
-    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       true
     else
-      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
+      redirect_to pricing_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
     end
   end
 
@@ -109,7 +109,7 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       @company = Company.where(company_params).first_or_initialize
       if @company.new_record?
         @company.founded = string_to_date(params[:company][:founded])
@@ -130,14 +130,14 @@ class CompaniesController < ApplicationController
         redirect_to company_path(@company), notice: 'Company already exists!'
       end
     else
-      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
+      redirect_to pricing_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
     end
   end
 
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
-    if %w[company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       founded = string_to_date(params[:company][:founded])
       params[:company].delete :founded
       if current_user == @company.creator
@@ -157,7 +157,7 @@ class CompaniesController < ApplicationController
         redirect_back(fallback_location: root_path, alert: 'You are not the creator of this Company!')
       end
     else
-      redirect_to plans_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
+      redirect_to pricing_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
     end
   end
 

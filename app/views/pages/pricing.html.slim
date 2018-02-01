@@ -26,17 +26,18 @@
               ul
                 li Free listing in the Entrepreneur’s Showcase
                 li Browse Alliances, Companies, Members
-                li Become part of a Private Alliance
-                li Become part of a Company Team
+                /li Get recruited into Alliances and Companies
+                li Become part of any Private Alliance
+                li Become part of any Company Team
                 li Limited private messaging (receive only)
                 ul.no-bullet.little-snug-top
                   li.faint
-                    ' (Get recruited onto Alliances and Teams)
+                    ' (Full messaging abilities once on a team)
           .callout.small.accent
             h5.bold.text-center Free forever!
-            - if current_user and current_user.plan == 'free'
+            - if current_user and current_user.plan_name == 'free'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan != 'free'
+            - elsif current_user and current_user.plan_name != 'free'
               p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Become a Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
@@ -71,11 +72,11 @@
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
             h5.bold.text-center 15 day free trial
-            - if current_user and current_user.plan == 'alliance'
+            - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan == 'free'
+            - elsif current_user and current_user.plan_name == 'free'
               p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
-            - elsif current_user and current_user.plan == 'company'
+            - elsif current_user and current_user.plan_name == 'company'
               p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
@@ -122,9 +123,9 @@
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
             h5.bold.text-center 15 day free trial
-            - if current_user and current_user.plan == 'company'
+            - if current_user and current_user.plan_name == 'company'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan != 'company'
+            - elsif current_user and current_user.plan_name != 'company'
               p= link_to 'Upgrade to Company', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'

@@ -44,7 +44,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def change_plan
     if current_user and params[:desired_plan]
-      current_user.update_attribute(:plan, params[:desired_plan])
+      plan_interval = current_user.plan_interval
+      desired_plan  = params[:desired_plan]
+      plan_name     = desired_plan + '_' + plan_interval
+      plan = Plan.where(name: plan_name).first
+      current_user.update_attribute(:plan_id, plan.id)
+      GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
     end
     redirect_back(fallback_location: pricing_path, alert: 'You changed your plan')
   end
@@ -63,8 +68,8 @@ class RegistrationsController < Devise::RegistrationsController
       token = params[:user][:token]
       role = params[:user][:r]
       if user
-        # create membership for existing non-auth user
-        create_membership_for_user(user,entity,token,role)
+        # add existing non-auth user to entity
+        add_user_to_entity(user,entity,token,role)
         redirect_to user_session_path, notice: 'You are now a member. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
@@ -99,8 +104,8 @@ class RegistrationsController < Devise::RegistrationsController
         GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       current_or_guest_user
-      # create membership for new user
-      create_membership_for_user(current_or_guest_user,entity,token,role)
+      # add new user to entity
+      add_user_to_entity(current_or_guest_user,entity,token,role)
     else
       redirect_back(fallback_location: root_path, alert: 'Either your email is invalid... or you’re a robot!') and return
     end
@@ -177,7 +182,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def create_membership_for_user(user,entity,token,r)
+    def add_user_to_entity(user,entity,token,r)
       if entity == 'company'
         role = 'Owner'      if r == '0'
         role = 'Employee'   if r == '1'

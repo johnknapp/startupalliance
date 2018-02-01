@@ -40,6 +40,14 @@ class User < ApplicationRecord
     end
   end
 
+  def plan_name
+    self.plan.name.split('_').first
+  end
+
+  def plan_interval
+    self.plan.name.split('_').last
+  end
+
   def admin?
     self.role == 'admin'
   end
@@ -47,7 +55,11 @@ class User < ApplicationRecord
   # Can I message this person?
   #   Am I on the right plan or does conversation exist?
   def messagable_by(current_user)
-    true if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans } or Conversation.between(self.id,current_user.id).present?
+    true if %w[alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans } or Conversation.between(self.id,current_user.id).present?
+  end
+
+  def team_count
+    self.alliances.count + self.companies.count
   end
 
   def conversations

@@ -1,5 +1,10 @@
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    = @company.name
+    h4.accent-text.text-center.bold #{@company.phases} stage
+
 - if current_user and @company.team.include?(current_user)
-  .callout.primary-background
+  /.callout.primary-background
     .row
       .medium-12.columns
         h1.white-text.text-center.bold= @company.name

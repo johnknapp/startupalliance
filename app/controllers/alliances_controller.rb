@@ -16,19 +16,19 @@ class AlliancesController < ApplicationController
 
   # GET /alliances/new
   def new
-    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       @alliance = Alliance.new
     else
-      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
   # GET /alliances/1/edit
   def edit
-    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       true
     else
-      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
@@ -58,7 +58,7 @@ class AlliancesController < ApplicationController
   # POST /alliances
   # POST /alliances.json
   def create
-    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       @alliance = Alliance.new(alliance_params)
 
       respond_to do |format|
@@ -74,14 +74,14 @@ class AlliancesController < ApplicationController
         end
       end
     else
-      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
   # PATCH/PUT /alliances/1
   # PATCH/PUT /alliances/1.json
   def update
-    if %w[alliance company].any? { |necessary_plans| current_user.plan == necessary_plans }
+    if %w[alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
       respond_to do |format|
         if current_user == @alliance.creator
           if @alliance.update(alliance_params)
@@ -96,7 +96,7 @@ class AlliancesController < ApplicationController
         end
       end
     else
-      redirect_to plans_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
