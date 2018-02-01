@@ -23,7 +23,7 @@ class Ability
       when 'admin'
         can :manage,                [:all]
 
-      # Watch for current_user.plan conditionals all over the place!
+      # Watch for current_user.plan_name conditionals all over the place!
 
       when 'user'
         cannot :index,              primary_objects
