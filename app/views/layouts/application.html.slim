@@ -1,7 +1,7 @@
 = render 'layouts/html_and_head'
 body.flex-site
   - if Rails.env.production?
-   = javascript_include_tag 'google_tag_manager_body'
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGV37QZ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   main.flex-content
     .callout.snug-bottom.snug-top.light-grey-background
       = render 'layouts/alerts'
