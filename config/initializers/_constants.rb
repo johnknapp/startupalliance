@@ -8,7 +8,7 @@ SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid]
 
 PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
-CONCIERGE_ONBOARDING_TIP    = 'Members of each new Private Alliance and Company Workspace receive a free onboarding session to get up to speed quickly and take full advantage of the platform.'
+GETTING_STARTED_WEBCHAT_TIP = 'Members of each new Private Alliance and Company Workspace receive personalized advice in a free webchat to get the most out of the platform right away.'
 STEALTH_MODE_TIP            = 'In case you want to keep your Private Alliance and Company from appearing in directories and elsewhere on the site.'
 STARTUP_SKILL_TIP           = 'Showcase your strengths using our standard set of 18 startup skills.'
 PERSONAL_TRAIT_TIP          = 'Highlight your qualities using our standard set of 12 personal traits.'
