@@ -16,6 +16,9 @@ class PagesController < ApplicationController
     @user = current_user
   end
 
+  def resources
+  end
+
   def faq
   end
 

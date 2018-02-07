@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
+  get 'resources',                  to: 'pages#resources',            constraints: { format: 'html' }
   get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
   get 'code_of_conduct',            to: 'pages#code_of_conduct',      constraints: { format: 'html' }
   get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
