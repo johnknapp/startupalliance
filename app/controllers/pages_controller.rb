@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     @user = current_user
   end
 
-  def resources
+  def nucleus
   end
 
   def faq
