@@ -44,18 +44,19 @@
       .column
         .card.primary.shadow
           .card-divider.accent-background
-            h4.bold.text-center Global Office
+            h4.bold.text-center Global Virtual Office
           .card-section
             .plan-box data-equalizer-watch=true
-              p.bold.text-center Real-time co-working and hangouts with entrepreneurs from around the world.
+              p.bold.text-center Real-time virtual co-working and web hangouts with entrepreneurs from around the world.
               - time      = Time.now.utc.beginning_of_day
               - last_time = Time.now.utc.beginning_of_day-1.day
               - url       = 'https://meet.jit.si/sa-go-' + Digest::SHA1.hexdigest(time.to_s)
               - last_url  = 'https://meet.jit.si/sa-go-' + Digest::SHA1.hexdigest(last_time.to_s)
               - if current_user and current_user.confirmed?
-                = link_to 'Access the Global Office', url, target: '_blank', class: 'button expanded'
+                = link_to 'Access the Global Virtual Office', url, target: '_blank', class: 'button expanded'
                 p.snug-top.faint.text-center New link at #{(time+1.day).strftime('%e %b %Y %H:%M %Z')}
                 p.snug-top.faint.text-center= link_to 'Previous link', last_url, target: '_blank'
               - else
-                = link_to 'Access the Global Office', '#', target: '_blank', class: 'button expanded disabled'
+                = link_to 'Access the Global Virtual Office', '#', target: '_blank', class: 'button expanded disabled'
+                p.faint.text-center= link_to 'Sign-in required', new_user_session_path
 
