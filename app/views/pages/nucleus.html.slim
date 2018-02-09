@@ -55,7 +55,8 @@
               - if current_user and current_user.confirmed?
                 = link_to 'Access the Global Virtual Office', url, target: '_blank', class: 'button expanded'
                 p.snug-top.faint.text-center
-                  ' Link changes at #{(time+1.day).strftime('%b %e, %H:%M %Z')}
+                  /' Link changes at #{(time+1.day).strftime('%b %e, %H:%M %Z')}
+                  ' Link updates #{(time+1.day).strftime('%b %e @ %H:%M %Z')}
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
                     i.fa.fa-info-circle
                 p.snug-top.faint.text-center= link_to 'Previous GVO link', last_url, target: '_blank'
