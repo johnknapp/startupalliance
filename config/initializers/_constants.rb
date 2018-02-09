@@ -13,6 +13,7 @@ STEALTH_MODE_TIP            = 'In case you want to keep your Private Alliance an
 STARTUP_SKILL_TIP           = 'Showcase your strengths using our standard set of 18 startup skills.'
 PERSONAL_TRAIT_TIP          = 'Highlight your qualities using our standard set of 12 personal traits.'
 VIRTUAL_OFFICE_TIP          = 'Web-based co-working using your webcam and microphone'
+GVO_LINK_EXPIRY_TIP         = 'The link to the Global Virtual Office is changed each day at midnight UTC. The previous GVO link is available as a convenience.'
 USER_TRAIT_TIP              = 'Only Personal Traits where you have rated yourself appear to others.'
 VIEWER_TRAIT_TIP            = 'This member has rated themselves for these Personal Traits.'
 USER_SKILL_TIP              = 'Only Startup Skills where you have rated yourself appear to others.'
