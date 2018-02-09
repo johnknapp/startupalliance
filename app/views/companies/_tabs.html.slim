@@ -28,8 +28,8 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
     a.bold href='#discussions'
       ' Discussions
   li.tabs-title
-    a.bold href='#conferencing'
-      ' Video Conferencing
+    a.bold href='#office'
+      ' Virtual Office
 
 .tabs-content.shadow data-tabs-content='tool-tabs'
   - if !current_user
@@ -52,5 +52,5 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
     = render 'okrs'
   .tabs-panel#discussions
     = render 'discussions'
-  .tabs-panel#conferencing
-    = render 'video_conferencing'
+  .tabs-panel#office
+    = render 'virtual_office'

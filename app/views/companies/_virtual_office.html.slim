@@ -5,14 +5,14 @@
         span aria-hidden=true
           ' &times;
       p.faint.pad-right
-        ' Unite the team and aid collaboration with any time, any place video conferences. (Any team member can use this any time.)
+        ' Collaborate in real-time or just hang out in your virtual office. (Any team member can use this any time.)
 .row
   .medium-10.medium-offset-1.columns
     h5.bold.primary-text
       span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
-        ' Live Video Conferencing:
+        ' Real-time Virtual Office:
     - if current_user and @company.webmeet_url.present? and @company.team.include?(current_user)
-      p.text-center.snug-bottom= link_to 'Access the Video Conference', @company.webmeet_url, target: '_blank', class: 'button shadow-4dp'
+      p.text-center.snug-bottom= link_to 'Access your Virtual Office', @company.webmeet_url, target: '_blank', class: 'button shadow-4dp'
     - else
       p.space-top.text-center
-        em Video conferencing only available to the company team.
+        em Real-time Virtual Office only available to the company team.
