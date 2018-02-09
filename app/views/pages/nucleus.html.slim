@@ -54,7 +54,7 @@
               - last_url  = 'https://meet.jit.si/sa-go-' + Digest::SHA1.hexdigest(last_time.to_s)
               - if current_user and current_user.confirmed?
                 = link_to 'Access the Global Virtual Office', url, target: '_blank', class: 'button expanded'
-                p.snug-top.faint.text-center New link at #{(time+1.day).strftime('%e %b %Y %H:%M %Z')}
+                p.snug-top.faint.text-center Link changes at #{(time+1.day).strftime('%e %b %Y %H:%M %Z')}
                 p.snug-top.faint.text-center= link_to 'Previous link', last_url, target: '_blank'
               - else
                 = link_to 'Access the Global Virtual Office', '#', target: '_blank', class: 'button expanded disabled'
