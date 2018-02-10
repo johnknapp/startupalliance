@@ -53,8 +53,8 @@
               p.bold.text-center Real-time virtual co-working and web hangouts with entrepreneurs from around the world.
               - time      = Time.now.utc.beginning_of_day
               - last_time = Time.now.utc.beginning_of_day-1.day
-              - url       = 'https://meet.jit.si/sa-go-' + Digest::SHA1.hexdigest(time.to_s)
-              - last_url  = 'https://meet.jit.si/sa-go-' + Digest::SHA1.hexdigest(last_time.to_s)
+              - url       = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(time.to_s)
+              - last_url  = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(last_time.to_s)
               - if current_user and current_user.confirmed?
                 = link_to 'Access the Global Virtual Office', url, target: '_blank', class: 'button expanded'
                 p.snug-top.faint.text-center
