@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  root 'pages#home'
+  root 'static#home'
 
-  get 'nucleus',                    to: 'pages#nucleus',              constraints: { format: 'html' }
-  get 'faq',                        to: 'pages#faq',                  constraints: { format: 'html' }
-  get 'code_of_conduct',            to: 'pages#code_of_conduct',      constraints: { format: 'html' }
-  get 'join_thanks',                to: 'pages#join_thanks',          constraints: { format: 'html' }
-  get 'activate_thanks',            to: 'pages#activate_thanks',      constraints: { format: 'html' }
-  get 'pricing',                    to: 'pages#pricing',              constraints: { format: 'html' }
-  get 'privacy',                    to: 'pages#privacy',              constraints: { format: 'html' }
-  get 'terms',                      to: 'pages#terms',                constraints: { format: 'html' }
-  get 'learn_more',                 to: 'pages#learn_more',           constraints: { format: 'html' }
-  get 'quick_start',                to: 'pages#quick_start',          constraints: { format: 'html' }
-  get 'community_canvas',           to: 'pages#community_canvas',     constraints: { format: 'html' }
+  get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
+  get 'faq',                        to: 'static#faq',                  constraints: { format: 'html' }
+  get 'code_of_conduct',            to: 'static#code_of_conduct',      constraints: { format: 'html' }
+  get 'join_thanks',                to: 'static#join_thanks',          constraints: { format: 'html' }
+  get 'activate_thanks',            to: 'static#activate_thanks',      constraints: { format: 'html' }
+  get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
+  get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
+  get 'terms',                      to: 'static#terms',                constraints: { format: 'html' }
+  get 'learn_more',                 to: 'static#learn_more',           constraints: { format: 'html' }
+  get 'quick_start',                to: 'static#quick_start',          constraints: { format: 'html' }
+  get 'community_canvas',           to: 'static#community_canvas',     constraints: { format: 'html' }
 
-  get 'members',                    to: 'pages#members',              constraints: { format: 'html' }
+  get 'members',                    to: 'static#members',              constraints: { format: 'html' }
 
   # resources :discussions, except: [:index],        constraints: { format: 'html' } do
   #   resources :comments,  except: [:index],        constraints: { format: 'html' }

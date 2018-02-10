@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class StaticController < ApplicationController
   before_action :authenticate_user!, only: [:quick_start]
 
   def home
