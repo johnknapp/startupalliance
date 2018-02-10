@@ -6,8 +6,6 @@ class Alliance < ApplicationRecord
   has_many    :members, through: :alliance_users, source: :user
   belongs_to  :creator, class_name: :User
 
-  validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
-
   def member_companies
     arr = []
     self.members.each do |member|

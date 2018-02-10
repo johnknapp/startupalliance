@@ -1,6 +1,6 @@
 ActiveAdmin.register Company do
 
-  permit_params :id, :pid, :webmeet_url, :name, :mission, :primary_market, :sakpi_index, :phases, :url, :country_code, :time_zone, :founded, :recruiting, :creator_id, :is_unlisted
+  permit_params :id, :pid, :webmeet_code, :name, :mission, :primary_market, :sakpi_index, :phases, :url, :country_code, :time_zone, :founded, :recruiting, :creator_id, :is_unlisted
 
   controller do
     def find_resource

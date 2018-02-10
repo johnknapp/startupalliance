@@ -14,7 +14,6 @@ class Company < ApplicationRecord
   accepts_nested_attributes_for :company_users
 
   validates :url, url: { allow_nil: true, allow_blank: true, no_local: true }
-  validates :webmeet_url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
   enum phases: {
       Ideation:         0,

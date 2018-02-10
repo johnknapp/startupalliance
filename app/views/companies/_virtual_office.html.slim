@@ -11,8 +11,8 @@
     h5.bold.primary-text
       span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
         ' Real-time Virtual Office:
-    - if current_user and @company.webmeet_url.present? and @company.team.include?(current_user)
-      p.text-center.snug-bottom= link_to 'Access your Virtual Office', @company.webmeet_url, target: '_blank', class: 'button shadow-4dp'
+    - if current_user and @company.webmeet_code.present? and @company.team.include?(current_user)
+      p.text-center.snug-bottom= link_to 'Access your Virtual Office', company_pvo_url, target: '_blank', class: 'button shadow-4dp'
     - else
       p.space-top.text-center
         em Real-time Virtual Office only available to the company team.

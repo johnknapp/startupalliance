@@ -1,5 +1,9 @@
 module CompanyHelper
 
+  def company_pvo_url
+    WEBRTC_PRIVATE_URL + @company.webmeet_code
+  end
+
   def team_role(company,user)
     company_user = CompanyUser.where(company_id: company.id).where(user_id: user.id).first
     if company_user
