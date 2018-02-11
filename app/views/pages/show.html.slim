@@ -6,13 +6,23 @@
 
 .row
   .medium-8.medium-offset-2.columns
-    p.text-right.snug-top.space-bottom
-      = link_to edit_page_path do
-        i.fa.fa-pencil
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      | &nbsp;
-      = link_to @page, data: { confirm: 'Really delete this wiki page?' }, method: :delete do
-        i.fa.fa-trash
+    .row
+      .medium-6.columns
+        p.snug-top.space-bottom
+          = link_to pages_path do
+            i.fa.fa-arrow-left
+            | &nbsp;
+            | &nbsp;
+            ' Return to Resources Wiki
+
+      .medium-6.columns
+        p.text-right.snug-top.space-bottom
+          = link_to edit_page_path do
+            i.fa.fa-pencil
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          = link_to @page, data: { confirm: 'Really delete this wiki page?' }, method: :delete do
+            i.fa.fa-trash
     p= @page.content

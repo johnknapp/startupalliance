@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
 
   def index
-    @pages = Page.all
+    @pages = Page.all.order(updated_at: :desc)
   end
 
   def show
