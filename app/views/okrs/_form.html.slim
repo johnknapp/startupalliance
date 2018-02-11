@@ -17,7 +17,7 @@
       .medium-9.column
         = f.input :objective, placeholder: 'An objective for this OKR'
       .medium-3.column
-        = f.input :sakpi_id, label: 'SAKPI to favorably impact', as: :select, collection: spaced_sakpis, include_blank: 'Choose...', input_html: { value: f.object.sakpi_id }
+        = f.input :sakpi_id, label: 'SAKPI to favorably impact', as: :select, collection: Sakpi.all, label_method: :display_name, value_method: :id, include_blank: 'Choose...', input_html: { value: f.object.sakpi_id }
     - if @okr.new_record?
       .row
         .medium-12.column

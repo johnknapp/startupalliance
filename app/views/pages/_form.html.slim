@@ -2,11 +2,12 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :title
-    = f.input :content
+    = f.input :title, label: 'Page title'
+    = f.input :content, label: 'Page content', input_html: { rows: 18 }
+    = f.input :sakpi_ids, label: 'Assign this page to one or more SAKPIs', as: :check_boxes, collection: Sakpi.all.order(:id), label_method: :display_name, value_method: :id
   .form-actions
     .row
       .medium-12.columns
         .button-group
           = f.button :submit, class: 'button'
-          = link_to 'Exit', :back, class: 'button accent'
+          = link_to 'Exit', pages_path, class: 'button accent'

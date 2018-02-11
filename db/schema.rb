@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 20180211024352) do
 
   create_table "page_sakpis", force: :cascade do |t|
     t.integer  "page_id"
-    t.integer  "sakip_id"
+    t.integer  "sakpi_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,7 +1,8 @@
 module SakpiHelper
 
-  # TODO make this not so scary brittle
   # The problem is Sakpi names have &nbsp; instead of spaces
+  # see sakpi.rb#display_name
+  # cruft?
   def spaced_sakpis
     sakpis = [
         ['Capital',1],
