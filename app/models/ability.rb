@@ -12,6 +12,7 @@ class Ability
     alias_action :create, :read,                                                to: :cr
     alias_action :create, :read, :update,                                       to: :cru
     alias_action :create, :read, :update, :destroy,                             to: :crud
+    alias_action :index, :create, :read, :update, :destroy,                     to: :crudi
     alias_action :add_alliance_member, :remove_alliance_member,                 to: :manage_members
     alias_action :add_team_member, :update_team_member, :remove_team_member,    to: :manage_team
 
@@ -28,6 +29,7 @@ class Ability
       when 'user'
         cannot :index,              primary_objects
         can :crud,                  primary_objects
+        can :crudi,                 Page
         can :dashboard,             Company
         can :set_sakpi,             Company
         can :unset_sakpi,           Company

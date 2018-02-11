@@ -76,6 +76,8 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
+    audited (4.6.0)
+      activerecord (>= 4.0, < 5.2)
     awesome_print (1.7.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -219,6 +221,8 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    paranoia (2.4.0)
+      activerecord (>= 4.0, < 5.2)
     passenger (5.1.1)
       rack
       rake (>= 0.8.1)
@@ -279,6 +283,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redcarpet (3.4.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     route_downcaser (1.2.1)
@@ -358,6 +363,7 @@ DEPENDENCIES
   actionview-encoded_mail_to
   activeadmin!
   ancestry
+  audited
   awesome_print
   better_errors
   binding_of_caller
@@ -380,6 +386,7 @@ DEPENDENCIES
   jquery-ui-rails
   letter_opener
   listen (~> 3.0.5)
+  paranoia
   passenger
   pg (~> 0.18)
   pg_search
@@ -390,6 +397,7 @@ DEPENDENCIES
   rack-livereload
   rails (>= 5.0.1, < 5.1)
   rails_autolink
+  redcarpet
   route_downcaser
   sass-rails (~> 5.0)
   scout_apm

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get 'members',                    to: 'static#members',              constraints: { format: 'html' }
 
+  resources :pages, path: 'nucleus/resources'
+
   # resources :discussions, except: [:index],        constraints: { format: 'html' } do
   #   resources :comments,  except: [:index],        constraints: { format: 'html' }
   # end

@@ -10,6 +10,8 @@ rails g scaffold meeting agenda start_at:datetime venue shared_doc state pid
 #rails g model company_users company_id:integer user_id:integer share:integer (share enum over_75 over_50 over_33 over_25 over_10 over_5 none)
 #rails g model alliance_users alliance_id:integer user_id:integer
 
+rails g resource Page title:string:index content:text pid
+
 ## STRIPE ##
 
   User has many invoices

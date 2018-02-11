@@ -1,0 +1,19 @@
+- content_for :page_title do
+  ' Startup Alliance – Resources Wiki
+
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Resources Wiki
+
+.row
+  .medium-8.medium-offset-2.columns
+    p.text-right.snug-top.space-bottom= link_to 'New Wiki Page', new_page_path
+    - if @pages.present?
+      - @pages.each do |page|
+        h3.bold= link_to page.title, page_path(page)
+        p.faint.snug-top
+          ' Version #{page.audits.count}
+          ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+          ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+
+
