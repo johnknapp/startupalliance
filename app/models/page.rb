@@ -2,7 +2,7 @@ class Page < ApplicationRecord
   include Pid
 
   has_many    :page_sakpis
-  has_many    :sakpis, through: :page_sakpis
+  has_many    :sakpis, through: :page_sakpis, dependent: :destroy
 
   validates :title,       presence: true, on: :create
   validates :title,       length: { maximum: 64 }

@@ -1,0 +1,22 @@
+- unless category.nil?
+  - sakpi = @sakpis.find(category)
+  - if sakpi.pages.present?
+    - sakpi.pages.all.each do |page|
+      h3.bold= link_to page.title, page_path(page)
+      p.faint.snug-top
+        ' Version #{page.audits.count}
+        ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+        ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+  - else
+    p.bold.little-space-top.text-center No Wiki Resources for this SAKPI, #{link_to 'add one', new_page_path}!
+- else
+  - if @pages
+    - @pages.each do |page|
+      - if page.sakpi_ids.blank?
+        h3.bold= link_to page.title, page_path(page)
+        p.faint.snug-top
+          ' Version #{page.audits.count}
+          ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+          ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+      /- else
+        p.bold.little-space-top.text-center No uncategorized Wiki Resources, #{link_to 'add one', new_page_path}!

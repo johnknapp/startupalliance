@@ -4,7 +4,14 @@ class PagesController < ApplicationController
 
 
   def index
-    @pages = Page.all.order(updated_at: :desc)
+    @pages  = Page.all.order(updated_at: :desc)
+    @sakpis = Sakpi.all.order(:id)
+    # @capital_pages            = Sakpi.find(1).pages
+    # @cash_flow_pages          = Sakpi.find(2).pages
+    # @differentiation_pages    = Sakpi.find(3).pages
+    # @growth_pages             = Sakpi.find(4).pages
+    # @product_market_fit_pages = Sakpi.find(5).pages
+    # @team_pages               = Sakpi.find(6).pages
   end
 
   def show
