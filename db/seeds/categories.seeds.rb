@@ -1,6 +1,5 @@
 Category.delete_all
 cats = [
-    'Admin services',
     'Advisors & mentors',
     'Analytics',
     'Blockchain',
