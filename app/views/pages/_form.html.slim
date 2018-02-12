@@ -3,8 +3,74 @@
 
   .form-inputs
     = f.input :title, label: 'Page title'
-    = f.input :content, label: 'Page content', input_html: { rows: 18 }
-    p.faint.snug-top.text-right= link_to 'Markdown formatting syntax', 'https://caleorourke.gitbooks.io/redcarpet-syntax/', target: '_blank'
+    = f.input :content, label: 'Page content (Format your pages using Markdown syntax)', input_html: { rows: 18 }
+    .row
+      .medium-6.columns
+        .snug-top.button.tiny.accent data-toggle='markdown-tips' Markdown Tips
+        .dropdown-pane.large.shadow-4dp data-dropdown=true id='markdown-tips' data-auto-focus=true
+          p.scale-to-90
+            ' Markdown is a simple way to write web content without having to use code.
+          p.scale-to-90.little-snug-top
+            ' Use the following formatting syntax to format the text on your wiki page. The #{link_to 'Markdown Reference', 'https://caleorourke.gitbooks.io/redcarpet-syntax/', target: '_blank'} has many more formatting ideas.
+            ' To make multiple paragraphs, just put an extra return between them.
+          /p.scale-to-90.little-snug-top
+          table.hover.stacked.scale-to-90
+            thead
+              tr
+                th{valign='top'} Formatting syntax
+                th{valign='top'} Result
+            tbody
+              tr
+                td{valign='top'}
+                  ' **Bold text**
+                td{valign='top'}
+                  strong Bold text
+              tr
+                td{valign='top'}
+                  ' *Italic text*
+                td{valign='top'}
+                  em Italic text
+              /tr
+                td{valign='top'}
+                  ' ***Bold italic text***
+                td{valign='top'}
+                  strong
+                    em Bold italic text
+              tr
+                td{valign='top'}
+                  ' - Bullets
+                  br
+                  ' - More bullets
+                td{valign='top'}
+                  ' • Bullets
+                  br
+                  ' • More bullets
+              tr
+                td{valign='top'}
+                  ' 1. Numbers
+                  br
+                  ' 1. More numbers
+                  br
+                  ' 1. Still more numbers
+                td{valign='top'}
+                  ' 1. Numbers
+                  br
+                  ' 2. More numbers
+                  br
+                  ' 3. Still more numbers
+              tr
+                td{valign='top'}
+                  ' [Visit Google](http://google.com)
+                td{valign='top'}
+                  = link_to 'Visit Google', 'http://google.com'
+              tr
+                td{valign='top'}
+                  ' ### H3 Heading
+                td{valign='top'}
+                  h3 H3 Heading
+
+      .medium-6.columns
+        p.faint.snug-top.text-right= link_to 'Markdown Reference', 'https://caleorourke.gitbooks.io/redcarpet-syntax/', target: '_blank', class: 'button tiny accent'
     = f.input :sakpi_ids, label: 'Categorized this page to one or more SAKPIs', as: :check_boxes, collection: Sakpi.all.order(:id), label_method: :display_name, value_method: :id
   .form-actions
     .row
