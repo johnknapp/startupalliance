@@ -5,7 +5,7 @@ gem 'rails',                                '>= 5.0.1', '< 5.1'
 gem 'pg',                                   '~> 0.18'
 
 # gem 'aasm'
-# gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+gem 'acts-as-taggable-on'
 # gem 'acts_as_commentable_with_threading'
 gem 'actionview-encoded_mail_to'
 gem 'activeadmin', github: 'activeadmin'
