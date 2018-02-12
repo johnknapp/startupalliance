@@ -38,4 +38,4 @@
           ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
           ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
     - else
-      p.bold.text-center.space-top Nothing in #{filter}, #{link_to 'add something', new_page_path}!
+      p.bold.text-center.space-top Nothing in #{filter}, #{link_to 'add something', new_page_path} or show #{link_to 'all categories', pages_path}.
