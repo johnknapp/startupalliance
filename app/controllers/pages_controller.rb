@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     if @page.save
-      redirect_to pages_path, notice: 'Wiki page was successfully created.'
+      redirect_to pages_path, notice: 'Knowledge Base Entry was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      redirect_to page_path, notice: 'Wiki page was successfully updated.'
+      redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    redirect_to pages_path, alert: 'Wiki page was successfully destroyed.'
+    redirect_to pages_path, alert: 'Knowledge Base Entry was successfully destroyed.'
   end
 
   private
