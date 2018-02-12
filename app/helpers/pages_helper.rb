@@ -2,6 +2,7 @@ module PagesHelper
   def markdown(text)
     options = {
         filter_html:     true,
+        no_images:       true,
         hard_wrap:       true,
         link_attributes: { rel: 'nofollow', target: "_blank" },
         space_after_headers: true,

@@ -25,4 +25,4 @@
           | &nbsp;
           = link_to @page, data: { confirm: 'Really delete this wiki page?' }, method: :delete do
             i.fa.fa-trash
-    p= @page.content
+    p= markdown @page.content

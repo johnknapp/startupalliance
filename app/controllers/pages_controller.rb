@@ -35,7 +35,7 @@ class PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      redirect_to pages_path, notice: 'Wiki page was successfully updated.'
+      redirect_to page_path, notice: 'Wiki page was successfully updated.'
     else
       render :edit
     end

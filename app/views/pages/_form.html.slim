@@ -4,6 +4,7 @@
   .form-inputs
     = f.input :title, label: 'Page title'
     = f.input :content, label: 'Page content', input_html: { rows: 18 }
+    p.faint.snug-top.text-right= link_to 'Markdown formatting syntax', 'https://caleorourke.gitbooks.io/redcarpet-syntax/', target: '_blank'
     = f.input :sakpi_ids, label: 'Categorized this page to one or more SAKPIs', as: :check_boxes, collection: Sakpi.all.order(:id), label_method: :display_name, value_method: :id
   .form-actions
     .row
