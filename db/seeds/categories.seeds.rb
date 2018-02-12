@@ -1,7 +1,7 @@
 Category.delete_all
 cats = [
     'Admin services',
-    'Advisors & Mentors',
+    'Advisors & mentors',
     'Analytics',
     'Blockchain',
     'Bootstrapping',
@@ -42,7 +42,7 @@ cats = [
     'Strategic partnerships',
     'Team',
     'Technology & IT',
-    'Tools & Infrastructure',
+    'Tools & infrastructure',
     'UX/UI'
 ]
 cats.each do |c|
