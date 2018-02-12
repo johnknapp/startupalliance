@@ -4,4 +4,13 @@ ActiveAdmin.register Category do
 
   menu parent: 'Attributes'
 
-end
+  index do
+    selectable_column
+    column :name
+    column 'Page count' do |category|
+      Page.tagged_with(category.name).count
+    end
+    actions
+  end
+
+  end

@@ -18,8 +18,9 @@
 //= require foundation_datepicker_init
 //= require subtree_toggler
 //= require google_tag_manager_head
+//= require chosen.jquery
+//= require chosen_select_init
 
 $(function(){
   $(document).foundation();
-//  $('select').foundationSelect(); // for v6 https://github.com/colinduwe/foundation-select
 });

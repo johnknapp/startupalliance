@@ -1,13 +1,15 @@
+- categories = Category.all.order(:name).map { |cat| [cat.name, cat.name] }
 = simple_form_for(@page) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :title, label: 'Page title'
-    = f.input :content, label: 'Page content (Format your pages using Markdown syntax)', input_html: { rows: 18 }
+    .row
+      .medium-6.columns
+        = f.input :title
+      .medium-6.columns
+        = f.input :category_list, collection: categories, as: :select, label: 'Category tags', input_html: { 'multiple' => true, class: 'chosen-select' }
+    = f.input :content, label: 'Content (format using Markdown)', input_html: { rows: 18 }
     = render 'pages/markdown_ua'
-    - categories = Category.all.order(:name).map { |cat| [cat.name, cat.name] }
-    = f.input :category_list, collection: categories, as: :select, label: false, include_blank: 'Categorize this skill...', input_html: { multiple: true }
-    /= f.input :category_list, collection: categories, as: :select, label: false, input_html: { 'data-prompt' => 'Categorize this skill...', 'multiple' => true }
 
 
   .form-actions

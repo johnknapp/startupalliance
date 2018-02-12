@@ -23,6 +23,6 @@
           | &nbsp;
           | &nbsp;
           | &nbsp;
-          = link_to @page, data: { confirm: 'Really delete this page?' }, method: :delete do
+          = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
             i.fa.fa-trash
     p= markdown @page.content
