@@ -21,4 +21,5 @@
 
 $(function(){
   $(document).foundation();
+//  $('select').foundationSelect(); // for v6 https://github.com/colinduwe/foundation-select
 });

@@ -13,7 +13,7 @@
             i.fa.fa-arrow-left
             | &nbsp;
             | &nbsp;
-            ' Return to Resources Wiki
+            ' Return to Knowledge Base
 
       .medium-6.columns
         p.text-right.snug-top.space-bottom
@@ -23,6 +23,6 @@
           | &nbsp;
           | &nbsp;
           | &nbsp;
-          = link_to @page, data: { confirm: 'Really delete this wiki page?' }, method: :delete do
+          = link_to @page, data: { confirm: 'Really delete this page?' }, method: :delete do
             i.fa.fa-trash
     p= markdown @page.content

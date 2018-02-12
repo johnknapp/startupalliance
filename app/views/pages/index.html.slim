@@ -1,18 +1,41 @@
+- if params[:filter]
+  - filter = params[:filter] + ' category'
+- else
+  - filter = 'all categories'
+
 - content_for :page_title do
-  ' Startup Alliance – Resources Wiki
+  ' Startup Alliance – Knowledge Base
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Resources Wiki
+    ' Knowledge Base
+  h4.bold.medium-grey-text.text-center Now showing #{filter}
 
 .row
-  .medium-12.columns
+  .medium-6.columns
+    ul.snug-top.dropdown.menu.bold data-dropdown-menu=true
+      li.primary-text
+        = link_to 'Filter Knowledge Base...', '#'
+        ul.menu.normal.shadow-8dp data-dropdown-menu=true
+          li= link_to 'Show all', pages_path, class: 'bold'
+          - @categories.each do |cat|
+            li= link_to cat, pages_path(filter: cat)
+  .medium-6.columns
     p.text-right.snug-top.space-bottom
       = link_to new_page_path do
         i.fa.fa-plus
         | &nbsp;
         | &nbsp;
-        ' New Wiki Page
+        ' New Knowledge Base Entry
 
-    p.snug-bottom Resources in the Wiki are categorized by SAKPIs
-    = render 'pages/tabs'
+.row
+  .medium-8.medium-offset-2.columns
+    - if @pages.present?
+      - @pages.each do |page|
+        h3.bold= link_to page.title, page_path(page)
+        p.faint.snug-top
+          ' Version #{page.audits.count}
+          ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+          ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+    - else
+      p.bold.text-center.space-top Nothing in #{filter}, #{link_to 'add something', new_page_path}!

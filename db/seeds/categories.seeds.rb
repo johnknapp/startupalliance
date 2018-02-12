@@ -1,29 +1,31 @@
 Category.delete_all
-categories = ["Activities & Fitness",
-              "Arts & Culture",
-              "Business & Entrepreneurship",
-              "Careers & Workplace",
-              "Climate & Nature",
-              "Family & Friends",
-              "Fashion & Wardrobe",
-              "Food & Nutrition",
-              "Health & Well Being",
-              "Hobbies & Crafts",
-              "Home & Garden",
-              "Language & Communication",
-              "Makers & Hacks",
-              "Money",
-              "Music",
-              "Pets & Animals",
-              "Photography",
-              "Real Estate",
-              "Relationships",
-              "Retirement",
-              "Sustainability",
-              "Technology",
-              "Transportation",
-              "Travel"]
-categories.each do |c|
-  category = Category.new(name: c)
-  category.save
+cats = [
+    'Accounting',
+    'Business development',
+    'Design',
+    'Finance',
+    'Funding',
+    'Growth',
+    'Leadership',
+    'Legal',
+    'Marketing',
+    'Operations',
+    'Partnerships',
+    'Product/Market fit',
+    'Product Mgmt.',
+    'Productivity',
+    'Recruiting',
+    'Strategy',
+    'UX/UI',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+]
+cats.each do |c|
+  Category.create(name: c) unless c.nil?
 end

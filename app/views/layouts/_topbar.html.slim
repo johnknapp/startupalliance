@@ -47,7 +47,7 @@
             li.show-for-medium= link_to 'Members', members_path
             li.show-for-medium= link_to 'Alliances', alliances_path
             li.show-for-medium= link_to 'Companies', companies_path
-            li.bold.primary-text
+            li.bold.primary-text.is-dropdown-submenu-parent
               = link_to '#' do
                 | &nbsp;
                 | &nbsp;
@@ -62,7 +62,6 @@
                 li.show-for-small-only= link_to 'Members', members_path
                 li.show-for-small-only= link_to 'Alliances', alliances_path
                 li.show-for-small-only= link_to 'Companies', companies_path
-                li= link_to 'Admin', admin_root_path if current_user.admin?
                 /hr
                 - if current_user and current_user.companies.present?
                   li.bold.menu-text My #{'company'.pluralize(current_user.companies.count)}:
@@ -74,6 +73,7 @@
                     li.pad-left= link_to alliance.name, alliance_path(alliance)
                 - if current_user and current_user.confirmed?
                 li.bold.menu-text Main menu:
+                li.pad-left= link_to 'Admin', admin_root_path if current_user.admin?
                 li.pad-left
                   = link_to conversations_path do
                     ' Conversations

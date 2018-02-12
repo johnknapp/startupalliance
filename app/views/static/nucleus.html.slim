@@ -37,14 +37,14 @@
       .column
         .card.primary.shadow
           .card-divider.accent-background
-            h4.bold.text-center Resources Wiki
+            h4.bold.text-center Knowledge Base
           .card-section
             .plan-box data-equalizer-watch=true
-              p.bold.text-center Community Wiki featuring a growing collection of entrepreneurial resources and advice.
+              p.bold.text-center Community Knowledge Base featuring a growing collection of entrepreneurial resources and advice.
               - if current_user and current_user.confirmed?
-                = link_to 'Access the Resources Wiki', pages_path, class: 'button expanded'
+                = link_to 'Access the Knowledge Base', pages_path, class: 'button expanded'
               - else
-                = link_to 'Access the Resources Wiki', '#', class: 'button expanded disabled'
+                = link_to 'Access the Knowledge Base', '#', class: 'button expanded disabled'
                 p.faint.text-center= link_to 'Sign-in required', new_user_session_path
 
       .column
@@ -53,7 +53,7 @@
             h4.bold.text-center Global Virtual Office
           .card-section
             .plan-box data-equalizer-watch=true
-              p.bold.text-center Real-time virtual co-working and web hangouts with entrepreneurs from around the world.
+              p.bold.text-center Real-time virtual office for co-working and web hangouts with entrepreneurs from around the world.
               - time      = Time.now.utc.beginning_of_day
               - last_time = Time.now.utc.beginning_of_day-1.day
               - url       = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(time.to_s)

@@ -7,5 +7,6 @@ class Page < ApplicationRecord
 
   audited only: [:title, :content]
   acts_as_paranoid
+  acts_as_ordered_taggable_on :categories
 
 end

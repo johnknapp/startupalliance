@@ -4,14 +4,13 @@ class PagesController < ApplicationController
 
 
   def index
-    @pages  = Page.all.order(updated_at: :desc)
-    @sakpis = Sakpi.all.order(:id)
-    # @capital_pages            = Sakpi.find(1).pages
-    # @cash_flow_pages          = Sakpi.find(2).pages
-    # @differentiation_pages    = Sakpi.find(3).pages
-    # @growth_pages             = Sakpi.find(4).pages
-    # @product_market_fit_pages = Sakpi.find(5).pages
-    # @team_pages               = Sakpi.find(6).pages
+    @categories = Category.order(:name).pluck(:name)
+    if params[:filter]
+      @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
+    else
+      @pages  = Page.all.order(updated_at: :desc)
+    end
+
   end
 
   def show
@@ -53,7 +52,7 @@ class PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:title, :content, :sakpi_ids => [])
+      params.require(:page).permit(:title, :content, :category_list).merge(category_list: params[:page][:category_list])
     end
 
 end
