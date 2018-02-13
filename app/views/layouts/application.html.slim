@@ -18,7 +18,6 @@ body.flex-site
   - unless params[:controller] == 'registrations' and params[:action] == 'new'
     footer
       = render 'layouts/footer'
-  = javascript_include_tag 'foundation-select'
   - if Rails.env.production?
     - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| params[:controller] == ctrlr }
       = javascript_include_tag('http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ab86e837d6b4bf', async: 'async')
