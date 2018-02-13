@@ -1,0 +1,24 @@
+.card
+  .card-divider.accent-background
+    h4.bold
+      = link_to page_path(page) do
+        = page.title
+        | &nbsp;
+        span.scale-to-80
+          i.fa.fa-external-link
+    - if page.category_list.present?
+      p.faint.little-snug-top
+        ' Categories:
+        - page.category_list.each_with_index do |cat, i|
+          | #{link_to cat, pages_path(filter: cat)}
+          - unless page.category_list.length == i + 1
+            ' ,
+    - else
+      p.scale-to-90.little-snug-top Uncategorized
+    p.faint.snug-top
+      ' Version #{page.audits.count}
+      ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+      ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+  .card-section
+    p
+      ' #{sanitize(truncate(page.content, length: 150))}

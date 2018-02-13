@@ -1,0 +1,16 @@
+p.scale-to-90.little-snug-top.snug-bottom
+  = link_to edit_page_path do
+    i.fa.fa-edit
+  | &nbsp;
+  | &nbsp;
+  | &nbsp;
+  | &nbsp;
+  - if @page.audits.count > 1
+    = link_to undo_page_path(@page), data: { confirm: 'Really undo last change?' }, method: :post do
+      i.fa.fa-undo
+    | &nbsp;
+    | &nbsp;
+    | &nbsp;
+    | &nbsp;
+  = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
+    i.fa.fa-trash

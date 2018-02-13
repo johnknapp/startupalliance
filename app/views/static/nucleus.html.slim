@@ -41,9 +41,9 @@
           .card-section
             .plan-box data-equalizer-watch=true
               p.bold.text-center Community Knowledge Base featuring a growing collection of entrepreneurial resources and advice.
-              - if current_user and current_user.confirmed?
-                = link_to 'Access the Knowledge Base', pages_path, class: 'button expanded'
-              - else
+              /- if current_user and current_user.confirmed?
+              = link_to 'Access the Knowledge Base', pages_path, class: 'button expanded'
+              /- else
                 = link_to 'Access the Knowledge Base', '#', class: 'button expanded disabled'
                 p.faint.text-center= link_to 'Sign-in required', new_user_session_path
 

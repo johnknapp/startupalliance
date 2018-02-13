@@ -1,14 +1,18 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_page, only: [:show, :edit, :update, :undo_last_audit, :destroy]
 
 
   def index
     @categories = Category.order(:name).pluck(:name)
     if params[:filter]
-      @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
+      if params[:filter] == 'All'
+        @pages  = Page.all.order(updated_at: :desc)
+      else
+        @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
+      end
     else
-      @pages  = Page.all.order(updated_at: :desc)
+      @pages  = Page.order(updated_at: :desc).limit(10)
     end
 
   end

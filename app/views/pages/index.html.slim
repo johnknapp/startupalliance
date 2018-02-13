@@ -1,7 +1,7 @@
 - if params[:filter]
   - filter = params[:filter]
 - else
-  - filter = 'All'
+  - filter = 'Latest'
 
 - content_for :page_title do
   ' Startup Alliance – Knowledge Base
@@ -17,7 +17,8 @@
       li.primary-text
         = link_to 'Filter the Knowledge Base...', '#'
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          li= link_to "Show all (#{number_with_delimiter(Page.count)})", pages_path, class: 'bold'
+          li= link_to "Show all", pages_path(filter: 'All'), class: 'bold'
+          li= link_to "Show latest", pages_path, class: 'bold'
           - @categories.each do |cat|
             li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
   .medium-6.columns
@@ -27,15 +28,29 @@
         | &nbsp;
         | &nbsp;
         ' New Knowledge Base Entry
-
 .row
-  .medium-8.medium-offset-2.columns
+  .large-7.columns
     - if @pages.present?
       - @pages.each do |page|
-        h3.bold= link_to page.title, page_path(page)
-        p.faint.snug-top
-          ' Version #{page.audits.count}
-          ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
-          ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+        = render 'pages/hero', page: page
     - else
-      p.bold.text-center.space-top Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show all', pages_path}.
+      .card
+        .card-section
+          p.bold.text-center Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show the latest', pages_path}.
+
+  .large-5.columns
+    p.bold
+      ' Welcome to the Startup Alliance Community Knowledge Base.
+    p
+      ' This is the place for success building entrepreneurial resources from our members.
+      '
+    /- if !current_user
+      p
+        ' #{link_to 'Sign-in', new_user_session_path} or
+        ' #{link_to 'sign-up', pricing_path} now.
+      '
+      '
+      /' Our members come here to learn and share what they know as well as
+      /' create and update pages within the knowledge base.
+      /' It’s members only beyond this point so please
+      '

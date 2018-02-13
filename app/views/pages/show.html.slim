@@ -1,11 +1,9 @@
 - content_for :page_header do
-  .float-right
-
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     = @page.title
 
 .row
-  .medium-8.medium-offset-2.columns
+  .medium-12.columns
     .row
       .medium-6.columns
         p.snug-top.space-bottom
@@ -16,20 +14,14 @@
             ' Return to Knowledge Base
 
       .medium-6.columns
-        p.text-right.snug-top.space-bottom
-          = link_to edit_page_path do
-            i.fa.fa-pencil
-          | &nbsp;
-          | &nbsp;
-          | &nbsp;
-          | &nbsp;
-          - if @page.audits.count > 1
-            = link_to undo_page_path(@page), data: { confirm: 'Really undo last change?' }, method: :post do
-              i.fa.fa-undo
-            | &nbsp;
-            | &nbsp;
-            | &nbsp;
-            | &nbsp;
-          = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
-            i.fa.fa-trash
-    p= markdown @page.content
+    .row
+      .large-9.columns
+        p= markdown @page.content
+      .large-3.columns
+        .callout.little-space-top
+          p.faint
+            ' Revision #{@page.audits.count}
+            ' by #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
+          p.faint.snug-top
+            ' #{@page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+          = render 'pages/edit_controls'
