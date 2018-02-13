@@ -4,7 +4,7 @@ class Page < ApplicationRecord
   validates :title,       presence: true
   validates :title,       length: { maximum: 64 }
   validates :content,     presence: true
-  validates :content,     length: { maximum: 3072 }
+  validates :content,     length: { maximum: 9216 }
 
   acts_as_paranoid
   acts_as_ordered_taggable_on :categories

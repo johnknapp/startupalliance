@@ -61,3 +61,42 @@ app/services/subscription_service.rb (is where the magic happens!)
 * Strategy
 * Time Mgmt.
 * UX / UI
+
+1. As user, I want to sign up for BB, so I can participate in peer­-to­-peer boating.
+1. As user, I want to have a referral URL so I get boating credits when my friends do stuff.
+1. As owner, I want to list my boat so people can see how awesome it is.
+1. As owner, I want to get my boat approved so it becomes eligible to rent.
+1. As owner, I want to add payout information so I can get money when my boat rents out.
+1. As owner, I want to create packages so renters know prices and what’s included.
+1. As owner, I want to set special prices for certain dates so I can maximize my earnings.
+1. As renter, I want to become eligible to rent so owners can rent their boat to me.
+1. As renter, I want to find a boat/package that suits me so I can rent it next weekend.
+1. As a renter, I want to click an icon to tag a boat as a favorite to keep my favorites handy.
+1. As a renter, I want to visit my favorite boat list so I can find the shiznit quick.
+1. As renter, I want to see when my favorite boat is available so I can set my schedule.
+1. As owner, I want to set dates my boat is unavailable so I can use it or work on it.
+1. As renter, I want to know the rental price so I can make a good decision.
+1. As renter, I want to converse with the owner so I can decide to rent their boat.
+1. As renter, I want to ask owner for a special price so I can get what I think is a good deal.
+1. As owner, I want to respond and attach a special price for renter so I can close the deal.
+1. As owner, I want to pre­-approve a renter so we can close the deal easy and fast.
+1. As renter, I want to accept the special price so I can go boating and save money.
+1. As renter, owner or staff, I want to cancel a rental so unforeseen circumstances are addressed.
+1. As renter, I want to use a coupon or boating credits so I can pay less to go boating.
+1. As renter, I want to add a credit card to BB so I can pay for my rentals.
+1. As renter, I want to know if there are problems adding my credit card so I can correct them.
+1. As renter, I want to have my payment transaction processed so I can go out on the water.
+1. As renter, I want to know if there are transaction processing problems so I can correct them.
+1. As renter, I want to know the rental details so I can be clear on what, when, where, how.
+1. As referrer, I want to get boating credits when my friend does stuff so I can boat for free later.
+1. As owner, I want to seek dispute resolution so I can solve any problems that came up.
+1. As renter, I want to converse with the owner to solve the dispute so I can be a good person.
+1. As owner or renter, I want to ask BB for arbitration to resolve a dispute so we can get closure.
+1. As staff, I want to resolve a dispute however I see fit so the marketplace thrives.
+1. As staff, I want analytics so I can know how things are going.
+1. As renter, I want to pay for problems with my security deposit so I can get on with life.
+1. As renter, I want the security deposit hold released so my credit is available to use later.
+1. As owner, I want to get my share of the rental payment so I can afford my boat.
+1. As staff, I want to know what’s happening so I can maximize revenue and grow the business.
+1. As staff, I want to have all the cool admin stuff so I can keep the wheels of commerce rolling.
+1. As user, I want to get notifications and emails so I keep thinking about BB and do cool stuff.

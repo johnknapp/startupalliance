@@ -63,6 +63,10 @@
       .float-right
         p.faint.text-right.snug-top= @user.okrs.count
       p.faint.snug-top OKR ownership:
+    - if @user.audits_count.present?
+      .float-right
+        p.faint.text-right.snug-top= @user.audits_count
+      p.faint.snug-top #{link_to 'Knowledge Base', pages_path} Page Edits:
     - if @user.time_zone.present?
       .float-right
         p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)

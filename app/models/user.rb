@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many  :comments,      foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, class_name: :Comment, dependent: :destroy
   has_many  :messages
+
+  # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/
   has_many  :audits
 
   belongs_to :plan

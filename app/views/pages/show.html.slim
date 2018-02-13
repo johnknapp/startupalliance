@@ -18,10 +18,13 @@
       .large-9.columns
         p= markdown @page.content
       .large-3.columns
-        .callout.little-space-top
-          p.faint
-            ' Revision #{@page.audits.count}
-            ' by #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
-          p.faint.snug-top
-            ' #{@page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
-          = render 'pages/edit_controls'
+        .callout.small.little-space-top
+          .float-right
+            = render 'pages/edit_controls'
+          p.faint Page editors:
+          ul.no-bullet.snug-top
+            - page_editors(@page).each do |user|
+              li.faint= link_to user.name, vanity_path(user.username)
+          p.faint.little-snug-top
+            ' Rev #{@page.audits.count}
+            ' at #{@page.updated_at.strftime('%B %d, %Y')}

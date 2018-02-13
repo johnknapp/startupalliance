@@ -1,3 +1,5 @@
 class Audit < ApplicationRecord
-  belongs_to :user
+
+  # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/
+  belongs_to :user, counter_cache: true
 end

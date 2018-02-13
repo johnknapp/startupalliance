@@ -21,4 +21,6 @@
       ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
   .card-section
     p
-      ' #{sanitize(truncate(page.content, length: 150))}
+      ' #{sanitize(truncate(page.content, length: 160))}
+      span.faint
+        ' (#{number_with_delimiter(page.content.length)} characters)
