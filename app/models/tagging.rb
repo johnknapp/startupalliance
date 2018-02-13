@@ -1,7 +1,2 @@
-#
-# description_placeholder
-#
-
-class Tagging
-
+class Tagging < ApplicationRecord
 end
