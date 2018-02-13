@@ -8,6 +8,6 @@ class Page < ApplicationRecord
 
   acts_as_paranoid
   acts_as_ordered_taggable_on :categories
-  audited only: [:title, :content, :created_at, :updated_at]
+  audited only: [:title, :content, :category_array, :created_at, :updated_at]
 
 end

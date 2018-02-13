@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  permit_params :title, :content, :category_list => []
+  permit_params :title, :content, :category_array, :category_list => []
 
   scope('Not deleted')  { |scope| scope.all }
   scope('Soft deleted') { |scope| scope.only_deleted }
@@ -22,6 +22,7 @@ ActiveAdmin.register Page do
     column :categories do |page|
       page.category_list
     end
+    column :category_array
     actions
   end
 
