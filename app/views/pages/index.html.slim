@@ -1,7 +1,7 @@
 - if params[:filter]
-  - filter = params[:filter] + ' category'
+  - filter = params[:filter]
 - else
-  - filter = 'all categories'
+  - filter = 'All'
 
 - content_for :page_title do
   ' Startup Alliance – Knowledge Base
@@ -9,7 +9,7 @@
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     ' Knowledge Base
-  h4.bold.medium-grey-text.text-center Now showing #{filter}
+  h4.bold.medium-grey-text.text-center Filter: “#{filter}”
 
 .row
   .medium-6.columns
@@ -17,9 +17,9 @@
       li.primary-text
         = link_to 'Filter the Knowledge Base...', '#'
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          li= link_to 'Show all', pages_path, class: 'bold'
+          li= link_to "Show all (#{number_with_delimiter(Page.count)})", pages_path, class: 'bold'
           - @categories.each do |cat|
-            li= link_to cat, pages_path(filter: cat)
+            li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
   .medium-6.columns
     p.text-right.snug-top.space-bottom
       = link_to new_page_path do
@@ -38,4 +38,4 @@
           ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
           ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
     - else
-      p.bold.text-center.space-top Nothing in #{filter}, #{link_to 'add something', new_page_path} or show #{link_to 'all categories', pages_path}.
+      p.bold.text-center.space-top Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show all', pages_path}.

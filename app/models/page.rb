@@ -6,8 +6,8 @@ class Page < ApplicationRecord
   validates :content,     presence: true
   validates :content,     length: { maximum: 3072 }
 
-  audited only: [:title, :content]
   acts_as_paranoid
   acts_as_ordered_taggable_on :categories
+  audited only: [:title, :content, :created_at, :updated_at]
 
 end

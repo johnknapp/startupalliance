@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   get 'members',                    to: 'static#members',              constraints: { format: 'html' }
 
-  resources :pages, path: 'nucleus/kb'
+  resources :pages, path: 'nucleus/kb' do
+    member do
+      post :undo,                 to: 'pages#undo_last_audit'
+    end
+  end
 
   # resources :discussions, except: [:index],        constraints: { format: 'html' } do
   #   resources :comments,  except: [:index],        constraints: { format: 'html' }

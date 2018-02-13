@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: [:show, :edit, :update, :undo_last_audit, :destroy]
 
 
   def index
@@ -23,6 +23,7 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     if @page.save
+      Notifier.tell_jk(@page).deliver
       redirect_to pages_path, notice: 'Knowledge Base Entry was successfully created.'
     else
       render :new
@@ -37,6 +38,14 @@ class PagesController < ApplicationController
       redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.'
     else
       render :edit
+    end
+  end
+
+  def undo_last_audit
+    if @page.audits.last.undo
+      redirect_to page_path, notice: 'Knowledge Base Entry was reverted.'
+    else
+      redirect_to page_path, alert: 'There was an error.'
     end
   end
 

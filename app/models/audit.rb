@@ -1,7 +1,3 @@
-#
-# description_placeholder
-#
-
-class Audit
-
+class Audit < ApplicationRecord
+  belongs_to :user
 end
