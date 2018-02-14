@@ -26,8 +26,8 @@
             - page_editors(@page).each do |user|
               li.faint= link_to user.name, vanity_path(user.username)
           p.faint.little-snug-top
-            ' Rev #{@page.audits.count}
-            ' at #{@page.updated_at.strftime('%B %d, %Y')}
+            ' #{@page.audits.count.ordinalize} edition,
+            ' #{@page.updated_at.strftime('%B %d, %Y')}
           - if @page.category_list.present?
             p.faint.little-snug-top
               ' #{'Category'.pluralize(@page.category_list.count)}:

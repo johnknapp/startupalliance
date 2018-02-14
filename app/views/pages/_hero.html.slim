@@ -16,7 +16,7 @@
     - else
       p.scale-to-90.little-snug-top Uncategorized
     p.faint.snug-top
-      ' Revision #{page.audits.count}
+      ' #{page.audits.count.ordinalize} edition
       ' by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
       ' on #{page.updated_at.strftime('%B %d, %Y')}
   .card-section
