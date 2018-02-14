@@ -40,10 +40,12 @@ cats = [
     'Revenue models',
     'Software engineering',
     'Strategic partnerships',
+    'Sustainability',
     'Team & personnel',
     'Technology & IT',
     'Tools & infrastructure',
-    'UX/UI'
+    'UX/UI',
+    'Work/Life balance'
 ]
 cats.each do |c|
   Category.create(name: c)
