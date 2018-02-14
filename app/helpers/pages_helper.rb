@@ -1,5 +1,13 @@
 module PagesHelper
 
+  def page_editors(page)
+    users = []
+    page.audits.each do |a|
+      users << a.user
+    end
+    users.uniq
+  end
+
   def markdown(text)
     options = {
         filter_html:     true,
@@ -20,13 +28,5 @@ module PagesHelper
     markdown = Redcarpet::Markdown.new(renderer, extensions)
 
     markdown.render(text).html_safe
-  end
-
-  def page_editors(page)
-    users = []
-    page.audits.each do |a|
-      users << a.user
-    end
-    users.uniq
   end
 end
