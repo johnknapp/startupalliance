@@ -1,11 +1,19 @@
 Category.delete_all
+
+
+#
+# Do not use commas, they'll parse as separate tags!
+#
+
+
 cats = [
     'Advisors & mentors',
     'Analytics',
+    'Benefits & stock options',
     'Blockchain',
     'Bootstrapping',
     'Business models',
-    'Compensation, benefits & stock options',
+    'Compensation',
     'Customer discovery',
     'Design',
     'Developers',
@@ -22,7 +30,7 @@ cats = [
     'Leadership',
     'Lean startup',
     'Legal & intellectual property',
-    'Marketing, sales & business development',
+    'Marketing',
     'Miscellaneous',
     'Online advertising',
     'Offices & co-working',
@@ -38,6 +46,7 @@ cats = [
     'Recruiting',
     'Retention & onboarding',
     'Revenue models',
+    'Sales & business development',
     'Software engineering',
     'Strategic partnerships',
     'Sustainability',
