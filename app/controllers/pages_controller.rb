@@ -27,7 +27,6 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     if @page.save
-      set_category_array
       Notifier.tell_jk(@page).deliver
       redirect_to pages_path, notice: 'Knowledge Base Entry was successfully created.'
     else
@@ -40,7 +39,6 @@ class PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      set_category_array
       redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.'
     else
       render :edit
@@ -65,18 +63,12 @@ class PagesController < ApplicationController
 
   private
 
-    def set_category_array
-      @page.category_array = @page.category_list
-      @page.save_without_auditing
-    end
-
     def set_page
       @page = Page.find_by_pid(params[:id])
     end
 
     def page_params
-      params[:page][:category_array] = params[:page][:category_list]
-      params.require(:page).permit(:title, :content, :category_array, :category_list).merge(category_list: params[:page][:category_list])
+      params.require(:page).permit(:title, :content, :category_list).merge(category_list: params[:page][:category_list])
     end
 
 end
