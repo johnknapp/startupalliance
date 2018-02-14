@@ -15,4 +15,11 @@ ActiveAdmin.register Category do
     actions
   end
 
+  form do |f|
+    f.inputs do
+      f.input :name, hint: 'Category names containing a comma are strictly forbidden due to parse errors!'
+    end
+    f.actions
+  end
+
   end

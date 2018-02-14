@@ -47,12 +47,14 @@ class PagesController < ApplicationController
     end
   end
 
+  # 0) We know that an update with only tag changes doesn't create a new revision/audit
+  # 1) We know that undo creates new audit and we'd rather it didn't (goal: true redo)
   def undo_last_audit
-    if @page.audits.last.undo
-      @page.update_attribute(:category_array, @page.category_list)
+    @page = @page.revisions.second_to_last # revisions.last == @page so fetch 2nd to last
+    if @page.save
       redirect_to page_path, notice: 'Knowledge Base Entry was reverted.'
     else
-      redirect_to page_path, alert: 'There was an error.'
+      redirect_to page_path, alert: 'Unknown error. Cannot undo.'
     end
   end
 

@@ -5,7 +5,7 @@ p.scale-to-90
   | &nbsp;
   | &nbsp;
   | &nbsp;
-  - if @page.audits.count > 1
+  - if @page.revisions.count > 1
     = link_to undo_page_path(@page), data: { confirm: 'Really undo last change?' }, method: :post do
       i.fa.fa-undo
     | &nbsp;
