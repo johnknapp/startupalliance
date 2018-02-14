@@ -8,7 +8,7 @@
           i.fa.fa-external-link
     - if page.category_list.present?
       p.faint.little-snug-top
-        ' Categories:
+        ' #{'Category'.pluralize(page.category_list.count)}:
         - page.category_list.each_with_index do |cat, i|
           | #{link_to cat, pages_path(filter: cat)}
           - unless page.category_list.length == i + 1
@@ -16,11 +16,11 @@
     - else
       p.scale-to-90.little-snug-top Uncategorized
     p.faint.snug-top
-      ' Version #{page.audits.count}
-      ' last edited by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
-      ' on #{page.updated_at.strftime('%b %d, %Y at %I:%M %p')}
+      ' Revision #{page.audits.count}
+      ' by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+      ' on #{page.updated_at.strftime('%B %d, %Y')}
   .card-section
-    p
+    p.snug-top
       ' #{markdown(truncate(page.content, length: 160))}
       span.faint
         ' (#{number_with_delimiter(page.content.length)} characters)
