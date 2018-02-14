@@ -13,7 +13,7 @@ cats = [
     'Blockchain',
     'Bootstrapping',
     'Business models',
-    'Compensation',
+    'Compensation & payroll',
     'Customer discovery',
     'Design',
     'Developers',
