@@ -13,6 +13,7 @@
       ' Der Kern,
       ' केंद्रक,
       ' Il Nucleo,
+      ' Ядро,
       ' El Núcleo
       '
 .row
@@ -22,7 +23,7 @@
       '
     p.snug-top.show-for-medium &nbsp;
 
-    .row.large-up-3 data-equalizer=true
+    .row.medium-up-2.large-up-3 data-equalizer=true
 
       .column
         .card.primary.shadow
@@ -41,11 +42,8 @@
           .card-section
             .plan-box data-equalizer-watch=true
               p.bold.text-center Community Knowledge Base featuring a growing collection of entrepreneurial resources and advice.
-              /- if current_user and current_user.confirmed?
               = link_to 'Access the Knowledge Base', pages_path, class: 'button expanded'
-              /- else
-                = link_to 'Access the Knowledge Base', '#', class: 'button expanded disabled'
-                p.faint.text-center= link_to 'Sign-in required', new_user_session_path
+              p.faint.text-center #{number_with_delimiter(Page.count)} #{'page'.pluralize(Page.count)} from #{number_with_delimiter(User.where('audits_count > 0').count)} #{'member'.pluralize(User.where('audits_count > 0').count)}
 
       .column
         .card.primary.shadow
@@ -59,14 +57,22 @@
               - url       = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(time.to_s)
               - last_url  = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(last_time.to_s)
               - if current_user and current_user.confirmed?
-                = link_to 'Access the Global Virtual Office', url, target: '_blank', class: 'button expanded'
+                = link_to 'Access the Global Virtual Office', gvo_url, target: '_blank', class: 'button expanded'
                 p.snug-top.faint.text-center
-                  /' Link changes at #{(time+1.day).strftime('%b %e, %H:%M %Z')}
                   ' GVO link updates #{(time+1.day).strftime('%b %e @ %H:%M %Z')}
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
                     i.fa.fa-info-circle
-                p.snug-top.faint.text-center= link_to 'Previous GVO link', last_url, target: '_blank'
+                p.snug-top.faint.text-center= link_to 'Previous GVO link', gvo_url(24), target: '_blank'
               - else
                 = link_to 'Access the Global Virtual Office', '#', target: '_blank', class: 'button expanded disabled'
                 p.faint.text-center= link_to 'Sign-in required', new_user_session_path
+
+      .column
+        .card.primary.shadow
+          .card-divider.medium-grey-background
+            h5.bold.text-center More on the way
+          .card-section
+            p.text-center
+              ' We commit to assembling an important collection of resources to help our community maximize their success.
+              ' Email your suggestions to #{mail_to 'hello@startupalliance.com', 'hello@startupalliance.com', subject: "Suggestion for The Nucleus!", encode: 'hex'}
 
