@@ -2,7 +2,7 @@ Category.delete_all
 
 
 #
-# Do not use commas, they'll parse as separate tags!
+# Do not use commas, they parse as separate tags!
 #
 
 
