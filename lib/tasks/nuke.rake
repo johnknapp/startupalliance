@@ -1,4 +1,5 @@
 namespace :nuke do
+
   desc 'really destroy soft deleted pages'
   task zombie_pages: :environment do
     Page.only_deleted.find_each do |z|
@@ -7,4 +8,5 @@ namespace :nuke do
     end
     p '> > > > > > > > zombie pages gone!'
   end
+
 end
