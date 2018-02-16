@@ -19,13 +19,13 @@
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
-    p.snug-top.space-bottom.text-right Ask questions, get answers, share information and ideas
+    p.snug-top.space-bottom.text-right= render 'partials/comment_create_modal', is_post: false
 
 
     .row
       .medium-8.medium-offset-2.columns
-        = render 'partials/comment_create_modal', is_post: false
-        p.show-for-medium.snug-top &nbsp;
+        /= render 'partials/comment_create_modal', is_post: false
+        /p.show-for-medium.snug-top &nbsp;
 
         - if @discussion.comments.present?
           - @discussion.comments.roots.each do |comment|
@@ -77,4 +77,4 @@
 
         - else
           .callout
-            p.text-center No comments yet!
+            p.text-center No Threads yet!

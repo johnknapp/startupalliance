@@ -10,5 +10,8 @@
     .row
       .medium-12.columns
         .button-group
-          = f.button :submit, class: 'button'
+          - if @comment.root?
+            = f.button :submit, 'Update Thread', class: 'button'
+          - else
+            = f.button :submit, 'Update Post', class: 'button'
           = link_to 'Exit', :back, class: 'button accent'

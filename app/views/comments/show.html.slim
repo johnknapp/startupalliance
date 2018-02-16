@@ -11,11 +11,12 @@
           i.fa.fa-arrow-left
           | &nbsp;
           | &nbsp;
-          ' Return to #{@comment.discussion.topic}
-    p.snug-top.space-bottom.text-right Ask questions, get answers, share information and ideas
+          ' Return to “#{@comment.discussion.topic}”
+    p.snug-top.space-bottom.text-right= render 'partials/comment_create_modal', is_post: true
 .row
   .medium-8.medium-offset-2.columns
     - if @comment.descendants.present?
       = nested_comments @comment.descendants.arrange(order: :created_at)
     - else
-      p.text-center No Posts
+      .callout
+        p.text-center No Posts yet!
