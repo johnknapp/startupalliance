@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :topics
   root 'static#home'
 
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
@@ -27,8 +26,10 @@ Rails.application.routes.draw do
   #   resources :comments,  except: [:index],        constraints: { format: 'html' }
   # end
 
-  resources :discussions do
-    resources :comments
+  resources :discussions,   constraints: { format: 'html' } do
+    resources :topics,      constraints: { format: 'html' } do
+      resources :posts,     constraints: { format: 'html' }
+    end
   end
 
   resources :conversations, only: [:index, :create, :destroy],        constraints: { format: 'html' } do

@@ -1,8 +1,8 @@
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
-    ' Discussion Topic:
+    ' Discussion:
   h2.bold.white-text.text-center
-    = @discussion.topic
+    = @discussion.name
 .row
   .large-12.columns
     .float-left
@@ -19,62 +19,31 @@
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
-    p.snug-top.space-bottom.text-right= render 'partials/comment_create_modal', is_post: false
+    p.snug-top.space-bottom.text-right= render 'partials/topic_create_modal'
 
 
     .row
       .medium-8.medium-offset-2.columns
-        /= render 'partials/comment_create_modal', is_post: false
         /p.show-for-medium.snug-top &nbsp;
 
-        - if @discussion.comments.present?
-          - @discussion.comments.roots.each do |comment|
-            h4.bold.space-top= link_to comment.body, discussion_comment_path(@discussion,comment)
+        - if @discussion.topics.present?
+          - @discussion.topics.each do |topic|
+            h4.bold.space-top= link_to topic.name, discussion_topic_path(@discussion,topic)
             p.little-snug-top.faint
-              ' (#{comment.descendants.count} Posts)
+              ' (#{topic.posts.count} Posts)
               | &nbsp;
               | &nbsp;
-              /= render 'partials/comment_edit_modal', comment: comment, is_post: false
-              = link_to edit_discussion_comment_path(comment.discussion,comment) do
+              = link_to edit_discussion_topic_path(topic.discussion,topic) do
                 i.fa.fa-pencil
               | &nbsp;
               | &nbsp;
               | &nbsp;
               | &nbsp;
-              = link_to discussion_comment_path(comment.discussion,comment), data: { confirm: 'Really destroy this and everything in it?' }, method: :delete do
+              = link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this and everything in it?' }, method: :delete do
                 i.fa.fa-trash-o
 
-
-
-
-        / The arrange method of the ancestry gem returns the entire subtree as nested hashes
-          /= nested_comments @discussion.comments.arrange(order: :created_at)
-
-          /ul.menu.simple.indented-3
-            li.faint.reply-toggle data-post-pid=post.pid
-              - if post.replies.present?
-                ' Show / hide #{post.replies.count} #{'reply'.pluralize(post.replies.count)}
-            li.faint= render 'partials/new_reply_modal', post: post
-
-          /- @discussion.comments.each do |comment|
-            hr.little-snug-bottom
-            .float-right
-              p.faint
-                - if current_user and current_user == comment.author or current_user == comment.discussion.discussable.creator
-                  | &nbsp;
-                  | &nbsp;
-                  = link_to edit_discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid) do
-                    i.fa.fa-pencil
-                  | &nbsp;
-                  | &nbsp;
-                  | &nbsp;
-                  = link_to discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid), data: { confirm: 'Really destroy this comment?' }, method: :delete do
-                    i.fa.fa-trash-o
-            p.little-snug-bottom.faint
-              ' #{link_to comment.author.name, vanity_path(comment.author.username)} #{time_ago_in_words(comment.created_at)} ago
-            p= comment.body
             p.faint.little-snug-top.little-space-bottom= render 'partials/new_reply_modal', comment: comment
 
         - else
           .callout
-            p.text-center No Threads yet!
+            p.text-center No Topics yet!

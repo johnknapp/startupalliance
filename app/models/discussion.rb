@@ -5,6 +5,6 @@ class Discussion < ApplicationRecord
   belongs_to  :author, class_name: :User
   has_many    :topics, dependent: :destroy
 
-  validates :topic,       length: { maximum: 255 }
+  validates :name,       length: { maximum: 255 }
 
 end

@@ -12,11 +12,11 @@
           | &nbsp;
           | &nbsp;
           ' Return to “#{@post.discussion.topic}”
-    p.snug-top.space-bottom.text-right= render 'partials/comment_create_modal', is_post: true
+    p.snug-top.space-bottom.text-right= render 'partials/post_create_modal', is_post: true
 .row
   .medium-8.medium-offset-2.columns
     - if @post.descendants.present?
-      = nested_comments @post.descendants.arrange(order: :created_at)
+      = nested_posts @post.descendants.arrange(order: :created_at)
     - else
       .callout
         p.text-center No Posts yet!

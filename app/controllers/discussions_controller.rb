@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
   load_and_authorize_resource
 
   def new
-    @comment = Comment.new
+    @topic = Topic.new
   end
 
   def create
@@ -33,7 +33,7 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @topic = Topic.new
   end
 
   def edit

@@ -1,6 +1,6 @@
-=link_to '#', data: {open:'edit-comment'}
+=link_to '#', data: {open:'edit-post'}
   i.fa.fa-pencil
-/a data-open='edit-comment'
+/a data-open='edit-post'
   /| &nbsp;
   /- if is_post
   /  ' Create a new Post
@@ -8,23 +8,23 @@
   /  ' Start a new Thread
 
   - if is_post
-    .reveal.large#edit-comment data-reveal=true
+    .reveal.large#edit-post data-reveal=true
       button data-close=true aria-label='Close' type='button' class='close-button'
         span aria-hidden=true
           ' &times;
       p.little-space-bottom.scale-to-70 &nbsp;
-      = simple_form_for comment, url: discussion_comments_path(comment, discussion_id: @discussion.pid), method: :post do |f|
+      = simple_form_for post, url: discussion_topic_posts_path(post, topic_id: post.topic.pid), method: :post do |f|
         = f.hidden_field :discussion_id, value: @discussion.pid
         = f.hidden_field :author_id,     value: current_user.id
         = f.input :body, placeholder: 'Type Post', as: :text, input_html: { rows: '4' }, label: false
         = f.button :submit, 'Edit Post'
   - else
-    .reveal#edit-comment data-reveal=true
+    .reveal#edit-post data-reveal=true
       button data-close=true aria-label='Close' type='button' class='close-button'
         span aria-hidden=true
           ' &times;
       p.little-space-bottom.scale-to-70 &nbsp;
-      = simple_form_for comment, url: discussion_comments_path(comment, discussion_id: @discussion.pid), method: :post do |f|
+      = simple_form_for post, url: discussion_topic_posts_path(post, topic_id: post.topic.pid), method: :post do |f|
         = f.hidden_field :discussion_id, value: @discussion.pid
         = f.hidden_field :author_id,     value: current_user.id
         = f.input :body, placeholder: 'Name Tread', label: false

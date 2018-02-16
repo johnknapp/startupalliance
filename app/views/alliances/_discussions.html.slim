@@ -31,12 +31,12 @@
               | &nbsp;
               | &nbsp;
               | &nbsp;
-              = link_to disco, data: { confirm: 'Really destroy this Topic and all it’s Threads and Posts?' }, class: 'scale-to-80', method: :delete do
+              = link_to disco, data: { confirm: 'Really destroy this Discussion and all it’s Topics and Posts?' }, class: 'scale-to-80', method: :delete do
                 i.fa.fa-trash-o
           p
             ' #{link_to disco.topic, discussion_path(disco)}
             span.faint
-              ' (#{disco.comments.roots.count} #{'Threads'.pluralize(disco.comments.roots.count)})
+              ' (#{disco.topics.count} #{'Topic'.pluralize(disco.topics.count)})
       - elsif current_user and @alliance.members.include?(current_user)
         p.text-center.space-top Add the first Topic
     - else

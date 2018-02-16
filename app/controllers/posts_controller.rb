@@ -1,19 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
 
   def create
     # raise('Chinese finger trap')
-    discussion = Discussion.find_by_pid(params[:post][:discussion_id])
-    @post = Post.new(comment_params)
-    @post.discussion_id = discussion.id
+    topic = Topic.find_by_pid(params[:post][:topic_id])
+    @post = Post.new(post_params)
+    @post.topic_id = topic.id
     if @post.save
-      # Notifier.tell_jk(@comment).deliver
-      redirect_to discussion_path(discussion), alert: 'Your comment was saved.'
+      # Notifier.tell_jk(@post).deliver
+      redirect_to discussion_topic_path(topic), alert: 'Your Post was saved.'
     else
-      redirect_to discussion_path(discussion), alert: 'There was a problem!'
+      redirect_to discussion_topic_path(topic), alert: 'There was a problem!'
     end
   end
 
@@ -24,10 +24,10 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(comment_params)
-      redirect_to discussion_path(@post.discussion), notice: 'Comment updated'
+    if @post.update(post_params)
+      redirect_to discussion_topic_path(@post.topic), notice: 'Post updated'
     else
-      redirect_to discussion_path(@post.discussion), alert: 'There was a problem!'
+      redirect_to discussion_topic_path(@post.topic), alert: 'There was a problem!'
     end
   end
 
@@ -38,11 +38,11 @@ class PostsController < ApplicationController
 
   private
 
-    def comment_params
-      params.require(:post).permit(:body, :author_id, :discussion_id, :parent_id, :read, :pid)
+    def post_params
+      params.require(:post).permit(:body, :author_id, :topic_id, :parent_id, :read, :pid)
     end
 
-    def set_comment
+    def set_post
       @post = Post.find_by_pid(params[:id])
     end
 
