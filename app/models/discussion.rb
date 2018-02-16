@@ -1,8 +1,9 @@
 class Discussion < ApplicationRecord
   include Pid
+
   belongs_to  :discussable, polymorphic: true
   belongs_to  :author, class_name: :User
-  has_many    :comments, dependent: :destroy
+  has_many    :topics, dependent: :destroy
 
   validates :topic,       length: { maximum: 255 }
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :topics
   root 'static#home'
 
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
