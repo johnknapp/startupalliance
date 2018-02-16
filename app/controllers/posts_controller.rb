@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:update, :destroy]
   load_and_authorize_resource
 
   # POST
@@ -16,23 +16,17 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
   def update
     if @post.update(post_params)
-      redirect_to discussion_topic_path(@post.topic), notice: 'Post updated'
+      redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), notice: 'Post was successfully updated'
     else
-      redirect_to discussion_topic_path(@post.topic), alert: 'There was a problem!'
+      redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), alert: 'There was a problem!'
     end
   end
 
   def destroy
     @post.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_back fallback_location: root_path, alert: 'Post was successfully destroyed.'
   end
 
   private

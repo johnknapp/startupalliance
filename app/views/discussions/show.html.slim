@@ -34,8 +34,10 @@
                   = link_to '#' do
                     i.fa.fa-ellipsis-v
                   ul.menu data-dropdown-menu=true  data-alignment='left'
-                    li= link_to edit_discussion_topic_path(topic.discussion,topic) do
-                      i.fa.fa-pencil
+                    li
+                      = render 'topics/edit_topic_modal', topic: topic
+                      /= link_to edit_discussion_topic_path(topic.discussion,topic) do
+                        i.fa.fa-pencil
                     li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
                       i.fa.fa-trash-o
             h4.bold.space-top

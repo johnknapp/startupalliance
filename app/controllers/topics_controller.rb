@@ -18,7 +18,11 @@ class TopicsController < ApplicationController
   end
 
   def update
-
+    if @topic.update(topic_params)
+      redirect_to discussion_path(@topic.discussion), notice: 'Topic was successfully updated.'
+    else
+      redirect_to discussion_path(@topic.discussion), alert: 'There was a problem!'
+    end
   end
 
   def destroy

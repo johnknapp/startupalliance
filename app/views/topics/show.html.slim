@@ -17,6 +17,7 @@
 
 .row
   .medium-10.medium-offset-1.columns
+    p.show-for-medium.snug-top &nbsp;
     - if @topic.posts.present?
       = nested_posts @topic.posts.arrange(order: :created_at)
     - else
