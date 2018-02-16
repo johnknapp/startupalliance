@@ -3,12 +3,12 @@
     - if current_user and current_user == comment.author or current_user == comment.discussion.discussable.creator
       | &nbsp;
       | &nbsp;
-      = link_to edit_discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid) do
+      = link_to edit_discussion_comment_path(comment.discussion,comment) do
         i.fa.fa-pencil
       | &nbsp;
       | &nbsp;
       | &nbsp;
-      = link_to discussion_comment_path(discussion_id: @discussion.pid, id: comment.pid), data: { confirm: 'Really destroy this comment?' }, method: :delete do
+      = link_to discussion_comment_path(comment.discussion,comment), data: { confirm: 'Really destroy this Post?' }, method: :delete do
         i.fa.fa-trash-o
 /- if comment.subtree.present?
   ul.menu.simple.snug-bottom

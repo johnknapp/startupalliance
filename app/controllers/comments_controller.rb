@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
 
@@ -15,6 +15,9 @@ class CommentsController < ApplicationController
     else
       redirect_to discussion_path(discussion), alert: 'There was a problem!'
     end
+  end
+
+  def show
   end
 
   def edit

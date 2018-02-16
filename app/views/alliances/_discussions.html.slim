@@ -20,7 +20,7 @@
           | &nbsp;
           = link_to new_discussion_path(alliance_pid: @alliance.pid), class: 'scale-to-80' do
             i.fa.fa-plus
-      ' Discussion topics:
+      ' Discussion Topics:
     - if current_user and @alliance.members.include?(current_user)
       - if @alliance.discussions.present?
         - @alliance.discussions.order(:updated_at).each do |disco|
@@ -31,11 +31,14 @@
               | &nbsp;
               | &nbsp;
               | &nbsp;
-              = link_to disco, data: { confirm: 'Really destroy entire discussion and all comments?' }, class: 'scale-to-80', method: :delete do
+              = link_to disco, data: { confirm: 'Really destroy this Topic and all it’s Threads and Posts?' }, class: 'scale-to-80', method: :delete do
                 i.fa.fa-trash-o
-          p #{link_to disco.topic, discussion_path(disco)} (#{disco.comments.count} #{'comment'.pluralize(disco.comments.count)})
+          p
+            ' #{link_to disco.topic, discussion_path(disco)}
+            span.faint
+              ' (#{disco.comments.roots.count} #{'Threads'.pluralize(disco.comments.roots.count)})
       - elsif current_user and @alliance.members.include?(current_user)
-        p.text-center.space-top Add the first discussion
+        p.text-center.space-top Add the first Topic
     - else
       p.text-center.space-top
         em

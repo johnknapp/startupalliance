@@ -1,0 +1,30 @@
+a data-open='new-comment' class='button snug-bottom small hollow'
+  i.fa.fa-plus
+  | &nbsp;
+  - if is_post
+    ' Create a new Post
+  - else
+    ' Start a new Thread
+
+  - if is_post
+    .reveal.large#new-comment data-reveal=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.little-space-bottom.scale-to-70 &nbsp;
+      = simple_form_for @comment, url: discussion_comments_path(@comment, discussion_id: @discussion.pid), method: :post do |f|
+        = f.hidden_field :discussion_id, value: @discussion.pid
+        = f.hidden_field :author_id,     value: current_user.id
+        = f.input :body, placeholder: 'Type Post', as: :text, input_html: { rows: '4' }, label: false
+        = f.button :submit, 'Create Post'
+  - else
+    .reveal#new-comment data-reveal=true
+      button data-close=true aria-label='Close' type='button' class='close-button'
+        span aria-hidden=true
+          ' &times;
+      p.little-space-bottom.scale-to-70 &nbsp;
+      = simple_form_for @comment, url: discussion_comments_path(@comment, discussion_id: @discussion.pid), method: :post do |f|
+        = f.hidden_field :discussion_id, value: @discussion.pid
+        = f.hidden_field :author_id,     value: current_user.id
+        = f.input :body, placeholder: 'Name Tread', label: false
+        = f.button :submit, 'Create Thread'

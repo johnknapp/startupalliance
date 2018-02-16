@@ -1,0 +1,21 @@
+- content_for :page_header do
+  h4.bold.little-space-top.medium-grey-text.text-center
+    ' Topic Thread:
+  h2.bold.white-text.text-center
+    = @comment.body
+.row
+  .large-12.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to discussion_path(@comment.discussion) do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to #{@comment.discussion.topic}
+    p.snug-top.space-bottom.text-right Ask questions, get answers, share information and ideas
+.row
+  .medium-8.medium-offset-2.columns
+    - if @comment.descendants.present?
+      = nested_comments @comment.descendants.arrange(order: :created_at)
+    - else
+      p.text-center No Posts
