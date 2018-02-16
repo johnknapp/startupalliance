@@ -35,7 +35,7 @@ $ rake db:seed
 
 ## Run the app:
 
-In your browser, visit <symlink_name>.dev
+In your browser, visit <symlink_name>.test/
 
 There are seeds for users
 

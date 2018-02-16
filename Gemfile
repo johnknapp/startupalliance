@@ -6,7 +6,6 @@ gem 'pg',                                   '~> 0.18'
 
 # gem 'aasm'
 gem 'acts-as-taggable-on'
-# gem 'acts_as_commentable_with_threading'
 gem 'actionview-encoded_mail_to'
 gem 'activeadmin', github: 'activeadmin'
 gem 'ancestry'
