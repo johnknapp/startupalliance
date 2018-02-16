@@ -5,7 +5,7 @@
     = f.hidden_field :author_id,    value: current_user.id       if current_user          and @discussion.new_record?
     = f.hidden_field :company_pid,  value: params[:company_pid]  if params[:company_pid]  and @discussion.new_record?
     = f.hidden_field :alliance_pid, value: params[:alliance_pid] if params[:alliance_pid] and @discussion.new_record?
-    = f.input :topic, label: 'Topic title', placeholder: 'Type a brief Topic title'
+    = f.input :name, placeholder: 'Type a short name for this Discussion'
 
   .form-actions
     .row

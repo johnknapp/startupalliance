@@ -5,9 +5,9 @@
         span aria-hidden=true
           ' &times;
       p.faint.pad-right
-        ' Threaded discussions are a source of knowledge and answers. (Any member can modify this information.)
+        ' Threaded discussions are a source of knowledge and answers. (Any member can participate.)
 .row
-  .medium-10.medium-offset-1.columns
+  .medium-8.medium-offset-2.columns
     h5.bold.primary-text
       .float-right
         a data-open='disco-info'
@@ -20,7 +20,7 @@
           | &nbsp;
           = link_to new_discussion_path(alliance_pid: @alliance.pid), class: 'scale-to-80' do
             i.fa.fa-plus
-      ' Discussion Topics:
+      ' Discussions:
     - if current_user and @alliance.members.include?(current_user)
       - if @alliance.discussions.present?
         - @alliance.discussions.order(:updated_at).each do |disco|
@@ -34,11 +34,12 @@
               = link_to disco, data: { confirm: 'Really destroy this Discussion and all it’s Topics and Posts?' }, class: 'scale-to-80', method: :delete do
                 i.fa.fa-trash-o
           p
-            ' #{link_to disco.topic, discussion_path(disco)}
+            ' #{link_to disco.name, discussion_path(disco)}
             span.faint
               ' (#{disco.topics.count} #{'Topic'.pluralize(disco.topics.count)})
       - elsif current_user and @alliance.members.include?(current_user)
-        p.text-center.space-top Add the first Topic
+        .callout
+          p.text-center No Discussions yet!
     - else
       p.text-center.space-top
         em
