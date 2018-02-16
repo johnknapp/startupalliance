@@ -1,17 +1,17 @@
-.float-left
-  ul.vertical.dropdown.menu.little-less-space-top data-dropdown-menu=true
+.float-right
+  ul.vertical.dropdown.menu data-dropdown-menu=true
     li
       = link_to '#' do
-        i.fa.fa-ellipsis-v.fainter
+        i.fa.fa-ellipsis-v
       ul.menu data-dropdown-menu=true
-        li= link_to edit_discussion_topic_post_path(post.topic,post) do
+        li= link_to edit_discussion_topic_post_path(post.topic.discussion,post.topic,post) do
           i.fa.fa-pencil
-        li= link_to discussion_topic_post_path(post.topic,post), data: { confirm: 'Really destroy this Post?' }, method: :delete do
+        li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post?' }, method: :delete do
           i.fa.fa-trash-o
 
 
-p= simple_format(post.body)
+h5.bold= simple_format(post.body)
 p.snug-top.faint
   ' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
-ul.menu.simple.indented-3
+ul.menu.simple
   li.faint.little-snug-top= render 'partials/new_reply_modal', post: post

@@ -1,0 +1,24 @@
+- content_for :page_header do
+  h4.bold.little-space-top.medium-grey-text.text-center
+    ' Topic:
+  h2.bold.white-text.text-center
+    = @topic.name
+
+.row
+  .large-12.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to discussion_path(@topic.discussion) do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to #{@topic.discussion.name}
+    p.snug-top.space-bottom.text-right= render 'post/add_post_modal'
+
+.row
+  .medium-10.medium-offset-1.columns
+    - if @topic.posts.present?
+      = nested_posts @topic.posts.arrange(order: :created_at)
+    - else
+      .callout
+        p.text-center No Posts yet!

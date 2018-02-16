@@ -3,17 +3,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
-
+  # POST
   def create
-    # raise('Chinese finger trap')
-    topic = Topic.find_by_pid(params[:post][:topic_id])
+    topic = Topic.find params[:post][:topic_id]
     @post = Post.new(post_params)
     @post.topic_id = topic.id
     if @post.save
       # Notifier.tell_jk(@post).deliver
-      redirect_to discussion_topic_path(topic), alert: 'Your Post was saved.'
+      redirect_to discussion_topic_path(topic.discussion,topic), alert: 'Post was successfully created.'
     else
-      redirect_to discussion_topic_path(topic), alert: 'There was a problem!'
+      redirect_to discussion_topic_path(topic.discussion,topic), alert: 'There was a problem!'
     end
   end
 
@@ -39,7 +38,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:body, :author_id, :topic_id, :parent_id, :read, :pid)
+      params.require(:post).permit(:body, :author_id, :topic_id, :parent_id, :pid)
     end
 
     def set_post

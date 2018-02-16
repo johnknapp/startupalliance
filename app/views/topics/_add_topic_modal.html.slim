@@ -1,0 +1,15 @@
+a data-open='add-topic'
+  i.fa.fa-plus
+  | &nbsp;
+  ' Add Topic
+.reveal#add-topic data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  p.bold.primary-text.pad-right Add Topic within #{@discussion.name}
+  = simple_form_for @topic, url: discussion_topics_path(@discussion), method: :post do |f|
+    = f.hidden_field :author_id,     value: current_user.id  if current_user
+    = f.hidden_field :discussion_id, value: @discussion.id
+    = f.input :name, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
+    = f.button :submit, 'Create Topic', class: 'button expanded accent'
+

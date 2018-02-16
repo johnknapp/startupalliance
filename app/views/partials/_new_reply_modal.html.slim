@@ -3,20 +3,17 @@ a data-open="new-reply-#{post.pid}"
   | &nbsp;
   ' Reply
 
-.reveal.medium id="new-reply-#{post.pid}" data-reveal=true
+.reveal.large id="new-reply-#{post.pid}" data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
 
-  p.faint
-    /' #{link_to (image_tag gravatar_url("#{post.author.email}", 36)), vanity_path(post.author.username)}
-    /| &nbsp;
-    /' #{link_to post.author.name, vanity_path(post.author.username)} #{time_ago_in_words(post.created_at)} ago
-  p.little-snug-top= simple_format(post.body)
+  p.bold Reply to:
+  p.snug-top.pad-right= simple_format(post.body)
 
   = simple_form_for @post, url: discussion_topic_posts_path(post,topic_id: post.topic.id), method: :post do |f|
-    = f.hidden_field :topic_id, value: post.topic.pid
-    = f.hidden_field :parent_id,  value: post.id
-    = f.hidden_field :author_id,  value: current_user.id
+    = f.hidden_field :author_id,    value: current_user.id if current_user
+    = f.hidden_field :topic_id,     value: post.topic.id
+    = f.hidden_field :parent_id,    value: post.id
     = f.input :body, placeholder: 'Reply to this post', as: :text, input_html: { rows: '4' }, label: false
-    = f.button :submit, 'Reply', class: 'bold secondary'
+    = f.button :submit, 'Reply', class: 'button expanded accent'
