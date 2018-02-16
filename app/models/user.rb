@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many  :conversations                               # See registrations#destroy
   has_many  :fasts              # TODO rly?
   has_many  :okrs,          foreign_key: :owner_id       # See registrations#destroy
-  has_many  :comments,      foreign_key: :author_id, dependent: :destroy
+  has_many  :posts,      foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, class_name: :Comment, dependent: :destroy
   has_many  :messages
 

@@ -2,21 +2,21 @@
   h4.bold.little-space-top.medium-grey-text.text-center
     ' Topic Thread:
   h2.bold.white-text.text-center
-    = @comment.body
+    = @post.body
 .row
   .large-12.columns
     .float-left
       p.snug-top.space-bottom
-        = link_to discussion_path(@comment.discussion) do
+        = link_to discussion_path(@post.discussion) do
           i.fa.fa-arrow-left
           | &nbsp;
           | &nbsp;
-          ' Return to “#{@comment.discussion.topic}”
+          ' Return to “#{@post.discussion.topic}”
     p.snug-top.space-bottom.text-right= render 'partials/comment_create_modal', is_post: true
 .row
   .medium-8.medium-offset-2.columns
-    - if @comment.descendants.present?
-      = nested_comments @comment.descendants.arrange(order: :created_at)
+    - if @post.descendants.present?
+      = nested_comments @post.descendants.arrange(order: :created_at)
     - else
       .callout
         p.text-center No Posts yet!

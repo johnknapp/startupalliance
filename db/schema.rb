@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213231638) do
+ActiveRecord::Schema.define(version: 20180216183100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,17 +66,6 @@ ActiveRecord::Schema.define(version: 20180213231638) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "discussion_id", null: false
-    t.string   "pid",           null: false
-    t.integer  "author_id",     null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "ancestry"
-    t.index ["ancestry"], name: "index_comments_on_ancestry", using: :btree
-  end
-
   create_table "companies", force: :cascade do |t|
     t.string   "name",                           null: false
     t.text     "mission"
@@ -123,7 +112,7 @@ ActiveRecord::Schema.define(version: 20180213231638) do
   end
 
   create_table "discussions", force: :cascade do |t|
-    t.string   "topic"
+    t.string   "name"
     t.string   "discussable_type", null: false
     t.integer  "discussable_id",   null: false
     t.string   "pid",              null: false
@@ -229,6 +218,17 @@ ActiveRecord::Schema.define(version: 20180213231638) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "discussion_id", null: false
+    t.string   "pid",           null: false
+    t.integer  "author_id",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_posts_on_ancestry", using: :btree
+  end
+
   create_table "sakpis", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -264,6 +264,15 @@ ActiveRecord::Schema.define(version: 20180213231638) do
     t.string  "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "discussion_id", null: false
+    t.string   "pid",           null: false
+    t.integer  "author_id",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "traits", force: :cascade do |t|

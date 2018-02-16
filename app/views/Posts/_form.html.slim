@@ -1,16 +1,16 @@
-= simple_form_for @comment, url: discussion_comment_path do |f|
+= simple_form_for @post, url: discussion_comment_path do |f|
   = f.error_notification
 
   .form-inputs
-    = f.hidden_field :author_id,     value: current_user.id         if current_user and @comment.new_record?
-    = f.hidden_field :discussion_id, value: params[:discussion_id]  if @comment.new_record?
+    = f.hidden_field :author_id,     value: current_user.id         if current_user and @post.new_record?
+    = f.hidden_field :discussion_id, value: params[:discussion_id]  if @post.new_record?
     = f.input :body, as: :text, input_html: { rows: '4' }, label: false
 
   .form-actions
     .row
       .medium-12.columns
         .button-group
-          - if @comment.root?
+          - if @post.root?
             = f.button :submit, 'Update Thread', class: 'button'
           - else
             = f.button :submit, 'Update Post', class: 'button'
