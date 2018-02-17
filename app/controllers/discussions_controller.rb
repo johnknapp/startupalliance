@@ -9,6 +9,7 @@ class DiscussionsController < ApplicationController
 
   def create
 
+    # TODO leverage discussable to clean this up like #update
     if params[:discussion][:company_pid]
       @discussable = Company.find_by_pid(params[:discussion][:company_pid])
       @discussion  = @discussable.discussions.build(discussion_params)
@@ -36,12 +37,15 @@ class DiscussionsController < ApplicationController
     @topic = Topic.new
   end
 
-  def edit
-  end
-
   def update
     if @discussion.update(discussion_params)
-      redirect_to discussion_path(@discussion), notice: 'Discussion updated'
+      if @discussion.discussable.class.name == 'Company'
+        redirect_to company_path(@discussion.discussable), notice: 'Discussion updated'
+      elsif @discussion.discussable.class.name == 'Alliance'
+        redirect_to alliance_path(@discussion.discussable), notice: 'Discussion updated'
+      else
+        redirect_to nucleus_path, notice: 'Discussion updated'
+      end
     else
       redirect_to discussion_path(@discussion), alert: 'There was a problem!'
     end

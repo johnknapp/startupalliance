@@ -1,0 +1,15 @@
+a data-open="edit-discussion-#{discussable.pid}"
+  i.fa.fa-pencil
+  | &nbsp;
+  ' Edit
+.reveal id="edit-discussion-#{discussable.pid}" data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  p.bold.primary-text.pad-right Edit Discussion for #{discussable.name}
+  = simple_form_for discussion, url: discussion_path(discussion), method: :put do |f|
+    = f.hidden_field :author_id,      value: current_user.id  if current_user
+    = f.hidden_field :company_pid,    value: discussable.pid  if discussable.class.name == 'Company'
+    = f.hidden_field :alliance_pid,   value: discussable.pid  if discussable.class.name == 'Alliance'
+    = f.input :name, placeholder: 'Type a short name for this Discussion'
+    = f.button :submit, 'Edit Discussion', class: 'button expanded accent'

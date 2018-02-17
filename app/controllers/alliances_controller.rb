@@ -12,6 +12,7 @@ class AlliancesController < ApplicationController
   # GET /alliances/1
   # GET /alliances/1.json
   def show
+    @discussion = Discussion.new
   end
 
   # GET /alliances/new
