@@ -27,6 +27,9 @@
                     li
                       a data-open="edit-sufa-#{i}"
                         i.fa.fa-pencil
+                        | &nbsp;
+                        ' Edit
+
                       .reveal id="edit-sufa-#{i}" data-reveal=true
                         button data-close=true aria-label='Close' type='button' class='close-button'
                           span aria-hidden=true
@@ -46,6 +49,8 @@
                     li
                       = link_to sufa, data: { confirm: 'Really delete this item?' }, method: :delete do
                         i.fa.fa-trash-o
+                        | &nbsp;
+                        ' Delete
             p.bold
               = sufa.body
               /- if sufa.sakpi and sufa.okr

@@ -14,7 +14,7 @@ class DiscussionsController < ApplicationController
       @discussion  = @discussable.discussions.build(discussion_params)
       if @discussion.save
         Notifier.tell_jk(@discussion).deliver
-        redirect_to discussion_path(@discussion), notice: 'Discussion created'
+        redirect_to company_path(@discussable), notice: 'Discussion created'
       else
         redirect_to company_path(@discussable), alert: 'There was a problem!'
       end
@@ -24,7 +24,7 @@ class DiscussionsController < ApplicationController
       @discussable = Alliance.find_by_pid(params[:discussion][:alliance_pid])
       @discussion  = @discussable.discussions.build(discussion_params)
       if @discussion.save
-        redirect_to discussion_path(@discussion), notice: 'Discussion created'
+        redirect_to alliance_path(@discussable), notice: 'Discussion created'
       else
         redirect_to alliance_path(@discussable), alert: 'There was a problem!'
       end

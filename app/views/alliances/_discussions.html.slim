@@ -8,19 +8,19 @@
         ' Threaded discussions are a source of knowledge and answers. (Any member can participate.)
 .row
   .medium-8.medium-offset-2.columns
-    h5.bold.primary-text
-      .float-right
-        a data-open='disco-info'
-          i.fa.fa-info-circle
-        = render 'partials/quick_reference_disco'
+    .float-right
+      /a data-open='disco-info'
+        i.fa.fa-info-circle
+      /= render 'partials/quick_reference_disco'
 
-        - if current_user and @alliance.members.include?(current_user)
+      - if current_user and @alliance.members.include?(current_user)
+        = link_to new_discussion_path(alliance_pid: @alliance.pid) do
+          i.fa.fa-plus
           | &nbsp;
-          | &nbsp;
-          | &nbsp;
-          = link_to new_discussion_path(alliance_pid: @alliance.pid), class: 'scale-to-80' do
-            i.fa.fa-plus
-      ' Discussions:
+          ' Add Discussion
+    h5.bold.primary-text
+      | &nbsp;
+      /' Discussions:
     - if current_user and @alliance.members.include?(current_user)
       - if @alliance.discussions.present?
         - @alliance.discussions.order(:updated_at).each do |disco|
@@ -33,11 +33,11 @@
               | &nbsp;
               = link_to disco, data: { confirm: 'Really destroy this Discussion and all it’s Topics and Posts?' }, class: 'scale-to-80', method: :delete do
                 i.fa.fa-trash-o
-          p
+          h5.bold.little-space-top
             ' #{link_to disco.name, discussion_path(disco)}
             span.faint
               ' (#{disco.topics.count} #{'Topic'.pluralize(disco.topics.count)})
-      - elsif current_user and @alliance.members.include?(current_user)
+      - else
         .callout
           p.text-center No Discussions yet!
     - else

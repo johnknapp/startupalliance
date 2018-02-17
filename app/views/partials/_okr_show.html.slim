@@ -10,9 +10,14 @@
             li
               = link_to edit_okr_path(okr, company_pid: @company.pid) do
                 i.fa.fa-pencil
+                | &nbsp;
+                ' Edit
             li
               = link_to okr, data: { confirm: 'Are you sure?' }, method: :delete do
                 i.fa.fa-trash-o
+                | &nbsp;
+                ' Delete
+
 
   h5.bold.primary-text.pad-right= okr.objective
   .row

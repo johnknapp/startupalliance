@@ -21,11 +21,8 @@
             ' Return to #{@discussion.discussable.name}
     p.snug-top.space-bottom.text-right= render 'topics/add_modal'
 
-
     .row
       .medium-8.medium-offset-2.columns
-        /p.show-for-medium.snug-top &nbsp;
-
         - if @discussion.topics.present?
           - @discussion.topics.each do |topic|
             .float-right
@@ -36,10 +33,11 @@
                   ul.menu data-dropdown-menu=true  data-alignment='left'
                     li
                       = render 'topics/edit_modal', topic: topic
-                      /= link_to edit_discussion_topic_path(topic.discussion,topic) do
-                        i.fa.fa-pencil
                     li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
                       i.fa.fa-trash-o
+                      | &nbsp;
+                      ' Delete
+
             h4.bold.space-top
               = link_to topic.name, discussion_topic_path(@discussion,topic)
             p.faint.little-snug-top
