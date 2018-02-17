@@ -15,10 +15,6 @@
 
       - if current_user and @alliance.members.include?(current_user)
         = render 'discussions/add_modal', discussable: @alliance
-        /= link_to new_discussion_path(alliance_pid: @alliance.pid) do
-          i.fa.fa-plus
-          | &nbsp;
-          ' Add Discussion
     h5.bold.primary-text
       | &nbsp;
       /' Discussions:
@@ -26,7 +22,7 @@
       - if @alliance.discussions.present?
         - @alliance.discussions.order(updated_at: :desc).each do |disco|
           .float-right
-            ul.vertical.dropdown.menu data-dropdown-menu=true
+            ul.dropdown.menu data-dropdown-menu=true
               li
                 = link_to '#' do
                   i.fa.fa-ellipsis-v

@@ -24,9 +24,9 @@
     .row
       .medium-8.medium-offset-2.columns
         - if @discussion.topics.present?
-          - @discussion.topics.each do |topic|
+          - @discussion.topics.order(updated_at: :desc).each do |topic|
             .float-right
-              ul.vertical.dropdown.menu.space-top data-dropdown-menu=true
+              ul.dropdown.menu.space-top data-dropdown-menu=true
                 li
                   = link_to '#' do
                     i.fa.fa-ellipsis-v
@@ -37,7 +37,6 @@
                       i.fa.fa-trash-o
                       | &nbsp;
                       ' Delete
-
             h4.bold.space-top
               = link_to topic.name, discussion_topic_path(@discussion,topic)
             p.faint.little-snug-top

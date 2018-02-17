@@ -19,7 +19,7 @@
         - if @company.fasts.where(type_code: 'sufa').present?
           - @company.fasts.order(updated_at: :desc).where(type_code: 'sufa').each_with_index do |sufa, i|
             .float-right
-              ul.vertical.dropdown.menu data-dropdown-menu=true
+              ul.dropdown.menu data-dropdown-menu=true
                 li
                   = link_to '#' do
                     i.fa.fa-ellipsis-v.fainter
