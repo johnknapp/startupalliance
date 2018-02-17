@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216204036) do
+ActiveRecord::Schema.define(version: 20180217191357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,12 +113,13 @@ ActiveRecord::Schema.define(version: 20180216204036) do
 
   create_table "discussions", force: :cascade do |t|
     t.string   "name"
-    t.string   "discussable_type", null: false
-    t.integer  "discussable_id",   null: false
-    t.string   "pid",              null: false
-    t.integer  "author_id",        null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "discussable_type"
+    t.integer  "discussable_id"
+    t.string   "pid",                              null: false
+    t.integer  "author_id",                        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "nucleus",          default: false
     t.index ["discussable_type", "discussable_id"], name: "index_discussions_on_discussable_type_and_discussable_id", using: :btree
   end
 
