@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static#home'
 
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
+  get 'nucleus/discussions',        to: 'static#discussions',          constraints: { format: 'html' }
   get 'faq',                        to: 'static#faq',                  constraints: { format: 'html' }
   get 'code_of_conduct',            to: 'static#code_of_conduct',      constraints: { format: 'html' }
   get 'join_thanks',                to: 'static#join_thanks',          constraints: { format: 'html' }

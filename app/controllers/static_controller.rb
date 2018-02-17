@@ -19,6 +19,10 @@ class StaticController < ApplicationController
   def nucleus
   end
 
+  def discussions
+    @discussions = Discussion.where(nucleus: true).all.order(:name)
+  end
+
   def faq
   end
 
