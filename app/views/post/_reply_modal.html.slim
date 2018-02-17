@@ -8,7 +8,7 @@ a data-open="new-reply-#{post.pid}"
     span aria-hidden=true
       ' &times;
 
-  p.bold Reply to:
+  p.bold You are replying to:
   p.snug-top.pad-right= simple_format(post.body)
 
   = simple_form_for @post, url: discussion_topic_posts_path(post,topic_id: post.topic.id), method: :post do |f|

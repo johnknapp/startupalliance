@@ -19,7 +19,7 @@
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
-    p.snug-top.space-bottom.text-right= render 'topics/add_topic_modal'
+    p.snug-top.space-bottom.text-right= render 'topics/add_modal'
 
 
     .row
@@ -35,7 +35,7 @@
                     i.fa.fa-ellipsis-v
                   ul.menu data-dropdown-menu=true  data-alignment='left'
                     li
-                      = render 'topics/edit_topic_modal', topic: topic
+                      = render 'topics/edit_modal', topic: topic
                       /= link_to edit_discussion_topic_path(topic.discussion,topic) do
                         i.fa.fa-pencil
                     li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
