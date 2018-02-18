@@ -32,10 +32,10 @@
                     i.fa.fa-trash-o
                     | &nbsp;
                     ' Delete
-          h5.bold.little-space-top
+          h5.bold.space-top
             ' #{link_to disco.name, discussion_path(disco)}
-            span.faint
-              ' (#{disco.topics.count} #{'Topic'.pluralize(disco.topics.count)})
+          p.little-snug-top.faint
+            = discussion_summary(disco)
       - else
         .callout
           p.text-center No Discussions yet!
