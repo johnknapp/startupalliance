@@ -20,7 +20,7 @@
       /' Discussions:
     - if current_user and @company.team.include?(current_user)
       - if @company.discussions.present?
-        - @company.discussions.order(updated_at: :desc).each do |disco|
+        - @company.discussions.order(:name).each do |disco|
           .float-right
             ul.dropdown.menu data-dropdown-menu=true
               li

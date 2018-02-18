@@ -5,7 +5,6 @@
         i.fa.fa-ellipsis-v
       ul.menu data-dropdown-menu=true
         li= render 'post/edit_modal', post: post
-        li= render 'post/reply_modal', post: post
         li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
           i.fa.fa-trash-o
           | &nbsp;
@@ -14,4 +13,6 @@
 p.faint
   ' #{link_to post.author.name, vanity_path(post.author.username)},
   ' #{time_ago_in_words(post.created_at)} ago
-h5.snug-top= simple_format(post.body)
+  | &nbsp;
+  = render 'post/reply_modal', post: post
+h5.snug-top= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)

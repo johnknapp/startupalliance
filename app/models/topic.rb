@@ -7,4 +7,6 @@ class Topic < ApplicationRecord
 
   validates :name,          length: { maximum: 255 }
 
+  scope :fresh_posts_first, -> { includes(:posts).order('posts.updated_at desc') }
+
 end

@@ -20,7 +20,7 @@
       /' Discussions:
     - if current_user and @alliance.members.include?(current_user)
       - if @alliance.discussions.present?
-        - @alliance.discussions.order(updated_at: :desc).each do |disco|
+        - @alliance.discussions.order(:name).each do |disco|
           .float-right
             ul.dropdown.menu data-dropdown-menu=true
               li
