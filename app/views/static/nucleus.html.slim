@@ -2,20 +2,20 @@
   | Startup Alliance – The Entrepreneur’s Nucleus
   ' &trade;
 
-  - content_for :page_header do
-    h2.bold.little-space-top.little-space-bottom.white-text.text-center
-      | The Entrepreneur’s Nucleus
-      span.faint
-        ' &trade;
-    h5.bold.medium-grey-text.text-center
-      ' 核心,
-      ' Le Noyau,
-      ' Der Kern,
-      ' केंद्रक,
-      ' Il Nucleo,
-      ' Ядро,
-      ' El Núcleo
-      '
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    | The Entrepreneur’s Nucleus
+    span.faint
+      ' &trade;
+  h5.bold.medium-grey-text.text-center
+    ' 核心,
+    ' Le Noyau,
+    ' Der Kern,
+    ' केंद्रक,
+    ' Il Nucleo,
+    ' Ядро,
+    ' El Núcleo
+    '
 .row
   .medium-10.medium-offset-1.columns
     p.snug-top.space-botton.text-right
@@ -32,7 +32,7 @@
           .card-section
             .plan-box data-equalizer-watch=true
               p.bold.text-center Community Discussion Forums where entrepreneurs ask questions and get answers.
-              = link_to 'Access the Discussion Forums', '#', class: 'button expanded disabled'
+              = link_to 'Access the Discussion Forums', nucleus_discussions_path, class: 'button expanded'
               p.faint.text-center Launching soon
 
       .column
