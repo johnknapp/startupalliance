@@ -1,6 +1,8 @@
 class Topic < ApplicationRecord
   include Pid
 
+  acts_as_paranoid
+
   belongs_to  :discussion
   belongs_to  :author,  class_name: :User
   has_many    :posts,   dependent: :destroy

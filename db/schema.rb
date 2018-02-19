@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219164505) do
+ActiveRecord::Schema.define(version: 20180219193702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(version: 20180219164505) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.boolean  "nucleus",          default: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_discussions_on_deleted_at", using: :btree
     t.index ["discussable_type", "discussable_id"], name: "index_discussions_on_discussable_type_and_discussable_id", using: :btree
   end
 
@@ -228,7 +230,9 @@ ActiveRecord::Schema.define(version: 20180219164505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "ancestry"
+    t.datetime "deleted_at"
     t.index ["ancestry"], name: "index_posts_on_ancestry", using: :btree
+    t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
   end
 
   create_table "sakpis", force: :cascade do |t|
@@ -275,6 +279,8 @@ ActiveRecord::Schema.define(version: 20180219164505) do
     t.integer  "author_id",     null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_topics_on_deleted_at", using: :btree
   end
 
   create_table "traits", force: :cascade do |t|
