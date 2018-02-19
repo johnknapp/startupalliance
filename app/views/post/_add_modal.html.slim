@@ -6,11 +6,22 @@ a data-open='add-post'
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
-  p.bold.primary-text.pad-right Add Post within #{@topic.name}
-  = simple_form_for @post, url: discussion_topic_posts_path(@topic.discussion,@topic), method: :post do |f|
-    = f.hidden_field :author_id,    value: current_user.id  if current_user
-    = f.hidden_field :topic_id,     value: @topic.id
-    = f.input :body, label: false, as: :text, autofocus: true, placeholder: 'Write your Post', input_html: { rows: 4 }
-    = f.button :submit, 'Create Post', class: 'button expanded accent'
+  .row
+    .medium-12.columns
+      p.bold.primary-text.little-snug-bottom Add Post
+  .row
+    .medium-2.columns
+      p.little-snug-bottom.text-right Topic:
+      p.text-right Discussion:
+    .medium-10.columns
+      p.bold.little-snug-bottom= @topic.name
+      p.bold= @topic.discussion.name
+  .row
+    .medium-12.columns
+      = simple_form_for @post, url: discussion_topic_posts_path(@topic.discussion,@topic), method: :post do |f|
+        = f.hidden_field :author_id,    value: current_user.id  if current_user
+        = f.hidden_field :topic_id,     value: @topic.id
+        = f.input :body, label: false, as: :text, autofocus: true, placeholder: 'Write your Post', input_html: { rows: 4 }
+        = f.button :submit, 'Create Post', class: 'button expanded accent'
 
 
