@@ -13,7 +13,7 @@
 
 .row
   .large-7.columns
-    h5.bold.little-space-top Discussions:
+    h5.bold.little-space-top Available discussions:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
         h5.bold.little-space-top
@@ -32,7 +32,7 @@
       ' while interacting with your global Startup Alliance community.
       '
     h5.bold.space-top Most Recent Topics:
-    - if nucleus_topics
+    - if nucleus_topics.present?
       - nucleus_topics.fresh_posts_first.limit(10).each do |topic|
         p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
         p.faint.snug-top.little-space-bottom=topic_summary(topic)
