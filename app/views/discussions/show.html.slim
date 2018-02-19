@@ -24,20 +24,36 @@
     .row
       .medium-8.medium-offset-2.columns
         - if @discussion.topics.present?
-          h4.bold.primary-text #{@discussion.topics.count} Topics:
+          h4.primary-text #{@discussion.topics.count} Topics:
           - @discussion.topics.fresh_posts_first.each do |topic|
-            .float-right
-              ul.dropdown.menu.space-top data-dropdown-menu=true
-                li
-                  = link_to '#' do
-                    i.fa.fa-ellipsis-v
-                  ul.menu data-dropdown-menu=true  data-alignment='left'
+            - if @discussion.discussable
+              - if current_user and (@discussion.discussable.creator_id == current_user.id) or (topic.author_id == current_user.id) or (current_user.role == 'admin')
+                .float-right
+                  ul.dropdown.menu.space-top data-dropdown-menu=true
                     li
-                      = render 'topics/edit_modal', topic: topic
-                    li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
-                      i.fa.fa-trash-o
-                      | &nbsp;
-                      ' Delete
+                      = link_to '#' do
+                        i.fa.fa-ellipsis-v
+                      ul.menu data-dropdown-menu=true  data-alignment='left'
+                        li
+                          = render 'topics/edit_modal', topic: topic
+                        li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
+                          i.fa.fa-trash-o
+                          | &nbsp;
+                          ' Delete
+            - else
+              - if current_user and (topic.author_id == current_user.id) or (current_user.role == 'admin')
+                .float-right
+                  ul.dropdown.menu.space-top data-dropdown-menu=true
+                    li
+                      = link_to '#' do
+                        i.fa.fa-ellipsis-v
+                      ul.menu data-dropdown-menu=true  data-alignment='left'
+                        li
+                          = render 'topics/edit_modal', topic: topic
+                        li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
+                          i.fa.fa-trash-o
+                          | &nbsp;
+                          ' Delete
             h4.bold.space-top
               = link_to topic.name, discussion_topic_path(@discussion,topic)
             p.faint.little-snug-top
