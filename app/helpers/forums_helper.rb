@@ -25,6 +25,19 @@ module ForumsHelper
     end
   end
 
+  def nucleus_forum_post_count
+    '12,345'
+  end
+
+  def nucleus_forum_author_count
+    '1,234'
+  end
+
+  def nucleus_topics
+    nuc_disco_ids = Discussion.where(nucleus: true).pluck(:id)
+    Topic.where('discussion_id in (?)',nuc_disco_ids)
+  end
+
   private
 
     def disco_posts(discussion)

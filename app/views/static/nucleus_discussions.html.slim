@@ -3,8 +3,9 @@
   ' Nucleus Discussions
 
 - content_for :page_header do
-  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+  h2.bold.little-space-top.white-text.text-center
     ' Nucleus Discussion Forums
+  h4.bold.medium-grey-text.text-center #{nucleus_forum_post_count} Posts from #{nucleus_forum_author_count} Authors
 
 /.row
   .medium-8.medium-offset-2.columns
@@ -22,11 +23,14 @@
           p.text-center No Discussions yet!
 
   .large-5.columns
-    p.bold.space-top
+    h5.bold.space-top
       ' Welcome to the Nucleus Discussion Forums
-    p
+    p.little-snug-top
       ' Ask questions, get answers, make connections and solve challenges
       ' while interacting with the global Startup Alliance community.
       '
     h5.bold.space-top Most Recent Topics
+    - nucleus_topics.fresh_posts_first.limit(10).each do |topic|
+      p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+      p.faint.snug-top.little-space-bottom=topic_summary(topic)
 
