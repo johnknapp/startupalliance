@@ -5,14 +5,14 @@ module ForumsHelper
     if discussion.topics.count != 0
       if disco_posts(discussion).count == 0
         ', ' + disco_posts(discussion).count.to_s + ' ' +
-        'Post'.pluralize(disco_posts(discussion).count) + ')'
+        'Post'.pluralize(disco_posts(discussion).count) + ' — You can post first!)'
       else
         ', ' + disco_posts(discussion).count.to_s + ' ' +
         'Post'.pluralize(disco_posts(discussion).count) +
         ' — latest ' + time_ago_in_words(disco_posts(discussion).order(updated_at: :desc).limit(1).last.updated_at) + ' ago)'
       end
     else
-      ')'
+      ' — You can post first!)'
     end
   end
 
