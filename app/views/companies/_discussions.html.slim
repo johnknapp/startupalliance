@@ -20,7 +20,7 @@
   - if current_user and @company.team.include?(current_user)
     - if @company.discussions.present?
       .large-7.columns
-        h5.bold.little-space-top Available discussions:
+        h5.bold.little-space-top Available Discussions:
         - @company.discussions.order(:name).each do |disco|
           - if current_user and (@company.team_member(current_user).role == 'Owner') or (current_user.role == 'admin')
             .float-right

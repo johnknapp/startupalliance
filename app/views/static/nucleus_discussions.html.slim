@@ -13,7 +13,7 @@
 
 .row
   .large-7.columns
-    h5.bold.little-space-top Available discussions:
+    h5.bold.little-space-top Available Discussions:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
         h5.bold.little-space-top

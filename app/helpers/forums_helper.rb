@@ -30,8 +30,8 @@ module ForumsHelper
     Post.where('topic_id in (?)', topic_ids)
   end
 
-  def nucleus_forum_authors
-    1234
+  def nucleus_forum_post_author_ids
+    nucleus_forum_posts.pluck(:author_id).uniq.count
   end
 
   def nucleus_topics

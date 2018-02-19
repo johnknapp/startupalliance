@@ -20,7 +20,7 @@
   - if current_user and @alliance.members.include?(current_user)
     - if @alliance.discussions.present?
       .large-7.columns
-        h5.bold.little-space-top Available discussions:
+        h5.bold.little-space-top Available Discussions:
         - @alliance.discussions.order(:name).each do |disco|
           - if current_user and (@alliance.creator == current_user) or (current_user.role == 'admin')
             .float-right

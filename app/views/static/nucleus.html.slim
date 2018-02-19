@@ -33,8 +33,9 @@
             .plan-box data-equalizer-watch=true
               p.bold.text-center Community Discussion Forums where entrepreneurs ask questions and get answers.
               = link_to 'Access the Discussion Forums', nucleus_discussions_path, class: 'button expanded'
-              /p.faint.text-center Launching soon
-              p.faint.text-center Just launched
+              p.faint.text-center
+                ' #{number_with_delimiter(nucleus_forum_posts.count)} #{'Post'.pluralize(nucleus_forum_posts.count)}
+                ' from #{number_with_delimiter(nucleus_forum_post_author_ids)} #{'Member'.pluralize(nucleus_forum_post_author_ids)}
 
       .column
         .card.primary.shadow
@@ -44,7 +45,9 @@
             .plan-box data-equalizer-watch=true
               p.bold.text-center Community Knowledge Base featuring a growing collection of entrepreneurial resources and advice.
               = link_to 'Access the Knowledge Base', pages_path, class: 'button expanded'
-              p.faint.text-center #{number_with_delimiter(Page.count)} #{'page'.pluralize(Page.count)} from #{number_with_delimiter(User.where('audits_count > 0').count)} #{'member'.pluralize(User.where('audits_count > 0').count)}
+              p.faint.text-center
+                ' #{number_with_delimiter(Page.count)} #{'Page'.pluralize(Page.count)}
+                ' from #{number_with_delimiter(User.where('audits_count > 0').count)} #{'Member'.pluralize(User.where('audits_count > 0').count)}
 
       .column
         .card.primary.shadow
