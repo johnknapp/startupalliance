@@ -39,6 +39,11 @@ module ForumsHelper
     Topic.where('discussion_id in (?)',nuc_disco_ids)
   end
 
+  def discussable_topics(discussable)
+    discussion_ids = discussable.discussions.pluck(:id)
+    Topic.where('discussion_id in (?)',discussion_ids)
+  end
+
   private
 
     def disco_posts(discussion)

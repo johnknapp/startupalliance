@@ -3,6 +3,8 @@ class Page < ApplicationRecord
 
   define_model_callbacks :around_audit
 
+  belongs_to  :author,  class_name: :User
+
   validates :title,       presence: true
   validates :title,       length: { maximum: 64 }
   validates :content,     presence: true

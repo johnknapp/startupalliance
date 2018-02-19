@@ -68,7 +68,7 @@ class PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:title, :content, :category_list).merge(category_list: params[:page][:category_list])
+      params.require(:page).permit(:title, :content, :author_id, :category_list).merge(category_list: params[:page][:category_list])
     end
 
 end

@@ -15,11 +15,11 @@
 
       - if current_user and (@company.team_member(current_user).role == 'Owner') or (current_user.role == 'admin')
         = render 'discussions/add_modal', discussable: @company
-    h5.bold.primary-text
-      | &nbsp;
-      /' Discussions:
-    - if current_user and @company.team.include?(current_user)
-      - if @company.discussions.present?
+
+.row
+  - if current_user and @company.team.include?(current_user)
+    - if @company.discussions.present?
+      .large-7.columns
         - @company.discussions.order(:name).each do |disco|
           - if current_user and (@company.team_member(current_user).role == 'Owner') or (current_user.role == 'admin')
             .float-right
@@ -37,10 +37,15 @@
             ' #{link_to disco.name, discussion_path(disco)}
           p.little-snug-top.faint
             = discussion_summary(disco)
-      - else
-        .callout
-          p.text-center No Discussions yet!
+      .large-5.columns
+        h5.bold.little-space-top Most Recent Topics
+        - discussable_topics(@company).fresh_posts_first.limit(10).each do |topic|
+          p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+          p.faint.snug-top.little-space-bottom=topic_summary(topic)
     - else
-      p.text-center.space-top
-        em
-          ' Team discussions only visible to the Company Team.
+      .callout
+        p.text-center No Discussions yet!
+  - else
+    .medium-12.columns
+      .callout
+          p.text-center.space-top Team discussions only visible to the Company Team.

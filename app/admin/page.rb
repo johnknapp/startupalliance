@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  permit_params :title, :content, :category_list => []
+  permit_params :title, :content, :author_id, :category_list => []
 
   scope('Not deleted')  { |scope| scope.all }
   scope('Soft deleted') { |scope| scope.only_deleted }
@@ -19,11 +19,14 @@ ActiveAdmin.register Page do
     column 'Content length' do |page|
       page.content.length
     end
+    column :author
     column :categories do |page|
       page.category_list
     end
     actions
   end
+
+  filter :author_id, label: "Author ID"
 
   show do
     attributes_table do
@@ -33,6 +36,7 @@ ActiveAdmin.register Page do
       row :tags do |page|
         page.category_list
       end
+      row :author
       row :title
       row :content do |page|
         markdown page.content
@@ -42,6 +46,7 @@ ActiveAdmin.register Page do
 
   form do |f|
     f.inputs 'Edit Page' do
+      f.input :author_id, label: 'Author ID'
       f.input :title
       f.input :content
       f.input :category_list, as: :check_boxes, collection: Category.all.pluck(:name,:name)

@@ -15,11 +15,11 @@
 
       - if current_user and (@alliance.creator == current_user) or (current_user.role == 'admin')
         = render 'discussions/add_modal', discussable: @alliance
-    h5.bold.primary-text
-      | &nbsp;
-      /' Discussions:
-    - if current_user and @alliance.members.include?(current_user)
-      - if @alliance.discussions.present?
+
+.row
+  - if current_user and @alliance.members.include?(current_user)
+    - if @alliance.discussions.present?
+      .large-7.columns
         - @alliance.discussions.order(:name).each do |disco|
           - if current_user and (@alliance.creator == current_user) or (current_user.role == 'admin')
             .float-right
@@ -37,10 +37,15 @@
             ' #{link_to disco.name, discussion_path(disco)}
           p.little-snug-top.faint
             = discussion_summary(disco)
-      - else
-        .callout
-          p.text-center No Discussions yet!
+      .large-5.columns
+        h5.bold.space-top Most Recent Topics
+        - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
+          p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+          p.faint.snug-top.little-space-bottom=topic_summary(topic)
     - else
-      p.text-center.space-top
-        em
-          ' Private Alliance Member discussions only visible to the Members.
+      .callout
+        p.text-center No Discussions yet!
+  - else
+    .medium-12.columns
+      .callout
+        p.text-center.space-top Private Alliance Member discussions only visible to the Members.
