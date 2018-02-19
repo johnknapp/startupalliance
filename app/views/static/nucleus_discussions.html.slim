@@ -8,8 +8,8 @@
   h4.bold.medium-grey-text.text-center
     ' #{number_with_delimiter(nucleus_forum_posts.count)}
     ' #{'Post'.pluralize(nucleus_forum_posts.count)}
-    ' from #{number_with_delimiter(nucleus_forum_posts.count)}
-    ' #{'Author'.pluralize(nucleus_forum_posts.count)}
+    ' from #{number_with_delimiter(nucleus_forum_post_author_ids)}
+    ' #{'Author'.pluralize(nucleus_forum_post_author_ids)}
 
 .row
   .large-7.columns
