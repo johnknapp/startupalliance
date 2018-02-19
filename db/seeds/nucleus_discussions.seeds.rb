@@ -31,7 +31,7 @@ nucleus_discussions = [
 ]
 
 if Rails.env.production?
-  author_id = User.where(email: 'john@startupalliance.com').pluck(:id)
+  author_id = User.where(email: 'john@startupalliance.com').pluck(:id).first
 else
   author_id = 1
 end
