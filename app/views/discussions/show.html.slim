@@ -19,6 +19,12 @@
             | &nbsp;
             | &nbsp;
             ' Return to #{@discussion.discussable.name}
+        - if !@discussion.discussable
+          = link_to nucleus_discussions_path do
+            i.fa.fa-arrow-left
+            | &nbsp;
+            | &nbsp;
+            ' Return to Nucleus Discussions
     p.snug-top.space-bottom.text-right= render 'topics/add_modal'
 
     .row

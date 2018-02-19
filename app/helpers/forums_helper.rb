@@ -1,22 +1,5 @@
 module ForumsHelper
 
-  # def posts_count(discussion)
-  #   count = 0
-  #   discussion.topics.each do |t|
-  #     count += t.posts.count
-  #   end
-  #   count
-  # end
-  #
-  # def most_recent_post(model)
-  #   if model.class.name == 'Discussion'
-  #     topic_ids = Topic.where(discussion_id: model.id).all.pluck(:id)
-  #     Post.where('topic_id in (?)', topic_ids).order(updated_at: :desc).limit(1).last
-  #   elsif model.class.name == 'Topic'
-  #     model.posts.order(updated_at: :desc).limit(1).last
-  #   end
-  # end
-  #
   def discussion_summary(discussion)
     '(' + discussion.topics.count.to_s + ' Topic'.pluralize(discussion.topics.count) +
     if discussion.topics.count != 0

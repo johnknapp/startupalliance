@@ -5,7 +5,7 @@ class Topic < ApplicationRecord
   belongs_to  :author,  class_name: :User
   has_many    :posts,   dependent: :destroy
 
-  validates :name,          length: { maximum: 255 }
+  validates :name,          length: { maximum: 140 }
 
   scope :fresh_posts_first, -> { includes(:posts).order('posts.updated_at desc') }
 

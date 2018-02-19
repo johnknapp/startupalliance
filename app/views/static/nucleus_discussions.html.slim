@@ -6,10 +6,11 @@
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     ' Nucleus Discussion Forums
 
-.row
+/.row
   .medium-8.medium-offset-2.columns
-    h5.bold.primary-text
-      | &nbsp;
+.row
+  .large-7.columns
+    h5.bold.primary-text.space-top
       - if @discussions.present?
         - @discussions.order(:name).each do |disco|
           h5.bold.little-space-top
@@ -19,4 +20,13 @@
       - else
         .callout
           p.text-center No Discussions yet!
+
+  .large-5.columns
+    p.bold.space-top
+      ' Welcome to the Startup Alliance Community Discussions
+    p
+      ' Ask questions, get answers, make connections and solve
+      ' challenges interacting with the global Startup Alliance community.
+      '
+    h5.bold.space-top Most Recent Topics
 
