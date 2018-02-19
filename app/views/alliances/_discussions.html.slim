@@ -20,6 +20,7 @@
   - if current_user and @alliance.members.include?(current_user)
     - if @alliance.discussions.present?
       .large-7.columns
+        h5.bold.little-space-top Discussions:
         - @alliance.discussions.order(:name).each do |disco|
           - if current_user and (@alliance.creator == current_user) or (current_user.role == 'admin')
             .float-right
@@ -38,10 +39,16 @@
           p.little-snug-top.faint
             = discussion_summary(disco)
       .large-5.columns
-        h5.bold.space-top Most Recent Topics
-        - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
-          p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
-          p.faint.snug-top.little-space-bottom=topic_summary(topic)
+        h5.bold.space-top Most Recent Topics:
+        - if discussable_topics(@alliance)
+          - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
+            p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+            p.faint.snug-top
+              ' (Within “#{topic.discussion.name}”)
+            p.faint.snug-top.little-space-bottom=topic_summary(topic)
+        - else
+          .callout
+            p.text-center Nothing yet!
     - else
       .callout
         p.text-center No Discussions yet!
