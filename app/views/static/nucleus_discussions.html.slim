@@ -5,10 +5,12 @@
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
     ' Nucleus Discussion Forums
-  h4.bold.medium-grey-text.text-center #{nucleus_forum_post_count} Posts from #{nucleus_forum_author_count} Authors
+  h4.bold.medium-grey-text.text-center
+    ' #{number_with_delimiter(nucleus_forum_posts.count)}
+    ' #{'Post'.pluralize(nucleus_forum_posts.count)}
+    ' from #{number_with_delimiter(nucleus_forum_posts.count)}
+    ' #{'Author'.pluralize(nucleus_forum_posts.count)}
 
-/.row
-  .medium-8.medium-offset-2.columns
 .row
   .large-7.columns
     h5.bold.primary-text.space-top
@@ -27,7 +29,7 @@
       ' Welcome to the Nucleus Discussion Forums
     p.little-snug-top
       ' Ask questions, get answers, make connections and solve challenges
-      ' while interacting with the global Startup Alliance community.
+      ' while interacting with your global Startup Alliance community.
       '
     h5.bold.space-top Most Recent Topics
     - nucleus_topics.fresh_posts_first.limit(10).each do |topic|

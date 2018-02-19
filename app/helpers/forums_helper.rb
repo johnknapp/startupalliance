@@ -25,12 +25,13 @@ module ForumsHelper
     end
   end
 
-  def nucleus_forum_post_count
-    '12,345'
+  def nucleus_forum_posts
+    topic_ids = nucleus_topics.pluck(:id)
+    Post.where('topic_id in (?)', topic_ids)
   end
 
-  def nucleus_forum_author_count
-    '1,234'
+  def nucleus_forum_authors
+    1234
   end
 
   def nucleus_topics
