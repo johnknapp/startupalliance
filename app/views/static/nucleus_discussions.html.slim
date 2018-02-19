@@ -1,0 +1,22 @@
+- content_for :page_title do
+  ' Startup Alliance –
+  ' Nucleus Discussions
+
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Nucleus Discussion Forums
+
+.row
+  .medium-8.medium-offset-2.columns
+    h5.bold.primary-text
+      | &nbsp;
+      - if @discussions.present?
+        - @discussions.order(:name).each do |disco|
+          h5.bold.little-space-top
+            ' #{link_to disco.name, discussion_path(disco)}
+          p.little-snug-top.faint
+            = discussion_summary(disco)
+      - else
+        .callout
+          p.text-center No Discussions yet!
+

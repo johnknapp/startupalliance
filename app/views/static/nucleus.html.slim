@@ -32,7 +32,7 @@
           .card-section
             .plan-box data-equalizer-watch=true
               p.bold.text-center Community Discussion Forums where entrepreneurs ask questions and get answers.
-              = link_to 'Access the Discussion Forums', nucleus_discussions_path, class: 'button expanded'
+              = link_to 'Access the Discussion Forums', nucleus_discussions_path, class: 'button expanded disabled'
               p.faint.text-center Launching soon
 
       .column
@@ -66,6 +66,16 @@
               - else
                 = link_to 'Access the Global Virtual Office', '#', target: '_blank', class: 'button expanded disabled'
                 p.faint.text-center= link_to 'Sign-in required', new_user_session_path
+
+      /.column
+        .card.primary.shadow
+          .card-divider.accent-background
+            h5.bold.text-center Office Hours
+          .card-section
+            p.bold.text-center
+              ' Discuss and overcome challenges in the Global Virtual Office with experts from around the world.
+            = link_to 'Review Current Schedule', '#', class: 'button expanded disabled'
+            p.faint.text-center Launching soon
 
       .column
         .card.primary.shadow
