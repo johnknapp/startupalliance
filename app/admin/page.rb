@@ -12,7 +12,9 @@ ActiveAdmin.register Page do
 
   index do
     selectable_column
-    column :title
+    column :title do |page|
+      link_to page.title, page_path(page), target: '_blank'
+    end
     column 'Audit count' do |page|
       page.audits.count
     end
@@ -23,6 +25,7 @@ ActiveAdmin.register Page do
     column :categories do |page|
       page.category_list
     end
+    column :updated_at
     actions
   end
 
@@ -37,7 +40,9 @@ ActiveAdmin.register Page do
         page.category_list
       end
       row :author
-      row :title
+      row :title do |page|
+        link_to page.title, page_path(page), target: '_blank'
+      end
       row :content do |page|
         markdown page.content
       end

@@ -12,12 +12,15 @@ ActiveAdmin.register Topic do
 
   index do
     selectable_column
-    column :name
+    column :name do |topic|
+      link_to topic.name, discussion_topic_path(topic.discussion,topic), target: '_blank'
+    end
     column :discussion, sortable: 'topic.discussion'
     column :post_count do |topic|
       topic.posts.count
     end
     column :author
+    column :updated_at
     actions
   end
 
@@ -27,7 +30,9 @@ ActiveAdmin.register Topic do
 
   show do
     attributes_table do
-      row :name
+      row :name do |topic|
+        link_to topic.name, discussion_topic_path(topic.discussion,topic), target: '_blank'
+      end
       row :discussion
       row :author
       row :post_count do |topic|

@@ -12,9 +12,12 @@ ActiveAdmin.register Post do
 
   index do
     selectable_column
-    column :body
+    column :body do |post|
+      link_to truncate(post.body, length: 48), discussion_topic_path(post.topic.discussion,post.topic), target: '_blank'
+    end
     column :topic
     column :author
+    column :updated_at
     actions
   end
 
@@ -33,7 +36,12 @@ ActiveAdmin.register Post do
 
   show do
     attributes_table do
-      row :body
+      row :body do |post|
+        link_to truncate(post.body, length: 72), discussion_topic_path(post.topic.discussion,post.topic), target: '_blank'
+      end
+      row 'Body length' do |post|
+        post.body.length
+      end
       row :topic
       row :author
     end
