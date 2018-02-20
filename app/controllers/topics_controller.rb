@@ -13,6 +13,10 @@ class TopicsController < ApplicationController
     end
   end
 
+  def index
+    @topics = Topic.where(author_id: current_user.id)
+  end
+
   def show
     @post = Post.new
   end

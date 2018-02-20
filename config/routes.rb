@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}
+    get '/:username/topics' => 'topics#index', as: :user_topics, constraints: { format: 'html'}
     put  :change_plan,                to: 'registrations#change_plan',    constraints: { format: 'html' }
     put  :declare_trait,              to: 'registrations#declare_trait',  constraints: { format: 'html' }
     put  :declare_skill,              to: 'registrations#declare_skill',  constraints: { format: 'html' }

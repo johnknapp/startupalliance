@@ -72,6 +72,8 @@
                   - current_user.alliances.each do |alliance|
                     li.pad-left= link_to alliance.name, alliance_path(alliance)
                 - if current_user and current_user.confirmed?
+                li.bold.menu-text My Content:
+                li.pad-left= link_to 'Discussion Topics', user_topics_path(current_user.username)
                 li.bold.menu-text Main menu:
                 li.pad-left= link_to 'Admin', admin_root_path if current_user.admin?
                 li.pad-left
