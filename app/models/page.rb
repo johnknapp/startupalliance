@@ -1,5 +1,6 @@
 class Page < ApplicationRecord
   include Pid
+  include PageSearch
 
   define_model_callbacks :around_audit
 
@@ -15,6 +16,7 @@ class Page < ApplicationRecord
   audited only: [:title, :content, :category_list, :created_at, :updated_at]
 
   # Inspired by https://github.com/collectiveidea/audited/issues/1
+  # The objective is to audit changes in the Category tags. TODO the issue is still not quite solved
   def around_audit
     current_audit = yield
     if current_audit.action.eql?('create')
