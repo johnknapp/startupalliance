@@ -1,12 +1,12 @@
 p.scale-to-90
-  = link_to edit_page_path do
+  = link_to edit_page_path(rev: params[:rev]) do
     i.fa.fa-pencil
   | &nbsp;
   | &nbsp;
   | &nbsp;
   | &nbsp;
-  - if @page.revisions.count > 1
-    = link_to undo_page_path(@page), data: { confirm: 'Really undo last change?' }, method: :post do
+  /- if @page.revisions.count > 1
+    = link_to undo_page_path(@page, rev: params[:rev]), data: { confirm: 'Really undo last change?' }, method: :post do
       i.fa.fa-undo
     | &nbsp;
     | &nbsp;

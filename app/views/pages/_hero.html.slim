@@ -17,8 +17,8 @@
       p.scale-to-90.little-snug-top Uncategorized
     p.faint.snug-top
       /' #{page.audits.count.ordinalize} edition
-      ' Last edit by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
-      ' on #{page.updated_at.strftime('%B %d, %Y')}
+      ' #{page.audits.count.ordinalize} edit: #{page.updated_at.strftime('%b %d, %Y')}
+       by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
   .card-section
     p.snug-top
       ' #{markdown(truncate(page.content, length: 160))}

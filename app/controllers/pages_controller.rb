@@ -47,6 +47,7 @@ class PagesController < ApplicationController
 
   # 0) We know that an update with only tag changes doesn't create a new revision/audit
   # 1) We know that undo creates new audit and we'd rather it didn't (goal: true redo)
+  # POST
   def undo_last_audit
     @page = @page.revisions.second_to_last # revisions.last == @page so fetch 2nd to last
     if @page.save
@@ -64,7 +65,11 @@ class PagesController < ApplicationController
   private
 
     def set_page
-      @page = Page.find_by_pid(params[:id])
+      if params[:rev]
+        @page = Page.find_by_pid(params[:id]).revision(params[:rev].to_i)
+      else
+        @page = Page.find_by_pid(params[:id])
+      end
     end
 
     def page_params

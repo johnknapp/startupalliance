@@ -1,5 +1,7 @@
 - content_for :page_header do
-  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+  h4.bold.little-space-top.medium-grey-text.text-center
+    ' Knowledge Base Page:
+  h2.bold.white-text.text-center
     = @page.title
 
 .row
@@ -12,8 +14,14 @@
             | &nbsp;
             | &nbsp;
             ' Return to Knowledge Base
-
       .medium-6.columns
+        - if params[:rev].present? and params[:rev].to_i != @page.revisions.count
+          p.snug-top.space-bottom.text-right.bold.alert-text
+            ' Now viewing revision #{params[:rev]}
+        - elsif params[:rev].present? and params[:rev].to_i == @page.revisions.count
+          p.snug-top.space-bottom.text-right Now viewing latest edit
+        - else
+          p.snug-top.space-bottom.text-right Now viewing current version
     .row
       .large-9.columns
         p= markdown @page.content
@@ -26,11 +34,22 @@
             - page_editors(@page).each do |user|
               li.faint= link_to user.name, vanity_path(user.username)
           p.faint.little-snug-top
-            /' #{@page.audits.count.ordinalize} edition,
-            ' Last edit: #{@page.updated_at.strftime('%B %d, %Y')}
+            ' Last edit: #{@page.updated_at.utc.strftime('%b %d, %Y')}
+            br
+            ' By: #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
+          ul.snug-top.vertical.menu.accordion-menu data-accordion-menu=true
+            li.faint
+              = link_to '#' do
+                ' Edit history:
+              ul.menu.vertical.nested.shadow-8dp data-dropdown-menu=true
+                - @page.revisions.each_with_index do |page,i|
+                  - datetime = time_ago_in_words(page.updated_at).humanize + ' ago'
+                  li= link_to datetime, page_path(page, rev: i+1)
+
           - if @page.category_list.present?
-            p.faint.little-snug-top
+            p.faint
               ' #{'Category'.pluralize(@page.category_list.count)}:
+              br
               - @page.category_list.each_with_index do |cat, i|
                 | #{link_to cat, pages_path(filter: cat)}
                 - unless @page.category_list.length == i + 1
