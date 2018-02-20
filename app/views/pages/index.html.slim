@@ -28,6 +28,12 @@
         | &nbsp;
         | &nbsp;
         ' New Knowledge Base Entry
+- if !current_user
+  .row
+    .large-8.large-offset-2.columns
+      .callout
+        p.bold Access requires Free Membership
+        = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
   .large-7.columns
     - if @pages.present?

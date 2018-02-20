@@ -18,10 +18,18 @@
     '
 .row
   .medium-10.medium-offset-1.columns
-    p.snug-top.space-botton.text-right
-      ' Centralized resources for our global entrepreneurs community
+    p.snug-top.space-bottom.text-right
+      ' The centralized resource for our global entrepreneurs community
       '
-    p.snug-top.show-for-medium &nbsp;
+    - if !current_user
+      .row
+        .large-10.large-offset-1.columns
+          .callout
+            p.bold Access requires Free Membership
+            = render 'partials/join_form', acqsrc: 'nucleus_page'
+
+    - if current_user
+      p.snug-top.show-for-medium &nbsp;
 
     .row.medium-up-2.large-up-3 data-equalizer=true
 

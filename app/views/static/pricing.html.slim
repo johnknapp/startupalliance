@@ -19,11 +19,12 @@
       .column
         .card.primary.shadow
           .card-divider.accent-background
-            h4.bold.text-center Become a Member
-            p.bold.text-center Showcase your talents and become part of our global entrepreneurial community
+            h4.bold.text-center Become a FREE Member
+            p.bold.text-center Become part of our entrepreneurial community and participate in The Entrepreneur’s Nucleus
           .card-section
             .plan-box data-equalizer-watch=true
               ul
+                li Free access to The Entrepreneur’s Nucleus
                 li Free listing in the Entrepreneur’s Showcase
                 li Browse Alliances, Companies, Members
                 /li Get recruited into Alliances and Companies
@@ -40,7 +41,7 @@
             - elsif current_user and current_user.plan_name != 'free'
               p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Become a Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' Membership is open to all committed entrepreneurs
 

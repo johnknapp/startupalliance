@@ -11,6 +11,12 @@
     ' from #{number_with_delimiter(nucleus_forum_post_author_ids)}
     ' #{'Author'.pluralize(nucleus_forum_post_author_ids)}
 
+- if !current_user
+  .row
+    .large-8.large-offset-2.columns
+      .callout
+        p.bold Access requires Free Membership
+        = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
   .large-7.columns
     h5.bold.little-space-top Available Discussions:

@@ -18,12 +18,35 @@
 .row
   .large-10.large-offset-1.columns
 
-    .space-top= render 'partials/storybox'
+    /.space-top= render 'partials/storybox'
 
-    h3.bold.primary-text.text-center.space-top.space-bottom
+    h3.bold.primary-text.text-center.little-space-top.space-bottom
       ' Something for every committed entrepreneur...
 
     .card.shadow
+      .card-divider.primary-background.text-center
+        h3.bold.accent-text
+          ' The Entrepreneur’s Nucleus
+        h2.bold.white-text.little-snug-top
+          ' Connect. Discuss. Learn. Decide.
+          span.success-text
+            ' Free.
+      .card-section#nucleus-section
+        p
+          ' The Entrepreneur’s Nucleus is a community resource for all Startup Alliance Members.
+          ' It’s where committed entrepreneurs ask questions, get answers, share knowledge, meet online and
+          ' accelerate their journey towards entrepreneurial success.
+          '
+        p.little-snug-top
+          '
+          | The Entrepreneur’s Nucleus
+          span.faint
+            ' &trade;
+          ' is available to all Members. #{link_to 'Sign up is FREE', pricing_path}.
+          '
+        h5.snug-top.bold.text-right= link_to 'Explore The Entrepreneur’s Nucleus now...', nucleus_path
+
+    .card.space-top.shadow
       .card-divider.primary-background.text-center
         h3.bold.accent-text
           ' Collaboration Workspaces for&nbsp;Companies
@@ -70,7 +93,7 @@
                     strong
                       ' Discussion Forums
                     ' – to ask questions, get answers and capture knowledge
-        h5.bold.text-right= link_to 'Learn how to get started with Collaboration Workspaces...', pricing_path
+        h5.bold.snug-top.text-right= link_to 'Get started with Collaboration Workspaces...', pricing_path
 
 
     .card.space-top.shadow
@@ -89,15 +112,15 @@
           ' Each Private Alliance features
           ' a virtual office plus private messaging and discussion forum tools
           ' as well as information on the companies each Private Alliance member owns.
-        h5.bold.text-right= link_to 'Learn how to get started with Private Alliances...', pricing_path
+        h5.bold.snug-top.text-right= link_to 'Get started with Private Alliances...', pricing_path
 
-    .card.space-top.shadow
+    /.card.space-top.shadow
       .card-divider.primary-background.text-center
         h3.bold.accent-text
           ' Entrepreneur’s Showcase
         h2.bold.white-text.little-snug-top
           ' Find the people who can help you most
-      .card-section#entrepreneur-section
+      .card-section#showcase-section
         p
           ' Each profile uniquely showcases member strengths on our standard set of startup skills and personal traits,
           ' highlights their personal mission statement and
@@ -108,9 +131,9 @@
           span.faint
             ' &trade;
           ' is open to all entrepreneurs regardless of location or level of experience.
-        h5.bold.text-right= link_to 'Learn more...', pricing_path
+        h5.bold.text-right= link_to 'Make a commitment to your success...', pricing_path
 
-    /.space-top= render 'partials/storybox'
+    .space-top= render 'partials/storybox'
 
     .row
       .large-10.large-offset-1.columns
