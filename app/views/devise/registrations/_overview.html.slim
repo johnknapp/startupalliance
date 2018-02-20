@@ -71,9 +71,9 @@
       .float-right
         p.faint.text-right.snug-top= @user.posts.count
       p.faint.snug-top #{link_to 'Discussion Forum', nucleus_discussions_path} Posts:
-    - if @user.audits_count.present?
+    - if @user.pages.present?
       .float-right
-        p.faint.text-right.snug-top= @user.audits_count
+        p.faint.text-right.snug-top= @user.pages.count
       p.faint.snug-top #{link_to 'Knowledge Base', pages_path} Pages:
     - if @user.time_zone.present?
       .float-right
