@@ -17,7 +17,7 @@
       li.primary-text
         = link_to 'Filter the Knowledge Base...', '#'
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          li= link_to "Show all", pages_path(filter: 'All'), class: 'bold'
+          /li= link_to "Show all", pages_path(filter: 'All'), class: 'bold'
           li= link_to "Show latest", pages_path, class: 'bold'
           - @categories.each do |cat|
             li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
