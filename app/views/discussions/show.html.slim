@@ -33,7 +33,7 @@
           h4.primary-text #{@discussion.topics.count} #{'Topic'.pluralize(@discussion.topics.count)}:
           - @discussion.topics.fresh_posts_first.each do |topic|
             - if @discussion.discussable
-              - if current_user and (@discussion.discussable.creator_id == current_user.id) or (topic.author_id == current_user.id) or (current_user.role == 'admin')
+              - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')
                 .float-right
                   ul.dropdown.menu.space-top data-dropdown-menu=true
                     li
@@ -47,7 +47,7 @@
                           | &nbsp;
                           ' Delete
             - else
-              - if current_user and (topic.author_id == current_user.id) or (current_user.role == 'admin')
+              - if current_user and (topic.author_id == current_user.id or current_user.role == 'admin')
                 .float-right
                   ul.dropdown.menu.space-top data-dropdown-menu=true
                     li
