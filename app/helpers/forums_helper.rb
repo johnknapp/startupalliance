@@ -17,11 +17,11 @@ module ForumsHelper
   end
 
   def topic_summary(topic)
-    '(' + topic.posts.count.to_s + ' ' + 'Post'.pluralize(topic.posts.count) +
+    topic.posts.count.to_s + ' ' + 'Post'.pluralize(topic.posts.count) +
     if topic.posts.count != 0
-      ' — latest ' + time_ago_in_words(topic.posts.order(updated_at: :desc).limit(1).last.updated_at)+' ago)'
+      ' — latest ' + time_ago_in_words(topic.posts.order(updated_at: :desc).limit(1).last.updated_at)+' ago'
     else
-      ' — You can post first!)'
+      ' — You can post first!'
     end
   end
 
