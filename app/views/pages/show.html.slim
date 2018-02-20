@@ -34,7 +34,7 @@
             - page_editors(@page).each do |user|
               li.faint= link_to user.name, vanity_path(user.username)
           p.faint.little-snug-top
-            ' Last edit: #{@page.updated_at.utc.strftime('%b %d, %Y')}
+            ' #{@page.audits.count.ordinalize} edit: #{@page.updated_at.utc.strftime('%b %d, %Y')}
             br
             ' By: #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
           ul.snug-top.vertical.menu.accordion-menu data-accordion-menu=true
