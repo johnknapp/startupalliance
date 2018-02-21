@@ -67,6 +67,7 @@ gem 'stripe'
 gem 'stripe_event'
 # gem 'twitter'
 gem 'uglifier',                             '>= 1.3.0'
+gem 'unread'
 gem 'validate_url'
 # gem 'video_info'
 

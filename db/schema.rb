@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219193702) do
+ActiveRecord::Schema.define(version: 20180221230016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,7 +232,19 @@ ActiveRecord::Schema.define(version: 20180219193702) do
     t.string   "ancestry"
     t.datetime "deleted_at"
     t.index ["ancestry"], name: "index_posts_on_ancestry", using: :btree
+    t.index ["created_at"], name: "index_posts_on_created_at", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
+  end
+
+  create_table "read_marks", force: :cascade do |t|
+    t.string   "readable_type", null: false
+    t.integer  "readable_id"
+    t.string   "reader_type",   null: false
+    t.integer  "reader_id"
+    t.datetime "timestamp"
+    t.index ["readable_type", "readable_id"], name: "index_read_marks_on_readable_type_and_readable_id", using: :btree
+    t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true, using: :btree
+    t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id", using: :btree
   end
 
   create_table "sakpis", force: :cascade do |t|
