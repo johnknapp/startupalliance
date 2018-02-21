@@ -13,6 +13,8 @@ class PagesController < ApplicationController
       end
     elsif params[:query].present?
       @pages    = Page.tsearch_page_search(params[:query])
+    elsif params[:author_id].present?
+      @pages    = Page.where(author_id: params[:author_id].to_i).order(updated_at: :desc).all
     else
       @pages    = Page.order(updated_at: :desc).limit(10)
     end
