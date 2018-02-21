@@ -1,4 +1,7 @@
 ActiveAdmin.register Page do
+
+  menu parent: 'KB'
+
   permit_params :title, :content, :author_id, :category_list => []
 
   scope('Not deleted')  { |scope| scope.all }
