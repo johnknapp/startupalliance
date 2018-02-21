@@ -2,6 +2,8 @@
   - filter = params[:filter]
 - elsif params[:query]
   - filter = params[:query]
+- elsif params[:author_id]
+  - filter = "Authored by #{User.find(params[:author_id].to_i).name}"
 - else
   - filter = 'Latest'
 

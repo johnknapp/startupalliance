@@ -1,6 +1,6 @@
 module ForumsHelper
 
-  def discussion_summary(discussion)
+  def discussion_meta(discussion)
     '(' + discussion.topics.count.to_s + ' Topic'.pluralize(discussion.topics.count) +
     if discussion.topics.count != 0
       if disco_posts(discussion).count == 0
@@ -16,7 +16,7 @@ module ForumsHelper
     end
   end
 
-  def topic_summary(topic)
+  def topic_meta(topic)
     topic.posts.count.to_s + ' ' + 'Post'.pluralize(topic.posts.count) +
     if topic.posts.count != 0
       ' — latest ' + time_ago_in_words(topic.posts.order(updated_at: :desc).limit(1).last.updated_at)+' ago'

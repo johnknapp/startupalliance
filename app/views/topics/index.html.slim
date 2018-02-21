@@ -1,18 +1,26 @@
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
     ' Discussion Topics
-  h4.bold.medium-grey-text.text-center Started by #{current_user.name}
+  h4.bold.medium-grey-text.text-center Filter: “Authored or Posted in by #{current_user.name}”
+
+.row
+  .medium-12.columns
+    .float-left
+      p.snug-top= link_to nucleus_discussions_path do
+        i.fa.fa-arrow-left
+        | &nbsp;
+        | &nbsp;
+        ' Go to Nucleus Discussion Forums
+    p.snug-top.text-right Gathered from all Discussion Forums
 
 .row
   .medium-8.medium-offset-2.columns
-    p.snug-top.text-right Gathered from all Discussion Forums
-
     - if @topics.present?
       - @topics.fresh_posts_first.each do |topic|
         h4.bold.space-top
           = link_to topic.name, discussion_topic_path(topic.discussion,topic)
         p.faint.little-snug-top
-          ' (Part of #{link_to topic.discussion.name, discussion_path(topic.discussion)}. Created #{time_ago_in_words(topic.created_at)} ago, contains #{topic_summary(topic)})
+          ' (Part of #{link_to topic.discussion.name, discussion_path(topic.discussion)}. Created #{time_ago_in_words(topic.created_at)} ago, contains #{topic_meta(topic)})
     - else
       .callout.space-top
         p.text-center Nothing here yet!
