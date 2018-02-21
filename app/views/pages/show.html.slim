@@ -50,8 +50,8 @@
                 ' Edit history:
               ul.menu.vertical.nested.shadow-8dp data-dropdown-menu=true
                 - @page.revisions.each_with_index do |page,i|
-                  - datetime = time_ago_in_words(page.updated_at).humanize + ' ago'
-                  li= link_to datetime, page_path(page, rev: i+1)
+                  - label = (i+1).ordinalize.to_s + ' edit: ' + time_ago_in_words(page.updated_at).humanize + ' ago'
+                  li= link_to label, page_path(page, rev: i+1)
 
           - if @page.category_list.present?
             p.faint
