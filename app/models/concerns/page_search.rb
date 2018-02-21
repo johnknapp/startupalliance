@@ -9,24 +9,24 @@ module PageSearch
     include PgSearch
 
     pg_search_scope :trigram_search,
-      against:  [:title, :content],
+      against:  {title: 'B', content: 'A'},
       using:    { tsearch: { dictionary: 'english' },
                   trigram: {}
                 },
       ignoring: [:accents]
 
-    def self.trigram_name_search(query)
+    def self.trigram_page_search(query)
       if query.present?
         trigram_search(query)
       end
     end
 
     pg_search_scope :tsearch_search,
-      against:  [:title, :content],
-      using:    { tsearch: { dictionary: 'english', negation: true } },
+      against:  {title: 'B', content: 'A'},
+      using:    { tsearch: { dictionary: 'english' } },
       ignoring: [:accents]
 
-    def self.tsearch_name_search(query)
+    def self.tsearch_page_search(query)
       if query.present?
         tsearch_search(query)
       end
