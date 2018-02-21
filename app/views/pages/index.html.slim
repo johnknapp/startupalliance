@@ -22,7 +22,9 @@
         = link_to 'Filter the Knowledge Base...', '#'
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
           /li= link_to "Show all", pages_path(filter: 'All'), class: 'bold'
-          li= link_to "Show latest", pages_path, class: 'bold'
+          li= link_to "Latest pages", pages_path, class: 'bold'
+          li= link_to "Authored by me", pages_path(author_id: current_user.id), class: 'bold' if current_user
+          /li= link_to "Authored by #{current_user.name}", pages_path(author_id: current_user.id), class: 'bold' if current_user
           - @categories.each do |cat|
             li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
   .medium-6.columns

@@ -11,12 +11,12 @@
         | &nbsp;
         | &nbsp;
         ' Go to Nucleus Discussion Forums
-    p.snug-top.text-right Gathered from all Discussion Forums
+    p.snug-top.text-right Gathered from all sources
 
 .row
   .medium-8.medium-offset-2.columns
     - if @topics.present?
-      - @topics.fresh_posts_first.each do |topic|
+      - @topics.each do |topic|
         h4.bold.space-top
           = link_to topic.name, discussion_topic_path(topic.discussion,topic)
         p.faint.little-snug-top
