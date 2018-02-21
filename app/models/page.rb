@@ -5,6 +5,7 @@ class Page < ApplicationRecord
   define_model_callbacks :around_audit
 
   belongs_to  :author,  class_name: :User
+  has_many    :audits,  as: :auditable, dependent: :destroy
 
   validates :title,       presence: true
   validates :title,       length: { maximum: 64 }
