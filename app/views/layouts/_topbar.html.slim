@@ -63,17 +63,26 @@
                 li.show-for-small-only= link_to 'Alliances', alliances_path
                 li.show-for-small-only= link_to 'Companies', companies_path
                 /hr
-                - if current_user and current_user.companies.present?
-                  li.bold.menu-text My #{'company'.pluralize(current_user.companies.count)}:
-                  - current_user.companies.each do |company|
-                    li.pad-left= link_to company.name, company_path(company)
+                - companies_count = current_user.companies ? current_user.companies : 0
+                li.bold.menu-text
+                  ' My #{'Company'.pluralize(companies_count)}:
+                  - if current_user and current_user.companies.present?
+                    - current_user.companies.each do |company|
+                      li.pad-left= link_to company.name, company_path(company)
+                  - else
+                    li.pad-left= link_to 'Join one!', companies_path
+                - alliances_count = current_user.alliances ? current_user.alliances : 0
+                li.bold.menu-text
+                  ' My #{'Alliance'.pluralize(current_user.alliances.count)}:
                 - if current_user and current_user.alliances.present?
-                  li.bold.menu-text My #{'alliance'.pluralize(current_user.alliances.count)}:
                   - current_user.alliances.each do |alliance|
                     li.pad-left= link_to alliance.name, alliance_path(alliance)
+                - else
+                  li.pad-left= link_to 'Join one!', alliances_path
                 - if current_user and current_user.confirmed?
-                li.bold.menu-text My Content:
-                li.pad-left= link_to 'Discussion Topics', user_topics_path(current_user.username)
+                li.bold.menu-text The Nucleus:
+                li.pad-left= link_to 'My Discussions', user_topics_path(current_user.username)
+                li.pad-left= link_to 'My KB Pages', pages_path(author_id: current_user.id)
                 li.bold.menu-text Main menu:
                 li.pad-left= link_to 'Admin', admin_root_path if current_user.admin?
                 li.pad-left
