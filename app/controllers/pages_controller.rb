@@ -11,7 +11,7 @@ class PagesController < ApplicationController
       else
         @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
       end
-    elsif params[:query]
+    elsif params[:query].present?
       @pages    = Page.tsearch_search(params[:query])
     else
       @pages  = Page.order(updated_at: :desc).limit(10)

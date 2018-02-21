@@ -23,9 +23,7 @@ module PageSearch
 
     pg_search_scope :tsearch_search,
       against:  [:title, :content],
-      using:    { tsearch: { dictionary: 'english' },
-                  negation: true
-                },
+      using:    { tsearch: { dictionary: 'english', negation: true } },
       ignoring: [:accents]
 
     def self.tsearch_name_search(query)
