@@ -22,7 +22,7 @@ class TopicsController < ApplicationController
 
   def show
     @post = Post.new
-    mark_mine_read(@topic.posts)
+    # mark_mine_read(@topic.posts)
   end
 
   def update

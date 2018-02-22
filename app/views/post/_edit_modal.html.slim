@@ -11,11 +11,11 @@ a data-open="edit-post-#{post.pid}"
       p.bold.primary-text.little-snug-bottom Update Post
   .row
     .medium-2.columns
-      p.little-snug-bottom.text-right Topic:
-      p.text-right Discussion:
+      p.little-snug-bottom.text-right Discussion subject:
+      p.text-right Topic thread:
     .medium-10.columns
-      p.bold.little-snug-bottom= post.topic.name
-      p.bold= post.topic.discussion.name
+      p.little-snug-bottom.bold= post.topic.discussion.name
+      p.bold= post.topic.name
   .row
     .medium-12.columns
       = simple_form_for post, url: discussion_topic_post_path(@topic.discussion,@topic,post), method: :put do |f|

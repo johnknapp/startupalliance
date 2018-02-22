@@ -4,7 +4,7 @@ a data-open='add-post'
   ' Add
   - if @topic.posts.blank?
     ' the first
-  ' Post
+  ' Post to this Topic thread
 .reveal.large#add-post data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
@@ -14,11 +14,11 @@ a data-open='add-post'
       p.bold.primary-text.little-snug-bottom Add Post
   .row
     .medium-2.columns
-      p.little-snug-bottom.text-right Topic:
-      p.text-right Discussion:
+      p.little-snug-bottom.text-right Discussion subject:
+      p.text-right Topic thread:
     .medium-10.columns
-      p.bold.little-snug-bottom= @topic.name
-      p.bold= @topic.discussion.name
+      p.bold.little-snug-bottom= @topic.discussion.name
+      p.bold= @topic.name
   .row
     .medium-12.columns
       = simple_form_for @post, url: discussion_topic_posts_path(@topic.discussion,@topic), method: :post do |f|
