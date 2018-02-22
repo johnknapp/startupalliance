@@ -73,7 +73,7 @@
               = link_to topic.name, discussion_topic_path(@discussion,topic)
 
             p.faint.little-snug-top
-              ' (Started by #{link_to topic.author.name, vanity_path(topic.author.username)}, contains
+              ' (Started by #{link_to topic.author.name, vanity_path(topic.author.username)}.
               = topic_meta(topic)
               ' )
         - else
