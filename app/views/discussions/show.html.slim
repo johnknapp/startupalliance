@@ -1,3 +1,6 @@
+- content_for :page_title do
+  ' Startup Alliance – Discussion: #{@discussion.name}
+
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
     ' Discussion:
@@ -35,7 +38,7 @@
             - if @discussion.discussable
               - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')
                 .float-right
-                  ul.dropdown.menu.space-top data-dropdown-menu=true
+                  ul.dropdown.menu data-dropdown-menu=true
                     li
                       = link_to '#' do
                         i.fa.fa-ellipsis-v
@@ -49,7 +52,7 @@
             - else
               - if current_user and (topic.author_id == current_user.id or current_user.role == 'admin')
                 .float-right
-                  ul.dropdown.menu.space-top data-dropdown-menu=true
+                  ul.dropdown.menu data-dropdown-menu=true
                     li
                       = link_to '#' do
                         i.fa.fa-ellipsis-v
@@ -60,7 +63,12 @@
                           i.fa.fa-trash-o
                           | &nbsp;
                           ' Delete
-            h4.bold.space-top
+            - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).count != 0
+              .float-left
+                h4
+                  i.fa.fa-comments.red-text
+                  | &nbsp;
+            h4.bold
               = link_to topic.name, discussion_topic_path(@discussion,topic)
 
             p.faint.little-snug-top

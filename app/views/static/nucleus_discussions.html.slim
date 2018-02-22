@@ -1,6 +1,10 @@
 - content_for :page_title do
   ' Startup Alliance –
-  ' Nucleus Discussions
+  ' Nucleus Discussion Forums
+
+- content_for :page_title do
+  ' Startup Alliance –
+  ' Nucleus Discussion Forums
 
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
@@ -22,7 +26,13 @@
     h5.bold.little-space-top Available Discussions:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
-        h5.bold.little-space-top
+        - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).count != 0
+          .float-left
+            i.fa.fa-comments.red-text
+            | &nbsp;
+            | &nbsp;
+            | &nbsp;
+        h5.bold
           ' #{link_to disco.name, discussion_path(disco)}
         p.little-snug-top.faint
           = discussion_meta(disco)
@@ -40,6 +50,12 @@
     h5.bold.space-top Most Recent Topics:
     - if nucleus_topics.present?
       - nucleus_topics.fresh_posts_first.limit(10).each do |topic|
+        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).count != 0
+          .float-left
+            i.fa.fa-comments.red-text
+            | &nbsp;
+            | &nbsp;
+            | &nbsp;
         p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
         p.faint.snug-top.little-space-bottom=topic_meta(topic)
     - else

@@ -1,5 +1,4 @@
 class DiscussionsController < ApplicationController
-  include Unread
   before_action :authenticate_user!, except: [:show]
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource

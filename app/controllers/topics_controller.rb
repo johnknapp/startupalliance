@@ -1,5 +1,4 @@
 class TopicsController < ApplicationController
-  include Unread
   before_action :authenticate_user!
   before_action :set_topic, only: [:show, :update, :destroy]
 
@@ -23,6 +22,7 @@ class TopicsController < ApplicationController
 
   def show
     @post = Post.new
+    mark_mine_read(@topic.posts)
   end
 
   def update
@@ -40,6 +40,11 @@ class TopicsController < ApplicationController
   end
 
   private
+
+    # mark these posts as unread by current_user
+    def mark_mine_read(these)
+      Post.mark_collection_as_read(these, current_user)
+    end
 
     def set_topic
       @topic = Topic.find_by_pid(params[:id])

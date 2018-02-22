@@ -17,6 +17,11 @@
   .medium-8.medium-offset-2.columns
     - if @topics.present?
       - @topics.each do |topic|
+        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).count != 0
+          .float-left
+            h4.little-space-top
+              i.fa.fa-comments.red-text
+              | &nbsp;
         h4.bold.space-top
           = link_to topic.name, discussion_topic_path(topic.discussion,topic)
         p.faint.little-snug-top

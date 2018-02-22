@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  include Unread
   before_action :authenticate_user!
   before_action :set_post, only: [:update, :destroy]
   load_and_authorize_resource
