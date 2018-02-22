@@ -29,6 +29,20 @@ class PostsController < ApplicationController
     redirect_back fallback_location: root_path, alert: 'Post was successfully destroyed.'
   end
 
+  # POST
+  def mark_posts_read
+    if params[:discussion_id].present?
+      these = Discussion.find_by_pid(params[:discussion_id]).posts
+    elsif params[:topic_id].present?
+      these = Topic.find_by_pid(params[:topic_id]).posts
+    end
+    if Post.mark_collection_as_read(these, current_user)
+      redirect_back fallback_location: nucleus_discussions_path, alert: 'Those Posts were marked as unread'
+    else
+      redirect_back fallback_location: nucleus_discussions_path, alert: 'There was an error!'
+    end
+  end
+
   private
 
     def post_params

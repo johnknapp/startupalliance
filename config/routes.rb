@@ -29,7 +29,11 @@ Rails.application.routes.draw do
 
   resources :discussions,   constraints: { format: 'html' } do
     resources :topics,      constraints: { format: 'html' } do
-      resources :posts,     constraints: { format: 'html' }
+      resources :posts,     constraints: { format: 'html' } do
+        collection do
+          post :mark_posts_read
+        end
+      end
     end
   end
 

@@ -35,6 +35,7 @@ class Ability
         can :unset_sakpi,           Company
         can :manage_members,        Alliance
         can :manage_team,           Company
+        can :mark_posts_read,       Post
         # seems skills and traits can be set and unset on user
 
       else # no role means they are non-auth

@@ -25,16 +25,19 @@ p.text-right.snug-top Ask questions, get answers, make connections and solve cha
         = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
   .medium-5.columns.medium-push-7
-    h5.bold.space-top Recent Activity:
+    .float-right.space-top
+      a data-open='forum-info'
+        i.fa.fa-lg.fa-info-circle
+      = render 'partials/quick_reference_forums'
+
+    h5.bold.space-top Latest Topic threads:
     - if nucleus_topics.present?
       .callout
         - nucleus_topics.fresh_posts_first.limit(8).each do |topic|
           - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
             .float-left
-              i.fa.fa-comments.fa-lg.red-text
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
+              = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                i.fa.fa-comments.fa-lg.red-text
           h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
           p.faint.little-snug-top.space-bottom.text-center=topic_meta(topic)
     - else
@@ -48,10 +51,8 @@ p.text-right.snug-top Ask questions, get answers, make connections and solve cha
         .callout.accent.shadow.space-bottom
           - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).present?
             .float-left
-              i.fa.fa-comments.fa-lg.red-text
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
+              = link_to mark_posts_read_discussion_topic_posts_path(disco,disco.topics.last), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                i.fa.fa-comments.fa-lg.red-text
           h5.bold.text-center
             ' #{link_to disco.name, discussion_path(disco)}
           /p.little-snug-top.faint.text-center

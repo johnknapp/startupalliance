@@ -33,7 +33,7 @@
     .row
       .medium-8.medium-offset-2.columns
         - if @discussion.topics.present?
-          h4.primary-text #{@discussion.topics.count} #{'Topic'.pluralize(@discussion.topics.count)}:
+          h4.primary-text #{@discussion.topics.count} Topic #{'thread'.pluralize(@discussion.topics.count)}:
           - @discussion.topics.fresh_posts_first.each do |topic|
             - if @discussion.discussable
               - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')
@@ -65,8 +65,9 @@
                           ' Delete
             - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
               .float-left
-                h4
-                  i.fa.fa-comments.red-text
+                h5= link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                  i.fa.fa-comments.fa-lg.red-text
+                  | &nbsp;
                   | &nbsp;
             h4.bold
               = link_to topic.name, discussion_topic_path(@discussion,topic)
@@ -77,4 +78,5 @@
               ' )
         - else
           .callout
-            p.text-center No Topics yet!
+            p.text-center No Topic threads yet!
+            p.text-center.snug-bottom= render 'topics/add_modal'
