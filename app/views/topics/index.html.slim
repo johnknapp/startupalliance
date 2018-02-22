@@ -17,7 +17,7 @@
   .medium-8.medium-offset-2.columns
     - if @topics.present?
       - @topics.each do |topic|
-        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).count != 0
+        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
           .float-left
             h4.little-space-top
               i.fa.fa-comments.red-text

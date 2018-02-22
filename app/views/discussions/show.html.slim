@@ -63,7 +63,7 @@
                           i.fa.fa-trash-o
                           | &nbsp;
                           ' Delete
-            - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).count != 0
+            - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
               .float-left
                 h4
                   i.fa.fa-comments.red-text

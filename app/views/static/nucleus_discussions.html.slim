@@ -23,19 +23,20 @@
         = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
   .large-7.columns
-    h5.bold.little-space-top Available Discussions:
+    h5.bold.space-top Available Discussions:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
-        - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).count != 0
-          .float-left
-            i.fa.fa-comments.red-text
-            | &nbsp;
-            | &nbsp;
-            | &nbsp;
-        h5.bold
-          ' #{link_to disco.name, discussion_path(disco)}
-        p.little-snug-top.faint
-          = discussion_meta(disco)
+        .callout.accent.shadow.space-bottom
+          - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).present?
+            .float-left
+              i.fa.fa-comments.fa-lg.red-text
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+          h5.bold.text-center
+            ' #{link_to disco.name, discussion_path(disco)}
+          /p.little-snug-top.faint.text-center
+            = discussion_meta(disco)
     - else
       .callout
         p.text-center No Discussions yet!
@@ -43,16 +44,16 @@
   .large-5.columns
     h5.bold.space-top
       ' Welcome to the Nucleus Discussion Forums
-    p.little-snug-top
+    p
       ' Ask questions, get answers, make connections and solve challenges
       ' while interacting with your global Startup Alliance community.
       '
     h5.bold.space-top Most Recent Topics:
     - if nucleus_topics.present?
       - nucleus_topics.fresh_posts_first.limit(10).each do |topic|
-        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).count != 0
+        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
           .float-left
-            i.fa.fa-comments.red-text
+            i.fa.fa-comments.fa-lg.red-text
             | &nbsp;
             | &nbsp;
             | &nbsp;
