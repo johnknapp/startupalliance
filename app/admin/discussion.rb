@@ -2,7 +2,7 @@ ActiveAdmin.register Discussion do
 
   menu parent: 'Forums'
 
-  permit_params :name, :author_id, :nucleus
+  permit_params :name, :description, :author_id, :nucleus
 
   controller do
     def find_resource
@@ -32,6 +32,7 @@ ActiveAdmin.register Discussion do
   show do
     attributes_table do
       row :name
+      row :description
       row :discussable_type
       row :discussable
       row :nucleus
@@ -57,6 +58,7 @@ ActiveAdmin.register Discussion do
     f.inputs 'Edit Discussion' do
       f.input :nucleus, label: 'Appears in Nucleus'
       f.input :name
+      f.input :description
       f.input :author_id, label: 'Author ID'
     end
     actions

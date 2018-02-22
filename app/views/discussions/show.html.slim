@@ -28,9 +28,11 @@
             | &nbsp;
             | &nbsp;
             ' Return to Nucleus Discussions
-    p.snug-top.space-bottom.text-right &nbsp;
-    /p.snug-top.space-bottom.text-right= render 'topics/add_modal'
-
+    p.snug-top.space-bottom.text-right
+      - if @discussion.description
+        = @discussion.description
+      - else
+        | &nbsp;
     .row
       .large-5.columns.large-push-7
         h5.bold.space-top &nbsp;

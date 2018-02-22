@@ -56,6 +56,7 @@ p.text-right.snug-top Ask questions, get answers, make connections and solve cha
                 i.fa.fa-comments.fa-lg.red-text
           h5.bold.text-center
             ' #{link_to disco.name, discussion_path(disco)}
+          p.faint.little-snug-top.text-center= disco.description
           /p.little-snug-top.faint.text-center
             = discussion_meta(disco)
     - else
