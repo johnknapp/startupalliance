@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  include Unread
   before_action :authenticate_user!
   before_action :set_topic, only: [:show, :update, :destroy]
 
