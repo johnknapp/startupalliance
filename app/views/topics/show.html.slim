@@ -20,6 +20,14 @@
     p.show-for-medium.snug-top &nbsp;
     - if @topic.posts.present?
       = nested_posts @topic.posts.arrange(order: :created_at)
+      - if current_user and @topic.posts.unread_by(current_user).present?
+        .callout.accent
+          p= link_to mark_posts_read_discussion_topic_posts_path(@topic.discussion,@topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+            i.fa.fa-comments.fa-lg.red-text
+            | &nbsp;
+            | &nbsp;
+            span.bold
+              ' Mark unread Posts as read
     - else
       .callout
         p.text-center No Posts yet!

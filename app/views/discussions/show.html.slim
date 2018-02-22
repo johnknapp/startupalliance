@@ -33,7 +33,7 @@
     .row
       .medium-8.medium-offset-2.columns
         - if @discussion.topics.present?
-          h4.primary-text #{@discussion.topics.count} Topic #{'thread'.pluralize(@discussion.topics.count)}:
+          h4 &nbsp;
           - @discussion.topics.fresh_posts_first.each do |topic|
             - if @discussion.discussable
               - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')

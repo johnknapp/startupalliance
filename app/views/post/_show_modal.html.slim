@@ -25,6 +25,14 @@
               | &nbsp;
               ' Delete
 
+
+- if current_user and post.unread?(current_user)
+  .float-left
+    h5= link_to mark_posts_read_discussion_topic_posts_path(post.topic.discussion,post.topic), data: { confirm: 'Really mark this Post as read?' }, method: :post do
+        i.fa.fa-comments.red-text
+        | &nbsp;
+        | &nbsp;
+
 p.faint
   ' #{link_to post.author.name, vanity_path(post.author.username)},
   ' #{time_ago_in_words(post.created_at)} ago
