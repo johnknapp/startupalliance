@@ -1,5 +1,3 @@
-Discussion.where(nucleus: true).delete_all
-
 content = [
   {        name: "Business models & customer discovery",
     description: "What you sell, how you sell it and how you get to product/market fit." },
