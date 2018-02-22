@@ -41,7 +41,16 @@
         p.bold Access requires Free Membership
         = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
-  .large-7.columns
+  .medium-5.columns.medium-push-7
+    p.bold
+      ' Welcome to the Nucleus Knowledge Base
+    p.little-snug-top
+      ' Access this growing library of success building resources from the members of your global entrepreneurial community.
+      ' We encourage #{link_to 'your contributions', new_page_path} and honor top contributors.
+      '
+    = render 'pages/page_search_form'
+
+  .medium-7.columns.medium-pull-5
     - if @pages.present?
       - @pages.each do |page|
         = render 'pages/hero', page: page
@@ -50,11 +59,3 @@
         .card-section
           p.bold.text-center Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show the latest', pages_path}.
 
-  .large-5.columns
-    p.bold
-      ' Welcome to the Nucleus Knowledge Base
-    p.little-snug-top
-      ' Access this growing library of success building resources from the members of your global entrepreneurial community.
-      ' We encourage #{link_to 'your contributions', new_page_path} and honor top contributors.
-      '
-    = render 'pages/page_search_form'

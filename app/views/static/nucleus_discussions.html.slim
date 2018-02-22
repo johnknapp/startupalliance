@@ -15,6 +15,8 @@
     ' from #{number_with_delimiter(nucleus_forum_post_author_ids)}
     ' #{'Author'.pluralize(nucleus_forum_post_author_ids)}
 
+p.text-right.snug-top Ask questions, get answers, make connections and solve challenges.
+
 - if !current_user
   .row
     .large-8.large-offset-2.columns
@@ -22,8 +24,25 @@
         p.bold Access requires Free Membership
         = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
-  .large-7.columns
-    h5.bold.space-top Available Discussions:
+  .medium-5.columns.medium-push-7
+    h5.bold.space-top Recent Activity:
+    - if nucleus_topics.present?
+      .callout
+        - nucleus_topics.fresh_posts_first.limit(8).each do |topic|
+          - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+            .float-left
+              i.fa.fa-comments.fa-lg.red-text
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+          h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+          p.faint.little-snug-top.space-bottom.text-center=topic_meta(topic)
+    - else
+      .callout
+        p.text-center Nothing yet!
+
+  .medium-7.columns.medium-pull-5
+    h5.bold.space-top Subjects for every entrepreneur:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
         .callout.accent.shadow.space-bottom
@@ -40,26 +59,4 @@
     - else
       .callout
         p.text-center No Discussions yet!
-
-  .large-5.columns
-    h5.bold.space-top
-      ' Welcome to the Nucleus Discussion Forums
-    p
-      ' Ask questions, get answers, make connections and solve challenges
-      ' while interacting with your global Startup Alliance community.
-      '
-    h5.bold.space-top Most Recent Topics:
-    - if nucleus_topics.present?
-      - nucleus_topics.fresh_posts_first.limit(10).each do |topic|
-        - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
-          .float-left
-            i.fa.fa-comments.fa-lg.red-text
-            | &nbsp;
-            | &nbsp;
-            | &nbsp;
-        p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
-        p.faint.snug-top.little-space-bottom=topic_meta(topic)
-    - else
-      .callout
-        p.text-center Nothing yet!
 
