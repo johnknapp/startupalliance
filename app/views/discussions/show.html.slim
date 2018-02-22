@@ -28,10 +28,66 @@
             | &nbsp;
             | &nbsp;
             ' Return to Nucleus Discussions
-    p.snug-top.space-bottom.text-right= render 'topics/add_modal'
+    p.snug-top.space-bottom.text-right &nbsp;
+    /p.snug-top.space-bottom.text-right= render 'topics/add_modal'
 
     .row
-      .medium-8.medium-offset-2.columns
+      .large-5.columns.large-push-7
+        h5.bold.space-top &nbsp;
+        p.text-center= render 'topics/add_modal'
+      .large-7.columns.large-pull-5
+        h5.bold.space-top Topic threads for this Discussion Subject:
+        - if @discussion.topics.present?
+          - @discussion.topics.fresh_posts_first.each do |topic|
+            .callout.accent.shadow.space-bottom
+              - if @discussion.discussable
+                - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')
+                  .float-right
+                    ul.dropdown.menu data-dropdown-menu=true
+                      li
+                        = link_to '#' do
+                          i.fa.fa-ellipsis-v
+                        ul.menu data-dropdown-menu=true  data-alignment='left'
+                          li
+                            = render 'topics/edit_modal', topic: topic
+                          li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
+                            i.fa.fa-trash-o
+                            | &nbsp;
+                            ' Delete
+              - else
+                - if current_user and (topic.author_id == current_user.id or current_user.role == 'admin')
+                  .float-right
+                    ul.dropdown.menu data-dropdown-menu=true
+                      li
+                        = link_to '#' do
+                          i.fa.fa-ellipsis-v
+                        ul.menu data-dropdown-menu=true  data-alignment='left'
+                          li
+                            = render 'topics/edit_modal', topic: topic
+                          li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
+                            i.fa.fa-trash-o
+                            | &nbsp;
+                            ' Delete
+              - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+                .float-left
+                  h5= link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                    i.fa.fa-comments.fa-lg.red-text
+                    | &nbsp;
+                    | &nbsp;
+              h4.bold
+                = link_to topic.name, discussion_topic_path(@discussion,topic)
+              p.faint.little-snug-top
+                ' (Started by #{link_to topic.author.name, vanity_path(topic.author.username)}.
+                = topic_meta(topic)
+                ' )
+        - else
+          .callout
+            p.text-center No Topic threads yet!
+            p.text-center.snug-bottom= render 'topics/add_modal'
+
+
+
+      /.medium-8.medium-offset-2.columns
         - if @discussion.topics.present?
           h4 &nbsp;
           - @discussion.topics.fresh_posts_first.each do |topic|
