@@ -7,51 +7,54 @@
       p.faint.pad-right
         ' Threaded discussions are a source of knowledge and answers. (Any member can participate.)
 .row
-  .medium-8.medium-offset-2.columns
-    .float-right
-      /a data-open='disco-info'
-        i.fa.fa-info-circle
-      /= render 'partials/quick_reference_disco'
-
-      - if current_user and (@alliance.creator == current_user or current_user.role == 'admin')
-        = render 'discussions/add_modal', discussable: @alliance
-
-.row
   - if current_user and @alliance.members.include?(current_user)
-    - if @alliance.discussions.present?
-      .large-7.columns
-        h5.bold.little-space-top Available Discussions:
-        - @alliance.discussions.order(:name).each do |disco|
-          - if current_user and (@alliance.creator == current_user or current_user.role == 'admin')
-            .float-right
-              ul.dropdown.menu data-dropdown-menu=true
-                li
-                  = link_to '#' do
-                    i.fa.fa-ellipsis-v
-                  ul.menu data-dropdown-menu=true data-alignment='left'
-                    li= render 'discussions/edit_modal', discussable: @alliance, discussion: disco
-                    li= link_to disco, data: { confirm: 'Really destroy this Discussion and all it’s Topics and Posts?' }, method: :delete do
-                      i.fa.fa-trash-o
-                      | &nbsp;
-                      ' Delete
-          h5.bold.little-space-top
-            ' #{link_to disco.name, discussion_path(disco)}
-          p.little-snug-top.faint
-            = discussion_meta(disco)
-      .large-5.columns
-        h5.bold.space-top Most Recent Topics:
+    .large-5.columns.large-push-7
+      h5.bold.space-top.snug-bottom Latest Topic threads:
+      - if @alliance.discussions.present?
         - if discussable_topics(@alliance).present?
-          - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
-            p.bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
-            p.faint.snug-top
-              ' (Within “#{topic.discussion.name}”)
-            p.faint.snug-top.little-space-bottom=topic_meta(topic)
-        - else
           .callout
-            p.text-center Nothing yet!
-    - else
-      .callout
-        p.text-center No Discussions yet!
+            - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
+              - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+                .float-left
+                  = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                    i.fa.fa-comments.fa-lg.red-text
+              h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+              p.faint.little-snug-top.text-center In #{link_to topic.discussion.name, discussion_path(topic.discussion)}
+              p.faint.snug-top.text-center= topic_meta(topic)
+      - else
+        .callout
+          p.text-center Nothing yet!
+    .large-7.columns.large-pull-5
+      - if current_user and (@alliance.creator == current_user or current_user.role == 'admin')
+        p.space-top.snug-bottom= render 'discussions/add_modal', discussable: @alliance
+      - else
+        p.space-top.snug-bottom &nbsp;
+      - if @alliance.discussions.present?
+        - @alliance.discussions.order(:name).each do |disco|
+          .callout.accent.shadow.space-bottom
+            - if current_user and (@alliance.creator == current_user or current_user.role == 'admin')
+              .float-right
+                ul.dropdown.menu data-dropdown-menu=true
+                  li
+                    = link_to '#' do
+                      i.fa.fa-ellipsis-v
+                    ul.menu data-dropdown-menu=true data-alignment='left'
+                      li= render 'discussions/edit_modal', discussable: @alliance, discussion: disco
+                      li= link_to disco, data: { confirm: 'Really destroy this Discussion and all it’s Topics and Posts?' }, method: :delete do
+                        i.fa.fa-trash-o
+                        | &nbsp;
+                        ' Delete
+            - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).present?
+              .float-left
+                = link_to mark_posts_read_discussion_topic_posts_path(disco,disco.topics.last), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                  i.fa.fa-comments.fa-lg.red-text
+            h4.bold.text-center
+              ' #{link_to disco.name, discussion_path(disco)}
+            p.little-snug-top.faint.text-center
+              = discussion_meta(disco)
+      - else
+        .callout
+          p.text-center No Discussions yet!
   - else
     .medium-12.columns
       .callout

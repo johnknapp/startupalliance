@@ -1,14 +1,14 @@
 - content_for :page_title do
   ' Startup Alliance –
-  ' Nucleus Discussion Forums
+  ' Discussion Forums
 
 - content_for :page_title do
   ' Startup Alliance –
-  ' Nucleus Discussion Forums
+  ' Discussion Forums
 
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
-    ' Nucleus Discussion Forums
+    ' Startup Alliance Discussion Forums
   h4.bold.medium-grey-text.text-center
     ' #{number_with_delimiter(nucleus_forum_posts.count)}
     ' #{'Post'.pluralize(nucleus_forum_posts.count)}
@@ -17,7 +17,7 @@
 
 .row
   .large-12.columns
-    .float-left
+    /.float-left
       p.snug-top.space-bottom
         = link_to nucleus_path do
           i.fa.fa-arrow-left
@@ -29,8 +29,8 @@
 - if !current_user
   .row
     .large-8.large-offset-2.columns
-      .callout
-        p.bold Access requires Free Membership
+      .callout.snug-bottom
+        p.bold Get instant access with FREE membership
         = render 'partials/join_form', acqsrc: 'nucleus_page'
 .row
   .medium-5.columns.medium-push-7

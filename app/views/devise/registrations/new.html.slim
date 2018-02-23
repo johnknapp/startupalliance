@@ -4,6 +4,10 @@
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     - if params[:plan] == 'free'
       ' Membership is FREE FOREVER!
+    - if params[:plan] == 'jet_fuel'
+      ' Charter Membership:
+      br
+      ' First year free, half price for life!
     - if params[:plan] == 'alliance'
       ' Charter Membership:
       br
@@ -19,6 +23,8 @@
 
     p.bold
       - if params[:plan] == 'free'
+        ' Access the Free Resources and become part of Private Alliances and Companies
+      - if params[:plan] == 'jet_fuel'
         ' Showcase your talents and take an active role in our global entrepreneurial community
       - if params[:plan] == 'alliance'
         ' Unite committed entrepreneurs to share advice, provide insight and overcome challenges
@@ -45,6 +51,8 @@
         .small-4.columns
           - if params[:plan] == 'free'
             = f.button :submit, "Become a Member", class: 'postfix expanded bold success'
+          - if params[:plan] == 'jet_fuel'
+            = f.button :submit, "Get Entrepreneur’s Jet Fuel", class: 'postfix expanded bold success'
           - if params[:plan] == 'alliance'
             = f.button :submit, "Create Private Alliances", class: 'postfix expanded bold success'
           - if params[:plan] == 'company'

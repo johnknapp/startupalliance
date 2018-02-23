@@ -17,7 +17,7 @@
     ' El Núcleo
     '
 .row
-  .medium-10.medium-offset-1.columns
+  .medium-12.columns
     p.snug-top.space-bottom.text-right
       ' The centralized resource for our global entrepreneurs community
       '
@@ -32,68 +32,11 @@
       p.snug-top.show-for-medium &nbsp;
 
     .row.medium-up-2.large-up-3 data-equalizer=true
-
-      .column
-        .card.primary.shadow
-          .card-divider.accent-background
-            h4.bold.text-center Discussion Forums
-          .card-section
-            .plan-box data-equalizer-watch=true
-              p.bold.text-center Community Discussion Forums where entrepreneurs ask questions and get answers.
-              = link_to 'Access the Discussion Forums', nucleus_discussions_path, class: 'button expanded'
-              p.faint.text-center
-                ' #{number_with_delimiter(nucleus_forum_posts.count)} #{'Post'.pluralize(nucleus_forum_posts.count)}
-                ' from #{number_with_delimiter(nucleus_forum_post_author_ids)} #{'Member'.pluralize(nucleus_forum_post_author_ids)}
-
-      .column
-        .card.primary.shadow
-          .card-divider.accent-background
-            h4.bold.text-center Knowledge Base
-          .card-section
-            .plan-box data-equalizer-watch=true
-              p.bold.text-center Community Knowledge Base featuring a growing collection of entrepreneurial resources and advice.
-              = link_to 'Access the Knowledge Base', pages_path, class: 'button expanded'
-              p.faint.text-center
-                ' #{number_with_delimiter(Page.count)} #{'Page'.pluralize(Page.count)}
-                ' from #{number_with_delimiter(User.where('audits_count > 0').count)} #{'Member'.pluralize(User.where('audits_count > 0').count)}
-
-      .column
-        .card.primary.shadow
-          .card-divider.accent-background
-            h4.bold.text-center Global Virtual Office
-          .card-section
-            .plan-box data-equalizer-watch=true
-              p.bold.text-center Real-time virtual office for co-working and web hangouts with entrepreneurs from around the world.
-              - time      = Time.now.utc.beginning_of_day
-              - last_time = Time.now.utc.beginning_of_day-1.day
-              - url       = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(time.to_s)
-              - last_url  = 'https://meet.jit.si/sa-gvo-' + Digest::SHA1.hexdigest(last_time.to_s)
-              - if current_user and current_user.confirmed?
-                = link_to 'Access the Global Virtual Office', gvo_url, target: '_blank', class: 'button expanded'
-                p.snug-top.faint.text-center
-                  ' GVO link updates #{(time+1.day).strftime('%b %e @ %H:%M %Z')}
-                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
-                    i.fa.fa-info-circle
-                p.snug-top.faint.text-center= link_to 'Previous GVO link', gvo_url(24), target: '_blank'
-              - else
-                = link_to 'Access the Global Virtual Office', '#', target: '_blank', class: 'button expanded disabled'
-                p.faint.text-center= link_to 'Sign-in required', new_user_session_path
-
-      /.column
-        .card.primary.shadow
-          .card-divider.accent-background
-            h5.bold.text-center Office Hours
-          .card-section
-            p.bold.text-center
-              ' Discuss and overcome challenges in the Global Virtual Office with experts from around the world.
-            = link_to 'Review Current Schedule', '#', class: 'button expanded disabled'
-            p.faint.text-center Launching soon
-
-      .column
-        .card.primary.shadow
-          .card-divider.medium-grey-background
-            h5.bold.text-center More on the way!
-          .card-section
-            p.text-center
-              ' We will be launching additional resources to help our members maximize their success.
+      = render 'partials/hero_jet_fuel'
+      = render 'partials/hero_alliances'
+      = render 'partials/hero_companies'
+      = render 'partials/hero_disco'
+      = render 'partials/hero_kb'
+      = render 'partials/hero_gvo'
+      = render 'partials/hero_more_coming'
 

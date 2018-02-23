@@ -19,31 +19,30 @@
       .column
         .card.primary.shadow
           .card-divider.accent-background
-            h4.bold.text-center Become a FREE Member
-            p.bold.text-center Become part of our entrepreneurial community and participate in The Entrepreneur’s Nucleus
+            h4.bold.text-center Entrepreneur’s Jet Fuel
+            p.bold.text-center Maximize your success and plug-in as a full member of our entrepreneurial community
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li Free access to The Entrepreneur’s Nucleus
-                li Free listing in the Entrepreneur’s Showcase
-                li Browse Alliances, Companies, Members
-                /li Get recruited into Alliances and Companies
-                li Become part of any Private Alliance
-                li Become part of any Company Team
-                li Limited private messaging (receive only)
+                li.bold Full access to Nucleus Resources
+                li.bold Listing in the Entrepreneur’s Showcase
+                li.bold Private messaging
                 ul.no-bullet.little-snug-top
                   li.faint
-                    ' (Full messaging abilities once on a team)
+                    ' (Contact any Startup Alliance member)
+                li Browse Alliances, Companies, Members
+                li Become part of any Private Alliance
+                li Become part of any Company Team
           .callout.small.accent
-            h5.bold.text-center Free forever!
-            - if current_user and current_user.plan_name == 'free'
+            h5.bold.text-center 15 day free trial
+            - if current_user and current_user.plan_name == 'jet_fuel'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name != 'free'
-              p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+            - elsif current_user and current_user.plan_name != 'jet_fuel'
+              p= link_to 'Downgrade to Entrepreneur’s Jet Fuel', change_plan_path(desired_plan: 'jet_fuel'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet_fuel'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
-              ' Membership is open to all committed entrepreneurs
+              ' Only $25 a year
 
       .column
         p.hide-for-large &nbsp;
@@ -54,7 +53,7 @@
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold All Member benefits
+                li.bold All Jet Fuel benefits
                 li.bold Create and manage Private Alliances
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GETTING_STARTED_WEBCHAT_TIP
@@ -68,10 +67,10 @@
                   ' Real-time
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIRTUAL_OFFICE_TIP
                     ' Virtual Office
-                li Threaded Discussion Forums
+                li Private Discussion Forums
                 li Information on member companies
-                li Members have full private messaging
-                ul.no-bullet.little-snug-top
+                /li Private messaging
+                /ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
@@ -85,7 +84,7 @@
             - else
               p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
-              ' $7.95/mth (paid annually) $11.95 paid monthly
+              ' Only $75 a year
 
       .column
         p.hide-for-large &nbsp;
@@ -96,7 +95,7 @@
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold All Member benefits
+                li.bold All Jet Fuel benefits
                 li.bold All Private Alliance benefits (bonus!)
                 li.bold Create and manage Company Workspaces
                 li
@@ -123,9 +122,9 @@
                   ' Real-time
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIRTUAL_OFFICE_TIP
                     ' Virtual Office
-                li Threaded Discussion Forums
-                li Team members have full private messaging
-                ul.no-bullet.little-snug-top
+                li Private Discussion Forums
+                /li Private messaging
+                /ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
@@ -137,7 +136,40 @@
             - else
               p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
-              ' $14.95/mth (paid annually) $24.95 paid monthly
+              ' Only $150 a year
 
-    .callout
-      h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
+    .row
+      .medium-8.medium-offset-2.columns
+        .card.primary.shadow
+          .card-divider.accent-background
+            h4.bold.text-center Or join for free right now!
+            /p.bold.text-center Become part of our entrepreneurial community and participate in The Entrepreneur’s Nucleus
+          .card-section
+            .plan-box
+              .row
+                .medium-10.medium-offset-1.columns
+                  ul
+                    li Basic access to Nucleus Resources
+                    /li Free listing in the Entrepreneur’s Showcase
+                    li Browse Alliances, Companies, Members
+                    /li Get recruited into Alliances and Companies
+                    li Become part of any Private Alliance
+                    li Become part of any Company Team
+                    /li Limited private messaging (receive only)
+                    /ul.no-bullet.little-snug-top
+                      li.faint
+                        ' (Full messaging abilities once on a team)
+                  = render 'partials/join_form', acqsrc: 'pricing_page'
+          /.callout.small.accent
+            h5.bold.text-center Free forever!
+            - if current_user and current_user.plan_name == 'free'
+              p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
+            - elsif current_user and current_user.plan_name != 'free'
+              p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+            - else
+              p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p.scale-to-90.text-center
+              ' Membership is open to all committed entrepreneurs
+
+        /.callout.primary
+          h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.

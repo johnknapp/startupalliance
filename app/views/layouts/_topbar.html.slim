@@ -14,16 +14,16 @@
 
         .top-bar-right
           ul.menu.simple.show-for-small-only
-            li= link_to 'Nucleus', nucleus_path
-            li= link_to 'Members', members_path
+            /li= link_to 'Nucleus', nucleus_path
+            li= link_to 'Showcase', members_path
             li= link_to 'Alliances', alliances_path
             li= link_to 'Companies', companies_path
             li= link_to 'Pricing', pricing_path
             li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
           ul.menu.simple.show-for-medium
-            li= link_to 'Nucleus', nucleus_path
-            li= link_to 'Members', members_path
+            /li= link_to 'Nucleus', nucleus_path
+            li= link_to 'Showcase', members_path
             li= link_to 'Alliances', alliances_path
             li= link_to 'Companies', companies_path
             li= link_to 'Membership plans', pricing_path
@@ -43,8 +43,8 @@
 
         .top-bar-right
           ul.dropdown.menu data-dropdown-menu=true
-            li.show-for-medium= link_to 'Nucleus', nucleus_path
-            li.show-for-medium= link_to 'Members', members_path
+            /li.show-for-medium= link_to 'Nucleus', nucleus_path
+            li.show-for-medium= link_to 'Showcase', members_path
             li.show-for-medium= link_to 'Alliances', alliances_path
             li.show-for-medium= link_to 'Companies', companies_path
             li.bold.primary-text.is-dropdown-submenu-parent
@@ -58,8 +58,8 @@
                 i.fa.fa-bars
               ul.menu.normal.shadow-8dp data-dropdown-menu=true
                 /li.little-space-top= link_to 'Quick start guide', quick_start_path
-                li.show-for-small-only= link_to 'Nucleus', nucleus_path
-                li.show-for-small-only= link_to 'Members', members_path
+                /li.show-for-small-only= link_to 'Nucleus', nucleus_path
+                li.show-for-small-only= link_to 'Showcase', members_path
                 li.show-for-small-only= link_to 'Alliances', alliances_path
                 li.show-for-small-only= link_to 'Companies', companies_path
                 /hr
@@ -80,9 +80,9 @@
                 - else
                   li.pad-left= link_to 'Join one!', alliances_path
                 - if current_user and current_user.confirmed?
-                li.bold.menu-text The Nucleus:
+                /li.bold.menu-text Relevant Resources:
                 /li.pad-left= link_to 'My Discussions', user_topics_path(current_user.username)
-                li.pad-left= link_to 'My KB Pages', pages_path(author_id: current_user.id)
+                /li.pad-left= link_to 'My KB Pages', pages_path(author_id: current_user.id)
                 li.bold.menu-text Main menu:
                 li.pad-left= link_to 'Admin', admin_root_path if current_user.admin?
                 li.pad-left

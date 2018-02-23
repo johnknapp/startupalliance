@@ -66,11 +66,11 @@
     - if @user.topics.present?
       .float-right
         p.faint.text-right.snug-top= @user.topics.count
-      p.faint.snug-top #{link_to 'Discussion Forum', nucleus_discussions_path} Topics:
+      p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Topics:
     - if @user.posts.present?
       .float-right
         p.faint.text-right.snug-top= @user.posts.count
-      p.faint.snug-top #{link_to 'Discussion Forum', nucleus_discussions_path} Posts:
+      p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Posts:
     - if @user.pages.present?
       .float-right
         p.faint.text-right.snug-top= @user.pages.count

@@ -1,0 +1,16 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h4.bold.text-center Discussion Forums
+    .card-section
+      .plan-box data-equalizer-watch=true
+        p.bold.text-center
+          ' Community Discussion Forums where entrepreneurs ask questions, get answers,
+          ' solve problems and build their businesses.
+        = link_to 'Jump into the Discussion Forums', discussions_path, class: 'button expanded'
+        /p.faint.text-center
+          - if current_user
+            ' #{number_with_delimiter(nucleus_forum_posts.count)} #{'Post'.pluralize(nucleus_forum_posts.count)}
+            ' from #{number_with_delimiter(nucleus_forum_post_author_ids)} #{'Member'.pluralize(nucleus_forum_post_author_ids)}
+          - else
+            ' Browse Discussion Forums with free membership

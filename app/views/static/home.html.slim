@@ -15,15 +15,35 @@
     '
     i.success-text.fa.fa-lg.fa-trophy
 
+
+.row.medium-up-2.large-up-3 data-equalizer=true
+  h3.bold.primary-text.text-center.little-space-top.space-bottom
+    ' Free Resources for all Committed Entrepreneurs...
+    /' Nucleus Resources: Free for all Committed Entrepreneurs...
+  /h5.bold.medium-grey-text.text-center.snug-top.space-bottom
+    ' 核心,
+    ' Le Noyau,
+    ' Der Kern,
+    ' केंद्रक,
+    ' Il Nucleo,
+    ' Ядро,
+    ' El Núcleo
+    '
+  = render 'partials/hero_disco'
+  = render 'partials/hero_kb'
+  = render 'partials/hero_gvo'
+  /= render 'partials/hero_more_coming'
+.row.medium-up-2.large-up-3 data-equalizer=true
+  h3.bold.primary-text.text-center.little-space-top.space-bottom
+    ' Premium Tools to Maximize Your Entrepreneurial Success...
+  = render 'partials/hero_jet_fuel'
+  = render 'partials/hero_alliances'
+  = render 'partials/hero_companies'
+  /= render 'partials/hero_more_coming'
+
 .row
   .large-10.large-offset-1.columns
-
-    /.space-top= render 'partials/storybox'
-
-    h3.bold.primary-text.text-center.little-space-top.space-bottom
-      ' Something for every committed entrepreneur...
-
-    .card.shadow
+    /.card.shadow
       .card-divider.primary-background.text-center
         h3.bold.accent-text
           ' The Entrepreneur’s Nucleus
@@ -46,7 +66,7 @@
           '
         h5.snug-top.bold.text-right= link_to 'Explore The Entrepreneur’s Nucleus now...', nucleus_path
 
-    .card.space-top.shadow
+    /.card.space-top.shadow
       .card-divider.primary-background.text-center
         h3.bold.accent-text
           ' Collaboration Workspaces for&nbsp;Companies
@@ -96,7 +116,7 @@
         h5.bold.snug-top.text-right= link_to 'Get started with Collaboration Workspaces...', pricing_path
 
 
-    .card.space-top.shadow
+    /.card.space-top.shadow
       .card-divider.primary-background.text-center
         h3.bold.accent-text
           ' Private Alliances for&nbsp;Entrepreneurs
@@ -137,7 +157,7 @@
 
     .row
       .large-10.large-offset-1.columns
-        - if !current_user
+        /- if !current_user
           .space-top= render 'partials/join_form', acqsrc: 'home_page'
         /- else
           p.show-for-medium &nbsp;
@@ -174,5 +194,5 @@
                 ' There’s more functionality in the pipeline. All designed for entrepreneurs.
                 ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, please check them out to learn more about Startup Alliance.
 
-        h1.bold.text-center.primary-text Better. Together.
+        h1.bold.text-center.primary-text.space-top Better. Together.
         /h1.bold.text-center.primary-text.little-space-top.little-space-bottom Better. Together.

@@ -1,0 +1,16 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h4.bold.text-center Knowledge Base
+    .card-section
+      .plan-box data-equalizer-watch=true
+        p.bold.text-center
+          ' Community Knowledge Base featuring a growing collection of entrepreneurial resources and advice
+          ' created by and for the membership.
+        = link_to 'Learn in the Knowledge Base', pages_path, class: 'button expanded'
+        /p.faint.text-center
+          - if current_user
+            ' #{number_with_delimiter(Page.count)} #{'Page'.pluralize(Page.count)}
+            ' from #{number_with_delimiter(User.where('audits_count > 0').count)} #{'Member'.pluralize(User.where('audits_count > 0').count)}
+          - else
+            ' Browse Knowledge Base with free membership

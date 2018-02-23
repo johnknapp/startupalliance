@@ -1,0 +1,18 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h4.bold.text-center Global Virtual Office
+    .card-section
+      .plan-box data-equalizer-watch=true
+        p.bold.text-center
+          ' Virtual office with chat and screen sharing for real-time co-working and collaboration
+          ' with entrepreneurs from around the world.
+          '
+        a.button.expanded data-open='gvo-modal'
+          ' Drop into the Global Virtual Office
+        = render 'partials/gvo_modal'
+        /p.faint.text-center
+          - if current_user
+            ' Open for business 24/7/365
+          - else
+            ' Use the Global Virtual Office with free membership

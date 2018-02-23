@@ -1,6 +1,7 @@
 plan = [
     'alliance_month',
     'company_month',
+    'jet_fuel_year',
     'alliance_year',
     'company_year',
     'free_year'

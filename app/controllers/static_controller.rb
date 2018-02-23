@@ -20,7 +20,7 @@ class StaticController < ApplicationController
   end
 
 
-  def nucleus_discussions
+  def discussions
     @discussions = Discussion.where(nucleus: true).all.order(:name)
   end
 
