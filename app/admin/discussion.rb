@@ -2,7 +2,7 @@ ActiveAdmin.register Discussion do
 
   menu parent: 'Forums'
 
-  permit_params :name, :description, :author_id, :nucleus
+  permit_params :name, :description, :slug, :author_id, :nucleus
 
   controller do
     def find_resource
@@ -13,6 +13,7 @@ ActiveAdmin.register Discussion do
   index do
     selectable_column
     column :nucleus
+    column :slug
     column :name
     column :topic_count do |disco|
       disco.topics.count
@@ -25,12 +26,14 @@ ActiveAdmin.register Discussion do
   # filter :id
   # filter :pid
   filter :nucleus
+  filter :slug
   filter :name
   filter :discussable_type
   filter :author_id, label: "Author ID"
 
   show do
     attributes_table do
+      row :slug
       row :name
       row :description
       row :discussable_type
