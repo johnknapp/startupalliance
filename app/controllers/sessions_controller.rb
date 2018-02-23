@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
   def stop_impersonating
     user = current_user
     stop_impersonating_user
-    redirect_to vanity_path(user.username)
+    redirect_back(fallback_location: root_path)
   end
 
   # POST /resource/sign_in
