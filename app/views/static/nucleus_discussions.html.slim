@@ -49,7 +49,7 @@
                 i.fa.fa-comments.fa-lg.red-text
           h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
           p.faint.little-snug-top.text-center In #{link_to topic.discussion.name, discussion_path(topic.discussion)}
-          p.faint.snug-top.space-bottom.text-center=topic_meta(topic)
+          p.faint.snug-top.space-bottom.text-center= topic_meta(topic)
     - else
       .callout
         p.text-center Nothing yet!
