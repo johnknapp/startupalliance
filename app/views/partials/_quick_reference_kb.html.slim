@@ -1,0 +1,28 @@
+.reveal.small#kb-info data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  h4.primary-text
+    ' Quick Reference:
+    strong
+      ' Knowledge Base
+  hr.little-snug-top
+  p.snug-top.space-bottom.text-right More knowledge, greater success.
+
+  .callout.accent
+    p.bold.snug-bottom What you need to know:
+    p
+      ' The Knowledge Base is created by and for the Startup Alliance entrepreneurial community.
+      ' Knowledge Base Pages are jointly created and enhanced by all our members
+      ' for the mutual benefit of all.
+      '
+    p.bold.snug-bottom Key takeaways:
+    ol
+      li Knowledge Base Pages are created and edited by Startup Alliance members
+      li The Knowledge Base is searchable and filterable by a variety of ”Category Tags”
+      li Pages are formatted with #{link_to 'Markdown syntax', 'https://caleorourke.gitbooks.io/redcarpet-syntax/', target: '_blank'}
+      li Pages are assigned to “Category Tags” to allow Page filtering
+      li Earlier Page edits remain available
+    ul.menu.simple.align-right
+      li= link_to 'Markdown on Wikipedia', 'https://en.wikipedia.org/wiki/Markdown', target: '_blank'
+      li= link_to 'Knowledge Base on Wikipedia', 'https://en.wikipedia.org/wiki/Knowledge_base', target: '_blank'

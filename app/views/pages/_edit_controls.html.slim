@@ -12,5 +12,6 @@ p.scale-to-90
     | &nbsp;
     | &nbsp;
     | &nbsp;
-  = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
-    i.fa.fa-trash
+  - if current_user and current_user.role == 'admin'
+    = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
+      i.fa.fa-trash

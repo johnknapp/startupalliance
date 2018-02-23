@@ -16,46 +16,54 @@
   h4.bold.medium-grey-text.text-center Filter: “#{filter}”
 
 .row
-  .medium-6.columns
-    ul.snug-top.dropdown.menu.bold data-dropdown-menu=true
-      li.primary-text
-        = link_to 'Filter the Knowledge Base...', '#'
-        ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          /li= link_to "Show all", pages_path(filter: 'All'), class: 'bold'
-          li= link_to "Latest pages", pages_path, class: 'bold'
-          li= link_to "Authored by me", pages_path(author_id: current_user.id), class: 'bold' if current_user
-          /li= link_to "Authored by #{current_user.name}", pages_path(author_id: current_user.id), class: 'bold' if current_user
-          - @categories.each do |cat|
-            li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
-  .medium-6.columns
-    p.text-right.snug-top.space-bottom
-      = link_to new_page_path do
-        i.fa.fa-plus
-        | &nbsp;
-        | &nbsp;
-        ' New Knowledge Base Entry
+  .large-12.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to nucleus_path do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to The Entrepreneur’s Nucleus
+    p.text-right.snug-top Success building resources from our global entrepreneurial community.
+
 - if !current_user
   .row
     .large-8.large-offset-2.columns
       .callout
         p.bold Access requires Free Membership
         = render 'partials/join_form', acqsrc: 'nucleus_page'
+
+
 .row
   .medium-5.columns.medium-push-7
-    p.bold
-      ' Welcome to the Nucleus Knowledge Base
-    p.little-snug-top
-      ' Access this growing library of success building resources from the members of your global entrepreneurial community.
-      ' We encourage #{link_to 'your contributions', new_page_path} and honor top contributors.
-      '
+    .float-right.space-top
+      a data-open='kb-info'
+        i.fa.fa-lg.fa-info-circle
+      = render 'partials/quick_reference_kb'
+    h5.space-top &nbsp;
     = render 'pages/page_search_form'
 
   .medium-7.columns.medium-pull-5
+    .float-right
+      p.text-right.space-top
+        = link_to new_page_path do
+          i.fa.fa-plus
+          | &nbsp;
+          | &nbsp;
+          ' Add Page
+    ul.space-top.dropdown.menu.bold data-dropdown-menu=true
+      li.primary-text
+        h5.bold= link_to 'Filter the Knowledge Base...', '#'
+        ul.menu.normal.shadow-8dp data-dropdown-menu=true
+          li= link_to "Latest pages", pages_path, class: 'bold'
+          li= link_to "Authored by me", pages_path(author_id: current_user.id), class: 'bold' if current_user
+          - @categories.each do |cat|
+            li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
+
     - if @pages.present?
       - @pages.each do |page|
         = render 'pages/hero', page: page
     - else
-      .card
-        .card-section
-          p.bold.text-center Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show the latest', pages_path}.
+      .callout.accent
+        p.bold.text-center Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show the latest', pages_path}.
 

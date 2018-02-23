@@ -15,7 +15,16 @@
     ' from #{number_with_delimiter(nucleus_forum_post_author_ids)}
     ' #{'Author'.pluralize(nucleus_forum_post_author_ids)}
 
-p.text-right.snug-top Ask questions, get answers, make connections and solve challenges.
+.row
+  .large-12.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to nucleus_path do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to The Entrepreneur’s Nucleus
+    p.text-right.snug-top Ask questions, get answers, make connections and solve challenges.
 
 - if !current_user
   .row
@@ -54,7 +63,7 @@ p.text-right.snug-top Ask questions, get answers, make connections and solve cha
             .float-left
               = link_to mark_posts_read_discussion_topic_posts_path(disco,disco.topics.last), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
                 i.fa.fa-comments.fa-lg.red-text
-          h5.bold.text-center
+          h4.bold.text-center
             ' #{link_to disco.name, discussion_path(disco)}
           p.faint.little-snug-top.text-center= disco.description
           /p.little-snug-top.faint.text-center
