@@ -7,7 +7,10 @@ class Notifier < ApplicationMailer
   end
 
   def tell_jk(object)
-    mail(to: 'john@startupalliance.com', subject: "[SA] New #{object.class.name} created!")
+    if Rails.env.production?
+      @object = object
+      mail(to: 'john@startupalliance.com', subject: "[SA] New #{@object.class.name} created!")
+    end
   end
 
 end
