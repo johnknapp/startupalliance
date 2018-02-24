@@ -20,11 +20,11 @@
         .card.primary.shadow
           .card-divider.accent-background
             h4.bold.text-center Entrepreneur’s Jet Fuel
-            p.bold.text-center Maximize your success and plug-in as a full member of our entrepreneurial community
+            p.bold.text-center.little-snug-top Maximize your success, plug-in as a full member of our entrepreneurial community
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold Browse and Post throughout the Resources
+                li.bold Browse and Post in all the Resources
                 li.bold Listing in the Entrepreneur’s Showcase
                 li.bold Private messaging
                 ul.no-bullet.little-snug-top
@@ -38,11 +38,11 @@
             - if current_user and current_user.plan_name == 'jet'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.plan_name == 'free'
-              p= link_to 'Upgrade to Jet Fuel', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
-              p= link_to 'Downgrade to Jet Fuel', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Get Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' Only $25 a year
 
@@ -51,16 +51,16 @@
         .card.primary.shadow
           .card-divider.accent-background
             h4.bold.text-center.primary-text Create Private Alliances
-            p.bold.text-center Unite committed entrepreneurs to share advice, provide insight and overcome challenges
+            p.bold.text-center.little-snug-top Unite committed entrepreneurs to share advice, provide insight and overcome challenges
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold All Jet Fuel benefits
+                li.bold All Entrepreneur’s Jet Fuel benefits
                 li.bold Create and manage Private Alliances
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GETTING_STARTED_WEBCHAT_TIP
-                    ' Getting started webchat
-                li Manage Private Alliance membership
+                    ' Getting started orientation with JK
+                li Manage Private Alliance memberships
                 li
                   ' Operate in
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
@@ -93,17 +93,17 @@
         .card.primary.shadow
           .card-divider.accent-background
             h4.bold.text-center Create Company Workspaces
-            p.bold.text-center Unite your team to enhance focus, improve outcomes and collaborate more fully
+            p.bold.text-center.little-snug-top Unite your team to enhance focus, improve outcomes and collaborate more fully
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold All Jet Fuel benefits
+                li.bold All Entrepreneur’s Jet Fuel benefits
                 li.bold Create and manage Company Workspaces
                 li.bold All Private Alliance benefits (bonus!)
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GETTING_STARTED_WEBCHAT_TIP
-                    ' Getting started webchat
-                li Manage Company team membership
+                    ' Getting started orientation with JK
+                li Manage Company team memberships
                 li
                   ' Operate in
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
@@ -145,8 +145,8 @@
         .medium-8.medium-offset-2.columns
           .card.primary.shadow
             .card-divider.accent-background
-              h4.bold.text-center Or join for free right now!
-              /p.bold.text-center Become part of our entrepreneurial community and participate in The Entrepreneur’s Nucleus
+              h4.bold.text-center Free Associate Membership
+              p.bold.text-center.little-snug-top For students, investors and those preparing to become an entrepreneur
             .card-section
               .plan-box
                 .row
@@ -155,8 +155,8 @@
                       li Browse Forums and Knowledge base
                       ul.no-bullet.little-snug-top
                         li.faint
-                          ' (Jet Fuel membership required to post)
-                      li Access the Global Virtual Office
+                          ' (Entrepreneur’s membership required to post)
+                      li Use the Global Virtual Office
                       /li Free listing in the Entrepreneur’s Showcase
                       li Browse Alliances, Companies, Members
                       /li Get recruited into Alliances and Companies
@@ -167,16 +167,16 @@
                         li.faint
                           ' (Full messaging abilities once on a team)
                     = render 'partials/join_form', acqsrc: 'pricing_page'
-            /.callout.small.accent
-              h5.bold.text-center Free forever!
-              - if current_user and current_user.plan_name == 'free'
-                p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-              - elsif current_user and current_user.plan_name != 'free'
-                p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
-              - else
-                p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
-              p.scale-to-90.text-center
-                ' Membership is open to all committed entrepreneurs
+        /.callout.small.accent
+          h5.bold.text-center Free forever!
+          - if current_user and current_user.plan_name == 'free'
+            p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
+          - elsif current_user and current_user.plan_name != 'free'
+            p= link_to 'Downgrade to Associate Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+          - else
+            p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
+          p.scale-to-90.text-center
+            ' Membership is open to all committed entrepreneurs
 
         /.callout.primary
           h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
