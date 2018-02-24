@@ -1,8 +1,16 @@
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
     ' Knowledge Base Page:
-  h2.bold.white-text.text-center
+  h2.bold.white-text.text-center.title-font
     = @page.title
+  - if @page.category_list.present?
+    h5.text-center.white-text
+      ' In:
+      - @page.category_list.each_with_index do |cat, i|
+        | #{link_to cat, pages_path(filter: cat), class: 'accent-text'}
+        - unless @page.category_list.length == i + 1
+          ' ,
+
 
 .row
   .medium-12.columns
@@ -24,41 +32,9 @@
         - else
           p.snug-top.space-bottom.text-right Now viewing current version
     .row
-      .large-9.columns
+      .large-8.large-offset-2.columns
         p= markdown @page.content
-      .large-3.columns
-        .callout.small.little-space-top
-          .float-right
-            = render 'pages/edit_controls'
-          p.faint Page editors:
-          ul.no-bullet.snug-top
-            - page_editors(@page).each do |user|
-              li.faint= link_to user.name, vanity_path(user.username)
-          p.faint.little-snug-top
-            - if params[:rev].present? and params[:rev].to_i != @page.revisions.count
-              ' #{params[:rev].to_i.ordinalize} edit: #{@page.updated_at.utc.strftime('%b %d, %Y')}
-              br
-              - audit = Audit.where(auditable_id: @page.id).where(version: params[:rev].to_i).first
-              ' By: #{link_to audit.user.name, vanity_path(audit.user.username)}
-            - else
-              ' #{@page.audits.count.ordinalize} edit: #{@page.updated_at.utc.strftime('%b %d, %Y')}
-              br
-              ' By: #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
-          ul.snug-top.vertical.menu.accordion-menu data-accordion-menu=true
-            li.faint
-              = link_to '#' do
-                ' Edit history:
-              ul.menu.vertical.nested.shadow-8dp data-dropdown-menu=true
-                - @page.revisions.each_with_index do |page,i|
-                  - label = (i+1).ordinalize.to_s + ' edit: ' + time_ago_in_words(page.updated_at).humanize + ' ago'
-                  li= link_to label, page_path(page, rev: i+1)
-
-          - if @page.category_list.present?
-            p.faint
-              ' #{'Category'.pluralize(@page.category_list.count)}:
-              br
-              - @page.category_list.each_with_index do |cat, i|
-                | #{link_to cat, pages_path(filter: cat)}
-                - unless @page.category_list.length == i + 1
-                  ' ,
+    .row
+      .large-3.large-offset-2.end.columns
+        = render 'pages/meta'
 

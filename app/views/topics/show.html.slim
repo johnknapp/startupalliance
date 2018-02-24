@@ -1,8 +1,15 @@
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
     ' Topic thread:
-  h2.bold.white-text.text-center
+  h2.bold.white-text.text-center.title-font
     = @topic.name
+  h5.text-center.white-text
+    ' In:
+    = link_to @topic.discussion.name, discussion_path(@topic.discussion), class: 'accent-text'
+    /- @page.category_list.each_with_index do |cat, i|
+    /  | #{link_to cat, pages_path(filter: cat), class: 'accent-text'}
+    /  - unless @page.category_list.length == i + 1
+    /    ' ,
 
 .row
   .large-12.columns

@@ -1,0 +1,17 @@
+ul.dropdown.menu data-dropdown-menu=true
+  li.primary-text.is-dropdown-submenu-parent
+    .bold.snug-top= link_to '#' do
+      ' Resources menu
+      | &nbsp;
+      i.fa.fa-chevron-down
+    ul.menu.normal data-dropdown-menu=true
+      li.pad-left= link_to 'Discussion Forums', discussions_path
+      li.pad-left= link_to 'Knowledge Base', pages_path
+      - if current_user
+        li.pad-left= link_to 'Current GVO', gvo_url, target: '_blank'
+        li.pad-left
+          = link_to gvo_url(24), target: '_blank' do
+            ' Previous GVO
+            | &nbsp;
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
+              i.fa.fa-info-circle

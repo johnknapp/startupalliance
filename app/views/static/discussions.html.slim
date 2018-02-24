@@ -17,13 +17,8 @@
 
 .row
   .large-12.columns
-    /.float-left
-      p.snug-top.space-bottom
-        = link_to nucleus_path do
-          i.fa.fa-arrow-left
-          | &nbsp;
-          | &nbsp;
-          ' Return to The Entrepreneur’s Nucleus
+    .float-left
+      = render 'partials/resource_menu'
     p.text-right.snug-top Ask questions, get answers, make connections and solve challenges.
 
 - if !current_user
@@ -48,7 +43,7 @@
               = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
                 i.fa.fa-comments.fa-lg.red-text
           h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
-          p.faint.little-snug-top.text-center In #{link_to topic.discussion.name, discussion_path(topic.discussion)}
+          p.faint.little-snug-top.text-center In: #{link_to topic.discussion.name, discussion_path(topic.discussion)}
           p.faint.snug-top.space-bottom.text-center= topic_meta(topic)
     - else
       .callout
