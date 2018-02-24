@@ -20,7 +20,11 @@
 .callout.accent.little-space-top.shadow-8dp
   .row.medium-up-2.large-up-3 data-equalizer=true
     h3.bold.primary-text.text-center.little-space-bottom
-      ' Dedicated Resources for Committed Entrepreneurs...
+      ' Dedicated Resources for
+      - if current_user
+        ' #{current_user.name}...
+      - else
+        ' Committed Entrepreneurs...
       /' Nucleus Resources: Free for all Committed Entrepreneurs...
     /h5.bold.medium-grey-text.text-center.snug-top.space-bottom
       ' 核心,
@@ -36,17 +40,15 @@
     = render 'partials/hero_gvo'
     /= render 'partials/hero_more_coming'
 
-.callout.accent.space-top.shadow-8dp
-  .row.medium-up-2.large-up-3 data-equalizer=true
-    h3.bold.primary-text.text-center.little-space-bottom
-      ' Premium Memberships to Maximize Your Entrepreneurial Success...
-      '
-      '
-      /' Step up to Premium Tools to Maximize Your Entrepreneurial Success...
-    = render 'partials/hero_jet_fuel'
-    = render 'partials/hero_alliances'
-    = render 'partials/hero_companies'
-    p.text-center.snug-bottom.faint Student? Investor? Just starting out? Check out the #{link_to 'Free Associate Membership Plan', pricing_path(anchor: 'associate')}
+- if !current_user
+  .callout.accent.space-top.shadow-8dp
+    .row.medium-up-2.large-up-3 data-equalizer=true
+      h3.bold.primary-text.text-center.little-space-bottom
+        ' Premium Memberships to Maximize Your Entrepreneurial Success...
+      = render 'partials/hero_jet_fuel'
+      = render 'partials/hero_alliances'
+      = render 'partials/hero_companies'
+      p.text-center.snug-bottom.faint Student? Investor? Just starting out? You want the #{link_to 'Free Associate Membership Plan', pricing_path(anchor: 'associate')}
 
 .row
   .large-10.large-offset-1.columns

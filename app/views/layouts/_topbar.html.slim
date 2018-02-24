@@ -80,9 +80,16 @@
                 - else
                   li.pad-left= link_to 'Join one!', alliances_path
                 - if current_user and current_user.confirmed?
-                /li.bold.menu-text Relevant Resources:
-                /li.pad-left= link_to 'My Discussions', user_topics_path(current_user.username)
-                /li.pad-left= link_to 'My KB Pages', pages_path(author_id: current_user.id)
+                li.bold.menu-text Resources:
+                li.pad-left= link_to 'Discussion Forums', discussions_path
+                li.pad-left= link_to 'Knowledge Base', pages_path
+                li.pad-left= link_to 'Current GVO', gvo_url, target: '_blank'
+                li.pad-left
+                  = link_to gvo_url(24), target: '_blank' do
+                    ' Previous GVO
+                    | &nbsp;
+                    span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
+                      i.fa.fa-info-circle
                 li.bold.menu-text Main menu:
                 li.pad-left= link_to 'Admin', admin_root_path if current_user.admin?
                 li.pad-left
