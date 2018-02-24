@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(
-          :email, :acqsrc, :plan, :time_zone
+          :email, :acqsrc, :plan_id, :time_zone
       )
     end
 
@@ -83,7 +83,8 @@ class ApplicationController < ActionController::Base
           :country_code,
           :time_zone,
           :public_skills,
-          :public_traits
+          :public_traits,
+          :plan_id
       )
     end
 

@@ -63,23 +63,24 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     if params[:user][:email].present?
       email = params[:user][:email]
-      user = User.find_by_email(email)
+      user = User.find_by_email(email)                                        # We know them
       entity = params[:user][:entity].singularize if params[:user][:entity]
       token = params[:user][:token]
       role = params[:user][:r]
       if user
         # add existing non-auth user to entity
         add_user_to_entity(user,entity,token,role)
-        redirect_to user_session_path, notice: 'You are now a member. Please sign-in!' and return
+        redirect_to user_session_path, notice: 'You have been added to the team. Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
       redirect_back(fallback_location: root_path, alert: 'Please enter your email!') and return
     end
 
     if valid_email?(params[:user][:email]) == 0 and valid_user?(params['g-recaptcha-response'])
+      # raise('tasty foo')
       super
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
-      current_user.update_attribute(:plan, params[:user][:plan])
+#######      current_user.update_attribute(:plan, params[:user][:plan])
       if Rails.env.production?
         # $analytics.identify(
         #     anonymous_id:   current_user.pid,

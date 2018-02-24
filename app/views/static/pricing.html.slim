@@ -35,12 +35,14 @@
                 li Become part of any Company Team
           .callout.small.accent
             h5.bold.text-center 15 day free trial
-            - if current_user and current_user.plan_name == 'jet_fuel'
+            - if current_user and current_user.plan_name == 'jet'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name != 'jet_fuel'
-              p= link_to 'Downgrade to Jet Fuel', change_plan_path(desired_plan: 'jet_fuel'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+            - elsif current_user and current_user.plan_name == 'free'
+              p= link_to 'Upgrade to Jet Fuel', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+            - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
+              p= link_to 'Downgrade to Jet Fuel', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Get Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet_fuel'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Get Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' Only $25 a year
 
@@ -77,7 +79,7 @@
             h5.bold.text-center 15 day free trial
             - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name == 'free'
+            - elsif current_user and (current_user.plan_name == 'free' or current_user.plan_name == 'jet')
               p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - elsif current_user and current_user.plan_name == 'company'
               p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
@@ -132,48 +134,49 @@
             - if current_user and current_user.plan_name == 'company'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.plan_name != 'company'
-              p= link_to 'Upgrade to Company', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Upgrade to Company Plan', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' Only $150 a year
 
-    .row
-      .medium-8.medium-offset-2.columns
-        .card.primary.shadow
-          .card-divider.accent-background
-            h4.bold.text-center Or join for free right now!
-            /p.bold.text-center Become part of our entrepreneurial community and participate in The Entrepreneur’s Nucleus
-          .card-section
-            .plan-box
-              .row
-                .medium-10.medium-offset-1.columns
-                  ul
-                    li Browse Forums and Knowledge base
-                    ul.no-bullet.little-snug-top
-                      li.faint
-                        ' (Jet Fuel membership required to post)
-                    li Access the Global Virtual Office
-                    /li Free listing in the Entrepreneur’s Showcase
-                    li Browse Alliances, Companies, Members
-                    /li Get recruited into Alliances and Companies
-                    li Become part of any Private Alliance
-                    li Become part of any Company Team
-                    /li Limited private messaging (receive only)
-                    /ul.no-bullet.little-snug-top
-                      li.faint
-                        ' (Full messaging abilities once on a team)
-                  = render 'partials/join_form', acqsrc: 'pricing_page'
-          /.callout.small.accent
-            h5.bold.text-center Free forever!
-            - if current_user and current_user.plan_name == 'free'
-              p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name != 'free'
-              p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
-            - else
-              p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.scale-to-90.text-center
-              ' Membership is open to all committed entrepreneurs
+    - if !current_user
+      .row
+        .medium-8.medium-offset-2.columns
+          .card.primary.shadow
+            .card-divider.accent-background
+              h4.bold.text-center Or join for free right now!
+              /p.bold.text-center Become part of our entrepreneurial community and participate in The Entrepreneur’s Nucleus
+            .card-section
+              .plan-box
+                .row
+                  .medium-10.medium-offset-1.columns
+                    ul
+                      li Browse Forums and Knowledge base
+                      ul.no-bullet.little-snug-top
+                        li.faint
+                          ' (Jet Fuel membership required to post)
+                      li Access the Global Virtual Office
+                      /li Free listing in the Entrepreneur’s Showcase
+                      li Browse Alliances, Companies, Members
+                      /li Get recruited into Alliances and Companies
+                      li Become part of any Private Alliance
+                      li Become part of any Company Team
+                      /li Limited private messaging (receive only)
+                      /ul.no-bullet.little-snug-top
+                        li.faint
+                          ' (Full messaging abilities once on a team)
+                    = render 'partials/join_form', acqsrc: 'pricing_page'
+            /.callout.small.accent
+              h5.bold.text-center Free forever!
+              - if current_user and current_user.plan_name == 'free'
+                p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
+              - elsif current_user and current_user.plan_name != 'free'
+                p= link_to 'Downgrade to Free Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              - else
+                p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p.scale-to-90.text-center
+                ' Membership is open to all committed entrepreneurs
 
         /.callout.primary
           h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
