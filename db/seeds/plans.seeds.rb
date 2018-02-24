@@ -1,10 +1,10 @@
 plan = [
     'alliance_month',
     'company_month',
-    'jet_year',
+    'entrepreneur_year',
     'alliance_year',
     'company_year',
-    'free_year'
+    'associate_year'
 ]
 
 plan.each do |p|

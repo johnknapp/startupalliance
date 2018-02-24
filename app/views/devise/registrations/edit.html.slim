@@ -7,8 +7,6 @@
       p.text-right.snug-top Each member makes Startup Alliance more useful to all of us!
     p.snug-top.faint
       ' You have #{@user.plan_name.humanize} Membership
-      - if @user.plan_name == 'free'
-        ' (#{link_to 'Change plan', pricing_path})
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification

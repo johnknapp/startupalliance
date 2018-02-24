@@ -64,7 +64,7 @@ class User < ApplicationRecord
   # Can I message this person?
   #   Am I on the right plan or does conversation exist?
   def messagable_by(current_user)
-    true if %w[alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans } or Conversation.between(self.id,current_user.id).present?
+    true if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans } or Conversation.between(self.id,current_user.id).present?
   end
 
   def team_count

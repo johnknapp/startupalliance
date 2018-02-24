@@ -35,14 +35,14 @@
                 li Become part of any Company Team
           .callout.small.accent
             h5.bold.text-center 15 day free trial
-            - if current_user and current_user.plan_name == 'jet'
+            - if current_user and current_user.plan_name == 'entrepreneur'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name == 'free'
-              p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+            - elsif current_user and current_user.plan_name == 'associate'
+              p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
-              p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'jet'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'entrepreneur'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' Only $25 a year
 
@@ -66,7 +66,7 @@
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
                     ' stealth mode
                 li
-                  ' Real-time
+                  ' Private real-time
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIRTUAL_OFFICE_TIP
                     ' Virtual Office
                 li Private Discussion Forums
@@ -79,7 +79,7 @@
             h5.bold.text-center 15 day free trial
             - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and (current_user.plan_name == 'free' or current_user.plan_name == 'jet')
+            - elsif current_user and (current_user.plan_name == 'associate' or current_user.plan_name == 'entrepreneur')
               p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - elsif current_user and current_user.plan_name == 'company'
               p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
@@ -121,7 +121,7 @@
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=SAKPI_SHORT_TIP
                     ' SAKPIs
                 li
-                  ' Real-time
+                  ' Private real-time
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIRTUAL_OFFICE_TIP
                     ' Virtual Office
                 li Private Discussion Forums
@@ -169,12 +169,12 @@
                     = render 'partials/join_form', acqsrc: 'pricing_page'
         /.callout.small.accent
           h5.bold.text-center Free forever!
-          - if current_user and current_user.plan_name == 'free'
+          - if current_user and current_user.plan_name == 'associate'
             p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-          - elsif current_user and current_user.plan_name != 'free'
-            p= link_to 'Downgrade to Associate Plan', change_plan_path(desired_plan: 'free'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+          - elsif current_user and current_user.plan_name != 'associate'
+            p= link_to 'Downgrade to Associate Plan', change_plan_path(desired_plan: 'associate'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
           - else
-            p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'free'), class: 'fa-lg button expanded bold success shadow-6dp'
+            p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'associate'), class: 'fa-lg button expanded bold success shadow-6dp'
           p.scale-to-90.text-center
             ' Membership is open to all committed entrepreneurs
 

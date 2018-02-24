@@ -5,4 +5,4 @@
   = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'companies'
   = f.hidden_field :entity, value: params[:controller] if params[:controller] == 'alliances'
   = f.hidden_field :user_pid, value: current_user.pid
-  = f.button :submit, "I accept the invitation", class: 'bold secondary'
+  = f.button :submit, "I accept the invitation", class: 'bold success'
