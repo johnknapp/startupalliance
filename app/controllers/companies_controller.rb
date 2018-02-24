@@ -118,7 +118,6 @@ class CompaniesController < ApplicationController
             Notifier.tell_jk(@company).deliver
             @company.update(invite_token: SecureRandom.urlsafe_base64)
             @company.team << current_user
-            # CompanyUser.last.update(equity: params[:company][:company_user][:equity]) # strong params for join tables, <sigh>
             format.html { redirect_to @company, notice: 'Company was successfully created.' }
             format.json { render :show, status: :created, location: @company }
           else

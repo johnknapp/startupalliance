@@ -25,33 +25,35 @@
             = f.input :country_code, label: 'Country where you live', required: true, include_blank: 'Select a country', input_html: { class: 'chosen-select' }
           .small-4.columns
             = f.input :time_zone, label: 'Time zone where you live', required: true, priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select a time zone'
-        .row
-          .small-4.columns
-            .indented-1= f.input :public_skills, required: false, label: 'Make my skills visible to everybody'
-          .small-4.columns.end
-            .indented-1= f.input :public_traits, required: false, label: 'Make my traits visible to everybody'
+        - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+          .row
+            .small-4.columns
+              .indented-1= f.input :public_skills, required: false, label: 'Make my skills visible to everybody'
+            .small-4.columns.end
+              .indented-1= f.input :public_traits, required: false, label: 'Make my traits visible to everybody'
         .row
           .large-6.columns
             = f.input :password, label: 'New password', placeholder: 'New password'
           .large-6.columns
             = f.input :password_confirmation, label: 'New password confirmation', placeholder: 'New password confirmation'
-        .callout.primary
-          p
-            ' Personal mission statement
-            em
-              ' (Recommended)
-          = f.input :mission, label: false, as: :text, input_html: { rows: '2' }, placeholder: 'Personal mission statement, between 24 and 280 characters.'
-          p
-            ' Links to your social media accounts
-            em
-              ' (Recommended)
-          .row
-            .small-4.columns
-              = f.input :twitter_profile, label: 'Twitter'
-            .small-4.columns
-              = f.input :linkedin_profile, label: 'LinkedIn'
-            .small-4.columns
-              = f.input :website, label: 'Personal website'
+        - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+          .callout.primary
+            p
+              ' Personal mission statement
+              em
+                ' (Recommended)
+            = f.input :mission, label: false, as: :text, input_html: { rows: '2' }, placeholder: 'Personal mission statement, between 24 and 280 characters.'
+            p
+              ' Links to your social media accounts
+              em
+                ' (Recommended)
+            .row
+              .small-4.columns
+                = f.input :twitter_profile, label: 'Twitter'
+              .small-4.columns
+                = f.input :linkedin_profile, label: 'LinkedIn'
+              .small-4.columns
+                = f.input :website, label: 'Personal website'
         .row
           .medium-12.columns
             = f.input :current_password, placeholder: 'Current password required to save any changes', required: true

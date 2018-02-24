@@ -35,11 +35,12 @@
   .large-6.large-offset-3.medium-8.medium-offset-2.columns
 
 
-    p.bold.little-space-top Personal mission:
-    - if @user.mission.present?
-      p.snug-top= @user.mission
-    - else
-      p.snug-top.faint #{@user.name} has not written their personal mission
+    - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+      p.bold.little-space-top Personal mission:
+      - if @user.mission.present?
+        p.snug-top= @user.mission
+      - else
+        p.snug-top.faint #{@user.name} has not written their personal mission
 
     p.bold.little-space-top Member summary:
     - if @user.created_at
@@ -89,29 +90,30 @@
           = link_to "#{@user.plan_name.humanize} Member", pricing_path
       p.snug-top.faint Membership plan:
 
-    p
-      strong Social profiles:
-    - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
-      h5.snug-top.space-bottom
-        - if @user.twitter_profile.present?
-          = link_to @user.twitter_profile, target: '_blank'
-            span.fa.fa-twitter
-          | &nbsp;
-          | &nbsp;
-          | &nbsp;
-          | &nbsp;
-        - if @user.linkedin_profile.present?
-          = link_to @user.linkedin_profile, target: '_blank'
-            span.fa.fa-linkedin
-          | &nbsp;
-          | &nbsp;
-          | &nbsp;
-          | &nbsp;
-        - if @user.website.present?
-          = link_to @user.website, target: '_blank'
-            span.fa.fa-globe
-    - elsif current_user and @user == current_user and current_user.confirmed?
-      p.text-center= link_to 'Add your social profiles', edit_user_registration_path
-    - else
-      p.snug-top.faint #{@user.name} has not listed their social profiles
+    - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+      p
+        strong Social profiles:
+      - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
+        h5.snug-top.space-bottom
+          - if @user.twitter_profile.present?
+            = link_to @user.twitter_profile, target: '_blank'
+              span.fa.fa-twitter
+            | &nbsp;
+            | &nbsp;
+            | &nbsp;
+            | &nbsp;
+          - if @user.linkedin_profile.present?
+            = link_to @user.linkedin_profile, target: '_blank'
+              span.fa.fa-linkedin
+            | &nbsp;
+            | &nbsp;
+            | &nbsp;
+            | &nbsp;
+          - if @user.website.present?
+            = link_to @user.website, target: '_blank'
+              span.fa.fa-globe
+      - elsif current_user and @user == current_user and current_user.confirmed?
+        p.text-center= link_to 'Add your social profiles', edit_user_registration_path
+      - else
+        p.snug-top.faint #{@user.name} has not listed their social profiles
 

@@ -8,7 +8,9 @@
   ' Conversation with #{interlocutor.name}
 
 - content_for :page_header do
-  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+  h4.bold.little-space-top.medium-grey-text.text-center
+    ' Private Conversation with:
+  h2.bold.white-text.text-center
     = link_to vanity_path(interlocutor.username), class: 'white-text' do
       ' #{image_tag gravatar_url("#{interlocutor.email}", 60)}
       strong

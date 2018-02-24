@@ -1,5 +1,5 @@
 - content_for :page_title do
-  ' Startup Alliance – Global entrepreneurs join Startup Alliance to gain insight from beyond their company walls
+  ' Startup Alliance – Our members join Private Alliances to gain insight from beyond their company walls
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
@@ -11,7 +11,7 @@
 .row
   .medium-12.columns
     .float-right
-      p.snug-top.space-bottom Global entrepreneurs join Startup Alliance to gain insight from beyond their company walls
+      p.snug-top.space-bottom Our members join Private Alliances to gain insight from beyond their company walls
     p.snug-top.space-bottom
       = link_to new_alliance_path do
         i.fa.fa-plus
@@ -48,6 +48,7 @@
                   ' Yes!
                 - else
                   ' —
+      p.faint.snug-top Private Alliances operating in Stealth Mode do not appear.
     - elsif current_user and !current_user.confirmed?
       = render 'partials/inactive_browse_roadblock'
     - else

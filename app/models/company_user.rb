@@ -2,6 +2,11 @@ class CompanyUser < ApplicationRecord
   belongs_to :company
   belongs_to :user
 
+  def self.team_mates(first_id,second_id)
+    company_ids = CompanyUser.where(user_id: first_id).pluck(:company_id)
+    CompanyUser.where('company_id in (?)',company_ids).pluck(:user_id).any?{ |user_id| user_id == second_id }
+  end
+
   enum equity: {
       no_equity:  0,
       under_5:    1,

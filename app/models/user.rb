@@ -61,10 +61,19 @@ class User < ApplicationRecord
     self.role == 'admin'
   end
 
+  def associate?
+    self.plan_name == 'associate'
+  end
+
   # Can I message this person?
-  #   Am I on the right plan or does conversation exist?
+  #  Am I on the right plan?                  free with admin, alliance, company. not with jet
+  #  Are we conversing?
+  #  Am I on a team with them?
   def messagable_by(current_user)
-    true if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans } or Conversation.between(self.id,current_user.id).present?
+    true  if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans } or
+          Conversation.between(self.id,current_user.id).present? or
+          CompanyUser.team_mates(self.id,current_user.id) or
+          AllianceUser.team_mates(self.id,current_user.id)
   end
 
   def team_count

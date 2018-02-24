@@ -11,10 +11,11 @@
         i.fa.fa-pencil.white-text
   - else
     - if current_user and current_user.confirmed? and current_user != @user
-      .float-right.pad-right
-        h4.bold.text-right.white-text.little-snug-top
-          = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
-            i.fa.fa-comments-o.white-text
+      - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+        .float-right.pad-right
+          h4.bold.text-right.white-text.little-snug-top
+            = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
+              i.fa.fa-comments-o.white-text
 
   h2.bold.little-space-top.white-text.text-center
     ' #{image_tag gravatar_url("#{@user.email}", 72)}

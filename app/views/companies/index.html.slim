@@ -3,7 +3,7 @@
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Member Companies
+    ' Company Workspaces
   - if !current_user
     h5.bold.medium-grey-text.text-center
       ' (Sign-in to browse)
@@ -46,6 +46,7 @@
                   ' Yes!
                 - else
                   ' —
+      p.faint.snug-top Companies operating in Stealth Mode do not appear.
     - elsif current_user and !current_user.confirmed?
       = render 'partials/inactive_browse_roadblock'
     - else

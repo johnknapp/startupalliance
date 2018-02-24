@@ -34,24 +34,26 @@
               .text-center Alliances
         tbody
           - @members.each do |member|
-            tr
-              td{valign='top'}
-                = link_to vanity_path(member.username) do
-                  = image_tag gravatar_url("#{member.email}", 36)
-                  | &nbsp;
-                  = member.name
+            - if %w[entrepreneur alliance company].any? { |necessary_plans| member.plan_name == necessary_plans }
+              tr
+                td{valign='top'}
+                  = link_to vanity_path(member.username) do
+                    = image_tag gravatar_url("#{member.email}", 36)
+                    | &nbsp;
+                    = member.name
 
-              td{valign='top'}
-                - if member.mission.present?
-                  = member.mission
-                - else
-                  .faint-text Not set!
-              td{valign='top'}
-                .text-center #{member.skill_index} / #{member.trait_index}
-              td{valign='top'}
-                .text-center = member.companies.count
-              td{valign='top'}
-                .text-center = member.alliances.count
+                td{valign='top'}
+                  - if member.mission.present?
+                    = member.mission
+                  - else
+                    .faint-text Not set!
+                td{valign='top'}
+                  .text-center #{member.skill_index} / #{member.trait_index}
+                td{valign='top'}
+                  .text-center = member.companies.count
+                td{valign='top'}
+                  .text-center = member.alliances.count
+      p.faint.snug-top Associate Members do not appear.
     - elsif current_user and !current_user.confirmed?
       = render 'partials/inactive_browse_roadblock'
     - else
