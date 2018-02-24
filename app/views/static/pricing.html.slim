@@ -24,7 +24,7 @@
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold Full access to Nucleus Resources
+                li.bold Browse and Post throughout the Resources
                 li.bold Listing in the Entrepreneur’s Showcase
                 li.bold Private messaging
                 ul.no-bullet.little-snug-top
@@ -38,9 +38,9 @@
             - if current_user and current_user.plan_name == 'jet_fuel'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.plan_name != 'jet_fuel'
-              p= link_to 'Downgrade to Entrepreneur’s Jet Fuel', change_plan_path(desired_plan: 'jet_fuel'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Downgrade to Jet Fuel', change_plan_path(desired_plan: 'jet_fuel'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet_fuel'), class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Get Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'jet_fuel'), class: 'fa-lg button expanded bold success shadow-6dp'
             p.scale-to-90.text-center
               ' Only $25 a year
 
@@ -149,7 +149,11 @@
               .row
                 .medium-10.medium-offset-1.columns
                   ul
-                    li Basic access to Nucleus Resources
+                    li Browse Forums and Knowledge base
+                    ul.no-bullet.little-snug-top
+                      li.faint
+                        ' (Jet Fuel membership required to post)
+                    li Access the Global Virtual Office
                     /li Free listing in the Entrepreneur’s Showcase
                     li Browse Alliances, Companies, Members
                     /li Get recruited into Alliances and Companies

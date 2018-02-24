@@ -15,31 +15,35 @@
     '
     i.success-text.fa.fa-lg.fa-trophy
 
+.callout.accent.little-space-top.shadow-8dp
+  .row.medium-up-2.large-up-3 data-equalizer=true
+    h3.bold.primary-text.text-center.little-space-bottom
+      ' Free Resources for Committed Entrepreneurs...
+      /' Nucleus Resources: Free for all Committed Entrepreneurs...
+    /h5.bold.medium-grey-text.text-center.snug-top.space-bottom
+      ' 核心,
+      ' Le Noyau,
+      ' Der Kern,
+      ' केंद्रक,
+      ' Il Nucleo,
+      ' Ядро,
+      ' El Núcleo
+      '
+    = render 'partials/hero_disco'
+    = render 'partials/hero_kb'
+    = render 'partials/hero_gvo'
+    /= render 'partials/hero_more_coming'
 
-.row.medium-up-2.large-up-3 data-equalizer=true
-  h3.bold.primary-text.text-center.little-space-top.space-bottom
-    ' Free Resources for all Committed Entrepreneurs...
-    /' Nucleus Resources: Free for all Committed Entrepreneurs...
-  /h5.bold.medium-grey-text.text-center.snug-top.space-bottom
-    ' 核心,
-    ' Le Noyau,
-    ' Der Kern,
-    ' केंद्रक,
-    ' Il Nucleo,
-    ' Ядро,
-    ' El Núcleo
-    '
-  = render 'partials/hero_disco'
-  = render 'partials/hero_kb'
-  = render 'partials/hero_gvo'
-  /= render 'partials/hero_more_coming'
-.row.medium-up-2.large-up-3 data-equalizer=true
-  h3.bold.primary-text.text-center.little-space-top.space-bottom
-    ' Premium Tools to Maximize Your Entrepreneurial Success...
-  = render 'partials/hero_jet_fuel'
-  = render 'partials/hero_alliances'
-  = render 'partials/hero_companies'
-  /= render 'partials/hero_more_coming'
+.callout.accent.space-top.shadow-8dp
+  .row.medium-up-2.large-up-3 data-equalizer=true
+    h3.bold.primary-text.text-center.little-space-bottom
+      ' Premium Memberships to Maximize Your Entrepreneurial Success...
+      '
+      '
+      /' Step up to Premium Tools to Maximize Your Entrepreneurial Success...
+    = render 'partials/hero_jet_fuel'
+    = render 'partials/hero_alliances'
+    = render 'partials/hero_companies'
 
 .row
   .large-10.large-offset-1.columns
@@ -194,5 +198,4 @@
                 ' There’s more functionality in the pipeline. All designed for entrepreneurs.
                 ' The #{link_to 'FAQ', faq_path} and #{link_to 'Quick Start', quick_start_path} are available, please check them out to learn more about Startup Alliance.
 
-        h1.bold.text-center.primary-text.space-top Better. Together.
-        /h1.bold.text-center.primary-text.little-space-top.little-space-bottom Better. Together.
+        h1.bold.text-center.primary-text.little-space-top.little-space-bottom Better. Together.
