@@ -44,7 +44,7 @@ class DiscussionsController < ApplicationController
       elsif @discussion.discussable.class.name == 'Alliance'
         redirect_to alliance_path(@discussion.discussable), notice: 'Discussion updated'
       else
-        redirect_to nucleus_path, notice: 'Discussion updated'
+        redirect_to discussion_path, notice: 'Discussion updated'
       end
     else
       redirect_to discussion_path(@discussion), alert: 'There was a problem!'
