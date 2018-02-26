@@ -15,12 +15,12 @@ class DiscussionsController < ApplicationController
       results    = PgSearch.multisearch(params[:query])
       results.each do |result|
         if result.searchable_type == 'Topic'
-          arr << result.searchable
+          arr << result.searchable          if result.searchable.discussion.nucleus?
         elsif result.searchable_type == 'Post'
-          arr << result.searchable.topic
+          arr << result.searchable.topic    if result.searchable.topic.discussion.nucleus?
         end
       end
-      @topics = arr.uniq#.fresh_posts_first
+      @topics = arr.uniq#.fresh_posts_first # TODO make that scope work on the array
     else
       redirect_to discussions_path, notice: 'Nothing found!'
     end
@@ -28,12 +28,12 @@ class DiscussionsController < ApplicationController
 
   def create
 
-    # TODO leverage discussable to clean this up like #update
-      @discussable = Company.find_by_pid(params[:discussion][:company_pid])
+    # This action only works for companies and alliances
+
     if params[:discussion][:company_pid]
+      @discussable = Company.find_by_pid(params[:discussion][:company_pid])
       @discussion  = @discussable.discussions.build(discussion_params)
       if @discussion.save
-        # Notifier.tell_jk(@discussion).deliver
         redirect_to company_path(@discussable), notice: 'Discussion created'
       else
         redirect_to company_path(@discussable), alert: 'There was a problem!'
