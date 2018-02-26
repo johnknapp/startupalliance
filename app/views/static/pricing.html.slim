@@ -24,13 +24,16 @@
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold Participate in the Dedicated Resources
+                li.bold Full access to the Community Resources
+                ul.no-bullet.little-snug-top
+                  li.faint
+                    ' Including the Global Virtual Office
                 li.bold Listing in the Entrepreneur’s Showcase
                 li.bold Unlimited Private Messaging
                 ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
-                li Browse Alliances, Companies, Members
+                li Browse Entrepreneurs, Alliances, Companies
                 li Become part of any Private Alliance
                 li Become part of any Company Team
           .callout.small.accent
@@ -59,7 +62,8 @@
                 li.bold Create and manage Private Alliances
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GETTING_STARTED_WEBCHAT_TIP
-                    ' Getting started orientation with JK
+                    ' Getting started orientation
+                  '  with #{link_to 'JK', vanity_path('john')}
                 li Manage Private Alliance memberships
                 li
                   ' Operate in
@@ -102,7 +106,8 @@
                 li.bold All Private Alliance benefits (bonus!)
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GETTING_STARTED_WEBCHAT_TIP
-                    ' Getting started orientation with JK
+                    ' Getting started orientation
+                  '  with #{link_to 'JK', vanity_path('john')}
                 li Manage Company team memberships
                 li
                   ' Operate in
@@ -141,7 +146,7 @@
               ' Only $150 a year
 
     - if !current_user
-      p.faint.text-center There is an #{link_to 'Article on Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
+      p.faint.text-center There is an #{link_to 'Article explaining Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
       .row
         .medium-8.medium-offset-2.columns
           .card.primary.shadow
@@ -154,16 +159,16 @@
                 .row
                   .medium-10.medium-offset-1.columns
                     ul
-                      li Access Dedicated Learning Resources
-                      /ul.no-bullet.little-snug-top
+                      li.bold Full access to the Community Resources
+                      ul.no-bullet.little-snug-top
                         li.faint
-                          ' (Read only)
-                      li Full access to the Global Virtual Office
+                          ' Including the Global Virtual Office
+                      /li.bold Full access to the Global Virtual Office
                       li Limited Private Messaging
                       ul.no-bullet.little-snug-top
                         li.faint
                           ' (Can message team mates and respond to others.)
-                      li Browse Alliances, Companies, Members
+                      li Browse Entrepreneurs, Alliances, Companies
                       li Become part of any Private Alliance
                       li Become part of any Company Team
                     = render 'partials/join_form', acqsrc: 'pricing_page'

@@ -4,17 +4,17 @@ class TopicsController < ApplicationController
 
   # POST
   def create
-    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
-      @topic = Topic.new(topic_params)
-      discussion = Discussion.find params[:topic][:discussion_id]
-      if @topic.save
-        redirect_to topic_path(@topic), notice: 'Topic was successfully created.'
-      else
-        redirect_to discussion_path(discussion), alert: 'There was a problem!'
-      end
+    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    @topic = Topic.new(topic_params)
+    discussion = Discussion.find params[:topic][:discussion_id]
+    if @topic.save
+      redirect_to topic_path(@topic), notice: 'Topic was successfully created.'
     else
-      redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
+      redirect_to discussion_path(discussion), alert: 'There was a problem!'
     end
+    # else
+    #   redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
+    # end
   end
 
   def show
@@ -23,25 +23,25 @@ class TopicsController < ApplicationController
   end
 
   def update
-    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
-      if @topic.update(topic_params)
-        redirect_to discussion_path(@topic.discussion), notice: 'Topic was successfully updated.'
-      else
-        redirect_to discussion_path(@topic.discussion), alert: 'There was a problem!'
-      end
+    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    if @topic.update(topic_params)
+      redirect_to discussion_path(@topic.discussion), notice: 'Topic was successfully updated.'
     else
-      redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
+      redirect_to discussion_path(@topic.discussion), alert: 'There was a problem!'
     end
+    # else
+    #   redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
+    # end
   end
 
   def destroy
-    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
-      discussion = Discussion.find(@topic.discussion_id)
-      @topic.destroy
-      redirect_to discussion_path(discussion)
-    else
-      redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
-    end
+    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    discussion = Discussion.find(@topic.discussion_id)
+    @topic.destroy
+    redirect_to discussion_path(discussion)
+    # else
+    #   redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
+    # end
   end
 
   private

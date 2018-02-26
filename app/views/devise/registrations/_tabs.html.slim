@@ -2,12 +2,13 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
   li.tabs-title.is-active
     a.bold href='#overview' aria-selected='true'
       ' Overview
-  li.tabs-title
-    a.bold href='#skills'
-      ' Startup Skills (SI: #{@user.skill_index})
-  li.tabs-title
-    a.bold href='#traits'
-      ' Personal Traits (TI: #{@user.trait_index})
+  - unless @user.plan_name == 'associate'
+    li.tabs-title
+      a.bold href='#skills'
+        ' Startup Skills (SI: #{@user.skill_index})
+    li.tabs-title
+      a.bold href='#traits'
+        ' Personal Traits (TI: #{@user.trait_index})
   li.tabs-title
     a.bold href='#companies'
       ' Companies (#{number_with_delimiter(@user.companies.where(is_unlisted: false).count)})
@@ -18,10 +19,11 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
 .tabs-content.shadow data-tabs-content='tool-tabs'
   .tabs-panel.is-active#overview
     = render 'overview'
-  .tabs-panel#skills
-    = render 'skills'
-  .tabs-panel#traits
-    = render 'traits'
+  - unless @user.plan_name == 'associate'
+    .tabs-panel#skills
+      = render 'skills'
+    .tabs-panel#traits
+      = render 'traits'
   .tabs-panel#companies
     = render 'companies'
   .tabs-panel#alliances
