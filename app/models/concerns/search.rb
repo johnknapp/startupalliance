@@ -8,27 +8,27 @@ module Search
 
     include PgSearch
 
-    pg_search_scope :trigram_search,
+    pg_search_scope :page_trisearch_search,
       against:  {title: 'B', content: 'A'},
       using:    { tsearch: { dictionary: 'english' },
                   trigram: {}
                 },
       ignoring: [:accents]
 
-    def self.trigram_page_search(query)
+    def self.page_trisearch(query)
       if query.present?
-        trigram_search(query)
+        page_trisearch_search(query)
       end
     end
 
-    pg_search_scope :tsearch_search,
+    pg_search_scope :page_tsearch_search,
       against:  {title: 'B', content: 'A'},
       using:    { tsearch: { dictionary: 'english' } },
       ignoring: [:accents]
 
-    def self.tsearch_page_search(query)
+    def self.page_tsearch(query)
       if query.present?
-        tsearch_search(query)
+        page_tsearch_search(query)
       end
     end
 
