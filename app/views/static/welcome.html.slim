@@ -1,0 +1,12 @@
+- content_for :page_title do
+  ' Startup Alliance – Welcome
+
+  - content_for :page_header do
+    h2.bold.little-space-top.little-space-bottom.white-text.text-center
+      ' Welcome
+
+  .row
+    .medium-10.medium-offset-1.columns
+      p.snug-top.space-botton.text-right
+        ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
+      p.snug-top.show-for-medium &nbsp;

@@ -16,9 +16,12 @@ class StaticController < ApplicationController
     @user = current_user
   end
 
-  def nucleus
+  def welcome
+    render layout: 'application_welcome'
   end
 
+  def nucleus
+  end
 
   def discussions
     @discussions = Discussion.where(nucleus: true).all.order(:name)
