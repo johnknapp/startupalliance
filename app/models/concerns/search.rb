@@ -1,3 +1,4 @@
+# TODO https://robots.thoughtbot.com/optimizing-full-text-search-with-postgres-tsvector-columns-and-triggers
 # https://github.com/Casecommons/pg_search
 # https://blog.pivotal.io/labs/labs/pg-search-how-i-learned-to-stop-worrying-and-love-postgresql-full-text-search
 # https://www.youtube.com/watch?v=n41F29Qln5E

@@ -19,7 +19,7 @@
     h5.bold.space-top &nbsp;
     = render 'partials/search_form_disco'
   .large-7.columns.large-pull-5
-    h5.bold.space-top Topic threads with this search result:
+    h5.bold.space-top Topic threads containing this search result:
     - if @topics.present?
       - @topics.each do |topic|
         .callout.accent.shadow.space-bottom
