@@ -54,6 +54,10 @@ USERNAME_EXCLUSIONS = %w[
   images
   join_thanks
   join-thanks
+  leader
+  leaders
+  leaderboard
+  leaderboards
   meeting
   meetings
   member
