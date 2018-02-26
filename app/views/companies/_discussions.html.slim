@@ -34,7 +34,7 @@
       - else
         p.space-top.snug-bottom &nbsp;
       - if @company.discussions.present?
-        - @company.discussions.order(:name).each do |disco|
+        - @company.discussions.order(:name).each do |discussion|
           .callout.accent.shadow.space-bottom
             - if current_user and (@company.team_member(current_user).role == 'Owner' or current_user.role == 'admin')
               .float-right.little-space-top
@@ -43,19 +43,19 @@
                     = link_to '#' do
                       i.fa.fa-ellipsis-v
                     ul.menu data-dropdown-menu=true data-alignment='left'
-                      li= render 'discussions/edit_modal', discussable: @company, discussion: disco
-                      li= link_to disco, data: { confirm: 'Really destroy this Discussion and all it’s Topics and Posts?' }, method: :delete do
+                      li= render 'discussions/edit_modal', discussable: @company, discussion: discussion
+                      li= link_to discussion, data: { confirm: "Really destroy “#{discussion.name}” and all contained Topics and Posts?" }, method: :delete do
                         i.fa.fa-trash-o
                         | &nbsp;
                         ' Delete
-            - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).present?
+            - if current_user and discussion.posts.present? and discussion.posts.unread_by(current_user).present?
               .float-left
-                = link_to mark_posts_read_discussion_topic_posts_path(disco,disco.topics.last), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                = link_to mark_posts_read_discussion_topic_posts_path(discussion,discussion.topics.last), data: { confirm: 'Really mark all contained Posts as read?' }, method: :post do
                   i.fa.fa-comments.fa-lg.red-text
             h4.bold.text-center
-              ' #{link_to disco.name, discussion_path(disco)}
+              ' #{link_to discussion.name, discussion_path(discussion)}
             p.little-snug-top.faint.text-center
-              = discussion_meta(disco)
+              = discussion_meta(discussion)
       - else
         .callout.little-space-top
           p.text-center No Discussions yet!
