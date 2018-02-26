@@ -5,29 +5,41 @@ class PostsController < ApplicationController
 
   # POST
   def create
-    topic = Topic.find params[:post][:topic_id]
-    @post = Post.new(post_params)
-    @post.topic_id = topic.id
-    if @post.save
-      @post.mark_as_read! for: current_user
-      # Notifier.tell_jk(@post).deliver
-      redirect_to discussion_topic_path(topic.discussion,topic), alert: 'Post was successfully created.'
+    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+      topic = Topic.find params[:post][:topic_id]
+      @post = Post.new(post_params)
+      @post.topic_id = topic.id
+      if @post.save
+        @post.mark_as_read! for: current_user
+        # Notifier.tell_jk(@post).deliver
+        redirect_to discussion_topic_path(topic.discussion,topic), alert: 'Post was successfully created.'
+      else
+        redirect_to discussion_topic_path(topic.discussion,topic), alert: 'There was a problem!'
+      end
     else
-      redirect_to discussion_topic_path(topic.discussion,topic), alert: 'There was a problem!'
+      redirect_to pricing_path(goal: 'post'), alert: 'Please upgrade your Membership Plan!'
     end
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), notice: 'Post was successfully updated'
+    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+      if @post.update(post_params)
+        redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), notice: 'Post was successfully updated'
+      else
+        redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), alert: 'There was a problem!'
+      end
     else
-      redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), alert: 'There was a problem!'
+      redirect_to pricing_path(goal: 'post'), alert: 'Please upgrade your Membership Plan!'
     end
   end
 
   def destroy
-    @post.destroy
-    redirect_back fallback_location: root_path, alert: 'Post was successfully destroyed.'
+    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+      @post.destroy
+      redirect_back fallback_location: root_path, alert: 'Post was successfully destroyed.'
+    else
+      redirect_to pricing_path(goal: 'post'), alert: 'Please upgrade your Membership Plan!'
+    end
   end
 
   # POST

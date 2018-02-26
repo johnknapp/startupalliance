@@ -42,9 +42,13 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    discussion = Discussion.find(@topic.discussion_id)
-    @topic.destroy
-    redirect_to discussion_path(discussion)
+    if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+      discussion = Discussion.find(@topic.discussion_id)
+      @topic.destroy
+      redirect_to discussion_path(discussion)
+    else
+      redirect_to pricing_path(goal: 'topic'), alert: 'Please upgrade your Membership Plan!'
+    end
   end
 
   private

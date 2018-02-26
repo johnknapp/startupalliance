@@ -1,4 +1,6 @@
-- flash.each do |name, msg|
-  - if msg.is_a?(String)
-    .alert-box class="alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}" data-alert=true
-      p.indented-1 #{msg}
+.row
+  .small-12.columns
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        .alert-box class="alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}" data-alert=true
+          h5.space-top #{msg}

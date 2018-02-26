@@ -17,16 +17,7 @@ Rails.application.routes.draw do
 
   get 'members',                    to: 'static#members',              constraints: { format: 'html' }
 
-  resources :pages, path: 'kb' do
-    member do
-      post :undo,                 to: 'pages#undo_last_audit'
-    end
-  end
-
-  # resources :discussions, except: [:index],        constraints: { format: 'html' } do
-  #   resources :comments,  except: [:index],        constraints: { format: 'html' }
-  # end
-
+  resources :pages, path: 'kb'
   resources :discussions,   constraints: { format: 'html' } do
     resources :topics,      constraints: { format: 'html' } do
       resources :posts,     constraints: { format: 'html' } do
@@ -66,6 +57,7 @@ Rails.application.routes.draw do
   end
 
   post  '/accept',              to: 'application#accept_invitation',  constraints: { format: 'html' }
+
   ActiveAdmin.routes(self)
 
   devise_scope :user do

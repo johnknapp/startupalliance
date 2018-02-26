@@ -28,7 +28,7 @@ class DiscussionsController < ApplicationController
 
   def create
 
-    # This action only works for companies and alliances
+    # This action works only for companies and alliances, not for nuc-disco
 
     if params[:discussion][:company_pid]
       @discussable = Company.find_by_pid(params[:discussion][:company_pid])
