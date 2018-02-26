@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :search_results]
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
@@ -7,11 +7,30 @@ class DiscussionsController < ApplicationController
     @topic = Topic.new
   end
 
+  # search topic.name and post.body
+  # return distinct topics
+  def search_results
+    if params[:query]
+      arr = []
+      results    = PgSearch.multisearch(params[:query])
+      results.each do |result|
+        if result.searchable_type == 'Topic'
+          arr << result.searchable
+        elsif result.searchable_type == 'Post'
+          arr << result.searchable.topic
+        end
+      end
+      @topics = arr.uniq#.fresh_posts_first
+    else
+      redirect_to discussions_path, notice: 'Nothing found!'
+    end
+  end
+
   def create
 
     # TODO leverage discussable to clean this up like #update
-    if params[:discussion][:company_pid]
       @discussable = Company.find_by_pid(params[:discussion][:company_pid])
+    if params[:discussion][:company_pid]
       @discussion  = @discussable.discussions.build(discussion_params)
       if @discussion.save
         # Notifier.tell_jk(@discussion).deliver

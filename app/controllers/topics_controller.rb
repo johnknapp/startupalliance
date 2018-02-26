@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
       @topic = Topic.new(topic_params)
       discussion = Discussion.find params[:topic][:discussion_id]
       if @topic.save
-        redirect_to discussion_path(discussion), notice: 'Topic was successfully created.'
+        redirect_to topic_path(@topic), notice: 'Topic was successfully created.'
       else
         redirect_to discussion_path(discussion), alert: 'There was a problem!'
       end

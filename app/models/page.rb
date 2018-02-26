@@ -1,6 +1,6 @@
 class Page < ApplicationRecord
   include Pid
-  include PageSearch
+  include Search
 
   define_model_callbacks :around_audit
 

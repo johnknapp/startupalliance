@@ -14,11 +14,11 @@ a data-open="edit-topic-#{topic.pid}"
     .medium-2.columns
       p.little-snug-bottom.text-right In:
     .medium-10.columns
-      p.bold= @discussion.name
+      p.bold= topic.discussion.name
   .row
     .medium-12.columns
-      = simple_form_for topic, url: discussion_topic_path(@discussion,topic), method: :put do |f|
+      = simple_form_for topic, url: discussion_topic_path(topic.discussion,topic), method: :put do |f|
         = f.hidden_field :author_id,         value: current_user.id  if current_user
-        = f.hidden_field :discussion_id,     value: @discussion.id
+        = f.hidden_field :discussion_id,     value: topic.discussion.id
         = f.input :name, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
         = f.button :submit, 'Update Topic', class: 'button expanded accent'

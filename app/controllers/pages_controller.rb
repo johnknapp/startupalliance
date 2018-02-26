@@ -12,7 +12,7 @@ class PagesController < ApplicationController
         @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
       end
     elsif params[:query].present?
-      @pages    = Page.tsearch_page_search(params[:query])
+      @pages    = Page.page_tsearch(params[:query])
     elsif params[:author_id].present?
       @pages    = Page.where(author_id: params[:author_id].to_i).order(updated_at: :desc).all
     else

@@ -2,7 +2,7 @@
 # https://blog.pivotal.io/labs/labs/pg-search-how-i-learned-to-stop-worrying-and-love-postgresql-full-text-search
 # https://www.youtube.com/watch?v=n41F29Qln5E
 
-module PageSearch
+module Search
   extend ActiveSupport::Concern
   included do
 

@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   include Pid
+  include PgSearch
+  multisearchable against: [:body]
 
   has_ancestry
   acts_as_paranoid

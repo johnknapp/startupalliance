@@ -1,0 +1,69 @@
+- content_for :page_header do
+  h4.bold.little-space-top.medium-grey-text.text-center
+    ' Search results:
+  h2.bold.white-text.text-center.title-font
+    ' “#{params[:query]}” #{number_with_delimiter(@topics.count)} matching
+    ' #{'result'.pluralize(@topics.count)}
+
+.row
+  .large-12.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to discussions_path do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to Discussions
+.row
+  .large-5.columns.large-push-7
+    h5.bold.space-top &nbsp;
+    = render 'partials/search_form_disco'
+  .large-7.columns.large-pull-5
+    h5.bold.space-top Topic threads with this search result:
+    - if @topics.present?
+      - @topics.each do |topic|
+        .callout.accent.shadow.space-bottom
+          - if current_user and (topic.author_id == current_user.id or current_user.role == 'admin')
+            .float-right
+              ul.dropdown.menu data-dropdown-menu=true
+                li
+                  = link_to '#' do
+                    i.fa.fa-ellipsis-v
+                  ul.menu data-dropdown-menu=true data-alignment='left'
+                    li
+                      = render 'topics/edit_modal', topic: topic
+                    li= link_to discussion_topic_path(topic.discussion,topic), data: { confirm: 'Really destroy this Topic and all it’s Posts?' }, method: :delete do
+                      i.fa.fa-trash-o
+                      | &nbsp;
+                      ' Delete
+          - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+            .float-left
+              h5= link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                i.fa.fa-comments.fa-lg.red-text
+                | &nbsp;
+                | &nbsp;
+          h4.bold
+            = link_to topic.name, discussion_topic_path(topic.discussion,topic)
+          p.faint.little-snug-top
+            ' (Started by #{link_to topic.author.name, vanity_path(topic.author.username)}.
+            = topic_meta(topic)
+            ' )
+
+
+
+
+
+
+
+          /- if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+            .float-left
+              h4.space-top
+                i.fa.fa-comments.red-text
+                | &nbsp;
+          /h4.bold.space-top
+            = link_to topic.name, discussion_topic_path(topic.discussion,topic)
+          /p.faint.little-snug-top
+            ' (Part of #{link_to topic.discussion.name, discussion_path(topic.discussion)}. Created #{time_ago_in_words(topic.created_at)} ago, contains #{topic_meta(topic)})
+    - else
+      .callout
+        p.text-center Nothing here!

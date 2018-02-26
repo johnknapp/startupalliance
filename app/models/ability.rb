@@ -35,6 +35,7 @@ class Ability
         can :unset_sakpi,           Company
         can :manage_members,        Alliance
         can :manage_team,           Company
+        can :search_results,        Discussion
         can :mark_posts_read,       Post
         # seems skills and traits can be set and unset on user
 
@@ -42,7 +43,7 @@ class Ability
         cannot :index,              primary_objects
         can :read,                  public_content
         can :show,                  Discussion
-
+        can :search_results,        Discussion
     end
   end
 end

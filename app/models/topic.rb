@@ -1,5 +1,7 @@
 class Topic < ApplicationRecord
   include Pid
+  include PgSearch
+  multisearchable against: [:name]
 
   acts_as_paranoid
 

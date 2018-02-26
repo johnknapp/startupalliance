@@ -16,7 +16,7 @@
   .large-12.columns
     .float-left
       = render 'partials/resources_menu'
-    p.text-right.snug-top Ask questions, get answers, make connections and solve challenges.
+    p.text-right.snug-top Ask questions, get answers, make connections and overcome challenges.
 
 - if !current_user
   .row
@@ -30,8 +30,10 @@
       a data-open='forum-info'
         i.fa.fa-lg.fa-info-circle
       = render 'partials/quick_reference_forums'
+    h5.space-top &nbsp;
+    = render 'partials/search_form_disco'
 
-    h5.bold.space-top Latest Topic threads:
+    h5.bold.little-space-top Latest Topic threads:
     - if nucleus_topics.present?
       .callout
         - nucleus_topics.fresh_posts_first.limit(8).each do |topic|

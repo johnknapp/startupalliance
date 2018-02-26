@@ -35,6 +35,9 @@ Rails.application.routes.draw do
         end
       end
     end
+    collection do
+      get                   :search_results
+    end
   end
 
   resources :conversations, only: [:index, :create, :destroy],        constraints: { format: 'html' } do

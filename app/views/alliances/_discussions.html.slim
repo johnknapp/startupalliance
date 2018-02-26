@@ -9,7 +9,11 @@
 .row
   - if current_user and @alliance.members.include?(current_user)
     .large-5.columns.large-push-7
-      h5.bold.space-top.snug-bottom Latest Topic threads:
+      .float-right.space-top
+        a data-open='disco-info'
+          i.fa.fa-lg.fa-info-circle
+        = render 'partials/quick_reference_disco'
+      h5.bold.space-top Latest Topic threads:
       - if @alliance.discussions.present?
         - if discussable_topics(@alliance).present?
           .callout
@@ -53,7 +57,7 @@
             p.little-snug-top.faint.text-center
               = discussion_meta(disco)
       - else
-        .callout
+        .callout.little-space-top
           p.text-center No Discussions yet!
   - else
     .medium-12.columns
