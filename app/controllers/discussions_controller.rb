@@ -15,12 +15,12 @@ class DiscussionsController < ApplicationController
       results    = PgSearch.multisearch(params[:query])
       results.each do |result|
         if result.searchable_type == 'Topic'
-          arr << result.searchable          if result.searchable.discussion.nucleus?
+          arr << result.searchable_id          if result.searchable.discussion.nucleus?
         elsif result.searchable_type == 'Post'
-          arr << result.searchable.topic    if result.searchable.topic.discussion.nucleus?
+          arr << result.searchable.topic.id    if result.searchable and result.searchable.topic.discussion.nucleus?
         end
       end
-      @topics = arr.uniq#.fresh_posts_first # TODO make that scope work on the array
+      @topics = Topic.where('topics.id in (?)',arr.uniq).fresh_posts_first
     else
       redirect_to discussions_path, notice: 'Nothing found!'
     end

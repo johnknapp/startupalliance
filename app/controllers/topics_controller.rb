@@ -17,13 +17,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  # topics current_user made or in which current_user posted
-  def index    # they created
-    made_by     = Topic.where(author_id: current_user.id)
-    posted_in   = Topic.joins(:posts).where('posts.author_id = ?',current_user.id)
-    @topics     = made_by + posted_in
-  end
-
   def show
     @post = Post.new
     # mark_mine_read(@topic.posts)
