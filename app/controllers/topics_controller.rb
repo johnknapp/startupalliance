@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
 
   private
 
-    # mark these posts as unread by current_user
+    # mark these posts as read by current_user
     def mark_mine_read(these)
       Post.mark_collection_as_read(these, current_user)
     end

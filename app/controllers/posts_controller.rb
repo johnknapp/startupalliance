@@ -50,7 +50,7 @@ class PostsController < ApplicationController
       these = Topic.find_by_pid(params[:topic_id]).posts
     end
     if Post.mark_collection_as_read(these, current_user)
-      redirect_back fallback_location: discussions_path, alert: 'Those Posts were marked as unread'
+      redirect_back fallback_location: discussions_path, alert: 'Those Posts were marked as nread'
     else
       redirect_back fallback_location: discussions_path, alert: 'There was an error!'
     end
