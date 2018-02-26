@@ -1,12 +1,15 @@
 - content_for :page_title do
   ' Startup Alliance – Welcome
 
-  - content_for :page_header do
-    h2.bold.little-space-top.little-space-bottom.white-text.text-center
-      ' Welcome
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Welcome
 
-  .row
-    .medium-10.medium-offset-1.columns
-      p.snug-top.space-botton.text-right
-        ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
-      p.snug-top.show-for-medium &nbsp;
+.row
+  .medium-10.medium-offset-1.columns
+    p.snug-top.space-botton.text-right
+      ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
+    p.snug-top.show-for-medium &nbsp;
+    .callout.accent.shadow-8dp
+      h5.bold.text-center Hey there, hi there, ho there, you’re as welcome as can be!
+      p.text-center Em Eye Cee, Kay Eee Why, Emm Oh You Ess Eee.
