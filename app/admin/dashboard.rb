@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Companies" do
           ul do
             Company.last(20).reverse.map do |company|
-              li link_to company.name, admin_user_path(company.pid)
+              li link_to company.name, admin_company_path(company.pid)
             end
           end
         end
