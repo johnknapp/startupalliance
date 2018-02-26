@@ -59,9 +59,8 @@
                 i.fa.fa-comments.fa-lg.red-text
           h4.bold.text-center
             ' #{link_to disco.name, discussion_path(disco)}
-          p.faint.little-snug-top.text-center= disco.description
-          /p.little-snug-top.faint.text-center
-            = discussion_meta(disco)
+          p.scale-to-90.little-snug-top.text-center= disco.description
+          /p.faint.little-snug-top.text-center= discussion_meta(disco)
     - else
       .callout
         p.text-center No Discussions yet!
