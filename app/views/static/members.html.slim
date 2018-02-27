@@ -11,7 +11,7 @@
 .row
   .medium-12.columns
     .float-right
-      p.snug-top.space-bottom A showcase of committed entrepreneurs doing important work
+      p.snug-top.space-bottom Committed entrepreneurs doing important work
     - if !current_user
       p.snug-top.space-bottom
         = link_to pricing_path do
@@ -70,5 +70,7 @@
 
       .row
         .medium-8.medium-offset-2.columns
-          p &nbsp;
-          = render 'partials/join_form', acqsrc: 'alliance_index'
+          .callout.snug-bottom.little-space-top
+            p.bold Instant access with FREE Associate Membership
+            = render 'partials/join_form', acqsrc: 'members_index'
+
