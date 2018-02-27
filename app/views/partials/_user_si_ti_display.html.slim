@@ -1,0 +1,13 @@
+- if user.plan_name == 'associate'
+  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- else
+  - if (current_user or user.public_skills == true) and user.skill_index > 0
+    ' #{user.skill_index}
+  - else
+    | &nbsp;&nbsp;
+  - if (current_user or user.public_skills == true) and (current_user or user.public_traits == true) and user.skill_index > 0 and user.trait_index > 0
+    ' /
+  - if (current_user or user.public_traits == true) and user.trait_index > 0
+    | #{user.trait_index}
+  - else
+    | &nbsp;&nbsp;
