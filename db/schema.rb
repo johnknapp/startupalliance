@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223010513) do
+ActiveRecord::Schema.define(version: 20180227014825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -361,6 +361,9 @@ ActiveRecord::Schema.define(version: 20180223010513) do
     t.string   "subscription_state"
     t.string   "stripe_coupon_code"
     t.integer  "audits_count",            default: 0,             null: false
+    t.integer  "pages_count",             default: 0,             null: false
+    t.integer  "posts_count",             default: 0,             null: false
+    t.integer  "topics_count",            default: 0,             null: false
     t.index "lower((username)::text) text_pattern_ops", name: "users_username_lower", unique: true, using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

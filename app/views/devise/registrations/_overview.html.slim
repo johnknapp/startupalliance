@@ -64,18 +64,18 @@
       .float-right
         p.faint.text-right.snug-top= @user.okrs.count
       p.faint.snug-top OKR ownership:
-    - if @user.topics.present?
+    /- if @user.topics_count.present?
       .float-right
-        p.faint.text-right.snug-top= @user.topics.count
-      p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Topics:
-    - if @user.posts.present?
+        p.faint.text-right.snug-top= @user.topics_count
+      p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Topic threads:
+    /- if @user.posts_count.present?
       .float-right
-        p.faint.text-right.snug-top= @user.posts.count
+        p.faint.text-right.snug-top= @user.posts_count
       p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Posts:
-    - if @user.pages.present?
+    - if @user.pages_count.present?
       .float-right
-        p.faint.text-right.snug-top= @user.pages.count
-      p.faint.snug-top #{link_to 'Knowledge Base', pages_path} Pages:
+        p.faint.text-right.snug-top= number_with_delimiter(@user.pages_count)
+      p.faint.snug-top #{link_to 'Knowledge Base Pages', pages_path(author_pid: @user.pid)}:
     - if @user.time_zone.present?
       .float-right
         p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)

@@ -2,8 +2,8 @@
   - filter = params[:filter]
 - elsif params[:query]
   - filter = params[:query]
-- elsif params[:author_id]
-  - filter = "Authored by #{User.find(params[:author_id].to_i).name}"
+- elsif params[:author_pid]
+  - filter = "Authored by #{User.find_by_pid(params[:author_pid]).name}"
 - else
   - filter = 'Latest'
 
@@ -37,6 +37,7 @@
       = render 'partials/quick_reference_kb'
     h5.space-top &nbsp;
     = render 'partials/search_form_kb'
+    = render 'partials/top_kb_authors'
 
   .medium-7.columns.medium-pull-5
     .float-right
@@ -55,7 +56,7 @@
             i.fa.fa-chevron-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
           li= link_to "Latest pages", pages_path, class: 'bold'
-          li= link_to "Authored by me (#{number_with_delimiter(Page.where(author_id: current_user.id).count)})", pages_path(author_id: current_user.id), class: 'bold' if current_user
+          li= link_to "Authored by me (#{number_with_delimiter(Page.where(author_id: current_user.id).count)})", pages_path(author_pid: current_user.pid), class: 'bold' if current_user
           - @categories.each do |cat|
             li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
 

@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   belongs_to  :discussion
   belongs_to  :topic
-  belongs_to  :author,      class_name: :User
+  belongs_to  :author,      class_name: :User, counter_cache: true
 
   validates :body, length: { maximum: 2048 }
 

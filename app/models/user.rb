@@ -57,6 +57,16 @@ class User < ApplicationRecord
     self.plan.name.split('_').last
   end
 
+  def self.top_page_authors(limit = 10)
+    # plan a
+    # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/
+    User.where('pages_count > 0').order(pages_count: :desc).limit(limit)
+
+    # plan b
+    # https://stackoverflow.com/questions/16996618/rails-order-by-results-count-of-has-many-association
+    # User.left_joins(:pages).group(:id).order('count(pages.author_id) desc').limit(limit)
+  end
+
   def admin?
     self.role == 'admin'
   end

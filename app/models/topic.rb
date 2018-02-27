@@ -6,7 +6,7 @@ class Topic < ApplicationRecord
   acts_as_paranoid
 
   belongs_to  :discussion
-  belongs_to  :author,  class_name: :User
+  belongs_to  :author,  class_name: :User, counter_cache: true
   has_many    :posts,   dependent: :destroy
 
   validates :name,          length: { maximum: 140 }

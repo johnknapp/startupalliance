@@ -1,0 +1,11 @@
+.callout
+  p.bold.text-center.little-space-top Leading Knowledge Base Authors:
+  - User.top_page_authors.each do |user|
+    .row
+      .small-6.columns
+        p.text-right.little-snug-top
+          ' #{link_to user.name, vanity_path(user.username)}:
+      .small-6.columns
+        p.little-snug-top
+          = link_to "#{number_with_delimiter(user.pages.count)} Pages", pages_path(author_pid: user.pid)
+
