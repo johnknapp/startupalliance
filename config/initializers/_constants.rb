@@ -12,6 +12,7 @@ PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to 
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
 GETTING_STARTED_WEBCHAT_TIP = 'Members of each new Private Alliance and Company Workspace receive personalized advice in a free online meeting to get the most out of the platform right away.'
 STEALTH_MODE_TIP            = 'In case you want to keep your Private Alliance and Company from appearing in directories and elsewhere on the site.'
+SI_TI_TIP                   = 'Members rate themselves on 18 startup skills and 12 personal traits. (Except Associate Members.) We calculate a skill index (SI) and a trait index (TI) and display those on the site.'
 STARTUP_SKILL_TIP           = 'Showcase your strengths using our standard set of 18 startup skills.'
 PERSONAL_TRAIT_TIP          = 'Highlight your qualities using our standard set of 12 personal traits.'
 VIRTUAL_OFFICE_TIP          = 'Web-based co-working using your webcam and microphone'
@@ -49,6 +50,8 @@ USERNAME_EXCLUSIONS = %w[
   fast
   fastr
   fasts
+  gist
+  gists
   help
   image
   images

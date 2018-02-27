@@ -1,11 +1,21 @@
 .callout
-  p.bold.text-center.little-space-top Leading Knowledge Base Authors:
+  p.bold.text-center.little-space-top Top Knowledge Base Authors
   - User.top_page_authors.each do |user|
     .row
       .small-6.columns
         p.text-right.little-snug-top
-          ' #{link_to user.name, vanity_path(user.username)}:
+          ' #{link_to user.name, vanity_path(user.username)}
+          span.faint
+            - if user.plan_name == 'associate'
+              ' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            - else
+              ' (#{user.skill_index} / #{user.trait_index})
+          | :
       .small-6.columns
         p.little-snug-top
           = link_to "#{number_with_delimiter(user.pages.count)} Pages", pages_path(author_pid: user.pid)
-
+  .row
+    .small-12.columns
+      p.faint.text-center.snug-bottom
+        span.has-tip.faint data-tooltip=true aria-haspopup=true data-click-open='false' title=SI_TI_TIP
+          ' (SI / TI)

@@ -47,6 +47,9 @@ ActiveAdmin.register User do
             okr.update(owner_id: okr.company.creator.id)
           end
         end
+        jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
+        jk = User.find 1 if Rails.env.development
+        Page.where(author_id: resource.id).update_all(author_id: jk.id)
         AllianceUser.where(user_id: resource.id).destroy_all
         CompanyUser.where(user_id: resource.id).destroy_all
         UserSkill.where(user_id: resource.id).destroy_all
