@@ -50,7 +50,7 @@
                   - else
                     .faint-text Not set!
                 td{valign='top'}
-                  .text-center #{member.skill_index} / #{member.trait_index}
+                  .text-center= render 'partials/user_si_ti_display', user: member
                 td{valign='top'}
                   .text-center = member.companies.count
                 td{valign='top'}
