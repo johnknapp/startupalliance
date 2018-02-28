@@ -37,6 +37,10 @@
       = render 'partials/quick_reference_kb'
     h5.space-top &nbsp;
     = render 'partials/search_form_kb'
+    - if current_user and current_user.role == 'admin'
+      .callout.alert-background
+        h4.bold.white-text.text-center #{Page.where(state: 'Flagged').count} Flagged!
+        h4.bold.white-text.little-snug-top.text-center #{Page.where(state: 'Draft').count} #{'Draft'.pluralize(Page.where(state: 'Draft').count)}!
     = render 'partials/top_kb_authors'
 
   .medium-7.columns.medium-pull-5
@@ -62,7 +66,10 @@
 
     - if @pages.present?
       - @pages.each do |page|
-        = render 'pages/hero', page: page
+        - if current_user and (page.state == 'Published' or page.author_id == current_user.id or current_user.role == 'admin')
+          = render 'pages/hero', page: page
+        - elsif page.state == 'Published' # no current_user or not admin or not author - only see published
+          = render 'pages/hero', page: page
     - else
       .callout.accent
         p.bold.text-center Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show the latest', pages_path}.

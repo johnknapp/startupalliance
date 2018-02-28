@@ -33,6 +33,12 @@
           p.snug-top.space-bottom.text-right Now viewing current version
     .row
       .large-8.large-offset-2.columns
+        - if @page.state == 'Flagged'
+          .callout.small.alert-background
+            p.bold.white-text.text-center
+              ' Flagged and under staff review.
+            p.bold.white-text.text-center.little-snug-top
+              ' If you are the author, #{mail_to 'hello@startupalliance.com', 'email hello@startupalliance.com', subject: "My flagged KB page!", encode: 'hex', class: 'white-text'}.
         p= markdown @page.content
     .row
       .large-3.large-offset-2.end.columns

@@ -1,4 +1,12 @@
 .callout.accent.shadow.space-bottom
+  - if page.state == 'Flagged'
+    .float-left
+      .little-snug-top= link_to page_path(page) do
+        i.fa.fa-flag.red-text
+  - if page.state == 'Draft'
+    .float-left
+      .little-snug-top= link_to edit_page_path(page) do
+        i.fa.fa-pencil
   h4.bold.text-center
     - if page.state == 'Draft'
       = link_to page.title, edit_page_path(page)
