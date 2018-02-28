@@ -17,6 +17,8 @@ class Page < ApplicationRecord
   acts_as_ordered_taggable_on :categories
   audited only: [:title, :content, :category_list, :created_at, :updated_at]
 
+  scope :published, -> { where(state: 'Published') }
+
   # Inspired by https://github.com/collectiveidea/audited/issues/1
   # The objective is to audit changes in the Category tags. TODO the issue is still not quite solved
   def around_audit

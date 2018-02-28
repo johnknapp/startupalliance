@@ -1,6 +1,8 @@
 RECAPTCHA_SITE              = '6LcfhSsUAAAAAKUUu0v5dd-YFBWq-qQ_nSBpjdAL'
 RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
+PAGE_STATES                 = %w[Draft Published Flagged]
+
 USER_STATES                 = %w[unconfirmed active paused]
 USER_ROLES                  = %w[guest user admin]
 
