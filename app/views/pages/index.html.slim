@@ -38,9 +38,10 @@
     h5.space-top &nbsp;
     = render 'partials/search_form_kb'
     - if current_user and current_user.role == 'admin'
-      .callout.alert-background
-        h4.bold.white-text.text-center #{Page.where(state: 'Flagged').count} Flagged!
-        h4.bold.white-text.little-snug-top.text-center #{Page.where(state: 'Draft').count} #{'Draft'.pluralize(Page.where(state: 'Draft').count)}!
+      - if Page.where(state: 'Flagged').present?
+        h4.bold.text-center #{Page.where(state: 'Flagged').count} Flagged!
+      - if Page.where(state: 'Draft').present?
+        h4.bold.text-center #{Page.where(state: 'Draft').count} #{'Draft'.pluralize(Page.where(state: 'Draft').count)}!
     = render 'partials/top_kb_authors'
 
   .medium-7.columns.medium-pull-5
