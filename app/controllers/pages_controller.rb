@@ -48,7 +48,7 @@ class PagesController < ApplicationController
 
     if @page.persisted?
       Notifier.tell_jk(@page).deliver
-      redirect_to page_path, notice: 'Knowledge Base Entry was successfully created.'
+      redirect_to page_path(@page), notice: 'Knowledge Base Entry was successfully created.'
     else
       render :new
     end
@@ -63,20 +63,14 @@ class PagesController < ApplicationController
   end
 
   def update
-    if @page.state == 'Published' and current_user.role != 'admin'
-      if @page.update(page_params)
-        redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.' and return
-      else
-        render :edit
-      end
-    elsif params[:commit] == 'Save and Publish' and current_user.role != 'admin'
+    if current_user.role != 'admin' and @page.state == 'Published' or params[:commit] == 'Save and Publish'
       params[:page][:state] = 'Published'
       if @page.update(page_params)
         redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.' and return
       else
         render :edit
       end
-    elsif params[:commit] == 'Save as Draft' and current_user.role != 'admin'
+    elsif params[:commit] == 'Save as Draft'
       params[:page][:state] = 'Draft'
       @page.assign_attributes(page_params)
       if @page.save_without_auditing
@@ -84,8 +78,22 @@ class PagesController < ApplicationController
       else
         render :edit
       end
-    elsif current_user.role != 'admin'
-      # audit or not based on state I set
+    elsif current_user.role == 'admin'
+      # set the state I sent you and decide audit on that.
+      if params[:page][:state] != 'Published'
+        @page.assign_attributes(page_params)
+        if @page.save_without_auditing
+          redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.' and return
+        else
+          render :edit
+        end
+      else
+        if @page.update(page_params)
+          redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.' and return
+        else
+          render :edit
+        end
+      end
     end
   end
 
