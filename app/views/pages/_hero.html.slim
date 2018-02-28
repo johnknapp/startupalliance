@@ -1,7 +1,9 @@
 .callout.accent.shadow.space-bottom
   h4.bold.text-center
-    = link_to page_path(page) do
-      = page.title
+    - if page.state == 'Draft'
+      = link_to page.title, edit_page_path(page)
+    - else
+      = link_to page.title, page_path(page)
   - if page.category_list.present?
     p.faint.little-snug-top.text-center
       - page.category_list.each_with_index do |cat, i|
@@ -13,8 +15,12 @@
   .row
     .medium-6.columns
       p.faint.snug-bottom
-        ' #{page.audits.count.ordinalize} edit: #{page.updated_at.strftime('%b %d, %Y')}
-         by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+        - if page.audits.present?
+          ' #{page.audits.count.ordinalize} edit: #{page.updated_at.strftime('%b %d, %Y')}
+          ' by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+        - else
+          ' Draft last edited #{page.updated_at.strftime('%b %d, %Y')}
+          ' by #{link_to page.author.name, vanity_path(page.author.username)}
     .medium-6.columns
       p.faint.snug-bottom.text-right
         ' Content length: #{number_with_delimiter(page.content.length)} characters

@@ -2,7 +2,7 @@ ActiveAdmin.register Page do
 
   menu parent: 'KB'
 
-  permit_params :title, :content, :author_id, :category_list => []
+  permit_params :title, :content, :state, :author_id, :category_list => []
 
   scope('Not deleted')  { |scope| scope.all }
   scope('Soft deleted') { |scope| scope.only_deleted }
@@ -15,6 +15,7 @@ ActiveAdmin.register Page do
 
   index do
     selectable_column
+    column :state
     column :title do |page|
       link_to page.title, page_path(page), target: '_blank'
     end
@@ -33,9 +34,11 @@ ActiveAdmin.register Page do
   end
 
   filter :author_id, label: "Author ID"
+  filter :state, as: :select, collection: PAGE_STATES
 
   show do
     attributes_table do
+      row :state
       row :audit_count do |page|
         page.audits.count
       end
@@ -54,6 +57,7 @@ ActiveAdmin.register Page do
 
   form do |f|
     f.inputs 'Edit Page' do
+      f.input :state, collection: PAGE_STATES
       f.input :author_id, label: 'Author ID'
       f.input :title
       f.input :content
