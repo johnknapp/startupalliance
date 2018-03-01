@@ -11,6 +11,8 @@ class PagesController < ApplicationController
       else
         @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
       end
+    elsif params[:state].present? and current_user and current_user.role == 'admin'
+      @pages    = Page.where(state: params[:state]).all
     elsif params[:query].present?
       @pages    = Page.page_tsearch(params[:query])
     elsif params[:author_pid].present?
