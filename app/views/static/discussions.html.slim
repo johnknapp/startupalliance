@@ -49,7 +49,7 @@
         p.text-center Nothing yet!
 
   .medium-7.columns.medium-pull-5
-    h5.bold.space-top Choose your Discussion Subject:
+    h5.bold.space-top Choose the one you’re interested in:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
         .callout.small.accent.shadow.little-space-bottom

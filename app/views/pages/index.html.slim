@@ -62,8 +62,8 @@
             | &nbsp;
             i.fa.fa-chevron-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          li= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged'), class: 'bold' if current_user and current_user.role == 'admin'
-          li= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft'), class: 'bold'       if current_user and current_user.role == 'admin'
+          li= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged'), class: 'bold red-text' if current_user and current_user.role == 'admin'
+          li= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft'), class: 'bold red-text'       if current_user and current_user.role == 'admin'
           li= link_to "Latest pages", pages_path, class: 'bold'
           li= link_to "Authored by me (#{number_with_delimiter(Page.where(author_id: current_user.id).count)})", pages_path(author_pid: current_user.pid), class: 'bold' if current_user
           - @categories.each do |cat|
