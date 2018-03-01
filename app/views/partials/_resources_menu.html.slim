@@ -8,7 +8,7 @@ ul.dropdown.menu data-dropdown-menu=true
       li.pad-left
         = link_to discussions_path do
           ' Discussion Forums
-          - if Discussion.where(nucleus: true).any? { |disco| disco.posts.unread_by(current_user) }
+          - if Discussion.where(nucleus: true).any? { |disco| disco.posts.unread_by(current_user) if disco.posts.where.not(author_id: current_user.id).present? }
             .float-right
               span.red-text
                 i.fa.fa-comments

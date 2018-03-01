@@ -27,7 +27,7 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
   li.tabs-title
     a.bold href='#discussions'
       ' Discussions
-      - if current_user and @company.discussions.any? { |disco| disco.posts.unread_by(current_user) }
+      - if current_user and @company.discussions.any? { |disco| disco.posts.unread_by(current_user) if disco.posts.where.not(author_id: current_user.id).present? }
         | &nbsp;
         span.white-text
           i.fa.fa-comments
