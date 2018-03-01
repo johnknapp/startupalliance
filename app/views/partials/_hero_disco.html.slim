@@ -10,7 +10,7 @@
           '
           /' Community Discussion Forums where entrepreneurs ask questions, get answers,
           /' solve problems and build their businesses.
-        = link_to 'Jump into the Discussion Forums', discussions_path, class: 'button expanded'
+        = link_to 'Advice in the Discussion Forums', discussions_path, class: 'button expanded'
         /p.faint.text-center
           - if current_user
             ' #{number_with_delimiter(nucleus_forum_posts.count)} #{'Post'.pluralize(nucleus_forum_posts.count)}

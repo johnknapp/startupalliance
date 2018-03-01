@@ -39,13 +39,18 @@
     = render 'partials/hero_kb'
     = render 'partials/hero_gvo'
     /= render 'partials/hero_more_coming'
+    /- if !current_user
+      p.text-center.snug-bottom Community Resources require #{link_to 'sign-in', new_user_session_path}. Not a member yet? Choose your plan below.
 
 - if !current_user
   p &nbsp;
   .callout.accent.space-top.shadow-8dp
     .row.medium-up-2.large-up-3 data-equalizer=true
       h3.bold.primary-text.text-center.little-space-bottom
-        ' Premium Memberships to Maximize Your Entrepreneurial Success...
+        ' Choose the Membership Plan that’s right for you...
+        /' There’s a Membership Plan for Every Entrepreneur...
+        /' Choose the Membership Plan to Meet Your Requirements...
+        /' Premium Memberships to Maximize Your Entrepreneurial Success...
       = render 'partials/hero_jet_fuel'
       = render 'partials/hero_alliances'
       = render 'partials/hero_companies'

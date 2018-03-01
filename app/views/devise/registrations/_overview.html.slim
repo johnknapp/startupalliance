@@ -73,6 +73,7 @@
         p.faint.text-right.snug-top= @user.posts_count
       p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Posts:
     - if @user.pages_count.present?
+      / TODO make this only include page state 'Published'
       .float-right
         p.faint.text-right.snug-top= number_with_delimiter(@user.pages_count)
       p.faint.snug-top #{link_to 'Knowledge Base Pages', pages_path(author_pid: @user.pid)}:

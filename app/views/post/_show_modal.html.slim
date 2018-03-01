@@ -35,6 +35,9 @@
 
 p.faint
   ' #{link_to post.author.name, vanity_path(post.author.username)},
+  - if post.author.plan_name != 'associate'
+    ' #{render 'partials/user_si_ti_display', user: post.author},
+/,
   ' #{time_ago_in_words(post.created_at)} ago
   | &nbsp;
   = render 'post/reply_modal', post: post
