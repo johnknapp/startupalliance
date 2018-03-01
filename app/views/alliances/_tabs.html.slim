@@ -11,6 +11,10 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
   li.tabs-title
     a.bold href='#discussions'
       ' Discussions
+      - if current_user and @alliance.discussions.any? { |disco| disco.posts.unread_by(current_user) }
+        | &nbsp;
+        span.white-text
+          i.fa.fa-comments
   li.tabs-title
     a.bold href='#office'
       ' Virtual Office
