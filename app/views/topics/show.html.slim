@@ -23,7 +23,10 @@
     - if current_user and current_user.confirmed?
       p.snug-top.space-bottom.text-right= render 'post/add_modal'
     - elsif current_user and !current_user.confirmed?
-      p.snug-top.space-bottom.text-right You must activate your account to Post or Reply
+      p.snug-top.space-bottom.text-right
+        span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+          ' Activate your account
+        '  to Post or Reply!
 
 .row
   .medium-10.medium-offset-1.columns
@@ -44,4 +47,7 @@
         - if current_user and current_user.confirmed?
           p.text-center.snug-bottom= render 'post/add_modal'
         - elsif current_user and !current_user.confirmed?
-          p.text-center.snug-bottom You must activate your account to Post in this Topic thread
+          p.text-center.snug-bottom
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+              ' Activate your account
+            '  to Post in this Topic thread!

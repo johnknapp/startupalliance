@@ -10,6 +10,7 @@ SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid]
 
 WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
 
+ACCOUNT_ACTIVATION_TIP      = 'When you signed up, we sent you an account activation email containing a link to choose a username and password. Activate your account for full privileges!'
 PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
 GETTING_STARTED_WEBCHAT_TIP = 'Members of each new Private Alliance and Company Workspace receive personalized advice in a free online meeting to get the most out of the platform right away.'

@@ -36,7 +36,13 @@
     .row
       .large-5.columns.large-push-7
         h5.bold.space-top &nbsp;
-        p.text-center= render 'topics/add_modal' if current_user and current_user.confirmed?
+        - if current_user and current_user.confirmed?
+          p.text-center= render 'topics/add_modal'
+        - elsif current_user and !current_user.confirmed?
+          p.text-center
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+              ' Activate your account
+            '  to start a Topic thread!
       .large-7.columns.large-pull-5
         h5.bold.space-top Topic threads for this Discussion Subject:
         - if @discussion.topics.present?
@@ -85,7 +91,13 @@
         - else
           .callout
             p.text-center No Topic threads yet!
-            p.text-center.snug-bottom= render 'topics/add_modal' if current_user and current_user.confirmed?
+            - if current_user and current_user.confirmed?
+              p.text-center.snug-bottom= render 'topics/add_modal'
+            - elsif current_user and !current_user.confirmed?
+              p.text-center.snug-bottom
+                span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+                  ' Activate your account
+                '  to start a Topic thread!
 
 
 

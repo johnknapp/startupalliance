@@ -69,7 +69,7 @@
                       li.pad-left
                         = link_to company_path(company) do
                           = company.name
-                          - if company.discussions.any? { |disco| disco.posts.unread_by(current_user) if disco.posts.where.not(author_id: current_user.id).present? }
+                          - if company.discussions.any? { |disco| disco.posts.unread_by(current_user).present? if disco.posts.where.not(author_id: current_user.id).present? }
                             .float-right
                               span.red-text
                                 i.fa.fa-comments
@@ -83,7 +83,7 @@
                     li.pad-left
                       = link_to alliance_path(alliance) do
                         = alliance.name
-                        - if alliance.discussions.any? { |disco| disco.posts.unread_by(current_user) if disco.posts.where.not(author_id: current_user.id).present? }
+                        - if alliance.discussions.any? { |disco| disco.posts.unread_by(current_user).present? if disco.posts.where.not(author_id: current_user.id).present? }
                           .float-right
                             span.red-text
                               i.fa.fa-comments
@@ -94,7 +94,7 @@
                 li.pad-left
                   = link_to discussions_path do
                     ' Discussion Forums
-                    - if Discussion.where(nucleus: true).any? { |disco| disco.posts.unread_by(current_user) if disco.posts.where.not(author_id: current_user.id).present? }
+                    - if Discussion.where(nucleus: true).any? { |disco| disco.posts.unread_by(current_user).present? if disco.posts.where.not(author_id: current_user.id).present? }
                       .float-right
                         span.red-text
                           i.fa.fa-comments
