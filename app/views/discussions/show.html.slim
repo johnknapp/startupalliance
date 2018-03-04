@@ -49,7 +49,7 @@
           - @discussion.topics.fresh_posts_first.each do |topic|
             .callout.accent.shadow.space-bottom
               - if @discussion.discussable
-                - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')
+                - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.admin?)
                   .float-right
                     ul.dropdown.menu data-dropdown-menu=true
                       li
@@ -63,7 +63,7 @@
                             | &nbsp;
                             ' Delete
               - else
-                - if current_user and (topic.author_id == current_user.id or current_user.role == 'admin')
+                - if current_user and (topic.author_id == current_user.id or current_user.admin?)
                   .float-right
                     ul.dropdown.menu data-dropdown-menu=true
                       li
@@ -106,7 +106,7 @@
           h4 &nbsp;
           - @discussion.topics.fresh_posts_first.each do |topic|
             - if @discussion.discussable
-              - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.role == 'admin')
+              - if current_user and (@discussion.discussable.creator_id == current_user.id or topic.author_id == current_user.id or current_user.admin?)
                 .float-right
                   ul.dropdown.menu data-dropdown-menu=true
                     li
@@ -120,7 +120,7 @@
                           | &nbsp;
                           ' Delete
             - else
-              - if current_user and (topic.author_id == current_user.id or current_user.role == 'admin')
+              - if current_user and (topic.author_id == current_user.id or current_user.admin?)
                 .float-right
                   ul.dropdown.menu data-dropdown-menu=true
                     li

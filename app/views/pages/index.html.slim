@@ -39,7 +39,7 @@
       = render 'partials/quick_ref_kb'
     h5.space-top &nbsp;
     = render 'partials/search_form_kb'
-    /- if current_user and current_user.role == 'admin'
+    /- if current_user and current_user.admin?
       - if Page.where(state: 'Flagged').present?
         h4.bold.text-center= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged')
       - if Page.where(state: 'Draft').present?
@@ -62,8 +62,8 @@
             | &nbsp;
             i.fa.fa-chevron-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          li= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged'), class: 'bold red-text' if current_user and current_user.role == 'admin'
-          li= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft'), class: 'bold red-text'       if current_user and current_user.role == 'admin'
+          li= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged'), class: 'bold red-text' if current_user and current_user.admin?
+          li= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft'), class: 'bold red-text'       if current_user and current_user.admin?
           li= link_to "Latest pages", pages_path, class: 'bold'
           li= link_to "Authored by me (#{number_with_delimiter(Page.where(author_id: current_user.id).count)})", pages_path(author_pid: current_user.pid), class: 'bold' if current_user
           - @categories.each do |cat|
@@ -71,7 +71,7 @@
 
     - if @pages.present?
       - @pages.each do |page|
-        - if current_user and (page.state == 'Published' or page.author_id == current_user.id or current_user.role == 'admin')
+        - if current_user and (page.state == 'Published' or page.author_id == current_user.id or current_user.admin?)
           = render 'pages/hero', page: page
         - elsif page.state == 'Published' # no current_user or not admin or not author - only see published
           = render 'pages/hero', page: page

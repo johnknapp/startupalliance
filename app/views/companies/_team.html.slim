@@ -78,7 +78,7 @@
 
 
 
-  - if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+  - if current_user and @company.team.include?(current_user) and current_user.team_role(@company) == 'Owner'
     .column
       .callout.shadow
         .bold.text-center.snug-bottom= render 'add_to_team'

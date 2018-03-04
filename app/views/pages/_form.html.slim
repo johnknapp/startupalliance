@@ -11,13 +11,13 @@
         = f.input :category_list, collection: categories, as: :select, label: 'Category tags', input_html: { 'multiple' => true, class: 'chosen-select' }
     = f.input :content, label: 'Content (format using Markdown)', input_html: { rows: 18 }
     = render 'pages/markdown_ua'
-    = f.input :state, collection: PAGE_STATES if current_user.role == 'admin'
+    = f.input :state, collection: PAGE_STATES if current_user.admin?
 
   .form-actions
     .row
       .medium-12.columns
         .button-group
-          - if current_user.role == 'admin'
+          - if current_user.admin?
             = f.button :submit, 'I R A Admin', class: 'button'
           - elsif @page.state == 'Draft'
             = f.button :submit, 'Save as Draft', class: 'button'

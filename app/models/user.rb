@@ -75,6 +75,10 @@ class User < ApplicationRecord
     self.plan_name == 'associate'
   end
 
+  def team_role(company)
+    CompanyUser.where(company_id: company.id, user_id: self.id).pluck(:role)
+  end
+
   # Can I message this person?
   #  Am I on the right plan?                  free with admin, alliance, company. not with jet
   #  Are we conversing?
@@ -84,10 +88,6 @@ class User < ApplicationRecord
           Conversation.between(self.id,current_user.id).present? or
           CompanyUser.team_mates(self.id,current_user.id) or
           AllianceUser.team_mates(self.id,current_user.id)
-  end
-
-  def team_count
-    self.alliances.count + self.companies.count
   end
 
   def conversations

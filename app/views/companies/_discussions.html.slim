@@ -32,14 +32,14 @@
         .callout
           p.text-center Nothing yet!
     .large-7.columns.large-pull-5
-      - if current_user and (@company.team_member(current_user).role == 'Owner' or current_user.role == 'admin')
+      - if current_user and (current_user.team_role(@company) == 'Owner' or current_user.admin?)
         p.space-top.snug-bottom= render 'discussions/add_modal', discussable: @company
       - else
         p.space-top.snug-bottom &nbsp;
       - if @company.discussions.present?
         - @company.discussions.order(:name).each do |discussion|
           .callout.accent.shadow.space-bottom
-            - if current_user and (@company.team_member(current_user).role == 'Owner' or current_user.role == 'admin')
+            - if current_user and (current_user.team_role(@company) == 'Owner' or current_user.admin?)
               .float-right.little-space-top
                 ul.dropdown.menu data-dropdown-menu=true
                   li

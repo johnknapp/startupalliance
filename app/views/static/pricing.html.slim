@@ -44,7 +44,7 @@
             h5.bold.text-center 15 day free trial
             - if current_user and current_user.plan_name == 'entrepreneur'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name == 'associate'
+            - elsif current_user and current_user.associate?
               p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
               p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
@@ -88,7 +88,7 @@
             h5.bold.text-center 15 day free trial
             - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and (current_user.plan_name == 'associate' or current_user.plan_name == 'entrepreneur')
+            - elsif current_user and (current_user.associate? or current_user.plan_name == 'entrepreneur')
               p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - elsif current_user and current_user.plan_name == 'company'
               p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
@@ -180,7 +180,7 @@
                     = render 'partials/join_form', acqsrc: 'pricing_page'
         /.callout.small.accent
           h5.bold.text-center Free forever!
-          - if current_user and current_user.plan_name == 'associate'
+          - if current_user and current_user.associate?
             p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
           - elsif current_user and current_user.plan_name != 'associate'
             p= link_to 'Downgrade to Associate Plan', change_plan_path(desired_plan: 'associate'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'

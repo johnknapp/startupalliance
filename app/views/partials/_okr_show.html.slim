@@ -1,6 +1,6 @@
 .callout.shadow
 
-  - if current_user and (okr.owner == current_user or @company.team_member(current_user).role == 'Owner')
+  - if current_user and (okr.owner == current_user or current_user.team_role(@company) == 'Owner')
     .float-right
       ul.dropdown.menu data-dropdown-menu=true
         li

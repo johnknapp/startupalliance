@@ -1,5 +1,5 @@
 p.scale-to-90
-  - if @page.state != 'Flagged' or (current_user and current_user.role == 'admin')
+  - if @page.state != 'Flagged' or (current_user and current_user.admin?)
     = link_to edit_page_path(rev: params[:rev]) do
       i.fa.fa-pencil
     | &nbsp;
@@ -13,6 +13,6 @@ p.scale-to-90
     | &nbsp;
     | &nbsp;
     | &nbsp;
-  - if current_user and current_user.role == 'admin'
+  - if current_user and current_user.admin?
     = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
       i.fa.fa-trash

@@ -11,7 +11,7 @@ class PagesController < ApplicationController
       else
         @pages  = Page.tagged_with(params[:filter]).order(updated_at: :desc)
       end
-    elsif params[:state].present? and current_user and current_user.role == 'admin'
+    elsif params[:state].present? and current_user and current_user.admin?
       @pages    = Page.where(state: params[:state]).all
     elsif params[:query].present?
       @pages    = Page.page_tsearch(params[:query])
@@ -80,7 +80,7 @@ class PagesController < ApplicationController
       else
         render :edit
       end
-    elsif current_user.role == 'admin'
+    elsif current_user.admin?
       # set the state I sent you and decide audit on that.
       if params[:page][:state] != 'Published'
         @page.assign_attributes(page_params)

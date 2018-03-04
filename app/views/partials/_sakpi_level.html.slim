@@ -1,4 +1,4 @@
-- if current_user and @company.team.include?(current_user) and @company.team_member(current_user).role == 'Owner'
+- if current_user and @company.team.include?(current_user) and current_user.team_role(@company) == 'Owner'
   ul.dropdown.menu data-dropdown-menu=true
     li
       a
