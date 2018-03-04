@@ -5,13 +5,13 @@
         span aria-hidden=true
           ' &times;
       p.faint.pad-right
-        ' Your internal health check and report card — your SAKPIs help track your progress. (#{link_to @company.creator.name, vanity_path(@company.creator.username)} can modify this information.)
+        ' Your internal health check and report card — your SAKPIs help track your progress. (#{@company.name} owners can modify this information.)
 .row
   .medium-10.medium-offset-1.columns
     h5.bold.primary-text.little-space-bottom
       .float-right
         p.faint
-          - if current_user and current_user == @company.creator
+          - if current_user and current_user.team_role(@company) == 'Owner'
             a data-open='set-sakpis'
               i.fa.fa-pencil
           = render 'partials/set_sakpis_modal'

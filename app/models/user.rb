@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def team_role(company)
-    CompanyUser.where(company_id: company.id, user_id: self.id).pluck(:role)
+    CompanyUser.where(company_id: company.id, user_id: self.id).pluck(:role)[0] # fetch from array
   end
 
   # Can I message this person?
