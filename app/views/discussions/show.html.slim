@@ -36,7 +36,7 @@
     .row
       .large-5.columns.large-push-7
         h5.bold.space-top &nbsp;
-        p.text-center= render 'topics/add_modal'
+        p.text-center= render 'topics/add_modal' if current_user and current_user.confirmed?
       .large-7.columns.large-pull-5
         h5.bold.space-top Topic threads for this Discussion Subject:
         - if @discussion.topics.present?
@@ -85,7 +85,7 @@
         - else
           .callout
             p.text-center No Topic threads yet!
-            p.text-center.snug-bottom= render 'topics/add_modal'
+            p.text-center.snug-bottom= render 'topics/add_modal' if current_user and current_user.confirmed?
 
 
 

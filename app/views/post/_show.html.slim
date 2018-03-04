@@ -38,6 +38,7 @@ p.scale-to-90
   - if post.author.plan_name != 'associate'
     |, (#{render 'partials/user_si_ti_display', user: post.author})
   ', #{time_ago_in_words(post.created_at)} ago
-  | &nbsp;
-  = render 'post/reply_modal', post: post
+  - if current_user and current_user.confirmed?
+    | &nbsp;
+    = render 'post/reply_modal', post: post
 h5.snug-top= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)

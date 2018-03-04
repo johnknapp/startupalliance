@@ -20,7 +20,10 @@
           | &nbsp;
           | &nbsp;
           ' Return to #{@topic.discussion.name}
-    p.snug-top.space-bottom.text-right= render 'post/add_modal'
+    - if current_user and current_user.confirmed?
+      p.snug-top.space-bottom.text-right= render 'post/add_modal'
+    - elsif current_user and !current_user.confirmed?
+      p.snug-top.space-bottom.text-right You must activate your account to Post or Reply
 
 .row
   .medium-10.medium-offset-1.columns
@@ -38,4 +41,7 @@
     - else
       .callout
         p.text-center No Posts yet!
-        p.text-center.snug-bottom= render 'post/add_modal'
+        - if current_user and current_user.confirmed?
+          p.text-center.snug-bottom= render 'post/add_modal'
+        - elsif current_user and !current_user.confirmed?
+          p.text-center.snug-bottom You must activate your account to Post in this Topic thread

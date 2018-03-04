@@ -1,10 +1,8 @@
 a data-open='add-post'
   i.fa.fa-plus
   | &nbsp;
-  ' Add
-  - if @topic.posts.blank?
-    ' the first
-  ' Post to this Topic thread
+  | &nbsp;
+  ' Post within this Topic thread
 .reveal.large#add-post data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true

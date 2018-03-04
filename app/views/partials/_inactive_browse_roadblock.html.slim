@@ -1,9 +1,16 @@
 .row
-  .medium-8.medium-offset-2.columns
+  .medium-10.medium-offset-1.columns
     p.show-for-medium.snug-top &nbsp;
-    .callout.alert
-      h4.bold Hold on, you have 1 more thing to do!
-      p.bold.indented-2 You must activate your account before you can browse.
-      p.indented-2 Just click the link in the account activation email we sent you.
-      p.indented-2 If you lost it, just #{link_to 'request another account activation email', new_confirmation_path(current_user)}.
-      p.indented-2 Account activation is FREE and it only takes a minute. :-)
+    .callout.accent
+      h4.bold.text-center You must activate your account!
+      p
+        ' After you join, we send an account activation email.
+        ' It contains a link to activate your account and choose a username and password.
+      p.bold If you’re stuck, you have a couple options:
+      ul.indented-2.snug-top
+        li
+          ' You can always, #{link_to 'request another account activation email', new_confirmation_path(current_user)}.
+        li
+          ' If you need help, #{mail_to 'support@startupalliance.com', 'email the support team', subject: "I need help activating my account", encode: 'hex'}.
+      p.bold
+        ' We look forward to having you in our global entrepreneurs community!

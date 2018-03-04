@@ -6,4 +6,7 @@
     p.text-right.snug-top.space-bottom
       ' Where Startup Alliance community members contributes essential startup resources
 
-    = render 'form'
+    - if current_user and current_user.confirmed?
+      = render 'form'
+    - elsif current_user and !current_user.confirmed?
+      = render 'partials/inactive_browse_roadblock'
