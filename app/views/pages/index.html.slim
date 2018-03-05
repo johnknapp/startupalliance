@@ -44,7 +44,7 @@
         h4.bold.text-center= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged')
       - if Page.where(state: 'Draft').present?
         h4.bold.text-center= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft')
-    = render 'partials/top_kb_authors'
+    = render 'pages/top_page_authors'
 
   .medium-7.columns.medium-pull-5
     .float-right
