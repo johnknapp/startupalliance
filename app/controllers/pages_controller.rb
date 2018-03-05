@@ -82,6 +82,13 @@ class PagesController < ApplicationController
       else
         render :edit
       end
+    elsif params[:commit] == 'Update this Suggestion' and @page.author == current_user
+      @page.assign_attributes(page_params)
+      if @page.save_without_auditing
+        redirect_to page_path, notice: 'Knowledge Base Entry was successfully updated.' and return
+      else
+        render :edit
+      end
     elsif params[:commit] == 'Save as Draft'
       params[:page][:state] = 'Draft'
       @page.assign_attributes(page_params)

@@ -7,13 +7,13 @@
     = f.hidden_field :state,     value: params[:state] if params[:state].present? and params[:action] == 'new'
     .row
       .medium-6.columns
-        - if params[:state] == 'Suggestion'
+        - if params[:state] == 'Suggestion' or (@page.author.present? and @page.author == current_user)
           = f.input :title, label: 'Suggested Title', placeholder: 'Write a brief title'
         - else
           = f.input :title
       .medium-6.columns
         = f.input :category_list, collection: categories, as: :select, label: 'Category tags', input_html: { 'multiple' => true, class: 'chosen-select' }
-    - if params[:state] == 'Suggestion'
+    - if params[:state] == 'Suggestion' or (@page.author.present? and @page.author == current_user)
       = f.input :content, label: 'Describe your suggestion', placeholder: 'Write a brief description', input_html: { rows: 4 }
     - else
       = f.input :content, label: 'Content (format using Markdown)', input_html: { rows: 18 }
@@ -28,6 +28,8 @@
             = f.button :submit, 'I R A Admin', class: 'button'
           - elsif @page.state == 'Suggestion' and !@page.persisted?
             = f.button :submit, 'Make your Suggestion', class: 'button'
+          - elsif @page.state == 'Suggestion' and @page.author == current_user
+            = f.button :submit, 'Update this Suggestion', class: 'button'
           - elsif @page.state == 'Suggestion' or @page.state == 'Draft'
             = f.button :submit, 'Save as Draft', class: 'button'
             = f.button :submit, 'Save and Publish', class: 'button'

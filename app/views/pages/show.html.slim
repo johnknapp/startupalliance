@@ -42,8 +42,12 @@
               | &nbsp;
               span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=KB_SUGGESTION_TIP
                 i.fa.fa-bell.primary-text
-            p.bold.text-center
-              ' This suggested page can be #{link_to 'written and published', edit_page_path(@page)} by any Member.
+            - if current_user and @page.author == current_user
+              p.bold.text-center
+                ' You are the author so you can #{link_to 'modify', edit_page_path(@page)} or #{link_to 'delete', @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete} this suggestion.
+            - else
+              p.bold.text-center
+                ' This suggested page can be #{link_to 'written and published', edit_page_path(@page)} by any Member.
             p.little-snug-top.text-center
               ' It was suggested by #{link_to @page.author.name, vanity_path(@page.author.username)} on #{@page.created_at.strftime('%b %d, %Y')}.
             p.text-center.little-snug-top

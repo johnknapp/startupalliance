@@ -76,7 +76,7 @@
 
     - if @pages.present?
       - @pages.each do |page|
-        - if current_user and (page.state == 'Published' or page.state == 'Suggestion' or page.author_id == current_user.id or current_user.admin?)
+        - if current_user and page.state == 'Published' or page.state == 'Suggestion' or page.author_id == current_user.id or current_user.admin?
           = render 'pages/hero', page: page
         - elsif page.state == 'Published' or page.state == 'Suggestion' # no current_user or not admin or not author - only see published and suggestions
           = render 'pages/hero', page: page

@@ -13,6 +13,6 @@ p.scale-to-90
     | &nbsp;
     | &nbsp;
     | &nbsp;
-  - if current_user and current_user.admin?
+  - if current_user and @page.author == current_user and @page.state == 'Suggestion' or current_user.admin?
     = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
       i.fa.fa-trash
