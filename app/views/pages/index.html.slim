@@ -48,8 +48,13 @@
 
   .medium-7.columns.medium-pull-5
     .float-right
-      p.text-right.space-top
-        = link_to new_page_path do
+      ul.menu.space-top
+        li = link_to new_page_path(state: 'Suggestion') do
+          i.fa.fa-plus
+          | &nbsp;
+          | &nbsp;
+          ' Suggest Page
+        li= link_to new_page_path do
           i.fa.fa-plus
           | &nbsp;
           | &nbsp;
@@ -71,9 +76,9 @@
 
     - if @pages.present?
       - @pages.each do |page|
-        - if current_user and (page.state == 'Published' or page.author_id == current_user.id or current_user.admin?)
+        - if current_user and (page.state == 'Published' or page.state == 'Suggestion' or page.author_id == current_user.id or current_user.admin?)
           = render 'pages/hero', page: page
-        - elsif page.state == 'Published' # no current_user or not admin or not author - only see published
+        - elsif page.state == 'Published' or page.state == 'Suggestion' # no current_user or not admin or not author - only see published and suggestions
           = render 'pages/hero', page: page
     - else
       .callout.accent

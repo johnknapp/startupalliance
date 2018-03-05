@@ -1,6 +1,9 @@
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
-    ' Knowledge Base Page:
+    - if @page.state == 'Suggestion'
+      ' Suggested Knowledge Base Page:
+    - else
+      ' Knowledge Base Page:
   h2.bold.white-text.text-center.title-font
     = @page.title
   - if @page.category_list.present?
@@ -33,6 +36,18 @@
           p.snug-top.space-bottom.text-right Now viewing current version
     .row
       .large-8.large-offset-2.columns
+        - if @page.state == 'Suggestion'
+          .callout.small.primary
+            .float-left
+              | &nbsp;
+              span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=KB_SUGGESTION_TIP
+                i.fa.fa-bell.primary-text
+            p.bold.text-center
+              ' This suggested page can be #{link_to 'written and published', edit_page_path(@page)} by any Member.
+            p.little-snug-top.text-center
+              ' It was suggested by #{link_to @page.author.name, vanity_path(@page.author.username)} on #{@page.created_at.strftime('%b %d, %Y')}.
+            p.text-center.little-snug-top
+              ' Their suggestion appears below.
         - if @page.state == 'Flagged'
           .callout.small.alert-background
             p.bold.white-text.text-center

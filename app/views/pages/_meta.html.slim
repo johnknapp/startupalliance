@@ -21,6 +21,9 @@
         ' #{@page.audits.count.ordinalize} edit: #{@page.updated_at.utc.strftime('%b %d, %Y')}
         br
         ' By: #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
+      - elsif @page.state == 'Suggestion'
+          ' Suggested #{@page.updated_at.strftime('%b %d, %Y')}
+          ' by #{link_to @page.author.name, vanity_path(@page.author.username)}
       - else
           ' Draft last edited #{@page.updated_at.strftime('%b %d, %Y')}
           ' by #{link_to @page.author.name, vanity_path(@page.author.username)}

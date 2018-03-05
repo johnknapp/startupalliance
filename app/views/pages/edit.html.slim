@@ -1,6 +1,9 @@
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Update Knowledge Base Entry
+    - if @page.state == 'Suggestion'
+      ' Update Suggested Knowledge Base Page
+    - else
+      ' Update Knowledge Base Page
 .row
   .medium-8.medium-offset-2.columns
     p.text-right.snug-top.space-bottom

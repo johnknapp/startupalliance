@@ -27,7 +27,11 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Page.new
+    if params[:state] == 'Suggestion'
+      @page = Page.new(state: 'Suggestion')
+    else
+      @page = Page.new
+    end
     # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
     # else
     #   redirect_to pricing_path(goal: 'page'), alert: 'Please upgrade your Membership Plan!'
@@ -65,6 +69,12 @@ class PagesController < ApplicationController
   end
 
   def update
+
+    # if we're coming in as a non-admin suggestion, it's a new author
+    if current_user.role != 'admin' and @page.state == 'Suggestion'
+      params[:page][:author_id] = current_user.id
+    end
+
     if current_user.role != 'admin' and @page.state == 'Published' or params[:commit] == 'Save and Publish'
       params[:page][:state] = 'Published'
       if @page.update(page_params)

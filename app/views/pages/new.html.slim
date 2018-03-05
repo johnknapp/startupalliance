@@ -1,10 +1,16 @@
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Create Knowledge Base Entry
+    - if params[:state] == 'Suggestion'
+      ' Suggest a Page for the Knowledge Base
+    - else
+      ' Create Knowledge Base Page
 .row
   .medium-8.medium-offset-2.columns
     p.text-right.snug-top.space-bottom
-      ' Where Startup Alliance community members contribute essential startup resources
+      - if params[:state] == 'Suggestion'
+        ' We welcome your suggestion — an author will get to work soon.
+      - else
+        ' Where Startup Alliance community members contribute essential startup resources
 
     - if current_user and current_user.confirmed?
       = render 'form'

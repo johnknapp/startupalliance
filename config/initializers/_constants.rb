@@ -1,7 +1,7 @@
 RECAPTCHA_SITE              = '6LcfhSsUAAAAAKUUu0v5dd-YFBWq-qQ_nSBpjdAL'
 RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
-PAGE_STATES                 = %w[Draft Published Flagged]
+PAGE_STATES                 = %w[Draft Suggestion Published Flagged]
 
 USER_STATES                 = %w[unconfirmed active paused]
 USER_ROLES                  = %w[guest user admin]
@@ -10,6 +10,7 @@ SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid]
 
 WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
 
+KB_SUGGESTION_TIP           = 'Suggested Knowledge Base Pages are marked with a Bell icon as a signal to potential authors they have a writing opportunity.'
 ACCOUNT_ACTIVATION_TIP      = 'When you signed up, we sent you an account activation email containing a link to choose a username and password. Activate your account for full privileges!'
 PRIVATE_ALLIANCE_TIP        = 'Uniting complementary groups of entrepreneurs to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
