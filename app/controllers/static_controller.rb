@@ -36,6 +36,9 @@ class StaticController < ApplicationController
   def pricing
   end
 
+  def compare_plans
+  end
+
   def privacy
   end
 

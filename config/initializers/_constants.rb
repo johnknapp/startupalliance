@@ -42,6 +42,7 @@ USERNAME_EXCLUSIONS = %w[
   code_of_conduct
   company
   companies
+  compare_plans
   content
   conversation
   conversations

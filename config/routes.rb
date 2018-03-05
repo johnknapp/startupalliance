@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'join_thanks',                to: 'static#join_thanks',          constraints: { format: 'html' }
   get 'activate_thanks',            to: 'static#activate_thanks',      constraints: { format: 'html' }
   get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
+  get 'compare_plans',              to: 'static#compare_plans',        constraints: { format: 'html' }
   get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
   get 'terms',                      to: 'static#terms',                constraints: { format: 'html' }
   get 'learn_more',                 to: 'static#learn_more',           constraints: { format: 'html' }
