@@ -3,7 +3,8 @@
     - if current_user and current_user.confirmed?
       = render 'pages/edit_controls'
   - if @page.audits.present?
-    p.faint Page editors:
+    p.faint Author: #{link_to @page.author.name, vanity_path(@page.author.username)}
+    p.faint.snug-top Editorial Team:
     ul.no-bullet.snug-top
       - page_editors(@page).each do |user|
         li.faint= link_to user.name, vanity_path(user.username)
