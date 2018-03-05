@@ -13,6 +13,8 @@ class PagesController < ApplicationController
       end
     elsif params[:state].present? and current_user and current_user.admin?
       @pages    = Page.where(state: params[:state]).all
+    elsif params[:state].present?
+      @pages    = Page.where(state: params[:state]).all
     elsif params[:query].present?
       @pages    = Page.page_tsearch(params[:query])
     elsif params[:author_pid].present?

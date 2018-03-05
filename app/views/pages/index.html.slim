@@ -3,7 +3,10 @@
 - elsif params[:query]
   - filter = params[:query]
 - elsif params[:state]
-  - filter = params[:state]
+  - if params[:state] == 'Suggestion'
+    - filter = 'Suggested'
+  - else
+    - filter = params[:state]
 - elsif params[:author_pid]
   - filter = "Authored by #{User.find_by_pid(params[:author_pid]).name}"
 - else
@@ -59,6 +62,7 @@
           | &nbsp;
           | &nbsp;
           ' Add Page
+
     ul.space-top.dropdown.menu.bold data-dropdown-menu=true
       li.primary-text
         h5.bold
@@ -67,16 +71,17 @@
             | &nbsp;
             i.fa.fa-chevron-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
-          li= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged'), class: 'bold red-text' if current_user and current_user.admin? and Page.where(state: 'Flagged').present?
-          li= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft'), class: 'bold red-text'       if current_user and current_user.admin? and Page.where(state: 'Draft').present?
-          li= link_to "Latest pages", pages_path, class: 'bold'
-          li= link_to "Authored by me (#{number_with_delimiter(Page.where(author_id: current_user.id).count)})", pages_path(author_pid: current_user.pid), class: 'bold' if current_user
+          li.bold= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged'), class: 'red-text' if current_user and current_user.admin? and Page.where(state: 'Flagged').present?
+          li.bold= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft'), class: 'red-text'       if current_user and current_user.admin? and Page.where(state: 'Draft').present?
+          li.bold= link_to "Latest pages", pages_path
+          li.bold= link_to "Authored by me (#{number_with_delimiter(Page.where(author_id: current_user.id).count)})", pages_path(author_pid: current_user.pid), class: 'bold' if current_user
+          li.bold= link_to "Suggested pages", pages_path(state: 'Suggestion')
           - @categories.each do |cat|
             li= link_to "#{cat} (#{number_with_delimiter(Page.tagged_with(cat).count)})", pages_path(filter: cat)
 
     - if @pages.present?
       - @pages.each do |page|
-        - if current_user and page.state == 'Published' or page.state == 'Suggestion' or page.author_id == current_user.id or current_user.admin?
+        - if current_user and (page.state == 'Published' or page.state == 'Suggestion' or page.author_id == current_user.id or current_user.admin?)
           = render 'pages/hero', page: page
         - elsif page.state == 'Published' or page.state == 'Suggestion' # no current_user or not admin or not author - only see published and suggestions
           = render 'pages/hero', page: page
