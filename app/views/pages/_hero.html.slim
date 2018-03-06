@@ -26,18 +26,28 @@
   - else
     p.faint.little-snug-top.text-center Uncategorized
   .row
-    .medium-8.columns
+    .medium-6.columns
       p.faint.snug-bottom
         - if page.audits.present?
-          ' #{page.audits.count.ordinalize} edit: #{page.updated_at.strftime('%b %d, %Y')}
+          /' #{page.audits.count.ordinalize} edit: #{page.updated_at.strftime('%b %d, %Y')}
+          ' Published #{page.updated_at.strftime('%b %d, %Y')}
           ' by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
         - elsif page.state == 'Suggestion'
-          ' Suggestion made on #{page.updated_at.strftime('%b %d, %Y')}
+          ' Suggested #{page.updated_at.strftime('%b %d, %Y')}
           ' by #{link_to page.author.name, vanity_path(page.author.username)}
         - else
-          ' Draft last edited #{page.updated_at.strftime('%b %d, %Y')}
+          ' Draft #{page.updated_at.strftime('%b %d, %Y')}
           ' by #{link_to page.author.name, vanity_path(page.author.username)}
-    .medium-4.columns
+    .medium-6.columns
       p.faint.snug-bottom.text-right
-        ' Content length: #{number_with_delimiter(page.content.length)} characters
+        ' (#{number_with_delimiter(page.content.length)} characters,
+        i.fa.fa-thumbs-up.dark-grey-text
+        | &nbsp;
+        ' #{number_with_delimiter(page.get_likes.size)}
+        | &nbsp;
+        | &nbsp;
+        i.fa.fa-thumbs-down.dark-grey-text
+        | &nbsp;
+        ' #{number_with_delimiter(page.get_dislikes.size)})
+        /' Content length: #{number_with_delimiter(page.content.length)} characters
   p= markdown(truncate(page.content, length: 160)) if page.state == 'Published'
