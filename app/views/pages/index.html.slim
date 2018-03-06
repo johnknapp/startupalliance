@@ -55,13 +55,11 @@
         li = link_to new_page_path(state: 'Suggestion') do
           i.fa.fa-plus
           | &nbsp;
-          | &nbsp;
-          ' Suggest Page
+          ' Suggest a Page
         li= link_to new_page_path do
           i.fa.fa-plus
           | &nbsp;
-          | &nbsp;
-          ' Add Page
+          ' Add a Page
 
     ul.space-top.dropdown.menu.bold data-dropdown-menu=true
       li.primary-text
@@ -87,5 +85,15 @@
           = render 'pages/hero', page: page
     - else
       .callout.accent
-        p.bold.text-center Nothing here! #{link_to 'Add something', new_page_path} or #{link_to 'show the latest', pages_path}.
+        p.bold.text-center Try another filter, or better yet...
+        ul.menu.expanded.text-center.snug-top
+          li= link_to new_page_path(state: 'Suggestion') do
+            i.fa.fa-plus
+            | &nbsp;
+            ' Suggest a Page
+          li= link_to new_page_path do
+            i.fa.fa-plus
+            | &nbsp;
+            ' Add a Page
+          li= link_to 'Show the latest', pages_path
 
