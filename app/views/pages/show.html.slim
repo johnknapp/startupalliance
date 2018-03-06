@@ -26,7 +26,7 @@
             | &nbsp;
             ' Return to Knowledge Base
       .medium-2.columns
-        = render 'pages/vote_page'
+        = render 'pages/thumbs'
       .medium-5.columns
         - if params[:rev].present? and params[:rev].to_i != @page.revisions.count
           p.snug-top.space-bottom.text-right.bold.alert-text
