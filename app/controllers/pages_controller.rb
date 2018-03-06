@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_page, only: [:show, :edit, :update, :undo_last_audit, :destroy]
+  before_action :set_page, only: [:show, :edit, :update, :undo_last_audit, :like, :dislike, :destroy]
 
 
   def index
@@ -116,6 +116,18 @@ class PagesController < ApplicationController
         end
       end
     end
+  end
+
+  # PUT /kb/:pid/like
+  def like
+    current_user.likes @page
+    redirect_to @page
+  end
+
+  # PUT /kb/:pid/dislike
+  def dislike
+    current_user.dislikes @page
+    redirect_to @page
   end
 
   # 0) We know that an update with only tag changes doesn't create a new revision/audit

@@ -30,6 +30,8 @@ class Ability
         cannot :index,              primary_objects
         can :crud,                  primary_objects
         can :crudi,                 Page
+        can :like,                  Page
+        can :dislike,               Page
         can :dashboard,             Company
         can :set_sakpi,             Company
         can :unset_sakpi,           Company

@@ -18,14 +18,30 @@
 .row
   .medium-12.columns
     .row
-      .medium-6.columns
+      .medium-5.columns
         p.snug-top.space-bottom
           = link_to pages_path do
             i.fa.fa-arrow-left
             | &nbsp;
             | &nbsp;
             ' Return to Knowledge Base
-      .medium-6.columns
+      .medium-2.columns
+        .row
+          .medium-6.columns
+            p.medium-grey-text.little-snug-top.space-bottom.text-center
+              = link_to like_page_path(@page), method: 'put' do
+                i.fa.fa-lg.fa-thumbs-up.medium-grey-text
+              | &nbsp;
+              | &nbsp;
+              = number_with_delimiter(@page.get_likes.size)
+          .medium-6.columns
+            p.medium-grey-text.little-snug-top.space-bottom.text-center
+              = link_to dislike_page_path(@page), method: 'put' do
+                i.fa.fa-lg.fa-thumbs-down.medium-grey-text
+              | &nbsp;
+              | &nbsp;
+              = number_with_delimiter(@page.get_dislikes.size)
+      .medium-5.columns
         - if params[:rev].present? and params[:rev].to_i != @page.revisions.count
           p.snug-top.space-bottom.text-right.bold.alert-text
             - datetime = time_ago_in_words(@page.updated_at) + ' ago'
