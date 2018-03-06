@@ -40,7 +40,7 @@
           ' by #{link_to page.author.name, vanity_path(page.author.username)}
     .medium-6.columns
       p.faint.snug-bottom.text-right
-        ' (#{number_with_delimiter(page.content.length)} characters,
+        ' (#{number_with_delimiter(page.content.split.size)} words,
         i.fa.fa-thumbs-up.dark-grey-text
         | &nbsp;
         ' #{number_with_delimiter(page.get_likes.size)}
@@ -49,5 +49,5 @@
         i.fa.fa-thumbs-down.dark-grey-text
         | &nbsp;
         ' #{number_with_delimiter(page.get_dislikes.size)})
-        /' Content length: #{number_with_delimiter(page.content.length)} characters
+        /' Content length: #{number_with_delimiter(page.content.split.size)} characters
   p= markdown(truncate(page.content, length: 160)) if page.state == 'Published'
