@@ -2,7 +2,8 @@ class User < ApplicationRecord
   include Pid
   include CountryName
 
-  acts_as_reader # unread gem
+  acts_as_reader
+  acts_as_voter
 
   # Specifically not destroying any companies or alliances they created
   has_many  :company_users
