@@ -49,8 +49,10 @@
               p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'entrepreneur'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.scale-to-90.text-center
-              ' Only $25 a year
+            h5.bold.text-center
+              ' $4.95
+            p.faint.little-snug-top.text-center
+              ' $7.95 billed monthly
 
       .column
         p.hide-for-large &nbsp;
@@ -93,8 +95,10 @@
               p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.scale-to-90.text-center
-              ' Only $75 a year
+            h5.bold.text-center
+              ' $7.95
+            p.faint.little-snug-top.text-center
+              ' $10.95 billed monthly
 
       .column
         p.hide-for-large &nbsp;
@@ -147,8 +151,10 @@
               p= link_to 'Upgrade to Company Plan', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
               p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.scale-to-90.text-center
-              ' Only $150 a year
+            h5.bold.text-center
+              ' $9.95
+            p.faint.little-snug-top.text-center
+              ' $12.95 billed monthly
 
     - if !current_user
       p.faint.text-center There is an #{link_to 'Article explaining Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
