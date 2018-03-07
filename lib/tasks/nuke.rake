@@ -9,4 +9,10 @@ namespace :nuke do
     p '> > > > > > > > zombie pages gone!'
   end
 
+  desc 'destroy orphan audits'
+  task orphan_audits: :environment do
+    Audit.where(auditable_id: nil).destroy_all
+    p '> > > > > > > > orphan audits gone!'
+  end
+
 end

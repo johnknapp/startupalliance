@@ -8,7 +8,7 @@ class Page < ApplicationRecord
 
   # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/
   belongs_to  :author,  class_name: :User, counter_cache: true
-  has_many    :audits,  as: :auditable, dependent: :destroy
+  has_many    :audits,  as: :auditable, dependent: :destroy                   # dependent destroy doesn't work. See nuke rake
 
   validates :title,       presence: true
   validates :title,       length: { maximum: 64 }
@@ -17,7 +17,7 @@ class Page < ApplicationRecord
 
   acts_as_paranoid
   acts_as_ordered_taggable_on :categories
-  audited only: [:title, :content, :category_list, :created_at, :updated_at]
+  audited only: [:title, :content, :category_list, :created_at, :updated_at], on: [:create, :update] # :destroy not needed
 
   scope :published, -> { where(state: 'Published') }
 
