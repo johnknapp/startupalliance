@@ -1,13 +1,13 @@
 .row
   .medium-6.columns
-    p.dark-grey-text.little-snug-top.space-bottom.text-center
+    p.dark-grey-text.little-snug-top.text-center
       = link_to like_page_path(@page), method: 'put' do
         i.fa.fa-lg.fa-thumbs-up.dark-grey-text
       | &nbsp;
       | &nbsp;
       = number_with_delimiter(@page.get_likes.size)
   .medium-6.columns
-    p.dark-grey-text.little-snug-top.space-bottom.text-center
+    p.dark-grey-text.little-snug-top.text-center
       = link_to dislike_page_path(@page), method: 'put' do
         i.fa.fa-lg.fa-thumbs-down.dark-grey-text
       | &nbsp;

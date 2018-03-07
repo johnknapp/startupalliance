@@ -62,6 +62,10 @@
               ' If you are the author, #{mail_to 'hello@startupalliance.com', 'email hello@startupalliance.com', subject: "My flagged KB page!", encode: 'hex', class: 'white-text'}.
         p= markdown @page.content
     .row
-      .large-4.large-offset-2.end.columns
+      .medium-4.medium-offset-2.medium-push-4.columns
+        .callout.accent
+          p.faint.text-center Do you like this Knowledge Base Page?
+          = render 'pages/thumbs'
+      .medium-4.medium-pull-4.end.columns
         = render 'pages/meta'
 
