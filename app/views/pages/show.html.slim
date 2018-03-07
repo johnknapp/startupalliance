@@ -31,11 +31,11 @@
         - if params[:rev].present? and params[:rev].to_i != @page.revisions.count
           p.snug-top.space-bottom.text-right.bold.alert-text
             - datetime = time_ago_in_words(@page.updated_at) + ' ago'
-            ' Now viewing revision #{params[:rev]} from #{datetime}.
+            ' Now viewing revision #{params[:rev]} from #{datetime}. (#{@page.content.split.length} words)
         - elsif params[:rev].present? and params[:rev].to_i == @page.revisions.count
-          p.snug-top.space-bottom.text-right Now viewing latest edit
+          p.snug-top.space-bottom.text-right Now viewing latest edit. (#{@page.content.split.length} words)
         - else
-          p.snug-top.space-bottom.text-right Now viewing current version
+          p.snug-top.space-bottom.text-right Now viewing current version. (#{@page.content.split.length} words)
     .row
       .large-8.large-offset-2.columns
         - if @page.state == 'Suggestion'
