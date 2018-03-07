@@ -41,4 +41,5 @@ p.scale-to-90
   - if current_user and current_user.confirmed?
     | &nbsp;
     = render 'post/reply_modal', post: post
-h5.snug-top= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)
+h5.snug-top= markdown post.body
+/h5.snug-top= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)

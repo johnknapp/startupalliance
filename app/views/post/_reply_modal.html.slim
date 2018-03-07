@@ -12,8 +12,8 @@ a data-open="new-reply-#{post.pid}" class='scale-to-90'
     ' Replying to:
     ' #{link_to post.author.name, vanity_path(post.author.username)}
   p.faint.little-snug-top Who wrote:
-  p.snug-top.pad-right= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)
-
+  p.snug-top.pad-right=  markdown post.body
+  /p.snug-top.pad-right= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)
 
   = simple_form_for @post, url: discussion_topic_posts_path(post,topic_id: post.topic.id), method: :post do |f|
     = f.hidden_field :author_id,    value: current_user.id if current_user
