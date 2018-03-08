@@ -43,6 +43,11 @@
         p.snug-top.faint #{@user.name} has not written their personal mission
 
     p.bold.little-space-top Member summary:
+    - if @user.work_role
+      .float-right
+        p.snug-top.faint.text-right
+          ' #{@user.work_role}
+      p.snug-top.faint Primary Work Role:
     - if @user.created_at
       .float-right
         p.snug-top.faint.text-right

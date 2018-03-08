@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   menu parent: 'Subscriptions'
 
-  permit_params :id, :pid, :first_name, :last_name, :username, :mission, :bio, :email, :password, :password_confirmation,
+  permit_params :id, :pid, :first_name, :last_name, :username, :work_role, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role,
                 :linkedin_profile, :website, :country_code, :time_zone, :plan_id, :acqsrc, :public_skills, :public_traits
 
@@ -70,7 +70,8 @@ ActiveAdmin.register User do
     column :username do |user|
       link_to user.username, vanity_path(user.username)
     end
-    column :state
+    column :work_role
+    # column :state
     column :role
     column :plan
     column :skill_index
@@ -88,6 +89,7 @@ ActiveAdmin.register User do
   filter :email
   filter :state,        as: :select, collection: USER_STATES
   filter :role,         as: :select, collection: USER_ROLES
+  filter :work_role,    as: :select, collection: PROFESSIONAL_ROLE
   filter :plan
 
   form do |f|
@@ -97,7 +99,8 @@ ActiveAdmin.register User do
       f.input :username
       f.input :mission
       f.input :email
-      f.input :company_owner
+      f.input :work_role,     as: :select, collection: PROFESSIONAL_ROLE
+      # f.input :company_owner
       f.input :public_skills
       f.input :public_traits
       f.input :password

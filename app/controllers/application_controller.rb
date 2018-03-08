@@ -80,6 +80,7 @@ class ApplicationController < ActionController::Base
           :twitter_profile,
           :linkedin_profile,
           :website,
+          :work_role,
           :country_code,
           :time_zone,
           :public_skills,
