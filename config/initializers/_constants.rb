@@ -5,7 +5,7 @@ PAGE_STATES                 = %w[Draft Suggestion Published Flagged]
 
 USER_STATES                 = %w[unconfirmed active paused]
 USER_ROLES                  = %w[guest user admin]
-PROFESSIONAL_ROLE           = %w[Owner Marketing Sales Technical Operations Advisor Investor Other Unknown]
+PROFESSIONAL_ROLE           = %w[Owner Marketing Sales Technical Operations Advisor Investor Other Unset]
 
 SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid]
 
