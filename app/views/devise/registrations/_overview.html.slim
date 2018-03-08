@@ -46,7 +46,10 @@
     - if @user.work_role
       .float-right
         p.snug-top.faint.text-right
-          ' #{@user.work_role}
+          - if current_user and current_user == @user and @user.work_role == 'Unset'
+            ' #{link_to '(' + @user.work_role + '!)', edit_user_registration_path(current_user)}
+          - else
+            ' #{@user.work_role}
       p.snug-top.faint Primary Work Role:
     - if @user.created_at
       .float-right
