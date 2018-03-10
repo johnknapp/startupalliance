@@ -7,10 +7,23 @@
 .row
   .medium-10.medium-offset-1.columns
     p.snug-top.text-right
-      ' Last updated January 14, 2018
+      ' Last updated March 10, 2018
+    p.snug-top.show-for-medium &nbsp;
 
-    .row
+    .row.space-bottom
       .medium-3.columns
+        a data-open='community-canvas'
+          = image_tag 'community_canvas.png'
+        .reveal#community-canvas data-reveal=true
+          button data-close=true aria-label='Close' type='button' class='close-button'
+            span aria-hidden=true
+              ' &times;
+          h4.primary-text
+            ' Community Canvas:
+          = image_tag 'community_canvas.png'
+
+
+      .medium-9.columns
         p
           em
             ' Like the Business Model and Lean Canvas’ for startups, the
@@ -22,8 +35,6 @@
             ' Our Community Canvas will help your understand what we're about and how participation
             ' will benefit you. We welcome your comments and questions.
             '
-      .medium-9.columns
-        = image_tag 'community_canvas.png'
 
     .row
       .medium-3.columns
@@ -33,7 +44,7 @@
         p.bold
           ' Our Purpose
         p
-          ' Startup Alliance is an entrepreneurial community helping entrepreneurs across the globe work together
+          ' Startup Alliance is a community for committed entrepreneurs from around the globe working together
           ' to stay focused and be more effective, make connections and help each other overcome challenges
           ' and maximize their success.
           '
