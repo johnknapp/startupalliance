@@ -17,44 +17,46 @@
     '
     i.success-text.fa.fa-lg.fa-trophy
 
-.callout.accent.little-space-top.shadow-8dp
-  .row.medium-up-2.large-up-3 data-equalizer=true
-    h3.bold.primary-text.text-center.little-space-bottom
-      ' Community Resources for
-      - if current_user
-        ' #{current_user.name}...
-      - else
-        ' Committed Entrepreneurs...
-      /' Nucleus Resources: Free for all Committed Entrepreneurs...
-    /h5.bold.medium-grey-text.text-center.snug-top.space-bottom
-      ' 核心,
-      ' Le Noyau,
-      ' Der Kern,
-      ' केंद्रक,
-      ' Il Nucleo,
-      ' Ядро,
-      ' El Núcleo
-      '
-    = render 'partials/hero_disco'
-    = render 'partials/hero_kb'
-    = render 'partials/hero_gvo'
-    /= render 'partials/hero_more_coming'
-    /- if !current_user
-      p.text-center.snug-bottom Community Resources require #{link_to 'sign-in', new_user_session_path}. Not a member yet? Choose your plan below.
+.row
+  .large-12.columns
+    .callout.accent.little-space-top.shadow-8dp
+      .row.medium-up-2.large-up-3 data-equalizer=true
+        h3.bold.primary-text.text-center.little-space-bottom
+          ' Community Resources for
+          - if current_user
+            ' #{current_user.name}...
+          - else
+            ' Committed Entrepreneurs...
+          /' Nucleus Resources: Free for all Committed Entrepreneurs...
+        /h5.bold.medium-grey-text.text-center.snug-top.space-bottom
+          ' 核心,
+          ' Le Noyau,
+          ' Der Kern,
+          ' केंद्रक,
+          ' Il Nucleo,
+          ' Ядро,
+          ' El Núcleo
+          '
+        = render 'partials/hero_disco'
+        = render 'partials/hero_kb'
+        = render 'partials/hero_gvo'
+        /= render 'partials/hero_more_coming'
+        /- if !current_user
+          p.text-center.snug-bottom Community Resources require #{link_to 'sign-in', new_user_session_path}. Not a member yet? Choose your plan below.
 
-- if !current_user
-  p &nbsp;
-  .callout.accent.space-top.shadow-8dp
-    .row.medium-up-2.large-up-3 data-equalizer=true
-      h3.bold.primary-text.text-center.little-space-bottom
-        ' Choose the Membership Plan that’s right for you...
-        /' There’s a Membership Plan for Every Entrepreneur...
-        /' Choose the Membership Plan to Meet Your Requirements...
-        /' Premium Memberships to Maximize Your Entrepreneurial Success...
-      = render 'partials/hero_jet_fuel'
-      = render 'partials/hero_alliances'
-      = render 'partials/hero_companies'
-      p.text-center.snug-bottom Student? Investor? Just starting out? Check out the #{link_to 'Free Associate Membership Plan', pricing_path(anchor: 'associate')}
+    - if !current_user
+      p &nbsp;
+      .callout.accent.space-top.shadow-8dp
+        .row.medium-up-2.large-up-3 data-equalizer=true
+          h3.bold.primary-text.text-center.little-space-bottom
+            ' Choose the Membership Plan that’s right for you...
+            /' There’s a Membership Plan for Every Entrepreneur...
+            /' Choose the Membership Plan to Meet Your Requirements...
+            /' Premium Memberships to Maximize Your Entrepreneurial Success...
+          = render 'partials/hero_jet_fuel'
+          = render 'partials/hero_alliances'
+          = render 'partials/hero_companies'
+          p.text-center.snug-bottom Student? Investor? Just starting out? Check out the #{link_to 'Free Associate Membership Plan', pricing_path(anchor: 'associate')}
 
 .row
   .large-10.large-offset-1.columns

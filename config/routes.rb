@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'discussions',                to: 'static#discussions',          constraints: { format: 'html' }
   get 'faq',                        to: 'static#faq',                  constraints: { format: 'html' }
   get 'code_of_conduct',            to: 'static#code_of_conduct',      constraints: { format: 'html' }
+  get 'commitment_pledge',          to: 'static#commitment_pledge',    constraints: { format: 'html' }
   get 'join_thanks',                to: 'static#join_thanks',          constraints: { format: 'html' }
   get 'activate_thanks',            to: 'static#activate_thanks',      constraints: { format: 'html' }
   get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }

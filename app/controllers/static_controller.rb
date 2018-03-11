@@ -33,6 +33,9 @@ class StaticController < ApplicationController
   def code_of_conduct
   end
 
+  def commitment_pledge
+  end
+
   def pricing
   end
 
