@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Users" do
           ul do
             User.last(20).reverse.map do |user|
-              li link_to user.username, admin_user_path(user.id)
+              li link_to user.username, admin_user_path(user.pid)
             end
           end
         end
