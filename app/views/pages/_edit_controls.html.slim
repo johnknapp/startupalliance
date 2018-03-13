@@ -4,15 +4,11 @@ p.scale-to-90
       i.fa.fa-pencil
     | &nbsp;
     | &nbsp;
-    | &nbsp;
-    | &nbsp;
-  /- if @page.revisions.count > 1
-    = link_to undo_page_path(@page, rev: params[:rev]), data: { confirm: 'Really undo last change?' }, method: :post do
-      i.fa.fa-undo
-    | &nbsp;
-    | &nbsp;
-    | &nbsp;
-    | &nbsp;
+    ' Edit
   - if current_user and @page.author == current_user and @page.state == 'Suggestion' or current_user.admin?
+    | &nbsp;
+    | &nbsp;
+    | &nbsp;
+    | &nbsp;
     = link_to @page, data: { confirm: 'Really delete this Knowledge Base Entry?' }, method: :delete do
       i.fa.fa-trash

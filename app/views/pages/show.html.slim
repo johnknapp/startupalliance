@@ -26,7 +26,7 @@
             | &nbsp;
             ' Return to Knowledge Base
       .medium-2.columns
-        = render 'pages/thumbs'
+        /= render 'pages/thumbs'
       .medium-5.columns
         - if params[:rev].present? and params[:rev].to_i != @page.revisions.count
           p.snug-top.space-bottom.text-right.bold.alert-text
@@ -37,7 +37,7 @@
         - else
           p.snug-top.space-bottom.text-right Now viewing current version. (#{@page.content.split.length} words)
     .row
-      .large-8.large-offset-2.columns
+      .large-8.columns
         - if @page.state == 'Suggestion'
           .callout.small.primary
             .float-left
@@ -60,12 +60,11 @@
               ' Flagged and under staff review.
             p.bold.white-text.text-center.little-snug-top
               ' If you are the author, #{mail_to 'hello@startupalliance.com', 'email hello@startupalliance.com', subject: "My flagged KB page!", encode: 'hex', class: 'white-text'}.
-        p= markdown @page.content
-    .row
-      .medium-4.medium-offset-2.medium-push-4.columns
-        .callout.accent
+        p.little-space-top.pad-right= markdown @page.content
+      .large-4.columns
+        .little-space-top.callout.accent
           p.faint.text-center Do you like this Knowledge Base Page?
           = render 'pages/thumbs'
-      .medium-4.medium-pull-4.end.columns
+        p.scale-to-90.little-snug-bottom.text-center Any member can edit this page.
         = render 'pages/meta'
 
