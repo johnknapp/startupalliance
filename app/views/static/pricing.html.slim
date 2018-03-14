@@ -156,10 +156,11 @@
             p.faint.snug-top.text-center
               ' $12.95 billed monthly
 
+    p.text-center If you represent an incubator or accelerator, please #{mail_to 'hello@startupalliance.com', 'inquire about group subscriptions', subject: "Group Subscriptions", encode: 'hex'}.
     - if !current_user
-      p.faint.text-center There is an #{link_to 'Article explaining Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
+      /p.faint.text-center There is an #{link_to 'Article explaining Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
       .row
-        .medium-8.medium-offset-2.columns
+        .large-8.large-offset-2.columns
           .card.primary.shadow
             .card-divider.accent-background
               a name='associate'
@@ -192,6 +193,3 @@
             p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'associate'), class: 'fa-lg button expanded bold success shadow-6dp'
           p.scale-to-90.text-center
             ' Membership is open to all committed entrepreneurs
-
-        /.callout.primary
-          h5.bold.text-center If you represent an incubator or accelerator, #{mail_to 'hello@startupalliance.com', 'ask about group subscriptions', subject: "Group Subcriptions", encode: 'hex'}.
