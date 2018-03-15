@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'commitment_pledge',          to: 'static#commitment_pledge',    constraints: { format: 'html' }
   get 'join_thanks',                to: 'static#join_thanks',          constraints: { format: 'html' }
   get 'activate_thanks',            to: 'static#activate_thanks',      constraints: { format: 'html' }
+  get 'sponsors',                   to: 'static#sponsors',             constraints: { format: 'html' }
   get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
   get 'compare_plans',              to: 'static#compare_plans',        constraints: { format: 'html' }
   get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
