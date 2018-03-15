@@ -10,6 +10,12 @@
   - @company.team.order(created_at: :desc).each_with_index do |member,i|
     .column
       .callout.small.shadow
+
+        - if (current_user and @company.team.include?(current_user)) and discussions_posts(@company.discussions).unread_by(member).present?
+          .callout.small.alert
+            p.text-center
+              ' #{discussions_posts(@company.discussions).unread_by(member).count} unread discussion posts!
+
         - if current_user != member
           .float-right
             ul.menu.simple.little-space-top
@@ -32,7 +38,6 @@
             = team_role(@company, member)
             - if current_user and current_user == @company.creator
               a.faint data-open="edit-team-role-#{i}"
-                | &nbsp;
                 | &nbsp;
                 | &nbsp;
                 i.fa.fa-pencil

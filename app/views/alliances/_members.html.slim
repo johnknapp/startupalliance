@@ -10,6 +10,12 @@
   - @alliance.members.each do |member|
     .column
       .callout.small.shadow
+
+        - if (current_user and @alliance.members.include?(current_user)) and discussions_posts(@alliance.discussions).unread_by(member).present?
+          .callout.small.alert
+            p.text-center
+              ' #{discussions_posts(@alliance.discussions).unread_by(member).count} unread discussion posts!
+
         - if current_user != member
           .float-right
             ul.menu.simple.little-space-top

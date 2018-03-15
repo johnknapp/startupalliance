@@ -31,6 +31,14 @@ module ForumsHelper
     end
   end
 
+  def discussions_posts(discussions)
+    p_query = Post
+    discussions.each do |discussion|
+      p_query =  p_query.where('posts.id in (?)', discussion.posts.pluck(:id)) # add where clauses
+    end
+    p_query # run the query once it's built
+  end
+
   def nucleus_forum_posts
     topic_ids = nucleus_topics.pluck(:id)
     Post.where('topic_id in (?)', topic_ids)
