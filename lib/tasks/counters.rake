@@ -22,4 +22,9 @@ namespace :counters do
     end
   end
 
+  desc 'reset post reads'
+  task reset_post_reads: :environment do
+    Post.cleanup_read_marks!
+  end
+
 end
