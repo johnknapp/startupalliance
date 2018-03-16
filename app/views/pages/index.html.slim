@@ -47,6 +47,7 @@
         h4.bold.text-center= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged')
       - if Page.where(state: 'Draft').present?
         h4.bold.text-center= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft')
+    p.scale-to-90.little-snug-bottom.text-center Any member can author Knowledge Base Pages.
     = render 'pages/top_page_authors'
 
   .medium-7.columns.medium-pull-5
@@ -59,7 +60,7 @@
         li= link_to new_page_path do
           i.fa.fa-plus
           | &nbsp;
-          ' Add a Page
+          ' Author a Page
 
     ul.space-top.dropdown.menu.bold data-dropdown-menu=true
       li.primary-text
