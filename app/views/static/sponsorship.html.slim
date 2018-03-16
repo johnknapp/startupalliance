@@ -1,0 +1,56 @@
+- content_for :page_title do
+  ' Startup Alliance — Sponsorship Opportunities
+
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Sponsorship Opportunities
+.row
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
+    p &nbsp;
+    .callout
+      h4.text-center.title-font
+        ' We are open to sponsorships from incubators, capital sources and organizations
+        ' aligned with our vision of entrepreneurship as a driver of good in this world.
+        '
+      p.text-center Please email #{mail_to 'hello@startupalliance.com', 'hello@startupalliance.com', subject: "Sponsorship", encode: 'hex'} to begin the conversation.
+
+.row
+  .large-6.large-offset-3.medium-8.medium-offset-2.columns
+    p.bold.little-space-top
+      ' What is Startup Alliance
+    p.snug-top
+      ' Startup Alliance is a community of committed entrepreneurs driving
+      ' innovation and creating value worldwide.
+      '
+
+    p.bold
+      ' Our Mission
+    p.snug-top
+      ' Startup Alliance exists to accelerate the globalization of entrepreneurship.
+      '
+
+    p.bold
+      ' Our Strategy
+    p.snug-top
+      ' Online tools and resources to help entrepreneurs make connections,
+      ' overcome challenges and win through collaboration with qualified peers.
+      '
+
+    p.bold
+      ' Our Membership
+    p.snug-top
+      ' Startup Alliance members are
+      em
+        ' committed entrepreneurs
+      ' actively pursuing business opportunities in alignment with our
+      ' #{link_to 'commitment pledge', commitment_pledge_path}.
+      '
+
+    p.bold
+      ' The Startup Alliance Brand
+    p.snug-top
+      ' Our brand embodies transparency, clear communication and a strong desire
+      ' to deliver value to the world by encouraging entrepreneurial efforts and
+      ' providing tools that support focused and collaborative goal achievement.
+      '
+

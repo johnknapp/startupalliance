@@ -39,7 +39,7 @@ class StaticController < ApplicationController
   def pricing
   end
 
-  def sponsors
+  def sponsorship
   end
 
   def compare_plans
