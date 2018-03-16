@@ -14,7 +14,7 @@
         - if (current_user and @alliance.members.include?(current_user)) and discussions_posts(@alliance.discussions).unread_by(member).present?
           .callout.small.alert
             p.text-center
-              ' #{discussions_posts(@alliance.discussions).unread_by(member).count} unread discussion posts!
+              ' #{discussions_posts(@alliance.discussions).unread_by(member).count} unread discussion #{'post'.pluralize(discussions_posts(@alliance.discussions).unread_by(member).count)}!
 
         - if current_user != member
           .float-right
