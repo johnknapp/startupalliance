@@ -44,7 +44,7 @@
                 ul.dropdown.menu data-dropdown-menu=true
                   li
                     = link_to '#' do
-                      i.fa.fa-ellipsis-v
+                      i.fa.fa-ellipsis-v.fainter
                     ul.menu data-dropdown-menu=true data-alignment='left'
                       li= render 'discussions/edit_modal', discussable: @company, discussion: discussion
                       li= link_to discussion, data: { confirm: "Really destroy “#{discussion.name}” and all contained Topics and Posts?" }, method: :delete do

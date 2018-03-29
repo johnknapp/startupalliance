@@ -5,7 +5,7 @@
       - if current_user and (post.author_id == current_user.id or post.topic.discussion.discussable.creator_id == current_user.id or current_user.admin?)
         li
           = link_to '#' do
-            i.fa.fa-ellipsis-v
+            i.fa.fa-ellipsis-v.fainter
           ul.menu data-dropdown-menu=true
             li= render 'post/edit_modal', post: post
             li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
@@ -17,7 +17,7 @@
       - if current_user and (post.author_id == current_user.id or current_user.admin?)
         li
           = link_to '#' do
-            i.fa.fa-ellipsis-v
+            i.fa.fa-ellipsis-v.fainter
           ul.menu data-dropdown-menu=true
             li= render 'post/edit_modal', post: post
             li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
