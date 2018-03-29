@@ -9,6 +9,9 @@ class StaticController < ApplicationController
     @members = User.where(state: 'active').all
   end
 
+  def about
+  end
+
   def join_thanks
   end
 

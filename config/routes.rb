@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static#home'
 
   get 'welcome',                    to: 'static#welcome',              constraints: { format: 'html' }
+  get 'about',                      to: 'static#about',                constraints: { format: 'html' }
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
   get 'discussions',                to: 'static#discussions',          constraints: { format: 'html' }
   get 'faq',                        to: 'static#faq',                  constraints: { format: 'html' }
