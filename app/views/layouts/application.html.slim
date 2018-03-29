@@ -3,10 +3,11 @@ body.flex-site
   - if Rails.env.production?
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGV37QZ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   main.flex-content
-    .callout.snug-bottom.snug-top.light-grey-background
-      = render 'layouts/topbar'
-      = render 'layouts/alerts'
-      = render 'layouts/impersonation'
+    - unless params[:controller] == 'registrations' and params[:action] == 'new'
+      .callout.snug-bottom.snug-top.light-grey-background
+        = render 'layouts/topbar'
+        = render 'layouts/alerts'
+        = render 'layouts/impersonation'
     .callout.primary-background
       .row
         .small-12.columns
