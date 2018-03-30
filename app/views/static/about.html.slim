@@ -12,18 +12,54 @@
     p.snug-top.show-for-medium &nbsp;
 
     .row
-      .medium-10.medium-offset-1.columns
-        .callout
-          h4.text-center.title-font
-            ' Startup Alliance is a global community of committed entrepreneurs, driving innovation and creating value worldwide.
+      .large-8.large-offset-2.medium-10.medium-offset-1.columns
+        h4.bold.space-top What we are
+        h5
+          ' Startup Alliance is a global community of entrepreneurs
+          ' committed to driving innovation and creating value worldwide.
+        h5
+          ' We are a subscription and sponsorship based organization with
+          ' cost effective #{link_to 'membership plans', pricing_path}
+          ' suitable for every entrepreneur.
 
-        p.space-top
-          ' We provide online tools and resources to help committed entrepreneurs
+        h4.bold.space-top What we do
+        h5
+          ' We provide online tools and community resources to help entrepreneurs
           ' make connections, overcome challenges and win through collaboration
           ' with qualified peers.
-          '
-        p
-          ' We are particularly interested in helping entrepreneurs who may not live in a startup hub.
-          '
+
+        h4.bold.space-top About our tools
+        h5
+          ' Some of our tools enhance entrepreneurial outcomes
+          ' by reducing distraction and enhancing focus
+          ' on primary objectives.
+        h5
+          ' Other tools
+          ' mitigate the need to live in a startup hub
+          ' by enabling optimal connections and online collaboration with other entrepreneurs.
+
+        h4.bold.space-top About our community resources
+        h5
+          ' We call it
+          | #{link_to 'The Entrepreneur’s Nucleus', nucleus_path}
+          span.faint
+            ' &trade;
+          ' because we consider our community resources the central hub of our global community.
+        h5
+          ' These are interactive resources to facilitate
+          ' problem solving and knowledge sharing and further facilitate collaboration between peers.
+        h5
+          ' In addition to the Discussion Forums, Knowledge Base and Global Virtual Office available now,
+          ' we will deliver additional resources to help entrepreneurs maximize their success.
           '
 
+        h4.bold.space-top We invite your involvement
+        h5
+          ' Startup Alliance exists to support the globalization of entrepreneurship.
+          ' #{link_to 'Membership', pricing_path} is open to
+          ' all committed entrepreneurs, advisors and investors who believe in that mission.
+        h5
+          ' We welcome
+          ' #{mail_to 'hello@startupalliance.com', 'your inquiries', subject: "Hello!", encode: 'hex'}
+          ' and encourage you to learn more through the links in the header and footer.
+          '
