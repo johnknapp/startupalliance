@@ -36,7 +36,7 @@ module ForumsHelper
     discussions.each do |discussion|
       p_query =  p_query.where('posts.id in (?)', discussion.posts.pluck(:id)) # add where clauses
     end
-    p_query # run the query once it's built
+    result = p_query # run the query once it's built
   end
 
   def nucleus_forum_posts
