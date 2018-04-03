@@ -28,10 +28,11 @@
 
 - if current_user and post.unread?(current_user)
   .float-left
-    h5= link_to mark_posts_read_discussion_topic_posts_path(post.topic.discussion,post.topic), data: { confirm: 'Really mark this Post as read?' }, method: :post do
-        i.fa.fa-comments.red-text
-        | &nbsp;
-        | &nbsp;
+    /h5= link_to mark_posts_read_discussion_topic_posts_path(post.topic.discussion,post.topic), data: { confirm: 'Really mark this Post as read?' }, method: :post do
+    h5= link_to mark_post_read_discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really mark this Post as read?' }, method: :post do
+      i.fa.fa-comments.red-text
+      | &nbsp;
+      | &nbsp;
 
 p.scale-to-90
   | #{link_to post.author.name, vanity_path(post.author.username)}

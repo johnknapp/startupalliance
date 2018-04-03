@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:update, :destroy]
+  before_action :set_post, only: [:update, :destroy, :mark_post_read]
   load_and_authorize_resource
 
   # POST
@@ -50,7 +50,16 @@ class PostsController < ApplicationController
       these = Topic.find_by_pid(params[:topic_id]).posts
     end
     if Post.mark_collection_as_read(these, current_user)
-      redirect_back fallback_location: discussions_path, alert: 'Those Posts were marked as nread'
+      redirect_back fallback_location: discussions_path, alert: 'Those Posts were marked as unread'
+    else
+      redirect_back fallback_location: discussions_path, alert: 'There was an error!'
+    end
+  end
+
+  # POST
+  def mark_post_read
+    if @post.mark_as_read!(for: current_user)
+      redirect_back fallback_location: discussions_path, alert: 'That post was marked as unread'
     else
       redirect_back fallback_location: discussions_path, alert: 'There was an error!'
     end

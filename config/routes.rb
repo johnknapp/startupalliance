@@ -34,6 +34,9 @@ Rails.application.routes.draw do
         collection do
           post :mark_posts_read
         end
+        member do
+          post :mark_post_read
+        end
       end
     end
     collection do

@@ -39,6 +39,7 @@ class Ability
         can :manage_team,           Company
         can :search_results,        Discussion
         can :mark_posts_read,       Post
+        can :mark_post_read,        Post
         # seems skills and traits can be set and unset on user
 
       else # no role means they are non-auth

@@ -31,12 +31,13 @@ module ForumsHelper
     end
   end
 
-  def discussions_posts(discussions)
-    p_query = Post
+  def unread_posts_count(discussions,user)
+    pq = Post
     discussions.each do |discussion|
-      p_query =  p_query.where('posts.id in (?)', discussion.posts.pluck(:id)) # add where clauses
+      discussion.posts
+      pq =  pq.where('posts.id in (?)', discussion.posts.pluck(:id)) # add where clauses
     end
-    result = p_query # run the query once it's built
+    pq.unread_by(user).count
   end
 
   def nucleus_forum_posts

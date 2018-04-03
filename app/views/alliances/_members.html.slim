@@ -11,9 +11,9 @@
     .column
       .callout.small.shadow
 
-        - if (current_user and @alliance.members.include?(current_user)) and discussions_posts(@alliance.discussions).unread_by(member).present?
+        - if current_user and @alliance.members.include?(member) and unread_posts_count(@alliance.discussions,member) != 0
           p.scale-to-90.text-center.alert-text.little-snug-bottom
-            ' #{discussions_posts(@alliance.discussions).unread_by(member).count} unread discussion #{'post'.pluralize(discussions_posts(@alliance.discussions).unread_by(member).count)}!
+            ' #{unread_posts_count(@alliance.discussions,member)} unread #{'post'.pluralize(unread_posts_count(@alliance.discussions,member))}!
 
         - if current_user != member
           .float-right
