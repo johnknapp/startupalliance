@@ -61,7 +61,7 @@ USERNAME_EXCLUSIONS = %w[
   help
   image
   images
-  join_thanks
+  thanks_join
   join-thanks
   leader
   leaders

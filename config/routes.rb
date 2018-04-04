@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get 'faq',                        to: 'static#faq',                  constraints: { format: 'html' }
   get 'code_of_conduct',            to: 'static#code_of_conduct',      constraints: { format: 'html' }
   get 'commitment_pledge',          to: 'static#commitment_pledge',    constraints: { format: 'html' }
-  get 'join_thanks',                to: 'static#join_thanks',          constraints: { format: 'html' }
-  get 'activate_thanks',            to: 'static#activate_thanks',      constraints: { format: 'html' }
+  get 'thanks_guest',               to: 'static#thanks_guest',         constraints: { format: 'html' }
+  get 'thanks_join',                to: 'static#thanks_join',          constraints: { format: 'html' }
+  get 'thanks_activate',            to: 'static#thanks_activate',      constraints: { format: 'html' }
   get 'sponsorship',                to: 'static#sponsorship',          constraints: { format: 'html' }
   get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
   get 'compare_plans',              to: 'static#compare_plans',        constraints: { format: 'html' }

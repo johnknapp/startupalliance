@@ -12,10 +12,13 @@ class StaticController < ApplicationController
   def about
   end
 
-  def join_thanks
+  def thanks_guest
   end
 
-  def activate_thanks
+  def thanks_join
+  end
+
+  def thanks_activate
     @user = current_user
   end
 

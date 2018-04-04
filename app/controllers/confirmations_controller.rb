@@ -52,7 +52,7 @@ class ConfirmationsController < Devise::ConfirmationsController
       end
       set_flash_message :notice, :confirmed
       sign_in(resource)
-      redirect_to activate_thanks_path
+      redirect_to thanks_activate_path
       # sign_in_and_redirect resource_name, resource
     else
       redirect_to controller: 'confirmations', action: 'show', confirmation_token: resource.confirmation_token, error: 'true'
