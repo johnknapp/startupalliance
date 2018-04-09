@@ -12,14 +12,12 @@
     i.success-text.fa.fa-lg.fa-trophy
 
 .row
-  .large-12.columns
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
     = render 'partials/video_home'
-    .row
-      .large-8.large-offset-2.medium-10.medium-offset-1.columns
-        .callout.accent.little-space-top.shadow
-          h4.bold.primary-text.text-center.little-space-bottom
-            ' See how we address challenges entrepreneurs face...
-          = render 'partials/problems_solved'
+    = render 'partials/problems_solved'
+
+.row
+  .large-12.columns
     - if !current_user
       .callout.accent.little-space-top.shadow
         h4.bold.primary-text.text-center.little-space-bottom See how we offer success to every committed entrepreneur...
