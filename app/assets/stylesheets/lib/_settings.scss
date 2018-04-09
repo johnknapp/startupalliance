@@ -115,6 +115,7 @@ $foundation-palette: (
 .warning { color: map-get($foundation-palette, warning); }
 
 $light-gray: #f4f4f4;
+$accent: #99C7E3;
 //$light-gray: #f8f8f8;
 //$light-gray: #f1eef7;
 $medium-gray: #cacaca;
@@ -262,14 +263,14 @@ $input-error-font-weight: $global-weight-bold;
 
 $accordion-background: $white;
 $accordion-plusminus: true;
-$accordion-title-font-size: rem-calc(12);
+$accordion-title-font-size: rem-calc(18);
 $accordion-item-color: $primary-color;
-$accordion-item-background-hover: $secondary-color;
+$accordion-item-background-hover: $accent;
 $accordion-item-padding: 1.25rem 1rem;
 $accordion-content-background: $white;
-$accordion-content-border: 1px solid $light-gray;
+$accordion-content-border: 1px solid $medium-gray;
 $accordion-content-color: $body-font-color;
-$accordion-content-padding: 1rem;
+$accordion-content-padding: .75rem;
 
 // 8. Accordion Menu
 // -----------------

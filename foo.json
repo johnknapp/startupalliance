@@ -1,0 +1,624 @@
+[{
+  "title": "Company",
+  "children": [{
+    "title": "Company overview",
+    "children": [{
+      "title": "History & management",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please provide a briefing on $company, including everything we need to know about their history, senior leadership, and core product categories."
+    }, {
+      "title": "Product & service portfolio",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please provide a detailed review of $company's product and service portfolio, and summarize their target customer(s)."
+    }, {
+      "title": "Customer base",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please provide a detailed analysis of $company's customer base. Who are they, where are they, and what motivates them?"
+    }, {
+      "title": "Future plans & opportunities",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What is $company's senior management saying about company priorities, opportunities for growth, and new markets for expansion? Please examine recent media coverage, earnings call transcripts, and any other statements available online."
+    }, {
+      "title": "Recent partnerships",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please provide an overview of $company's recent partnerships, sponsorships, and public initiatives. Please include both business-related and philanthropic (i.e. in the realm of corporate social responsibility)."
+    }, {
+      "title": "Market-size",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        },
+        "country": {
+          "label": "Enter country name (or \"global\")",
+          "description": "We currently support one country (or a general global figure) per request.",
+          "type": "country"
+        },
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What is the $country market-size (TAM) for $company in the $industry industry?"
+    }]
+  }, {
+    "title": "Competitive landscape",
+    "children": [{
+      "title": "Major competitors",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Who are $company's three major competitors and how are they differentiated from product and brand positioning perspectives?"
+    }, {
+      "title": "Major advantage in the market",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What is $company's competitive advantage and what are the market mechanics that would prove or disprove that advantage?"
+    }, {
+      "title": "Social presence",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "How does $company's social presence compare to that of its top three competitors? Please provide an x-ray on how active competitors are on the various social channels, type of content they’re posting, and the size and relative engagement levels of their audiences."
+    }, {
+      "title": "Marketing campaigns",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What were the most successful marketing campaigns run by $company in the past three years, and what impact did they have on the brand?"
+    }, {
+      "title": "Growth drivers",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What were the primary drivers of $company's growth in market share over the past few years and what strategies are they most likely to employ going forward?"
+    }]
+  }, {
+    "title": "Prospecting",
+    "children": [{
+      "title": "Build list of companies",
+      "inputs": {
+        "listSize": {
+          "label": "Set list size",
+          "description": "We currently support up to 10 per request.",
+          "type": "number",
+          "min": 1,
+          "max": 10
+        },
+        "criteria": {
+          "label": "Enter selection criteria",
+          "description": "E.g. only select companies with \u003E50 employees",
+          "type": "input"
+        },
+        "include": {
+          "label": "For each, find\u002Finclude...",
+          "description": "E.g. name, contact email, linkedin, etc",
+          "type": "input"
+        }
+      },
+      "question": "Build me a list of up to $listSize companies that meet the following criteria: $criteria. For each, please include $include."
+    }, {
+      "title": "Identify contacts at company",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        },
+        "listSize": {
+          "label": "Set list size",
+          "description": "We currently support up to 10 per request.",
+          "type": "number",
+          "min": 1,
+          "max": 10
+        },
+        "criteria": {
+          "label": "Enter selection criteria",
+          "description": "E.g. only select companies with \u003E50 employees",
+          "type": "input"
+        },
+        "include": {
+          "label": "For each, find\u002Finclude...",
+          "description": "E.g. name, contact email, linkedin, etc",
+          "type": "input"
+        }
+      },
+      "question": "Build me a list of up to $listSize, people at $company that meet the following criteria: $criteria. For each, please include $include."
+    }, {
+      "title": "Best companies in industry",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        },
+        "listSize": {
+          "label": "Set list size",
+          "description": "We currently support up to 10 per request.",
+          "type": "number",
+          "min": 1,
+          "max": 10
+        },
+        "criteria": {
+          "label": "Enter selection criteria",
+          "description": "E.g. only select companies with \u003E50 employees",
+          "type": "input"
+        },
+        "include": {
+          "label": "For each, find\u002Finclude...",
+          "description": "E.g. name, contact email, linkedin, etc",
+          "type": "input"
+        }
+      },
+      "question": "Build me a list of up to $listSize companies in the $industry industry that meet the following criteria: $criteria. For each, please include $include."
+    }]
+  }, {
+    "title": "Brand strategy",
+    "children": [{
+      "title": "Strategy overview",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What is $company's overarching brand and marketing strategy and how has it performed?"
+    }, {
+      "title": "Most successful marketing campaigns",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What were the most successful marketing campaigns run by $company in the past five years (including relationships with notable spokespersons), and what impact did they have on the brand?"
+    }, {
+      "title": "Most interesting strategies in this space",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Which companies in $company's space are employing the most innovative strategies \u002F tactics to engage their audience via social media and what are those strategies (beyond traditional postings)."
+    }, {
+      "title": "Competitor’s strategies",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What are the most innovative strategies \u002F tactics that $company's competitors are utilizing to grow brand awareness and\u002For engagement."
+    }, {
+      "title": "Thought leadership",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please assess and examine $company's thought leadership within their industry, identifying any white papers, proprietary surveys and data, views they published on product category, indications of how they are generally regarded by their peers, etc."
+    }, {
+      "title": "Awards & recognitions",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please identify all of the awards, honors, and recognitions $company has received in the past 5 years."
+    }, {
+      "title": "Social media snapshot",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please perform an x-ray of $company's Facebook and Twitter presence and provide an overview on the type of content they are posting, how active they are, and an assessment of the size and relative engagement level of their audience."
+    }]
+  }, {
+    "title": "News & announcements",
+    "children": [{
+      "title": "Most important recent news",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please identify and summarize $company's most important events, announcements, and press mentions from the past 3 months."
+    }, {
+      "title": "Prevalent themes & topics",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What themes or topics were most prevalent in $company's press mentions and company announcements over the past 6 months? Please provide a detailed review of where the conversations have been focused."
+    }, {
+      "title": "Tone & sentiment analysis",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "What is the tone and overall market sentiment around $company? Please provide a briefing on the most recent media coverage from the past 3 months and any insights that can be drawn from consumer reactions on social channels."
+    }, {
+      "title": "Thought leadership",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please assess and examine $company's thought leadership within their industry, identifying any white papers, proprietary surveys and data, views they published on product category, indications of how they are generally regarded by their peers, etc."
+    }, {
+      "title": "Awards & recognitions",
+      "inputs": {
+        "company": {
+          "label": "Enter company name",
+          "type": "input"
+        }
+      },
+      "question": "Please identify all of the awards, honors, and recognitions $company has received in the past 5 years."
+    }]
+  }]
+}, {
+  "title": "Industry",
+  "children": [{
+    "title": "Trends and projections",
+    "children": [{
+      "title": "Significant innovations",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What are the most significant innovations and market trends impacting (or threatening) the $industry industry?"
+    }, {
+      "title": "Market-sizing",
+      "inputs": {
+        "country": {
+          "label": "Enter country name (or \"global\")",
+          "description": "We currently support one country (or a general global figure) per request.",
+          "type": "country"
+        },
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What is the $country market-size (TAM) for the $industry industry?"
+    }, {
+      "title": "Biggest opportunities",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What are analysts saying are the biggest opportunities for growth (product or market) within the $industry industry over the next 5 years?"
+    }, {
+      "title": "Change over the last 20 years",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "How has the $industry industry changed in the last 20 years and what companies are leading the charge for disruption currently?"
+    }, {
+      "title": "Next 10 year outlook",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What is the future of the $industry industry and what are experts saying it will look like in 10 years?"
+    }, {
+      "title": "Regulatory environment",
+      "inputs": {
+        "country": {
+          "label": "Enter country name (or \"global\")",
+          "description": "We currently support one country (or a general global figure) per request.",
+          "type": "country"
+        },
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What does the regulatory environment look like for the $country $industry industry and how will it change over the next 10 years?"
+    }]
+  }, {
+    "title": "Market conditions",
+    "children": [{
+      "title": "Market-sizing",
+      "inputs": {
+        "country": {
+          "label": "Enter country name (or \"global\")",
+          "description": "We currently support one country (or a general global figure) per request.",
+          "type": "country"
+        },
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What is the $country market-size (TAM) for the $industry industry?"
+    }, {
+      "title": "Demand drivers for the market",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What are the underlying demand drivers in the $industry industry?"
+    }, {
+      "title": "M&A and funding market",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What has the M&A and funding environment been in the $industry industry over the last 2 years?"
+    }, {
+      "title": "Fastest growing regions",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "Which global region has the fastest growing market for products in the $industry industry and how does this compare to other regions in the world?"
+    }]
+  }, {
+    "title": "Competitive landscape",
+    "children": [{
+      "title": "5 most successful companies",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "What are the five most successful companies in the $industry space?"
+    }, {
+      "title": "Market leaders",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        }
+      },
+      "question": "Who are the three major competitors in the $industry industry and how do they differentiate themselves (products, target markets, brand positioning, etc.)?"
+    }, {
+      "title": "Top influencers in this space",
+      "inputs": {
+        "industry": {
+          "label": "Enter industry\u002Fspace name",
+          "description": "Tip: no need to include \"industry\" at the end.",
+          "type": "input"
+        },
+        "listSize": {
+          "label": "Set list size",
+          "description": "We currently support up to 10 per request.",
+          "type": "number",
+          "min": 1,
+          "max": 10
+        },
+        "criteria": {
+          "label": "Enter selection criteria",
+          "description": "E.g. only select companies with \u003E50 employees",
+          "type": "input"
+        },
+        "include": {
+          "label": "For each, find\u002Finclude...",
+          "description": "E.g. name, contact email, linkedin, etc",
+          "type": "input"
+        }
+      },
+      "question": "Please create a spreadsheet of $listSize influencers in the $industry space who meet the following criteria: $criteria. For each, please include $include."
+    }, {
+      "title": "Companies who meet a criteria",
+      "inputs": {
+        "listSize": {
+          "label": "Set list size",
+          "description": "We currently support up to 10 per request.",
+          "type": "number",
+          "min": 1,
+          "max": 10
+        },
+        "criteria": {
+          "label": "Enter selection criteria",
+          "description": "E.g. only select companies with \u003E50 employees",
+          "type": "input"
+        },
+        "include": {
+          "label": "For each, find\u002Finclude...",
+          "description": "E.g. name, contact email, linkedin, etc",
+          "type": "input"
+        }
+      },
+      "question": "Build me a list of up to $listSize, $companyType that meet the following criteria: $criteria. For each, please include $include."
+    }]
+  }]
+}, {
+  "title": "People",
+  "children": [{
+    "title": "Meeting brief",
+    "inputs": {
+      "name": {
+        "label": "Enter person's name",
+        "type": "input"
+      },
+      "company": {
+        "label": "Enter company name",
+        "type": "input"
+      }
+    },
+    "question": "Please provide a detailed briefing on $name from $company, including a summary of his\u002Fher professional background, achievements in his\u002Fher current position, any insights on his company objectives, and any major media coverage."
+  }, {
+    "title": "Conversation topics",
+    "inputs": {
+      "name": {
+        "label": "Enter person's name",
+        "type": "input"
+      },
+      "company": {
+        "label": "Enter company name",
+        "type": "input"
+      }
+    },
+    "question": "I'm meeting with $name at $company. Please suggest 5 subjects that he\u002Fshe cares about personally that would make for excellent conversation starters."
+  }, {
+    "title": "Build list of people",
+    "inputs": {
+      "listSize": {
+        "label": "Set list size",
+        "description": "We currently support up to 10 per request.",
+        "type": "number",
+        "min": 1,
+        "max": 10
+      },
+      "criteria": {
+        "label": "Enter selection criteria",
+        "description": "E.g. only select companies with \u003E50 employees",
+        "type": "input"
+      },
+      "include": {
+        "label": "For each, find\u002Finclude...",
+        "description": "E.g. name, contact email, linkedin, etc",
+        "type": "input"
+      }
+    },
+    "question": "Build me a list of up to $listSize people that meet the following criteria: $criteria. For each, please include $include."
+  }]
+}, {
+  "title": "Places",
+  "children": [{
+    "title": "Organize travel itinerary",
+    "inputs": {
+      "time": {
+        "label": "Enter time period",
+        "description": "E.g. \"2-3 days\" or \"4 months\"",
+        "type": "input"
+      },
+      "place": {
+        "label": "Enter place name",
+        "type": "input"
+      }
+    },
+    "question": "Put together a travel itinerary for a $time trip to $place, including:"
+  }, {
+    "title": "Find economic data & trends",
+    "inputs": {
+      "place": {
+        "label": "Enter place name",
+        "type": "input"
+      }
+    },
+    "question": "Please help me find stats for $place around:"
+  }, {
+    "title": "Compile a list of places",
+    "inputs": {
+      "listSize": {
+        "label": "Set list size",
+        "description": "We currently support up to 10 per request.",
+        "type": "number",
+        "min": 1,
+        "max": 10
+      },
+      "criteria": {
+        "label": "Enter selection criteria",
+        "description": "E.g. only select companies with \u003E50 employees",
+        "type": "input"
+      },
+      "include": {
+        "label": "For each, find\u002Finclude...",
+        "description": "E.g. name, contact email, linkedin, etc",
+        "type": "input"
+      }
+    },
+    "question": "Build me a list of up to $listSize places that meet the following criteria: $criteria. For each, please include $include."
+  }]
+}, {
+  "title": "Other",
+  "children": [{
+    "title": "Find me stats or data points",
+    "question": "Please help me find stats and hard data to back up this claim:"
+  }, {
+    "title": "Help me understand...",
+    "question": "Please explain why the following phenomenon \u002F trend exists and what impact it has on..."
+  }, {
+    "title": "Prove or disprove a hypothesis",
+    "question": "Using hard data, please prove or disprove this hypothesis:"
+  }, {
+    "title": "Identify best practices \u002F case studies",
+    "question": "Please find excellent examples or case studies of..."
+  }, {
+    "title": "Compare products \u002F services",
+    "question": "Please give me a comparison of the following products\u002Fservice, including price, use, ...."
+  }]
+}]

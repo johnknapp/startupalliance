@@ -14,9 +14,15 @@
 .row
   .large-12.columns
     = render 'partials/video_home'
+    .row
+      .large-8.large-offset-2.medium-10.medium-offset-1.columns
+        .callout.accent.little-space-top.shadow
+          h4.bold.primary-text.text-center.little-space-bottom
+            ' See how we solve problems all entrepreneurs face...
+          = render 'partials/problems_solved'
     - if !current_user
-      .callout.accent.little-space-top.shadow-8dp
-        h3.bold.primary-text.text-center.little-space-bottom Success for every committed entrepreneur...
+      .callout.accent.little-space-top.shadow
+        h4.bold.primary-text.text-center.little-space-bottom See how we offer success to every committed entrepreneur...
         .row.medium-up-2.large-up-3 data-equalizer=true
           .column
             .card.primary.shadow
