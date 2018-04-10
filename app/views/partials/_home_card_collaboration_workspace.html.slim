@@ -1,0 +1,22 @@
+.card.primary.shadow
+  .card-divider.accent-background
+    /h4.bold.text-center Superior results in Collaboration Workspaces for Companies
+    h4.bold.text-center Get better results with a Collaboration Workspace for your Company
+  /h4.bold.text-center Collaboration Workspaces for Companies = superior results
+  /h4.bold.text-center Collaboration Workspaces for Companies seeking superior results
+  .card-section data-equalizer-watch=true
+    p.text-center
+      ' Unite your team to set objectives, overcome challenges and make progress towards your ultimate success using our focus and collaboration enhancing tools.
+    /' Where staff, advisors and investors set objectives, discuss and overcome challenges and track progress towards ultimate success. Tools provided enhance focus and support collaboration.
+    = link_to 'Explore the Company Plan...', pricing_path(anchor: 'company'), class: 'button expanded success bold scale-to-110'
+/.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      /h4.bold.text-center Superior results in Collaboration Workspaces for Companies
+      h4.bold.text-center Start now with Free Associate Membership
+      /h4.bold.text-center Collaboration Workspaces for Companies = superior results
+      /h4.bold.text-center Collaboration Workspaces for Companies seeking superior results
+    .card-section data-equalizer-watch=true
+      p.text-center
+        ' Take this important step towards your ultimate success.
+      = render 'partials/join_form', acqsrc: 'home_page'
