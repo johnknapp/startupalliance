@@ -59,8 +59,8 @@ class User < ApplicationRecord
   end
 
   def subscription
-    if self.subscription_expires_at and self.subscription_expires_at > Time.now.end_of_day and
-        %w[trialing active unpaid].any? { |sub_state| self.subscription_state == sub_state }
+    # All other subscription_states are acceptable, even past_due and unpaid
+    if self.subscription_state != canceled
       if self.plan_name == 'company'
         return 'company'
       elsif self.plan_name == 'alliance'

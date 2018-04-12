@@ -27,7 +27,7 @@ class ConfirmationsController < Devise::ConfirmationsController
 
 
     # interim subscription stuff in advance of stripe:
-    resource.update(subscription_state: 'unpaid', subscribed_at: Time.now, subscription_expires_at: Time.now+1.year)
+    resource.update(subscription_state: 'unpaid', subscribed_at: Time.now.beginning_of_day, subscription_expires_at: Time.now+1.year.end_of_day)
 
     if resource.valid? && resource.password_match?
       self.resource.confirm
