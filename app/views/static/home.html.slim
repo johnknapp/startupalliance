@@ -12,8 +12,14 @@
     i.success-text.fa.fa-lg.fa-trophy
 
 .row
-  .large-8.large-offset-2.medium-10.medium-offset-1.columns
-    = render 'partials/video_home'
+  - if current_user
+    .large-8.large-offset-2.medium-10.medium-offset-1.columns
+      = render 'partials/video_home'
+  - else
+    .large-8.medium-6.columns
+      = render 'partials/video_home'
+    .large-4.medium-6.columns
+      = render 'partials/hbspt'
 
 .row
   .large-12.columns
