@@ -60,7 +60,7 @@ class User < ApplicationRecord
 
   def subscription
     # All other subscription_states are acceptable, even past_due and unpaid
-    if self.subscription_state != canceled
+    if self.subscription_state != 'canceled'
       if self.plan_name == 'company'
         return 'company'
       elsif self.plan_name == 'alliance'
