@@ -14,5 +14,5 @@ body.flex-site
     = javascript_include_tag 'google_analytics'
     = javascript_include_tag 'hotjar'
     - unless %w[registrations sessions passwords confirmations].any? { |ctrlr| controller.controller_name == ctrlr }
-      = javascript_include_tag('http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ab86e837d6b4bf', async: 'async')
+      = javascript_include_tag('https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ab86e837d6b4bf', async: 'async')
 / twitter
