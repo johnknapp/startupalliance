@@ -8,3 +8,7 @@ Alliance.all.each do |a|
   a.update(webmeet_code:  Generator.code(6))
 end
 
+User.update_all(subscribed_at: Time.now)
+User.update_all(subscription_expires_at: Time.now.beginning_of_month-3.months+1.year)
+User.update_all(subscription_state: 'unpaid')
+

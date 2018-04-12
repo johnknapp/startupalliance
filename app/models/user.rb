@@ -58,6 +58,21 @@ class User < ApplicationRecord
     self.plan.name.split('_').last
   end
 
+  def subscription
+    if self.subscription_expires_at and self.subscription_expires_at > Time.now.end_of_day and
+        %w[trialing active unpaid].any? { |sub_state| self.subscription_state == sub_state }
+      if self.plan_name == 'company'
+        return 'company'
+      elsif self.plan_name == 'alliance'
+        return 'alliance'
+      elsif self.plan_name == 'entrepreneur'
+        return 'entrepreneur'
+      elsif self.plan_name == 'associate'
+        return 'associate'
+      end
+    end
+  end
+
   def self.top_page_authors(limit = 10)
     # plan a
     # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/

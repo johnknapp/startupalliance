@@ -22,7 +22,7 @@
             = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
         .row
           .small-4.columns
-            = f.input :work_role, label: 'Your primary professional role', include_blank: 'Select your primary role', collection: PROFESSIONAL_ROLE, required: false, input_html: { class: 'chosen-select' }
+            = f.input :work_role, label: 'Your primary professional role', include_blank: 'Select your primary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
           .small-4.columns
             = f.input :country_code, label: 'Country where you live', required: true, include_blank: 'Select your country', input_html: { class: 'chosen-select' }
           .small-4.columns

@@ -5,9 +5,9 @@ PAGE_STATES                 = %w[Draft Suggestion Published Flagged]
 
 USER_STATES                 = %w[unconfirmed active paused]
 USER_ROLES                  = %w[guest user admin]
-PROFESSIONAL_ROLE           = %w[Owner Marketing Sales Technical Operations Advisor Investor Other]
+WORK_ROLE                   = %w[Owner Marketing Sales Technical Operations Advisor Investor Other Unset]
 
-SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid]
+SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid] # unpaid is free, complementary, vip, etc
 
 WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
 

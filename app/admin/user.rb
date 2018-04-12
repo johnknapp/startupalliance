@@ -71,9 +71,9 @@ ActiveAdmin.register User do
       link_to user.username, vanity_path(user.username)
     end
     column :work_role
-    # column :state
     column :role
     column :plan
+    column :subscription_state
     column :skill_index
     column :trait_index
     # column :company_owner
@@ -87,10 +87,13 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
   filter :email
-  filter :state,        as: :select, collection: USER_STATES
-  filter :role,         as: :select, collection: USER_ROLES
-  filter :work_role,    as: :select, collection: PROFESSIONAL_ROLE
+  filter :state,                as: :select, collection: USER_STATES
+  filter :role,                 as: :select, collection: USER_ROLES
+  filter :work_role,            as: :select, collection: WORK_ROLE
   filter :plan
+  filter :subscribed_at
+  filter :subscription_expires_at
+  filter :subscription_state,   as: :select, collection: SUBSCRIPTION_STATES
 
   form do |f|
     f.inputs 'Edit User' do
@@ -105,10 +108,12 @@ ActiveAdmin.register User do
       f.input :public_traits
       f.input :password
       f.input :password_confirmation
-      f.input :role,          collection: USER_ROLES
-      f.input :state,         collection: USER_STATES
+      f.input :role,                collection: USER_ROLES
+      f.input :state,               collection: USER_STATES
       f.input :plan
-      f.input :acqsrc
+      f.input :subscribed_at
+      f.input :subscription_expires_at
+      f.input :subscription_state,  collection: SUBSCRIPTION_STATES
     end
     f.actions
   end

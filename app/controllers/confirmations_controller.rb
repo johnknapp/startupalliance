@@ -24,6 +24,11 @@ class ConfirmationsController < Devise::ConfirmationsController
     self.resource = resource_class.find_by_confirmation_token(params[resource_name][:confirmation_token]) if params[resource_name][:confirmation_token].present?
     resource.assign_attributes(permitted_params) unless params[resource_name].nil?
     resource.update(state: 'active', role: 'user')
+
+
+    # interim subscription stuff in advance of stripe:
+    resource.update(subscription_state: 'unpaid', subscribed_at: Time.now, subscription_expires_at: Time.now+1.year)
+
     if resource.valid? && resource.password_match?
       self.resource.confirm
       if Rails.env.production?
