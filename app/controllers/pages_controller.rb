@@ -34,7 +34,7 @@ class PagesController < ApplicationController
     else
       @page = Page.new
     end
-    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    # if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
     # else
     #   redirect_to pricing_path(goal: 'page'), alert: 'Please upgrade your Membership Plan!'
     # end
@@ -63,7 +63,7 @@ class PagesController < ApplicationController
   end
 
   def edit
-    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    # if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
     #   true
     # else
     #   redirect_to pricing_path(goal: 'page'), alert: 'Please upgrade your Membership Plan!'

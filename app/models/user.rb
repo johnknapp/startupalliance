@@ -100,7 +100,7 @@ class User < ApplicationRecord
   #  Are we conversing?
   #  Am I on a team with them?
   def messagable_by(current_user)
-    true  if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans } or
+    true  if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions } or
           Conversation.between(self.id,current_user.id).present? or
           CompanyUser.team_mates(self.id,current_user.id) or
           AllianceUser.team_mates(self.id,current_user.id)

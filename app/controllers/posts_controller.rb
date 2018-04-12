@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # POST
   def create
-    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    # if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
     topic = Topic.find params[:post][:topic_id]
     @post = Post.new(post_params)
     @post.topic_id = topic.id
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    # if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
     if @post.update(post_params)
       redirect_to discussion_topic_path(@post.topic.discussion,@post.topic), notice: 'Post was successfully updated'
     else
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    # if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
     @post.destroy
     redirect_back fallback_location: root_path, alert: 'Post was successfully destroyed.'
     # else

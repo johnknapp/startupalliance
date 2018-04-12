@@ -11,7 +11,7 @@
         i.fa.fa-pencil.white-text
   - else
     - if current_user and current_user.confirmed? and current_user != @user
-      - if %w[entrepreneur alliance company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+      - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
         .float-right.pad-right
           h4.bold.text-right.white-text.little-snug-top
             = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do

@@ -35,7 +35,7 @@
   .large-6.large-offset-3.medium-8.medium-offset-2.columns
 
 
-    - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+    - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
       p.bold.little-space-top Personal mission:
       - if @user.mission.present?
         p.snug-top= @user.mission
@@ -99,7 +99,7 @@
           = link_to "#{@user.plan_name.humanize} Member", pricing_path
       p.snug-top.faint Membership plan:
 
-    - if %w[entrepreneur alliance company].any? { |necessary_plans| @user.plan_name == necessary_plans }
+    - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
       p
         strong Social profiles:
       - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?

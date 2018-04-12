@@ -36,7 +36,7 @@
               .text-center Alliances
         tbody
           - @members.each do |member|
-            - if (%w[entrepreneur alliance company].any? { |necessary_plans| member.plan_name == necessary_plans }) or current_user.admin?
+            - if (%w[entrepreneur alliance company].any? { |necessary_subscriptions| member.subscription == necessary_subscriptions }) or current_user.admin?
               tr
                 td{valign='top'}
                   = link_to vanity_path(member.username) do

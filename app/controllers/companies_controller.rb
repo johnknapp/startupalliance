@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    if %w[company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
       @company = Company.new
     else
       redirect_to pricing_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
-    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    if %w[company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
       true
     else
       redirect_to pricing_path(goal: 'company'), alert: 'Please upgrade to a Company Membership!'
@@ -109,7 +109,7 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    if %w[company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
       @company = Company.where(company_params).first_or_initialize
       if @company.new_record?
         @company.founded = string_to_date(params[:company][:founded])
@@ -136,7 +136,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
-    if %w[company].any? { |necessary_plans| current_user.plan_name == necessary_plans }
+    if %w[company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
       founded = string_to_date(params[:company][:founded])
       params[:company].delete :founded
       if current_user == @company.creator
