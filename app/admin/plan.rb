@@ -9,7 +9,7 @@ ActiveAdmin.register Plan do
     column :id
     column :name
     column :amount
-    column :stripe
+    column :stripe_id
     actions
   end
 
