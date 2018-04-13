@@ -107,6 +107,8 @@ USERNAME_EXCLUSIONS = %w[
   tos
   terms_of_use
   terms-of-use
+  webhook
+  webhooks
   wizard
   wizards
 ]

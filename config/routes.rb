@@ -91,6 +91,6 @@ Rails.application.routes.draw do
     put 'users/stop_impersonating', to: 'sessions#stop_impersonating', constraints: { format: 'html' }
   end
 
-  mount StripeEvent::Engine, at: 'stripe_webhooks'
+  mount StripeEvent::Engine, at: 'webhooks_stripe'
 
 end

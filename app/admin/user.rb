@@ -109,7 +109,7 @@ ActiveAdmin.register User do
       f.input :username
       f.input :mission
       f.input :email
-      f.input :work_role,     as: :select, collection: PROFESSIONAL_ROLE
+      f.input :work_role,     as: :select, collection: WORK_ROLE
       # f.input :company_owner
       f.input :public_skills
       f.input :public_traits

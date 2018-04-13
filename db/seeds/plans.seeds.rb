@@ -1,10 +1,11 @@
-plan = [
-    'alliance_month',
-    'company_month',
-    'entrepreneur_year',
-    'alliance_year',
-    'company_year',
-    'associate_year'
+plan = %w[
+  company_year
+  alliance_year
+  entrepreneur_year
+  company_month
+  alliance_month
+  entrepreneur_month
+  associate_year
 ]
 
 plan.each do |p|

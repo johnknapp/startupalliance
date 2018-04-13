@@ -2,11 +2,11 @@
 #   https://github.com/integrallis/stripe_event
 
 if Rails.env.production?
-  StripeEvent.signing_secret    = ENV["STRIPE_SIGNING_SECRET"]
-  Stripe.api_key                = ENV["STRIPE_SECRET_KEY"]
-  Stripe.api_version            = '2017-12-14'
+  StripeEvent.signing_secret    = ENV["STRIPE_ENDPOINT_SECRET"]
+  Stripe.api_key                = ENV["STRIPE_API_KEY"]
+  Stripe.api_version            = '2018-02-28'
 else # dev
   StripeEvent.signing_secret    = ''
   Stripe.api_key                = 'sk_test_0gqafnktKwV7pbt0t1RnWAtu'
-  Stripe.api_version            = '2017-12-14'
+  Stripe.api_version            = '2018-02-28'
 end
