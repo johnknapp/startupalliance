@@ -40,7 +40,7 @@
                 li Browse Entrepreneurs, Alliances, Companies
                 li Join Private Alliances and Company Teams
           .callout.small.accent
-            h5.bold.text-center 15 day free trial
+            h5.bold.text-center 7 day free trial
             - if current_user and current_user.plan_name == 'entrepreneur'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.associate?
@@ -86,7 +86,7 @@
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
-            h5.bold.text-center 15 day free trial
+            h5.bold.text-center 14 day free trial
             - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and (current_user.associate? or current_user.plan_name == 'entrepreneur')
@@ -144,7 +144,7 @@
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
-            h5.bold.text-center 15 day free trial
+            h5.bold.text-center 14 day free trial
             - if current_user and current_user.plan_name == 'company'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.plan_name != 'company'
