@@ -40,7 +40,8 @@
                 li Browse Entrepreneurs, Alliances, Companies
                 li Join Private Alliances and Company Teams
           .callout.small.accent
-            h5.bold.text-center 7 day free trial
+            h5.bold.text-center.primary 7 day free trial
+            h5.bold.text-center.primary.little-snug-top No card required
             - if current_user and current_user.plan_name == 'entrepreneur'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.associate?
@@ -48,10 +49,20 @@
             - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
               p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'entrepreneur'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.bold.text-center
+              /p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'entrepreneur'), class: 'fa-lg button expanded bold success shadow-6dp'
+              ul.vertical.menu.accordion-menu data-accordion-menu=true
+                li.button.expanded.bold.success.shadow-6dp
+                  = link_to 'Choose the Entrepreneur’s Plan', '#', class: 'scale-to-130'
+                  ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='entrepreneur-year'
+                        ' Save with Annual Membership
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='entrepreneur-month'
+                        ' Go Month to Month
+            p.bold.text-center.primary
               ' $4.95 a month, billed annually
-            p.faint.snug-top.text-center
+            p.scale-to-90.snug-top.text-center.primary
               ' $7.95 billed monthly
 
       .column
@@ -86,7 +97,8 @@
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
-            h5.bold.text-center 14 day free trial
+            h5.bold.text-center.primary 14 day free trial
+            h5.bold.text-center.primary.little-snug-top No card required
             - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and (current_user.associate? or current_user.plan_name == 'entrepreneur')
@@ -94,10 +106,21 @@
             - elsif current_user and current_user.plan_name == 'company'
               p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.bold.text-center
+              /p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
+              ul.vertical.menu.accordion-menu data-accordion-menu=true
+                li.button.expanded.bold.success.shadow-6dp
+                  = link_to 'Choose the Alliances Plan', '#', class: 'scale-to-130'
+                  ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='alliance-year'
+                        ' Save with Annual Membership
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='alliance-month'
+                        ' Go Month to Month
+
+            p.bold.text-center.primary
               ' $7.95 a month, billed annually
-            p.faint.snug-top.text-center
+            p.scale-to-90.snug-top.text-center.primary
               ' $10.95 billed monthly
 
       .column
@@ -144,16 +167,28 @@
                   li.faint
                     ' (Contact any Startup Alliance member)
           .callout.small.accent
-            h5.bold.text-center 14 day free trial
+            h5.bold.text-center.primary 14 day free trial
+            h5.bold.text-center.primary.little-snug-top No card required
             - if current_user and current_user.plan_name == 'company'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.plan_name != 'company'
               p= link_to 'Upgrade to Company Plan', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
             - else
-              p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
-            p.bold.text-center
+              /p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
+              ul.vertical.menu.accordion-menu data-accordion-menu=true
+                li.button.expanded.bold.success.shadow-6dp
+                  = link_to 'Choose the Company Plan', '#', class: 'scale-to-130'
+                  ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='company-year'
+                        ' Save with Annual Membership
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='company-month'
+                        ' Go Month to Month
+
+            p.bold.text-center.primary
               ' $9.95 a month, billed annually
-            p.faint.snug-top.text-center
+            p.scale-to-90.snug-top.text-center.primary
               ' $12.95 billed monthly
 
     p.text-center If you represent an incubator or accelerator, please #{mail_to 'hello@startupalliance.com', 'inquire about group subscriptions and sponsorship opportunities', subject: "Group Subscriptions & Sponsorship", encode: 'hex'}.
@@ -193,3 +228,4 @@
             p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'associate'), class: 'fa-lg button expanded bold success shadow-6dp'
           p.scale-to-90.text-center
             ' Membership is open to all committed entrepreneurs
+= render 'partials/price_join_modals'

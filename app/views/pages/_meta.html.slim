@@ -22,11 +22,11 @@
         br
         ' By: #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
       - elsif @page.state == 'Suggestion'
-          ' Suggested #{@page.updated_at.strftime('%b %d, %Y')}
-          ' by #{link_to @page.author.name, vanity_path(@page.author.username)}
+        ' Suggested #{@page.updated_at.strftime('%b %d, %Y')}
+        ' by #{link_to @page.author.name, vanity_path(@page.author.username)}
       - else
-          ' Draft last edited #{@page.updated_at.strftime('%b %d, %Y')}
-          ' by #{link_to @page.author.name, vanity_path(@page.author.username)}
+        ' Draft last edited #{@page.updated_at.strftime('%b %d, %Y')}
+        ' by #{link_to @page.author.name, vanity_path(@page.author.username)}
   - if @page.audits.present?
     ul.snug-top.vertical.menu.accordion-menu data-accordion-menu=true
       li.faint
