@@ -1,11 +1,14 @@
 // Create a Stripe client.
-var stripe = Stripe('pk_test_As4q7e0EyphQP9ncUqCCBlPJ');
+if ("#{Rails.env}" == 'production') {
+  var stripe = Stripe('pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc');
+} else {
+  var stripe = Stripe('pk_test_As4q7e0EyphQP9ncUqCCBlPJ');
+}
 
 // Create an instance of Elements.
 var elements = stripe.elements();
 
 // Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
 var style = {
   base: {
     color: '#32325d',
@@ -55,17 +58,17 @@ form.addEventListener('submit', function(event) {
     }
   });
 
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('card-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'token');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+  }
+
 });
-
-function stripeTokenHandler(token) {
-  // Insert the token ID into the form so it gets submitted to the server
-  var form = document.getElementById('card-form');
-  var hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'token');
-  hiddenInput.setAttribute('value', token.id);
-  form.appendChild(hiddenInput);
-
-  // Submit the form
-  form.submit();
-}

@@ -8,4 +8,4 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( stripe_element_dev.js stripe_element_prod.js modernizr.js foundation-datepicker.js foundation-select.css foundation-select.js )
+Rails.application.config.assets.precompile += %w( stripe_elements.js.erb modernizr.js foundation-datepicker.js foundation-select.css foundation-select.js )

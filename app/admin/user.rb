@@ -55,13 +55,14 @@ ActiveAdmin.register User do
           end
         end
         jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
-        jk = User.find 1 if Rails.env.development
+        jk = User.find 1 if Rails.env.development?
         Page.where(author_id: resource.id).update_all(author_id: jk.id)
         AllianceUser.where(user_id: resource.id).destroy_all
         CompanyUser.where(user_id: resource.id).destroy_all
         UserSkill.where(user_id: resource.id).destroy_all
         UserTrait.where(user_id: resource.id).destroy_all
         Conversation.includes?(resource).destroy_all
+        Stripe::Customer.retrieve(id: resource.stripe_customer_id).delete
       end
 
   end
@@ -98,6 +99,7 @@ ActiveAdmin.register User do
   filter :role,                 as: :select, collection: USER_ROLES
   filter :work_role,            as: :select, collection: WORK_ROLE
   filter :plan
+  filter :stripe_customer_id
   filter :subscribed_at
   filter :subscription_expires_at
   filter :subscription_state,   as: :select, collection: SUBSCRIPTION_STATES

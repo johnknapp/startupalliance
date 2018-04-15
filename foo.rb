@@ -127,7 +127,7 @@ subscription.delete(at_period_end: true) # if trialing, at trial period end
 # Generating a card token via api incurs PCI compliance issues
 #     It's preferable to use Checkout or Elements client side
 
-card = Stripe::Token.create(
+token = Stripe::Token.create(
     card: {
         number: 4242424242424242,
         exp_month: 12,
@@ -140,6 +140,16 @@ customer = Stripe::Customer.retrieve(id: jk.id)
 
 # Once you have a token, it's easy to add a source to a customer
 
-customer.sources.create(card: card.id)
+customer.sources.create(card: token.id)
+
+customer.default_source
 
 customer.delete # all gone
+
+User.all.each do |u|
+  customer = Stripe::Customer.create(email: u.email)
+  puts customer.id
+  u.stripe_customer_id = customer.id
+  u.save
+end
+

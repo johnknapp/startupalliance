@@ -1,31 +1,48 @@
 - content_for :page_header do
-  h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Update your Account
+  h2.bold.little-space-top.white-text.text-center
+    ' Account Settings for #{current_user.name}
+  h4.bold.medium-grey-text.text-center
+    ' Membership Plan: #{@user.plan_name.humanize}
+
 .row
   .large-10.large-offset-1.medium-12.columns
     .float-right
-      p.text-right.snug-top Each member makes Startup Alliance more useful to all of us!
-    p.snug-top.faint
-      ' You have #{@user.plan_name.humanize} Membership
+      /p.text-right.snug-top You have been a valued member of Startup Alliance since #{current_user.created_at.strftime('%B %e, %Y')}
+      p.text-right.snug-top.faint
+        - if current_user.card_brand.present?
+          ' Card on file: #{current_user.card_brand} ending in #{current_user.last4} (expiry: #{current_user.card_expiry.strftime('%b. %y')})
+          | &nbsp;
+          | &nbsp;
+          = link_to card_path(current_user.stripe_customer_id), data: { confirm: "Really remove this card from your account?" }, method: :delete do
+            i.fa.fa-trash
+        - else
+          ' #{link_to 'Add credit or debit card', new_card_path, class: 'scale-to-90'}
+          a data-open='card-info' class='accent'
+            i.fa.fa-info-circle
+          .reveal.small#card-info data-reveal=true
+            p.text-center
+              ' Paid subscriptions require you to add a credit or debit card to your Startup Alliance Account.
+              '
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
       .form-inputs
         .row
-          .small-3.columns
-            = f.input :email, required: true
-          .small-3.columns
+          .medium-3.columns
             = f.input :first_name, required: true
-          .small-3.columns
+          .medium-3.columns
             = f.input :last_name, required: true
-          .small-3.columns
+          .medium-3.columns
+            = f.input :email, required: true
+          .medium-3.columns
             = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
+
         .row
-          .small-4.columns
+          .medium-4.columns
             = f.input :work_role, label: 'Your primary professional role', include_blank: 'Select your primary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
-          .small-4.columns
+          .medium-4.columns
             = f.input :country_code, label: 'Country where you live', required: true, include_blank: 'Select your country', input_html: { class: 'chosen-select' }
-          .small-4.columns
+          .medium-4.columns
             = f.input :time_zone, label: 'Time zone where you live', required: true, priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select your time zone', input_html: { class: 'chosen-select' }
         - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
           .row.little-space-top
@@ -50,11 +67,11 @@
               em
                 ' (Recommended)
             .row
-              .small-4.columns
+              .medium-4.columns
                 = f.input :twitter_profile, label: 'Twitter'
-              .small-4.columns
+              .medium-4.columns
                 = f.input :linkedin_profile, label: 'LinkedIn'
-              .small-4.columns
+              .medium-4.columns
                 = f.input :website, label: 'Personal website'
         .row
           .medium-12.columns

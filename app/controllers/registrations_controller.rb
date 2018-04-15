@@ -79,6 +79,8 @@ class RegistrationsController < Devise::RegistrationsController
     if valid_email?(params[:user][:email]) == 0 and valid_user?(params['g-recaptcha-response'])
       # raise('tasty foo')
       super
+      customer = Stripe::Customer.create(email: current_user.email)
+      current_user.update_attribute(:stripe_customer_id, customer.id)
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
 #######      current_user.update_attribute(:plan, params[:user][:plan])
       if Rails.env.production?
@@ -233,13 +235,14 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
       jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
-      jk = User.find 1 if Rails.env.development
+      jk = User.find 1 if Rails.env.development?
       Page.where(author_id: @user.id).update_all(author_id: jk.id) # reset the author
       AllianceUser.where(user_id: @user.id).destroy_all
       CompanyUser.where(user_id: @user.id).destroy_all
       UserSkill.where(user_id: @user.id).destroy_all
       UserTrait.where(user_id: @user.id).destroy_all
       Conversation.includes?(@user).destroy_all
+      Stripe::Customer.retrieve(id: @user.stripe_customer_id).delete
     end
 
 end
