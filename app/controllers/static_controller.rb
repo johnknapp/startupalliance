@@ -48,9 +48,6 @@ class StaticController < ApplicationController
   def sponsorship
   end
 
-  def compare_plans
-  end
-
   def privacy
   end
 

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get 'thanks_activate',            to: 'static#thanks_activate',      constraints: { format: 'html' }
   get 'sponsorship',                to: 'static#sponsorship',          constraints: { format: 'html' }
   get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
-  get 'compare_plans',              to: 'static#compare_plans',        constraints: { format: 'html' }
   get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
   get 'terms',                      to: 'static#terms',                constraints: { format: 'html' }
   get 'learn_more',                 to: 'static#learn_more',           constraints: { format: 'html' }

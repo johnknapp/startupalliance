@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(
-          :email, :acqsrc, :plan_id, :time_zone
+          :email, :acqsrc, :plan_id, :stripe_coupon_code, :time_zone
       )
     end
 
@@ -71,6 +71,7 @@ class ApplicationController < ActionController::Base
           :mission,
           :bio,
           :email,
+          :stripe_coupon_code,
           :password,
           :password_confirmation,
           :current_password,
