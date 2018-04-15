@@ -1,6 +1,8 @@
 #   https://github.com/stripe/stripe-ruby
 #   https://github.com/integrallis/stripe_event
 
+# Stripe public keys in _constants.rb
+
 if Rails.env.production?
   StripeEvent.signing_secret    = ENV["STRIPE_ENDPOINT_SECRET"]
   Stripe.api_key                = ENV["STRIPE_API_KEY"]

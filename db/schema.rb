@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308182436) do
+ActiveRecord::Schema.define(version: 20180414205823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -366,6 +366,9 @@ ActiveRecord::Schema.define(version: 20180308182436) do
     t.integer  "posts_count",             default: 0,             null: false
     t.integer  "topics_count",            default: 0,             null: false
     t.string   "work_role",               default: "Unset"
+    t.string   "card_brand"
+    t.string   "last4"
+    t.date     "card_expiry"
     t.index "lower((username)::text) text_pattern_ops", name: "users_username_lower", unique: true, using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

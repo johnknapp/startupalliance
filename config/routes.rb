@@ -61,7 +61,8 @@ Rails.application.routes.draw do
   end
 
   resources :fasts, except: [:index, :show]
-  resources :okrs, except: [:index]
+  resources :okrs,  except: [:index]
+  resources :cards, only:   [:new, :create, :destroy]
 
   resources :alliances do
     member do

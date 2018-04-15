@@ -117,8 +117,8 @@
                         span.red-text.scale-to-90
                           i.fa.fa-envelope
                 li.pad-left= link_to 'Profile', vanity_path(current_user.username)                     if current_user and current_user.confirmed?
-                li.pad-left= link_to 'Settings', edit_user_registration_path                           if current_user and current_user.confirmed?
-                li.pad-left= link_to 'Membership plans', pricing_path                                      if current_user and current_user.confirmed?
+                li.pad-left= link_to 'Account settings', edit_user_registration_path                   if current_user and current_user.confirmed?
+                li.pad-left= link_to 'Membership plans', pricing_path                                  if current_user and current_user.confirmed?
                 li.pad-left= link_to 'Help Center', 'https://support.startupalliance.com'
                 li.pad-left= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
                 li.pad-left.little-space-bottom= link_to 'Sign-out', destroy_user_session_path

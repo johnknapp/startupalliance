@@ -95,4 +95,51 @@ entrepreneur_month = Stripe::Plan.create(
     }
 )
 
+jk = Stripe::Customer.create(email: 'jk@johnknapp.com')
 
+Stripe::Customer.update(jk.id, description: 'awesome')
+
+subscription = Stripe::Subscription.create(
+    customer: jk.id,
+    plan: company_year.id # or our plan.stripe_id string
+)
+
+# Subscribing creates a $0 invoice for trial period, paid in full
+#     and another invoice due at trial end for subscription price
+#     subscription period is trial end date for one year.
+
+# Subscribing without a payment source is fine
+#     Just as long as there is a source by the end of the trial
+#     The trial_will_end webhook lets us email customer to add a source (provides 3 day warning)
+
+# It's easy to set end date for a trial
+wrap_up = Time.now+10.days
+Stripe::Subscription.update(subscription.id, trial_end: wrap_up.to_i)
+
+# or extend it
+subscription = Stripe::Subscription.retrieve(subscription.id)
+new_wrap_up = Time.at(subscription.trial_end)+10.days
+Stripe::Subscription.update(subscription.id, trial_end: new_wrap_up.to_i)
+
+subscription.delete # immediately
+subscription.delete(at_period_end: true) # if trialing, at trial period end
+
+# Generating a card token via api incurs PCI compliance issues
+#     It's preferable to use Checkout or Elements client side
+
+card = Stripe::Token.create(
+    card: {
+        number: 4242424242424242,
+        exp_month: 12,
+        exp_year: 20,
+        cvc: 123
+    }
+)
+
+customer = Stripe::Customer.retrieve(id: jk.id)
+
+# Once you have a token, it's easy to add a source to a customer
+
+customer.sources.create(card: card.id)
+
+customer.delete # all gone

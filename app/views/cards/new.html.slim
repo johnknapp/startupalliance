@@ -1,0 +1,17 @@
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Add card for #{current_user.name}
+.row
+  .large-8.large-offset-2.columns
+    .float-left
+      p.snug-top
+        = link_to edit_user_registration_path do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Back to Account Settings
+    p.text-right.snug-top.space-bottom
+      ' Your card information is stored securely with #{link_to 'Stripe', 'https://stripe.com', target: '_blank'}.
+      '
+    p &nbsp;
+    = render 'form'

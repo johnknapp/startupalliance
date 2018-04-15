@@ -1,3 +1,6 @@
+STRIPE_PK_LIVE              = 'pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc'
+STRIPE_PK_TEST              = 'pk_test_As4q7e0EyphQP9ncUqCCBlPJ'
+
 RECAPTCHA_SITE              = '6LcfhSsUAAAAAKUUu0v5dd-YFBWq-qQ_nSBpjdAL'
 RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
@@ -39,6 +42,8 @@ USERNAME_EXCLUSIONS = %w[
   administrator
   alliance
   alliances
+  card
+  cards
   change_plan
   change_plans
   code_of_conduct

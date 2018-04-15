@@ -1,0 +1,14 @@
+.row
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
+    p We accept all major credit and debit cards
+    = form_tag cards_path, id: 'card-form' do
+      .callout
+        #card-element
+        #card-errors role='alert'
+      = submit_tag 'Add card to your Account', class: 'button'
+      = link_to 'Exit', :back, class: 'button accent'
+
+- if Rails.env.production?
+  = javascript_include_tag 'stripe_element_prod'
+- else
+  = javascript_include_tag 'stripe_element_dev'
