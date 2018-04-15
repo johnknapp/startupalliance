@@ -1,8 +1,8 @@
 // Create a Stripe client.
-if ("#{Rails.env}" == 'production') {
-  var stripe = Stripe('pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc');
-} else {
+if (<%= Rails.env == 'development'%>) {
   var stripe = Stripe('pk_test_As4q7e0EyphQP9ncUqCCBlPJ');
+} else {
+  var stripe = Stripe('pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc');
 }
 
 // Create an instance of Elements.
