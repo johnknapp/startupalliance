@@ -58,6 +58,41 @@ class User < ApplicationRecord
     self.plan.name.split('_').last
   end
 
+  def stripe_customer
+    Stripe::Customer.retrieve(id: self.stripe_customer_id) if self.stripe_customer_id
+  end
+
+  def stripe_subscriptions
+    if Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions.count != 0
+      Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions
+    else
+      nil
+    end
+  end
+
+  def first_subscription_renews_at
+    sub = Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions.first
+    Time.at(sub.current_period_end) if sub
+  end
+
+  def subscribe_to_stripe(stripe_plan,coupon)
+    plan = Plan.where(stripe_id: stripe_plan).first
+    if plan.present?
+      if coupon and VALID_STRIPE_COUPONS.include? coupon
+        Stripe::Subscription.create(
+            customer: self.stripe_customer_id,
+            coupon: coupon,
+            plan: plan.stripe_id
+        )
+      else
+        Stripe::Subscription.create(
+            customer: self.stripe_customer_id,
+            plan: plan.stripe_id
+        )
+      end
+    end
+  end
+
   def subscription
     # All other subscription_states are acceptable, even past_due and unpaid
     if self.subscription_state != 'canceled'

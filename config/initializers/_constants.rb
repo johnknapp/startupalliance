@@ -1,3 +1,13 @@
+ENTPRENEUR_YEAR_MTHLY       = '$4.95'
+ENTPRENEUR_MONTH            = '$7.95'
+ENTPRENEUR_YEAR             = '$59.40'
+ALLIANCE_YEAR_MTHLY         = '$7.95'
+ALLIANCE_MONTH              = '$10.95'
+ALLIANCE_YEAR               = '$95.40'
+COMPANY_YEAR_MTHLY          = '$9.95'
+COMPANY_MONTH               = '$12.95'
+COMPANY_YEAR                = '$119.40'
+
 VALID_STRIPE_COUPONS        = %w[charter6]
 STRIPE_PK_LIVE              = 'pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc'
 STRIPE_PK_TEST              = 'pk_test_As4q7e0EyphQP9ncUqCCBlPJ'

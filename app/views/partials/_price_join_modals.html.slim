@@ -5,7 +5,7 @@
   h5.bold Monthly Entrepreneur’s Jet Fuel Membership
   ul.indented-2
     li 7 day risk free trial (No card required)
-    li Billed $7.95 monthly
+    li Billed #{ENTPRENEUR_MONTH} monthly
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -28,7 +28,7 @@
   h5.bold Annual Entrepreneur’s Jet Fuel Membership
   ul.indented-2
     li 7 day risk free trial (No card required)
-    li Billed $59.40 annually (You save $36)
+    li Billed #{ENTPRENEUR_YEAR} annually (You save $36)
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -51,7 +51,7 @@
   h5.bold Monthly Private Alliances Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed $10.95 monthly
+    li Billed #{ALLIANCE_MONTH} monthly
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -74,7 +74,7 @@
   h5.bold Annual Private Alliances Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed $95.40 annually (You save $36)
+    li Billed #{ALLIANCE_YEAR} annually (You save $36)
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -97,7 +97,7 @@
   h5.bold Monthly Company Workspaces Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed $12.95 monthly
+    li Billed #{COMPANY_MONTH} monthly
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -120,7 +120,7 @@
   h5.bold.primary Annual Company Workspaces Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed $119.40 annually (You save $36)
+    li Billed #{COMPANY_YEAR} annually (You save $36)
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification

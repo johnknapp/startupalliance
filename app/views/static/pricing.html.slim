@@ -60,10 +60,13 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='entrepreneur-month'
                         ' Go Month to Month
-            p.bold.text-center.primary
-              ' $4.95 a month, billed annually
-            p.scale-to-90.snug-top.text-center.primary
-              ' $7.95 billed monthly
+            .callout
+              h5.bold.text-center.primary
+                ' Introductory Pricing:
+              p.bold.text-center.primary
+                ' #{ENTPRENEUR_YEAR_MTHLY} a month, billed annually
+              p.scale-to-90.snug-top.text-center.primary
+                ' #{ENTPRENEUR_MONTH} billed monthly
 
       .column
         p.hide-for-large &nbsp;
@@ -117,11 +120,13 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='alliance-month'
                         ' Go Month to Month
-
-            p.bold.text-center.primary
-              ' $7.95 a month, billed annually
-            p.scale-to-90.snug-top.text-center.primary
-              ' $10.95 billed monthly
+            .callout
+              h5.bold.text-center.primary
+                ' Introductory Pricing:
+              p.bold.text-center.primary
+                ' #{ALLIANCE_YEAR_MTHLY} a month, billed annually
+              p.scale-to-90.snug-top.text-center.primary
+                ' #{ALLIANCE_MONTH} billed monthly
 
       .column
         p.hide-for-large &nbsp;
@@ -185,11 +190,13 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='company-month'
                         ' Go Month to Month
-
-            p.bold.text-center.primary
-              ' $9.95 a month, billed annually
-            p.scale-to-90.snug-top.text-center.primary
-              ' $12.95 billed monthly
+            .callout
+              h5.bold.text-center.primary
+                ' Introductory Pricing:
+              p.bold.text-center.primary
+                ' #{COMPANY_YEAR_MTHLY} a month, billed annually
+              p.scale-to-90.snug-top.text-center.primary
+                ' #{COMPANY_MONTH} billed monthly
 
     p.text-center If you represent an incubator or accelerator, please #{mail_to 'hello@startupalliance.com', 'inquire about group subscriptions and sponsorship opportunities', subject: "Group Subscriptions & Sponsorship", encode: 'hex'}.
     - if !current_user
