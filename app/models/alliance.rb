@@ -6,6 +6,12 @@ class Alliance < ApplicationRecord
   has_many    :members, through: :alliance_users, source: :user
   belongs_to  :creator, class_name: :User
 
+  enum state: {
+      Active:           0,
+      Frozen:           1,
+      Closed:           2
+  }
+
   def member_companies
     arr = []
     self.members.each do |member|

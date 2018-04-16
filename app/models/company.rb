@@ -15,6 +15,12 @@ class Company < ApplicationRecord
 
   validates :url, url: { allow_nil: true, allow_blank: true, no_local: true }
 
+  enum state: {
+      Active:           0,
+      Frozen:           1,
+      Closed:           2
+  }
+
   enum phases: {
       Ideation:         0,
       Validation:       1,

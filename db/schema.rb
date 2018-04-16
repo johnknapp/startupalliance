@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416013125) do
+ActiveRecord::Schema.define(version: 20180416210817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180416013125) do
     t.boolean  "recruiting",   default: true
     t.boolean  "is_unlisted",  default: false
     t.string   "invite_token"
+    t.integer  "state",        default: 0
   end
 
   create_table "audits", force: :cascade do |t|
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180416013125) do
     t.boolean  "recruiting",     default: true
     t.boolean  "is_unlisted",    default: false
     t.string   "invite_token"
+    t.integer  "state",          default: 0
   end
 
   create_table "company_sakpis", force: :cascade do |t|
