@@ -69,20 +69,44 @@ class RegistrationsController < Devise::RegistrationsController
       role = params[:user][:r]
       if user
         # add existing non-auth user to entity
-        add_user_to_entity(user,entity,token,role)
-        redirect_to user_session_path, notice: 'You have been added to the team. Please sign-in!' and return
+        add_user_to_entity(user,entity,token,role) if params[:user][:entity]
+        redirect_to user_session_path, notice: 'Please sign-in!' and return
       end
     elsif params[:user][:email].blank?
       redirect_back(fallback_location: root_path, alert: 'Please enter your email!') and return
     end
 
     if valid_email?(params[:user][:email]) == 0 and valid_user?(params['g-recaptcha-response'])
-      # raise('tasty foo')
       super
+
+      # Stripe:
+      #   We always want to have a Customer
+      #   We create Subscription if we get a valid plan_id from the join form
+      #   We apply a Coupon if they submit a valid one
+      #     Keep constants in sync with the Coupons!
+      #     TODO: Check the Coupon against Stripe and abandon the constant
+
       customer = Stripe::Customer.create(email: current_user.email)
-      current_user.update_attribute(:stripe_customer_id, customer.id)
+      current_user.update_attribute(stripe_customer_id: customer.id)
+      plan = Plan.where(id: params[:user][:plan_id]).first
+      if plan.present? # should be fine unless join forms suck
+        if VALID_STRIPE_COUPONS.include? params[:user][:stripe_coupon_code]
+          coupon  = params[:user][:stripe_coupon_code]
+          subscription = Stripe::Subscription.create(
+              customer: customer.id,
+              coupon: coupon,
+              plan: plan.stripe_id
+          )
+        else
+          current_user.update_attribute(:stripe_coupon_code, nil) # they tricked us with invalid coupon so nil it
+          subscription = Stripe::Subscription.create(
+              customer: customer.id,
+              plan: plan.stripe_id
+          )
+        end
+        current_user.update_attribute(subscribed_at: Time.now)
+      end
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
-#######      current_user.update_attribute(:plan, params[:user][:plan])
       if Rails.env.production?
         # $analytics.identify(
         #     anonymous_id:   current_user.pid,
@@ -106,9 +130,8 @@ class RegistrationsController < Devise::RegistrationsController
         # )
         GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
-      current_or_guest_user
       # add new user to entity
-      add_user_to_entity(current_or_guest_user,entity,token,role)
+      add_user_to_entity(current_user,entity,token,role) if params[:user][:entity]
     else
       redirect_back(fallback_location: root_path, alert: 'Either your email is invalid... or you’re a robot!') and return
     end
@@ -242,7 +265,7 @@ class RegistrationsController < Devise::RegistrationsController
       UserSkill.where(user_id: @user.id).destroy_all
       UserTrait.where(user_id: @user.id).destroy_all
       Conversation.includes?(@user).destroy_all
-      Stripe::Customer.retrieve(id: @user.stripe_customer_id).delete
+      Stripe::Customer.retrieve(id: @user.stripe_customer_id).delete if @user.stripe_customer_id
     end
 
 end
