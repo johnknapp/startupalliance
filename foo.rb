@@ -99,9 +99,17 @@ jk = Stripe::Customer.create(email: 'jk@johnknapp.com')
 
 Stripe::Customer.update(jk.id, description: 'awesome')
 
+Stripe::Coupon.create(
+    percent_off: 100,
+    duration: 'repeating',
+    duration_in_months: 6,
+    id: '6-months-free'
+)
+
 subscription = Stripe::Subscription.create(
     customer: jk.id,
-    plan: company_year.id # or our plan.stripe_id string
+    coupon: '6-months-free', # will fail if invalid
+    plan: company-year # or our plan.stripe_id string
 )
 
 # Subscribing creates a $0 invoice for trial period, paid in full

@@ -221,9 +221,9 @@ ActiveRecord::Schema.define(version: 20180415210357) do
     t.string   "name"
     t.integer  "amount"
     t.string   "stripe_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "trial_period_days"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "trial_period_days", default: 0
   end
 
   create_table "posts", force: :cascade do |t|
