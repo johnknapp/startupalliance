@@ -62,7 +62,7 @@ ActiveAdmin.register User do
         UserSkill.where(user_id: resource.id).destroy_all
         UserTrait.where(user_id: resource.id).destroy_all
         Conversation.includes?(resource).destroy_all
-        Stripe::Customer.retrieve(id: resource.stripe_customer_id).delete
+        Stripe::Customer.retrieve(id: resource.stripe_customer_id).delete if resource.stripe_customer_id
       end
 
   end
@@ -101,7 +101,6 @@ ActiveAdmin.register User do
   filter :plan
   filter :stripe_customer_id
   filter :subscribed_at
-  filter :subscription_expires_at
   filter :subscription_state,   as: :select, collection: SUBSCRIPTION_STATES
 
   form do |f|
@@ -121,7 +120,6 @@ ActiveAdmin.register User do
       f.input :state,               collection: USER_STATES
       f.input :plan
       f.input :subscribed_at
-      f.input :subscription_expires_at
       f.input :subscription_state,  collection: SUBSCRIPTION_STATES
     end
     f.actions
