@@ -20,6 +20,7 @@
 //= require google_tag_manager_head
 //= require chosen.jquery
 //= require chosen_select_init
+//= require cookie_notice
 
 $(function(){
   $(document).foundation();
