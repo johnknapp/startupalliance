@@ -2,33 +2,33 @@ doctype html
 html lang="en"
   head
 
-    title == content_for?(:page_title) ? yield(:page_title) : "Startup Alliance – Helping entrepreneurs stay focused, make connections, overcome challenges and win."
+    title == content_for?(:page_title) ? yield(:page_title) : 'Tools and resources helping entrepreneurs connect, overcome challenges and win.'
 
-    /meta name='description' content='The SkillBank mission is to spark the imagination of people who want to learn.'
-    /meta name='keywords'    content='education, learning, career, hobby, skills, skill, activities, activity, skill building'
+    meta name='description'         content='Global community where committed entrepreneurs access essential tools and resources to make connections, overcome challenges and win.'
+    meta name='keywords'            content='entrepreneur, entrepreneurs, entrepreneurship, startups, success, innovation, community, discussions, forums, knowledgebase'
+                                    
+    meta property='og:title'        content='Startup Alliance'
+    meta property='og:type'         content='website'
+    meta property='og:site_name'    content='Startup Alliance'
+    meta property='og:description'  content='Global community where committed entrepreneurs access essential tools and resources to make connections, overcome challenges and win.'
+    meta property='og:url'          content='https://startupalliance.com'
+    meta property='fb:app_id'       content='1756591484387280'
 
-    /meta property='og:title' content='SkillBank'
-    /meta property='og:type' content='website'
-    /meta property='og:site_name' content='SkillBank'
-    /meta property='og:description' content='The SkillBank mission is to spark the imagination of people who want to learn.'
-    /meta property='og:url' content='http://skillbank.io'
-    /meta property='fb:app_id' content='1814078232153628'
+    meta name='apple-mobile-web-app-capable' content='yes'
+    meta name='apple-mobile-web-app-title' content='Startup Alliance'
+    meta name='application-name' content='Startup Alliance'
+    meta name='mobile-web-app-capable' content='yes'
+    meta charset='utf-8'
 
-    /meta name="apple-mobile-web-app-capable" content='yes'
-    /meta name="apple-mobile-web-app-title" content="SkillBank"
-    /meta name="application-name" content="SkillBank"
-    /meta name="mobile-web-app-capable" content='yes'
-    /meta charset="utf-8"
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
 
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2018-2">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2018-2">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2018-2">
-    <link rel="manifest" href="/manifest.json?v=2018-2">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2018-2" color="#1b4995">
-    <link rel="shortcut icon" href="/favicon.ico?v=2018-2">
-    <meta name="theme-color" content="#ffffff">
+    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png?v=2018-2'>
+    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png?v=2018-2'>
+    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png?v=2018-2'>
+    <link rel='manifest' href='/manifest.json?v=2018-2'>
+    <link rel='mask-icon' href='/safari-pinned-tab.svg?v=2018-2' color='#1b4995'>
+    <link rel='shortcut icon' href='/favicon.ico?v=2018-2'>
+    <meta name='theme-color' content='#ffffff'>
 
     - if Rails.env.production?
       /<script src="//load.sumome.com/" data-sumo-site-id="019cfcde3eb2c0c9439868e19c41f8d4636a525214c143b102f25dee47a8d501" async="async"></script>
