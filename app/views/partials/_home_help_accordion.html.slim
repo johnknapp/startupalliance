@@ -1,7 +1,9 @@
-.callout.accent.little-space-top.shadow
-  h3.bold.primary-text.text-center.little-space-bottom
-    ' Help for committed entrepreneurs:
-  ul.accordion.shadow data-accordion='true' data-allow-all-closed='true'
+.callout.accent.little-space-top.shadow-3dp
+  p.bold.primary.text-center.little-snug-bottom
+    ' Our mission is helping you achieve your entrepreneurial dreams.
+  h4.bold.primary-text.text-center
+    ' How can we help you?
+  ul.accordion.shadow-3dp data-accordion='true' data-allow-all-closed='true'
     li.accordion-item data-accordion-item=true
       = link_to 'Help me make my company team more effective', '#', class: 'accordion-title bold text-center'
       .accordion-content data-tab-content=true
@@ -14,21 +16,26 @@
           ' Invite your whole team for one low price and
           ' enhance focus, improve outcomes and collaborate more fully.
           '
-        = link_to 'Learn about Company Workspace Membership...', pricing_path(anchor: 'company'), class: 'button expanded success bold scale-to-110'
+        = link_to 'Learn more about Company Workspace Membership...', pricing_path(anchor: 'company'), class: 'button expanded success bold scale-to-110'
+        p.bold.snug-bottom
+          ' Not the boss?
+          = mail_to '', 'Click to tell them you found help!', subject: 'Help for our team', body: COMPANY_TIP_EMAIL
 
     li.accordion-item data-accordion-item=true
       = link_to 'Help me establish an alliance with entrepreneurs I respect', '#', class: 'accordion-title bold text-center'
       .accordion-content data-tab-content=true
         p
-          ' Invite your people into your
+          ' Invite your people into a
           span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
             | Private Alliance
-          '  to gain deeper insight and broader perspectives
-          ' using the tools it contains.
-          ' You and your alliance members will form lasting bonds and help each other
-          ' make better decisions, overcome challenges and improve outcomes.
+          '  and start gaining deeper insight and broader perspectives using the tools it contains.
+          ' You and the entrepreneurs you invite will form lasting bonds and help
+          ' each other make better decisions, overcome challenges and achieve superior outcomes.
           '
-        = link_to 'Learn about Private Alliance Membership...', pricing_path(anchor: 'alliance'), class: 'button expanded success bold scale-to-110'
+        = link_to 'Learn more about Private Alliance Membership...', pricing_path(anchor: 'alliance'), class: 'button expanded success bold scale-to-110'
+        p.bold.snug-bottom
+          ' Know some awesome entrepreneurs?
+          = mail_to '', 'Click to tell them about Startup Alliance.', subject: 'Cool way we can collaborate', body: ALLIANCE_TIP_EMAIL
 
     li.accordion-item data-accordion-item=true
       = link_to 'Help me make rewarding connections and showcase my talents', '#', class: 'accordion-title bold text-center'
@@ -45,7 +52,10 @@
           ' You’ll meet entrepreneurs from around the world and connect with the ones who can help you most.
           '
           '
-        = link_to 'Learn about Entrepreneur’s Jet Fuel Membership...', pricing_path(anchor: 'entrepreneur'), class: 'button expanded success bold scale-to-110'
+        = link_to 'Learn more about Entrepreneur’s Jet Fuel Membership...', pricing_path(anchor: 'entrepreneur'), class: 'button expanded success bold scale-to-110'
+        p.bold.snug-bottom
+          ' Committed to success as an entrepreneur?
+          = link_to 'Join us today!', pricing_path(anchor: 'entrepreneur')
 
     li.accordion-item data-accordion-item=true
       = link_to 'Help me acquire free startup wisdom from experienced entrepreneurs', '#', class: 'accordion-title bold text-center'
@@ -54,7 +64,7 @@
           ' Startup Alliance offers
           span.bold
             ' Free Associate Membership
-          ' to students, investors, advisors or entrepreneurs who are just starting out.
+          ' for students, investors, advisors or entrepreneurs who are just starting out.
           ' Associate Membership includes access to
           span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ENTREPRENEURS_NUCLEUS_TIP
             | The Entrepreneur’s Nucleus
@@ -63,4 +73,35 @@
         h5.bold.text-center.little-snug-top
           ' Don’t wait, sign-up now!
         = render 'partials/join_form', acqsrc: 'home_page'
-  p.text-center Our mission is helping you achieve your entrepreneurial dreams.
+
+    li.accordion-item data-accordion-item=true
+      = link_to 'Help me discover all the ways you can help me', '#', class: 'accordion-title bold text-center'
+      .accordion-content data-tab-content=true
+        p
+          span.bold
+            ' Happy to!
+          ' Startup Alliance has a one-of-a-kind collection of tools and resources for committed entrepreneurs.
+          ' Each one focused on helping you maximize your success
+          ' and achieve your entrepreneurial dreams.
+          '
+          span.bold
+            ' Take a moment to decide which membership plan is right for you:
+          '
+        ul.indented-2.pad-right.little-snug-top.little-space-bottom
+          li
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=COLLABORATION_WORKSPACE_TIP
+              'Company Workspace Membership
+            '  — For goal driven company leaders who want to increase the performance of their company.
+          li
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
+              'Private Alliance Membership
+            '  — For committed entrepreneurs who want to benefit from gaining insights and solutions from entrepreneurs with complementary skills and experience.
+          li
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ENTREPRENEUR_JET_FUEL_TIP
+              'Entrepreneur’s Jet Fuel Membership
+            '  — For growth oriented individuals who are committed to maximizing their entrepreneurial success and getting the most from their membership.
+          li
+            span.bold
+              'Free Associate Membership —
+            ' Specially designed for investors, mentors, advisors, company staff, students and soon-to-be entrepreneur’s.
+        = link_to 'Learn what each membership plan provides you...', pricing_path, class: 'button expanded success bold scale-to-110'

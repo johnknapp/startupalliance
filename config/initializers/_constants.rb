@@ -47,6 +47,8 @@ OKR_TIP                     = 'Companies use our Objectives and Key Results tool
 FAST_TIP                    = 'Companies use our FActors & STrategies tool to keep the team focused on overall priorities and optimal strategies'
 SAKPI_SHORT_TIP             = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                   = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
+COMPANY_TIP_EMAIL           = 'I just came across StartupAlliance.com and they have a Collaboration Workspace for our team. I think we should try it out.'
+ALLIANCE_TIP_EMAIL          = 'StartupAlliance.com has something called a Private Alliance to help us help each other more effectively. I think we should try it out.'
 
 USERNAME_EXCLUSIONS = %w[
   accept
