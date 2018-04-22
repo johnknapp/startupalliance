@@ -1,15 +1,15 @@
 .callout.accent.little-space-top.shadow
   h3.bold.primary-text.text-center.little-space-bottom
-    ' How can we help you?
+    ' Help for committed entrepreneurs:
   ul.accordion.shadow data-accordion='true' data-allow-all-closed='true'
     li.accordion-item data-accordion-item=true
       = link_to 'Help me make my company team more effective', '#', class: 'accordion-title bold text-center'
       .accordion-content data-tab-content=true
         p
           ' Once you have a
-          span.bold
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=COLLABORATION_WORKSPACE_TIP
             ' Collaboration Workspace
-          ' for your company, you’ll have 24/7 access to a unique suite of
+          '  for your company, you’ll have 24/7 access to a unique suite of
           ' productivity and collaboration enhancing tools.
           ' Invite your whole team for one low price and
           ' enhance focus, improve outcomes and collaborate more fully.
@@ -17,27 +17,27 @@
         = link_to 'Learn about Company Workspace Membership...', pricing_path(anchor: 'company'), class: 'button expanded success bold scale-to-110'
 
     li.accordion-item data-accordion-item=true
-      = link_to 'Help me establish an alliance with entrepreneurs I respect', '#', class: 'accordion-title bold text-center'
+      = link_to 'Help me create a powerful alliance with entrepreneurs I respect', '#', class: 'accordion-title bold text-center'
       .accordion-content data-tab-content=true
         p
-          ' Once you invite your people into your
-          span.bold
+          ' Invite your people into your
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=PRIVATE_ALLIANCE_TIP
             | Private Alliance
-          ' , you’ll make better decisions and gain broader perspectives
-          ' using the tools we provide.
-          ' As a tight knit group, you’ll form trusted bonds and help each other
+          '  to gain deeper insight and broader perspectives
+          ' using the tools it contains.
+          ' You and your alliance members will form lasting bonds and help each other
           ' make better decisions, overcome challenges and improve outcomes.
           '
         = link_to 'Learn about Private Alliance Membership...', pricing_path(anchor: 'alliance'), class: 'button expanded success bold scale-to-110'
 
     li.accordion-item data-accordion-item=true
-      = link_to 'Help me make awesome connections and showcase my talents', '#', class: 'accordion-title bold text-center'
+      = link_to 'Help me make rewarding connections and showcase my talents', '#', class: 'accordion-title bold text-center'
       .accordion-content data-tab-content=true
         p
           ' When you sign-up for
-          span.bold
-            ' Entrepreneur’s Jet Fuel,
-          ' you get
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ENTREPRENEUR_JET_FUEL_TIP
+            | Entrepreneur’s Jet Fuel
+          ' , you get
           ' a premium profile,
           ' a listing in the Entrepreneur’s Showcase and
           ' unlimited private messaging
@@ -59,3 +59,4 @@
           ' limited Private Messaging and the ability to join Private Alliances and Company Workspaces.
           '
         = render 'partials/join_form', acqsrc: 'home_page'
+  p.text-center Our mission is helping you achieve your entrepreneurial dreams.
