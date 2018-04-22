@@ -45,9 +45,9 @@
             - if current_user and current_user.plan_name == 'entrepreneur'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.associate?
-              p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
             - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
-              p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
             - else
               /p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'entrepreneur'), class: 'fa-lg button expanded bold success shadow-6dp'
               ul.vertical.menu.accordion-menu data-accordion-menu=true
@@ -105,9 +105,9 @@
             - if current_user and current_user.plan_name == 'alliance'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and (current_user.associate? or current_user.plan_name == 'entrepreneur')
-              p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
             - elsif current_user and current_user.plan_name == 'company'
-              p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
             - else
               /p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
               ul.vertical.menu.accordion-menu data-accordion-menu=true
@@ -177,9 +177,9 @@
             - if current_user and current_user.plan_name == 'company'
               p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
             - elsif current_user and current_user.plan_name != 'company'
-              p= link_to 'Upgrade to Company Plan', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
+              p= link_to 'Upgrade to Company Plan', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
             - else
-              /p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp'
+              /p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp disabled'
               ul.vertical.menu.accordion-menu data-accordion-menu=true
                 li.button.expanded.bold.success.shadow-6dp
                   = link_to 'Choose the Company Plan', '#', class: 'scale-to-130'
@@ -223,7 +223,7 @@
                         li.faint
                           ' (Respond to inbound messages, write to team mates.)
                       li Browse Entrepreneurs, Alliances, Companies
-                      li Join Private Alliances and Company Teams
+                      li Join Private Alliances and Company Workspaces
                     = render 'partials/join_form', acqsrc: 'pricing_page'
         /.callout.small.accent
           h5.bold.text-center Free forever!

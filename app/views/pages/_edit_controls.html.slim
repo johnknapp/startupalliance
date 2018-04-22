@@ -2,9 +2,9 @@ p.scale-to-90
   - if @page.state != 'Flagged' or (current_user and current_user.admin?)
     = link_to edit_page_path(rev: params[:rev]) do
       i.fa.fa-pencil
-    | &nbsp;
-    | &nbsp;
-    ' Edit
+      | &nbsp;
+      | &nbsp;
+      ' Edit
   - if current_user and @page.author == current_user and @page.state == 'Suggestion' or current_user.admin?
     | &nbsp;
     | &nbsp;

@@ -87,7 +87,7 @@ class RegistrationsController < Devise::RegistrationsController
       #     TODO: Check the Coupon against Stripe and abandon the constant
 
       customer = Stripe::Customer.create(email: current_user.email)
-      current_user.update_attribute(stripe_customer_id: customer.id)
+      current_user.update_attribute(:stripe_customer_id, customer.id)
       plan = Plan.where(id: params[:user][:plan_id]).first
       if plan.present? # should be fine unless join forms suck
         if VALID_STRIPE_COUPONS.include? params[:user][:stripe_coupon_code]
@@ -104,7 +104,7 @@ class RegistrationsController < Devise::RegistrationsController
               plan: plan.stripe_id
           )
         end
-        current_user.update_attribute(subscribed_at: Time.now)
+        current_user.update_attribute(:subscribed_at, Time.now)
       end
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
