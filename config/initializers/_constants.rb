@@ -27,7 +27,7 @@ WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
 
 KB_SUGGESTION_TIP           = 'Suggested Knowledge Base Pages are marked with a Bell icon as a signal to potential authors they have a writing opportunity.'
 ACCOUNT_ACTIVATION_TIP      = 'When you signed up, we sent you an account activation email containing a link to choose a username and password. Activate your account for full privileges!'
-ENTREPRENEURS_NUCLEUS_TIP   = 'The Entrepreneur’s Nucleus™ is our collection of free community resources for asking questions, getting answers, advice, hard-won knowledge and startup wisdom.'
+ENTREPRENEURS_NUCLEUS_TIP   = 'The Entrepreneur’s Nucleus™ is our collection of free community resources where you can ask questions, get answers, advice, hard-won knowledge and startup wisdom.'
 ENTREPRENEUR_JET_FUEL_TIP   = 'Ultra low-cost personal subscription for entrepreneurs who want to get the most from our entrepreneurial community.'
 PRIVATE_ALLIANCE_TIP        = 'Where complementary groups of entrepreneurs come together to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
