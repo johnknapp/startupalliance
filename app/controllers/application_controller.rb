@@ -86,7 +86,8 @@ class ApplicationController < ActionController::Base
           :time_zone,
           :public_skills,
           :public_traits,
-          :plan_id
+          :plan_id,
+          :subscription_state
       )
     end
 

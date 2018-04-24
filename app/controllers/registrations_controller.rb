@@ -104,7 +104,11 @@ class RegistrationsController < Devise::RegistrationsController
               plan: plan.stripe_id
           )
         end
-        current_user.update_attribute(:subscribed_at, Time.now)
+        if subscription
+          # TODO handle subscription_state throughout subscription lifecycle
+          current_user.update_attribute(:subscription_state, 'unpaid') if current_user.associate?
+          current_user.update_attribute(:subscribed_at, Time.now)
+        end
       end
       current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
