@@ -63,7 +63,7 @@
           .small-6.columns
             = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
           .small-2.columns
-            = f.input :stripe_coupon_code, placeholder: 'Discount code', label: false
+            = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
           .small-4.columns
             - if params[:plan] == 'associate'
               = f.button :submit, "Associate Member", class: 'postfix expanded bold success'
@@ -115,7 +115,7 @@
           .small-6.columns
             = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
           .small-2.columns
-            = f.input :stripe_coupon_code, placeholder: 'Discount code', label: false
+            = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
           .small-4.columns
             - if params[:plan] == 'associate'
               = f.button :submit, "Become Associate Member", class: 'postfix expanded bold success'
