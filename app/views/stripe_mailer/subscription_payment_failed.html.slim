@@ -1,1 +1,37 @@
-p :-(
+table width='600px' align='center' padding='12px'
+  tr
+    td
+      p
+        ' Hi #{@user.first_name},
+      p
+        ' Unfortunately, your #{@user.plan.display_price} payment for “#{@user.plan.display_name}” did not go through.
+        ' We will retry the payment attempt soon.
+      - if @user.last4.present? and @user.card_expiry.present?
+        p
+          ' You currently have a
+          ' #{@user.card_brand} card on file (ending in #{@user.last4} and expiring #{@user.card_expiry.strftime('%B %Y')}.)
+          ' When we tried to bill that card, the payment failed.
+        p
+          ' Please contact your bank right away to resolve this problem.
+          ' If you want to switch to a different card, visit your
+          ' #{link_to 'Account Settings', edit_user_registration_url}
+          ' and make the necessary changes.
+          '
+      - else
+        p
+          ' The obvious problem is that you don’t have a card on file.
+          ' To fix that, simply visit your
+          ' #{link_to 'Account Settings', edit_user_registration_url}
+          ' right away to add one.
+          '
+      p
+        ' We will attempt to process your payment soon.
+      p
+        ' Learn more about how subscriptions work in the
+        ' #{link_to 'Help Center', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/20-membership-subscriptions-and-billing'}.
+        ' Or if you have questions or need help, just reply to this email and let us know.
+      p
+        ' Regards,
+        br
+        ' Startup Alliance
+    

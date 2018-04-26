@@ -70,7 +70,7 @@ class User < ApplicationRecord
     end
   end
 
-  def first_subscription_renews_at
+  def first_subscription_anniversary
     sub = Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions.first
     Time.at(sub.current_period_end) if sub
   end

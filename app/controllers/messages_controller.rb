@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
     if @message.save
       Notifier.new_message(@message).deliver
-      # Notifier.tell_jk(@message).deliver
+      # Notifier.jk_object_created(@message).deliver
       redirect_to conversation_messages_path(@conversation)
     end
   end

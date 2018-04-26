@@ -55,7 +55,7 @@ class PagesController < ApplicationController
     end
 
     if @page.persisted?
-      Notifier.tell_jk(@page).deliver
+      Notifier.jk_object_created(@page).deliver
       redirect_to page_path(@page), notice: 'Knowledge Base Entry was successfully created.'
     else
       render :new

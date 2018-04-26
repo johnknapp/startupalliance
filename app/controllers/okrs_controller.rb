@@ -36,7 +36,7 @@ class OkrsController < ApplicationController
     respond_to do |format|
       if @okr.save
         @okr.set_okr_finish
-        Notifier.tell_jk(@okr).deliver
+        Notifier.jk_object_created(@okr).deliver
         format.html { redirect_to company_path(@company), notice: 'OKR was successfully created.' }
         format.json { render :show, status: :created, location: @okr }
       else

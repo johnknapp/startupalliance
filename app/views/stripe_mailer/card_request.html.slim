@@ -5,7 +5,7 @@ table width='600px' align='center' padding='12px'
         ' Hi #{@user.first_name},
       p
         ' We’re glad to have you in the Startup Alliance Community and hope you’ve been enjoying your free trial.
-        ' This email is to let you know your trial ends soon and your first subscription payment will become due.
+        ' This email is to let you know your trial ends in three days and your first subscription payment will become due.
       - if @user.last4.present? and @user.card_expiry.present?
         p
           ' You currently have a
@@ -23,7 +23,7 @@ table width='600px' align='center' padding='12px'
           ' to add one.
           '
       p
-        ' If you cancel your paid subscription before the trial ends we’ll put you on a Free Associate Membership.
+        ' If you cancel your paid subscription before the trial ends we’ll put you on a Free Lifetime Associate Membership.
         ' That way, you can continue to enjoy Startup Alliance as long as you want.
       p
         ' Learn more about how subscriptions work in the

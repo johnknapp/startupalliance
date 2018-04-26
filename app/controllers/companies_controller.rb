@@ -115,7 +115,7 @@ class CompaniesController < ApplicationController
         @company.founded = string_to_date(params[:company][:founded])
         respond_to do |format|
           if @company.save
-            Notifier.tell_jk(@company).deliver
+            Notifier.jk_object_created(@company).deliver
             @company.update(invite_token: SecureRandom.urlsafe_base64)
             @company.team << current_user
             format.html { redirect_to @company, notice: 'Company was successfully created.' }

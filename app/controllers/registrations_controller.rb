@@ -105,11 +105,17 @@ class RegistrationsController < Devise::RegistrationsController
           )
         end
         if subscription
-          # TODO handle the subscription_state throughout subscription lifecycle
-          #   subscription.status will be 'trialing' if trial period else 'active'
-          #   after trial, webhook will switch to 'active' and card will be charged
-          #   if payment fails, subscription.status will switch to 'past_due'
-          current_user.update_attribute(:subscription_state, 'unpaid') if current_user.associate?
+          # subscription_states = %w[trialing active past_due canceled unpaid error]
+          if current_user.associate?
+            current_user.update_attribute(:subscription_state, 'unpaid')
+          elsif !current_user.associate? and current_user.plan.trial_period_days != 0
+            current_user.update_attribute(:subscription_state, 'trialing')
+          elsif !current_user.associate? or current_user.plan.trial_period_days == 0
+            current_user.update_attribute(:subscription_state, 'active')
+          else # something is fishy
+            current_user.update_attribute(:subscription_state, 'error')
+          end
+          current_user.update_attribute(:subscription_state, 'unpaid')
           current_user.update_attribute(:subscribed_at, Time.now)
         end
       end

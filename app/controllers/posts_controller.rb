@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post.topic_id = topic.id
     if @post.save
       @post.mark_as_read! for: current_user
-      # Notifier.tell_jk(@post).deliver
+      # Notifier.jk_object_created(@post).deliver
       redirect_to discussion_topic_path(topic.discussion,topic), alert: 'Post was successfully created.'
     else
       redirect_to discussion_topic_path(topic.discussion,topic), alert: 'There was a problem!'
