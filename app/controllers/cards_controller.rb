@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!,              except: [:stripe_webhooks]
+  skip_before_action :verify_authenticity_token,  only:   [:stripe_webhooks]
 
   def new
   end
@@ -27,7 +28,37 @@ class CardsController < ApplicationController
     end
   end
 
+  def stripe_webhooks
+    receive_webhook # verify the event
+    if @event # We have a valid stripe event object
+      StripeWebhookService.new(@event)
+      head :no_content, status: :accepted
+    else
+      head :no_content, status: :internal_server_error
+    end
+  end
+
   private
+
+    def receive_webhook
+      payload = request.body.read
+      sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+      endpoint_secret = $stripe_signing_secret
+      @event = nil
+      begin
+        @event = Stripe::Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+      rescue JSON::ParserError => e
+        # Invalid payload
+        status 400
+        return
+      rescue Stripe::SignatureVerificationError => e
+        # Invalid signature
+        status 400
+        return
+      end
+  end
 
     def card_params
       params.permit(:token)

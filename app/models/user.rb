@@ -75,6 +75,11 @@ class User < ApplicationRecord
     Time.at(sub.current_period_end) if sub
   end
 
+  def first_subscription_renews?
+    sub = Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions.first
+    !sub.cancel_at_period_end
+  end
+
   def subscribe_to_stripe(stripe_plan,coupon)
     plan = Plan.where(stripe_id: stripe_plan).first
     if plan.present?

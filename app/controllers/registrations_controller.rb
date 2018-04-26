@@ -105,7 +105,10 @@ class RegistrationsController < Devise::RegistrationsController
           )
         end
         if subscription
-          # TODO handle subscription_state throughout subscription lifecycle
+          # TODO handle the subscription_state throughout subscription lifecycle
+          #   subscription.status will be 'trialing' if trial period else 'active'
+          #   after trial, webhook will switch to 'active' and card will be charged
+          #   if payment fails, subscription.status will switch to 'past_due'
           current_user.update_attribute(:subscription_state, 'unpaid') if current_user.associate?
           current_user.update_attribute(:subscribed_at, Time.now)
         end
