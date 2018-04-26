@@ -42,3 +42,17 @@ There are seeds for users
 ## Monitor pow server logs:
 
 $ tail -f ~/Library/Logs/Pow/apps/startup_alliance.log
+
+## Monitor rails logs:
+
+$ tail -f log/development.log
+
+## Subscriptions and Stripe:
+
+1. Join/Subscribe: Update user and create Stripe Customer and Subscription objects
+1. Trial period ending: Email user to make sure they have a card on file
+1. Invoice payment: Email on success or failure, update user.subscription_state to active or past_due
+1. Subscription renewal: Email on payment success or failure, update user.subscription_state to active or past_due
+1. Payment attempt failure: Cancel and downgrade to Associate. (WIP on 4/18/18)
+1. User cancel: Downgrade to Associate. (WIP on 4/18/18)
+1. Upgrade / Downgrade: (WIP on 4/18/18)
