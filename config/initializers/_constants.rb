@@ -99,6 +99,8 @@ USERNAME_EXCLUSIONS = %w[
   meetings
   member
   members
+  membership
+  memberships
   message
   messages
   newrelic

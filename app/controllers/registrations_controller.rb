@@ -192,6 +192,9 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def membership
+  end
+
   def destroy
     departure_cleanup
     if Rails.env.production?

@@ -1,0 +1,77 @@
+- content_for :page_title do
+  ' Startup Alliance — Membership Management
+
+- content_for :page_header do
+  /h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Membership Management
+
+  h2.bold.little-space-top.white-text.text-center
+    = current_user.name
+  h4.bold.medium-grey-text.text-center
+    ' Membership Management
+
+
+.row
+  .large-10.large-offset-1.columns
+    .float-right
+      p.snug-top You are a valued member of the Startup Alliance Community!
+    p.snug-top
+      = link_to edit_user_registration_path do
+        i.fa.fa-arrow-left
+        | &nbsp;
+        | &nbsp;
+        ' Return to Account Settings
+
+    p.snug-top.show-for-medium &nbsp;
+
+.row
+  .large-6.large-offset-3.medium-8.medium-offset-2.columns
+    .callout
+
+      .float-right
+        p= current_user.created_at.strftime('%B %e, %Y')
+      p Member since:
+
+      .float-right
+        p= current_user.plan.display_name
+      p Current membership plan:
+
+      .float-right
+        p= current_user.first_subscription_ends.strftime('%B %e, %Y')
+      p Subscribed through:
+
+      .float-right
+        - if current_user.first_subscription_renews?
+          p Automatic renewal
+        - else
+          p Will not renew
+      p Subscription renewal:
+
+      .float-right
+        - if current_user.card_brand.present?
+          p
+            ' #{current_user.card_brand} ending in #{current_user.last4} (expiry: #{current_user.card_expiry.strftime('%b. %y')})
+            | &nbsp;
+            | &nbsp;
+            = link_to card_path(current_user.stripe_customer_id), data: { confirm: "Really remove this card from your account?" }, method: :delete, class: 'accent' do
+              i.fa.fa-trash
+        - else
+          p
+            ' #{link_to 'Add card to your account', new_card_path}
+            a data-open='card-info' class='accent'
+              i.fa.fa-info-circle
+      p Card on file:
+
+      /.float-right
+      /  p bar
+      /p foo:
+.reveal.small#card-info data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  p.text-center
+    ' Paid subscriptions require you have a credit or debit card associated to your Account.
+  p.text-center
+    ' No card required for Lifetime Associate Membership
+
+

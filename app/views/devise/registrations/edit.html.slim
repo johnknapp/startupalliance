@@ -1,14 +1,14 @@
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
-    ' Account Settings for #{current_user.name}
+    ' #{current_user.name}
   h4.bold.medium-grey-text.text-center
-    ' Membership Plan: #{@user.plan_name.humanize}
+    ' Account Settings
 
 .row
   .large-10.large-offset-1.medium-12.columns
     .float-right
-      /p.text-right.snug-top You have been a valued member of Startup Alliance since #{current_user.created_at.strftime('%B %e, %Y')}
-      p.text-right.snug-top.faint
+      p.text-right.snug-top You have been a valued member of Startup Alliance since #{current_user.created_at.strftime('%B %e, %Y')}
+      /p.text-right.snug-top.faint
         - if current_user.card_brand.present?
           ' Card on file: #{current_user.card_brand} ending in #{current_user.last4} (expiry: #{current_user.card_expiry.strftime('%b. %y')})
           | &nbsp;
@@ -22,7 +22,8 @@
           .reveal.small#card-info data-reveal=true
             p.text-center
               ' Paid subscriptions require you to add a credit or debit card to your Startup Alliance Account.
-              '
+            p.text-center
+              ' No card required for Lifetime Associate Membership
 
     p.space-top= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
@@ -77,10 +78,12 @@
           .medium-12.columns
             = f.input :current_password, placeholder: 'Current password required to save any changes', required: true
       .row
-        .large-8.columns
+        .large-6.columns
           .form-actions
             ul.menu
-              li= f.button :submit, 'Update your settings', class: 'button radius'
-        /.large-4.columns
-          p.text-right.scale-to-80
+              li= f.button :submit, 'Update Account Settings', class: 'button'
+        .large-6.columns
+          .float-right
+            = link_to 'Manage your Membership', users_membership_path, class: 'button accent'
+          /p.text-right.scale-to-80
             em #{link_to 'Delete your account', registration_path(resource_name), data: { confirm: 'Delete your account and all your data?' }, method: :delete}

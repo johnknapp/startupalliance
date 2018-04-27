@@ -96,7 +96,7 @@
     - if @user.plan_name.present?
       .float-right
         p.snug-top.faint.text-right
-          = link_to "#{@user.plan_name.humanize} Member", pricing_path
+          ' #{@user.plan.display_name}
       p.snug-top.faint Membership plan:
 
     - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }

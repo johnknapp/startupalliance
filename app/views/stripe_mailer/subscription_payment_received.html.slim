@@ -6,7 +6,7 @@ table width='600px' align='center' padding='12px'
       p
         ' Your #{@user.plan.display_price} payment for  “#{@user.plan.display_name}” has been received.
         ' Your membership is paid through
-        ' #{@user.first_subscription_anniversary.strftime('%B %e, %Y')} and will renew on that date.
+        ' #{@user.first_subscription_ends.strftime('%B %e, %Y')} and will renew on that date.
       p
         ' Thank you very much!
       p

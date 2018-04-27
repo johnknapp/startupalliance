@@ -88,6 +88,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { confirmations: 'confirmations', registrations: 'registrations', sessions: 'sessions' , passwords: 'passwords' }
   as :user do
+    get 'users/membership',         to: 'registrations#membership',    constraints: { format: 'html' }
     put 'users/confirmation',       to: 'confirmations#confirm',       constraints: { format: 'html' }
     put 'users/impersonate',        to: 'sessions#impersonate',        constraints: { format: 'html' }
     put 'users/stop_impersonating', to: 'sessions#stop_impersonating', constraints: { format: 'html' }
