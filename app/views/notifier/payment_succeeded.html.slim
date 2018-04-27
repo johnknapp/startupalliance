@@ -1,0 +1,9 @@
+table width='600px' align='center' padding='12px'
+  tr
+    td
+      p
+        ' Their payment succeeded!
+      p
+        ' On SA: #{link_to @user.name, admin_user_url(@user.pid)}
+      p
+        ' On Stripe: #{link_to @user.stripe_customer_id, "https://dashboard.stripe.com/customers/#{@user.stripe_customer_id}"}

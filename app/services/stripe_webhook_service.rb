@@ -52,11 +52,11 @@ class StripeWebhookService
       # If no card on file, ask them to add one
       # user = User.find 5
       # StripeMailer.card_request(user).deliver
-      # user = User.find_by_stripe_customer_id(@event.data.object.id)
+      # Notifier.card_requested(user,@event).deliver
+      user = User.find_by_stripe_customer_id(@event.data.object.id)
       if user and user.last4.nil?
         StripeMailer.card_request(user).deliver
-        # tell JK
-        Notifier.card_requested(user).deliver
+        Notifier.card_requested(user,@event).deliver
       end
     end
 
@@ -65,12 +65,13 @@ class StripeWebhookService
       # thank customer
       # set user.subscription_state 'active'
       # user = User.find 5
+      # StripeMailer.subscription_payment_received(user).deliver
+      # Notifier.payment_succeeded(user,@event).deliver
       user = User.find_by_stripe_customer_id(@event.data.object.id)
       if user
         user.update_attribute(:subscription_state, 'active')
         StripeMailer.subscription_payment_received(user).deliver
-        # tell JK
-        Notifier.payment_succeeded(user).deliver
+        Notifier.payment_succeeded(user,@event).deliver
       end
     end
 
@@ -80,27 +81,31 @@ class StripeWebhookService
       # set user.subscription_state 'past_due'
       # retry for a while
       # user = User.find 5
+      # StripeMailer.subscription_payment_failed(user).deliver
+      # Notifier.payment_failed(user,@event).deliver
       user = User.find_by_stripe_customer_id(@event.data.object.id)
       if user
         user.update_attribute(:subscription_state, 'past_due')
         StripeMailer.subscription_payment_failed(user).deliver
-        # tell JK
-        Notifier.payment_failed(user).deliver
+        Notifier.payment_failed(user,@event).deliver
       end
     end
 
     # customer.subscription.deleted
     def done_attempting_payment
       # Stripe retry attempts have ended
-      #   They automatically cancelled the subscription
-      #     TODO make sure automatic by event.request == 'null'
-      # downgrade to associate plan
+      #   and they automatically cancelled the subscription
+      # migrate to associate plan
+      # plan = Plan.find_by_name('associate_year')
+      # user = User.find 5
+      # user.update(subscription_state: 'unpaid', plan_id: plan.id)
+      # StripeMailer.migrated_to_associate(user).deliver
+      # Notifier.cancel_for_non_payment(user,@event).deliver
       user = User.find_by_stripe_customer_id(@event.data.object.id)
       if user
-        # TODO downgrade their plan
-        user.update_attribute(:subscription_state, 'canceled')
-        # tell JK
-        Notifier.cancel_for_non_payment(user).deliver
+        user.update(subscription_state: 'unpaid', plan_id: plan.id)
+        StripeMailer.migrated_to_associate(user).deliver
+        Notifier.cancel_for_non_payment(user,@event).deliver
       end
     end
 

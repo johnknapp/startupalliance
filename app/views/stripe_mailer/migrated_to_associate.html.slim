@@ -1,0 +1,23 @@
+table width='600px' align='center' padding='12px'
+  tr
+    td
+      p
+        ' Hi #{@user.first_name},
+      p
+        ' After repeated attempts, we were unable to process your subscription payment.
+      p
+        ' But since you are a valued member of the Startup Alliance community, we put you on the free Associate Membership Plan.
+        ' While your rights have changed, you still have full access to the community resources, Private Alliances and Company Workspaces.
+      p
+        ' We invite you to upgrade your subscription in the future if you choose.
+        ' To do so, simply visit your #{link_to 'Account Settings', edit_user_registration_url}.
+        '
+      p
+        ' Learn more about how subscriptions work in the
+        ' #{link_to 'Help Center', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/20-membership-subscriptions-and-billing'}.
+        ' Or if you have questions or need help, just reply to this email and let us know.
+      p
+        ' Regards,
+        br
+        ' Startup Alliance
+

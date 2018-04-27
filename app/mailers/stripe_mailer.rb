@@ -16,4 +16,9 @@ class StripeMailer < ApplicationMailer
     mail(to: @user.email, subject: "Startup Alliance – Subscription payment failure")
   end
 
+  def migrated_to_associate(user)
+    @user = user
+    mail(to: @user.email, subject: "Startup Alliance – Free Lifetime Associate Membership")
+  end
+
 end
