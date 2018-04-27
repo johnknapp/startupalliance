@@ -29,9 +29,11 @@ class CardsController < ApplicationController
   end
 
   def stripe_webhooks
-    receive_webhook # verify the event
-    if @event # We have a valid stripe event object
-      StripeWebhookService.new(@event)
+    receive_webhook
+    if @event
+      if RELEVANT_STRIPE_WEBHOOKS.any? { |hook| @event.type == hook }
+        StripeWebhookService.new(@event)
+      end
       head :no_content, status: :accepted
     else
       head :no_content, status: :internal_server_error
@@ -58,7 +60,7 @@ class CardsController < ApplicationController
         status 400
         return
       end
-  end
+    end
 
     def card_params
       params.permit(:token)

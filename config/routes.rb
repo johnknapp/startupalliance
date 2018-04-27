@@ -74,6 +74,8 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  post :stripe_webhooks, to: 'cards#stripe_webhooks'
+
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}
     get '/:username/topics' => 'topics#index', as: :user_topics, constraints: { format: 'html'}
@@ -90,7 +92,5 @@ Rails.application.routes.draw do
     put 'users/impersonate',        to: 'sessions#impersonate',        constraints: { format: 'html' }
     put 'users/stop_impersonating', to: 'sessions#stop_impersonating', constraints: { format: 'html' }
   end
-
-  post :stripe_webhooks, to: 'cards#stripe_webhooks'
 
 end

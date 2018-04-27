@@ -8,6 +8,14 @@ COMPANY_YEAR_MTHLY          = '$9.95'
 COMPANY_MONTH               = '$12.95'
 COMPANY_YEAR                = '$119.40'
 
+RELEVANT_STRIPE_WEBHOOKS    = %w[
+  customer.subscription.created
+  customer.subscription.trial_will_end
+  invoice.created
+  invoice.payment_succeeded
+  invoice.payment_failed
+  customer.subscription.deleted
+]
 VALID_STRIPE_COUPONS        = %w[charter6]
 STRIPE_PK_LIVE              = 'pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc'
 STRIPE_PK_TEST              = 'pk_test_As4q7e0EyphQP9ncUqCCBlPJ'
