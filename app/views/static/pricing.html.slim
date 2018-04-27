@@ -12,8 +12,21 @@
       p.snug-top.space-bottom
         ' Our mission is to help entrepreneurs succeed, regardless of their location
     p.snug-top.space-bottom &nbsp;
-    p.show-for-medium.snug-top &nbsp;
+    p.show-for-medium &nbsp;
 
+- if current_user
+  .row
+    .large-6.large-offset-3.medium-8.medium-offset-2.columns
+      .callout.accent-background
+        h5.text-center
+          ' You currently have
+          span.bold
+            ' #{current_user.plan.display_name}
+        h5.text-center Manage your Membership via your #{link_to 'Account Settings', edit_user_registration_path}
+      p.show-for-medium &nbsp;
+
+.row
+  .medium-12.columns
     .row.large-up-3 data-equalizer=true
 
       .column
@@ -39,17 +52,10 @@
                     ' Showcase your startup skills and personal traits
                 li Browse Entrepreneurs, Alliances, Companies
                 li Join Private Alliances and Company Teams
-          .callout.small.accent
-            h5.bold.text-center.primary 7 day free trial
-            h5.bold.text-center.primary.little-snug-top No card required
-            - if current_user and current_user.plan_name == 'entrepreneur'
-              p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.associate?
-              p= link_to 'Upgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
-            - elsif current_user and (current_user.plan_name == 'alliance' or current_user.plan_name == 'company')
-              p= link_to 'Downgrade to Entrepreneur’s', change_plan_path(desired_plan: 'entrepreneur'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
-            - else
-              /p= link_to 'Get Entrepreneur’s Jet Fuel', new_user_registration_path(acqsrc: 'pricing_page', plan: 'entrepreneur'), class: 'fa-lg button expanded bold success shadow-6dp'
+          - if !current_user
+            .callout.small.accent
+              h5.bold.text-center.primary 7 day free trial
+              h5.bold.text-center.primary.little-snug-top No card required
               ul.vertical.menu.accordion-menu data-accordion-menu=true
                 li.button.expanded.bold.success.shadow-6dp
                   = link_to 'Choose the Entrepreneur’s Plan', '#', class: 'scale-to-130'
@@ -99,17 +105,10 @@
                 /ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
-          .callout.small.accent
-            h5.bold.text-center.primary 14 day free trial
-            h5.bold.text-center.primary.little-snug-top No card required
-            - if current_user and current_user.plan_name == 'alliance'
-              p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and (current_user.associate? or current_user.plan_name == 'entrepreneur')
-              p= link_to 'Upgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name == 'company'
-              p= link_to 'Downgrade to Alliance Plan', change_plan_path(desired_plan: 'alliance'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
-            - else
-              /p= link_to 'Create Private Alliances', new_user_registration_path(acqsrc: 'pricing_page', plan: 'alliance'), class: 'fa-lg button expanded bold success shadow-6dp'
+          - if !current_user
+            .callout.small.accent
+              h5.bold.text-center.primary 14 day free trial
+              h5.bold.text-center.primary.little-snug-top No card required
               ul.vertical.menu.accordion-menu data-accordion-menu=true
                 li.button.expanded.bold.success.shadow-6dp
                   = link_to 'Choose the Alliances Plan', '#', class: 'scale-to-130'
@@ -171,15 +170,10 @@
                 /ul.no-bullet.little-snug-top
                   li.faint
                     ' (Contact any Startup Alliance member)
-          .callout.small.accent
-            h5.bold.text-center.primary 14 day free trial
-            h5.bold.text-center.primary.little-snug-top No card required
-            - if current_user and current_user.plan_name == 'company'
-              p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-            - elsif current_user and current_user.plan_name != 'company'
-              p= link_to 'Upgrade to Company Plan', change_plan_path(desired_plan: 'company'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp disabled'
-            - else
-              /p= link_to 'Create Company Workspaces', new_user_registration_path(acqsrc: 'pricing_page', plan: 'company'), class: 'fa-lg button expanded bold success shadow-6dp disabled'
+          - if !current_user
+            .callout.small.accent
+              h5.bold.text-center.primary 14 day free trial
+              h5.bold.text-center.primary.little-snug-top No card required
               ul.vertical.menu.accordion-menu data-accordion-menu=true
                 li.button.expanded.bold.success.shadow-6dp
                   = link_to 'Choose the Company Plan', '#', class: 'scale-to-130'
