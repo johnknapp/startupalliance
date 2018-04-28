@@ -17,10 +17,10 @@ company_year = Stripe::Plan.create(
     amount: 11940,
     currency: 'usd',
     interval: 'year',
-    id: 'company-year',
+    id: 'intro-company-year',
     product: {
-        id: 'company-membership-year',
-        name: 'Annual Company Membership'
+        id: 'intro-company-membership-year',
+        name: 'Introductory Annual Company Membership'
     }
 )
 
@@ -29,10 +29,10 @@ alliance_year = Stripe::Plan.create(
     amount: 9540,
     currency: 'usd',
     interval: 'year',
-    id: 'alliance-year',
+    id: 'intro-alliance-year',
     product: {
-        id: 'alliance-membership-year',
-        name: 'Annual Alliance Membership'
+        id: 'intro-alliance-membership-year',
+        name: 'Introductory Annual Alliance Membership'
     }
 )
 
@@ -41,10 +41,10 @@ entrepreneur_year = Stripe::Plan.create(
     amount: 5940,
     currency: 'usd',
     interval: 'year',
-    id: 'entrepreneur-year',
+    # id: 'intro-entrepreneur-year',
     product: {
-        id: 'entrepreneur-membership-year',
-        name: 'Annual Entrepreneur Membership'
+        # id: 'intro-entrepreneur-membership-year',
+        name: 'Introductory Annual Entrepreneur Membership'
     }
 )
 
@@ -52,10 +52,10 @@ associate_year = Stripe::Plan.create(
     amount: 0,
     currency: 'usd',
     interval: 'year',
-    id: 'associate-year',
+    id: 'intro-associate-life',
     product: {
-        id: 'associate-membership-year',
-        name: 'Annual Associate Membership'
+        id: 'intro-associate-membership-life',
+        name: 'Introductory Lifetime Associate Membership'
     }
 )
 
@@ -64,10 +64,10 @@ company_month = Stripe::Plan.create(
     amount: 1295,
     currency: 'usd',
     interval: 'month',
-    id: 'company-month',
+    id: 'intro-company-month',
     product: {
-        id: 'company-membership-month',
-        name: 'Monthly Company Membership'
+        id: 'intro-company-membership-month',
+        name: 'Introductory Monthly Company Membership'
     }
 )
 
@@ -76,10 +76,10 @@ alliance_month = Stripe::Plan.create(
     amount: 1095,
     currency: 'usd',
     interval: 'month',
-    id: 'alliance-month',
+    id: 'intro-alliance-month',
     product: {
-        id: 'alliance-membership-month',
-        name: 'Monthly Alliance Membership'
+        id: 'intro-alliance-membership-month',
+        name: 'Introductory Monthly Alliance Membership'
     }
 )
 
@@ -88,10 +88,10 @@ entrepreneur_month = Stripe::Plan.create(
     amount: 795,
     currency: 'usd',
     interval: 'month',
-    id: 'entrepreneur-month',
+    id: 'intro-entrepreneur-month',
     product: {
-        id: 'entrepreneur-membership-month',
-        name: 'Monthly Entrepreneur Membership'
+        id: 'intro-entrepreneur-membership-month',
+        name: 'Introductory Monthly Entrepreneur Membership'
     }
 )
 

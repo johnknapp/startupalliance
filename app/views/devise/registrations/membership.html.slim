@@ -22,7 +22,10 @@
     p.snug-top.show-for-medium &nbsp;
 
 .row
-  .large-6.large-offset-3.medium-8.medium-offset-2.columns
+  .medium-8.medium-offset-2.columns
+    p.bold.snug-bottom Membership Summary:
+    - ni  = current_user.next_invoice
+    - sub = current_user.stripe_subscriptions
     .callout
 
       .float-right
@@ -34,41 +37,44 @@
       p Current membership plan:
 
       .float-right
-        p= current_user.first_subscription_ends.strftime('%B %e, %Y')
-      p Subscribed through:
+        p= current_user.subscription_state.humanize
+      p Subscription state:
 
-      .float-right
-        - if current_user.first_subscription_renews?
-          p Automatic renewal
-        - else
-          p Will not renew
-      p Subscription renewal:
+      /.float-right
+      /  p $0.00 due on May 9, 2018
+      /p Upcoming Invoice:
+
+      /.float-right
+      /  p= current_user.first_subscription_ends.strftime('%B %e, %Y')
+      /p Subscription anniversary:
 
       .float-right
         - if current_user.card_brand.present?
-          p
-            ' #{current_user.card_brand} ending in #{current_user.last4} (expiry: #{current_user.card_expiry.strftime('%b. %y')})
-            | &nbsp;
-            | &nbsp;
-            = link_to card_path(current_user.stripe_customer_id), data: { confirm: "Really remove this card from your account?" }, method: :delete, class: 'accent' do
-              i.fa.fa-trash
+          ' #{current_user.card_brand} (ends in #{current_user.last4} expires #{current_user.card_expiry.strftime('%b. %y')})
+          | &nbsp;
+          = link_to card_path(current_user.stripe_customer_id), data: { confirm: "Really remove this card from your account?" }, method: :delete, class: 'accent' do
+            i.fa.fa-trash
         - else
-          p
-            ' #{link_to 'Add card to your account', new_card_path}
-            a data-open='card-info' class='accent'
-              i.fa.fa-info-circle
+          a data-open='card'
+            ' Add card to your account
+            | &nbsp;
+            i.fa.fa-info-circle
+          = render 'card_modal'
       p Card on file:
 
-      /.float-right
-      /  p bar
-      /p foo:
-.reveal.small#card-info data-reveal=true
-  button data-close=true aria-label='Close' type='button' class='close-button'
-    span aria-hidden=true
-      ' &times;
-  p.text-center
-    ' Paid subscriptions require you have a credit or debit card associated to your Account.
-  p.text-center
-    ' No card required for Lifetime Associate Membership
-
-
+    p
+      ' Next invoice:
+    p.snug-top.faint.indented-2
+      ' #{Time.at(ni.date).strftime('%b %e, %Y')}
+    p.snug-top.faint.indented-2
+      - if ni.amount_due == 0
+        ' no charge
+      - else
+        ' $#{ni.amount_due/100.to_f}
+    p.snug-top.faint.indented-2
+      = ni.lines.data[0].description
+    - if ni.discount and ni.discount.coupon.duration_in_months != 0
+      p Discount code: “#{ni.discount.coupon.id}”
+      p.snug-top.faint.indented-2
+        ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
+        ' (discount ends #{Time.at(ni.discount.end).strftime('%b %e, %Y')})

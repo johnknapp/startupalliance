@@ -11,7 +11,7 @@ class CardsController < ApplicationController
     if source.present?
       expiry = end_of_month(source.exp_month,source.exp_year)
       current_user.update(card_brand: source.brand, last4: source.last4, card_expiry: expiry)
-      redirect_to user_membership_path, notice: 'Payment source successfully added'
+      redirect_to users_membership_path, notice: 'Payment source successfully added'
     else
       # TODO display error
       redirect_to cards_path, alert: 'There was a problem!'
@@ -22,9 +22,9 @@ class CardsController < ApplicationController
     customer = Stripe::Customer.retrieve(id: current_user.stripe_customer_id)
     if customer.sources.retrieve(id: customer.default_source).delete
       current_user.update(card_brand: nil, last4: nil, card_expiry: nil)
-      redirect_to user_membership_path, notice: 'Payment source successfully removed'
+      redirect_to users_membership_path, notice: 'Payment source successfully removed'
     else
-      redirect_to user_membership_path, alert: 'There was a problem!'
+      redirect_to users_membership_path, alert: 'There was a problem!'
     end
   end
 

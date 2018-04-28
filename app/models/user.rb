@@ -62,6 +62,14 @@ class User < ApplicationRecord
     Stripe::Customer.retrieve(id: self.stripe_customer_id) if self.stripe_customer_id
   end
 
+  def first_sub
+    Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions.first
+  end
+
+  def next_invoice
+    Stripe::Invoice.upcoming(customer: self.stripe_customer)
+  end
+
   def stripe_subscriptions
     if Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions.count != 0
       Stripe::Customer.retrieve(id: self.stripe_customer_id).subscriptions
