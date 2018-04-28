@@ -84,6 +84,7 @@
               li= f.button :submit, 'Update Account Settings', class: 'button'
         .large-6.columns
           .float-right
-            = link_to 'Manage your Membership', users_membership_path, class: 'button accent'
+            - if current_user.first_sub
+              = link_to 'Manage your Membership', users_membership_path, class: 'button accent'
           /p.text-right.scale-to-80
             em #{link_to 'Delete your account', registration_path(resource_name), data: { confirm: 'Delete your account and all your data?' }, method: :delete}
