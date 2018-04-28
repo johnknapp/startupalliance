@@ -1,0 +1,24 @@
+.reveal#change-plan data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  h5.bold You may choose a new membership plan at any time
+  p.bold.little-space-top Your current plan:
+  p.snug-top.indented-2= current_user.plan.display_name
+  p.bold Your plan price:
+  p.snug-top.indented-2= ni.lines.data[0].description
+  - if ni.discount and ni.discount.coupon.duration_in_months != 0
+    p.bold Your Option code:
+    p.snug-top.indented-2
+      span.bold
+        ' “#{ni.discount.coupon.id}”
+      ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
+      ' (through #{Time.zone.at(ni.discount.end).strftime('%b %e, %Y')})
+
+  = form_tag change_plan_path, method: :put
+    = submit_tag 'Choose this plan', class: 'button accent expanded'
+
+  ul.simple.menu.snug-bottom.align-right
+    /li= link_to 'Delete account', registration_path(resource_name), data: { confirm: 'Permanently delete your account and data? There is no undo!' }, method: :delete
+    li= link_to 'Subscriptions and billing', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/20-membership-subscriptions-and-billing', target: '_blank'
+    li= link_to 'Membership plans', pricing_path, target: '_blank'

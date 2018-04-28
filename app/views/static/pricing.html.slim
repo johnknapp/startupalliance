@@ -183,29 +183,29 @@
                 ' #{COMPANY_MONTH} billed monthly
 
     p.text-center If you represent an incubator or accelerator, please #{mail_to 'hello@startupalliance.com', 'inquire about group subscriptions and sponsorship opportunities', subject: "Group Subscriptions & Sponsorship", encode: 'hex'}.
-    - if !current_user
-      /p.faint.text-center There is an #{link_to 'Article explaining Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
-      .row
-        .large-8.large-offset-2.columns
-          .card.primary.shadow
-            .card-divider.accent-background
-              a name='associate'
-              h4.bold.text-center Free Associate Membership
-              p.bold.text-center.little-snug-top For students, investors and soon-to-be entrepreneur’s
-            .card-section
-              .plan-box
-                .row
-                  .medium-10.medium-offset-1.columns
-                    ul
-                      li.bold Full access to The Entrepreneur’s Nucleus
-                      ul.no-bullet.little-snug-top
-                        li.faint
-                          ' Including the Global Virtual Office
-                      li Limited Private Messaging
-                      ul.no-bullet.little-snug-top
-                        li.faint
-                          ' (Respond to inbound messages, write to team mates.)
-                      li Browse Entrepreneurs, Alliances, Companies
-                      li Join Private Alliances and Company Workspaces
+    /p.faint.text-center There is an #{link_to 'Article explaining Membership Plans', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/16-explaining-membership-plans', target: '_blank'} in the Help Center.
+    .row
+      .large-8.large-offset-2.columns
+        .card.primary.shadow
+          .card-divider.accent-background
+            a name='associate'
+            h4.bold.text-center Free Associate Membership
+            p.bold.text-center.little-snug-top For students, investors and soon-to-be entrepreneur’s
+          .card-section
+            .plan-box
+              .row
+                .medium-10.medium-offset-1.columns
+                  ul
+                    li.bold Full access to The Entrepreneur’s Nucleus
+                    ul.no-bullet.little-snug-top
+                      li.faint
+                        ' Including the Global Virtual Office
+                    li Limited Private Messaging
+                    ul.no-bullet.little-snug-top
+                      li.faint
+                        ' (Respond to inbound messages, write to team mates.)
+                    li Browse Entrepreneurs, Alliances, Companies
+                    li Join Private Alliances and Company Workspaces
+                  - if !current_user
                     = render 'partials/join_form', acqsrc: 'pricing_page'
-= render 'partials/join_modals'
+                    = render 'partials/join_modals'

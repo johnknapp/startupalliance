@@ -25,7 +25,7 @@
   .medium-8.medium-offset-2.columns
     p.bold.snug-bottom Membership Summary:
     - ni  = current_user.next_invoice
-    - sub = current_user.stripe_subscriptions
+    - sub = current_user.first_sub
     .callout
 
       .float-right
@@ -33,20 +33,31 @@
       p Member since:
 
       .float-right
-        p= current_user.plan.display_name
+        p
+          = current_user.plan.display_name
+          a data-open='change-plan' class='accent'
+            | &nbsp;
+            i.fa.fa-pencil
+          = render 'change_plan', ni: ni, sub: sub
+
       p Current membership plan:
 
       .float-right
-        p= current_user.subscription_state.humanize
-      p Subscription state:
+        p
+          - if current_user.subscription_state == 'trialing'
+            ' Free trial through #{Time.zone.at(sub.trial_end).strftime('%B %e, %Y')}
+          - else
+            = current_user.subscription_state.humanize
+      p Subscription status:
 
-      /.float-right
-      /  p $0.00 due on May 9, 2018
-      /p Upcoming Invoice:
-
-      /.float-right
-      /  p= current_user.first_subscription_ends.strftime('%B %e, %Y')
-      /p Subscription anniversary:
+      - if ni.discount and ni.discount.coupon.duration_in_months != 0
+        .float-right
+          p
+            span.bold
+              ' “#{ni.discount.coupon.id}”
+            ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
+            ' (through #{Time.zone.at(ni.discount.end).strftime('%b %e, %Y')})
+        p Option code:
 
       .float-right
         - if current_user.card_brand.present?
@@ -62,19 +73,21 @@
           = render 'card_modal'
       p Card on file:
 
-    p
-      ' Next invoice:
-    p.snug-top.faint.indented-2
-      ' #{Time.at(ni.date).strftime('%b %e, %Y')}
-    p.snug-top.faint.indented-2
-      - if ni.amount_due == 0
-        ' no charge
-      - else
-        ' $#{ni.amount_due/100.to_f}
-    p.snug-top.faint.indented-2
-      = ni.lines.data[0].description
-    - if ni.discount and ni.discount.coupon.duration_in_months != 0
-      p Discount code: “#{ni.discount.coupon.id}”
-      p.snug-top.faint.indented-2
-        ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
-        ' (discount ends #{Time.at(ni.discount.end).strftime('%b %e, %Y')})
+    p.bold.snug-bottom Next billing event:
+    .callout
+      .float-right
+        p= Time.zone.at(ni.date).strftime('%b %e, %Y')
+      p Date:
+
+      .float-right
+        - if ni.amount_due == 0
+          p $ 0.00
+        - else
+          p $ #{ni.amount_due/100.to_f}
+      p Amount:
+
+      .float-right
+        p= ni.lines.data[0].description
+      p Description:
+
+    p &nbsp;
