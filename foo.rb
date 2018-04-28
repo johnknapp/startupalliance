@@ -13,85 +13,78 @@ User.update_all(subscription_expires_at: Time.now.beginning_of_month-3.months+1.
 User.update_all(subscription_state: 'unpaid')
 
 company_year = Stripe::Plan.create(
+    nickname: 'intro_company_year',
     trial_period_days: 14,
     amount: 11940,
     currency: 'usd',
     interval: 'year',
-    id: 'intro-company-year',
     product: {
-        id: 'intro-company-membership-year',
-        name: 'Introductory Annual Company Membership'
+        name: 'Annual Company Membership'
     }
 )
 
 alliance_year = Stripe::Plan.create(
+    nickname: 'intro_alliance_year',
     trial_period_days: 14,
     amount: 9540,
     currency: 'usd',
     interval: 'year',
-    id: 'intro-alliance-year',
     product: {
-        id: 'intro-alliance-membership-year',
-        name: 'Introductory Annual Alliance Membership'
+        name: 'Annual Alliance Membership'
     }
 )
 
 entrepreneur_year = Stripe::Plan.create(
+    nickname: 'intro_entrepreneur_year',
     trial_period_days: 7,
     amount: 5940,
     currency: 'usd',
     interval: 'year',
-    # id: 'intro-entrepreneur-year',
     product: {
-        # id: 'intro-entrepreneur-membership-year',
-        name: 'Introductory Annual Entrepreneur Membership'
+        name: 'Annual Entrepreneur Membership'
     }
 )
 
 associate_year = Stripe::Plan.create(
+    nickname: 'intro_associate_year',
     amount: 0,
     currency: 'usd',
     interval: 'year',
-    id: 'intro-associate-life',
     product: {
-        id: 'intro-associate-membership-life',
-        name: 'Introductory Lifetime Associate Membership'
+        name: 'Lifetime Associate Membership'
     }
 )
 
 company_month = Stripe::Plan.create(
+    nickname: 'intro_company_month',
     trial_period_days: 14,
     amount: 1295,
     currency: 'usd',
     interval: 'month',
-    id: 'intro-company-month',
     product: {
-        id: 'intro-company-membership-month',
-        name: 'Introductory Monthly Company Membership'
+        name: 'Monthly Company Membership'
     }
 )
 
 alliance_month = Stripe::Plan.create(
+    nickname: 'intro_alliance_month',
     trial_period_days: 14,
     amount: 1095,
     currency: 'usd',
     interval: 'month',
-    id: 'intro-alliance-month',
     product: {
-        id: 'intro-alliance-membership-month',
-        name: 'Introductory Monthly Alliance Membership'
+        name: 'Monthly Alliance Membership'
     }
 )
 
 entrepreneur_month = Stripe::Plan.create(
+    nickname: 'intro_entrepreneur_month',
     trial_period_days: 7,
     amount: 795,
     currency: 'usd',
     interval: 'month',
-    id: 'intro-entrepreneur-month',
     product: {
-        id: 'intro-entrepreneur-membership-month',
-        name: 'Introductory Monthly Entrepreneur Membership'
+        name: 'Monthly Entrepreneur Membership'
     }
 )
 
@@ -109,7 +102,7 @@ Stripe::Coupon.create(
 subscription = Stripe::Subscription.create(
     customer: jk.id,
     coupon: '6-months-free', # will fail if invalid
-    plan: company-year # or our plan.stripe_id string
+    plan: company_year.id # or our plan.stripe_id string
 )
 
 # Subscribing creates a $0 invoice for trial period, paid in full
@@ -160,4 +153,60 @@ User.all.each do |u|
   u.stripe_customer_id = customer.id
   u.save
 end
+
+# TODO POLICY: We call coupons "option codes"
+# TODO POLICY: Stripe.plan.nickname   == Plan.name
+# TODO POLICY: Our Plan.display_name  == Stripe Product Name
+
+# nuke them all
+splans = Stripe::Plan.list
+splans.each do |sp|
+  prod = Stripe::Product.retrieve(id: sp.product)
+  Stripe::Plan.retrieve(sp.id).delete
+  prod.delete
+end
+
+plans = Plan.all
+plans.each do |p|
+  # p.display_name = p.display_name.slice! 'Introductory '
+  p.save
+end
+
+# synchronize stripe plan.id to our plans:
+splans = Stripe::Plan.list
+splans.each do |sp|
+  Plan.find_by_name(sp.nickname).update(stripe_id: sp.id)
+end
+
+# sync stripe product name with local plan display name
+splans = Stripe::Plan.list
+splans.each do |sp|
+  prod = Stripe::Product.retrieve(id: sp.product)
+  Plan.find_by_name(sp.nickname).update(display_name: prod.name)
+end
+
+# resolve subscriptions
+users = User.all
+users.each do |u|
+  if u.first_sub.blank?            # only if no subscription
+    plan = Plan.find u.plan_id
+    if plan.name == 'intro_associate_year'
+      Stripe::Subscription.create(customer: u.stripe_customer_id, plan: plan.stripe_id)
+    else
+      Stripe::Subscription.create(customer: u.stripe_customer_id, plan: plan.stripe_id, coupon: 'beta6')
+    end
+  end
+end
+
+# resolve user.subscription_state
+users = User.all
+users.each do |u|
+  if u.first_sub
+    u.update(subscription_state: u.first_sub.status)
+  end
+end
+
+
+
+
 
