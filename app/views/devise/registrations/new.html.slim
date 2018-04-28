@@ -48,7 +48,7 @@
       = simple_form_for(:user, url: registration_path(:user)) do |f|
         = f.error_notification
 
-        - desired_plan  = params[:plan] ? params[:plan] : 'associate'
+        - desired_plan  = params[:plan] ? params[:plan] : 'intro_associate'
         - plan_interval = 'month'
         - plan_name     = desired_plan + '_' + plan_interval
         - plan          = Plan.where(name: plan_name).first

@@ -89,7 +89,6 @@
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=CONCIERGE_ONBOARDING_TIP
                     ' Concierge onboarding service
-                  /'  with #{link_to 'JK', vanity_path('john')}
                 li Manage Private Alliance memberships
                 li Information about member companies
                 li
@@ -101,10 +100,6 @@
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIRTUAL_OFFICE_TIP
                     ' Virtual Office
                 li Private Discussion Forums
-                /li Private messaging
-                /ul.no-bullet.little-snug-top
-                  li.faint
-                    ' (Contact any Startup Alliance member)
           - if !current_user
             .callout.small.accent
               h5.bold.text-center.primary 14 day free trial
@@ -143,7 +138,6 @@
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=CONCIERGE_ONBOARDING_TIP
                     ' Concierge onboarding service
-                  /'  with #{link_to 'JK', vanity_path('john')}
                 li Manage Company team memberships
                 li
                   ' Operate in
@@ -166,10 +160,6 @@
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=VIRTUAL_OFFICE_TIP
                     ' Virtual Office
                 li Private Discussion Forums
-                /li Private messaging
-                /ul.no-bullet.little-snug-top
-                  li.faint
-                    ' (Contact any Startup Alliance member)
           - if !current_user
             .callout.small.accent
               h5.bold.text-center.primary 14 day free trial
@@ -211,7 +201,6 @@
                       ul.no-bullet.little-snug-top
                         li.faint
                           ' Including the Global Virtual Office
-                      /li.bold Full access to the Global Virtual Office
                       li Limited Private Messaging
                       ul.no-bullet.little-snug-top
                         li.faint
@@ -219,14 +208,4 @@
                       li Browse Entrepreneurs, Alliances, Companies
                       li Join Private Alliances and Company Workspaces
                     = render 'partials/join_form', acqsrc: 'pricing_page'
-        /.callout.small.accent
-          h5.bold.text-center Free forever!
-          - if current_user and current_user.associate?
-            p= link_to 'Your current membership plan', '#', class: 'fa-lg button expanded bold primary shadow-6dp disabled'
-          - elsif current_user and current_user.plan_name != 'associate'
-            p= link_to 'Downgrade to Associate Plan', change_plan_path(desired_plan: 'associate'), method: :put, class: 'fa-lg button expanded bold success shadow-6dp'
-          - else
-            p= link_to 'Become a FREE Member', new_user_registration_path(acqsrc: 'pricing_page', plan: 'associate'), class: 'fa-lg button expanded bold success shadow-6dp'
-          p.scale-to-90.text-center
-            ' Membership is open to all committed entrepreneurs
 = render 'partials/join_modals'

@@ -3,13 +3,13 @@
 = simple_form_for(:user, url: registration_path(:user)) do |f|
   = f.error_notification
 
-  - desired_plan  = params[:plan].present? ? params[:plan] : 'associate'
+  - desired_plan  = params[:plan].present? ? params[:plan] : 'intro_associate'
   - plan_interval = 'year'
   - plan_name     = desired_plan + '_' + plan_interval
   - plan          = Plan.where(name: plan_name).first
 
   = f.hidden_field :acqsrc,   value: @acqsrc
-  = f.hidden_field :plan_id,  value: plan.id
+  = f.hidden_field :plan_id,  value: plan.id             if plan
   = f.hidden_field :r,        value: params[:r]          if params[:controller] == 'companies'
   = f.hidden_field :token,    value: params[:invite]     if params[:controller] == 'companies'
   = f.hidden_field :token,    value: params[:invite]     if params[:controller] == 'alliances'
