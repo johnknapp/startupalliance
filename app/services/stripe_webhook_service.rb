@@ -53,10 +53,10 @@ class StripeWebhookService
       # user = User.find 5
       # StripeMailer.card_request(user).deliver
       # Notifier.card_requested(user,@event).deliver
-      user = User.find_by_stripe_customer_id(@event.data.object.id)
-      if user and user.last4.nil?
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
+      if user and user.last4.nil? and user.next_invoice.amount_due != 0
         StripeMailer.card_request(user).deliver
-        Notifier.card_requested(user,@event).deliver
+        Notifier.card_requested(user).deliver
       end
     end
 
@@ -67,11 +67,11 @@ class StripeWebhookService
       # user = User.find 5
       # StripeMailer.subscription_payment_received(user).deliver
       # Notifier.payment_succeeded(user,@event).deliver
-      user = User.find_by_stripe_customer_id(@event.data.object.id)
-      if user
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
+      if user and @event['data']['object']['amount_due'] != 0
         user.update_attribute(:subscription_state, 'active')
         StripeMailer.subscription_payment_received(user).deliver
-        Notifier.payment_succeeded(user,@event).deliver
+        Notifier.payment_succeeded(user).deliver
       end
     end
 
@@ -83,11 +83,11 @@ class StripeWebhookService
       # user = User.find 5
       # StripeMailer.subscription_payment_failed(user).deliver
       # Notifier.payment_failed(user,@event).deliver
-      user = User.find_by_stripe_customer_id(@event.data.object.id)
-      if user
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
+      if user and @event['data']['object']['amount_due'] != 0
         user.update_attribute(:subscription_state, 'past_due')
         StripeMailer.subscription_payment_failed(user).deliver
-        Notifier.payment_failed(user,@event).deliver
+        Notifier.payment_failed(user).deliver
       end
     end
 
@@ -101,11 +101,11 @@ class StripeWebhookService
       # user.update(subscription_state: 'unpaid', plan_id: plan.id)
       # StripeMailer.migrated_to_associate(user).deliver
       # Notifier.cancel_for_non_payment(user,@event).deliver
-      user = User.find_by_stripe_customer_id(@event.data.object.id)
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user
         user.update(subscription_state: 'unpaid', plan_id: plan.id)
         StripeMailer.migrated_to_associate(user).deliver
-        Notifier.cancel_for_non_payment(user,@event).deliver
+        Notifier.cancel_for_non_payment(user).deliver
       end
     end
 
