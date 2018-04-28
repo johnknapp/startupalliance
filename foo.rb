@@ -185,15 +185,17 @@ splans.each do |sp|
   Plan.find_by_name(sp.nickname).update(display_name: prod.name)
 end
 
-# resolve subscriptions
+# resolve subscriptions and set state
 users = User.all
 users.each do |u|
   if u.first_sub.blank?            # only if no subscription
     plan = Plan.find u.plan_id
     if plan.name == 'intro_associate_year'
-      Stripe::Subscription.create(customer: u.stripe_customer_id, plan: plan.stripe_id)
+      sub = Stripe::Subscription.create(customer: u.stripe_customer_id, plan: plan.stripe_id)
+      u.update(subscription_state: sub.status)
     else
-      Stripe::Subscription.create(customer: u.stripe_customer_id, plan: plan.stripe_id, coupon: 'beta6')
+      sub = Stripe::Subscription.create(customer: u.stripe_customer_id, plan: plan.stripe_id, coupon: 'beta6')
+      u.update(subscription_state: sub.status)
     end
   end
 end
