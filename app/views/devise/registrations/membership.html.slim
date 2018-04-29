@@ -7,7 +7,6 @@
   h4.bold.medium-grey-text.text-center
     ' Membership Management
 
-
 .row
   .large-10.large-offset-1.columns
     .float-right
@@ -23,10 +22,10 @@
 
 .row
   .medium-8.medium-offset-2.columns
-    p.bold.snug-bottom Membership Summary:
+    h5.bold.primary.little-snug-bottom Membership Summary:
     - ni  = current_user.next_invoice
     - sub = current_user.first_sub
-    .callout
+    .callout.shadow
 
       .float-right
         p= current_user.created_at.strftime('%B %e, %Y')
@@ -73,8 +72,8 @@
           = render 'card_modal'
       p Card on file:
 
-    p.bold.snug-bottom Next billing event:
-    .callout
+    h5.bold.primary.little-snug-bottom.space-top Next billing event:
+    .callout.shadow
       .float-right
         p= Time.zone.at(ni.date).strftime('%b %e, %Y')
       p Date:

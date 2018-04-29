@@ -34,6 +34,8 @@ class StripeWebhookService
         handle_unpaid_invoice
       when 'customer.subscription.deleted'
         done_attempting_payment
+      when 'customer.subscription.updated'
+        happy_dance
       else
         nil
     end
@@ -43,8 +45,14 @@ class StripeWebhookService
 
     # customer.subscription.created
     # invoice.created
+    # customer.subscription.updated
     def happy_dance
       # we're in a good mood
+      # spread the word
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
+      if user
+        Notifier.happy_dance(user,@event).deliver
+      end
     end
 
     # customer.subscription.trial_will_end

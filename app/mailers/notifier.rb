@@ -41,4 +41,12 @@ class Notifier < ApplicationMailer
     end
   end
 
+  def happy_dance(user,event)
+    if Rails.env.production?
+      @user = user
+      @event = event
+      mail(to: 'john@startupalliance.com', subject: "[SA] somebody did something")
+    end
+  end
+
 end

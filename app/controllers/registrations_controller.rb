@@ -44,14 +44,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def change_plan
     if current_user and params[:desired_plan]
-      plan_interval = current_user.plan_interval
-      desired_plan  = params[:desired_plan]
-      plan_name     = desired_plan + '_' + plan_interval
-      plan = Plan.where(name: plan_name).first
-      current_user.update_attribute(:plan_id, plan.id)
+      plan = Plan.find_by_name(params[:desired_plan])
+      sub = current_user.first_sub
+      sub.plan = plan.stripe_id
+      sub.save
+      current_user.update(plan_id: plan.id, subscription_state: sub.status)
       GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
     end
-    redirect_back(fallback_location: pricing_path, alert: 'You changed your plan')
+    redirect_back(fallback_location: users_membership_path, alert: 'You changed your plan')
   end
 
   # GET /resource/sign_up

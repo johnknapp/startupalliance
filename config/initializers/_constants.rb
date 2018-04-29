@@ -15,6 +15,7 @@ RELEVANT_STRIPE_WEBHOOKS    = %w[
   invoice.payment_succeeded
   invoice.payment_failed
   customer.subscription.deleted
+  customer.subscription.updated
 ]
 VALID_STRIPE_COUPONS        = %w[charter6]
 STRIPE_PK_LIVE              = 'pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc'
