@@ -28,6 +28,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     if resource.valid? && resource.password_match?
       self.resource.confirm
       if Rails.env.production?
+        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
         # $analytics.identify(
         #     anonymous_id:       resource.pid,
         #     id:                 resource.pid,
@@ -49,7 +50,6 @@ class ConfirmationsController < Devise::ConfirmationsController
         #     id:                 resource.pid,
         #     event:              'Activated'
         # )
-        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       set_flash_message :notice, :confirmed
       sign_in(resource)
