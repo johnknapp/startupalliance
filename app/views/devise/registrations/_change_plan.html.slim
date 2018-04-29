@@ -1,3 +1,4 @@
+- plans = Plan.where.not(id: current_user.plan_id).order(amount: :desc)
 .reveal#change-plan data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
@@ -5,42 +6,35 @@
   h5.bold.primary.little-space-botom You may change plans any time
   .callout.shadow
     p.bold.little-space-top Your current plan:
-    p.snug-top.indented-2= current_user.plan.display_name
-    p.bold.little-snug-top Subscription anniversary:
-    p.snug-top.indented-2= Time.zone.at(ni.lines.first.period.end).strftime('%b %e, %Y')
-    p.bold.little-snug-top Your plan price:
-    p.snug-top.indented-2= ni.lines.data[0].description
-    - if ni.discount and ni.discount.coupon.duration_in_months != 0
-      p.bold.little-snug-top Your Option code:
-      p.snug-top.indented-2
-        span.bold
-          ' “#{ni.discount.coupon.id}”
-        ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
-        ' (through #{Time.zone.at(ni.discount.end).strftime('%b %e, %Y')})
+    .row
+      .medium-8.medium-offset-1.columns
+        p.little-snug-top.little-snug-bottom= current_user.plan.display_name
+      .medium-2.columns.end
+        p.little-snug-top.little-snug-bottom.text-right= current_user.plan.display_price
 
-  h5.bold.primary.text-center.space-bottom.little-space.top Available Membership plans:
-  = form_tag change_plan_path, class: 'space-bottom', method: :put
-    - plans = Plan.where.not(id: current_user.plan_id).order(amount: :desc)
+  .callout.shadow
+    p.bold.little-space-top Available plans:
     - plans.each do |plan|
       .row
-        .small-7.small-offset-1.columns
-          p.snug-top.scale-to-90
-            = radio_button_tag :desired_plan, plan.name, false
-            = label_tag :desired_plan, plan.display_name
-        .small-2.columns.end
-          p.scale-to-90.text-right.snug-top
-            - if plan.amount == 0
-              ' FREE
-            - else
-              ' #{plan.display_price}
+        .medium-8.medium-offset-1.columns
+          p.little-snug-top= plan.display_name
+        .medium-2.columns.end
+          p.little-snug-top.text-right= plan.display_price
+
     .row
-      .small-12.columns
-        p.scale-to-90.little-snug-top.space-bottom.text-center
+      .medium-10.medium-offset-1.columns
+        p.faint.snug-top.space-bottom.text-center
           em
             ' (No credit card required for Associate Membership.)
-    = submit_tag 'Change to the selected plan', class: 'bold button accent expanded'
+        = simple_form_for current_user, url: change_plan_path, method: :put do |f|
+          = f.input :plan_id, label: false, include_blank: 'Choose another plan...', collection: plans, label_method: :display_name, value_method: :id
+          = submit_tag 'Change to the selected plan', class: 'bold button accent expanded little-snug-bottom'
+        p.scale-to-90.little-space-bottom.text-center
+          em
+            ' Changes to your capabilities become effective immediately
 
-  ul.simple.menu.little-space-top.snug-bottom.align-right
-    /li= link_to 'Delete account', registration_path(resource_name), data: { confirm: 'Permanently delete your account and data? There is no undo!' }, method: :delete
+  ul.simple.menu.less-space-top.snug-bottom
+    li.bold.text Important:
+    li= link_to 'Membership capabilities', pricing_path, target: '_blank'
     li= link_to 'Subscriptions and billing', 'https://support.startupalliance.com/en/knowledgebase/3-getting-started/docs/20-subscriptions-and-billing', target: '_blank'
-    li= link_to 'Membership plans', pricing_path, target: '_blank'
+    /li= link_to 'Delete account', registration_path(resource_name), data: { confirm: 'Permanently delete your account and data? There is no undo!' }, method: :delete

@@ -43,8 +43,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def change_plan
-    if current_user and params[:desired_plan]
-      plan = Plan.find_by_name(params[:desired_plan])
+    if current_user and params[:user][:plan_id]
+      plan = Plan.find(params[:user][:plan_id])
       sub = current_user.first_sub
       sub.plan = plan.stripe_id
       sub.save

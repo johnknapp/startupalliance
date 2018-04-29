@@ -38,8 +38,11 @@
             | &nbsp;
             i.fa.fa-pencil
           = render 'change_plan', ni: ni, sub: sub
-
       p Current membership plan:
+
+      .float-right
+        p= Time.zone.at(ni.lines.first.period.end).strftime('%b %e, %Y')
+      p Subscription anniversary:
 
       .float-right
         p
