@@ -78,18 +78,15 @@ class RegistrationsController < Devise::RegistrationsController
 
     if valid_email?(params[:user][:email]) == 0 and valid_user?(params['g-recaptcha-response'])
       super
-      # make them a customer and set their stripe_customer_id
       customer = Stripe::Customer.create(email: current_user.email)
       current_user.update_attribute(:stripe_customer_id, customer.id)
-      # fetch the plan they're after
-      plan = Plan.find(id: params[:user][:plan_id])
-      # pass the coupon they're after
+      # if we don't know what plan they want, give them a free plan
+      plan = params[:user][:plan_id].present? ? Plan.find(id: params[:user][:plan_id]) : Plan.find_by_amount(0)
       coupon  = params[:user][:stripe_coupon_code]
-      # hook them up
       current_user.subscribe_to_stripe(plan,coupon) if plan and current_user.stripe_customer_id
-
       current_user.update_attribute(:username, 'temporary-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
+        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
         # $analytics.identify(
         #     anonymous_id:   current_user.pid,
         #     id:             current_user.pid,
@@ -110,7 +107,6 @@ class RegistrationsController < Devise::RegistrationsController
         #     id:             current_user.pid,
         #     event:          'Signed up'
         # )
-        GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
       # add new user to entity
       add_user_to_entity(current_user,entity,token,role) if params[:user][:entity]

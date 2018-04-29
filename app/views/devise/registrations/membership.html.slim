@@ -40,9 +40,9 @@
           = render 'change_plan', ni: ni, sub: sub
       p Current membership plan:
 
-      .float-right
-        p= Time.zone.at(ni.lines.first.period.end).strftime('%b %e, %Y')
-      p Subscription anniversary:
+      /.float-right
+      /  p= Time.zone.at(sub.current_period_end).strftime('%b %e, %Y')
+      /p Subscription anniversary:
 
       .float-right
         p
@@ -68,11 +68,14 @@
           = link_to card_path(current_user.stripe_customer_id), data: { confirm: "Really remove this card from your account?" }, method: :delete, class: 'accent' do
             i.fa.fa-trash
         - else
-          a data-open='card'
-            ' Add card to your account
-            | &nbsp;
-            i.fa.fa-info-circle
-          = render 'card_modal'
+          - if current_user.associate?
+            p Not required for Associate Membership
+          - else
+            a data-open='card'
+              ' Add card to your account
+              | &nbsp;
+              i.fa.fa-info-circle
+            = render 'card_modal'
       p Card on file:
 
     h5.bold.primary.little-snug-bottom.space-top Next billing event:
