@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def plan_name
-    self.plan.name.split('_').first
+    self.plan.name.split('_').second
   end
 
   def plan_interval
@@ -113,8 +113,7 @@ class User < ApplicationRecord
   end
 
   def subscription
-    # All other subscription_states are acceptable, even past_due and unpaid
-    if self.subscription_state != 'canceled'
+    if self.subscription_state != 'canceled' # if they're canceled, they can't do stuff.
       if self.plan_name == 'company'
         return 'company'
       elsif self.plan_name == 'alliance'
