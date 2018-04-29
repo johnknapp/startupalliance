@@ -2,7 +2,7 @@ class Alliance < ApplicationRecord
   include Pid
   include Webmeet
   has_many    :discussions, as: :discussable, dependent: :destroy
-  has_many    :alliance_users
+  has_many    :alliance_users, dependent: :destroy
   has_many    :members, through: :alliance_users, source: :user
   belongs_to  :creator, class_name: :User
 

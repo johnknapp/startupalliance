@@ -3,12 +3,12 @@ class Company < ApplicationRecord
   include CountryName
   include Webmeet
   has_many    :discussions, as: :discussable, dependent: :destroy
-  has_many    :company_users
+  has_many    :company_users, dependent: :destroy
   has_many    :team, through: :company_users, source: :user
   belongs_to  :creator, class_name: :User
-  has_many    :okrs
-  has_many    :fasts
-  has_many    :company_sakpis
+  has_many    :okrs, dependent: :destroy
+  has_many    :fasts, dependent: :destroy
+  has_many    :company_sakpis, dependent: :destroy
   has_many    :sakpis, through: :company_sakpis
 
   accepts_nested_attributes_for :company_users
