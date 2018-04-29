@@ -47,7 +47,7 @@ ActiveAdmin.register User do
 
     private
 
-      # Specifically not destroying any companies, okrs or alliances they created
+      # Specifically not destroying any companies, okrs, FASTs or alliances they created
       def departure_cleanup
         okrs = Okr.where(owner_id: resource.id).all
         if okrs.present?
@@ -55,14 +55,18 @@ ActiveAdmin.register User do
             okr.update(owner_id: okr.company.creator.id)
           end
         end
+
+        fasts = Fast.where(user_id: resource.id).all
+        if fasts.present?
+          fasts.each do |fast|
+            fast.update(user_id: fast.company.creator.id)
+          end
+        end
+
         jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
         jk = User.find 1 if Rails.env.development?
         Page.where(author_id: resource.id).update_all(author_id: jk.id)
-        AllianceUser.where(user_id: resource.id).destroy_all
-        CompanyUser.where(user_id: resource.id).destroy_all
-        UserSkill.where(user_id: resource.id).destroy_all
-        UserTrait.where(user_id: resource.id).destroy_all
-        Conversation.includes?(resource).destroy_all
+
         Stripe::Customer.retrieve(id: resource.stripe_customer_id).delete if resource.stripe_customer_id
       end
 

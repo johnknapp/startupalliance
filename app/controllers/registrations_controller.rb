@@ -234,7 +234,7 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.update(trait_index: us.sum(:level))
     end
 
-    # Specifically not destroying any companies, okrs or alliances they created
+    # Specifically not destroying any companies, okrs, FASTs or alliances they created
     def departure_cleanup
       okrs = Okr.where(owner_id: @user.id).all
       if okrs.present?
@@ -242,14 +242,18 @@ class RegistrationsController < Devise::RegistrationsController
           okr.update(owner_id: okr.company.creator.id)
         end
       end
+
+      fasts = Fast.where(user_id: @user.id).all
+      if fasts.present?
+        fasts.each do |fast|
+          fast.update(user_id: fast.company.creator.id)
+        end
+      end
+
       jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
       jk = User.find 1 if Rails.env.development?
       Page.where(author_id: @user.id).update_all(author_id: jk.id) # reset the author
-      AllianceUser.where(user_id: @user.id).destroy_all
-      CompanyUser.where(user_id: @user.id).destroy_all
-      UserSkill.where(user_id: @user.id).destroy_all
-      UserTrait.where(user_id: @user.id).destroy_all
-      Conversation.includes?(@user).destroy_all
+
       Stripe::Customer.retrieve(id: @user.stripe_customer_id).delete if @user.stripe_customer_id
     end
 
