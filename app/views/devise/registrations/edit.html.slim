@@ -7,7 +7,13 @@
 .row
   .large-10.large-offset-1.medium-12.columns
     .float-right
-      p.text-right.snug-top You have been a valued member of Startup Alliance since #{current_user.created_at.strftime('%B %e, %Y')}
+      p.text-right.snug-top
+        - if current_user.first_sub
+          = link_to users_membership_path do
+            ' Manage your #{current_user.plan.display_name}
+            | &nbsp;
+            i.fa.fa-arrow-right
+      /p.text-right.snug-top You have been a valued member of Startup Alliance since #{current_user.created_at.strftime('%B %e, %Y')}
       /p.text-right.snug-top.faint
         - if current_user.card_brand.present?
           ' Card on file: #{current_user.card_brand} ending in #{current_user.last4} (expiry: #{current_user.card_expiry.strftime('%b. %y')})
