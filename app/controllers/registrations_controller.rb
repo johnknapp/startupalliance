@@ -78,48 +78,17 @@ class RegistrationsController < Devise::RegistrationsController
 
     if valid_email?(params[:user][:email]) == 0 and valid_user?(params['g-recaptcha-response'])
       super
-
-      # Stripe:
-      #   We always want to have a Customer
-      #   We create Subscription if we get a valid plan_id from the join form
-      #   We apply a Coupon if they submit a valid one
-      #     Keep constants in sync with the Coupons!
-      #     TODO: Check the Coupon against Stripe and abandon the constant
-
+      # make them a customer and set their stripe_customer_id
       customer = Stripe::Customer.create(email: current_user.email)
       current_user.update_attribute(:stripe_customer_id, customer.id)
-      plan = Plan.where(id: params[:user][:plan_id]).first
-      if plan.present? # should be fine unless join forms suck
-        if VALID_STRIPE_COUPONS.include? params[:user][:stripe_coupon_code]
-          coupon  = params[:user][:stripe_coupon_code]
-          subscription = Stripe::Subscription.create(
-              customer: customer.id,
-              coupon: coupon,
-              plan: plan.stripe_id
-          )
-        else
-          current_user.update_attribute(:stripe_coupon_code, nil) # they tricked us with invalid coupon so nil it
-          subscription = Stripe::Subscription.create(
-              customer: customer.id,
-              plan: plan.stripe_id
-          )
-        end
-        if subscription
-          # subscription_states = %w[trialing active past_due canceled unpaid error]
-          if current_user.associate?
-            current_user.update_attribute(:subscription_state, 'unpaid')
-          elsif !current_user.associate? and current_user.plan.trial_period_days != 0
-            current_user.update_attribute(:subscription_state, 'trialing')
-          elsif !current_user.associate? or current_user.plan.trial_period_days == 0
-            current_user.update_attribute(:subscription_state, 'active')
-          else # something is fishy
-            current_user.update_attribute(:subscription_state, 'error')
-          end
-          current_user.update_attribute(:subscription_state, 'unpaid')
-          current_user.update_attribute(:subscribed_at, Time.now)
-        end
-      end
-      current_user.update_attribute(:username, 'guest-'+current_user.pid) if current_user.username.blank? # making sure they have one
+      # fetch the plan they're after
+      plan = Plan.find(id: params[:user][:plan_id])
+      # pass the coupon they're after
+      coupon  = params[:user][:stripe_coupon_code]
+      # hook them up
+      current_user.subscribe_to_stripe(plan,coupon) if plan and current_user.stripe_customer_id
+
+      current_user.update_attribute(:username, 'temporary-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
         # $analytics.identify(
         #     anonymous_id:   current_user.pid,

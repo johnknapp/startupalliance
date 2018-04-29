@@ -3,7 +3,7 @@ ActiveAdmin.register User do
   menu parent: 'Subscriptions'
 
   permit_params :id, :pid, :first_name, :last_name, :username, :work_role, :mission, :bio, :email, :password, :password_confirmation,
-                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :subscription_state,
+                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role,
                 :linkedin_profile, :website, :country_code, :time_zone, :plan_id, :acqsrc, :public_skills, :public_traits
 
   scope('All')        { |scope| scope.all }
@@ -12,6 +12,7 @@ ActiveAdmin.register User do
   scope('Past due')   { |scope| scope.where(subscription_state: 'past_due') }
   scope('Canceled')   { |scope| scope.where(subscription_state: 'canceled') }
   scope('Unpaid')     { |scope| scope.where(subscription_state: 'unpaid') }
+  scope('Error')      { |scope| scope.where(subscription_state: 'error') }
 
   controller do
 
@@ -119,8 +120,8 @@ ActiveAdmin.register User do
       f.input :role,                collection: USER_ROLES
       f.input :state,               collection: USER_STATES
       f.input :plan
-      f.input :subscribed_at
-      f.input :subscription_state,  collection: SUBSCRIPTION_STATES
+      # f.input :subscribed_at
+      # f.input :subscription_state,  collection: SUBSCRIPTION_STATES
     end
     f.actions
   end

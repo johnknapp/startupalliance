@@ -88,21 +88,27 @@ class User < ApplicationRecord
     !sub.cancel_at_period_end
   end
 
-  def subscribe_to_stripe(stripe_plan,coupon)
-    plan = Plan.where(stripe_id: stripe_plan).first
-    if plan.present?
-      if coupon and VALID_STRIPE_COUPONS.include? coupon
-        Stripe::Subscription.create(
-            customer: self.stripe_customer_id,
-            coupon: coupon,
-            plan: plan.stripe_id
+
+  def subscribe_to_stripe(plan,coupon = nil)
+    if plan.present? and self.stripe_customer_id.present?
+      if coupon and VALID_STRIPE_COUPONS.include? coupon # TODO: validate Coupon against Stripe and abandon the constant
+        sub = Stripe::Subscription.create(
+            customer:           self.stripe_customer_id,
+            coupon:             coupon,
+            plan:               plan.stripe_id
         )
       else
-        Stripe::Subscription.create(
-            customer: self.stripe_customer_id,
-            plan: plan.stripe_id
+        sub = Stripe::Subscription.create(
+            customer:           self.stripe_customer_id,
+            plan:               plan.stripe_id
         )
+        self.update_attribute(:stripe_coupon_code, nil) # they requested an invalid coupon so nil it
       end
+      self.update(
+          plan_id:              plan.id,
+          subscription_state:   sub.status,
+          subscribed_at:        Time.now
+      )
     end
   end
 

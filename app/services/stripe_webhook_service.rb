@@ -58,9 +58,6 @@ class StripeWebhookService
     # customer.subscription.trial_will_end
     def request_card
       # If no card on file, ask them to add one
-      # user = User.find 5
-      # StripeMailer.card_request(user).deliver
-      # Notifier.card_requested(user,@event).deliver
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user and user.last4.nil? and user.next_invoice.amount_due != 0
         StripeMailer.card_request(user).deliver
@@ -72,9 +69,6 @@ class StripeWebhookService
     def handle_paid_invoice
       # thank customer
       # set user.subscription_state 'active'
-      # user = User.find 5
-      # StripeMailer.subscription_payment_received(user).deliver
-      # Notifier.payment_succeeded(user,@event).deliver
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user and @event['data']['object']['amount_due'] != 0
         user.update_attribute(:subscription_state, 'active')
@@ -88,9 +82,6 @@ class StripeWebhookService
       # tell customer to fix/add card
       # set user.subscription_state 'past_due'
       # retry for a while
-      # user = User.find 5
-      # StripeMailer.subscription_payment_failed(user).deliver
-      # Notifier.payment_failed(user,@event).deliver
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user and @event['data']['object']['amount_due'] != 0
         user.update_attribute(:subscription_state, 'past_due')
@@ -101,17 +92,12 @@ class StripeWebhookService
 
     # customer.subscription.deleted
     def done_attempting_payment
-      # Stripe retry attempts have ended
-      #   and they automatically cancelled the subscription
-      # migrate to associate plan
-      # plan = Plan.find_by_name('associate_year')
-      # user = User.find 5
-      # user.update(subscription_state: 'unpaid', plan_id: plan.id)
-      # StripeMailer.migrated_to_associate(user).deliver
-      # Notifier.cancel_for_non_payment(user,@event).deliver
+      # Stripe retry attempts have ended and they automatically cancelled the subscription
+      # we will migrate to free plan
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user
-        user.update(subscription_state: 'unpaid', plan_id: plan.id)
+        plan = Plan.find_by_amount(0)  # whatever the first free plan is
+        user.subscribe_to_stripe(plan) # they were cancelled so it's a new subscription
         StripeMailer.migrated_to_associate(user).deliver
         Notifier.cancel_for_non_payment(user).deliver
       end

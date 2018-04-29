@@ -17,7 +17,10 @@ RELEVANT_STRIPE_WEBHOOKS    = %w[
   customer.subscription.deleted
   customer.subscription.updated
 ]
-VALID_STRIPE_COUPONS        = %w[charter6]
+VALID_STRIPE_COUPONS        = %w[
+  charter6
+  beta6
+]
 STRIPE_PK_LIVE              = 'pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc'
 STRIPE_PK_TEST              = 'pk_test_As4q7e0EyphQP9ncUqCCBlPJ'
 
