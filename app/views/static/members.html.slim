@@ -44,7 +44,7 @@
                     | &nbsp;
                     = member.name
                   - if current_user.admin?
-                    p.faint.text-right.snug-top.snug-bottom= member.plan_name
+                    p.faint.text-right.snug-top.snug-bottom= member.plan_short_name
 
                 td{valign='top'}
                   - if member.mission.present?

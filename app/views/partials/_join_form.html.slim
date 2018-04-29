@@ -5,8 +5,8 @@
 
   - desired_plan  = params[:plan].present? ? params[:plan] : 'intro_associate'
   - plan_interval = 'year'
-  - plan_name     = desired_plan + '_' + plan_interval
-  - plan          = Plan.where(name: plan_name).first
+  - plan_short_name     = desired_plan + '_' + plan_interval
+  - plan          = Plan.where(name: plan_short_name).first
 
   = f.hidden_field :acqsrc,   value: @acqsrc
   = f.hidden_field :plan_id,  value: plan.id             if plan

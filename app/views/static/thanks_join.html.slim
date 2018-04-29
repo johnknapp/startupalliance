@@ -14,12 +14,12 @@
       li Watch for the account activation email (check your spam folder and give it time to arrive!)
       li Click the link it contains to visit the account activation page, add your name, choose a username and password
       li
-        - if current_user and current_user.plan_name == 'alliance'
+        - if current_user and current_user.plan_short_name == 'alliance'
           span.bold
             ' Important:
           ' After you activate, go ahead and create your Private Alliance
           li Invite your people to become part of your Private Alliance
-        - elsif current_user and current_user.plan_name == 'company'
+        - elsif current_user and current_user.plan_short_name == 'company'
           span.bold
             ' Important:
           ' After you activate, go ahead and create your Company Workspace

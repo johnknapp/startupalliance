@@ -50,8 +50,9 @@ class User < ApplicationRecord
     end
   end
 
-  def plan_name
-    self.plan.name.split('_').second
+  def plan_short_name
+    self.plan.name.split('_').second # TODO watch out for future plan name changes
+    # self.plan.name.split('_').first # was first, then we added intro_ prefix
   end
 
   def plan_interval
@@ -114,15 +115,7 @@ class User < ApplicationRecord
 
   def subscription
     if self.subscription_state != 'canceled' # if they're canceled, they can't do stuff.
-      if self.plan_name == 'company'
-        return 'company'
-      elsif self.plan_name == 'alliance'
-        return 'alliance'
-      elsif self.plan_name == 'entrepreneur'
-        return 'entrepreneur'
-      elsif self.plan_name == 'associate'
-        return 'associate'
-      end
+      self.plan_short_name
     end
   end
 
@@ -141,7 +134,7 @@ class User < ApplicationRecord
   end
 
   def associate?
-    self.plan_name == 'associate'
+    self.plan_short_name == 'associate'
   end
 
   def team_role(company)

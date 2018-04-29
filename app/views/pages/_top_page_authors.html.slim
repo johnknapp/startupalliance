@@ -7,7 +7,7 @@
           p.text-right.little-snug-top
             ' #{link_to user.name, vanity_path(user.username)}
             /| &nbsp;
-            - if user.plan_name != 'associate'
+            - if user.plan_short_name != 'associate'
               span.faint
                 ' (#{render 'partials/user_si_ti_display', user: user})
             | :

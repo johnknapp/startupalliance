@@ -50,8 +50,8 @@
 
         - desired_plan  = params[:plan] ? params[:plan] : 'intro_associate'
         - plan_interval = 'month'
-        - plan_name     = desired_plan + '_' + plan_interval
-        - plan          = Plan.where(name: plan_name).first
+        - plan_short_name     = desired_plan + '_' + plan_interval
+        - plan          = Plan.where(name: plan_short_name).first
 
         = f.hidden_field :acqsrc,   value: @acqsrc
         = f.hidden_field :plan_id,  value: plan.id
@@ -102,8 +102,8 @@
 
         - desired_plan  = params[:plan] ? params[:plan] : 'associate'
         - plan_interval = 'month'
-        - plan_name     = desired_plan + '_' + plan_interval
-        - plan          = Plan.where(name: plan_name).first
+        - plan_short_name     = desired_plan + '_' + plan_interval
+        - plan          = Plan.where(name: plan_short_name).first
 
         = f.hidden_field :acqsrc,   value: @acqsrc
         = f.hidden_field :plan_id,  value: plan.id

@@ -36,7 +36,7 @@
 
 p.scale-to-90
   | #{link_to post.author.name, vanity_path(post.author.username)}
-  - if post.author.plan_name != 'associate'
+  - if post.author.plan_short_name != 'associate'
     |, (#{render 'partials/user_si_ti_display', user: post.author})
   ', #{time_ago_in_words(post.created_at)} ago
   - if current_user and current_user.confirmed?

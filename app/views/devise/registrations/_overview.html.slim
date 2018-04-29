@@ -93,7 +93,7 @@
       .float-right
         p.faint.snug-top= ISO3166::Country(@user.country_code).name
       p.faint.snug-top Country:
-    - if @user.plan_name.present?
+    - if @user.plan_short_name.present?
       .float-right
         p.snug-top.faint.text-right
           ' #{@user.plan.display_name}

@@ -2,7 +2,7 @@ class GibbonService
   def self.add_update(user, list_id)
     if Rails.env.production? and user.email.present?
       md5_email = Digest::MD5.hexdigest(user.email.downcase)
-      planname = user.plan_name
+      planname = user.plan_short_name
       $gibbon.lists(list_id).members(md5_email).upsert(
         body: {
           email_address: user.email,
