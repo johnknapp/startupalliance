@@ -14,3 +14,8 @@ table width='600px' align='center' padding='12px'
       h3.bold Let’s do this:
       p= link_to 'Visit your account activation page', confirmation_url(@resource, confirmation_token: @token)
 
+      p
+        strong
+          ' By the way:
+        br
+        ' If you change your email address in the future, we send this email again. Simply re-confirm by clicking the link.

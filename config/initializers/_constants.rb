@@ -141,8 +141,12 @@ USERNAME_EXCLUSIONS = %w[
   tos
   terms_of_use
   terms-of-use
+  vie
+  vip
+  vips
   webhook
   webhooks
+  welcome
   wizard
   wizards
 ]
