@@ -109,6 +109,8 @@ USERNAME_EXCLUSIONS = %w[
   messages
   newrelic
   nucleus
+  offer
+  offers
   okr
   okrs
   privacy

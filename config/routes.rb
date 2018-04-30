@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
+  get 'vie/:id',                    to: 'offers#vie',                  constraints: { format: 'html' }
   get 'welcome',                    to: 'static#welcome',              constraints: { format: 'html' }
   get 'about',                      to: 'static#about',                constraints: { format: 'html' }
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }

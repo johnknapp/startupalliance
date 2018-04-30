@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426155620) do
+ActiveRecord::Schema.define(version: 20180430193107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,19 @@ ActiveRecord::Schema.define(version: 20180426155620) do
     t.boolean  "read",            default: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.string   "audience"
+    t.string   "blurb"
+    t.text     "features"
+    t.integer  "plan_id"
+    t.string   "coupon"
+    t.datetime "valid_through"
+    t.string   "pid",           null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["pid"], name: "index_offers_on_pid", using: :btree
   end
 
   create_table "okrs", force: :cascade do |t|
