@@ -2,21 +2,20 @@
   ' Startup Alliance – Thank you for coming
 
 - content_for :page_header do
-  h2.bold.little-space-top.white-text.text-center
-    ' Exclusive offer
-  h4.bold.medium-grey-text.text-center
-    ' For #{@offer.header_2}
+  h2.bold.little-space-top.white-text.text-center = @offer.header_1
+  h4.bold.medium-grey-text.text-center            = @offer.header_2
 
 .row
   .medium-8.medium-offset-2.columns
     p.snug-top.space-botton.text-right
       ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
     p.snug-top.show-for-medium &nbsp;
+
     .callout.accent.shadow-8dp
       - if @offer.offer_lead_in
-        h5.title-font.text-center= @offer.offer_lead_in
+        h5.title-font.text-center                 = @offer.offer_lead_in
 
-      h5.bold.text-center #{@offer.plan.display_name}
+      h5.bold.text-center                         = @offer.plan.display_name
       p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
 
       - if @coupon
@@ -32,7 +31,7 @@
     .row
       .medium-10.medium-offset-1.columns
         h4.bold.little-space-top With #{@offer.plan.display_name} you can:
-        .little-snug-top.indented-1= markdown @offer.plan_benefits
+        .little-snug-top.indented-1               = markdown @offer.plan_benefits
 
         - if @offer.plan.trial_period_days
           h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
