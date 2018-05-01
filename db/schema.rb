@@ -175,9 +175,10 @@ ActiveRecord::Schema.define(version: 20180430193107) do
   end
 
   create_table "offers", force: :cascade do |t|
-    t.string   "audience"
-    t.string   "blurb"
-    t.text     "features"
+    t.string   "header_1"
+    t.string   "header_2"
+    t.string   "offer_lead_in"
+    t.text     "plan_benefits"
     t.integer  "plan_id"
     t.string   "coupon"
     t.datetime "valid_through"

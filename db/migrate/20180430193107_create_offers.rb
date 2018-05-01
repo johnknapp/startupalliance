@@ -1,9 +1,10 @@
 class CreateOffers < ActiveRecord::Migration[5.0]
   def change
     create_table :offers do |t|
-      t.string      :audience
-      t.string      :blurb
-      t.text        :features
+      t.string      :header_1
+      t.string      :header_2
+      t.string      :offer_lead_in
+      t.text        :plan_benefits
       t.integer     :plan_id
       t.string      :coupon
       t.datetime    :valid_through

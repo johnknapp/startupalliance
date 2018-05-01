@@ -1,6 +1,11 @@
 = render 'layouts/html_and_head'
 body.flex-site
   main.flex-content
+    .callout.primary-background
+      .row
+        .small-12.columns
+          = yield :page_header
+
     = yield
   footer
     /= render 'layouts/footer'

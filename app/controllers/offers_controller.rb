@@ -4,6 +4,7 @@ class OffersController < ApplicationController
 
   # GET /welcome/:id
   def show
+    render layout: 'application_blank'
   end
 
   private
