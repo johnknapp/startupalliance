@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-# before_action :configure_sign_up_params, only: [:create]
-# before_action :configure_account_update_params, only: [:update]
+  prepend_before_action :authenticate_scope!, only: [:membership, :edit, :update, :destroy] # adding one to their defaults
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   def declare_trait
     if current_user and params[:trait_id] and params[:level]
