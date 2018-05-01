@@ -26,6 +26,10 @@
             ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
     .row
+      .medium-6.medium-offset-3.columns
+        .little-space-top= render 'partials/video_home'
+
+    .row
       .medium-10.medium-offset-1.columns
         h4.bold.little-space-top With #{@offer.plan.display_name} you can:
         .little-snug-top.indented-1= markdown @offer.plan_benefits
