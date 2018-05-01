@@ -1,0 +1,67 @@
+- content_for :page_title do
+  ' Startup Alliance – Thank you for coming
+
+- content_for :page_header do
+  h2.bold.little-space-top.white-text.text-center
+    ' Exclusive offer
+  h4.bold.medium-grey-text.text-center
+    ' For #{@offer.audience}
+
+.row
+  .medium-8.medium-offset-2.columns
+    p.snug-top.space-botton.text-right
+      ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
+    p.snug-top.show-for-medium &nbsp;
+    .callout.accent.shadow-8dp
+      - if @offer.blurb
+        h5.title-font.text-center= @offer.blurb
+
+      h5.bold.text-center #{@offer.plan.display_name}
+      p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+
+      - if @coupon
+        h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
+        p.little-snug-top.text-center
+          em
+            ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
+
+    .row
+      .medium-10.medium-offset-1.columns
+        h4.bold.little-space-top With #{@offer.plan.display_name} you can:
+        .little-snug-top.indented-1= markdown @offer.features
+
+        - if @offer.plan.trial_period_days
+          h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
+
+        p.little-snug-top.text-center
+          em
+            ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
+
+        .callout.shadow-8dp
+          = simple_form_for(:user, url: registration_path(:user)) do |f|
+            = f.error_notification
+
+            = f.hidden_field :plan_id,  value: @offer.plan.id
+            = f.hidden_field :coupon,   value: @offer.coupon
+
+            p.faint.snug-bottom
+              em Membership is open to committed entrepreneurs, advisors and investors
+            .row.collapse
+              .small-8.columns
+                = f.input :email, placeholder: 'Enter your email...', label: false
+              .small-4.columns
+                = f.button :submit, "Join now!", class: 'postfix expanded bold success'
+            .row
+              .small-12.columns
+                .float-right
+                  p.snug-top.faint
+                    em
+                      ' Already a member?
+                      = link_to 'Sign-in', new_user_session_path
+                .g-recaptcha.little-snug-top data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
+
+        /.little-space-top= render 'partials/join_form', acqsrc: "'offer_pid'+#{@offer.pid}"
+        p.faint.text-center
+          em
+            ' Offer only available to new members
+

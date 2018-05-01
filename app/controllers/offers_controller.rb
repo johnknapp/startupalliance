@@ -2,7 +2,7 @@ class OffersController < ApplicationController
 
   before_action :prepare_offer
 
-  # GET /vie/:id
+  # GET /welcome/:id
   def show
   end
 
