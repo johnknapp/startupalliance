@@ -8,7 +8,8 @@ class ProspectsController < ApplicationController
         if Rails.env.production?
           GibbonService.add_update(prospect, ENV['MAILCHIMP_PROPECTS_LIST'])
         end
-        redirect_to thanks_guest_path(offer: prospect.offer_id)
+        redirect_to root_path, notice: 'Thank you for subscribing!'
+        # redirect_to thanks_guest_path(offer: prospect.offer_id)
       else
         redirect_back(fallback_location: root_path, alert: 'There was a problem!')
       end
