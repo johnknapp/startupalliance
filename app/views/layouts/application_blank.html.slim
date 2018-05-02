@@ -5,6 +5,7 @@ body.flex-site
       .row
         .small-12.columns
           = yield :page_header
+          = render 'layouts/alerts'
 
     = yield
   footer
