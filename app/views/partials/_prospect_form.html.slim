@@ -1,0 +1,23 @@
+- @acqsrc = acqsrc ? acqsrc : params[:controller] + '/' + params[:action]
+
+= simple_form_for(:prospect, url: prospects_path) do |f|
+  = f.error_notification
+
+  = f.hidden_field :acqsrc,   value: @acqsrc
+  /= f.hidden_field :offer_id,  value: offer_pid, if params[:offer]
+
+  p.faint.snug-bottom
+    em No spam ever, unsubscribe any time
+    .row.collapse
+      .small-8.columns
+        = f.input :email, placeholder: 'Enter your email...', label: false
+      .small-4.columns
+        = f.button :submit, "Subscribe now", class: 'postfix expanded bold success'
+    .row
+      .small-12.columns
+        .float-right
+          p.snug-top.faint
+            em
+              ' Already a member?
+              = link_to 'Sign-in', new_user_session_path
+        .g-recaptcha.little-snug-top data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"

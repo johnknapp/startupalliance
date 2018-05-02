@@ -126,6 +126,8 @@ USERNAME_EXCLUSIONS = %w[
   stripes
   stripe_webhook
   stripe_webhooks
+  subscriber
+  subscribers
   resource
   resources
   resque
