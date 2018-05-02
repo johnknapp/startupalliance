@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def plan_short_name
-    self.plan.name.split('_').second # TODO watch out for future plan name changes
+    self.plan.short_name
     # self.plan.name.split('_').first # was first, then we added intro_ prefix
   end
 

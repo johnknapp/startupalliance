@@ -1,9 +1,10 @@
-.callout.shadow-8dp
+.callout.shadow-6dp
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
 
     = f.hidden_field :plan_id,  value: @offer.plan.id
     = f.hidden_field :coupon,   value: @offer.coupon
+    = f.hidden_field :acqsrc,   value: 'offer_pid_'+pid
 
     p.faint.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors

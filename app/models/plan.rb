@@ -7,4 +7,8 @@ class Plan < ApplicationRecord
     self.name.split('_').last
   end
 
+  def short_name
+    self.name.split('_').second # TODO watch out for future plan name changes
+  end
+
 end

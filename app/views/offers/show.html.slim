@@ -11,12 +11,15 @@
       ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
     p.snug-top.show-for-medium &nbsp;
 
-    .callout.accent.shadow-8dp
+    .callout.accent.shadow-6dp
       - if @offer.offer_lead_in
         h5.title-font.text-center                 = @offer.offer_lead_in
 
       h5.bold.text-center                         = @offer.plan.display_name
-      p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+      - if @offer.plan.short_name != 'associate'
+        p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+      - else
+        p.little-snug-top.text-center Associate Membership is free
 
       - if @coupon
         h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
@@ -33,12 +36,15 @@
         h4.bold.little-space-top With #{@offer.plan.display_name} you can:
         .little-snug-top.indented-1               = markdown @offer.plan_benefits
 
-        - if @offer.plan.trial_period_days
+        - if @offer.plan.short_name != 'associate'
           h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
+        - else
+          h5.bold.little-space-top.text-center Associate Membership is free
 
-        p.little-snug-top.text-center
-          em
-            ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
+        - if @offer.plan.short_name != 'associate'
+          p.little-snug-top.text-center
+            em
+              ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
-        = render 'offers/join_form'
+        = render 'offers/join_form', pid: @offer.pid
 
