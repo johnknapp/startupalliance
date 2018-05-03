@@ -31,11 +31,11 @@ ActiveAdmin.register Offer do
 
   form do |f|
     f.inputs 'Edit Offer' do
-      f.input :pid, label: 'Landing page code', hint: 'Required. Must be unique.'
+      f.input :pid, label: 'Landing page code', hint: 'Required. Must be unique. Recommend keep system value.'
       f.input :header_1, hint: 'Required'
       f.input :header_2, hint: 'Required'
       f.input :offer_lead_in, hint: 'Optional'
-      f.input :plan_id, as: :select, hint: 'Required', collection: Plan.all.order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
+      f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.all.order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
       f.input :plan_benefits, input_html: { rows: 10 }, hint: 'Required. Markdown supported.'
       f.input :coupon, hint: 'Optional. Must be currently valid code'
       f.input :valid_through, hint: 'Required'
