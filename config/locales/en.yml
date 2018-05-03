@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      long: "%Y-%m-%d"
+      medium: "%d/%m/%y"
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
+      medium: "%d/%m/%y  %H:%M"

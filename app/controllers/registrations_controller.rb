@@ -88,26 +88,6 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.update_attribute(:username, 'temporary-'+current_user.pid) if current_user.username.blank? # making sure they have one
       if Rails.env.production?
         GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
-        # $analytics.identify(
-        #     anonymous_id:   current_user.pid,
-        #     id:             current_user.pid,
-        #     created_at:     current_user.created_at,
-        #     traits: {
-        #         email:      current_user.email,
-        #         acqsrc:     current_user.acqsrc,
-        #         state:      current_user.state,
-        #         username:   current_user.username     # use guest username to identify unactivated users
-        #     },
-        #     context: {
-        #         ip:         current_user.current_sign_in_ip,
-        #         logins:     current_user.sign_in_count
-        #     }
-        # )
-        # $analytics.track(
-        #     anonymous_id:   current_user.pid,
-        #     id:             current_user.pid,
-        #     event:          'Signed up'
-        # )
       end
       # add new user to entity
       add_user_to_entity(current_user,entity,token,role) if params[:user][:entity]
@@ -121,26 +101,6 @@ class RegistrationsController < Devise::RegistrationsController
     params[:user][:branch_ids] ||= []
     if resource.save
       if Rails.env.production?
-        # $analytics.identify(
-        #     anonymous_id:   resource.pid,
-        #     id:             resource.pid,
-        #     created_at:     resource.created_at,
-        #     traits: {
-        #         email:      resource.email,
-        #         acqsrc:     resource.acqsrc,
-        #         state:      resource.state,
-        #         username:   resource.username     # use guest username to identify unactivated users
-        #     },
-        #     context: {
-        #         ip:         resource.current_sign_in_ip,
-        #         logins:     resource.sign_in_count
-        #     }
-        # )
-        # $analytics.track(
-        #     anonymous_id:   resource.pid,
-        #     id:             resource.pid,
-        #     event:          'Updated account'
-        # )
         GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
     end
