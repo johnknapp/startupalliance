@@ -36,7 +36,7 @@ ActiveAdmin.register Offer do
       f.input :header_2, hint: 'Required'
       f.input :offer_lead_in, hint: 'Optional'
       f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.all.order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
-      f.input :plan_benefits, input_html: { rows: 10 }, hint: 'Required. Markdown supported.'
+      f.input :plan_benefits, input_html: { rows: 6 }, hint: 'Required. Markdown supported.'
       f.input :coupon, hint: 'Optional. Must be currently valid code'
       f.input :valid_through, hint: 'Required'
     end
@@ -52,8 +52,10 @@ ActiveAdmin.register Offer do
       row :header_2
       row :offer_lead_in
       row :plan
-      row :plan_detail do |offer|
-        "Regular price #{offer.plan.display_price} with #{offer.plan.trial_period_days} day trial"
+      if offer.plan.present?
+        row :plan_detail do |offer|
+          "Regular price #{offer.plan.display_price} with #{offer.plan.trial_period_days} day trial"
+        end
       end
       if offer.coupon.present?
         row :coupon_detail do |offer|
@@ -72,8 +74,10 @@ ActiveAdmin.register Offer do
       row :offer_valid_through do |offer|
         offer.valid_through
       end
-      row :benefit_lead_in do |offer|
-        "With #{offer.plan.display_name} you can:"
+      if offer.plan.present?
+        row :benefit_lead_in do |offer|
+          "With #{offer.plan.display_name} you can:"
+        end
       end
       row :plan_benefits do |offer|
         markdown offer.plan_benefits

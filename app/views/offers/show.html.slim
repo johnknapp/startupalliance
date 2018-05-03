@@ -1,5 +1,5 @@
 - content_for :page_title do
-  ' Startup Alliance – Thank you for coming
+  ' Startup Alliance welcomes you
 
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center = @offer.header_1
@@ -15,11 +15,13 @@
       - if @offer.offer_lead_in
         h5.title-font.text-center                 = @offer.offer_lead_in
 
-      h5.bold.text-center                         = @offer.plan.display_name
-      - if @offer.plan.short_name != 'associate'
+      h5.bold.text-center                         = @offer.plan.display_name if @offer.plan
+      - if @offer.plan and @offer.plan.short_name != 'associate'
         p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
-      - else
+      - elsif @offer.plan and @offer.plan.short_name == 'associate'
         p.little-snug-top.text-center Associate Membership is free
+      /- else
+        p.little-space-top.text-center Static when no plan regular price or associate free blurb
 
       - if @coupon
         h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
@@ -33,18 +35,26 @@
 
     .row
       .medium-10.medium-offset-1.columns
-        h4.bold.little-space-top With #{@offer.plan.display_name} you can:
+        - if @offer.plan
+          h4.bold.little-space-top With #{@offer.plan.display_name} you can:
+        - else
+          h4.bold.little-space-top Subscribe and you will get:
         .little-snug-top.indented-1               = markdown @offer.plan_benefits
 
-        - if @offer.plan.short_name != 'associate'
+        - if @offer.plan and @offer.plan.short_name != 'associate'
           h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
+        - elsif @offer.plan and @offer.plan.short_name == 'associate'
+          p.bold.little-space-top.text-center Associate Membership is free
         - else
-          h5.bold.little-space-top.text-center Associate Membership is free
+          /p.little-space-top.text-center &nbsp;
 
-        - if @offer.plan.short_name != 'associate'
+        - if @offer.plan and @offer.plan.short_name != 'associate'
           p.little-snug-top.text-center
             em
               ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
-        = render 'offers/join_form', pid: @offer.pid
+        - if @offer.plan
+          = render 'offers/join_form', pid: @offer.pid
+        - else
+          = render 'partials/prospect_form', pid: @offer.pid, acqsrc: 'foo'
 
