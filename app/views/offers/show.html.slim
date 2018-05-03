@@ -54,7 +54,7 @@
               ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
         - if @offer.plan
-          = render 'offers/join_form', pid: @offer.pid
+          = render 'offers/join_form'
         - else
-          = render 'partials/prospect_form', pid: @offer.pid, acqsrc: 'foo'
+          = render 'partials/prospect_form'
 

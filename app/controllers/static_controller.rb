@@ -13,6 +13,8 @@ class StaticController < ApplicationController
   end
 
   def thanks_guest
+    @prospect = Prospect.find_by_email(params[:email])
+    @offer    = Offer.find @prospect.offer_id if @prospect
   end
 
   def thanks_join

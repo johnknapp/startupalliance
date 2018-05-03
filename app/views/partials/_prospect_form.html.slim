@@ -1,10 +1,11 @@
-- @acqsrc = acqsrc ? acqsrc : params[:controller] + '/' + params[:action]
-
 = simple_form_for(:prospect, url: prospects_path) do |f|
   = f.error_notification
 
-  = f.hidden_field :acqsrc,   value: @acqsrc
-  /= f.hidden_field :offer_id,  value: offer_pid, if params[:offer]
+  - if @offer.present?
+    = f.hidden_field :acqsrc,   value: 'offer_pid_'+@offer.pid
+    = f.hidden_field :offer_id, value: @offer.id
+  - else
+    = f.hidden_field :acqsrc,   value: acqsrc                       if acqsrc
 
   p.faint.snug-bottom
     em No spam ever, unsubscribe any time

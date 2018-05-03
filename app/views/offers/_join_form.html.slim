@@ -4,7 +4,7 @@
 
     = f.hidden_field :plan_id,  value: @offer.plan.id
     = f.hidden_field :coupon,   value: @offer.coupon
-    = f.hidden_field :acqsrc,   value: 'offer_pid_'+pid
+    = f.hidden_field :acqsrc,   value: 'offer_pid_'+@offer.pid
 
     p.faint.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors

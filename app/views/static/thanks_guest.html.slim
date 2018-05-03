@@ -1,5 +1,33 @@
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' Thank you for subscribing!
+
 .row
-  .medium-6.medium-offset-3.columns
-    p &nbsp;
-    h5.title-font.text-center Thanks Guest
-    p.text-center Coming soon
+  .medium-8.medium-offset-2.columns
+    p.snug-top.space-botton.text-right
+      ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
+    p.snug-top.show-for-medium &nbsp;
+
+    - if @prospect
+      .callout.accent.shadow-6dp
+        h4.title-font.text-center
+          ' You successfully subscribed
+          span.bold
+            ' #{@prospect.email}
+        p.little-space-top.text-center
+          ' We’re glad to have you onboard!
+
+    .row
+      .medium-4.medium-offset-4.columns
+        h5.bold.space-top Explore Startup Alliance:
+        ul
+          li= link_to 'The Entrepreneur’s Nucleus', nucleus_path
+          li= link_to 'Community Canvas', community_canvas_path
+          /li= link_to 'Commitment Pledge', commitment_pledge_path
+          /li= link_to 'Code of conduct', code_of_conduct_path
+          li= link_to 'About Startup Alliance', about_path
+          li= link_to 'Startup Alliance Home', root_path
+          li= link_to 'Membership Plans & pricing', pricing_path
+          li= link_to 'Information for sponsors', sponsorship_path
+          /li= link_to 'Follow @StartupAlliance', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'
+          /li= link_to 'Read @StartupAlliance', 'https://medium.com/@startupalliance', target: '_blank'

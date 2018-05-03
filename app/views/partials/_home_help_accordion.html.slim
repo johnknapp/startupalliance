@@ -1,8 +1,11 @@
 .callout.accent.little-space-top.shadow-3dp
-  p.bold.primary.text-center.little-snug-bottom
-    ' We’re here to help you achieve your entrepreneurial dreams.
-  h4.bold.primary-text.text-center
-    ' How can we help you?
+  /h4.bold.primary.text-center.little-snug-bottom
+    ' Helping you achieve your entrepreneurial dreams.
+  h4.bold.primary.text-center
+    /' Choose the help you want...
+    ' Choose the help you need...
+    /' How can we help you...
+    /' How can we help you?
   ul.accordion.shadow-3dp data-accordion='true' data-allow-all-closed='true'
     li.accordion-item data-accordion-item=true
       = link_to 'Help me make my company team more effective', '#', class: 'accordion-title bold text-center'
@@ -74,7 +77,7 @@
           ' Don’t wait, sign-up now!
         = render 'partials/join_form', acqsrc: 'home_page'
 
-    li.accordion-item data-accordion-item=true
+    /li.accordion-item data-accordion-item=true
       = link_to 'Help me discover all the ways you can help me', '#', class: 'accordion-title bold text-center'
       .accordion-content data-tab-content=true
         p
@@ -105,3 +108,5 @@
               'Free Associate Membership —
             ' Specially designed for investors, mentors, advisors, company staff, students and soon-to-be entrepreneur’s.
         = link_to 'Learn what each membership plan provides you...', pricing_path, class: 'button expanded success bold scale-to-110'
+  p.text-center.space-top
+    ' #{link_to 'Learn about all our membership plans...', pricing_path, class: 'button accent bold'}
