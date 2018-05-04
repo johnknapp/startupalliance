@@ -1,4 +1,4 @@
-.callout
+.callout.small
   - if current_user and post.unread?(current_user)
     .float-right
       /p= link_to mark_posts_read_discussion_topic_posts_path(post.topic.discussion,post.topic), data: { confirm: 'Really mark this Post as read?' }, method: :post do
