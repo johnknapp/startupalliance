@@ -1,46 +1,51 @@
-.float-right
-  ul.dropdown.menu.little-snug-top data-dropdown-menu=true
-    - if post.topic.discussion.discussable
-      // author and discussable creator and admin
-      - if current_user and (post.author_id == current_user.id or post.topic.discussion.discussable.creator_id == current_user.id or current_user.admin?)
-        li
-          = link_to '#' do
-            i.fa.fa-ellipsis-v.fainter
-          ul.menu data-dropdown-menu=true
-            li= render 'post/edit_modal', post: post
-            li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
-              i.fa.fa-trash-o
-              | &nbsp;
-              ' Delete
-    - else
-      // author and admin
-      - if current_user and (post.author_id == current_user.id or current_user.admin?)
-        li
-          = link_to '#' do
-            i.fa.fa-ellipsis-v.fainter
-          ul.menu data-dropdown-menu=true
-            li= render 'post/edit_modal', post: post
-            li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
-              i.fa.fa-trash-o
-              | &nbsp;
-              ' Delete
+.callout
+  - if current_user and post.unread?(current_user)
+    .float-right
+      /p= link_to mark_posts_read_discussion_topic_posts_path(post.topic.discussion,post.topic), data: { confirm: 'Really mark this Post as read?' }, method: :post do
+      p= link_to mark_post_read_discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really mark this Post as read?' }, method: :post do
+        i.fa.fa-comments.red-text
+        | &nbsp;
+        | &nbsp;
 
+  .float-right
+    ul.dropdown.menu.little-snug-top data-dropdown-menu=true
+      - if post.topic.discussion.discussable
+        // author and discussable creator and admin
+        - if current_user and (post.author_id == current_user.id or post.topic.discussion.discussable.creator_id == current_user.id or current_user.admin?)
+          li
+            = link_to '#' do
+              i.fa.fa-ellipsis-v.fainter
+            ul.menu data-dropdown-menu=true
+              li= render 'post/edit_modal', post: post
+              li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
+                i.fa.fa-trash-o
+                | &nbsp;
+                ' Delete
+      - else
+        // author and admin
+        - if current_user and (post.author_id == current_user.id or current_user.admin?)
+          li
+            = link_to '#' do
+              i.fa.fa-ellipsis-v.fainter
+            ul.menu data-dropdown-menu=true
+              li= render 'post/edit_modal', post: post
+              li= link_to discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really destroy this Post and all it’s Replies?' }, method: :delete do
+                i.fa.fa-trash-o
+                | &nbsp;
+                ' Delete
 
-- if current_user and post.unread?(current_user)
   .float-left
-    /h5= link_to mark_posts_read_discussion_topic_posts_path(post.topic.discussion,post.topic), data: { confirm: 'Really mark this Post as read?' }, method: :post do
-    h5= link_to mark_post_read_discussion_topic_post_path(post.topic.discussion,post.topic,post), data: { confirm: 'Really mark this Post as read?' }, method: :post do
-      i.fa.fa-comments.red-text
-      | &nbsp;
-      | &nbsp;
-
-p.scale-to-90
-  | #{link_to post.author.name, vanity_path(post.author.username)}
-  - if post.author.plan_short_name != 'associate'
-    |, (#{render 'partials/user_si_ti_display', user: post.author})
-  ', #{time_ago_in_words(post.created_at)} ago
-  - if current_user and current_user.confirmed?
+    ' #{link_to image_tag(gravatar_url("#{post.author.email}", 40)), vanity_path(post.author.username)}
     | &nbsp;
-    = render 'post/reply_modal', post: post
-h5.snug-top= markdown post.body
-/h5.snug-top= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)
+  /i.fa.fa-quote-left.fa-3x.fa-pull-left.light-grey-text
+  p.scale-to-90
+    /' #{image_tag gravatar_url("#{post.author.email}", 24)}
+    | #{link_to post.author.name, vanity_path(post.author.username)}
+    - if post.author.plan_short_name != 'associate'
+      |, (#{render 'partials/user_si_ti_display', user: post.author})
+    ', #{time_ago_in_words(post.created_at)} ago
+    - if current_user and current_user.confirmed?
+      | &nbsp;
+      = render 'post/reply_modal', post: post
+  p.snug-top= markdown post.body
+  /h5.snug-top= simple_format(auto_link(post.body, html: {target: '_blank'}),{},sanitize: false)
