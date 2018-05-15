@@ -10,36 +10,37 @@
       ' Last updated March 10, 2018
     p.snug-top.show-for-medium &nbsp;
 
-    .row.space-bottom
-      .medium-3.columns
-        a data-open='community-canvas'
-          = image_tag 'community_canvas.png'
-        .reveal#community-canvas data-reveal=true
-          button data-close=true aria-label='Close' type='button' class='close-button'
-            span aria-hidden=true
-              ' &times;
-          h4.primary-text
-            ' Community Canvas:
-          = image_tag 'community_canvas.png'
-      .medium-9.columns
-        p
-          em
-            ' Like the Business Model and Lean Canvas’ for startups, the
-            ' #{link_to 'Community Canvas', 'https://community-canvas.org', target: '_blank' }
-            ' was created as a framework to help communities articulate their purpose and maximize
-            ' the value they deliver to their membership.
-        p
-          em
-            ' Our Community Canvas will help your understand what we're about and how participation
-            ' will benefit you. We welcome your comments and questions.
-            '
+    .callout.accent.shadow-3dp
+      .row
+        .medium-3.columns
+          a data-open='community-canvas'
+            = image_tag 'community_canvas.png'
+          .reveal#community-canvas data-reveal=true
+            button data-close=true aria-label='Close' type='button' class='close-button'
+              span aria-hidden=true
+                ' &times;
+            h4.primary-text
+              ' Community Canvas:
+            = image_tag 'community_canvas.png'
+        .medium-9.columns
+          p
+            em
+              ' Like the Business Model and Lean Canvas’ for startups, the
+              ' #{link_to 'Community Canvas', 'https://community-canvas.org', target: '_blank' }
+              ' was created as a framework to help communities articulate their purpose and maximize
+              ' the value they deliver to their membership.
+          p
+            em
+              ' Our Community Canvas will help your understand what we're about and how participation
+              ' will benefit you. We welcome your comments and questions.
+              '
 
     .row
       .medium-3.columns
-        h4.bold.pad-right.primary-text
+        h4.bold.pad-right.primary-text.space-top
           strong Identity:
       .medium-9.columns
-        p.bold
+        p.bold.space-top
           ' Our Purpose
         p
           ' Startup Alliance is a global community of committed entrepreneurs driving innovation and creating value worldwide.
@@ -52,7 +53,7 @@
         p.bold
           ' Our Membership
         p
-          ' Startup Alliance members are committed entrepreneurs operating all types of businesses located anywhere and
+          ' Startup Alliance members are #{link_to 'committed entrepreneurs', commitment_pledge_path} operating all types of businesses located anywhere and
           ' everywhere on earth. Startup Alliance membership also includes business experts and investors who provide
           ' entrepreneurs with helpful advice and support.
           '
