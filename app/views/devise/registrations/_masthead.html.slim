@@ -21,3 +21,4 @@
     ' #{image_tag gravatar_url("#{@user.email}", 72)}
     strong
       ' #{@user.name}
+  /= button_tag 'Take a tour', onclick: 'hopscotch.startTour(tourProfile);', class: 'button success tiny'

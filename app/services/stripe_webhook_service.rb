@@ -21,6 +21,9 @@ class StripeWebhookService
 
   def initialize(event)
     @event = event
+
+    # TODO keep constants updated
+
     case @event.type
       when 'customer.subscription.created'
         happy_dance
@@ -96,7 +99,7 @@ class StripeWebhookService
       # we will migrate to free plan
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user
-        plan = Plan.find_by_amount(0)  # whatever the first free plan is
+        plan = Plan.find_by_name('intro_alliance_year')
         user.subscribe_to_stripe(plan) # they were cancelled so it's a new subscription
         StripeMailer.migrated_to_associate(user).deliver
         Notifier.cancel_for_non_payment(user).deliver

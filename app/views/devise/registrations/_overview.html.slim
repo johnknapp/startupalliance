@@ -103,7 +103,7 @@
       p
         strong Social profiles:
       - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
-        h5.snug-top.space-bottom
+        h5.snug-top.space-bottom#tour-2
           - if @user.twitter_profile.present?
             = link_to @user.twitter_profile, target: '_blank'
               span.fa.fa-twitter
@@ -122,7 +122,7 @@
             = link_to @user.website, target: '_blank'
               span.fa.fa-globe
       - elsif current_user and @user == current_user and current_user.confirmed?
-        p.text-center= link_to 'Add your social profiles', edit_user_registration_path
+        p.text-center#tour-2= link_to 'Add your social profiles', edit_user_registration_path
       - else
         p.snug-top.faint #{@user.name} has not listed their social profiles
 

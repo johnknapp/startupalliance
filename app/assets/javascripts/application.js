@@ -21,6 +21,7 @@
 //= require chosen.jquery
 //= require chosen_select_init
 //= require cookie_notice
+//= require hopscotch
 
 $(function(){
   $(document).foundation();
