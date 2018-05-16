@@ -27,6 +27,8 @@ STRIPE_PK_TEST              = 'pk_test_As4q7e0EyphQP9ncUqCCBlPJ'
 RECAPTCHA_SITE              = '6LcfhSsUAAAAAKUUu0v5dd-YFBWq-qQ_nSBpjdAL'
 RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
+QUARK_STATES                = %w[Suggestion Published Promoted Flagged]
+
 PAGE_STATES                 = %w[Draft Suggestion Published Flagged]
 
 USER_STATES                 = %w[unconfirmed active paused]
@@ -114,6 +116,8 @@ USERNAME_EXCLUSIONS = %w[
   okr
   okrs
   privacy
+  quark
+  quarks
   sandbox
   sandboxes
   sidekiq

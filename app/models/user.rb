@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many  :discussions,   foreign_key: :author_id, dependent: :destroy
   has_many  :topics,        foreign_key: :author_id, dependent: :destroy
   has_many  :posts,         foreign_key: :author_id, dependent: :destroy
+  has_many  :quarks,        foreign_key: :author_id, dependent: :destroy
   has_many  :replies,       foreign_key: :author_id, class_name: :Post, dependent: :destroy
   has_many  :messages
 
