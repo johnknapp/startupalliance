@@ -270,10 +270,10 @@ ActiveRecord::Schema.define(version: 20180516224719) do
   create_table "quarks", force: :cascade do |t|
     t.string   "text"
     t.integer  "author_id"
-    t.string   "state",      default: "Suggestion"
-    t.string   "pid",                               null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "state",      default: "Contributed"
+    t.string   "pid",                                null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "read_marks", force: :cascade do |t|

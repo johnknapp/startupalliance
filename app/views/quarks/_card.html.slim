@@ -1,0 +1,59 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      .float-left
+        ' #{link_to image_tag(gravatar_url("#{quark.author.email}", 30)), vanity_path(quark.author.username)}
+      | &nbsp;
+      | &nbsp;
+         #{link_to quark.author.name, vanity_path(quark.author.username)}
+      - if quark.author.plan_short_name != 'associate'
+        |, (#{render 'partials/user_si_ti_display', user: quark.author})
+    .card-section
+      .plan-box
+        - if quark.state == 'Promoted'
+          .float-left
+            h5.bold.primary-text.snug-bottom.pad-right
+              ' #{image_tag 'top_quark.png', width: '54px'}
+        p.text-center.snug-bottom= quark.text
+        - if current_user and (quark.author_id == current_user.id or current_user.admin?)
+          .row
+            .small-12.columns
+              p.snug-bottom.text-right
+                a data-open="edit-quark-#{quark.pid}"
+                  span.faint
+                    i.fa.fa-pencil
+                | &nbsp;
+                | &nbsp;
+                | &nbsp;
+                = link_to quark_path(quark), data: { confirm: 'Really destroy this Quark?' }, method: :delete do
+                  span.faint
+                    i.fa.fa-trash-o
+
+.reveal id="edit-quark-#{quark.pid}" data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  p.bold.primary-text Modify this Quark
+  .float-left
+    h5.bold.primary-text.pad-right
+      ' #{image_tag 'top_quark.png', width: '40px'}
+  p.little-snug-top
+    ' You are modifying a small piece of fundamental wisdom to be shared with other members.
+    ' You’ll receive a byline so make it a good one!
+    ' And if it’s
+    span
+      em
+        | really good
+    ' , it may get our
+    span.bold
+      ' #{link_to 'Top Quark', 'https://en.wikipedia.org/wiki/Top_quark', target: '_blank'}
+    ' award and be promoted online!
+  = simple_form_for(quark) do |f|
+    = f.input :text, as: :text, label: false, autofocus: true, placeholder: 'Not more than 280 characters'
+    = f.input :state, collection: QUARK_STATES if current_user.admin?
+    .row
+      .medium-12.columns
+        .button-group
+          = submit_tag 'Modify this Quark', class: 'button expanded accent'
+        p.faint.text-center.little-snug-top.snug-bottom Your contribution may be modified. Duplicate contributions may be removed.
+

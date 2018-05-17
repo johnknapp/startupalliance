@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   get 'members',                    to: 'static#members',              constraints: { format: 'html' }
 
-  resources :pages, path: 'kb',   constraints: { format: 'html' } do
+  resources :quarks,                constraints: { format: 'html' }
+
+  resources :pages, path: 'kb',     constraints: { format: 'html' } do
     member do
       put 'like',     to: 'pages#like'
       put 'dislike',  to: 'pages#dislike'

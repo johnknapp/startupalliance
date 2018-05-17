@@ -1,0 +1,20 @@
+= simple_form_for(@quark) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :author_id, value: current_user.id if current_user           and params[:action] == 'new'
+    = f.hidden_field :state,     value: params[:state] if params[:state].present? and params[:action] == 'new'
+    .row
+      .medium-12.columns
+        = f.input :text
+    = f.input :state, collection: QUARK_STATES if current_user.admin?
+
+  .form-actions
+    .row
+      .medium-12.columns
+        .button-group
+          - if current_user.admin?
+            = f.button :submit, 'I R A Admin', class: 'button'
+          - elsif @page.state == 'Published'
+            = f.button :submit, class: 'button'
+          = link_to 'Exit', pages_path, class: 'button accent'
