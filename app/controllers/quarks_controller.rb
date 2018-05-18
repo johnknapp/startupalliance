@@ -5,9 +5,9 @@ class QuarksController < ApplicationController
 
   def index
     if params[:query].present?
-      @quarks = Quark.quark_tsearch(params[:query]).where.not(state: 'Flagged').order(:text)
+      @quarks = Quark.quark_tsearch(params[:query]).where.not(state: 'Flagged').order(created_at: :desc)
     else
-      @quarks = Quark.where.not(state: 'Flagged').order(:text)
+      @quarks = Quark.where.not(state: 'Flagged').order(created_at: :desc)
     end
   end
 
