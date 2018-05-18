@@ -33,5 +33,16 @@ module Search
       end
     end
 
+    pg_search_scope :quark_tsearch_search,
+      against:  {text: 'A'},
+      using:    { tsearch: { dictionary: 'english' } },
+      ignoring: [:accents]
+
+    def self.quark_tsearch(query)
+      if query.present?
+        quark_tsearch_search(query)
+      end
+    end
+
   end
 end

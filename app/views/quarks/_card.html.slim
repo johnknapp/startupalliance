@@ -1,34 +1,33 @@
-.column
-  .card.primary.shadow
-    .card-divider.accent-background
-      .float-left
-        ' #{link_to image_tag(gravatar_url("#{quark.author.email}", 30)), vanity_path(quark.author.username)}
-      | &nbsp;
-      | &nbsp;
-         #{link_to quark.author.name, vanity_path(quark.author.username)}
-      - if quark.author.plan_short_name != 'associate'
-        |, (#{render 'partials/user_si_ti_display', user: quark.author})
-    .card-section
-      .plan-box
-        - if quark.state == 'Promoted'
-          .float-left
-            h5.bold.primary-text.snug-bottom.pad-right
-              ' #{image_tag 'top_quark.png', width: '54px'}
-        i.fa.fa-quote-left.fa-3x.fa-pull-left.accent-text
-        p.snug-bottom= quark.text
-        - if current_user and (quark.author_id == current_user.id or current_user.admin?)
-          .row
-            .small-12.columns
-              p.snug-bottom.text-right
-                a data-open="edit-quark-#{quark.pid}"
-                  span.faint
-                    i.fa.fa-pencil
-                | &nbsp;
-                | &nbsp;
-                | &nbsp;
-                = link_to quark_path(quark), data: { confirm: 'Really destroy this Quark?' }, method: :delete do
-                  span.faint
-                    i.fa.fa-trash-o
+.card.primary.shadow
+  .card-divider.accent-background
+    .float-left
+      ' #{link_to image_tag(gravatar_url("#{quark.author.email}", 30)), vanity_path(quark.author.username)}
+    | &nbsp;
+    | &nbsp;
+       #{link_to quark.author.name, vanity_path(quark.author.username)}
+    - if quark.author.plan_short_name != 'associate'
+      |, (#{render 'partials/user_si_ti_display', user: quark.author})
+  .card-section
+    .plan-box
+      - if quark.state == 'Promoted'
+        .float-left
+          h5.bold.primary-text.snug-bottom.pad-right
+            ' #{image_tag 'top_quark.png', width: '54px'}
+      i.fa.fa-quote-left.fa-3x.fa-pull-left.accent-text
+      p.snug-bottom= quark.text
+      - if current_user and (quark.author_id == current_user.id or current_user.admin?)
+        .row
+          .small-12.columns
+            p.snug-bottom.text-right
+              a data-open="edit-quark-#{quark.pid}"
+                span.faint
+                  i.fa.fa-pencil
+              | &nbsp;
+              | &nbsp;
+              | &nbsp;
+              = link_to quark_path(quark), data: { confirm: 'Really destroy this Quark?' }, method: :delete do
+                span.faint
+                  i.fa.fa-trash-o
 
 .reveal id="edit-quark-#{quark.pid}" data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'

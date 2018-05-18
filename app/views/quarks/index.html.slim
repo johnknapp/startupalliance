@@ -1,22 +1,36 @@
+- if params[:query]
+  - text = "Query: “#{params[:query]}”"
+- else
+  - text = 'No active query'
+
 - content_for :page_title do
   ' Quarks are small pieces of fundamental wisdom from Startup Alliance Members
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     ' Quarks!
-  h4.bold.medium-grey-text.text-center Small pieces of fundamental wisdom from Startup Alliance Members
+  h4.bold.medium-grey-text.text-center #{text}
 
 .row
-  .medium-10.medium-offset-1.columns
-    p.text-right.snug-top
+  .medium-12.columns
+    p.snug-top.space-bottom.text-right Small pieces of fundamental wisdom from Startup Alliance Members
+
+
+.row
+  .medium-5.columns.medium-push-7
+    .space-top &nbsp;
+    = render 'partials/search_form_quark'
+  .medium-7.columns.medium-pull-5
+    - if params[:query]
+      .float-left
+        p.snug-bottom.space-top= link_to 'Show all', quarks_path
+    p.text-right.snug-bottom.space-top
       a data-open='add-quark'
         i.fa.fa-plus
         | &nbsp;
         ' Add your #{(@quarks.where(author_id: current_user.id).count+1).ordinalize} Quark to the collection
-
-    .row.medium-up-2.large-up-3
-      - @quarks.each do |quark|
-        = render 'quarks/card', quark: quark
+    - @quarks.each do |quark|
+      = render 'quarks/card', quark: quark
 
 
 .reveal id='add-quark' data-reveal=true

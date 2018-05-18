@@ -4,7 +4,11 @@ class QuarksController < ApplicationController
   before_action :set_quark, only: [:update, :destroy]
 
   def index
-    @quarks = Quark.where.not(state: 'Flagged').order(:text)
+    if params[:query].present?
+      @quarks = Quark.quark_tsearch(params[:query]).where.not(state: 'Flagged').order(:text)
+    else
+      @quarks = Quark.where.not(state: 'Flagged').order(:text)
+    end
   end
 
   def create
