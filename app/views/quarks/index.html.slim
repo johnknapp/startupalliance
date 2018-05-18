@@ -26,9 +26,9 @@
   p.bold.primary-text Add a Quark
   .float-left
     h5.bold.primary-text.pad-right
-      ' #{image_tag 'top_quark.png', width: '40px'}
+      ' #{link_to image_tag('top_quark.png', width: '40px'), 'https://en.wikipedia.org/wiki/Top_quark', target: '_blank'}
   p.little-snug-top
-    ' You are contributing a small piece of fundamental wisdom to be shared with other members.
+    ' You are contributing a piece of fundamental wisdom to be shared with other members.
     ' You’ll receive a byline so make it a good one!
     ' And if it’s
     span
@@ -46,6 +46,6 @@
         = f.input :state, collection: QUARK_STATES if current_user.admin?
         .button-group
           = submit_tag 'Add your Quark', class: 'button expanded accent'
-        p.faint.text-center.little-snug-top.snug-bottom Your contribution may be modified. Duplicate contributions may be removed.
+        p.faint.text-center.little-snug-top.snug-bottom Your contribution may be edited for clarity. Duplicate contributions may be removed.
 
 
