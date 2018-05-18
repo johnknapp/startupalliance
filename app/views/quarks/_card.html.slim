@@ -14,6 +14,7 @@
           .float-left
             h5.bold.primary-text.snug-bottom.pad-right
               ' #{image_tag 'top_quark.png', width: '54px'}
+        i.fa.fa-quote-left.fa-3x.fa-pull-left.accent-text
         p.snug-bottom= quark.text
         - if current_user and (quark.author_id == current_user.id or current_user.admin?)
           .row
