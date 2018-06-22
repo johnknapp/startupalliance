@@ -17,9 +17,9 @@
         p.little-snug-top
           ' Startup Alliance is a global community of committed entrepreneurs
           ' who are driving innovation and creating value worldwide.
-        p.little-snug-top
-          ' We provide cost effective #{link_to 'membership opportunities', pricing_path} and offer
-          ' our support to all entrepreneurs operating any type of business anywhere on earth.
+        /p.little-snug-top
+          ' We provide cost effective #{link_to 'membership opportunities', pricing_path} and
+          ' support entrepreneurs operating any type of business anywhere on earth.
           '
         /p.little-snug-top
           ' We are a #{link_to 'subscription', pricing_path} and #{link_to 'sponsorship', sponsorship_path} based
@@ -28,7 +28,7 @@
 
         h5.bold.space-top What we do
         p.little-snug-top
-          ' We provide online tools and community resources to help entrepreneurs
+          ' We provide online tools and community resources to our members
           ' make connections, overcome challenges and win through collaboration
           ' with their peers.
 
@@ -57,15 +57,18 @@
           ' we will deliver additional resources to help entrepreneurs maximize their success.
           '
 
-        h5.bold.space-top We invite your involvement
+        h5.bold.space-top Join us today!
         p.little-snug-top
-          ' Startup Alliance exists to support and accelerate the globalization of entrepreneurship.
+          /' Startup Alliance exists to support and accelerate the globalization of entrepreneurship.
           ' #{link_to 'Membership', pricing_path} is open to
-          ' all committed entrepreneurs, advisors and investors who believe in that mission.
-        p.little-snug-top
-          ' We welcome
-          ' #{mail_to 'hello@startupalliance.com', 'your inquiries', subject: "Hello!", encode: 'hex'}
-          ' and encourage you to explore the site and join us today.
+          ' all committed entrepreneurs, advisors and investors who believe in our mission
+          ' to accelerate the globalization of entrepreneurship.
+          /span.bold
+            ' Join us today!
+        /p.little-snug-top
+          /' We welcome
+          /' #{mail_to 'hello@startupalliance.com', 'your inquiries', subject: "Hello!", encode: 'hex'}
+          /' and encourage you to
           '
         p &nbsp;
     .row
