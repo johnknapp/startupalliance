@@ -107,9 +107,9 @@ class User < ApplicationRecord
         self.update_attribute(:stripe_coupon_code, nil) # they requested an invalid coupon so nil it
       end
       self.update(
-          plan_id:              plan.id,
-          subscription_state:   sub.status,
-          subscribed_at:        Time.now
+        plan_id:              plan.id,
+        subscription_state:   sub.status,
+        subscribed_at:        Time.now
       )
     end
   end

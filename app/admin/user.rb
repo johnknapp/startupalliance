@@ -105,6 +105,7 @@ ActiveAdmin.register User do
   filter :work_role,            as: :select, collection: WORK_ROLE
   filter :plan
   filter :stripe_customer_id
+  filter :stripe_coupon_code
   filter :subscribed_at
   filter :subscription_state,   as: :select, collection: SUBSCRIPTION_STATES
 
