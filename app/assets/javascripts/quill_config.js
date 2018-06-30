@@ -6,7 +6,7 @@ var defaults = {
     toolbar: [
       [{ 'header': [2, 3, false] }],
       [{ 'align': [] }],
-      ['bold', 'italic', 'underline'],['link'],
+      ['bold', 'italic', 'underline','code'],['link'],
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
       [{ 'indent': '-1'}, { 'indent': '+1' }],
 //      [{ 'color': [] }, { 'background': [] }],
