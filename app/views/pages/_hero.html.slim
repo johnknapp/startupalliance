@@ -51,4 +51,4 @@
         | &nbsp;
         ' #{number_with_delimiter(page.get_dislikes.size)})
         /' Content length: #{number_with_delimiter(page.content.split.size)} characters
-  p= markdown(truncate(page.content, length: 160)) if page.state == 'Published'
+    .space-top= truncate(Nokogiri::HTML(page.content).text, length: 160) if page.state == 'Published'

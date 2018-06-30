@@ -11,21 +11,21 @@
         - if params[:state] == 'Suggestion'
           = f.input :title, label: 'Suggested Title', placeholder: 'Write a brief title'
         - else
-          = f.input :title
+          = f.input :title, placeholder: 'Name your entry'
       .medium-6.columns
         = f.input :category_list, collection: categories, as: :select, label: 'Category tags', input_html: { 'multiple' => true, class: 'chosen-select' }
     /- if params[:state] == 'Suggestion' or (@page.author.present? and @page.author == current_user)
     - if params[:state] == 'Suggestion'
       = f.input :content, label: 'Describe your suggestion', placeholder: 'Write a brief description', input_html: { rows: 6 }
     - else
-      = f.input :content, label: 'Content (format using Markdown)', input_html: { rows: 18 }
-      = render 'pages/markdown_ua'
+      = f.input :content, label: false, placeholder: 'Author your entry', input_html: { rows: 18, class: 'quill_container'  }
+      /= render 'pages/markdown_ua'
     = f.input :state, collection: PAGE_STATES if current_user.admin?
 
   .form-actions
     .row
       .medium-12.columns
-        .button-group
+        .button-group.little-space-top
           - if current_user.admin?
             = f.button :submit, 'I R A Admin', class: 'button'
           - elsif @page.state == 'Suggestion' and !@page.persisted?

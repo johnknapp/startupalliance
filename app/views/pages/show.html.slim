@@ -60,7 +60,7 @@
               ' Flagged and under staff review.
             p.bold.white-text.text-center.little-snug-top
               ' If you are the author, #{mail_to 'hello@startupalliance.com', 'email hello@startupalliance.com', subject: "My flagged KB page!", encode: 'hex', class: 'white-text'}.
-        p.little-space-top.pad-right= markdown @page.content
+        .little-space-top.pad-right= @page.content.html_safe
       .large-4.columns
         .little-space-top.callout.accent
           p.faint.text-center Like this Knowledge Base Page?
