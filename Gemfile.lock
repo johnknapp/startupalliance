@@ -245,6 +245,7 @@ GEM
       slop (~> 3.4)
     public_suffix (2.0.5)
     puma (3.6.2)
+    quilljs-rails (0.0.4)
     rack (2.0.1)
     rack-attack (5.0.1)
       rack
@@ -400,6 +401,7 @@ DEPENDENCIES
   pretender
   pry
   puma (~> 3.0)
+  quilljs-rails
   rack-attack
   rack-livereload
   rails (>= 5.0.1, < 5.1)

@@ -22,6 +22,9 @@
 //= require chosen_select_init
 //= require cookie_notice
 //= require hopscotch
+//= require quill.global
+//= require quill_config
+
 
 $(function(){
   $(document).foundation();

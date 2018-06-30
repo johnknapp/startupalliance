@@ -44,6 +44,7 @@ gem 'paranoia'
 gem 'pg_search'
 # gem 'premailer-rails'                       # needs nokogiri
 gem 'pretender'
+gem 'quilljs-rails'
 gem 'rack-attack'
 gem 'rails_autolink'
 # gem 'rails-jquery-autocomplete'
