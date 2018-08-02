@@ -81,8 +81,8 @@ class RegistrationsController < Devise::RegistrationsController
       super
       customer = Stripe::Customer.create(email: current_user.email)
       current_user.update_attribute(:stripe_customer_id, customer.id)
-      # if we don't know what plan they want, give them a free plan
-      plan = params[:user][:plan_id].present? ? Plan.find(id: params[:user][:plan_id]) : Plan.find_by_amount(0)
+      # if we don't know what plan they asked for, give them a free plan
+      plan = params[:user][:plan_id].present? ? Plan.find(params[:user][:plan_id].to_i) : Plan.find_by_amount(0)
       coupon  = params[:user][:stripe_coupon_code]
       current_user.subscribe_to_stripe(plan,coupon) if plan and current_user.stripe_customer_id
       current_user.update_attribute(:username, 'temporary-'+current_user.pid) if current_user.username.blank? # making sure they have one

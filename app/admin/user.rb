@@ -124,6 +124,7 @@ ActiveAdmin.register User do
       f.input :password_confirmation
       f.input :role,                collection: USER_ROLES
       f.input :state,               collection: USER_STATES
+      f.input :subscription_state,  collection: SUBSCRIPTION_STATES
       f.input :plan
       # f.input :subscribed_at
       # f.input :subscription_state,  collection: SUBSCRIPTION_STATES
