@@ -3,7 +3,7 @@ ActiveAdmin.register User do
   menu parent: 'Subscriptions'
 
   permit_params :id, :pid, :first_name, :last_name, :username, :work_role, :mission, :bio, :email, :password, :password_confirmation,
-                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role,
+                :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :subscription_state, :state
                 :linkedin_profile, :website, :country_code, :time_zone, :plan_id, :acqsrc, :public_skills, :public_traits
 
   scope('All')        { |scope| scope.all }
