@@ -82,10 +82,11 @@ class RegistrationsController < Devise::RegistrationsController
       customer = Stripe::Customer.create(email: current_user.email)
       current_user.update_attribute(:stripe_customer_id, customer.id)
       # if we don't know what plan they asked for, give them a free plan
-      plan = params[:user][:plan_id].present? ? Plan.find(params[:user][:plan_id].to_i) : Plan.find_by_amount(0).first
+      plan = params[:user][:plan_id].present? ? Plan.find(params[:user][:plan_id].to_i) : Plan.where(amount: 0).first
       coupon  = params[:user][:stripe_coupon_code]
       current_user.subscribe_to_stripe(plan,coupon) if plan and current_user.stripe_customer_id
       current_user.update_attribute(:username, 'temporary-'+current_user.pid) if current_user.username.blank? # making sure they have one
+      # current_user.update(first_name: 'noname', last_name: 'setyet') # just for now.
       if Rails.env.production?
         GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
@@ -193,6 +194,9 @@ class RegistrationsController < Devise::RegistrationsController
 
     # Specifically not destroying any companies, okrs, FASTs or alliances they created
     def departure_cleanup
+
+      # TODO remove their conversations
+
       okrs = Okr.where(owner_id: @user.id).all
       if okrs.present?
         okrs.each do |okr|

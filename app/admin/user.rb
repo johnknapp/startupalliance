@@ -49,6 +49,9 @@ ActiveAdmin.register User do
 
       # Specifically not destroying any companies, okrs, FASTs or alliances they created
       def departure_cleanup
+
+        # TODO remove their conversations
+
         okrs = Okr.where(owner_id: resource.id).all
         if okrs.present?
           okrs.each do |okr|

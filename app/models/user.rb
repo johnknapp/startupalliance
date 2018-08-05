@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many  :traits, through: :user_traits
   has_many  :user_skills,                            dependent: :destroy
   has_many  :skills, through: :user_skills
-  has_many  :conversations,                          dependent: :destroy
+  has_many  :conversations                               # TODO I removed dependent: :destroy - add to destroy methods instead.
   has_many  :fasts                                       # See registrations#destroy and admin user destroy
   has_many  :okrs,          foreign_key: :owner_id       # See registrations#destroy and admin user destroy
   has_many  :pages,         foreign_key: :author_id      # See registrations#destroy and admin user destroy
