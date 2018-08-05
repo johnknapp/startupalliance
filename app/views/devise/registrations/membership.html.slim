@@ -94,5 +94,6 @@
       .float-right
         p= ni.lines.data[0].description
       p Description:
-
+    p.text-right.faint.snug-top
+      em #{link_to 'Delete your account', registration_path(resource_name), data: { confirm: 'Permanently delete your account and all your data?' }, method: :delete}
     p &nbsp;
