@@ -22,6 +22,10 @@ a data-open="edit-post-#{post.pid}"
         = f.hidden_field :author_id,    value: current_user.id  if current_user and params[:action] == 'new'
         = f.hidden_field :topic_id,     value: @topic.id
         = f.input :body, label: false, as: :text, autofocus: true, placeholder: 'Write your Post', input_html: { rows: 4 }
+        p.faint.snug-top
+          ' Markdown formatting is supported.
+          = link_to 'https://caleorourke.gitbooks.io/redcarpet-syntax/', target: '_blank' do
+            i.fa.fa-lg.faint.fa-info-circle
         = f.button :submit, 'Update Post', class: 'button expanded accent'
 
 
