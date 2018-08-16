@@ -1,0 +1,32 @@
+- content_for :page_header do
+  h2.h1.bold.little-space-top.white-text.text-center.wide-line-height.title-font
+    ' Team up with the right entrepreneurs and
+    ' solve your business challenges fast.
+    '
+  h2.h1.bold.alert-text.space-bottom.white-text.text-center.wide-line-height.title-font
+    ' But who? Where are they?
+    '
+.row
+  .large-8.large-offset-2.medium-10.medium-offset-1.columns
+    h2.little-space-top.space-bottom.bold.text-center We help you find them.
+    .callout.shadow-6dp
+      h5
+        ' Get matched with compatible entrepreneurs
+        ' in one of our Private Alliances.
+        ' Use the tools it contains to ask questions, get answers,
+        ' gain deeper insights and broader perspectives from entrepreneurs you can trust.
+        '
+      h5.bold.little-space-top
+        ' In our Private Alliances, you and your fellow entrepreneurs will:
+        '
+      ul.scale-to-120.indented-2
+        li Form lasting bonds
+        li Make better decisions
+        li Overcome challenges
+        li Achieve superior outcomes
+
+      = render 'partials/join_form', acqsrc: 'home'
+      /p.bold.snug-bottom
+        ' Know some awesome entrepreneurs?
+        = mail_to '', 'Click to tell them about Startup Alliance.', subject: 'Cool way we can collaborate', body: ALLIANCE_TIP_EMAIL
+
