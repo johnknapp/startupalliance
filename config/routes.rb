@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :prospects,                     only: [:create],           constraints: { format: 'html' }
   resources :offers,        path: :welcome, only: [:show],             constraints: { format: 'html' }
 
+  get 'h2',                      to: 'static#h2',                constraints: { format: 'html' }
   get 'about',                      to: 'static#about',                constraints: { format: 'html' }
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
   get 'discussions',                to: 'static#discussions',          constraints: { format: 'html' }

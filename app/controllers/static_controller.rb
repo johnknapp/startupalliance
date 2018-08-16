@@ -5,6 +5,9 @@ class StaticController < ApplicationController
     # render layout: 'application_wide'
   end
 
+  def h2
+  end
+
   def members
     @members = User.where(state: 'active').all
   end
