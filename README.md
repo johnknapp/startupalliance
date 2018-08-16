@@ -43,6 +43,10 @@ There are seeds for users
 
 $ tail -f ~/Library/Logs/Pow/apps/startup_alliance.log
 
+## Monitor puma-dev server logs:
+
+$ tail -f ~/Library/Logs/puma-dev.log
+
 ## Monitor rails logs:
 
 $ tail -f log/development.log
