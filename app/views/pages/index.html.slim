@@ -47,7 +47,7 @@
         h4.bold.text-center= link_to "Flagged (#{Page.where(state: 'Flagged').count})", pages_path(state: 'Flagged')
       - if Page.where(state: 'Draft').present?
         h4.bold.text-center= link_to "Draft (#{Page.where(state: 'Draft').count})", pages_path(state: 'Draft')
-    p.scale-to-90.little-snug-bottom.text-center Any member can author Knowledge Base Pages.
+    p.scale-to-90.little-snug-bottom.text-center Any member can author Knowledge Base Articles.
     = render 'pages/top_page_authors'
 
   .medium-7.columns.medium-pull-5
@@ -56,17 +56,17 @@
         li = link_to new_page_path(state: 'Suggestion') do
           i.fa.fa-plus
           | &nbsp;
-          ' Suggest a Page
+          ' Suggest an Article
         li= link_to new_page_path do
           i.fa.fa-plus
           | &nbsp;
-          ' Author a Page
+          ' Author an Article
 
     ul.space-top.dropdown.menu.bold data-dropdown-menu=true
       li.primary-text
         h5.bold
           = link_to '#' do
-            ' Filter the Pages
+            ' Filter the Articles
             | &nbsp;
             i.fa.fa-chevron-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
@@ -91,10 +91,10 @@
           li= link_to new_page_path(state: 'Suggestion') do
             i.fa.fa-plus
             | &nbsp;
-            ' Suggest a Page
+            ' Suggest an Article
           li= link_to new_page_path do
             i.fa.fa-plus
             | &nbsp;
-            ' Author a Page
+            ' Author an Article
           li= link_to 'Show the latest', pages_path
 

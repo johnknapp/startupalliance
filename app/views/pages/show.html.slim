@@ -1,9 +1,9 @@
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
     - if @page.state == 'Suggestion'
-      ' Suggested Knowledge Base Page:
+      ' Suggested Knowledge Base Article:
     - else
-      ' Knowledge Base Page:
+      ' Knowledge Base Article:
   h2.bold.white-text.text-center.title-font
     = @page.title
   - if @page.category_list.present?
@@ -63,8 +63,8 @@
         .little-space-top.pad-right= @page.content.html_safe
       .large-4.columns
         .little-space-top.callout.accent
-          p.faint.text-center Like this Knowledge Base Page?
+          p.faint.text-center Like this Knowledge Base Article?
           = render 'pages/thumbs'
-        p.scale-to-90.little-snug-bottom.text-center Any member can edit this Page.
+        p.scale-to-90.little-snug-bottom.text-center Any member can edit this Article.
         = render 'pages/meta'
 
