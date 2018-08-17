@@ -90,7 +90,6 @@ class User < ApplicationRecord
     !sub.cancel_at_period_end
   end
 
-
   def subscribe_to_stripe(plan,coupon = nil)
     if plan.present? and self.stripe_customer_id.present?
       if coupon and VALID_STRIPE_COUPONS.include? coupon # TODO: validate Coupon against Stripe and abandon the constant

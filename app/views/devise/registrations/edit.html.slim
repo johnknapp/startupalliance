@@ -54,9 +54,9 @@
         - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
           .row.little-space-top
             .small-4.columns
-              .indented-1= f.input :public_skills, required: false, label: 'Make my skills visible to everybody'
+              .indented-1= f.input :public_skills, required: false, label: 'Make my skills visible to non-members'
             .small-4.columns.end
-              .indented-1= f.input :public_traits, required: false, label: 'Make my traits visible to everybody'
+              .indented-1= f.input :public_traits, required: false, label: 'Make my traits visible to non-members'
         .row.little-space-top
           .large-6.columns
             = f.input :password, label: 'New password', placeholder: 'New password'
