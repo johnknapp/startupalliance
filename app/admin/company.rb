@@ -20,6 +20,7 @@ ActiveAdmin.register Company do
     column :is_unlisted
     column :state
     column :recruiting
+    column :creator
     actions
   end
 

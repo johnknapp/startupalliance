@@ -1,4 +1,4 @@
-- plans = Plan.where.not(id: current_user.plan_id).order(amount: :desc)
+- plans = Plan.where(state: 'active').where.not(id: current_user.plan_id).order(amount: :desc)
 .reveal#change-plan data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
@@ -28,7 +28,7 @@
             ' (No credit card required for Associate Membership.)
         = simple_form_for current_user, url: change_plan_path, method: :put do |f|
           = f.input :plan_id, label: false, include_blank: 'Choose another plan...', collection: plans, label_method: :display_name, value_method: :id
-          = submit_tag 'Change to the selected plan', class: 'bold button accent expanded little-snug-bottom'
+          = submit_tag 'Change to the selected plan', class: 'disabled bold button accent expanded little-snug-bottom'
         p.scale-to-90.little-space-bottom.text-center
           em
             ' Changes to your capabilities become effective immediately

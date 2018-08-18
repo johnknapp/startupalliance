@@ -11,9 +11,11 @@
     h4.bold Next steps:
 
     ol.indented-2
-      li Watch for the account activation email (check your spam folder and give it time to arrive!)
-      li Click the link it contains to visit the account activation page, add your name, choose a username and password
-      li
+      li Find the account activation email we’re sending
+      li Click the activation link within that email
+      li On the account activation page, add your name, choose a username and password
+
+      /li
         - if current_user and current_user.plan_short_name == 'alliance'
           span.bold
             ' Important:

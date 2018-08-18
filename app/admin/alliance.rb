@@ -15,6 +15,7 @@ ActiveAdmin.register Alliance do
     column :mission
     column :is_unlisted
     column :state
+    column :creator
     actions
   end
 

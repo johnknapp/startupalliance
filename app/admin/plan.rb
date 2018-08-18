@@ -1,12 +1,13 @@
 ActiveAdmin.register Plan do
 
-  permit_params :name, :display_name, :display_price, :amount, :trial_period_days, :stripe_id
+  permit_params :name, :display_name, :display_price, :amount, :trial_period_days, :stripe_id, :state
 
   menu parent: 'Subscriptions'
 
   index do
     selectable_column
     column :id
+    column :state
     column :name
     column :display_name
     column :display_price
@@ -25,6 +26,7 @@ ActiveAdmin.register Plan do
       f.input :amount, hint: 'in cents, $19.95 == 1995'
       f.input :trial_period_days
       f.input :stripe_id, label: 'Stripe ID'
+      f.input :state, collection: PLAN_STATES
     end
     f.actions
   end

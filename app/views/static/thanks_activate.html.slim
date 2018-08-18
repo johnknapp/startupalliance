@@ -14,7 +14,7 @@
     - else
       p.snug-top.text-right You are not signed in
 
-    h4.bold Recommended next steps:
+    h4.bold It’s time to get the most out of Startup Alliance:
 
     ol.indented-2
       - if current_user
@@ -27,6 +27,7 @@
         li.faint.indented-1
           em
             ' “I look forward to helping you personally!” –John
+
       - if current_user and current_user.plan_short_name == 'alliance'
         li Go ahead and #{link_to 'create your Private Alliance', new_alliance_path}
         li Once you do, visit the team tab in your Private Alliance and invite your people
@@ -34,16 +35,10 @@
       - elsif current_user and current_user.plan_short_name == 'company'
         li Go ahead and #{link_to 'create your Company Workspace', new_company_path}
         li Once you do, visit the team tab in your Company Workspace and invite your people
+      li Use The Nucleus to expand your knowledge and solve problems
       li Browse the directories, make new connections and get involved with the community!
-      li Create or join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
+      li Join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
       li Visit the #{link_to 'Startup Alliance Help Center', 'https://support.startupalliance.com', target: '_blank'} for tips on getting the most out of your membership
       li Visit #{link_to 'Gravatar.com', 'https://gravatar.com', target: '_blank'} and attach a photo to your email address
 
 
-    /.callout.small.primary.text-center
-      - if current_user
-        p
-          ' Your currently have
-          strong
-            | #{current_user.plan_short_name.humanize} Membership
-          ' , you can change your membership plan any time.

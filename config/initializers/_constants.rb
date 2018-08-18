@@ -29,6 +29,7 @@ RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
 QUARK_STATES                = %w[Contributed Approved Promoted Flagged]
 
+PLAN_STATES                 = %w[active inactive]
 PAGE_STATES                 = %w[Draft Suggestion Published Flagged]
 
 USER_STATES                 = %w[unconfirmed active paused]
