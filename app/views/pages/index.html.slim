@@ -7,8 +7,8 @@
     - filter = 'Suggested'
   - else
     - filter = params[:state]
-- elsif params[:author_pid]
-  - filter = "Authored by #{User.find_by_pid(params[:author_pid]).name}"
+- elsif params[:author_pid] and @author
+  - filter = "Authored by #{@author.name}"
 - else
   - filter = 'Latest'
 
