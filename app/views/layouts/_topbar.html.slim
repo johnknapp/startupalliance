@@ -14,14 +14,14 @@
           ul.menu.simple.show-for-small-only
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
-            li= link_to 'Plans & pricing', pricing_path
-            li.bold= link_to 'Sign-up', pricing_path
+            /li= link_to 'Plans & pricing', pricing_path
+            /li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
           ul.menu.show-for-medium
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
-            li= link_to 'Plans & pricing', pricing_path
-            li.bold= link_to 'Sign-up', pricing_path
+            /li= link_to 'Plans & pricing', pricing_path
+            /li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
 
       - else
@@ -119,7 +119,7 @@
                 li.pad-left= link_to 'Profile', vanity_path(current_user.username)                     if current_user and current_user.confirmed?
                 li.pad-left= link_to 'Account settings', edit_user_registration_path                   if current_user and current_user.confirmed?
                 li.pad-left= link_to 'Membership management', users_membership_path                    if current_user and current_user.confirmed?
-                li.pad-left= link_to 'Membership capabilities', pricing_path                           if current_user and current_user.confirmed?
+                /li.pad-left= link_to 'Membership capabilities', pricing_path                           if current_user and current_user.confirmed?
                 li.pad-left= link_to 'Help Center', 'https://support.startupalliance.com'
                 li.pad-left= link_to 'Request activation link', new_confirmation_path(current_user)    if current_user and !current_user.confirmed?
                 li.pad-left.little-space-bottom= link_to 'Sign-out', destroy_user_session_path

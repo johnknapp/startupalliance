@@ -2,11 +2,12 @@
 body.flex-site
   /= javascript_include_tag 'fb_js_sdk'
   main.flex-content
-    = render 'layouts/impersonation'
+    .callout.snug-bottom.snug-top.light-grey-background
+      = render 'layouts/topbar'
+      = render 'layouts/impersonation'
     .row
       .medium-12.columns
         = render 'layouts/alerts'
-        = render 'layouts/topbar'
     = yield
   footer
     = render 'layouts/footer'

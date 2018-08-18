@@ -53,7 +53,9 @@
                 li Browse Entrepreneurs, Alliances, Companies
                 li Join Private Alliances and Company Teams
           - if !current_user
-            .callout.small.accent
+            .callout
+              h5.bold.text-center.primary #{mail_to 'hello@startupalliance.com', 'Please enquire', subject: "Inquiring about Entrepreneur’s Jet Fuel Membership", encode: 'hex'}
+            /.callout.small.accent
               h5.bold.text-center.primary 7 day free trial
               h5.bold.text-center.primary.little-snug-top No card required
               ul.vertical.menu.accordion-menu data-accordion-menu=true
@@ -66,7 +68,7 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='entrepreneur-month'
                         ' Go Month to Month
-            .callout
+            /.callout
               h5.bold.text-center.primary
                 ' Introductory Pricing:
               p.bold.text-center.primary
@@ -79,18 +81,18 @@
         .card.primary.shadow
           .card-divider.accent-background
             a name='alliance'
-            h4.bold.text-center.primary-text Create Private Alliances
+            h4.bold.text-center.primary-text Run a Private Alliance
             p.bold.text-center.little-snug-top Unite committed entrepreneurs to share advice, provide insight and overcome challenges
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold All Entrepreneur’s Jet Fuel benefits
-                li.bold Create and manage Private Alliances
+                /li.bold All Entrepreneur’s Jet Fuel benefits
+                /li.bold Create and manage Private Alliances
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=CONCIERGE_ONBOARDING_TIP
                     ' Concierge onboarding service
                 li Manage Private Alliance memberships
-                li Information about member companies
+                li Member company information
                 li
                   ' Operate in
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=STEALTH_MODE_TIP
@@ -101,12 +103,14 @@
                     ' Virtual Office
                 li Private Discussion Forums
           - if !current_user
-            .callout.small.accent
+            .callout
+              h5.bold.text-center.primary #{mail_to 'hello@startupalliance.com', 'Please enquire', subject: "Inquiring about a Private Alliance Membership", encode: 'hex'}
+            /.callout.small.accent
               h5.bold.text-center.primary 14 day free trial
               h5.bold.text-center.primary.little-snug-top No card required
               ul.vertical.menu.accordion-menu data-accordion-menu=true
                 li.button.expanded.bold.success.shadow-6dp
-                  = link_to 'Choose the Alliances Plan', '#', class: 'scale-to-130'
+                  = link_to 'Choose the Alliance Plan', '#', class: 'scale-to-130'
                   ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='alliance-year'
@@ -114,7 +118,7 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='alliance-month'
                         ' Go Month to Month
-            .callout
+            /.callout
               h5.bold.text-center.primary
                 ' Introductory Pricing:
               p.bold.text-center.primary
@@ -127,14 +131,14 @@
         .card.primary.shadow
           .card-divider.accent-background
             a name='company'
-            h4.bold.text-center Create Company Workspaces
+            h4.bold.text-center Company Workspace
             p.bold.text-center.little-snug-top Unite your team to enhance focus, improve outcomes and collaborate more fully
           .card-section
             .plan-box data-equalizer-watch=true
               ul
-                li.bold All Entrepreneur’s Jet Fuel benefits
-                li.bold Create and manage Company Workspaces
-                li.bold All Private Alliance benefits (bonus!)
+                /li.bold All Entrepreneur’s Jet Fuel benefits
+                /li.bold Create and manage your Company Workspace
+                /li.bold All Private Alliance benefits (bonus!)
                 li
                   span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=CONCIERGE_ONBOARDING_TIP
                     ' Concierge onboarding service
@@ -161,7 +165,9 @@
                     ' Virtual Office
                 li Private Discussion Forums
           - if !current_user
-            .callout.small.accent
+            .callout
+              h5.bold.text-center.primary #{mail_to 'hello@startupalliance.com', 'Please enquire', subject: "Inquiring about a Company Workspace Membership", encode: 'hex'}
+            /.callout.small.accent
               h5.bold.text-center.primary 14 day free trial
               h5.bold.text-center.primary.little-snug-top No card required
               ul.vertical.menu.accordion-menu data-accordion-menu=true
@@ -174,7 +180,7 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='company-month'
                         ' Go Month to Month
-            .callout
+            /.callout
               h5.bold.text-center.primary
                 ' Introductory Pricing:
               p.bold.text-center.primary

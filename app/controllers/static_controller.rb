@@ -2,10 +2,11 @@ class StaticController < ApplicationController
   before_action :authenticate_user!, only: [:quick_start]
 
   def home
-    # render layout: 'application_wide'
+    render layout: 'application_wide'
   end
 
   def h2
+    render layout: 'application_wide'
   end
 
   def members

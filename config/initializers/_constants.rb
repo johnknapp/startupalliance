@@ -44,7 +44,7 @@ KB_SUGGESTION_TIP           = 'Suggested Knowledge Base Pages are marked with a 
 ACCOUNT_ACTIVATION_TIP      = 'When you signed up, we sent you an account activation email containing a link to choose a username and password. Activate your account for full privileges!'
 ENTREPRENEURS_NUCLEUS_TIP   = 'The Entrepreneur’s Nucleus™ is our collection of free community resources where you can ask questions, get answers, advice, hard-won knowledge and startup wisdom.'
 ENTREPRENEUR_JET_FUEL_TIP   = 'Ultra low-cost personal subscription for entrepreneurs who want to get the most from our entrepreneurial community.'
-PRIVATE_ALLIANCE_TIP        = 'Where complementary groups of entrepreneurs come together to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
+PRIVATE_ALLIANCE_TIP        = 'Where small groups of entrepreneurs come together to share advice, insight and feedback to help each other make better decisions, achieve goals, overcome challenges and improve outcomes.'
 COLLABORATION_WORKSPACE_TIP = 'Where staff, advisors, consultants and investors team up to set objectives for their company, discuss and overcome challenges and track their progress towards their ultimate success.'
 CONCIERGE_ONBOARDING_TIP    = 'Private Alliance and Company Workspace members receive concierge onboarding to come up to speed quickly and get the most from the platform.'
 STEALTH_MODE_TIP            = 'In case you want to keep your Private Alliance and Company from appearing in directories and elsewhere on the site.'
@@ -62,8 +62,8 @@ OKR_TIP                     = 'Companies use our Objectives and Key Results tool
 FAST_TIP                    = 'Companies use our FActors & STrategies tool to keep the team focused on overall priorities and optimal strategies'
 SAKPI_SHORT_TIP             = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                   = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
-COMPANY_TIP_EMAIL           = 'I just came across StartupAlliance.com and they have a Collaboration Workspace for our team. I think we should try it out.'
-ALLIANCE_TIP_EMAIL          = 'StartupAlliance.com has something called a Private Alliance to help us help each other more effectively. I think we should try it out.'
+COMPANY_TIP_EMAIL           = 'I found StartupAlliance.com, they have a Company Workspace that looks perfect for our team. I think we should try it out.'
+ALLIANCE_TIP_EMAIL          = 'StartupAlliance.com Private Alliances are a great way to help us collaborate and help each other. I think we should try it out.'
 
 USERNAME_EXCLUSIONS = %w[
   accept
