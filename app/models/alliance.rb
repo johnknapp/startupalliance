@@ -1,6 +1,7 @@
 class Alliance < ApplicationRecord
   include Pid
   include Webmeet
+  include Search
   has_many    :discussions, as: :discussable, dependent: :destroy
   has_many    :alliance_users, dependent: :destroy
   has_many    :members, through: :alliance_users, source: :user

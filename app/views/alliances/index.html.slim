@@ -1,26 +1,57 @@
+- if params[:query]
+  - filter = params[:query]
+- elsif params[:creator_pid] and @creator
+  - filter = "Created by #{@creator.name}"
+- else
+  - filter = 'Latest'
+
+
 - content_for :page_title do
   ' Startup Alliance – Our members join Private Alliances to gain insight from beyond their company walls
 
 - content_for :page_header do
   h2.bold.little-space-top.little-space-bottom.white-text.text-center
     ' Private Alliances
-  - if !current_user
-    h5.bold.medium-grey-text.text-center
-      ' (Sign-in to browse)
+  h4.bold.medium-grey-text.text-center Filter: “#{filter}”
 
 .row
   .medium-12.columns
     .float-right
       p.snug-top.space-bottom Our members join Private Alliances to gain insight from beyond their company walls
-    p.snug-top.space-bottom
-      = link_to new_alliance_path do
-        i.fa.fa-plus
-        | &nbsp;
-        | &nbsp;
-        ' Create a Private Alliance
 
-    - if current_user and current_user.confirmed? and @alliances.present?
-      table.hover.stacked.shadow
+.row
+  .medium-5.columns.medium-push-7
+    h5.space-top &nbsp;
+    = render 'partials/search_form_alliances'
+  .medium-7.columns.medium-pull-5
+    .float-right
+      ul.menu.space-top.snug-bottom
+        li= link_to new_alliance_path do
+          i.fa.fa-plus
+          | &nbsp;
+          ' Create a Private Alliance
+
+    ul.snug-bottom.space-top.dropdown.menu.bold data-dropdown-menu=true
+      li.primary-text
+        p.bold
+          = link_to '#' do
+            ' Filter the Alliances
+            | &nbsp;
+            i.fa.fa-chevron-down
+        ul.menu.normal.shadow-8dp data-dropdown-menu=true
+          li.bold= link_to "Latest Alliances", alliances_path
+          li.bold= link_to "Created by me (#{number_with_delimiter(Alliance.where(creator_id: current_user.id).count)})", alliances_path(creator_pid: current_user.pid), class: 'bold' if current_user
+
+    - if @alliances.present?
+      - @alliances.each do |alliance|
+        = render 'alliances/hero', alliance: alliance
+
+
+
+
+
+      /- if current_user and current_user.confirmed? and @alliances.present?
+      /table.hover.stacked.shadow
         thead
           tr
             th{width='25%'} Alliance name
@@ -31,7 +62,6 @@
               .text-center Companies
             th{width='10%'}
               .text-center Recruiting
-
         tbody
           - @alliances.each do |alliance|
             tr
@@ -49,9 +79,9 @@
                 - else
                   ' —
       p.faint.snug-top Private Alliances operating in Stealth Mode do not appear.
-    - elsif current_user and !current_user.confirmed?
+    /- elsif current_user and !current_user.confirmed?
       = render 'partials/inactive_browse_roadblock'
-    - else
+    /- else
       .row
         .medium-10.medium-offset-1.columns
           p.show-for-medium.snug-top &nbsp;
@@ -65,7 +95,6 @@
               ' Each Private Alliance features
               ' a virtual office plus private messaging and discussion forum tools
               ' as well as information on the companies each Private Alliance member owns.
-
       .row
         .medium-8.medium-offset-2.columns
           .callout.snug-bottom.little-space-top

@@ -1,0 +1,24 @@
+.callout.accent.shadow.space-bottom
+  .float-right
+    - if alliance.recruiting
+      p.little-snug-top
+        em
+          ' Recruiting
+  h4.bold= link_to alliance.name, alliance
+  p= alliance.mission
+  table.unstriped.stacked.shadow
+    tbody
+      tr
+        th{align='center'}
+          .snug-bottom Members
+        th{align='center'}
+          .snug-bottom Companies
+        th{align='center'}
+          .snug-bottom Operating since
+      tr
+        td{align='center'}
+          .little-snug-top.little-snug-bottom= number_with_delimiter(alliance.members.count)
+        td{align='center'}
+          .little-snug-top.little-snug-bottom= number_with_delimiter(alliance.member_companies.count)
+        td{align='center'}
+          .little-snug-top.little-snug-bottom= alliance.created_at.strftime('%B %e, %Y')

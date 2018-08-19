@@ -6,7 +6,20 @@ class AlliancesController < ApplicationController
   # GET /alliances
   # GET /alliances.json
   def index
-    @alliances = Alliance.where(is_unlisted: false).all
+    if params[:filter]
+      if params[:filter] == 'All'
+      else
+      end
+    elsif params[:query].present?
+      @alliances    = Alliance.alliance_tsearch(params[:query])
+    elsif params[:creator_pid].present?
+      @creator      = User.find_by_pid(params[:creator_pid])
+      if @creator
+        @alliances  = Alliance.where(creator_id: @creator.id).order(created_at: :desc).all
+      end
+    else
+      @alliances    = Alliance.where(is_unlisted: false).order(created_at: :desc).all
+    end
   end
 
   # GET /alliances/1

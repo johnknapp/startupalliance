@@ -33,6 +33,17 @@ module Search
       end
     end
 
+    pg_search_scope :alliance_tsearch_search,
+      against:  {name: 'A', mission: 'A'},
+      using:    { tsearch: { dictionary: 'english' } },
+      ignoring: [:accents]
+
+    def self.alliance_tsearch(query)
+      if query.present?
+        alliance_tsearch_search(query)
+      end
+    end
+
     pg_search_scope :quark_tsearch_search,
       against:  {text: 'A'},
       using:    { tsearch: { dictionary: 'english' } },
