@@ -1,6 +1,6 @@
 ActiveAdmin.register Alliance do
 
-  permit_params :id, :pid, :name, :mission, :webmeet_code, :recruiting, :creator_id, :is_unlisted, :state
+  permit_params :id, :pid, :name, :mission, :webmeet_code, :recruiting, :creator_id, :is_unlisted, :invite_only, :state
 
   controller do
     def find_resource
@@ -14,6 +14,7 @@ ActiveAdmin.register Alliance do
     column :name
     column :mission
     column :is_unlisted
+    column :invite_only
     column :state
     column :creator
     actions
