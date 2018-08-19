@@ -45,59 +45,15 @@
     - if @alliances.present?
       - @alliances.each do |alliance|
         = render 'alliances/hero', alliance: alliance
+    - else
+      .callout.accent.shadow.space-bottom
+        h4.text-center.bold No Private Alliances!
+        p.text-center= link_to new_alliance_path do
+          i.fa.fa-plus
+          | &nbsp;
+          ' Create a Private Alliance
 
-
-
-
-
-      /- if current_user and current_user.confirmed? and @alliances.present?
-      /table.hover.stacked.shadow
-        thead
-          tr
-            th{width='25%'} Alliance name
-            th{width='35%'} Mission statement
-            th{width='10%'}
-              .text-center Members
-            th{width='10%'}
-              .text-center Companies
-            th{width='10%'}
-              .text-center Recruiting
-        tbody
-          - @alliances.each do |alliance|
-            tr
-              td{valign='top'}= link_to alliance.name, alliance
-              td{valign='top'}
-                - if alliance.mission.present?
-                  = alliance.mission
-                - else
-                  .faint-text Not set!
-              td{valign='top' align='center'}= number_with_delimiter(alliance.members.count)
-              td{valign='top' align='center'}= number_with_delimiter(alliance.member_companies.count)
-              td{valign='top' align='center'}
-                - if alliance.recruiting
-                  ' Yes!
-                - else
-                  ' —
+    - if !@creator
       p.faint.snug-top Private Alliances operating in Stealth Mode do not appear.
-    /- elsif current_user and !current_user.confirmed?
-      = render 'partials/inactive_browse_roadblock'
-    /- else
-      .row
-        .medium-10.medium-offset-1.columns
-          p.show-for-medium.snug-top &nbsp;
-          .callout.shadow
-            p
-              ' Inspired by Mastermind Groups, Private Alliances
-              ' unite complementary groups of entrepreneurs
-              ' to share advice, insight and feedback to help each other
-              ' make better decisions, achieve goals, overcome challenges and improve outcomes.
-            p.little-snug-top
-              ' Each Private Alliance features
-              ' a virtual office plus private messaging and discussion forum tools
-              ' as well as information on the companies each Private Alliance member owns.
-      .row
-        .medium-8.medium-offset-2.columns
-          .callout.snug-bottom.little-space-top
-            p.bold Instant access with FREE Associate Membership
-            = render 'partials/join_form', acqsrc: 'alliance_index'
-
+    - elsif @alliances.present?
+      p.faint.snug-top Now showing Stealth Mode Alliances created by #{@creator.name}
