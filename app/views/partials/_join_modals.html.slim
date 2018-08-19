@@ -17,7 +17,7 @@
       .small-9.columns
         = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
       .small-3.columns
-        = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
+        = f.input :stripe_coupon_code, placeholder: 'Group code', label: false
     = f.button :submit, "Start your Entrepreneur’s Jet Fuel Membership Now", class: 'expanded bold success'
     .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
 
@@ -40,7 +40,7 @@
       .small-9.columns
         = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
       .small-3.columns
-        = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
+        = f.input :stripe_coupon_code, placeholder: 'Group code', label: false
     = f.button :submit, "Start your Entrepreneur’s Jet Fuel Membership Now", class: 'expanded bold success'
     .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
 
@@ -63,7 +63,7 @@
       .small-9.columns
         = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
       .small-3.columns
-        = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
+        = f.input :stripe_coupon_code, placeholder: 'Group code', label: false
     = f.button :submit, "Start your Alliances Membership Now", class: 'expanded bold success'
     .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
 
@@ -74,7 +74,7 @@
   h5.bold Annual Private Alliances Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed #{ALLIANCE_YEAR} annually (You save $36)
+    li Billed #{ALLIANCE_YEAR} annually (Only $7.95 a month, you save $36)
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -86,7 +86,7 @@
       .small-9.columns
         = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
       .small-3.columns
-        = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
+        = f.input :stripe_coupon_code, placeholder: 'Group code', label: false
     = f.button :submit, "Start your Alliances Membership Now", class: 'expanded bold success'
     .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
 
@@ -94,7 +94,7 @@
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
-  h5.bold Monthly Company Workspaces Membership
+  h5.bold Monthly Company Workspace Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
     li Billed #{COMPANY_MONTH} monthly
@@ -109,18 +109,18 @@
       .small-9.columns
         = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
       .small-3.columns
-        = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
-    = f.button :submit, "Start your Company Workspaces Membership Now", class: 'expanded bold success'
+        = f.input :stripe_coupon_code, placeholder: 'Group code', label: false
+    = f.button :submit, "Start your Company Workspace Membership Now", class: 'expanded bold success'
     .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
 
 .reveal#company-year data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
-  h5.bold.primary Annual Company Workspaces Membership
+  h5.bold.primary Annual Company Workspace Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed #{COMPANY_YEAR} annually (You save $36)
+    li Billed #{COMPANY_YEAR} annually (Only $9.95 a month, you save $36)
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -132,6 +132,6 @@
       .small-9.columns
         = f.input :email, placeholder: 'Enter your email', autofocus: true, label: false
       .small-3.columns
-        = f.input :stripe_coupon_code, placeholder: 'Option code', label: false
-    = f.button :submit, "Start your Company Workspaces Membership Now", class: 'expanded bold success'
+        = f.input :stripe_coupon_code, placeholder: 'Group code', label: false
+    = f.button :submit, "Start your Company Workspace Membership Now", class: 'expanded bold success'
     .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
