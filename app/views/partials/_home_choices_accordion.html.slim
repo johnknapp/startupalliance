@@ -55,6 +55,7 @@ ul.accordion.shadow-3dp data-accordion='true' data-allow-all-closed='true'
           li Concierge on-boarding
         .row
           .large-10.large-offset-1.columns
+            h5.bold.text-center.snug-bottom.little-space-top Add your team for free.
             .callout.small.accent.shadow-3dp.little-space-top
               p.bold.text-center.little-space-top.primary
                 ' #{COMPANY_YEAR_MTHLY} a month, billed annually
@@ -89,7 +90,10 @@ ul.accordion.shadow-3dp data-accordion='true' data-allow-all-closed='true'
           li More on the way!
         .row
           .large-10.large-offset-1.columns
-            = render 'partials/join_form', acqsrc: 'home'
+            .callout.small.accent.shadow-3dp.little-space-top
+              p.bold.text-center.little-less-space-top.primary
+                ' Associate Membership is free for life!
+              = render 'partials/join_form', acqsrc: 'home'
       p.snug-bottom
         ' Be your own boss,
         a data-open='level-up'
