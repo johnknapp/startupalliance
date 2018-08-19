@@ -35,7 +35,9 @@
           = submit_tag 'Add to my Alliance', class: 'postfix button expanded accent'
 
 - else
-  a data-open='reached-cap'
+  a data-open='reached-cap' class='alert-text'
+    ' Membership limit reached!
+    | &nbsp;
     i.fa.fa-exclamation-triangle
   .reveal#reached-cap data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
@@ -46,7 +48,7 @@
       ' Private Alliances are limited to 12 members to maintain the quality of
       ' the interactions within the group. You have some choices:
     ol.indented-2
-      li Keep the membership at the current size.
-      li Ask if any members are willing to resign.
-      li As the Alliance creator, you can remove pople.
-      li Contact us for a larger plan.
+      li Keep the membership at the current size
+      li Ask if any members are willing to resign
+      li As the Alliance creator, you can remove people
+      li= mail_to 'hello@startupalliance.com', 'Contact us for a larger plan', subject: "I need a larger membership plan", encode: 'hex'

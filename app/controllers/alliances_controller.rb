@@ -1,6 +1,6 @@
 class AlliancesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_alliance, only: [:show, :add_alliance_member, :remove_alliance_member, :edit, :update, :destroy]
+  before_action :set_alliance, only: [:show, :join_alliance, :add_alliance_member, :remove_alliance_member, :edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /alliances
@@ -11,7 +11,7 @@ class AlliancesController < ApplicationController
       else
       end
     elsif params[:query].present?
-      @alliances    = Alliance.alliance_tsearch(params[:query])
+      @alliances    = Alliance.where(is_unlisted: false).alliance_tsearch(params[:query])
     elsif params[:creator_pid].present?
       @creator      = User.find_by_pid(params[:creator_pid])
       if @creator
@@ -33,7 +33,7 @@ class AlliancesController < ApplicationController
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
       @alliance = Alliance.new
     else
-      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
@@ -42,11 +42,24 @@ class AlliancesController < ApplicationController
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
       true
     else
-      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
-  # PUT /alliances/1/add_member
+  def join_alliance
+    if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
+      if @alliance.members.include? current_user
+        redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
+      else
+        @alliance.members << current_user
+        redirect_back(fallback_location: alliance_path, alert: 'You joined this Alliance!')
+      end
+    else
+      redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
+    end
+  end
+
+  # PUT /alliances/1/add_member?username=taso
   def add_alliance_member
     member =  User.where('lower(username) = ?', params[:username].downcase).first
     if member.blank?
@@ -88,7 +101,7 @@ class AlliancesController < ApplicationController
         end
       end
     else
-      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
@@ -110,14 +123,13 @@ class AlliancesController < ApplicationController
         end
       end
     else
-      redirect_to pricing_path(goal: 'alliance'), alert: 'Please upgrade to an Alliance or Company Membership!'
+      redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
     end
   end
 
   # DELETE /alliances/1
   # DELETE /alliances/1.json
   def destroy
-    # TODO what should be done with the membership?
     @alliance.destroy
     respond_to do |format|
       format.html { redirect_to vanity_path(current_user.username), notice: 'Alliance was successfully destroyed.' }

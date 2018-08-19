@@ -1,3 +1,16 @@
+- if current_user and (!@alliance.members.include? current_user) and (%w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions })
+  - if @alliance.invite_only
+    p.snug-bottom This Private Alliance is Invitation Only
+  - else
+    p.snug-bottom= link_to 'Join this Private Alliance', join_alliance_alliance_path, method: :put
+- elsif current_user and @alliance.creator == current_user
+  p.snug-bottom You created this Private Alliance
+- elsif current_user and @alliance.members.include? current_user
+  .float-right
+    p.snug-bottom= link_to 'Leave this Private Alliance', remove_alliance_member_alliance_path(member_pid: current_user.pid), data: {:confirm => 'Really leave this Private Alliance?'}, method: :delete
+  p.snug-bottom You are a member of this Private Alliance
+- else
+  p.snug-bottom #{link_to 'Sign-up', root_path} or #{link_to 'sign-in', new_user_session_path} to join this Private Alliance
 ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
   li.tabs-title.is-active
     a.bold href='#overview' aria-selected='true'

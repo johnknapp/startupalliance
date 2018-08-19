@@ -22,3 +22,7 @@
           .little-snug-top.little-snug-bottom= number_with_delimiter(alliance.member_companies.count)
         td{align='center'}
           .little-snug-top.little-snug-bottom= alliance.created_at.strftime('%B %e, %Y')
+  - if alliance.members.include? current_user
+    p.faint.snug-top.snug-bottom
+      em
+        ' You are a member of this Private Alliance

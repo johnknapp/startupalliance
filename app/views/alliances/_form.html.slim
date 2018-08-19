@@ -5,7 +5,7 @@
     = f.hidden_field :creator_id, value: current_user.id if current_user
     = f.input :name, placeholder: 'A brief name for this Private Alliance'
     = f.input :mission, label: 'Mission statement', as: :text, input_html: { rows: '2' }, placeholder: 'Mission statement for this Private Alliance'
-    = f.input :invite_only, label: 'Members can only join by invitation from the creator'
+    = f.input :invite_only, label: 'Membership by invitation only'
     = f.input :is_unlisted, label: 'Activate stealth mode to hide your Private Alliance'
     = f.input :recruiting, label: 'Display recruiting notification'
 

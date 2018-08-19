@@ -13,7 +13,7 @@ class Ability
     alias_action :create, :read, :update,                                       to: :cru
     alias_action :create, :read, :update, :destroy,                             to: :crud
     alias_action :index, :create, :read, :update, :destroy,                     to: :crudi
-    alias_action :add_alliance_member, :remove_alliance_member,                 to: :manage_members
+    alias_action :join_alliance, :add_alliance_member, :remove_alliance_member, to: :manage_members
     alias_action :add_team_member, :update_team_member, :remove_team_member,    to: :manage_team
 
     primary_objects = [Alliance,Company,Conversation,Message,Discussion,Post,Okr,AllianceUser,CompanyUser,CompanySakpi,UserSkill,UserTrait]

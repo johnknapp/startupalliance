@@ -11,15 +11,29 @@
             p.show-for-small-only.little-snug-top.snug-bottom &nbsp;
 
         .top-bar-right
-          ul.menu.simple.show-for-small-only
+          ul.dropdown.menu.simple.show-for-small-only data-dropdown-menu=true
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
+            li.show-for-small-only.is-dropdown-submenu-parent
+              = link_to '#' do
+                ' Explore
+              ul.menu.shadow-8dp data-dropdown-menu=true
+                li= link_to 'Entrepreneur Showcase', members_path
+                li= link_to 'Private Alliances', alliances_path
+                li= link_to 'Company Workspaces', companies_path
             /li= link_to 'Plans & pricing', pricing_path
             /li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
-          ul.menu.show-for-medium
+          ul.dropdown.menu.show-for-medium data-dropdown-menu=true
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
+            li.show-for-medium.is-dropdown-submenu-parent
+              = link_to '#' do
+                ' Explore
+              ul.menu.shadow-8dp data-dropdown-menu=true
+                li= link_to 'Entrepreneur Showcase', members_path
+                li= link_to 'Private Alliances', alliances_path
+                li= link_to 'Company Workspaces', companies_path
             /li= link_to 'Plans & pricing', pricing_path
             /li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
@@ -43,10 +57,10 @@
             li.show-for-medium.is-dropdown-submenu-parent
               = link_to '#' do
                 ' Explore
-              ul.menu.normal.shadow-8dp data-dropdown-menu=true
-                li= link_to 'Entrepreneurs', members_path
-                li= link_to 'Alliances', alliances_path
-                li= link_to 'Companies', companies_path
+              ul.menu.shadow-8dp data-dropdown-menu=true
+                li= link_to 'Entrepreneur Showcase', members_path
+                li= link_to 'Private Alliances', alliances_path
+                li= link_to 'Company Workspaces', companies_path
             li.bold.primary-text.is-dropdown-submenu-parent
               = link_to '#' do
                 | &nbsp;

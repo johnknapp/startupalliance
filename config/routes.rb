@@ -70,6 +70,7 @@ Rails.application.routes.draw do
 
   resources :alliances do
     member do
+      put     :join_alliance
       put     :add_alliance_member
       delete  :remove_alliance_member
     end
