@@ -31,6 +31,9 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
   li.tabs-title
     a.bold href='#office'
       ' Virtual Office
+  li.tabs-title
+    a.bold href='#best-practices'
+      ' Private Alliance Best Practices
 
 .tabs-content.shadow data-tabs-content='tool-tabs'
   .tabs-panel.is-active#overview
@@ -43,3 +46,5 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
     = render 'discussions'
   .tabs-panel#office
     = render 'virtual_office'
+  .tabs-panel#best-practices
+    = render 'best_practices'
