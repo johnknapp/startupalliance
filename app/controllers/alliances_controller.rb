@@ -8,7 +8,8 @@ class AlliancesController < ApplicationController
   def index
     if params[:filter]
       if params[:filter] == 'All'
-      else
+      elsif params[:filter] == 'Recruiting Alliances'
+        @alliances    = Alliance.where(recruiting: true).order(created_at: :desc).all
       end
     elsif params[:query].present?
       @alliances    = Alliance.where(is_unlisted: false).alliance_tsearch(params[:query])

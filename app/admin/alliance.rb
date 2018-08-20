@@ -11,13 +11,24 @@ ActiveAdmin.register Alliance do
   index do
     selectable_column
     column :pid
-    column :name
-    column :mission
-    column :is_unlisted
-    column :invite_only
-    column :state
     column :creator
+    column :name
+    column :headcount do |alliance|
+      alliance.members.count
+    end
+    column :recruiting
+    column :invite_only
+    column :is_unlisted
+    column :state
     actions
   end
+
+  filter :pid
+  filter :name
+  filter :creator
+  filter :recruiting
+  filter :invite_only
+  filter :is_unlisted
+  filter :state
 
 end

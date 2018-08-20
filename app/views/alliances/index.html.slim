@@ -1,5 +1,7 @@
 - if params[:query]
   - filter = params[:query]
+- elsif params[:filter]
+  - filter = params[:filter]
 - elsif params[:creator_pid] and @creator
   - filter = "Created by #{@creator.name}"
 - else
@@ -40,6 +42,7 @@
             i.fa.fa-chevron-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
           li.bold= link_to "Latest Alliances", alliances_path
+          li.bold= link_to "Recruiting Alliances (#{number_with_delimiter(Alliance.where(recruiting: true).count)})", alliances_path(filter: 'Recruiting Alliances')
           li.bold= link_to "Created by me (#{number_with_delimiter(Alliance.where(creator_id: current_user.id).count)})", alliances_path(creator_pid: current_user.pid), class: 'bold' if current_user
 
     - if @alliances.present?
