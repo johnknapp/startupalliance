@@ -9,8 +9,9 @@ class Alliance < ApplicationRecord
 
   enum state: {
       Active:           0,
-      Paused:           1,
-      Archived:         2
+      Prelaunch:        1,
+      Paused:           2,
+      Archived:         3
   }
 
   def member_companies

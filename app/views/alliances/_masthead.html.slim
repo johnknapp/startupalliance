@@ -16,8 +16,9 @@
     h2.bold.little-space-top.white-text.text-center
       = @alliance.name
     h4.bold.medium-grey-text.text-center We’re recruiting!
-    - if @alliance.creator == current_user and @alliance.state != 'Active'
-      - if @alliance.state == 'Paused'
-        h4.bold.alert-text.little-space-top.text-center This Alliance is Paused!
-      - else
-        h4.bold.success-text.little-space-top.text-center This Alliance is Archived!
+    - if @alliance.creator == current_user and @alliance.state == 'Prelaunch'
+      h4.bold.alert-text.little-space-top.text-center This Alliance is Prelaunch!
+    - if @alliance.creator == current_user and @alliance.state == 'Paused'
+      h4.bold.alert-text.little-space-top.text-center This Alliance is Paused!
+    - elsif @alliance.creator == current_user and @alliance.state == 'Archived'
+      h4.bold.success-text.little-space-top.text-center This Alliance is Archived!

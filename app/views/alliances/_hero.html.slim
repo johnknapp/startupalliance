@@ -4,7 +4,9 @@
       p.little-snug-top
         em
           ' Recruiting
-  - if alliance.creator == current_user and alliance.state == 'Paused'
+  - if alliance.creator == current_user and alliance.state == 'Prelaunch'
+    h4.bold.alert-text.little-snug-top This Alliance is Prelaunch!
+  - elsif alliance.creator == current_user and alliance.state == 'Paused'
     h4.bold.alert-text.little-snug-top This Alliance is Paused!
   - elsif alliance.creator == current_user and alliance.state == 'Archived'
     h4.bold.alert-text.little-snug-top This Alliance is Archived!
