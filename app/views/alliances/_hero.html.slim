@@ -4,6 +4,10 @@
       p.little-snug-top
         em
           ' Recruiting
+  - if alliance.state == 'Paused'
+    h4.bold.alert-text.text-center This Alliance is Paused!
+  - elsif alliance.state == 'Archived'
+    h4.bold.alert-text.text-center This Alliance is Archived!
   h4.bold= link_to alliance.name, alliance
   p= alliance.mission
   table.unstriped.stacked.shadow
