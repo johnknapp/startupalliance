@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180819215406) do
+ActiveRecord::Schema.define(version: 20180820182221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20180819215406) do
     t.string   "invite_token"
     t.integer  "state",        default: 0
     t.boolean  "invite_only",  default: false
+    t.integer  "leader_id"
   end
 
   create_table "audits", force: :cascade do |t|

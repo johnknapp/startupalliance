@@ -7,16 +7,30 @@
       p.faint.pad-right
         ' Helping the community understand your Private Alliance helps the right people find you. (#{link_to @alliance.creator.name, vanity_path(@alliance.creator.username)} can add or remove members.)
 .row
-  .large-6.large-offset-3.medium-8.medium-offset-2.columns
+  .large-6.large-offset-3.medium-8.medium-offset-2.columns.clearfix
 
     - if @alliance.mission.present?
        p.bold.little-space-top Mission statement:
        p.snug-top= @alliance.mission
 
     .float-right
-      p= @alliance.created_at.strftime('%B %e, %Y')
-    p Created on:
+      p.little-snug-top= @alliance.created_at.strftime('%B %e, %Y')
+    p.little-snug-top Created on:
 
     .float-right
-      p= link_to @alliance.creator.name, vanity_path(@alliance.creator.username)
-    p Created by:
+      p.little-snug-top= link_to @alliance.creator.name, vanity_path(@alliance.creator.username)
+    p.little-snug-top Created by:
+
+    - if @alliance.leader
+      .float-right
+        p.little-snug-top= link_to @alliance.leader.name, vanity_path(@alliance.leader.username)
+      p.little-snug-top Current leader:
+    - else
+      .float-right
+        p.little-snug-top= link_to @alliance.creator.name, vanity_path(@alliance.creator.username)
+      p.little-snug-top Current leader:
+
+    .float-right
+      p.little-snug-top.snug-bottom= @alliance.updated_at.strftime('%B %e, %Y')
+    p.little-snug-top.snug-bottom Last update:
+

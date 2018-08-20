@@ -80,6 +80,9 @@ class AlliancesController < ApplicationController
   def remove_alliance_member
     member = User.find_by_pid(params[:member_pid])
     if @alliance.members.count > 1
+      if @alliance.leader == member
+        @alliance.update(leader_id: @alliance.creator.id)
+      end
       @alliance.members.delete(member)
       redirect_back(fallback_location: alliance_path, notice: 'Member removed.')
     else
@@ -150,6 +153,6 @@ class AlliancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alliance_params
-      params.require(:alliance).permit(:is_unlisted, :name, :mission, :webmeet_code, :pid, :recruiting, :creator_id, :invite_only, :state)
+      params.require(:alliance).permit(:is_unlisted, :name, :mission, :webmeet_code, :pid, :recruiting, :creator_id, :leader_id, :invite_only, :state)
     end
 end

@@ -10,40 +10,45 @@
 
 - if @company.url.present?
   .float-right
-    p.snug-top
+    p.little-snug-top
       = link_to @company.url, target: '_blank' do
         ' #{@company.url}
-  p.snug-top Website:
+  p.little-snug-top Website:
 
 - if @company.okrs
   .float-right
-    p.snug-top= number_with_delimiter(@company.okrs.count)
-  p.snug-top Lifetime OKRs:
+    p.little-snug-top= number_with_delimiter(@company.okrs.count)
+  p.little-snug-top Lifetime OKRs:
 
 - if @company.sakpi_index
   .float-right
-    p.snug-top= @company.sakpi_index
-  p.snug-top SAKPI index:
+    p.little-snug-top= @company.sakpi_index
+  p.little-snug-top SAKPI index:
 
 - if @company.founded.present?
   .float-right
-    p.snug-top= @company.founded.strftime('%B %e, %Y')
-  p.snug-top Founded:
+    p.little-snug-top= @company.founded.strftime('%B %e, %Y')
+  p.little-snug-top Founded:
 
 - if @company.time_zone.present?
   .float-right
-    p.snug-top= ActiveSupport::TimeZone.new(@company.time_zone)
-  p.snug-top Time zone:
+    p.little-snug-top= ActiveSupport::TimeZone.new(@company.time_zone)
+  p.little-snug-top Time zone:
 
 - if @company.country_code.present?
   .float-right
-    p.snug-top= ISO3166::Country(@company.country_code).try(:name)
-  p.snug-top Country:
+    p.little-snug-top= ISO3166::Country(@company.country_code).try(:name)
+  p.little-snug-top Country:
 
 .float-right
-  p.snug-top= link_to @company.creator.name, vanity_path(@company.creator.username)
-p.snug-top Listed by:
+  p.little-snug-top= link_to @company.creator.name, vanity_path(@company.creator.username)
+p.little-snug-top Listed by:
 
 .float-right
-  p.snug-top.snug-bottom= @company.created_at.strftime('%B %e, %Y')
-p.snug-top.snug-bottom Listed on:
+  p.little-snug-top= @company.created_at.strftime('%B %e, %Y')
+p.little-snug-top Listed on:
+
+.float-right
+  p.little-snug-top.snug-bottom= @company.updated_at.strftime('%B %e, %Y')
+p.little-snug-top.snug-bottom Last update:
+
