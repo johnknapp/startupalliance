@@ -18,8 +18,12 @@ class AlliancesController < ApplicationController
       if @creator
         @alliances  = Alliance.where(creator_id: @creator.id).order(created_at: :desc).all
       end
-    else
-      @alliances    = Alliance.where(state: 'Active').where(is_unlisted: false).order(created_at: :desc).all
+    else # 'Latest' aka All!
+      if current_user.admin?
+        @alliances    = Alliance.where(is_unlisted: false).order(created_at: :desc).all
+      else
+        @alliances    = Alliance.where(state: 'Active').where(is_unlisted: false).order(created_at: :desc).all
+      end
     end
   end
 

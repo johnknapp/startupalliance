@@ -26,6 +26,23 @@
           .little-snug-top.little-snug-bottom= number_with_delimiter(alliance.member_companies.count)
         td{align='center'}
           .little-snug-top.little-snug-bottom= alliance.created_at.strftime('%B %e, %Y')
+  - if current_user.admin?
+    .float-right
+      p.faint.snug-top.snug-bottom
+        em
+          = alliance.state
+          | &nbsp;
+          ' /
+          - if alliance.is_unlisted
+            ' Stealth
+          - else
+            ' Visible
+          | &nbsp;
+          ' /
+          - if alliance.invite_only
+            ' Closed
+          - else
+            ' Open
   - if alliance.members.include? current_user
     p.faint.snug-top.snug-bottom
       em
