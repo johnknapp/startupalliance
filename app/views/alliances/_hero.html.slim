@@ -28,7 +28,7 @@
           .little-snug-top.little-snug-bottom= number_with_delimiter(alliance.member_companies.count)
         td{align='center'}
           .little-snug-top.little-snug-bottom= alliance.created_at.strftime('%B %e, %Y')
-  - if current_user.admin?
+  - if current_user and current_user.admin?
     .float-right
       p.faint.snug-top.snug-bottom
         em

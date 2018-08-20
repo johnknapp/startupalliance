@@ -25,6 +25,12 @@
   .medium-5.columns.medium-push-7
     h5.space-top &nbsp;
     = render 'partials/search_form_alliances'
+    - prelaunch = Alliance.where(state: 'Prelaunch').where(is_unlisted: false).order(created_at: :desc).all
+    - if prelaunch.present?
+      h5.bold.little-space-top Prelaunch Private Alliances:
+      - prelaunch.each do |alliance|
+        = render 'hero_prelaunch', alliance: alliance
+
   .medium-7.columns.medium-pull-5
     .float-right
       ul.menu.space-top.snug-bottom
