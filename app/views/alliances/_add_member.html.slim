@@ -3,19 +3,27 @@
     i.fa.fa-user-plus
     | &nbsp;
     ' Add Member
+  p.faint.text-center.snug-bottom Private Alliance Membership limited to 12.
   .reveal#add-member data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
         ' &times;
-    p.bold Two easy ways to add people to your Private Alliance:
+
+    p.bold Update August 19, 2018
     p
+      ' We are updating the way in which you invite members to your Private Alliance.
+      ' It'll be ready in a couple days.
+      ' Please open a support ticket if you need help right away by visiting
+      ' #{link_to 'support.startupalliance.com', 'https://support.startupalliance.com', target: '_blank'}.
+    /p.bold Two easy ways to add people to your Private Alliance:
+    /p
       strong
         ' 1. Click the button to prepare an email invite:
       br
       span.faint.indented-1
         em
           ' (You can modify the email before sending.)
-    .row
+    /.row
       .medium-8.medium-offset-2.columns
         p.text-center
           = mail_to nil,
@@ -26,8 +34,8 @@
 
 
     /= link_to "#{alliance_url(@alliance)}?invite=#{@alliance.invite_token}", alliance_url(@alliance, invite: @alliance.invite_token)
-    p.little-snug-bottom.bold 2. Provide a Startup Alliance username:
-    = form_tag add_alliance_member_alliance_path, method: :put
+    /p.little-snug-bottom.bold 2. Provide a Startup Alliance username:
+    /= form_tag add_alliance_member_alliance_path, method: :put
       .row.collapse
         .medium-8.columns
           = text_field_tag :username, nil, placeholder: 'Enter a Startup Alliance username'
