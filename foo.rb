@@ -209,6 +209,37 @@ users.each do |u|
 end
 
 
+alliances = [
+    {        name: "Business models & customer discovery",
+             mission: "Deciding what we sell, how we sell it and how we get to sustainable product/market fit." },
+
+    {        name: "Capitalization & cash flow",
+             mission: "Raising money, achieving profitability and controlling costs." },
+
+    {        name: "Founders, team & advisors",
+             mission: "We know our success demands the right people doing the right things right." },
+
+    {        name: "Ideation & validation",
+             mission: "This is where we come up with a great idea, turn it into a real business and make sure it’s viable." },
+
+    {        name: "Legal, IP & corporate structure",
+             mission: "Doing the right thing with Contracts, Agreements, Patents & Trademarks and our corporate structure." },
+
+    {        name: "Marketing, growth & sales",
+             mission: "Optimizing our positioning, voice and messaging, choosing the right growth hacks and essential analytics, effective advertising, funnels and strategic partnerships." },
+
+    {        name: "Product planning, production & design",
+             mission: "We know that bringing a great product to market takes more than a good idea and fresh design. This is where we get it right." },
+
+    {        name: "Productivity hacks & time management",
+             mission: "Taking advantage of the best tips, tricks and tools for getting our work done on time and keeping our priorities straight." },
+
+    {        name: "Revenue models & pricing",
+             mission: "We know it’s essential to provide solid value to customers and price our products and services correctly and in response to market forces." },
+
+    {        name: "Software, engineering & technology",
+             mission: "The tools and tech we love, the processes and strategies we employ. What works and what doesn’t work today and tomorrow."  }
+]
 
 
 
