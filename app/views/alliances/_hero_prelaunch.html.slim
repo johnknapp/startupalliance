@@ -1,24 +1,19 @@
-.callout.shadow
-  h5.bold= link_to alliance.name, alliance
-  p.little-snug-top.snug-bottom Waiting list: #{number_with_delimiter(alliance.members.count)}
-
-  - if current_user and (!alliance.members.include? current_user) and (%w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions })
-    - if alliance.invite_only
-      p.faint.text-right.little-snug-top.snug-bottom
-        em
-          ' This Private Alliance is Invitation Only
-    - else
-      p.faint.text-right.little-snug-top.snug-bottom
-        = link_to 'Join the waiting list', join_alliance_alliance_path(alliance), method: :put
-  - elsif current_user and alliance.creator == current_user
-    p.faint.text-right.little-snug-top.snug-bottom
+.callout.light-grey-background.shadow
+  h5.bold.primary-text= alliance.name
+  /h5.bold= link_to alliance.name, alliance
+  .float-right
+    p.faint.text-right.snug-bottom
       em
-        ' You created this Private Alliance
-  - elsif current_user and alliance.members.include? current_user
-    p.faint.text-right.little-snug-top.snug-bottom
-       em
+        - if current_user and (!alliance.members.include? current_user) and (%w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions })
+          - if alliance.invite_only
+            ' This Private Alliance is Invitation Only
+          - else
+            = link_to 'Join the waiting list', join_alliance_alliance_path(alliance), method: :put
+        - elsif current_user and alliance.creator == current_user
+          ' You created this Private Alliance
+        - elsif current_user and alliance.members.include? current_user
          ' You are on the waiting list (#{link_to 'Leave', remove_alliance_member_alliance_path(alliance, member_pid: current_user.pid), data: {:confirm => 'Really leave this Private Alliance?'}, method: :delete})
-  - else
-    p.faint.text-right.little-snug-top.snug-bottom
-      em
-        ' #{link_to 'Sign-up', root_path} or #{link_to 'sign-in', new_user_session_path} to join the waiting list
+        - else
+          ' #{link_to 'Sign-up', root_path} or #{link_to 'sign-in', new_user_session_path} to join the waiting list
+
+  p.snug-bottom Waiting list: #{number_with_delimiter(alliance.members.count)}
