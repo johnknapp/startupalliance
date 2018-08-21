@@ -13,6 +13,9 @@ class StaticController < ApplicationController
     @members = User.where(state: 'active').all
   end
 
+  def features
+  end
+
   def about
   end
 

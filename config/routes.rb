@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :prospects,                     only: [:create],           constraints: { format: 'html' }
   resources :offers,        path: :welcome, only: [:show],             constraints: { format: 'html' }
 
-  get 'h2',                         to: 'static#h2',                   constraints: { format: 'html' }
-  get 'about',                      to: 'static#about',                constraints: { format: 'html' }
+  get 'features',                   to: 'static#features',             constraints: { format: 'html' }
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
   get 'discussions',                to: 'static#discussions',          constraints: { format: 'html' }
+  get 'about',                      to: 'static#about',                constraints: { format: 'html' }
   get 'faq',                        to: 'static#faq',                  constraints: { format: 'html' }
   get 'code_of_conduct',            to: 'static#code_of_conduct',      constraints: { format: 'html' }
   get 'commitment_pledge',          to: 'static#commitment_pledge',    constraints: { format: 'html' }
@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
   get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
   get 'terms',                      to: 'static#terms',                constraints: { format: 'html' }
-  get 'learn_more',                 to: 'static#learn_more',           constraints: { format: 'html' }
   get 'quick_start',                to: 'static#quick_start',          constraints: { format: 'html' }
   get 'community_canvas',           to: 'static#community_canvas',     constraints: { format: 'html' }
 

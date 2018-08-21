@@ -97,6 +97,8 @@ USERNAME_EXCLUSIONS = %w[
   fast
   fastr
   fasts
+  feature
+  features
   gist
   gists
   help

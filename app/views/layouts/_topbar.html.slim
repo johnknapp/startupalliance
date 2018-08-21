@@ -12,6 +12,7 @@
 
         .top-bar-right
           ul.dropdown.menu.simple.show-for-small-only data-dropdown-menu=true
+            li= link_to 'Features & Pricing', features_path
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
             li.show-for-small-only.is-dropdown-submenu-parent
@@ -25,6 +26,7 @@
             /li.bold= link_to 'Sign-up', pricing_path
             li= link_to 'Sign-in', new_user_session_path
           ul.dropdown.menu.show-for-medium data-dropdown-menu=true
+            li= link_to 'Features & Pricing', features_path
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
             li.show-for-medium.is-dropdown-submenu-parent
@@ -52,6 +54,7 @@
 
         .top-bar-right
           ul.dropdown.menu data-dropdown-menu=true
+            li= link_to 'Features & Pricing', features_path
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
             li.show-for-medium.is-dropdown-submenu-parent
