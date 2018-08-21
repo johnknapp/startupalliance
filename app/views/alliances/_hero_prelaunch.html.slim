@@ -14,6 +14,6 @@
         - elsif current_user and alliance.members.include? current_user
          ' You are on the waiting list (#{link_to 'Leave', remove_alliance_member_alliance_path(alliance, member_pid: current_user.pid), data: {:confirm => 'Really leave this Private Alliance?'}, method: :delete})
         - else
-          ' #{link_to 'Sign-up', root_path} or #{link_to 'sign-in', new_user_session_path} to join the waiting list
+          ' #{link_to 'Sign-up', features_path} or #{link_to 'sign-in', new_user_session_path} to join the waiting list
 
   p.snug-bottom Waiting list: #{number_with_delimiter(alliance.members.count)}
