@@ -56,7 +56,7 @@
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
     = f.hidden_field :acqsrc,   value: 'home'
-    = f.hidden_field :plan_id,  value: Plan.where(name: 'intro_alliance_month').first.id
+    = f.hidden_field :plan_id,  value: Plan.where(name: 'charter_alliance_month').first.id
     p.faint.little-space-top.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors
     .row.collapse
@@ -74,12 +74,12 @@
   h5.bold Annual Private Alliances Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed #{ALLIANCE_YEAR} annually (Only $7.95 a month, you save $36)
+    li Billed #{ALLIANCE_YEAR} annually (Only #{ALLIANCE_YEAR_MTHLY} a month, you save #{ALLIANCE_YEAR_SAVINGS})
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
     = f.hidden_field :acqsrc,   value: 'home'
-    = f.hidden_field :plan_id,  value: Plan.where(name: 'intro_alliance_year').first.id
+    = f.hidden_field :plan_id,  value: Plan.where(name: 'charter_alliance_year').first.id
     p.faint.little-space-top.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors
     .row.collapse
@@ -103,7 +103,7 @@
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
     = f.hidden_field :acqsrc,   value: 'home'
-    = f.hidden_field :plan_id,  value: Plan.where(name: 'intro_company_month').first.id
+    = f.hidden_field :plan_id,  value: Plan.where(name: 'charter_company_month').first.id
     p.faint.little-space-top.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors
     .row.collapse
@@ -121,13 +121,13 @@
   h5.bold.primary Annual Company Workspace Membership
   ul.indented-2
     li 14 day risk free trial (No card required)
-    li Billed #{COMPANY_YEAR} annually (Only $9.95 a month, you save $36)
+    li Billed #{COMPANY_YEAR} annually (Only #{COMPANY_YEAR_MTHLY} a month, you save #{COMPANY_YEAR_SAVINGS})
     li Cancel any time
     li Add your team for free
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
     = f.hidden_field :acqsrc,   value: 'home'
-    = f.hidden_field :plan_id,  value: Plan.where(name: 'intro_company_year').first.id
+    = f.hidden_field :plan_id,  value: Plan.where(name: 'charter_company_year').first.id
     p.faint.little-space-top.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors
     .row.collapse

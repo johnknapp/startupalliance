@@ -1,12 +1,17 @@
-ENTPRENEUR_YEAR_MTHLY       = '$4.95'
-ENTPRENEUR_MONTH            = '$7.95'
-ENTPRENEUR_YEAR             = '$59.40'
-ALLIANCE_YEAR_MTHLY         = '$7.95'
-ALLIANCE_MONTH              = '$10.95'
-ALLIANCE_YEAR               = '$95.40'
-COMPANY_YEAR_MTHLY          = '$9.95'
-COMPANY_MONTH               = '$12.95'
-COMPANY_YEAR                = '$119.40'
+ENTPRENEUR_YEAR_MTHLY       = '$4.95'   # deprecating the entrepreneur plans
+ENTPRENEUR_MONTH            = '$7.95'   # deprecating the entrepreneur plans
+ENTPRENEUR_YEAR             = '$59.40'  # deprecating the entrepreneur plans
+ALLIANCE_YEAR_MTHLY         = '$7.95'   # keeping same price for charter tier
+ALLIANCE_MONTH              = '$10.95'  # keeping same price for charter tier
+ALLIANCE_YEAR               = '$95.40'  # keeping same price for charter tier
+ALLIANCE_YEAR_SAVINGS       = '$36'
+COMPANY_YEAR_MTHLY          = '$29.95'  # raising pricing from intro to charter tier
+COMPANY_YEAR_SAVINGS        = '$240'
+COMPANY_MONTH               = '$49.95'  # raising pricing from intro to charter tier
+COMPANY_YEAR                = '$359.40' # raising pricing from intro to charter tier
+# COMPANY_YEAR_MTHLY          = '$9.95'
+# COMPANY_MONTH               = '$12.95'
+# COMPANY_YEAR                = '$119.40'
 
 RELEVANT_STRIPE_WEBHOOKS    = %w[
   customer.subscription.created
@@ -18,6 +23,7 @@ RELEVANT_STRIPE_WEBHOOKS    = %w[
   customer.subscription.updated
 ]
 VALID_STRIPE_COUPONS        = %w[
+  VIP6JK
   charter6
   beta6
 ]
