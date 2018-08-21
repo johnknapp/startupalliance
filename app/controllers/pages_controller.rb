@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :set_page, only: [:show, :edit, :update, :undo_last_audit, :like, :dislike, :destroy]
+  before_action :authenticate_user!, except: [:index, :featured]
+  before_action :set_page, only: [:show, :featured, :edit, :update, :undo_last_audit, :like, :dislike, :destroy]
 
 
   def index
@@ -28,6 +28,10 @@ class PagesController < ApplicationController
   end
 
   def show
+  end
+
+  def featured
+    render layout: 'application_blank'
   end
 
   def new

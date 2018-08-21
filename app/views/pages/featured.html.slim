@@ -1,0 +1,33 @@
+- content_for :page_header do
+  h4.bold.little-space-top.medium-grey-text.text-center
+    ' Knowledge Base Article:
+  h2.bold.white-text.text-center.title-font
+    = @page.title
+  .row
+    .large-8.large-offset-2.columns
+      .callout.small.accent.snug-bottom
+        .row
+          .medium-6.columns
+            p.snug-bottom
+              - if @page.audits.present?
+                ' Published #{@page.updated_at.strftime('%b %d, %Y')}
+                ' by #{link_to @page.audits.last.user.name, vanity_path(@page.audits.last.user.username)}
+          .medium-6.columns
+            p.snug-bottom.text-right
+              ' (#{number_with_delimiter(@page.content.split.size)} words,
+              | &nbsp;
+              i.fa.fa-thumbs-up.dark-grey-text
+              | &nbsp;
+              ' #{number_with_delimiter(@page.get_likes.size)}
+              | &nbsp;
+              | &nbsp;
+              i.fa.fa-thumbs-down.dark-grey-text
+              | &nbsp;
+              ' #{number_with_delimiter(@page.get_dislikes.size)})
+
+.row
+  .large-8.large-offset-2.columns
+    .callout.accent.shadow
+      h4.bold.text-center Featured Article courtesy of Startup Alliance
+      h5.bold.text-center #{link_to 'Join Startup Alliance', root_path} for access to all the articles!
+    .little-space-top= @page.content.html_safe

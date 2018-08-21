@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :pages, path: 'kb',     constraints: { format: 'html' } do
     member do
+      get 'featured', to: 'pages#featured'
       put 'like',     to: 'pages#like'
       put 'dislike',  to: 'pages#dislike'
     end

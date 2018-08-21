@@ -44,6 +44,7 @@ class Ability
 
       else # no role means they are non-auth
         cannot :index,              primary_objects
+        can :featured,              Page
         can :read,                  public_content
         can :show,                  Discussion
         can :search_results,        Discussion
