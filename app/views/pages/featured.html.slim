@@ -25,8 +25,15 @@
               | &nbsp;
               ' #{number_with_delimiter(@page.get_dislikes.size)})
 
+
 .row
   .large-8.large-offset-2.columns
+    p.snug-top.space-bottom
+      = link_to pages_path do
+        i.fa.fa-arrow-left
+        | &nbsp;
+        | &nbsp;
+        ' Visit the Knowledge Base
     .callout.accent.shadow
       h4.bold.text-center Featured Article courtesy of Startup Alliance
       h5.bold.text-center #{link_to 'Join Startup Alliance', root_path} for access to all the articles!
