@@ -25,11 +25,12 @@
   .medium-5.columns.medium-push-7
     h5.space-top &nbsp;
     = render 'partials/search_form_alliances'
-    - prelaunch = Alliance.where(state: 'Prelaunch').where(is_unlisted: false).order(created_at: :desc).all
-    - if prelaunch.present?
-      h5.bold.little-space-top Prelaunch Private Alliances:
-      - prelaunch.each do |alliance|
-        = render 'hero_prelaunch', alliance: alliance
+    - upcoming = Alliance.where(state: 'Upcoming').where(is_unlisted: false).order(created_at: :desc).all
+    - if upcoming.present?
+      h5.bold.little-space-top Upcoming Private Alliances:
+      p.little-snug-top Launch when the waiting list reaches 4
+      - upcoming.each do |alliance|
+        = render 'hero_upcoming', alliance: alliance
 
   .medium-7.columns.medium-pull-5
     .float-right

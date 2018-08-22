@@ -10,7 +10,7 @@ class Alliance < ApplicationRecord
 
   enum state: {
       Active:           0,
-      Prelaunch:        1,
+      Upcoming:         1,
       Paused:           2,
       Archived:         3
   }
