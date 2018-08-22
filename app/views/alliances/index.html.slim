@@ -28,7 +28,7 @@
     - upcoming = Alliance.where(state: 'Upcoming').where(is_unlisted: false).order(created_at: :desc).all
     - if upcoming.present?
       h5.bold.little-space-top Upcoming Private Alliances:
-      p.little-snug-top Launch when the waiting list reaches 4
+      p.little-snug-top Launching when the waiting list exceeds 4
       - upcoming.each do |alliance|
         = render 'hero_upcoming', alliance: alliance
 
