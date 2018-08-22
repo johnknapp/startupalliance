@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many  :company_users,                          dependent: :destroy
   has_many  :companies, through: :company_users          # Keeping their companies
   has_many  :alliance_users,                         dependent: :destroy
-  has_many  :alliances, through: :alliance_users         # Keeping their alliances
+  has_many  :alliances, through: :alliance_users         # See registrations#destroy and admin user destroy
   has_many  :user_traits,                            dependent: :destroy
   has_many  :traits, through: :user_traits
   has_many  :user_skills,                            dependent: :destroy

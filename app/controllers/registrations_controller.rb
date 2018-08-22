@@ -214,6 +214,7 @@ class RegistrationsController < Devise::RegistrationsController
       jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
       jk = User.find 1 if Rails.env.development?
       Page.where(author_id: @user.id).update_all(author_id: jk.id) # reset the author
+      Alliance.where(creator_id: @user.id).update_all(creator_id: jk.id) # reset the creator
 
       Stripe::Customer.retrieve(id: @user.stripe_customer_id).delete if @user.stripe_customer_id
     end
