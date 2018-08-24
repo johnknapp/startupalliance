@@ -9,12 +9,6 @@
       span aria-hidden=true
         ' &times;
 
-    p.bold Update August 19, 2018
-    p
-      ' We are updating the way in which you invite members to your Private Alliance.
-      ' It'll be ready soon.
-      ' Please open a support ticket if you need help right away by visiting
-      ' #{link_to 'support.startupalliance.com', 'https://support.startupalliance.com', target: '_blank'}.
     /p.bold Two easy ways to add people to your Private Alliance:
     /p
       strong
@@ -34,13 +28,19 @@
 
 
     /= link_to "#{alliance_url(@alliance)}?invite=#{@alliance.invite_token}", alliance_url(@alliance, invite: @alliance.invite_token)
-    /p.little-snug-bottom.bold 2. Provide a Startup Alliance username:
-    /= form_tag add_alliance_member_alliance_path, method: :put
+    p.little-snug-bottom.bold Provide a Startup Alliance username:
+    p.little-snug-bottom Please note the member you add must have an Alliance or Company Membership.
+    = form_tag add_alliance_member_alliance_path, method: :put
       .row.collapse
         .medium-8.columns
           = text_field_tag :username, nil, placeholder: 'Enter a Startup Alliance username'
         .medium-4.columns
           = submit_tag 'Add to my Alliance', class: 'postfix button expanded accent'
+    p.little-snug-bottom.bold Update August 26, 2018
+    p.snug-bottom
+      ' We are currently updating the way in which you invite members to your Private Alliance.
+      ' Please open a support ticket if you need a hand:
+      ' #{link_to 'support.startupalliance.com', 'https://support.startupalliance.com', target: '_blank'}.
 
 - else
   a data-open='reached-cap' class='alert-text'

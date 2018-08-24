@@ -71,9 +71,11 @@ class AlliancesController < ApplicationController
       redirect_back(fallback_location: alliance_path, alert: 'Nobody with that username!')
     elsif @alliance.members.include? member
       redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
-    else
+    elsif %w[alliance company].any? { |necessary_subscriptions| member.subscription == necessary_subscriptions }
       @alliance.members << member
       redirect_back(fallback_location: alliance_path, notice: 'Member added.')
+    else
+      redirect_back(fallback_location: alliance_path, alert: 'Not added! Member must upgrade their membership!')
     end
   end
 

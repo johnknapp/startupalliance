@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :offers,        path: :welcome, only: [:show],             constraints: { format: 'html' }
 
   get 'features',                   to: 'static#features',             constraints: { format: 'html' }
+  get 'pricing',                    to: redirect('/features')
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
   get 'discussions',                to: 'static#discussions',          constraints: { format: 'html' }
   get 'about',                      to: 'static#about',                constraints: { format: 'html' }
@@ -16,7 +17,6 @@ Rails.application.routes.draw do
   get 'thanks_join',                to: 'static#thanks_join',          constraints: { format: 'html' }
   get 'thanks_activate',            to: 'static#thanks_activate',      constraints: { format: 'html' }
   get 'sponsorship',                to: 'static#sponsorship',          constraints: { format: 'html' }
-  get 'pricing',                    to: 'static#pricing',              constraints: { format: 'html' }
   get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
   get 'terms',                      to: 'static#terms',                constraints: { format: 'html' }
   get 'quick_start',                to: 'static#quick_start',          constraints: { format: 'html' }
