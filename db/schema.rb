@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180820182221) do
+ActiveRecord::Schema.define(version: 20180825122726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,19 +149,6 @@ ActiveRecord::Schema.define(version: 20180820182221) do
     t.integer  "sakpi_id"
     t.index ["company_id"], name: "index_fasts_on_company_id", using: :btree
     t.index ["user_id"], name: "index_fasts_on_user_id", using: :btree
-  end
-
-  create_table "invoices", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "plan_id"
-    t.string   "stripe_subscription_id"
-    t.integer  "stripe_invoice_date"
-    t.string   "stripe_invoice_id"
-    t.integer  "amount_due"
-    t.string   "currency"
-    t.string   "paid"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "messages", force: :cascade do |t|

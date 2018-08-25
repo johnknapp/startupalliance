@@ -29,7 +29,6 @@ class User < ApplicationRecord
   has_many  :audits
 
   belongs_to :plan
-  has_many :invoices # TODO Yagni Invoice model
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable
