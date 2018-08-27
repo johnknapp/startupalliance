@@ -1,0 +1,21 @@
+.callout
+  p.bold.text-center.little-space-top Leading Quark Authors
+  - User.top_quark_authors.each do |user|
+    - if user.quarks.where.not(state: 'Flagged').count > 0
+      .row
+        .small-6.columns
+          p.text-right.little-snug-top
+            ' #{link_to user.name, vanity_path(user.username)}
+            /| &nbsp;
+            - if user.plan_short_name != 'associate'
+              span.faint
+                ' (#{render 'partials/user_si_ti_display', user: user})
+            | :
+        .small-6.columns
+          p.little-snug-top
+            = link_to "#{number_with_delimiter(user.quarks.count)} Quarks", quarks_path(author_pid: user.pid)
+  .row
+    .small-12.columns
+      p.faint.text-center.snug-bottom
+        span.has-tip.faint data-tooltip=true aria-haspopup=true data-click-open='false' title=SI_TI_TIP
+          ' SI / TI
