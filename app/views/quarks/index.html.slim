@@ -1,34 +1,56 @@
-- if params[:query]
-  - text = "Query: “#{params[:query]}”"
+- if params[:filter]
+  - filter = params[:filter]
+- elsif params[:query]
+  - filter = params[:query]
+- elsif params[:author_pid] and @author
+  - filter = "Authored by #{@author.name}"
 - else
-  - text = 'Showing all'
+  - filter = 'Latest'
 
 - content_for :page_title do
-  ' Quarks are small pieces of fundamental wisdom from Startup Alliance Members
+  ' Quarks are pearls of fundamental wisdom from Startup Alliance Members
 
 - content_for :page_header do
-  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+  h2.bold.little-space-top.white-text.text-center
     ' Quarks!
-  h4.bold.medium-grey-text.text-center #{text}
+  h4.bold.medium-grey-text.text-center Filter: “#{filter}”
 
 .row
   .medium-12.columns
-    p.snug-top.space-bottom.text-right Small pieces of fundamental wisdom from Startup Alliance Members
-
+    .float-left
+      = render 'partials/resources_menu'
+    p.snug-top.space-bottom.text-right Quarks are pearls of fundamental wisdom from Startup Alliance Members
 
 .row
   .medium-5.columns.medium-push-7
-    .space-top &nbsp;
+    h4.little-space-top &nbsp;
     = render 'partials/search_form_quark'
+    p.scale-to-90.little-snug-bottom.text-center
+      ' Any member can contribute Quarks.
+      ' #{link_to 'Learn about Quarks on Wikipedia', 'https://en.wikipedia.org/wiki/Quark', target: '_blank'}.
+    = render 'quarks/top_quark_authors'
   .medium-7.columns.medium-pull-5
-    - if params[:query]
-      .float-left
-        p.snug-bottom.space-top= link_to 'Show all Quarks', quarks_path
-    p.text-right.snug-bottom.space-top
-      a data-open='add-quark'
-        i.fa.fa-plus
-        | &nbsp;
-        ' Add your #{(@quarks.where(author_id: current_user.id).count+1).ordinalize} Quark to the collection
+    .row
+      .small-12.columns
+        .float-right
+          ul.menu.little-space-top
+            li
+              a data-open='add-quark'
+                i.fa.fa-plus
+                | &nbsp;
+                ' Add a Quark
+        ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
+          li.primary-text
+            h5.bold
+              = link_to '#' do
+                ' Filter the Quarks
+                | &nbsp;
+                i.fa.fa-chevron-down
+            ul.menu.normal.shadow-8dp data-dropdown-menu=true
+              li.bold= link_to "Latest Quarks", quarks_path
+              li.bold= link_to "Top Quarks (#{number_with_delimiter(Quark.where(state: 'Promoted').count)})", quarks_path(filter: 'Top Quarks!')
+              li.bold= link_to "Authored by me (#{number_with_delimiter(Quark.where(author_id: current_user.id).count)})", quarks_path(author_pid: current_user.pid), class: 'bold' if current_user
+
     - if @quarks.present?
       - @quarks.each do |quark|
         = render 'quarks/card', quark: quark
@@ -36,7 +58,6 @@
       .callout.shadow-3dp
         p.bold.text-center No Quarks match your query!
         p.text-center= link_to 'Show all Quarks or search again', quarks_path
-
 
 .reveal id='add-quark' data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
@@ -47,24 +68,27 @@
     h5.bold.primary-text.pad-right
       ' #{link_to image_tag('top_quark.png', width: '40px'), 'https://en.wikipedia.org/wiki/Top_quark', target: '_blank'}
   p.little-snug-top
-    ' You are contributing a piece of fundamental wisdom to be shared with other members.
-    ' You’ll receive a byline so make it a good one!
+    ' Members can contribute pearls of fundamental wisdom to be shared with the community.
+    ' You’ll get a byline so make it a good one!
     ' And if it’s
     span
       em
         | really good
-    ' , it may get our
+    ' , you and your Quark may get our
     span.bold
       ' #{link_to 'Top Quark', 'https://en.wikipedia.org/wiki/Top_quark', target: '_blank'}
     ' award and be promoted online!
-  = simple_form_for(Quark.new) do |f|
-    .row
-      .medium-12.columns
-        = f.hidden_field :author_id,     value: current_user.id  if current_user
-        = f.input :text, as: :text, label: false, autofocus: true, placeholder: 'Not more than 280 characters'
-        = f.input :state, collection: QUARK_STATES if current_user.admin?
-        .button-group
-          = submit_tag 'Add your Quark', class: 'button expanded accent'
-        p.faint.text-center.little-snug-top.snug-bottom Your contribution may be edited for clarity. Duplicate contributions may be removed.
-
+  - if current_user and current_user.confirmed?
+    = simple_form_for(Quark.new) do |f|
+      .row
+        .medium-12.columns
+          = f.hidden_field :author_id,     value: current_user.id  if current_user
+          = f.input :text, as: :text, label: false, autofocus: true, placeholder: 'Not more than 280 characters'
+          = f.input :state, collection: QUARK_STATES if current_user and current_user.admin?
+          .button-group
+            = submit_tag 'Add your Quark', class: 'button expanded accent'
+          p.faint.text-center.little-snug-top.snug-bottom Your contribution may be edited for clarity. Duplicate contributions may be removed.
+  - else
+    p.bold.little-snug-bottom Become a member to add a Quark!
+    = render 'partials/join_form', acqsrc: 'add_quark_form'
 

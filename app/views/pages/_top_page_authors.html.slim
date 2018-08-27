@@ -1,5 +1,5 @@
 .callout
-  p.bold.text-center.little-space-top Top Knowledge Base Authors
+  p.bold.text-center.little-space-top Leading KB Article Authors
   - User.top_page_authors.each do |user|
     - if user.pages.where(state: 'Published').count > 0
       .row

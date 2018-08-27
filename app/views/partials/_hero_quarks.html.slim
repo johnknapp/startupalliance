@@ -1,0 +1,20 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h4.bold.text-center Quarks!
+    .card-section
+      .plan-box data-equalizer-watch=true
+        p.bold.text-center
+          ' Exchange valuable pearls of entrepreneurial wisdom with your fellow members and
+          ' raise your profile in the community.
+          /' Browse the Quarks and gain insight and know-how from those who know.
+          '
+        /' Community Discussion Forums where entrepreneurs ask questions, get answers,
+        /' solve problems and build their businesses.
+        = link_to 'Fundamental Wisdom in the Quarks', quarks_path, class: 'button expanded'
+          /p.faint.text-center
+            - if current_user
+              ' #{number_with_delimiter(nucleus_forum_posts.count)} #{'Post'.pluralize(nucleus_forum_posts.count)}
+              ' from #{number_with_delimiter(nucleus_forum_post_author_ids)} #{'Member'.pluralize(nucleus_forum_post_author_ids)}
+            - else
+              ' Browse Discussion Forums with free membership

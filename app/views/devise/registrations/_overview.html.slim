@@ -84,7 +84,12 @@
       / TODO make this only include page state 'Published'
       .float-right
         p.faint.text-right.snug-top= number_with_delimiter(@user.pages_count)
-      p.faint.snug-top #{link_to 'Knowledge Base Pages', pages_path(author_pid: @user.pid)}:
+      p.faint.snug-top #{link_to 'Nucleus Knowledge Base Articles', pages_path(author_pid: @user.pid)}:
+    - if @user.quarks_count.present?
+      / TODO make this exclude quark state 'Flagged'
+      .float-right
+        p.faint.text-right.snug-top= number_with_delimiter(@user.quarks_count)
+      p.faint.snug-top #{link_to 'Nucleus Quarks', quarks_path(author_pid: @user.pid)}:
     - if @user.time_zone.present?
       .float-right
         p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)

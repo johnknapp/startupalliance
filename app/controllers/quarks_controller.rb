@@ -1,11 +1,20 @@
 class QuarksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   before_action :set_quark, only: [:update, :destroy]
 
   def index
-    if params[:query].present?
+    if params[:filter]
+      if params[:filter] == 'Top Quarks!'
+        @quarks = Quark.where.not(state: 'Flagged').where(state: 'Promoted').order(created_at: :desc)
+      end
+    elsif params[:query]
       @quarks = Quark.quark_tsearch(params[:query]).where.not(state: 'Flagged').order(created_at: :desc)
+    elsif params[:author_pid]
+      @author    = User.find_by_pid(params[:author_pid])
+      if @author
+        @quarks  = Quark.where.not(state: 'Flagged').where(author_id: @author.id).order(updated_at: :desc).all
+      end
     else
       @quarks = Quark.where.not(state: 'Flagged').order(created_at: :desc)
     end

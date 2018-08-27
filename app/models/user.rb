@@ -128,6 +128,11 @@ class User < ApplicationRecord
     # User.left_joins(:pages).group(:id).order('count(pages.author_id) desc').limit(limit)
   end
 
+  def self.top_quark_authors(limit = 10)
+    # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/
+    User.where('quarks_count > 0').order(quarks_count: :desc).limit(limit)
+  end
+
   def admin?
     self.role == 'admin'
   end
