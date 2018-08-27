@@ -1,4 +1,4 @@
-ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
+ul.tabs.accent-background.shadow#tool-tabs data-tabs=true data-deep-link="true" data-update-history="true"
   - if !current_user or (current_user and !@company.team.include?(current_user))
     li.tabs-title.is-active
       a.bold href='#overview' aria-selected='true'

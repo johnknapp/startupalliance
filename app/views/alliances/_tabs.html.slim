@@ -11,7 +11,7 @@
   p.snug-bottom You are a member of this Private Alliance
 - else
   p.snug-bottom #{link_to 'Sign-up', features_path(anchor: 'alliances')} or #{link_to 'sign-in', new_user_session_path} to join this Private Alliance
-ul.tabs.accent-background.shadow#tool-tabs data-tabs=true
+ul.tabs.accent-background.shadow#tool-tabs data-tabs=true data-deep-link="true" data-update-history="true"
   li.tabs-title.is-active
     a.bold href='#overview' aria-selected='true'
       ' Overview
