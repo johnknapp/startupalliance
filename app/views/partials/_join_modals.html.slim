@@ -59,6 +59,7 @@
   ul.indented-2
     li 14 day risk free trial (No card required)
     li Billed #{ALLIANCE_MONTH} monthly
+    li Participate in up to 5 Private Alliances at once
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
@@ -82,6 +83,7 @@
   ul.indented-2
     li 14 day risk free trial (No card required)
     li Billed #{ALLIANCE_YEAR} annually (That’s only #{ALLIANCE_YEAR_MTHLY} a month, you save #{ALLIANCE_YEAR_SAVINGS})
+    li Participate in up to 5 Private Alliances at once
     li Cancel any time
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification

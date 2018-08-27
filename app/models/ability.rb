@@ -35,14 +35,14 @@ class Ability
         can :dashboard,             Company
         can :set_sakpi,             Company
         can :unset_sakpi,           Company
-        can :manage_members,        Alliance
-        can :manage_team,           Company
+        can :manage_members,        Alliance, creator_id: user.id
+        can :manage_team,           Company,  creator_id: user.id
         can :search_results,        Discussion
         can :mark_posts_read,       Post
         can :mark_post_read,        Post
         # seems skills and traits can be set and unset on user
 
-      else # no role means they are non-auth
+      else # they have no role which means they are non-auth
         cannot :index,              primary_objects
         can :featured,              Page
         can :read,                  public_content

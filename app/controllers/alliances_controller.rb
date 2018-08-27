@@ -36,7 +36,11 @@ class AlliancesController < ApplicationController
   # GET /alliances/new
   def new
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-      @alliance = Alliance.new
+      if current_user.alliances.count <= 5 and !current_user.admin?
+        @alliance = Alliance.new
+      else
+        redirect_to alliances_path, alert: 'Cannot create! You have reached your limit!'
+      end
     else
       redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
     end
@@ -53,11 +57,15 @@ class AlliancesController < ApplicationController
 
   def join_alliance
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-      if @alliance.members.include? current_user
-        redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
+      if current_user.alliances.count <= 5 and !current_user.admin?
+        if @alliance.members.include? current_user
+          redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
+        else
+          @alliance.members << current_user
+          redirect_back(fallback_location: alliance_path, alert: 'You joined this Alliance!')
+        end
       else
-        @alliance.members << current_user
-        redirect_back(fallback_location: alliance_path, alert: 'You joined this Alliance!')
+        redirect_to alliances_path, alert: 'Cannot join! You have reached your limit!'
       end
     else
       redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
@@ -67,15 +75,19 @@ class AlliancesController < ApplicationController
   # PUT /alliances/1/add_member?username=taso
   def add_alliance_member
     member =  User.where('lower(username) = ?', params[:username].downcase).first
-    if member.blank?
-      redirect_back(fallback_location: alliance_path, alert: 'Nobody with that username!')
-    elsif @alliance.members.include? member
-      redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
-    elsif %w[alliance company].any? { |necessary_subscriptions| member.subscription == necessary_subscriptions }
-      @alliance.members << member
-      redirect_back(fallback_location: alliance_path, notice: 'Member added.')
+    if member.alliances.count <= 5 and !current_user.admin?
+      if member.blank?
+        redirect_back(fallback_location: alliance_path, alert: 'Nobody with that username!')
+      elsif @alliance.members.include? member
+        redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
+      elsif %w[alliance company].any? { |necessary_subscriptions| member.subscription == necessary_subscriptions }
+        @alliance.members << member
+        redirect_back(fallback_location: alliance_path, notice: 'Member added.')
+      else
+        redirect_back(fallback_location: alliance_path, alert: 'Not added! Member must upgrade their membership!')
+      end
     else
-      redirect_back(fallback_location: alliance_path, alert: 'Not added! Member must upgrade their membership!')
+      redirect_to alliances_path, alert: 'Cannot join! You have reached your limit!'
     end
   end
 
@@ -96,19 +108,23 @@ class AlliancesController < ApplicationController
   # POST /alliances.json
   def create
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-      @alliance = Alliance.new(alliance_params)
+      if current_user.alliances.count <= 5 and !current_user.admin?
+        @alliance = Alliance.new(alliance_params)
 
-      respond_to do |format|
-        if @alliance.save
-          Notifier.jk_object_created(@alliance).deliver
-          @alliance.update(invite_token: SecureRandom.urlsafe_base64)
-          @alliance.members << current_user
-          format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }
-          format.json { render :show, status: :created, location: @alliance }
-        else
-          format.html { render :new }
-          format.json { render json: @alliance.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @alliance.save
+            Notifier.jk_object_created(@alliance).deliver
+            @alliance.update(invite_token: SecureRandom.urlsafe_base64)
+            @alliance.members << current_user
+            format.html { redirect_to @alliance, notice: 'Alliance was successfully created.' }
+            format.json { render :show, status: :created, location: @alliance }
+          else
+            format.html { render :new }
+            format.json { render json: @alliance.errors, status: :unprocessable_entity }
+          end
         end
+      else
+        redirect_to alliances_path, alert: 'Cannot create! You have reached your limit!' and return
       end
     else
       redirect_to users_membership_path, alert: 'Please upgrade to an Alliance or Company Membership!'
