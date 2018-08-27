@@ -8,7 +8,7 @@
   - filter = 'Latest'
 
 - content_for :page_title do
-  ' Quarks are pearls of fundamental wisdom from Startup Alliance Members
+  ' Nucleus Quarks are pearls of fundamental wisdom from Startup Alliance Members
 
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
@@ -19,7 +19,7 @@
   .medium-12.columns
     .float-left
       = render 'partials/resources_menu'
-    p.snug-top.space-bottom.text-right Quarks are pearls of fundamental wisdom from Startup Alliance Members
+    p.snug-top.space-bottom.text-right Nucleus Quarks are pearls of fundamental wisdom from Startup Alliance Members
 
 .row
   .medium-5.columns.medium-push-7
@@ -48,7 +48,7 @@
                 i.fa.fa-chevron-down
             ul.menu.normal.shadow-8dp data-dropdown-menu=true
               li.bold= link_to "Latest Quarks", quarks_path
-              li.bold= link_to "Top Quarks (#{number_with_delimiter(Quark.where(state: 'Promoted').count)})", quarks_path(filter: 'Top Quarks!')
+              li.bold= link_to "Top Quarks (#{number_with_delimiter(Quark.where(state: 'Promoted').count)})", quarks_path(filter: 'Top Quarks')
               li.bold= link_to "Authored by me (#{number_with_delimiter(Quark.where(author_id: current_user.id).count)})", quarks_path(author_pid: current_user.pid), class: 'bold' if current_user
 
     - if @quarks.present?

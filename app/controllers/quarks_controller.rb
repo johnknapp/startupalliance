@@ -5,7 +5,7 @@ class QuarksController < ApplicationController
 
   def index
     if params[:filter]
-      if params[:filter] == 'Top Quarks!'
+      if params[:filter] == 'Top Quarks'
         @quarks = Quark.where.not(state: 'Flagged').where(state: 'Promoted').order(created_at: :desc)
       end
     elsif params[:query]
