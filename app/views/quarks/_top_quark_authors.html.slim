@@ -1,5 +1,5 @@
 .callout
-  p.bold.text-center.little-space-top Leading Quark Authors
+  p.bold.text-center.little-space-top Top 10 Quark Authors
   - User.top_quark_authors.each do |user|
     - if user.quarks.where.not(state: 'Flagged').count > 0
       .row
@@ -13,7 +13,7 @@
             | :
         .small-6.columns
           p.little-snug-top
-            = link_to "#{number_with_delimiter(user.quarks.count)} Quarks", quarks_path(author_pid: user.pid)
+            = link_to "#{number_with_delimiter(user.quarks.count)} #{'Quark'.pluralize(user.quarks.count)}", quarks_path(author_pid: user.pid)
   .row
     .small-12.columns
       p.faint.text-center.snug-bottom
