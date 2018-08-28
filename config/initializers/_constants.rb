@@ -46,6 +46,7 @@ SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid error]
 
 WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
 
+TOP_QUARK_TIP               = 'This is a Top Quark! Our Top Quark Award honors the best pearls of startup wisdom contributed by our members. Top Quarks and the author may be promoted on social channels.'
 KB_SUGGESTION_TIP           = 'Suggested Knowledge Base Pages are marked with a Bell icon as a signal to potential authors they have a writing opportunity.'
 ACCOUNT_ACTIVATION_TIP      = 'When you signed up, we sent you an account activation email containing a link to choose a username and password. Activate your account for full privileges!'
 ENTREPRENEURS_NUCLEUS_TIP   = 'The Entrepreneur’s Nucleus™ is our collection of free community resources where you can ask questions, get answers, advice, hard-won knowledge and startup wisdom.'
