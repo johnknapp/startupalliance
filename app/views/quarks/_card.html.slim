@@ -38,7 +38,7 @@
     h5.bold.primary-text.pad-right
       ' #{link_to image_tag('top_quark.png', width: '40px'), 'https://en.wikipedia.org/wiki/Top_quark', target: '_blank'}
   p.little-snug-top
-    ' You are modifying your contribution of fundamental wisdom.
+    ' You are modifying your pearl of fundamental wisdom.
     ' You’ll receive a byline so make sure it’s a good one!
     ' And if it’s
     span
@@ -50,7 +50,7 @@
     ' award and be promoted online!
   = simple_form_for(quark) do |f|
     = f.input :text, as: :text, label: false, autofocus: true, placeholder: 'Not more than 280 characters'
-    = f.input :state, collection: QUARK_STATES if current_user.admin?
+    = f.input :state, collection: QUARK_STATES if current_user and current_user.admin?
     .row
       .medium-12.columns
         .button-group
