@@ -1,5 +1,5 @@
 .callout
-  p.bold.text-center.little-space-top Top 10 Nucleus Quark Authors
+  p.bold.text-center.little-space-top Top 10 Nucleus Quark! Authors
   - User.top_quark_authors.each do |user|
     - if user.quarks.where.not(state: 'Flagged').count > 0
       .row
