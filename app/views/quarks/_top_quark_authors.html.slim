@@ -1,5 +1,5 @@
 .callout
-  p.bold.text-center.little-space-top Top 10 Quark Authors
+  p.bold.text-center.little-space-top Top 10 Nucleus Quark Authors
   - User.top_quark_authors.each do |user|
     - if user.quarks.where.not(state: 'Flagged').count > 0
       .row
@@ -18,4 +18,4 @@
     .small-12.columns
       p.faint.text-center.snug-bottom
         span.has-tip.faint data-tooltip=true aria-haspopup=true data-click-open='false' title=SI_TI_TIP
-          ' SI / TI
+          ' Learn about SI / TI
