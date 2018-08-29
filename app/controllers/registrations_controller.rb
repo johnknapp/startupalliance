@@ -62,6 +62,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    if params[:terms].blank?
+      redirect_back(fallback_location: root_path, alert: 'You must accept Privacy Statement and Terms of Use') and return
+    end
+
     if params[:user][:email].present?
       email = params[:user][:email]
       user = User.find_by_email(email)                                        # We know them
