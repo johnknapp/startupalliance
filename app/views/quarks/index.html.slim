@@ -49,7 +49,8 @@
             ul.menu.normal.shadow-8dp data-dropdown-menu=true
               li.bold= link_to "Latest Quarks", quarks_path
               li.bold= link_to "Top Quarks (#{number_with_delimiter(Quark.where(state: 'Promoted').count)})", quarks_path(filter: 'Top Quarks')
-              li.bold= link_to "Authored by me (#{number_with_delimiter(Quark.where(author_id: current_user.id).count)})", quarks_path(author_pid: current_user.pid), class: 'bold' if current_user
+              li.bold= link_to "Authored by me (#{number_with_delimiter(Quark.where(author_id: current_user.id).count)})", quarks_path(author_pid: current_user.pid) if current_user
+              li.bold= link_to "Contributed Quarks (#{number_with_delimiter(Quark.where(state: 'Contributed').count)})", quarks_path(filter: 'Contributed') if current_user and current_user.admin?
 
     - if @quarks.present?
       - @quarks.each do |quark|
