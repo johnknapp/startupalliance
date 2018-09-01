@@ -59,6 +59,10 @@ class CardsController < ApplicationController
         # Invalid signature
         status 400
         return
+      rescue Stripe::InvalidRequestError => e
+        # invalid plan or whatever
+        status 400
+        return
       end
     end
 
