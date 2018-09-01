@@ -14,10 +14,16 @@
       .small-4.columns
         = f.button :submit, "Join now!", class: 'postfix expanded bold success'
     .row
-      .small-12.columns
+      .medium-6.columns
+        .snug-top= label_tag :terms do
+          = check_box_tag :terms, true
+          ' I accept the #{link_to 'privacy', privacy_path, target: '_blank'} and #{link_to 'terms', terms_path, target: '_blank'}
+      .medium-6.columns
         .float-right
           p.snug-top.faint
             em
               ' Already a member?
               = link_to 'Sign-in', new_user_session_path
+    .row
+      .small-12.columns
         .g-recaptcha.little-snug-top data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"

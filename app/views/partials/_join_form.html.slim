@@ -20,8 +20,6 @@
       = f.button :submit, "Join for FREE!", class: 'postfix expanded bold success'
   .row
     .medium-6.columns
-      /.snug-top= f.input :policies, as: :boolean, inline_label: "I agree to #{link_to 'privacy', privacy_path} and #{link_to 'terms of service', terms_path}"
-      /.snug-top= f.input :policies, as: :boolean, inline_label: "I accept  privacy and terms."
       .snug-top= label_tag :terms do
         = check_box_tag :terms, true
         ' I accept the #{link_to 'privacy', privacy_path} and #{link_to 'terms', terms_path}
