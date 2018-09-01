@@ -4,7 +4,7 @@
       ' &times;
   p.space-right
     ' Add a credit or debit card to your account before your first subscription payment becomes due.
-    ' You can change cards later.
+    ' You can always change cards later.
   p.little-snug-top.snug-bottom.faint
     em
       ' We accept all major credit and debit cards
@@ -12,9 +12,9 @@
     .callout
       #card-element
       #card-errors role='alert'
-    = submit_tag 'Add card to your Account', class: 'button'
-  p.text-right.snug-bottom.faint
-    i.fa.fa-lock.fa-lg.accent-text
+    = submit_tag 'Securely add card to your Account', class: 'button'
+  p.text-right.snug-bottom
+    i.fa.fa-lock.fa-lg.primary-text
     | &nbsp;
     ' Card information is stored securely with #{link_to 'Stripe', 'https://stripe.com', target: '_blank'}.
 

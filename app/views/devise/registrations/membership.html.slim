@@ -59,7 +59,7 @@
               ' “#{ni.discount.coupon.id}”
             ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
             ' (through #{Time.zone.at(ni.discount.end).strftime('%b %e, %Y')})
-        p Option code:
+        p Group code:
 
       .float-right
         - if current_user.card_brand.present?
@@ -72,7 +72,7 @@
             p Not required for Associate Membership
           - else
             a data-open='card'
-              ' Add card to your account
+              ' Securely add card to your account
               | &nbsp;
               i.fa.fa-info-circle
             = render 'card_modal'
