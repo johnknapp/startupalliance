@@ -2,7 +2,7 @@ class OffersController < ApplicationController
 
   before_action :prepare_offer
 
-  # GET /welcome/:id
+  # GET /welcome/:pid
   def show
     render layout: 'application_blank'
   end
