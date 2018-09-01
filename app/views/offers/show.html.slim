@@ -12,8 +12,8 @@
     p.snug-top.show-for-medium &nbsp;
 
     .callout.accent.shadow-6dp
-      h5.title-font.text-center                 = @offer.offer_lead_in if @offer.offer_lead_in
-      h5.bold.text-center                       = @offer.plan.display_name if @offer.plan
+      h5.title-font.text-center                   = @offer.offer_lead_in if @offer.offer_lead_in
+      h5.bold.text-center                         = @offer.plan.display_name if @offer.plan
 
       - if @offer.plan and @offer.plan.short_name != 'associate'
         p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
@@ -22,9 +22,10 @@
 
       - if @coupon
         h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
-        p.little-snug-top.text-center
-          em
-            ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
+
+      p.little-snug-top.text-center
+        em
+          ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
     .row
       .medium-6.medium-offset-3.columns
