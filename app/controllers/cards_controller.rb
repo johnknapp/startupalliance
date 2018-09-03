@@ -61,7 +61,8 @@ class CardsController < ApplicationController
         return
       rescue Stripe::InvalidRequestError => e
         # invalid plan or whatever
-        status 400
+        Notifier.bad_request.deliver
+        status 200
         return
       end
     end

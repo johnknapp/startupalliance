@@ -41,6 +41,12 @@ class Notifier < ApplicationMailer
     end
   end
 
+  def bad_request
+    if Rails.env.production?
+      mail(to: 'john@startupalliance.com', subject: "[SA] check logs for InvalidRequestError")
+    end
+  end
+
   def happy_dance(user,event)
     if Rails.env.production?
       @user = user
