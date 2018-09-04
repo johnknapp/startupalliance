@@ -36,7 +36,7 @@ class AlliancesController < ApplicationController
   # GET /alliances/new
   def new
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-      if current_user.alliances.count <= 5 and !current_user.admin?
+      if current_user.alliances.count <= 5 or current_user.admin?
         @alliance = Alliance.new
       else
         redirect_to alliances_path, alert: 'Cannot create! You have reached your limit!'
@@ -57,7 +57,7 @@ class AlliancesController < ApplicationController
 
   def join_alliance
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-      if current_user.alliances.count <= 5 and !current_user.admin?
+      if current_user.alliances.count <= 5 or current_user.admin?
         if @alliance.members.include? current_user
           redirect_back(fallback_location: alliance_path, alert: 'Already a member!')
         else
@@ -75,7 +75,7 @@ class AlliancesController < ApplicationController
   # PUT /alliances/1/add_member?username=taso
   def add_alliance_member
     member =  User.where('lower(username) = ?', params[:username].downcase).first
-    if member.alliances.count <= 5 and !current_user.admin?
+    if member.alliances.count <= 5 or current_user.admin?
       if member.blank?
         redirect_back(fallback_location: alliance_path, alert: 'Nobody with that username!')
       elsif @alliance.members.include? member
@@ -108,7 +108,7 @@ class AlliancesController < ApplicationController
   # POST /alliances.json
   def create
     if %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-      if current_user.alliances.count <= 5 and !current_user.admin?
+      if current_user.alliances.count <= 5 or current_user.admin?
         @alliance = Alliance.new(alliance_params)
 
         respond_to do |format|
