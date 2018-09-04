@@ -8,7 +8,7 @@
     = f.input :invite_only, label: 'Membership by invitation only'
     = f.input :is_unlisted, label: 'Activate stealth mode to hide your Private Alliance'
     = f.input :recruiting, label: 'Display recruiting notification'
-    = f.input :leader_id, label: 'Private Alliance Leader', collection: @alliance.members
+    = f.input :leader_id, label: 'Private Alliance Leader', collection: @alliance.members if params[:action] == 'edit'
 
   .form-actions
     .row

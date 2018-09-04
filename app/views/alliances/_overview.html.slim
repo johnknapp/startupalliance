@@ -10,8 +10,9 @@
   .large-6.large-offset-3.medium-8.medium-offset-2.columns.clearfix
 
     - if @alliance.mission.present?
-       p.bold.little-space-top Mission statement:
-       p.snug-top= @alliance.mission
+      .callout.shadow.little-space-top
+         h5.bold.text-center Mission statement:
+         h5= @alliance.mission
 
     .float-right
       p.little-snug-top= @alliance.created_at.strftime('%B %e, %Y')
