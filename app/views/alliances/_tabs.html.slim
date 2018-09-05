@@ -2,7 +2,10 @@
   - if @alliance.invite_only
     p.snug-bottom This Private Alliance is Invitation Only
   - else
-    p.snug-bottom= link_to 'Join this Private Alliance', join_alliance_alliance_path, method: :put
+    - if @alliance.member_cap <= @alliance.members.count
+      p.snug-bottom= link_to 'Join this Private Alliance', join_alliance_alliance_path, method: :put
+    - else
+      p.snug-bottom Sorry, this Private Alliance is full, please message #{link_to @alliance.creator.name, vanity_path(@alliance.creator.username).
 - elsif current_user and @alliance.creator == current_user
   p.snug-bottom You created this Private Alliance
 - elsif current_user and @alliance.members.include? current_user

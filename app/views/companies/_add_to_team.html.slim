@@ -3,7 +3,7 @@
     i.fa.fa-user-plus
     | &nbsp;
     ' Add Team Member
-  p.faint.text-center.snug-bottom Team size limited to 24.
+  p.faint.text-center.snug-bottom This team size limited to #{@company.member_cap}.
   .reveal#update-team data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
@@ -65,7 +65,7 @@
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
         ' &times;
-    p.bold You have reached your team size limit!
+    p.bold You have reached your team size limit of #{@company.member_cap}!
     p.little-snug-bottom
       ' Standard Company plans are limited to 24 people.
       ' You have some choices:

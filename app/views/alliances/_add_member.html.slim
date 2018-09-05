@@ -1,9 +1,9 @@
-- if @alliance.members.count <= 12
+- if @alliance.members.count <= @alliance.member_cap
   a data-open='add-member'
     i.fa.fa-user-plus
     | &nbsp;
     ' Add Member
-  p.faint.text-center.snug-bottom Private Alliance Membership limited to 12.
+  p.faint.text-center.snug-bottom This Private Alliance Membership limited to #{@alliance.member_cap}.
   .reveal#add-member data-reveal=true
     button data-close=true aria-label='Close' type='button' class='close-button'
       span aria-hidden=true
@@ -53,7 +53,7 @@
         ' &times;
     p.bold You have reached your membership limit!
     p.little-snug-bottom
-      ' Private Alliances are limited to 12 members to maintain the quality of
+      ' By default, Private Alliances are limited to 12 members to maintain the quality of
       ' the interactions within the group. You have some choices:
     ol.indented-2
       li Keep the membership at the current size

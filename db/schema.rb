@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180827220130) do
+ActiveRecord::Schema.define(version: 20180905221050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180827220130) do
     t.integer  "state",        default: 0
     t.boolean  "invite_only",  default: false
     t.integer  "leader_id"
+    t.integer  "member_cap",   default: 12
   end
 
   create_table "audits", force: :cascade do |t|
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20180827220130) do
     t.boolean  "is_unlisted",    default: false
     t.string   "invite_token"
     t.integer  "state",          default: 0
+    t.integer  "member_cap",     default: 24
   end
 
   create_table "company_sakpis", force: :cascade do |t|
