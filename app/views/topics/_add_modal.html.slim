@@ -1,21 +1,23 @@
 a data-open='add-topic'
   i.fa.fa-plus
   | &nbsp;
-  ' Add
+  ' Create
   - if @discussion.topics.blank?
     ' the first
-  ' Topic thread
-  ' to this Discussion subject
+  - else
+    ' new
+  ' Topic Thread
+  /' to this Discussion subject
 .reveal#add-topic data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
   .row
     .medium-12.columns
-      p.bold.primary-text.little-snug-bottom Add Topic thread
+      p.bold.primary-text.little-snug-bottom Add Topic Thread
     .row
       .medium-2.columns
-        p.little-snug-bottom.text-right In:
+        p.little-snug-bottom.text-right Within:
       .medium-10.columns
         p.bold= @discussion.name
     .row

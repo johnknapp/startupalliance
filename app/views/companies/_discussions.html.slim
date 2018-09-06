@@ -13,7 +13,7 @@
         a data-open='disco-info'
           i.fa.fa-lg.fa-info-circle
         = render 'partials/quick_reference_disco'
-      h5.bold.space-top Latest Topic threads:
+      h5.bold.space-top Recent Activity:
       - if @company.discussions.present?
         - if discussable_topics(@company).present?
           .callout
@@ -32,7 +32,7 @@
         .callout
           p.text-center Nothing yet!
     .large-7.columns.large-pull-5
-      - if current_user and (current_user.team_role(@company) == 'Owner' or current_user.admin?)
+      - if current_user and (@company.creator == current_user or current_user.team_role(@company) == 'Owner' or current_user.admin?)
         p.space-top.snug-bottom= render 'discussions/add_modal', discussable: @company
       - else
         p.space-top.snug-bottom &nbsp;

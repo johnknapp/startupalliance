@@ -8,7 +8,7 @@ a data-open="edit-discussion-#{discussion.pid}"
       ' &times;
   .row
     .medium-12.columns
-      p.bold.primary-text.little-snug-bottom Update Discussion subject
+      p.bold.primary-text.little-snug-bottom Update Discussion Subject
   .row
     .medium-2.columns
       p.little-snug-bottom.text-right In:
@@ -21,4 +21,4 @@ a data-open="edit-discussion-#{discussion.pid}"
         = f.hidden_field :company_pid,    value: discussable.pid  if discussable.class.name == 'Company'
         = f.hidden_field :alliance_pid,   value: discussable.pid  if discussable.class.name == 'Alliance'
         = f.input :name, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
-        = f.button :submit, 'Edit Discussion', class: 'button expanded accent'
+        = f.button :submit, 'Edit Discussion Subject', class: 'button expanded accent'

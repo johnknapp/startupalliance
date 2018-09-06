@@ -13,7 +13,7 @@
         a data-open='disco-info'
           i.fa.fa-lg.fa-info-circle
         = render 'partials/quick_reference_disco'
-      h5.bold.space-top Latest Topic threads:
+      h5.bold.space-top Recent Activity:
       - if @alliance.discussions.present?
         - if discussable_topics(@alliance).present?
           .callout
@@ -33,7 +33,7 @@
           p.text-center Nothing yet!
     .large-7.columns.large-pull-5
       /- if current_user and (@alliance.creator == current_user or current_user.admin?)
-      - if current_user and (current_user.alliances.include?(@alliance) or current_user.admin?)
+      - if current_user and (@alliance.creator == current_user or @alliance.leader == current_user or current_user.admin?)
         p.space-top.snug-bottom= render 'discussions/add_modal', discussable: @alliance
       - else
         p.space-top.snug-bottom &nbsp;

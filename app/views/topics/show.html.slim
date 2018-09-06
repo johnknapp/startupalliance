@@ -1,9 +1,9 @@
 - content_for :page_header do
   h4.bold.little-space-top.medium-grey-text.text-center
-    ' Topic thread:
+    ' Topic Thread:
   h2.bold.white-text.text-center.title-font
     = @topic.name
-  h5.text-center.white-text
+  /h5.text-center.white-text
     ' In:
     = link_to @topic.discussion.name, discussion_path(@topic.discussion), class: 'accent-text'
     /- @page.category_list.each_with_index do |cat, i|
@@ -13,24 +13,35 @@
 
 .row
   .large-12.columns
-    .float-left
-      p.snug-top.space-bottom
-        = link_to discussion_path(@topic.discussion) do
-          i.fa.fa-arrow-left
-          | &nbsp;
-          | &nbsp;
-          ' Return to #{@topic.discussion.name}
-    - if current_user and current_user.confirmed?
-      p.snug-top.space-bottom.text-right= render 'post/add_modal'
-    - elsif current_user and !current_user.confirmed?
-      p.snug-top.space-bottom.text-right
-        span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
-          ' Activate your account
-        '  to Post or Reply!
+    ul.breadcrumbs.snug-top.space-bottom
+      - if @topic.discussion.discussable_type == 'Alliance'
+        li.bold= link_to @topic.discussion.discussable.name, alliance_path(@topic.discussion.discussable, anchor: 'discussions')
+      - if @topic.discussion.discussable_type == 'Company'
+        li.bold= link_to @topic.discussion.discussable.name, company_path(@topic.discussion.discussable, anchor: 'discussions')
+      - if !@topic.discussion.discussable
+        li.bold= link_to 'Nucleus Discussions', discussions_path
+      li.bold= link_to @topic.discussion.name, discussion_path(@topic.discussion)
+      li.bold= @topic.name
+
+
+
+    /p.snug-top.space-bottom
+      = link_to discussion_path(@topic.discussion) do
+        i.fa.fa-arrow-left
+        | &nbsp;
+        | &nbsp;
+        ' Return to #{@topic.discussion.name}
 
 .row
   .medium-10.medium-offset-1.columns
-    p.show-for-medium.snug-top &nbsp;
+    /p.show-for-medium.snug-top &nbsp;
+    - if current_user and current_user.confirmed?
+      p= render 'post/add_modal'
+    - elsif current_user and !current_user.confirmed?
+      p
+        span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+          ' Activate your account
+        '  to Post or Reply!
     - if @topic.posts.present?
       = nested_posts @topic.posts.arrange(order: :created_at)
       - if current_user and @topic.posts.unread_by(current_user).present?
