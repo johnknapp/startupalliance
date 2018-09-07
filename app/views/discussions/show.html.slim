@@ -38,10 +38,10 @@
               br
               .faint= discussion_meta(discussion)
           - else
-            li.little-space-bottom
+            li.little-space-bottom.bold
               = discussion.name
-              br
-              .faint= discussion_meta(discussion)
+              span.normal
+                .faint= discussion_meta(discussion)
 
   .medium-7.medium-offset-1.columns.medium-pull-4
     - if current_user and current_user.confirmed?

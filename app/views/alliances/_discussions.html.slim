@@ -17,20 +17,24 @@
       - if @alliance.discussions.present?
         - if discussable_topics(@alliance).present?
           .callout.small
-            p.bold.little-snug-bottom Recent Activity:
-            - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
-              - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
-                .float-left
-                  = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
-                    i.fa.fa-comments.fa-lg.red-text
-              h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
-              p.faint.little-snug-top.text-center In #{link_to topic.discussion.name, discussion_path(topic.discussion)}
-              p.faint.snug-top.text-center= topic_meta(topic)
+            p.bold Recently active Topics:
+            ul.little-snug-top
+              - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
+                li.little-space-bottom
+                  - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+                    .float-left
+                      = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                        i.fa.fa-comments.fa-lg.red-text
+                      | &nbsp;
+                      | &nbsp;
+                  = link_to topic.name, discussion_topic_path(topic.discussion,topic)
+                  .scale-to-90 In: #{link_to topic.discussion.name, discussion_path(topic.discussion)}
+                  /.scale-to-90= topic_meta(topic)
         - else
-          .callout
+          .callout.small
             p.text-center Nothing yet!
       - else
-        .callout
+        .callout.small
           p.text-center Nothing yet!
     .large-7.columns.large-pull-5
       /- if current_user and (@alliance.creator == current_user or current_user.admin?)

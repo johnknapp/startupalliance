@@ -33,20 +33,23 @@
     h5.space-top &nbsp;
     = render 'partials/search_form_disco'
 
-    /h5.bold.little-space-top Recent Activity:
     - if nucleus_topics.present?
       .callout.small
-        p.bold.little-snug-bottom Recent Activity:
-        - nucleus_topics.fresh_posts_first.limit(8).each do |topic|
-          - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
-            .float-left
-              = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
-                i.fa.fa-comments.fa-lg.red-text
-          h5.bold.text-center= link_to topic.name, discussion_topic_path(topic.discussion,topic)
-          p.faint.little-snug-top.text-center In: #{link_to topic.discussion.name, discussion_path(topic.discussion)}
-          p.faint.snug-top.space-bottom.text-center= topic_meta(topic)
+        p.bold Recently active Topics:
+        ul.little-snug-top
+          - nucleus_topics.fresh_posts_first.limit(8).each do |topic|
+            li.little-space-bottom
+              - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+                .float-left
+                  = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
+                    i.fa.fa-comments.fa-lg.red-text
+                  | &nbsp;
+                  | &nbsp;
+              = link_to topic.name, discussion_topic_path(topic.discussion,topic)
+              .scale-to-90 In: #{link_to topic.discussion.name, discussion_path(topic.discussion)}
+              /.scale-to-90 = topic_meta(topic)
     - else
-      .callout
+      .callout.small
         p.text-center Nothing yet!
 
   .medium-7.columns.medium-pull-5
