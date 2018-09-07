@@ -6,11 +6,11 @@
   h2.bold.little-space-top.white-text.text-center
     ' Discussion Forums
   h4.bold.medium-grey-text.text-center
-    /' 12 Subjects with
-    ' #{number_with_delimiter(nucleus_forum_posts.count)}
-    ' #{'Post'.pluralize(nucleus_forum_posts.count)}
-    ' in #{number_with_delimiter(nucleus_topics.count)}
-    ' #{'Thread'.pluralize(nucleus_topics.count)}
+    ' Questions, answers and advice
+    /' #{number_with_delimiter(nucleus_forum_posts.count)}
+    /' #{'Post'.pluralize(nucleus_forum_posts.count)}
+    /' on #{number_with_delimiter(nucleus_topics.count)}
+    /' #{'Topic'.pluralize(nucleus_topics.count)}
 
 .row
   .large-12.columns
@@ -49,10 +49,10 @@
         p.text-center Nothing yet!
 
   .medium-7.columns.medium-pull-5
-    h5.bold.space-top Choose the Subject you’re interested in:
+    h5.bold.space-top Choose your Subject:
     - if @discussions.present?
       - @discussions.order(:name).each do |disco|
-        .callout.small.accent.shadow.little-space-bottom
+        .callout.small.primary.shadow.little-space-bottom
           - if current_user and disco.posts.present? and disco.posts.unread_by(current_user).present?
             .float-left
               = link_to mark_posts_read_discussion_topic_posts_path(disco,disco.topics.last), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do

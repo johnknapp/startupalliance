@@ -37,9 +37,10 @@
         p.space-top.snug-bottom= render 'discussions/add_modal', discussable: @alliance
       - else
         p.space-top.snug-bottom &nbsp;
+
       - if @alliance.discussions.present?
         - @alliance.discussions.order(:name).each do |discussion|
-          .callout.accent.shadow.space-bottom
+          .callout.primary.shadow.space-bottom
             - if current_user and (@alliance.creator == current_user or current_user.admin?)
               .float-right
                 ul.dropdown.menu data-dropdown-menu=true

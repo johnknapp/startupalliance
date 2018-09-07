@@ -90,6 +90,9 @@ $foundation-palette: (
 //   accent:    #8EF9F3,
 //   secondary: #5873D9,
    alert:     #FB3640,
+   light-grey: #f4f4f4,
+   medium-gray: #cacaca,
+   dark-grey: #8a8a8a,
    warning:   #E5323B,
    success:   #FFD700,
 );
@@ -112,6 +115,9 @@ $foundation-palette: (
 .secondary { color: map-get($foundation-palette, secondary); }
 .success { color: map-get($foundation-palette, success); }
 .alert { color: map-get($foundation-palette, alert); }
+.light-grey { color: map-get($foundation-palette, light-grey); }
+.medium-grey { color: map-get($foundation-palette, medium-grey); }
+.dark-grey { color: map-get($foundation-palette, dark-grey); }
 .warning { color: map-get($foundation-palette, warning); }
 
 $light-gray: #f4f4f4;
