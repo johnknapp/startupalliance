@@ -13,10 +13,11 @@
         a data-open='disco-info'
           i.fa.fa-lg.fa-info-circle
         = render 'partials/quick_reference_disco'
-      h5.bold.space-top Recent Activity:
+      h5.bold.space-top &nbsp;
       - if @alliance.discussions.present?
         - if discussable_topics(@alliance).present?
-          .callout
+          .callout.small
+            p.bold.little-snug-bottom Recent Activity:
             - discussable_topics(@alliance).fresh_posts_first.limit(10).each do |topic|
               - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
                 .float-left
