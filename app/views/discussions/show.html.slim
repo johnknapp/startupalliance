@@ -17,21 +17,33 @@
         li.bold= link_to 'Nucleus Discussions', discussions_path
       li.bold= @discussion.name
 .row
-  .large-4.columns.large-push-8
+  .medium-4.columns.medium-push-8
     p &nbsp;
     .callout.small
       p.bold Subject list:
       ul.little-snug-top
-        - @discussion.discussable.discussions.order(:name).each do |discussion|
-          li
-            - if current_user and discussion.posts.present? and discussion.posts.unread_by(current_user).present?
-              .float-left
-                = link_to mark_posts_read_discussion_topic_posts_path(discussion,discussion.topics.last), data: { confirm: 'Really mark all contained Posts as read?' }, method: :post do
-                  i.fa.fa-comments.red-text
-                | &nbsp;
-            = link_to discussion.name, discussion_path(discussion)
+        - if !@discussion.discussable
+          - discos = Discussion.where(nucleus: true).all.order(:name)
+        - else
+          - discos = @discussion.discussable.discussions.order(:name)
+        - discos.each do |discussion|
+          - if discussion != @discussion
+            li.little-space-bottom
+              - if current_user and discussion.posts.present? and discussion.posts.unread_by(current_user).present?
+                .float-left
+                  = link_to mark_posts_read_discussion_topic_posts_path(discussion,discussion.topics.last), data: { confirm: 'Really mark all contained Posts as read?' }, method: :post do
+                    i.fa.fa-comments.red-text
+                  | &nbsp;
+              = link_to discussion.name, discussion_path(discussion)
+              br
+              .faint= discussion_meta(discussion)
+          - else
+            li.little-space-bottom
+              = discussion.name
+              br
+              .faint= discussion_meta(discussion)
 
-  .large-7.large-offset-1.columns.large-pull-4
+  .medium-7.medium-offset-1.columns.medium-pull-4
     - if current_user and current_user.confirmed?
       p= render 'topics/add_modal'
     - elsif current_user and !current_user.confirmed?

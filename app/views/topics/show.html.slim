@@ -40,7 +40,7 @@
             span.bold
               ' Mark all unread Posts in this Thread as read
     - else
-      .callout
+      .callout.dark-grey
         p.text-center No Posts yet!
         - if current_user and current_user.confirmed?
           p.text-center.snug-bottom= render 'post/add_modal'
