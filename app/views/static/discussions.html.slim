@@ -33,9 +33,10 @@
     h5.space-top &nbsp;
     = render 'partials/search_form_disco'
 
-    h5.bold.little-space-top Recent Activity:
+    /h5.bold.little-space-top Recent Activity:
     - if nucleus_topics.present?
-      .callout
+      .callout.small
+        p.bold.little-snug-bottom Recent Activity:
         - nucleus_topics.fresh_posts_first.limit(8).each do |topic|
           - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
             .float-left
