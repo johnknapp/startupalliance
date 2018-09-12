@@ -216,7 +216,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
 
-      jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
+      jk = User.where(email: 'john@startupalliance.com').first if Rails.env.production?
       jk = User.find 1 if Rails.env.development?
       pages = Page.where(author_id: @user.id).all
       pages.update_all(author_id: jk.id)        if pages    # reset the author
