@@ -104,7 +104,7 @@
           ' #{@user.plan.display_name}
       p.snug-top.faint Membership plan:
 
-    /- if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
+    - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
     p
       strong Social profiles:
     - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?

@@ -6,13 +6,13 @@ ActiveAdmin.register User do
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :subscribed_at, :subscription_state, :state,
                 :linkedin_profile, :website, :country_code, :time_zone, :plan_id, :acqsrc, :public_skills, :public_traits
 
-  scope('All')        { User.unscoped }
-  scope('Trialing')   { |scope| scope.where(subscription_state: 'trialing') }
-  scope('Active')     { |scope| scope.where(subscription_state: 'active') }
-  scope('Past due')   { |scope| scope.where(subscription_state: 'past_due') }
-  scope('Canceled')   { |scope| scope.where(subscription_state: 'canceled') }
-  scope('Unpaid')     { |scope| scope.where(subscription_state: 'unpaid') }
-  scope('Error')      { |scope| scope.where(subscription_state: 'error') }
+  # scope('All')        { User.unscoped }
+  # scope('Trialing')   { |scope| scope.where(subscription_state: 'trialing') }
+  # scope('Active')     { |scope| scope.where(subscription_state: 'active') }
+  # scope('Past due')   { |scope| scope.where(subscription_state: 'past_due') }
+  # scope('Canceled')   { |scope| scope.where(subscription_state: 'canceled') }
+  # scope('Unpaid')     { |scope| scope.where(subscription_state: 'unpaid') }
+  # scope('Error')      { |scope| scope.where(subscription_state: 'error') }
 
   controller do
 
