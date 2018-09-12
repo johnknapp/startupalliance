@@ -29,10 +29,12 @@
             ' “I look forward to helping you personally!” –John
 
       - if current_user and current_user.plan_short_name == 'alliance'
+        li You’re in the New Members Fast Track Private Alliance. Go introduce yourself!
         li Go ahead and #{link_to 'create your Private Alliance', new_alliance_path}
-        li Once you do, visit the team tab in your Private Alliance and invite your people
+        /li Once you do, visit the team tab in your Private Alliance and invite your people
         li If your company is already on Startup Alliance, contact them and join the team
       - elsif current_user and current_user.plan_short_name == 'company'
+        li You’re in the New Members Fast Track Private Alliance. Go introduce yourself!
         li Go ahead and #{link_to 'create your Company Workspace', new_company_path}
         li Once you do, visit the team tab in your Company Workspace and invite your people
       li Use The Nucleus to expand your knowledge and solve problems

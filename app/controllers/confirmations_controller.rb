@@ -53,6 +53,10 @@ class ConfirmationsController < Devise::ConfirmationsController
       end
       set_flash_message :notice, :confirmed
       sign_in(resource)
+      if %w[alliance company].any? { |necessary_subscriptions| resource.subscription == necessary_subscriptions }
+        alliance = Alliance.find_by_pid 'fast-track'
+        alliance.members << resource
+      end
       redirect_to thanks_activate_path
       # sign_in_and_redirect resource_name, resource
     else
