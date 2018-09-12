@@ -82,7 +82,11 @@ ActiveAdmin.register User do
     column :created_at
     column :pid
     column :name do |user|
-      "#{user.name}"
+      if user.name
+        "#{user.name}"
+      else
+        "noname"
+      end
     end
     column :username do |user|
       link_to user.username, vanity_path(user.username)
