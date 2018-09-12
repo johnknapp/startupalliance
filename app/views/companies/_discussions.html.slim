@@ -22,12 +22,12 @@
               - discussable_topics(@company).fresh_posts_first.limit(8).each do |topic|
                 li.little-space-bottom
                   - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
-                    .float-left
+                    .float-right
                       = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
                         i.fa.fa-comments.fa-lg.red-text
                       | &nbsp;
                       | &nbsp;
-                  = link_to topic.name, discussion_topic_path(topic.discussion,topic)
+                  .bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
                   .scale-to-90 In: #{link_to topic.discussion.name, discussion_path(topic.discussion)}
                   /.scale-to-90 = topic_meta(topic)
         - else
