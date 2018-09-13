@@ -31,6 +31,9 @@
             ' New members automatically join the
             ' #{link_to 'New Members Fast Track Private Alliance', 'https://startupalliance.com/alliances/fast-track'}.
             span.bold Take advantage of it!
+        li You can modify your Membership Plan any time. Visit your account settings.
+        - if current_user and current_user.plan_short_name == 'associate'
+          li Associate members can’t send private messages but can respond to received messages.
         li
           span.bold
             | If you need help
