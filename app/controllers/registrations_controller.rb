@@ -89,7 +89,7 @@ class RegistrationsController < Devise::RegistrationsController
       plan = params[:user][:plan_id].present? ? Plan.find(params[:user][:plan_id].to_i) : Plan.where(amount: 0).first
       coupon  = params[:user][:stripe_coupon_code]
       current_user.subscribe_to_stripe(plan,coupon) if plan and current_user.stripe_customer_id
-      current_user.update_attribute(:username, 'temporary-'+current_user.pid) if current_user.username.blank? # making sure they have one
+      current_user.update_attribute(:username, current_user.pid) if current_user.username.blank? # making sure they have one
       # current_user.update(first_name: 'noname', last_name: 'setyet') # just for now.
       if Rails.env.production?
         GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])

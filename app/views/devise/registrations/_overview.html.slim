@@ -39,6 +39,8 @@
     p.bold.little-space-top Personal mission:
     - if @user.mission.present?
       p.snug-top= @user.mission
+    - elsif current_user and @user == current_user and current_user.confirmed?
+      p.text-center.snug-top= link_to 'Add your personal mission statement!', edit_user_registration_path
     - else
       p.snug-top.faint #{@user.name} has not written their personal mission
 
@@ -127,7 +129,7 @@
           = link_to @user.website, target: '_blank'
             span.fa.fa-globe
     - elsif current_user and @user == current_user and current_user.confirmed?
-      p.text-center#tour-2= link_to 'Add your social profiles', edit_user_registration_path
+      p.text-center.snug-top= link_to 'Add your social profiles!', edit_user_registration_path
     - else
       p.snug-top.faint #{@user.name} has not listed their social profiles
 

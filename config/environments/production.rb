@@ -13,6 +13,7 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = { :host => 'startupalliance.com' }
+  config.action_mailer.asset_host = 'https://startupalliance.com'
   Rails.application.routes.default_url_options[:host] = 'startupalliance.com'
 
   # Code is not reloaded between requests.

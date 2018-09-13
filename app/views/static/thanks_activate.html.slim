@@ -2,8 +2,10 @@
   ' Your Membership is now active!
 
 - content_for :page_header do
-  h2.bold.little-space-top.little-space-bottom.white-text.text-center
-    ' Your Membership is now active!
+  h2.bold.little-space-top.white-text.text-center
+    ' Your Membership is active!
+  h4.bold.medium-grey-text.text-center
+    ' You’re good to go!
 .row
   .large-10.large-offset-1.columns
     - if current_user
@@ -14,33 +16,76 @@
     - else
       p.snug-top.text-right You are not signed in
 
-    h4.bold It’s time to get the most out of Startup Alliance:
-
-    ol.indented-2
-      - if current_user
+    - if current_user
+      h4.bold Some things you should know:
+      ul.indented-2
         li
-          ' Complete your #{link_to 'members profile', vanity_path(current_user.username)}
-      - else
-        li #{link_to 'Sign in', new_user_session_path} and complete your members profile
-      li Introduce yourself to Startup Alliance founder, #{link_to 'John Knapp', vanity_path('john')} with a private message
-      ul.no-bullet
-        li.faint.indented-1
-          em
-            ' “I look forward to helping you personally!” –John
+          ' All your contributions will include a link to your #{link_to 'user profile', vanity_path(current_user.username)}.
+          span.bold Make it awesome!
+        li
+          ' We all rate our startup skills and personal traits.
+          span.bold It helps us connect with the right members.
 
-      - if current_user and current_user.plan_short_name == 'alliance'
-        li You’re in the New Members Fast Track Private Alliance. Go introduce yourself!
-        li Go ahead and #{link_to 'create your Private Alliance', new_alliance_path}
-        /li Once you do, visit the team tab in your Private Alliance and invite your people
-        li If your company is already on Startup Alliance, contact them and join the team
-      - elsif current_user and current_user.plan_short_name == 'company'
-        li You’re in the New Members Fast Track Private Alliance. Go introduce yourself!
-        li Go ahead and #{link_to 'create your Company Workspace', new_company_path}
-        li Once you do, visit the team tab in your Company Workspace and invite your people
-      li Use The Nucleus to expand your knowledge and solve problems
-      li Browse the directories, make new connections and get involved with the community!
-      li Join a #{link_to 'Private Alliance', alliances_path} and grow beyond the walls of your own company
-      li Visit the #{link_to 'Startup Alliance Help Center', 'https://support.startupalliance.com', target: '_blank'} for tips on getting the most out of your membership
-      li Visit #{link_to 'Gravatar.com', 'https://gravatar.com', target: '_blank'} and attach a photo to your email address
+        - if current_user and current_user.plan_short_name != 'associate'
+          li
+            ' New members automatically join the
+            ' #{link_to 'New Members Fast Track Private Alliance', 'https://startupalliance.com/alliances/fast-track'}.
+            span.bold Take advantage of it!
+        li
+          span.bold
+            | If you need help
+          ' , visit #{link_to 'Support.StartupAlliance.com', 'https://support.startupalliance.com'}
+          ' or email #{mail_to 'support@startupalliance.com', 'support@startupalliance.com', encode: 'hex'}.
+      h4.bold Here’s how to get off to an amazing start:
+      ul.indented-2
+        li
+          ' Head over to your #{link_to 'account settings', edit_user_registration_path}
+          ' to write your personal mission and add your social profile links.
+          '
+        li
+          span.bold Take a moment
+          '  to rate yourself on your
+          ' #{link_to 'startup skills', vanity_path(current_user.username, anchor: 'skills')}
+          ' and
+          ' #{link_to 'personal traits', vanity_path(current_user.username, anchor: 'traits')}.
+        li
+          ' Ask questions, get answers and gain startup wisdom in
+          ' #{link_to 'The Entrepreneur’s Nucleus', nucleus_path}.
+          span.bold
+            ' You’ll be glad you did!
+        - if current_user and current_user.plan_short_name == 'alliance'
+          li
+            span.bold
+              ' You’re an Alliance Member!
+            ' Browse and join the
+            ' #{link_to 'Private Alliances', alliances_path}
+            ' that’ll benefit you most.
+          li
+            span.bold
+              ' Then #{link_to 'make your own Private Alliance', new_alliance_path} and invite the entrepreneurs you respect most.
+        - if current_user and current_user.plan_short_name == 'company'
+          li
+            span.bold
+              ' You’re a Company Member!
+            ' #{link_to 'Create your Company Workspace', new_company_path}
+            ' and add your team for free.
+          li
+            ' You can
+            em
+              ' also
+            ' join #{link_to 'Private Alliances', alliances_path} or even make your own.
+            span.bold We hope you do!
+      = render 'partials/welcomebox'
 
-
+      h4.bold Just one more thing:
+      ul.indented-2
+        li
+          span.bold If you haven’t already...
+          '  Visit #{link_to 'Gravatar.com', 'https://gravatar.com', target: '_blank'}, attach an avatar to your email address because we use them here.
+          - if current_user
+            ul.no-bullet
+              li
+                em
+                  ' Your current Gravatar:
+                  | &nbsp;
+                  ' #{image_tag gravatar_url("#{@user.email}", 24)}

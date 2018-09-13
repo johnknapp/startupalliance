@@ -2,20 +2,20 @@ table width='600px' align='center' padding='12px'
   tr
     td
       p &nbsp;
-      h3 Welcome! Your account activation link is below.
+      = image_tag 'sa_banner_2_300x.png'
+      h3 Welcome aboard! Your account activation link is below.
+  tr
+    td
       p
-        strong
-          ' Pro tip:
-        br
-        ' Part of account activation is choosing a username. It identifies you on the site and
-        ' becomes part of your Startup Alliance profile URL.
-        em
-          ' (Don’t worry, you can always change it later.)
-      h3.bold Let’s do this:
+        ' You must activate your account to use Startup Alliance.
+        ' Activating your account confirms your email address and enables you to add your name,
+        ' make a couple of settings and choose a password.
+        '
+      h3.bold Click the link right now, it only takes a moment:
       p= link_to 'Visit your account activation page', confirmation_url(@resource, confirmation_token: @token)
 
       p
         strong
           ' By the way:
         br
-        ' If you change your email address in the future, we send this email again. Simply re-confirm by clicking the link.
+        ' If you change your email address in the future, you receive this same email. Just re-confirm by clicking the link above.

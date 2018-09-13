@@ -6,10 +6,17 @@
     .float-right
       p.snug-top You joined using #{resource.email}
     p.snug-top All fields are required.
+
     - if params[:error] == 'true'
-      .callout.alert
-        p.text-center
+      .callout.accent
+        p
           strong There was an error, please try again!
+
+        - params[:flash].each do |name, msg|
+          - if msg.is_a?(String)
+            div[class="alert-box #{name.to_s == 'notice' ? 'success' : 'alert'} shadow-4dp" data-alert=true]
+              p= content_tag :div, msg
+
     = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification
       .form-inputs
@@ -24,7 +31,10 @@
             span.form-error
               ' Last name is required
           .medium-4.columns
-            = f.input :username,  label: 'Username (letters, numbers, hyphen)', required: true, placeholder: 'lower case alphanumeric plus hyphen'
+            - if resource.subscription == 'associate'
+              = f.input :username, disabled: true, label: 'Default username for Associates'
+            - else
+              = f.input :username,  label: 'Username (letters, numbers, hyphen)', required: true, placeholder: 'lower case alphanumeric plus hyphen'
             span.form-error
               ' Username is required
             /.space-top.indented-1= f.input :company_owner, required: false, label: 'I own my own company'

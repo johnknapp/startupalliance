@@ -60,7 +60,11 @@ class ConfirmationsController < Devise::ConfirmationsController
       redirect_to thanks_activate_path
       # sign_in_and_redirect resource_name, resource
     else
-      redirect_to controller: 'confirmations', action: 'show', confirmation_token: resource.confirmation_token, error: 'true'
+      errors = Hash.new
+      resource.errors.full_messages.each do |e|
+        errors.store(e,e)
+      end
+      redirect_to controller: 'confirmations', action: 'show', confirmation_token: resource.confirmation_token, flash: errors, error: 'true'
     end
   end
 

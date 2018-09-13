@@ -8,26 +8,23 @@
   .large-10.large-offset-1.columns
     p.snug-top.text-right We look forward to helping you maximize your entrepreneurial success!
 
-    h4.bold Next steps:
+    h4.bold Easy next steps:
 
     ol.indented-2
-      li Find the account activation email we’re sending
-      li Click the activation link within that email
-      li On the account activation page, add your name, choose a username and password
+      li Find the account activation email we’re sending and click the link it contains.
+      li On the account activation page, add your name, personal details then choose a username and password.
 
-      /li
-        - if current_user and current_user.plan_short_name == 'alliance'
-          span.bold
-            ' Important:
-          ' After you activate, go ahead and create your Private Alliance
-          li Invite your people to become part of your Private Alliance
-        - elsif current_user and current_user.plan_short_name == 'company'
-          span.bold
-            ' Important:
-          ' After you activate, go ahead and create your Company Workspace
-          li Invite your people to become part of your Company Workspace
-          li Don’t forget — you can create a Private Alliance too!
-        - else
-          ' Browse the directories, make new connections and get involved with the community!
+    .row
+      .medium-10.medium-offset-1.columns
+        .callout.small.accent
+          p
+            span.bold
+              ' Pro tip:
+            ' Your username becomes part of your profile URL,
+            ' like this: #{link_to 'StartupAlliance.com/John', 'https://startupalliance.com/john'}.
+          p.little-snug-top
+            ' If you’re joining as an Alliance or Company member, you can pick your own username,
+            ' if you’re an Alliance member, we’ll pick one for you.
+            '
 
-    p If you ever need help, visit #{link_to 'support.startupalliance.com', 'https://support.startupalliance.com', target: '_blank'}.
+    p And if you ever need help, visit #{link_to 'support.startupalliance.com', 'https://support.startupalliance.com', target: '_blank'}.

@@ -6,6 +6,7 @@ Rails.application.configure do
   config.sass.preferred_syntax = :sass
   Rails.application.routes.default_url_options[:host] = 'sa.dev'
   config.action_mailer.default_url_options = { host: 'sa.dev' }
+  config.action_mailer.asset_host = 'https://sa.dev'
   config.action_mailer.delivery_method = :letter_opener
 
   # In the development environment your application's code is reloaded on
