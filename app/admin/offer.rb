@@ -1,6 +1,6 @@
 ActiveAdmin.register Offer do
 
-  permit_params :pid, :header_1, :header_2, :offer_lead_in, :plan_benefits, :plan_id, :coupon, :valid_through
+  permit_params :pid, :header_1, :header_2, :offer_lead_in, :benefit_lead_in, :plan_benefits, :plan_id, :coupon, :valid_through
 
   menu parent: 'Subscriptions'
 
@@ -18,6 +18,7 @@ ActiveAdmin.register Offer do
     column :header_1
     column :header_2
     column :offer_lead_in
+    column :benefit_lead_in
     column :plan
     column :coupon
     column :valid_through
@@ -36,6 +37,7 @@ ActiveAdmin.register Offer do
       f.input :header_2, hint: 'Required'
       f.input :offer_lead_in, hint: 'Optional'
       f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.all.order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
+      f.input :benefit_lead_in, hint: 'Required'
       f.input :plan_benefits, input_html: { rows: 6 }, hint: 'Required. Markdown supported.'
       f.input :coupon, hint: 'Optional. Must be currently valid code'
       f.input :valid_through, hint: 'Required'
@@ -79,6 +81,7 @@ ActiveAdmin.register Offer do
           "With #{offer.plan.display_name} you can:"
         end
       end
+      row :benefit_lead_in
       row :plan_benefits do |offer|
         markdown offer.plan_benefits
       end
