@@ -45,13 +45,13 @@
 
         - if @offer.plan and @offer.plan.short_name != 'associate'
           h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
-        - elsif @offer.plan and @offer.plan.short_name == 'associate'
+        /- elsif @offer.plan and @offer.plan.short_name == 'associate'
           p.bold.little-space-top.text-center Associate Membership is free
 
-        - if @offer.plan and @offer.plan.short_name != 'associate'
-          p.little-snug-top.text-center
-            em
-              ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
+        /- if @offer.plan and @offer.plan.short_name != 'associate'
+        p.little-snug-top.text-center
+          em
+            ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
         - if @offer.plan
           = render 'offers/join_form'
