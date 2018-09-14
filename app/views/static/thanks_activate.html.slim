@@ -21,7 +21,6 @@
       ul.indented-2
         li
           ' All your contributions will include a link to your #{link_to 'user profile', vanity_path(current_user.username)}.
-          span.bold Make it awesome!
         li
           ' We all rate our startup skills and personal traits.
           span.bold It helps us connect with the right members.
@@ -34,6 +33,9 @@
         li You can modify your Membership Plan any time. Visit your account settings.
         - if current_user and current_user.plan_short_name == 'associate'
           li Associate members can’t send private messages but can respond to received messages.
+        li
+          ' We’re just getting started and will grow rapidly over the coming months.
+          span.bold Grow the community, tell your friends!
         li
           span.bold
             | If you need help
