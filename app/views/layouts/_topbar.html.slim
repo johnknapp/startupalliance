@@ -18,6 +18,7 @@
             li.show-for-small-only.is-dropdown-submenu-parent
               = link_to '#' do
                 ' Explore
+                i.fa.fa-caret-down
               ul.menu.shadow-8dp data-dropdown-menu=true
                 li= link_to 'Members Listing', members_path
                 li= link_to 'Private Alliances', alliances_path
@@ -32,6 +33,7 @@
             li.show-for-medium.is-dropdown-submenu-parent
               = link_to '#' do
                 ' Explore
+                i.fa.fa-caret-down
               ul.menu.shadow-8dp data-dropdown-menu=true
                 li= link_to 'Members Listing', members_path
                 li= link_to 'Private Alliances', alliances_path
@@ -57,9 +59,10 @@
             li= link_to 'Features & Pricing', features_path
             li= link_to 'About', about_path
             li= link_to 'The Nucleus', nucleus_path
-            li.show-for-medium.is-dropdown-submenu-parent
+            li.show-for-medium.is-dropdown-submenu-parent data-dropdown-menu=true
               = link_to '#' do
                 ' Explore
+                i.fa.fa-caret-down
               ul.menu.shadow-8dp data-dropdown-menu=true
                 li= link_to 'Members Listing', members_path
                 li= link_to 'Private Alliances', alliances_path
@@ -75,10 +78,6 @@
                 | &nbsp;
                 i.fa.fa-bars
               ul.menu.normal.shadow-8dp data-dropdown-menu=true
-                /li.bold.menu-text Explore:
-                /li.pad-left= link_to 'Entrepreneurs', members_path
-                /li.pad-left= link_to 'Alliances', alliances_path
-                /li.pad-left= link_to 'Companies', companies_path
                 - current_user.companies ? companies_count = current_user.companies.count : companies_count = 0
                 li.bold.menu-text
                   ' My #{'Company'.pluralize(companies_count)}:
