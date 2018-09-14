@@ -46,7 +46,7 @@
           = link_to '#' do
             ' Filter the Alliances
             | &nbsp;
-            i.fa.fa-chevron-down
+            i.fa.fa-lg.fa-caret-down
         ul.menu.normal.shadow-8dp data-dropdown-menu=true
           li.bold= link_to "Latest Alliances", alliances_path
           li.bold= link_to "Recruiting Alliances (#{number_with_delimiter(Alliance.where(recruiting: true).count)})", alliances_path(filter: 'Recruiting Alliances')

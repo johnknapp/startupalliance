@@ -45,7 +45,7 @@
               = link_to '#' do
                 ' Filter Nucleus Quarks!
                 | &nbsp;
-                i.fa.fa-chevron-down
+                i.fa.fa-lg.fa-caret-down
             ul.menu.normal.shadow-8dp data-dropdown-menu=true
               li.bold= link_to "Latest Quarks", quarks_path
               li.bold= link_to "Top Quarks (#{number_with_delimiter(Quark.where(state: 'Promoted').count)})", quarks_path(filter: 'Top Quarks')
