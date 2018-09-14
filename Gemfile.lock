@@ -303,6 +303,8 @@ GEM
     scout_apm (2.3.4)
     seedbank (0.4.0)
     shellany (0.0.1)
+    simple_calendar (2.3.0)
+      rails (>= 3.0)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -411,6 +413,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scout_apm
   seedbank
+  simple_calendar
   simple_form
   slim-rails
   spring
