@@ -33,10 +33,14 @@
 
     .row
       .medium-10.medium-offset-1.columns
-        - if @offer.plan
-          h4.bold.little-space-top With #{@offer.plan.display_name} you can:
+        - if @offer.benefit_lead_in
+          h4.bold.little-space-top= @offer.benefit_lead_in
         - else
-          h4.bold.little-space-top Subscribe and you will get:
+          h4.bold.little-space-top This is how it works:
+        /- if @offer.plan
+        /  h4.bold.little-space-top With #{@offer.plan.display_name} you can:
+        /- else
+        /  h4.bold.little-space-top Subscribe and you will get:
         .little-snug-top.indented-1               = markdown @offer.plan_benefits
 
         - if @offer.plan and @offer.plan.short_name != 'associate'
