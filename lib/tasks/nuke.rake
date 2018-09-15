@@ -15,4 +15,10 @@ namespace :nuke do
     p '> > > > > > > > orphan audits gone!'
   end
 
+  desc 'destroy old classifieds'
+  task old_classifieds: :environment do
+    Classified.where('created_at < ?', Time.now-30.days).destroy_all
+    p '> > > > > > > > old classifieds gone!'
+  end
+
 end
