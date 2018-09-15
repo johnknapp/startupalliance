@@ -74,12 +74,14 @@
 
                 h4.bold.primary= classified.title
                 p.little-snug-top= classified.body
+                .float-left
+                  p.faint.little-snug-top
+                    - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
+                      | &nbsp;
+                      = render 'classifieds/send_message_modal', classified: classified
                 p.faint.text-right.little-snug-top
                   ' Posted by #{link_to classified.creator.name, vanity_path(classified.creator.username)}
                   ' #{time_ago_in_words(classified.created_at)} ago
-                  - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-                    | &nbsp;
-                    = render 'classifieds/send_message_modal', classified: classified
 
           - else
             .callout.accent.shadow.space-bottom
