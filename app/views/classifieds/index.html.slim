@@ -2,8 +2,8 @@
   - filter = params[:filter]
 - elsif params[:query]
   - filter = params[:query]
-- elsif params[:creator_pid] and @creator
-  - filter = "Posted by #{@creator.name}"
+- elsif params[:author_pid] and @author
+  - filter = "Posted by #{@author.name}"
 - else
   - filter = 'Latest'
 
@@ -26,18 +26,20 @@
   .medium-5.columns.medium-push-7
     h4.little-space-top &nbsp;
     = render 'partials/search_form_classifieds'
+    p.faint.text-center Alliance and Company members may post and reply for free.
 
   .medium-7.columns.medium-pull-5
     .row
       .small-12.columns
-        .float-right
-          ul.menu.little-space-top
-            li
-              a data-open='post-classified'
-                i.fa.fa-plus
-                | &nbsp;
-                ' Post a Classified Ad
-            = render 'classifieds/add_modal'
+        - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
+          .float-right
+            ul.menu.little-space-top
+              li
+                a data-open='post-classified'
+                  i.fa.fa-plus
+                  | &nbsp;
+                  ' Post a Classified Ad
+              = render 'classifieds/add_modal'
         ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
           li.primary-text
             h5.bold
@@ -54,13 +56,30 @@
             - @classifieds.each do |classified|
 
               .callout.accent.shadow.space-bottom
+
+                - if current_user and (classified.creator == current_user or current_user.admin?)
+                  .float-right
+                    ul.dropdown.menu data-dropdown-menu=true
+                      li
+                        = link_to '#' do
+                          i.fa.fa-ellipsis-v.fainter
+                        ul.menu data-dropdown-menu=true
+                          li
+                            = render 'classifieds/edit_modal', classified: classified
+                          li
+                            = link_to classified, data: { confirm: 'Are you sure?' }, method: :delete do
+                              i.fa.fa-trash-o
+                              | &nbsp;
+                              ' Delete
+
                 h4.bold.primary= classified.title
                 p.little-snug-top= classified.body
                 p.faint.text-right.little-snug-top
                   ' Posted by #{link_to classified.creator.name, vanity_path(classified.creator.username)}
                   ' #{time_ago_in_words(classified.created_at)} ago
-                  | &nbsp;
-                  = render 'classifieds/send_message_modal', classified: classified
+                  - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
+                    | &nbsp;
+                    = render 'classifieds/send_message_modal', classified: classified
 
           - else
             .callout.accent.shadow.space-bottom

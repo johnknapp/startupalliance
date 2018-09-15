@@ -1,24 +1,25 @@
-a data-open="edit-topic-#{topic.pid}"
+a data-open="edit-classified-#{classified.pid}"
   i.fa.fa-pencil
   | &nbsp;
   ' Edit
 
-.reveal id="edit-topic-#{topic.pid}" data-reveal=true
+.reveal id="edit-classified-#{classified.pid}" data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
   .row
     .medium-12.columns
-      p.bold.primary-text.little-snug-bottom Update Topic Thread
-  .row
-    .medium-2.columns
-      p.little-snug-bottom.text-right Within:
-    .medium-10.columns
-      p.bold= topic.discussion.name
-  .row
-    .medium-12.columns
-      = simple_form_for topic, url: discussion_topic_path(topic.discussion,topic), method: :put do |f|
-        /= f.hidden_field :author_id,         value: current_user.id  if current_user and params[:action] == 'new'
-        = f.hidden_field :discussion_id,     value: topic.discussion.id
-        = f.input :name, label: false, autofocus: true, placeholder: 'Not more than 140 characters'
-        = f.button :submit, 'Update Topic', class: 'button expanded accent'
+      p.bold.primary-text Update Classified Ad
+
+      p.faint.little-snug-top
+        ' Originally posted #{time_ago_in_words(classified.created_at)} ago
+      - if classified.created_at != classified.updated_at
+        p.faint.snug-top
+          ' Last updated #{time_ago_in_words(classified.updated_at)} ago
+
+      = simple_form_for classified, url: classified_path(classified.pid), method: :put do |f|
+        /= f.hidden_field :creator_id, value: classified.creator_id
+        = f.input :title, autofocus: true, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
+        .little-snug-top= f.input :body, required: true, label: 'Body copy', as: :text, placeholder: 'Compose your ad'
+        = f.button :submit, 'Update your Classified Ad', class: 'button expanded accent'
+      p.faint.text-center.snug-bottom Your classified ad may be edited or removed by our staff without warning.

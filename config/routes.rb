@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :classifieds,           only: [:index, :create, :destroy], constraints: { format: 'html' } do
+  resources :classifieds,           only: [:index, :create, :update, :destroy], constraints: { format: 'html' } do
     member do
       post :ad_response,              to: 'classifieds#ad_response'
     end

@@ -4,7 +4,22 @@ class ClassifiedsController  < ApplicationController
 
   def index
     @classified = Classified.new
-    @classifieds = Classified.order(updated_at: :desc).limit(10)
+    if params[:filter]
+      if params[:filter] == 'All'
+        @classifieds  = Classified.all.order(updated_at: :desc)
+      else
+        @classifieds  = Classified.tagged_with(params[:filter]).order(updated_at: :desc)
+      end
+    elsif params[:query].present?
+      @classifieds    = Classified.classified_tsearch(params[:query])
+    elsif params[:author_pid].present?
+      @author        = User.find_by_pid(params[:author_pid])
+      if @author
+        @classifieds  = Classified.where(creator_id: @author.id).order(updated_at: :desc)
+      end
+    else
+      @classifieds    = Classified.order(updated_at: :desc).limit(10)
+    end
   end
 
   def create
