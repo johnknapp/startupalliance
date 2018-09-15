@@ -6,16 +6,16 @@
           ' &times;
       p.faint.pad-right
         ' Helping the community understand your business helps the right people find you. (#{link_to @company.creator.name, vanity_path(@company.creator.username)} can modify this information.)
-.row
+.row data-equalizer=true
   .medium-6.columns
-      .callout.shadow.little-space-top
+      .callout.shadow.little-space-top  data-equalizer-watch=true
         h5.bold Mission statement:
         - if @company.mission.present?
           h5= @company.mission
         - else
           p.text-center not set
   .medium-6.columns
-      .callout.shadow.little-space-top
+      .callout.shadow.little-space-top  data-equalizer-watch=true
         h5.bold Primary market:
         - if @company.primary_market.present?
           h5= @company.primary_market

@@ -12,18 +12,8 @@
       p.bold
         ' Follow these best practices to maximize your results:
         '
-      ul.little-snug-top
-        li Commit to each other and to yourself, stay engaged and pay attention
-        li Get to know each other, share your victories and challenges in the discussions
-        li Monitor the discussions, watch for the unread messages icons
-        li Set meeting agendas and keep your meetings sharply focused.
-        li Have a leader coordinate meetings and keep the members on track
-        li Rotate leadership to prevent burn-out and give everyone a chance to participate
-        li Keep your meetings and discussions aligned with your Private Alliance mission
-        li Don’t join more than 5 Private Alliances at one time
-        li If your needs diverge from that mission, join or create another Private Alliance
-        li Respect your fellow members. Respect their time, their knowledge and their confidential data
-        li Most of all, follow the #{link_to 'Startup Alliance Commitment Pledge', commitment_pledge_path}
+      = render 'partials/pa_best_practices'
+
     p.text-right.little-snug-top
       em
         ' Contact Startup Alliance founder

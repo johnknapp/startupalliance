@@ -1,3 +1,6 @@
+- content_for :page_title do
+  ' Startup Alliance Member – #{@user.name} (SI #{@user.skill_index} / TI #{@user.trait_index})
+
 - content_for :page_header do
   - if current_user and current_user.admin? and current_user != @user
     .float-left
