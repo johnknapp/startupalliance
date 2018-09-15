@@ -13,32 +13,37 @@
         .top-bar-right
           ul.dropdown.menu.simple.show-for-small-only data-dropdown-menu=true
             li= link_to 'Features & Pricing', features_path
-            li= link_to 'About', about_path
-            li= link_to 'The Nucleus', nucleus_path
+            li= link_to 'How it Works', how_it_works_path
             li.show-for-small-only.is-dropdown-submenu-parent
               = link_to '#' do
                 ' Explore
                 i.fa.fa-lg.fa-caret-down
               ul.menu.shadow-8dp data-dropdown-menu=true
+                li= link_to 'Entrepreneur’s Nucleus', nucleus_path
                 li= link_to 'Members Listing', members_path
                 li= link_to 'Private Alliances', alliances_path
                 li= link_to 'Company Workspaces', companies_path
-            /li= link_to 'Plans & pricing', pricing_path
+                li= link_to 'Commitment Pledge', commitment_pledge_path
+                li= link_to 'Sponsorship Opportunities', sponsorship_path
+
+            li= link_to 'About', about_path
             li.bold= link_to 'Sign-up', features_path
             li= link_to 'Sign-in', new_user_session_path
           ul.dropdown.menu.show-for-medium data-dropdown-menu=true
             li= link_to 'Features & Pricing', features_path
-            li= link_to 'About', about_path
-            li= link_to 'The Nucleus', nucleus_path
+            li= link_to 'How it Works', how_it_works_path
             li.show-for-medium.is-dropdown-submenu-parent
               = link_to '#' do
                 ' Explore
                 i.fa.fa-lg.fa-caret-down
               ul.menu.shadow-8dp data-dropdown-menu=true
+                li= link_to 'Entrepreneur’s Nucleus', nucleus_path
                 li= link_to 'Members Listing', members_path
                 li= link_to 'Private Alliances', alliances_path
                 li= link_to 'Company Workspaces', companies_path
-            /li= link_to 'Plans & pricing', pricing_path
+                li= link_to 'Commitment Pledge', commitment_pledge_path
+                li= link_to 'Sponsorship Opportunities', sponsorship_path
+            li= link_to 'About', about_path
             li.bold= link_to 'Sign-up', features_path
             li= link_to 'Sign-in', new_user_session_path
 
@@ -47,26 +52,25 @@
         .top-bar-left
           - if params[:action] == 'home'
             = link_to (image_tag 'sa_banner_2.svg', width: '230px'), root_path
-            /= link_to (image_tag 'banner_2018.svg', width: '320px'), root_path
-            /p.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
           - else
             = link_to (image_tag 'sa_mark_2.svg', width: '63px'), root_path
-            /= link_to (image_tag 'sa_mark.svg', width: '90px'), root_path
-            /.faint &nbsp; &nbsp; &nbsp; &nbsp; βeta
 
         .top-bar-right
           ul.dropdown.menu data-dropdown-menu=true
             li= link_to 'Features & Pricing', features_path
-            li= link_to 'About', about_path
-            li= link_to 'The Nucleus', nucleus_path
+            li= link_to 'How it Works', how_it_works_path
             li.show-for-medium.is-dropdown-submenu-parent data-dropdown-menu=true
               = link_to '#' do
                 ' Explore
                 i.fa.fa-lg.fa-caret-down
               ul.menu.shadow-8dp data-dropdown-menu=true
+                li= link_to 'Entrepreneur’s Nucleus', nucleus_path
                 li= link_to 'Members Listing', members_path
                 li= link_to 'Private Alliances', alliances_path
                 li= link_to 'Company Workspaces', companies_path
+                li= link_to 'Commitment Pledge', commitment_pledge_path
+                li= link_to 'Sponsorship Opportunities', sponsorship_path
+            li= link_to 'About', about_path
             li.bold.primary-text.is-dropdown-submenu-parent
               = link_to '#' do
                 | &nbsp;

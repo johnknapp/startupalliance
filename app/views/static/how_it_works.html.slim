@@ -1,0 +1,220 @@
+- content_for :page_title do
+  ' Startup Alliance — How it Works
+
+- content_for :page_header do
+  h2.bold.little-space-top.little-space-bottom.white-text.text-center
+    ' How it Works
+  h5.bold.medium-grey-text.text-center
+    ' Here is how Startup Alliance works for committed entrepreneurs like you
+
+.row
+  .large-12.columns
+    p.snug-top.text-right Essential tools and community resources for committed entrepreneurs
+    p.snug-top.show-for-medium &nbsp;
+
+.row
+  .large-10.large-offset-1.medium-12.columns
+    .callout.accent.shadow-6dp
+      h5.bold.primary
+        ' First, some perspective:
+      p.little-snug-top
+        ' Startup Alliance is a subscription based community.
+        ' Membership is open to all committed entrepreneurs, advisors, investors and mentors
+        ' no matter where you are located and no matter what kind of business you run.
+        '
+      p.little-snug-top
+        ' We promote collaboration and encourage all members to work together and help each other
+        ' overcome challenges regardless of their level of experience or background.
+        '
+      h4.bold.primary.text-center.little-snug-top
+        ' Entrepreneurship is hard. We make it easier.
+
+    .row
+      .medium-3.columns
+        h4.bold.pad-right.primary-text.space-top
+          strong Get started:
+      .medium-9.columns
+        h5.bold.space-top.little-snug-bottom
+          ' Choose the right membership plan
+        /p
+          ' Three membership plans, meeting the needs of all:
+          '
+        ul
+          li
+            span.bold
+              ' Associate Membership for those just starting out —
+            ' Provides access to #{link_to 'The Entrepreneur’s Nucleus', nucleus_path} and the ability to respond to private messages.
+            ' Associate Members can also become part of a company team which makes Alliance Membership perfect for advisors and investors.
+          li
+            span.bold
+              ' Alliance Membership for committed entrepreneurs serious about their success —
+            ' Alliance members can do everything Associates can plus they can join #{link_to 'Private Alliances', alliances_path}
+            ' and create Private Alliances of their own. Alliance members can also send private messages to all other members.
+            ' Read about Private Alliances below.
+          li
+            span.bold
+              ' Company Membership for goal driven company leaders —
+            ' Company members can do everything Alliance members can do plus they can create a #{link_to 'Collaboration Workspace', companies_path} for their company
+            ' and add their team for free. Company team members gain access to a powerful suite of focus enhancing tools to unite their efforts and maximize their success.
+            ' Read about Collaboration Workspaces below.
+        p.little-snug-top Learn more about membership plans on our #{link_to 'Features & Pricing page', features_path}.
+
+        h5.bold.space-top.little-snug-bottom
+          ' Make your profile awesome
+        p
+          ' In addition to adding your social profiles and mission statement, you should list all your startup skills and personal traits.
+          ' This way, we can find the people we need and have confidence we’re making the right connections.
+          ' (Your skills and traits are used to calculate your Skill and Trait indices)
+        .little-snug-top= image_tag 'personal_traits_screely.png'
+        p.faint.text-center The more skills and traits you list, the more you’ll stand out on Startup Alliance.
+          '
+
+    .row
+      .medium-3.columns
+        h4.bold.pad-right.primary-text.space-top
+          strong Get involved:
+      .medium-9.columns
+        h5.bold.space-top.little-snug-bottom
+          ' Join the discussions and check out the knowledge base
+        p
+          ' The #{link_to 'discussion forums', discussions_path} has a variety of subjects you can search and browse.
+          ' Read all you want but don’t stop there,
+          span.bold
+            ' ask your questions and share what you know!
+          ' This community is filled with committed entrepreneurs willing to share what they know and
+          ' help you meet your challenges.
+        p.little-snug-top
+          ' Just like Wikipedia, our #{link_to 'knowledge base', pages_path} contains articles written and constantly improved by our members.
+          ' You can search and browse and if you don’t find what you’re looking for, you can suggest an article.
+        .little-snug-top= image_tag 'kb_article_screely.png'
+        p.faint.text-center Members can vote on and collaboratively improve articles and browse the entire edit history.
+          '
+
+        h5.bold.space-top.little-snug-bottom
+          ' Hang out in the Global Virtual Office
+        p
+          ' The Startup Alliance Global Virtual Office is open 24/7/365 and available to all members.
+          ' It’s a great place to hang out and hold impromptu meetings with other members.
+          ' Who will you meet? What will you learn there?
+          '
+
+        h5.bold.space-top.little-snug-bottom
+          ' Join Private Alliances and a Collaboration Workspace
+        p
+          ' Company members can invite Associate and Alliance members into their company team for free and once there, they can participate fully.
+          ' Alliance and Company members can join up to 5 Private Alliances where they can amplify their success
+          ' through collaboration with trusted peers and forge powerful networks.
+          '
+
+    .row
+      .medium-3.columns
+        h4.bold.pad-right.primary-text.space-top
+          strong Get better:
+      .medium-9.columns
+        h5.bold.space-top.little-snug-bottom
+          ' Don’t be shy, ask for help when you need it
+        p
+          ' Startup Alliance is all about collaboration and that means not being shy when it comes to asking for help.
+          ' Remember, we’re all in pursuit of our entrepreneurial dreams. It’s not an easy road and we all get stuck and stuggle for answers.
+          br
+          span.bold
+            ' Here are some ways to get help from the Startup Alliance Community:
+          '
+        ul.snug-top
+          li Search the #{link_to 'discussion forums', discussions_path} and #{link_to 'knowledge base', pages_path}.
+          li If you find a relevant topic thread, make a post.
+          li If you find a good post, message the author and discuss your challenge specifically.
+          li Message #{link_to 'Startup Alliance founder, John Knapp', vanity_path('john')}, he will have a suggestion.
+
+        h5.bold.space-top.little-snug-bottom
+          ' Solidify your own skills by sharing them with others
+        p.little-snug-top
+          .float-left.pad-right= image_tag 'share_what_you_know_screely.png', width: '360px'
+          ' One of the best ways to solidify and amplify your entrepreneurial skills is to share them with others.
+          ' Try authoring a #{link_to 'knowledge base', pages_path} article and answering questions
+          ' in the #{link_to 'discussion forums', discussions_path}.
+          ' Author a #{link_to 'Nucleus Quark!', quarks_path} and compete for a Top Quark Award.
+          ' Arrange a time to connect directly with another member in the Global Virtual Office.
+          ' If you’re an advisor, investor or mentor, you can join a company team and use all the tools in their Collaboration Workspace.
+          ' Or better yet, form lasting bonds of trust with other entrepreneurs by joining #{link_to 'a Private Alliance', alliances_path}.
+    .row
+      .medium-3.columns
+        h4.bold.pad-right.primary-text.space-top
+          strong The Entrepreneur’s Nucleus:
+      .medium-9.columns
+        h5.bold.space-top.little-snug-bottom
+          ' Community resources to help all members thrive
+        p
+          ' The Entrepreneur’s Nucleus contains a growing collection of resources to help all members maximize their success.
+          ' This is a members only resource so you need to be signed in to take full advantage.
+          ' Most of the resources are even available to Associate Members who don’t pay a dime for access.
+          '
+        .little-snug-top= image_tag 'nucleus_home_screely.png'
+        p.faint.text-center The Entrepreneur’s Nucleus is the central hub of our global entrepreneurs community
+
+    .row
+      .medium-3.columns
+        h4.bold.pad-right.primary-text.space-top
+          strong Private Alliances:
+      .medium-9.columns
+        h5.bold.space-top.little-snug-bottom
+          ' It’s all about maximizing your success
+        p
+          ' Form lasting bonds with a small group of entrepreneurs you can trust. Work together to ask
+          ' questions, get answers, gain deeper insights and broader perspectives. There are plenty of
+          ' Private Alliances you can join and you can create your own too. Alliance Members can participate
+          ' in up to 5 Private Alliances at once and you can join and leave them at any time.
+        p.little-snug-top
+          ' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it from other members.
+        .little-snug-top= image_tag 'fast_track_pa_screely.png'
+        p.faint.text-center All new Alliance and Company members get started in the New Member Private Alliance
+        h5.bold.space-top.little-snug-bottom
+          ' How to get the most out of your Private Alliance
+        p
+          ' Inspired by
+          ' #{link_to 'Mastermind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
+          ' a successful #{link_to 'Private Alliances', alliances_path} have similar best practices.
+          ' Each group should work out their own guidelines but here are our recommendations:
+        = render 'partials/pa_best_practices'
+
+    .row
+      .medium-3.columns
+        h4.bold.pad-right.primary-text.space-top
+          strong Collaboration Workspaces:
+      .medium-9.columns
+        h5.bold.space-top.little-snug-bottom
+          ' Take your company to the next level
+        p
+          ' #{link_to 'Collaboration Workspaces', companies_path} are where company staff, advisors and investors team up to set and achieve objectives,
+          ' increase focus on top priorities and track their progress.
+          ' Each Company Workspace contains a comprehensive suite of focus enhancement and collaboration tools available for 24/7 usage.
+        p.little-snug-top
+          ' The member who creates the Collaboration Workspace can set “stealth mode” to keep it out of the directory and hide it from other members.
+        .little-snug-top= image_tag 'hoverlay_cw_screely.png'
+        p.faint.text-center Each Collaboration Workspace has a public profile but the tools are only accessible to the team.
+          '
+        h5.bold.space-top.little-snug-bottom
+          ' How to use the tools in your Collaboration Workspace
+        ul
+          li
+            span.bold
+              ' SAKPIs —
+            ' Monitoring this standard set of KPIs keeps the team aware of the business situation and focused on priorities.
+          li
+            span.bold
+              ' FActors and STrategies —
+            ' Document the success and risk factors for your business and keep them in front of the team to inform their actions and help them avoid mis-steps.
+          li
+            span.bold
+              ' Objectives and Key Results (OKR) —
+            ' OKRs are a technique companies use to set and communicate primary Objectives and more importantly, achieve them by focusing on the accomplishment of measurable Key Results.
+          li
+            span.bold
+              ' Private discussion forums —
+            ' Serving as a repository of knowledge and a source for problem solving, you can create as many forum subjects as you need.
+          li
+            span.bold
+              ' Private Virtual Office (PVO) —
+            ' Facilitates co-working and real-time collaboration whenever you need it, your PVO provides secure, private group webchats and screen sharing.
+
+        p &nbsp;
