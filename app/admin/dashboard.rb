@@ -68,7 +68,17 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-
+    columns do
+      column do
+        panel 'Recent Classified ads' do
+          ul do
+            Classified.last(20).reverse.map do |classified|
+              li link_to classified.title, classifieds_path
+            end
+          end
+        end
+      end
+    end
 
 
     # Here is an example of a simple dashboard with columns and panels.
