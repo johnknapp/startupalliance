@@ -1,0 +1,68 @@
+- if params[:filter]
+  - filter = params[:filter]
+- elsif params[:query]
+  - filter = params[:query]
+- elsif params[:creator_pid] and @creator
+  - filter = "Posted by #{@creator.name}"
+- else
+  - filter = 'Latest'
+
+- content_for :page_title do
+  ' Nucleus Classified Ads
+
+- content_for :page_header do
+  h2.bold.little-space-top.white-text.text-center
+    ' Nucleus Classified Ads
+  h4.bold.medium-grey-text.text-center Filter: “#{filter}”
+
+.row
+  .medium-12.columns
+    .float-left
+      = render 'partials/nucleus_menu'
+    p.snug-top.space-bottom.text-right Classified Ads posted by Alliance and Company Members. Expire after 30 days.
+
+
+.row
+  .medium-5.columns.medium-push-7
+    h4.little-space-top &nbsp;
+    = render 'partials/search_form_classifieds'
+
+  .medium-7.columns.medium-pull-5
+    .row
+      .small-12.columns
+        .float-right
+          ul.menu.little-space-top
+            li
+              a data-open='post-classified'
+                i.fa.fa-plus
+                | &nbsp;
+                ' Post a Classified Ad
+            = render 'classifieds/add_modal'
+        ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
+          li.primary-text
+            h5.bold
+              = link_to '#' do
+                ' Filter Classified Ads
+                | &nbsp;
+                i.fa.fa-lg.fa-caret-down
+            ul.menu.normal.shadow-8dp data-dropdown-menu=true
+              li.bold= link_to "Latest Classifieds", classifieds_path
+              li.bold= link_to "Posted by me (#{number_with_delimiter(Classified.where(creator_id: current_user.id).count)})", classifieds_path(author_pid: current_user.pid) if current_user
+      .row
+        .small-12.columns
+          - if @classifieds.present?
+            - @classifieds.each do |classified|
+
+              .callout.accent.shadow.space-bottom
+                h4.bold.primary= classified.title
+                p.little-snug-top= classified.body
+                p.faint.text-right.little-snug-top
+                  ' Posted by #{link_to classified.creator.name, vanity_path(classified.creator.username)}
+                  ' #{time_ago_in_words(classified.created_at)} ago
+                  | &nbsp;
+                  = render 'classifieds/send_message_modal', classified: classified
+
+          - else
+            .callout.accent.shadow.space-bottom
+              p.bold.text-center No Classified ads match your query!
+              p.text-center= link_to 'Show latest classified ads or search again', classifieds_path

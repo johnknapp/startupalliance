@@ -1,0 +1,21 @@
+a data-open='message-modal'
+  i.fa.fa-comments-o
+
+.reveal#message-modal data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  .row
+    .medium-12.columns
+      p.bold Private message to #{classified.creator.name}
+      p.little-snug-top.little-snug-bottom
+        span.bold
+          ' Subject:
+        = classified.title
+
+      = form_for classified, url: ad_response_classified_path(classified.pid), method: :post do |f|
+        = f.hidden_field :sender_pid, value: current_user.pid if current_user
+        = text_area_tag :response, '', placeholder: 'Compose your response', rows: 4
+        .little-snug-top= f.submit 'Send private message', class: 'button postfix accent expanded'
+
+      p.faint.text-right.snug-bottom You will be notified via email when they respond.

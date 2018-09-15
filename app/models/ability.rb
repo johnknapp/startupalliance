@@ -29,6 +29,7 @@ class Ability
       when 'user'
         cannot :index,              primary_objects
         can :crud,                  primary_objects
+        can :crudi,                 Classified
         can :crudi,                 Page
         can :like,                  Page
         can :dislike,               Page

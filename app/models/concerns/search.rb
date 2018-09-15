@@ -55,5 +55,16 @@ module Search
       end
     end
 
+    pg_search_scope :classified_tsearch_search,
+      against:  {title: 'B', body: 'A'},
+      using:    { tsearch: { dictionary: 'english' } },
+      ignoring: [:accents]
+
+    def self.classified_tsearch(query)
+      if query.present?
+        classified_tsearch_search(query)
+      end
+    end
+
   end
 end

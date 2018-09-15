@@ -2,8 +2,6 @@ class Page < ApplicationRecord
   include Pid
   include Search
 
-  acts_as_votable
-
   define_model_callbacks :around_audit
 
   # https://www.krautcomputing.com/blog/2015/01/13/recalculate-counter-cache-columns-in-rails/
@@ -15,6 +13,8 @@ class Page < ApplicationRecord
   validates :content,     presence: true
   validates :content,     length: { maximum: 9216 }
 
+
+  acts_as_votable
   acts_as_paranoid
   acts_as_ordered_taggable_on :categories
   audited only: [:title, :content, :category_list, :created_at, :updated_at], on: [:create, :update] # :destroy not needed

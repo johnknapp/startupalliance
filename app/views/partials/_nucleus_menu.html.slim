@@ -5,6 +5,8 @@ ul.dropdown.menu data-dropdown-menu=true
       | &nbsp;
       i.fa.fa-lg.fa-caret-down
     ul.menu.normal.shadow-8dp data-dropdown-menu=true
+      li.pad-left= link_to 'Nucleus Home', nucleus_path
+      li.pad-left= link_to 'Classified Ads', classifieds_path
       li.pad-left
         = link_to discussions_path do
           ' Discussion Forums
@@ -13,13 +15,13 @@ ul.dropdown.menu data-dropdown-menu=true
               .float-right
                 span.red-text
                   i.fa.fa-comments
-      li.pad-left= link_to 'Knowledge Base', pages_path
-      li.pad-left= link_to 'Nucleus Quarks!', quarks_path
       - if current_user
-        li.pad-left= link_to 'Current GVO', gvo_url, target: '_blank'
+        li.pad-left= link_to 'GVO (current)', gvo_url, target: '_blank'
         li.pad-left
           = link_to gvo_url(24), target: '_blank' do
-            ' Previous GVO
+            ' GVO (previous)
             | &nbsp;
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
               i.fa.fa-info-circle
+      li.pad-left= link_to 'Knowledge Base', pages_path
+      li.pad-left= link_to 'Nucleus Quarks!', quarks_path

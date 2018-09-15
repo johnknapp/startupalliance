@@ -49,6 +49,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :classifieds,           only: [:index, :create, :destroy], constraints: { format: 'html' } do
+    member do
+      post :ad_response,              to: 'classifieds#ad_response'
+    end
+  end
+
   resources :conversations, only: [:index, :create, :destroy],        constraints: { format: 'html' } do
     resources :messages,    only: [:index, :new, :create, :destroy],  constraints: { format: 'html' }
   end

@@ -1,0 +1,6 @@
+= form_tag classifieds_path, enforce_utf8: false, method: :get do
+  .row.collapse
+    .small-8.columns
+      = text_field_tag :query, params[:query], placeholder: 'Type your search term'
+    .small-4.columns
+      = button_tag 'Search', name: nil, class: 'button postfix expanded bold'
