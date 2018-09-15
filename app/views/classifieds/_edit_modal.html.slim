@@ -22,4 +22,5 @@ a data-open="edit-classified-#{classified.pid}"
         = f.input :title, autofocus: true, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
         .little-snug-top= f.input :body, required: true, label: 'Body copy', as: :text, placeholder: 'Compose your ad'
         = f.button :submit, 'Update your Classified Ad', class: 'button expanded accent'
-      p.faint.text-center.snug-bottom Your classified ad may be edited or removed by our staff without warning.
+      p.faint.text-center.little-snug-bottom Classified ads expire 30 days after posting.
+      p.faint.text-center.snug-bottom Staff may edit or remove ads without warning.
