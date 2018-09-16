@@ -42,7 +42,11 @@
               ' Associate Membership for those just starting out —
             ' Provides access to #{link_to 'The Entrepreneur’s Nucleus', nucleus_path} and the ability to respond to private messages.
             ' Associate Members can also become part of a company team which makes Alliance Membership perfect for advisors and investors.
-          li
+            ul.no-bullet
+              li.faint
+                ' Associate Membership is free, however, Associates cannot initiate private conversations
+                ' and their profile does not appear in the Membership Listing.
+          li.little-less-space-top
             span.bold
               ' Alliance Membership for committed entrepreneurs serious about their success —
             ' Alliance members can do everything Associates can plus they can join #{link_to 'Private Alliances', alliances_path}
@@ -72,17 +76,20 @@
           strong Get involved:
       .medium-9.columns
         h5.bold.space-top.little-snug-bottom
-          ' Jump into the discussions and check out the knowledge base
+          ' Jump into the discussions and get answers fast
         p
-          ' The #{link_to 'discussion forums', discussions_path} has a variety of subjects you can search and browse.
+          ' The #{link_to 'discussion forums', discussions_path} have a variety of important subjects to search and browse.
           ' Read all you want but don’t stop there,
           span.bold
             ' ask your questions and share what you know!
           ' This community is filled with committed entrepreneurs willing to share what they know and
           ' help you meet your challenges.
-        p.little-snug-top
-          ' Just like Wikipedia, our #{link_to 'knowledge base', pages_path} contains articles written and constantly improved by our members.
-          ' You can search and browse and if you don’t find what you’re looking for, you can suggest an article.
+        h5.bold.space-top.little-snug-bottom
+          ' Check out the knowledge base and pick up hard won startup wisdom
+        p
+          ' Just like Wikipedia, our #{link_to 'knowledge base', pages_path} contains articles written
+          ' and constantly improved by our community members.
+          ' Search and browse and if you don’t find what you’re looking for, suggest an article for someone else to write.
         .little-snug-top= image_tag 'kb_article_screely.png'
         p.faint.text-center Members can vote on and collaboratively improve articles and browse the entire edit history.
           '
@@ -197,12 +204,16 @@
         ul
           li
             span.bold
+              ' Private team messaging —
+            ' Private messages and one-on-one conversations within the platform.
+          li
+            span.bold
               ' SAKPIs —
-            ' Monitoring this standard set of KPIs keeps the team aware of the business situation and focused on priorities.
+            ' Monitoring our standard set of KPIs keeps the team aware of the business situation and focused on priorities.
           li
             span.bold
               ' FActors and STrategies —
-            ' Document the success and risk factors for your business and keep them in front of the team to inform their actions and help them avoid mis-steps.
+            ' Document the success and risk FActors for your business and keep them in front of the team to inform their actions, keep them aware of the related STrategies and help them avoid costly mis-steps.
           li
             span.bold
               ' Objectives and Key Results (OKR) —
