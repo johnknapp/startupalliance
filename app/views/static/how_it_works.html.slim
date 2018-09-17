@@ -14,7 +14,7 @@
 
 .row
   .large-10.large-offset-1.medium-12.columns
-    .callout.accent.shadow-6dp
+    /.callout.accent.shadow-6dp
       h5.bold.primary
         ' First, some perspective:
       p.little-snug-top
@@ -31,12 +31,14 @@
 
     .row
       .medium-3.columns
+        /p.scale-to-80 &nbsp;
         h4.bold.pad-right.primary-text.space-top
           strong Get started:
       .medium-9.columns
-        h5.bold.space-top.little-snug-bottom
+        /p &nbsp;
+        /h5.bold.space-top.little-snug-bottom
           ' Choose the right membership plan
-        ul
+        /ul
           li
             span.bold.scale-to-110
               ' Just starting out? —
@@ -61,16 +63,17 @@
             ' Those with Company Membership can do everything Alliance members can do plus they can create a #{link_to 'Collaboration Workspace', companies_path} for their company
             ' and add their team for free. Company team members gain access to a powerful suite of focus enhancing tools to unite their efforts and maximize their success.
             ' Read about Collaboration Workspaces below.
-        p.little-snug-top Learn more about membership plans on our #{link_to 'Features & Pricing page', features_path}.
+        /p.little-snug-top Learn more about membership plans on our #{link_to 'Features & Pricing page', features_path}.
 
         h5.bold.space-top.little-snug-bottom
           ' Member profiles are unique, make yours awesome
         p
           ' In addition to adding your social profiles and mission statement, you should list all your startup skills and personal traits.
-          ' This way, we can all connect with the people we need and have confidence we’re making the right connections.
-          ' (Your skills and traits are used to calculate your Skill and Trait indices which appear throughout the site.)
+          ' This helps members make the right connections.
+          /' This way, we can all connect with the people we need and have confidence we’re making the right connections.
+          /' (Your skills and traits are used to calculate your Skill and Trait indices which appear throughout the site.)
         .little-snug-top= image_tag 'personal_traits_screely.png'
-        p.faint.text-center The more skills and traits you list, the more you’ll stand out on Startup Alliance.
+        p.faint.text-center The more skills and traits you list, the more you’ll stand out.
           '
 
     .row

@@ -57,8 +57,74 @@
               ' #{link_to 'Committed Entrepreneurs', commitment_pledge_path} are invited to subscribe at one of three levels:
               '
             .row
+              .medium-8.medium-offset-2.columns
+
+                .callout.small.shadow-4dp
+                  h5.primary.bold.text-center
+                    ' It’s easy to choose the right membership plan
+
+                  .row
+                    .small-6.columns
+                      p.bold.text-right Just starting out?
+                    .small-6.columns
+                      p Go for Associate Membership
+                  .row
+                    .small-6.columns
+                      p.bold.text-right Serious about your success?
+                    .small-6.columns
+                      p Go for Alliance Membership
+                  .row
+                    .small-6.columns
+                      p.bold.text-right Goal driven company leader?
+                    .small-6.columns
+                      p Go for Company Membership
+
+                /ul
+                  li
+                    span.bold.scale-to-110
+                      ' Just starting out? —
+                    /' Associate Membership for those just starting out —
+                    ' Associate Membership provides access to #{link_to 'The Entrepreneur’s Nucleus', nucleus_path} and the ability to respond to private messages.
+                    ' Associate Members can also become part of a company team which makes Alliance Membership perfect for advisors and investors.
+                    ul.no-bullet
+                      li.faint
+                        ' Associate Membership is free, however, Associates cannot initiate private conversations
+                        ' and their profile does not appear in the Membership Listing.
+                  li.little-space-top
+                    span.bold.scale-to-110
+                      ' Serious about your success? —
+                    /' Alliance Membership for committed entrepreneurs serious about their success —
+                    ' Alliance Membership lets you do everything Associates can plus they can join #{link_to 'Private Alliances', alliances_path}
+                    ' and create Private Alliances of their own. Alliance members can also send private messages to all other members.
+                    ' Read about Private Alliances below.
+                  li.little-space-top
+                    span.bold.scale-to-110
+                      ' Goal driven company leader? —
+                    /' Company Membership for goal driven company leaders —
+                    ' Those with Company Membership can do everything Alliance members can do plus they can create a #{link_to 'Collaboration Workspace', companies_path} for their company
+                    ' and add their team for free. Company team members gain access to a powerful suite of focus enhancing tools to unite their efforts and maximize their success.
+                    ' Read about Collaboration Workspaces below.
+
+
+
+            .row
               .medium-4.columns
-                .callout.small.primary
+                .callout.small.primary.shadow
+                  h5.bold.text-center Associate Membership
+                  p.text-center.little-snug-top
+                    em
+                      ' Free for life
+                  ul.little-snug-top
+                    li Join Company Workspaces
+                    li Use The Entrepreneur’s Nucleus
+                    li Respond to private messages
+                  ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
+                    li
+                      a.button.expanded.success.bold.scale-to-110 data-open='associate-year'
+                        ' Free Associate Membership
+
+              .medium-4.columns
+                .callout.small.primary.shadow
                   h5.bold.text-center Alliance Membership
                   p.text-center.little-snug-top
                     em
@@ -81,7 +147,7 @@
                         ' Go Month to Month
 
               .medium-4.columns
-                .callout.small.primary
+                .callout.small.primary.shadow
                   h5.bold.text-center Company Membership
                   p.text-center.little-snug-top
                     em
@@ -104,20 +170,6 @@
                       a.button.expanded.success.bold.scale-to-110 data-open='company-month'
                         ' Go Month to Month
 
-              .medium-4.columns
-                .callout.small.primary
-                  h5.bold.text-center Associate Membership
-                  p.text-center.little-snug-top
-                    em
-                      ' Free for life
-                  ul.little-snug-top
-                    li Join Company Workspaces
-                    li Use The Entrepreneur’s Nucleus
-                    li Respond to private messages
-                  ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
-                    li
-                      a.button.expanded.success.bold.scale-to-110 data-open='associate-year'
-                        ' Free Associate Membership
             /ul.snug-top.indented-2
               li
                 span.bold
