@@ -6,10 +6,6 @@
   h4.bold.medium-grey-text.text-center            = @offer.header_2
 
 .row
-  .medium-12.columns
-    p.snug-top.space-botton.text-right
-      ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
-.row
   .medium-8.columns
     p.snug-top.show-for-medium &nbsp;
 
@@ -62,3 +58,7 @@
     - else
       = render 'partials/prospect_form'
 
+.row
+  .medium-12.columns
+    p.space-top.space-botton.text-right
+      ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
