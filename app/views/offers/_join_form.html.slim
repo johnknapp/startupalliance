@@ -10,24 +10,16 @@
     = f.hidden_field :coupon,   value: @offer.coupon
     = f.hidden_field :acqsrc,   value: 'offer_pid_'+@offer.pid
 
-    p.faint.snug-bottom
+    /p.faint.snug-bottom
       em Membership is open to committed entrepreneurs, advisors and investors
     .row.collapse
-      .small-8.columns
+      .small-6.columns
         = f.input :email, placeholder: 'Enter your email...', label: false
-      .small-4.columns
-        = f.button :submit, "Join now!", class: 'postfix expanded bold success'
+      .small-6.columns
+        = f.button :submit, @offer.cta_button_text, class: 'postfix expanded bold success'
     .row
-      .medium-6.columns
+      .medium-12.columns
         .snug-top= label_tag :terms do
           = check_box_tag :terms, true
-          ' I accept the #{link_to 'privacy', privacy_path, target: '_blank'} and #{link_to 'terms', terms_path, target: '_blank'} agreements.
-      .medium-6.columns
-        .float-right
-          p.snug-top.faint
-            em
-              ' Already a member?
-              = link_to 'Sign-in', new_user_session_path
-    .row
-      .small-12.columns
-        .g-recaptcha.little-snug-top data-sitekey=RECAPTCHA_SITE style="transform:scale(0.8); transform-origin:0 0"
+          ' I accept the #{link_to 'privacy statement', privacy_path, target: '_blank'} and #{link_to 'terms of use', terms_path, target: '_blank'}.
+        .g-recaptcha data-sitekey=RECAPTCHA_SITE style="transform:scale(0.9); transform-origin:0 0"
