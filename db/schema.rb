@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180914220304) do
+ActiveRecord::Schema.define(version: 20180919224808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20180914220304) do
     t.string   "header_1"
     t.string   "header_2"
     t.string   "offer_lead_in"
-    t.text     "plan_benefits"
+    t.text     "box_2"
     t.integer  "plan_id"
     t.string   "coupon"
     t.datetime "valid_through"
@@ -186,6 +186,9 @@ ActiveRecord::Schema.define(version: 20180914220304) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "benefit_lead_in"
+    t.text     "box_1"
+    t.string   "video_url"
+    t.string   "cta_button_text"
     t.index ["pid"], name: "index_offers_on_pid", using: :btree
   end
 
