@@ -1,4 +1,8 @@
-.callout.shadow-6dp
+.callout.primary.shadow-6dp
+  - if @offer.valid_through.present?
+    p
+      em
+        ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
 

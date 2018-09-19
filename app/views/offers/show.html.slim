@@ -6,14 +6,16 @@
   h4.bold.medium-grey-text.text-center            = @offer.header_2
 
 .row
-  .medium-8.medium-offset-2.columns
+  .medium-12.columns
     p.snug-top.space-botton.text-right
       ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', subject: "I have a question!", encode: 'hex'}!
+.row
+  .medium-8.columns
     p.snug-top.show-for-medium &nbsp;
 
-    .callout.accent.shadow-6dp
-      h5.title-font.text-center                   = @offer.offer_lead_in if @offer.offer_lead_in
-      h5.bold.text-center                         = @offer.plan.display_name if @offer.plan
+    .callout.success-background.shadow-6dp
+      h3.bold.primary.text-center         = @offer.offer_lead_in if @offer.offer_lead_in
+      h4.bold.text-center                 = @offer.plan.display_name if @offer.plan
 
       - if @offer.plan and @offer.plan.short_name != 'associate'
         p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
@@ -23,38 +25,40 @@
       - if @coupon
         h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
 
-      p.little-snug-top.text-center
-        em
-          ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
-
-    .row
-      .medium-6.medium-offset-3.columns
-        .little-space-top= render 'partials/video_home'
-
-    .row
-      .medium-10.medium-offset-1.columns
-        - if @offer.benefit_lead_in
-          h4.bold.little-space-top= @offer.benefit_lead_in
-        - else
-          h4.bold.little-space-top This is how it works:
-        /- if @offer.plan
-        /  h4.bold.little-space-top With #{@offer.plan.display_name} you can:
-        /- else
-        /  h4.bold.little-space-top Subscribe and you will get:
-        .little-snug-top.indented-1               = markdown @offer.plan_benefits
-
-        - if @offer.plan and @offer.plan.short_name != 'associate'
-          h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
-        /- elsif @offer.plan and @offer.plan.short_name == 'associate'
-          p.bold.little-space-top.text-center Associate Membership is free
-
-        /- if @offer.plan and @offer.plan.short_name != 'associate'
+      - if @offer.valid_through.present?
         p.little-snug-top.text-center
           em
             ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
-        - if @offer.plan
-          = render 'offers/join_form'
-        - else
-          = render 'partials/prospect_form'
+.row
+  .medium-8.medium-offset-1.columns
+    p.snug-top.show-for-medium &nbsp;
+    .callout.primary.shadow-6dp
+      - if @offer.benefit_lead_in
+        h2.bold.little-space-top.primary= @offer.benefit_lead_in
+      - else
+        h2.bold.little-space-top.primary This is how it works:
+      /- if @offer.plan
+      /  h4.bold.little-space-top With #{@offer.plan.display_name} you can:
+      /- else
+      /  h4.bold.little-space-top Subscribe and you will get:
+      .little-snug-top.indented-1.pad-right               = markdown @offer.plan_benefits
+
+      - if @offer.plan and @offer.plan.short_name != 'associate'
+        h5.bold.little-space-top.text-center #{@offer.plan.trial_period_days} day free trial, no card required!
+      /- elsif @offer.plan and @offer.plan.short_name == 'associate'
+        p.bold.little-space-top.text-center Associate Membership is free
+
+      /- if @offer.plan and @offer.plan.short_name != 'associate'
+.row
+  .medium-6.medium-offset-4.columns
+    p.snug-top.show-for-medium &nbsp;
+    .little-space-top= render 'partials/video_home'
+.row
+  .medium-8.medium-offset-3.columns
+    p.snug-top.show-for-medium &nbsp;
+    - if @offer.plan
+      = render 'offers/join_form'
+    - else
+      = render 'partials/prospect_form'
 
