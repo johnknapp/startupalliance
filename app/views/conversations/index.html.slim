@@ -25,7 +25,15 @@
             = link_to conversation_messages_path(conversation) do
               = image_tag gravatar_url(interlocutor.email, 36)
               | &nbsp;
+              | &nbsp;
               = interlocutor.name
-              '  (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}, #{number_with_delimiter(unread_count)} unread)
+              br
+              - if unread_count != 0
+                span.red-text
+                  i.fa.fa-envelope
+                | &nbsp;
+                | &nbsp;
+              span.faint
+                ' (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}, #{number_with_delimiter(unread_count)} unread)
     - else
       ' No conversations yet!
