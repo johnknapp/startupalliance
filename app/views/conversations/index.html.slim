@@ -31,9 +31,7 @@
               - if unread_count != 0
                 span.red-text
                   i.fa.fa-envelope
-                | &nbsp;
-                | &nbsp;
-              span.faint
+              span.faint.indented-2
                 ' (#{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}, #{number_with_delimiter(unread_count)} unread)
     - else
       ' No conversations yet!
