@@ -1,6 +1,6 @@
 ActiveAdmin.register Offer do
 
-  permit_params :pid, :header_1, :header_2, :offer_lead_in, :benefit_lead_in, :plan_benefits, :plan_id, :coupon, :valid_through
+  permit_params :pid, :header_1, :header_2, :offer_lead_in, :benefit_lead_in, :box_1, :box_2, :box_3, :plan_id, :video_url, :cta_button_text, :coupon, :valid_through
 
   menu parent: 'Subscriptions'
 
@@ -17,8 +17,8 @@ ActiveAdmin.register Offer do
     end
     column :header_1
     column :header_2
-    column :offer_lead_in
-    column :benefit_lead_in
+    # column :offer_lead_in
+    # column :benefit_lead_in
     column :plan
     column :coupon
     column :valid_through
@@ -35,12 +35,16 @@ ActiveAdmin.register Offer do
       f.input :pid, label: 'Landing page code', hint: 'Required. Must be unique. Recommend keep system value.'
       f.input :header_1, hint: 'Required'
       f.input :header_2, hint: 'Required'
+      f.input :box_1, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
+      f.input :box_2, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
+      f.input :box_3, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
+      f.input :video_url, hint: 'Required'
+      f.input :valid_through, hint: 'Optional'
+      f.input :cta_button_text, hint: 'Required'
+      f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.where(state: 'active').order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
+      f.input :coupon, hint: 'Valid Stripe Coupon Code. Optional.'
       f.input :offer_lead_in, hint: 'Optional'
-      f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.all.order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
       f.input :benefit_lead_in, hint: 'Required'
-      f.input :plan_benefits, input_html: { rows: 6 }, hint: 'Required. Markdown supported.'
-      f.input :coupon, hint: 'Optional. Must be currently valid code'
-      f.input :valid_through, hint: 'Required'
     end
     f.actions
   end
@@ -52,13 +56,27 @@ ActiveAdmin.register Offer do
       end
       row :header_1
       row :header_2
-      row :offer_lead_in
-      row :plan
-      if offer.plan.present?
-        row :plan_detail do |offer|
-          "Regular price #{offer.plan.display_price} with #{offer.plan.trial_period_days} day trial"
-        end
+      row :box_1 do |offer|
+        markdown offer.box_1
       end
+      row :box_2 do |offer|
+        markdown offer.box_2
+      end
+      row :box_3 do |offer|
+        markdown offer.box_3
+      end
+      row :video_url
+      row :offer_valid_through do |offer|
+        offer.valid_through
+      end
+      row :cta_button_text
+      # row :offer_lead_in
+      # row :plan
+      # if offer.plan.present?
+      #   row :plan_detail do |offer|
+      #     "Regular price #{offer.plan.display_price} with #{offer.plan.trial_period_days} day trial"
+      #   end
+      # end
       if offer.coupon.present?
         row :coupon_detail do |offer|
           coupon = Stripe::Coupon.retrieve(offer.coupon)
@@ -73,19 +91,13 @@ ActiveAdmin.register Offer do
           "No coupon on this offer"
         end
       end
-      row :offer_valid_through do |offer|
-        offer.valid_through
-      end
-      if offer.plan.present?
-        row :benefit_lead_in do |offer|
-          "With #{offer.plan.display_name} you can:"
-        end
-      end
-      row :benefit_lead_in
-      row :plan_benefits do |offer|
-        markdown offer.plan_benefits
-      end
+      # if offer.plan.present?
+      #   row :benefit_lead_in do |offer|
+      #     "With #{offer.plan.display_name} you can:"
+      #   end
+      # end
+      # row :benefit_lead_in
     end
   end
 
-    end
+end

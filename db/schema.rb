@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919224808) do
+ActiveRecord::Schema.define(version: 20180920001100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20180919224808) do
     t.text     "box_1"
     t.string   "video_url"
     t.string   "cta_button_text"
+    t.text     "box_3"
     t.index ["pid"], name: "index_offers_on_pid", using: :btree
   end
 
