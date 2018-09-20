@@ -11,18 +11,14 @@
       p.snug-top.show-for-medium &nbsp;
       .callout.success-background.shadow-6dp
         = markdown @offer.box_1
-        - if @offer.valid_through.present?
-          p.little-snug-top
-            em
-              ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
         - if @coupon
           h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
+        /- if @offer.plan and @offer.plan.short_name != 'associate'
+          h4.bold.text-center                 = @offer.plan.display_name
 
 
       /.callout.success-background.shadow-6dp
         h3.bold.primary.text-center         = @offer.offer_lead_in if @offer.offer_lead_in
-        h4.bold.text-center                 = @offer.plan.display_name if @offer.plan
-
         - if @offer.plan and @offer.plan.short_name != 'associate'
           p.little-snug-top.text-center Regular price #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
         - elsif @offer.plan and @offer.plan.short_name == 'associate'
@@ -36,6 +32,10 @@
       p.snug-top.show-for-medium &nbsp;
       .callout.primary.shadow-6dp
         .primary= markdown @offer.box_2
+        - if @offer.valid_through.present?
+          p.text-center
+            em
+              ' Offer only valid through #{@offer.valid_through.strftime('%B %e, %Y')}
 
 .row
   .medium-8.medium-offset-3.columns
