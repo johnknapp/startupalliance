@@ -38,7 +38,7 @@ ActiveAdmin.register Offer do
       f.input :box_1, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
       f.input :box_2, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
       f.input :box_3, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
-      f.input :video_url, hint: 'Required'
+      f.input :video_url, label: 'YouTube video code', hint: 'Required'
       f.input :valid_through, hint: 'Optional'
       f.input :cta_button_text, hint: 'Required'
       f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.where(state: 'active').order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
@@ -65,7 +65,9 @@ ActiveAdmin.register Offer do
       row :box_3 do |offer|
         markdown offer.box_3
       end
-      row :video_url
+      row 'YouTube video code' do |offer|
+        offer.video_url
+      end
       row :offer_valid_through do |offer|
         offer.valid_through
       end

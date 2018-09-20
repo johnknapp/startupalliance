@@ -4,7 +4,7 @@ var defaults = {
   theme: 'snow',
   modules: {
     toolbar: [
-      [{ 'header': [2, 3, false] }],
+      [{ 'header': [2, 3, 4, false] }],
       [{ 'align': [] }],
       ['bold', 'italic', 'underline','code'],['blockquote'],['link'],
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
