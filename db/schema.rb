@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20180921145818) do
     t.string   "title"
     t.string   "description"
     t.datetime "start_time"
-    t.integer  "type"
+    t.integer  "event_type"
     t.integer  "organizer_id"
     t.integer  "alliance_id"
     t.string   "access_url"
