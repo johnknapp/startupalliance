@@ -15,13 +15,14 @@
                 | &nbsp;
                 ' Delete
 
-  h4.bold.primary= event.title
+  h4.bold.primary= link_to event.title, event_path(event)
   p.little-snug-top= event.description
   p.little-snug-top
     - if event.alliance_id.present?
       ' PVO in the #{link_to event.alliance.name, alliance_path(event.alliance)}
     - else
       ' Event access url: #{event.access_url}
-  p.little-snug-top Event start time: #{event.starts_at}
+  p.little-snug-top Event type: #{event.event_type}
+  p.little-snug-top Event start time: #{event.start_time}
   p.faint.text-right.little-snug-top
     ' Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}

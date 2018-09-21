@@ -92,6 +92,11 @@
       .float-right
         p.faint.text-right.snug-top= number_with_delimiter(@user.quarks_count)
       p.faint.snug-top #{link_to 'Nucleus Quarks', quarks_path(author_pid: @user.pid)}:
+    - if @user.events_count.present?
+      / TODO make this exclude event state 'Flagged'
+      .float-right
+        p.faint.text-right.snug-top= number_with_delimiter(@user.events_count)
+      p.faint.snug-top #{link_to 'Nucleus Live Events', events_path(organizer_pid: @user.pid)}:
     - if @user.time_zone.present?
       .float-right
         p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)

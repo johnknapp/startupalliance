@@ -1,26 +1,25 @@
-a data-open="edit-classified-#{classified.pid}"
+a data-open="edit-event-#{event.pid}"
   i.fa.fa-pencil
   | &nbsp;
   ' Edit
 
-.reveal id="edit-classified-#{classified.pid}" data-reveal=true
+.reveal id="edit-event-#{event.pid}" data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
       ' &times;
   .row
     .medium-12.columns
-      p.bold.primary-text Update Classified Ad
+      p.bold.primary-text Update Live Event
 
-      p.faint.little-snug-top
-        ' Originally posted #{time_ago_in_words(classified.created_at)} ago
-      - if classified.created_at != classified.updated_at
+      /p.faint.little-snug-top
+        ' Originally posted #{time_ago_in_words(event.created_at)} ago
+      /- if event.created_at != event.updated_at
         p.faint.snug-top
-          ' Last updated #{time_ago_in_words(classified.updated_at)} ago
+          ' Last updated #{time_ago_in_words(event.updated_at)} ago
 
-      = simple_form_for classified, url: classified_path(classified.pid), method: :put do |f|
-        /= f.hidden_field :creator_id, value: classified.creator_id
-        = f.input :title, autofocus: true, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
-        .little-snug-top= f.input :body, required: true, label: 'Body copy', as: :text, placeholder: 'Compose your ad'
-        = f.button :submit, 'Update your Classified Ad', class: 'button expanded accent'
-      p.faint.text-center.little-snug-bottom Classified ads expire 30 days after posting.
-      p.faint.text-center.snug-bottom Staff may edit or remove ads without warning.
+      = simple_form_for event, url: event_path(event.pid), method: :put do |f|
+        = f.input :title, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
+        .little-snug-top= f.input :description, required: true, label: 'Body copy', as: :text, placeholder: 'Compose your ad'
+        = f.input :event_type, collection: Event.event_types.keys
+        = f.button :submit, 'Update your Live Event', class: 'button expanded accent'
+      p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.

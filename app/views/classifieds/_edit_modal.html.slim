@@ -19,7 +19,7 @@ a data-open="edit-classified-#{classified.pid}"
 
       = simple_form_for classified, url: classified_path(classified.pid), method: :put do |f|
         /= f.hidden_field :creator_id, value: classified.creator_id
-        = f.input :title, autofocus: true, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
+        = f.input :title, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
         .little-snug-top= f.input :body, required: true, label: 'Body copy', as: :text, placeholder: 'Compose your ad'
         = f.button :submit, 'Update your Classified Ad', class: 'button expanded accent'
       p.faint.text-center.little-snug-bottom Classified ads expire 30 days after posting.

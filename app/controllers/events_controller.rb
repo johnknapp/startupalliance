@@ -13,7 +13,7 @@ class EventsController  < ApplicationController
     elsif params[:query].present?
       @events    = Event.event_tsearch(params[:query])
     elsif params[:organizer_pid].present?
-      @organizer        = User.find_by_pid(params[:author_pid])
+      @organizer        = User.find_by_pid(params[:organizer_pid])
       if @organizer
         @events  = Event.where(organizer_id: @organizer.id).order(updated_at: :desc)
       end
@@ -25,7 +25,7 @@ class EventsController  < ApplicationController
   def create
     @event = Event.new(event_params)
     flash[:notice] = 'Event ad was successfully created.' if @event.save
-    redirect_to event_path
+    redirect_to event_path(@event)
   end
 
   def show
@@ -48,7 +48,7 @@ class EventsController  < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :description, :start_time, :type, :alliance_id, :organizer_id)
+      params.require(:event).permit(:title, :description, :start_time, :event_type, :alliance_id, :organizer_id)
     end
 
 end

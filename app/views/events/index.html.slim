@@ -38,7 +38,7 @@
                 a data-open='create-event'
                   i.fa.fa-plus
                   | &nbsp;
-                  ' Create a Live Event
+                  ' Organizer a Live Event
               = render 'events/add_modal'
         ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
           li.primary-text
@@ -54,7 +54,7 @@
         .small-12.columns
           - if @events.present?
             - @events.each do |event|
-              = render 'events/event_hero
+              = render 'events/event_hero', event: event
           - else
             .callout.accent.shadow.space-bottom
               p.bold.text-center No Live Events match your query!

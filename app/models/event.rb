@@ -1,8 +1,4 @@
 class Event < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
   include Pid
   include Search
 
@@ -12,10 +8,14 @@ class Event < ApplicationRecord
   validates :title, length: { maximum: 140 }, presence: true
   validates :description, length: { maximum: 1024 }, presence: true
 
-  enum state: {
-      discussion:       0,
-      presentation:     1,
-      hangout:          2
+  after_validation(on: :create) do
+    update_attribute(:access_url, WEBRTC_EVENT_URL + self.pid)
+  end
+
+  enum event_type: {
+      Discussion:       0,
+      Presentation:     1,
+      Hangout:          2
   }
 
 end

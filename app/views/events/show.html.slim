@@ -1,1 +1,20 @@
-i m n event show page
+- content_for :page_title do
+  ' Startup Alliance – Nucleus Live Event: #{@event.title}
+
+  - content_for :page_header do
+    h4.bold.little-space-top.medium-grey-text.text-center
+      ' Nucleus Live Event:
+    h2.bold.white-text.text-center.title-font
+      = @event.title
+.row
+  .medium-10.medium-offset-1.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to events_path do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to Events Listing
+    p.snug-top.text-right Nucleus Live Events are put on by members, staff and special guests.
+    p.snug-top.show-for-medium &nbsp;
+
