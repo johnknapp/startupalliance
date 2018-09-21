@@ -66,5 +66,16 @@ module Search
       end
     end
 
+    pg_search_scope :event_tsearch_search,
+      against:  {title: 'B', description: 'A'},
+      using:    { tsearch: { dictionary: 'english' } },
+      ignoring: [:accents]
+
+    def self.event_tsearch(query)
+      if query.present?
+        event_tsearch_search(query)
+      end
+    end
+
   end
 end

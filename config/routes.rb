@@ -50,9 +50,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :classifieds,           only: [:index, :create, :update, :destroy], constraints: { format: 'html' } do
+  resources :events,        only: [:index, :create, :show, :update, :destroy], constraints: { format: 'html' }
+
+  resources :classifieds,   only: [:index, :create, :update, :destroy], constraints: { format: 'html' } do
     member do
-      post :ad_response,              to: 'classifieds#ad_response'
+      post :ad_response,    to: 'classifieds#ad_response'
     end
   end
 

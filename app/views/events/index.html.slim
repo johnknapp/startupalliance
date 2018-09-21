@@ -1,0 +1,61 @@
+- if params[:filter]
+  - filter = params[:filter]
+- elsif params[:query]
+  - filter = params[:query]
+- elsif params[:organizer_pid] and @organizer
+  - filter = "Organized by #{@organizer.name}"
+- else
+  - filter = 'Soonest'
+
+- content_for :page_title do
+  ' Nucleus Live Events
+
+- content_for :page_header do
+  h2.bold.little-space-top.white-text.text-center
+    ' Nucleus Live Events
+  h4.bold.medium-grey-text.text-center Filter: “#{filter}”
+
+.row
+  .medium-12.columns
+    .float-left
+      = render 'partials/nucleus_menu'
+    p.snug-top.space-bottom.text-right Live Events organized by Alliance and Company Members.
+
+
+.row
+  .medium-5.columns.medium-push-7
+    h4.little-space-top &nbsp;
+    = render 'partials/search_form_events'
+    p.faint.text-center Alliance and Company members may organize live events.
+
+  .medium-7.columns.medium-pull-5
+    .row
+      .small-12.columns
+        - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
+          .float-right
+            ul.menu.little-space-top
+              li
+                a data-open='create-event'
+                  i.fa.fa-plus
+                  | &nbsp;
+                  ' Create a Live Event
+              = render 'events/add_modal'
+        ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
+          li.primary-text
+            h5.bold
+              = link_to '#' do
+                ' Filter Live Events
+                | &nbsp;
+                i.fa.fa-lg.fa-caret-down
+            ul.menu.normal.shadow-8dp data-dropdown-menu=true
+              li.bold= link_to "Soonest events", events_path
+              li.bold= link_to "Organized by me (#{number_with_delimiter(Event.where(organizer_id: current_user.id).count)})", events_path(organizer_pid: current_user.pid) if current_user
+      .row
+        .small-12.columns
+          - if @events.present?
+            - @events.each do |event|
+              = render 'events/event_hero
+          - else
+            .callout.accent.shadow.space-bottom
+              p.bold.text-center No Live Events match your query!
+              p.text-center= link_to 'Show upcoming events or search again', events_path
