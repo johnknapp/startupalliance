@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many  :okrs,          foreign_key: :owner_id       # See registrations#destroy and admin user destroy
   has_many  :pages,         foreign_key: :author_id      # See registrations#destroy and admin user destroy
   has_many  :classifieds,   foreign_key: :creator_id, dependent: :destroy
+  has_many  :events,        foreign_key: :organizer_id, dependent: :destroy
   has_many  :discussions,   foreign_key: :author_id, dependent: :destroy
   has_many  :topics,        foreign_key: :author_id, dependent: :destroy
   has_many  :posts,         foreign_key: :author_id, dependent: :destroy

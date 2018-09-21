@@ -34,6 +34,7 @@ RECAPTCHA_SITE              = '6LcfhSsUAAAAAKUUu0v5dd-YFBWq-qQ_nSBpjdAL'
 RECAPTCHA_SECRET            = '6LcfhSsUAAAAAOOq8AAPIS9f1Sk3NKgxgQzUxVJ2'
 
 QUARK_STATES                = %w[Contributed Approved Promoted Flagged]
+EVENT_STATES                = %w[Proposed Approved Promoted Flagged]
 
 PLAN_STATES                 = %w[active inactive]
 PAGE_STATES                 = %w[Draft Suggestion Published Flagged]
@@ -45,6 +46,7 @@ WORK_ROLE                   = %w[Owner Marketing Sales Technical Operations Advi
 SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid error]
 
 WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
+WEBRTC_EVENT_URL            = 'https://meet.jit.si/sa-event-'
 
 TOP_QUARK_TIP               = 'This is a Top Quark! Our Top Quark Award honors the best pearls of startup wisdom contributed by our members. Top Quarks and the author may be promoted on social channels.'
 KB_SUGGESTION_TIP           = 'Suggested Knowledge Base Pages are marked with a Bell icon as a signal to potential authors they have a writing opportunity.'
