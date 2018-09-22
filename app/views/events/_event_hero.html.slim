@@ -10,10 +10,15 @@
             li
               = render 'events/edit_modal', event: event
             li
+              = link_to clone_event_path(event), data: { confirm: 'Your clone will have no start time!' }, method: :post  do
+                i.fa.fa-clone
+                | &nbsp;
+                ' Clone this Event
+            li
               = link_to event, data: { confirm: 'Are you sure?' }, method: :delete do
                 i.fa.fa-trash-o
                 | &nbsp;
-                ' Delete
+                ' Delete this Event
 
   h4.bold.primary= link_to event.title, event_path(event)
   p.little-snug-top= event.description

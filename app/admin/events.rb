@@ -2,6 +2,12 @@ ActiveAdmin.register Event do
 
   permit_params :title, :description, :start_time, :event_type, :alliance_id, :organizer_id, :state
 
+  controller do
+    def find_resource
+      scoped_collection.where(pid: params[:id]).first!
+    end
+  end
+
   index do
     selectable_column
     column :id

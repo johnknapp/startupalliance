@@ -75,8 +75,8 @@ COMPANY_TIP_EMAIL           = 'I found StartupAlliance.com, they have a Company 
 ALLIANCE_TIP_EMAIL          = 'StartupAlliance.com Private Alliances are a great way to help us collaborate and help each other. I think we should try it out.'
 
 USERNAME_EXCLUSIONS = %w[
-  accept
   about
+  accept
   admin
   administrator
   alliance
@@ -94,6 +94,8 @@ USERNAME_EXCLUSIONS = %w[
   conversations
   discussion
   discussions
+  event
+  events
   faq
   factor
   factors
@@ -128,6 +130,7 @@ USERNAME_EXCLUSIONS = %w[
   okr
   okrs
   privacy
+  private
   quark
   quarks
   sandbox
@@ -147,6 +150,8 @@ USERNAME_EXCLUSIONS = %w[
   resource
   resources
   resque
+  room
+  rooms
   user
   users
   username

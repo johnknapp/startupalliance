@@ -1,7 +1,7 @@
 class EventsController  < ApplicationController
   include DateConverter
   before_action :authenticate_user!, except: [:index]
-  before_action :set_event, only: [:create, :show, :update, :destroy]
+  before_action :set_event, only: [:create, :clone, :show, :update, :destroy]
 
   def index
     @event = Event.new
@@ -28,18 +28,33 @@ class EventsController  < ApplicationController
       params[:event][:alliance_id] = nil
     end
     @event = Event.new(event_params)
-    flash[:notice] = 'Event ad was successfully created.' if @event.save
+    flash[:notice] = 'Live Event was successfully created.' if @event.save
     if @event.alliance_id.nil?
       @event.update_attribute(:access_url, WEBRTC_EVENT_URL + @event.pid)
     end
     redirect_to event_path(@event)
   end
 
+  def clone
+    if (@event.organizer == current_user) or current_user.admin?
+      clone = @event.dup
+      clone.start_time = nil
+      clone.title = '(CLONE) ' + @event.title
+      if clone.organizer != current_user       # This is the admin case  :-)
+        clone.organizer_id = current_user.id
+      end
+      clone.save
+      redirect_to events_path(organizer_pid: current_user.pid), notice: 'Your Event was successfully cloned.'
+    else
+      redirect_back(fallback_location: events_path, alert: 'There was a problem!')
+    end
+  end
+
   def show
   end
 
   def update
-    flash[:notice] = 'Event ad was successfully updated.' if @event.update(event_params)
+    flash[:notice] = 'Live Event was successfully updated.' if @event.update(event_params)
     redirect_to events_path
   end
 

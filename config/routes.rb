@@ -50,7 +50,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events,        only: [:index, :create, :show, :update, :destroy], constraints: { format: 'html' }
+  resources :events,        only: [:index, :create, :show, :update, :destroy], constraints: { format: 'html' } do
+    member do
+      post :clone,          to: 'events#clone'
+    end
+  end
 
   resources :classifieds,   only: [:index, :create, :update, :destroy], constraints: { format: 'html' } do
     member do
