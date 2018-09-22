@@ -8,3 +8,10 @@ $ ->
   $('#okr_okr_start').fdatepicker
     format: 'mm/dd/yyyy'
   return
+$ ->
+  $('#event_start_time').fdatepicker
+    format: 'mm-dd-yyyy hh:ii',
+    minuteStep: 15,
+    todayBtn: true,
+    pickTime: true
+  return

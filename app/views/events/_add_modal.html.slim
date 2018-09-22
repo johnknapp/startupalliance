@@ -9,9 +9,15 @@
         ' As an event organizer, you are expected to deliver a quality event.
 
       = simple_form_for @event, url: events_path, method: :post do |f|
+        - locations = []
+        - current_user.alliances.each do |alliance|
+          - locations << ['Private Alliance: ' + alliance.name, alliance.id]
+        - locations << ['All Members Area', 0]
         = f.hidden_field :organizer_id,     value: current_user.id  if current_user
         = f.input :title, autofocus: true, required: true, label: 'Event name', placeholder: '140 character maximum'
         .little-snug-top= f.input :description, required: true, label: 'Description', as: :text, placeholder: 'Describe your even'
-        = f.input :event_type, collection: Event.event_types.keys
+        .little-snug-top= f.input :event_type, collection: Event.event_types.keys
+        = f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', as: :string
+        .little-snug-top= f.input :alliance_id, label: 'Event location', collection: locations
         = f.button :submit, 'Create your Live Event', class: 'button expanded accent'
       p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.

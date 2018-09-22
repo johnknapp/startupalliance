@@ -1,4 +1,5 @@
 class EventsController  < ApplicationController
+  include DateConverter
   before_action :authenticate_user!, except: [:index]
   before_action :set_event, only: [:create, :show, :update, :destroy]
 
@@ -23,8 +24,14 @@ class EventsController  < ApplicationController
   end
 
   def create
+    if params[:event][:alliance_id] == '0'
+      params[:event][:alliance_id] = nil
+    end
     @event = Event.new(event_params)
     flash[:notice] = 'Event ad was successfully created.' if @event.save
+    if @event.alliance_id.nil?
+      @event.update_attribute(:access_url, WEBRTC_EVENT_URL + @event.pid)
+    end
     redirect_to event_path(@event)
   end
 
@@ -48,6 +55,7 @@ class EventsController  < ApplicationController
     end
 
     def event_params
+      params[:event][:start_time] = string_24h_to_datetime(params[:event][:start_time])
       params.require(:event).permit(:title, :description, :start_time, :event_type, :alliance_id, :organizer_id)
     end
 

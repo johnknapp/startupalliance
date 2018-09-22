@@ -18,11 +18,16 @@
   h4.bold.primary= link_to event.title, event_path(event)
   p.little-snug-top= event.description
   p.little-snug-top
-    - if event.alliance_id.present?
-      ' PVO in the #{link_to event.alliance.name, alliance_path(event.alliance)}
+    - if event.alliance_id.present? and event.access_url.blank?
+      ' Private Alliance: #{link_to event.alliance.name, alliance_path(event.alliance)}
+    - elsif event.alliance_id.blank? and event.access_url.present?
+      ' All Members Area: #{link_to 'All Members Room', event.access_url, target: '_blank'}
     - else
-      ' Event access url: #{event.access_url}
+      ' Location TBD
   p.little-snug-top Event type: #{event.event_type}
-  p.little-snug-top Event start time: #{event.start_time}
+  - if event.start_time.present?
+    p.little-snug-top Event start time: #{event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')}
+  - else
+    p.little-snug-top Event start time: Not set!
   p.faint.text-right.little-snug-top
     ' Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}

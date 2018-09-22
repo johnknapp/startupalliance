@@ -10,16 +10,14 @@ a data-open="edit-event-#{event.pid}"
   .row
     .medium-12.columns
       p.bold.primary-text Update Live Event
-
-      /p.faint.little-snug-top
-        ' Originally posted #{time_ago_in_words(event.created_at)} ago
-      /- if event.created_at != event.updated_at
-        p.faint.snug-top
-          ' Last updated #{time_ago_in_words(event.updated_at)} ago
+      p.little-snug-top
+        ' Remember! You are expected to deliver a quality event.
 
       = simple_form_for event, url: event_path(event.pid), method: :put do |f|
         = f.input :title, required: true, label: 'Ad Title', placeholder: 'Keep the title brief'
         .little-snug-top= f.input :description, required: true, label: 'Body copy', as: :text, placeholder: 'Compose your ad'
-        = f.input :event_type, collection: Event.event_types.keys
+        .little-snug-top= f.input :event_type, collection: Event.event_types.keys
+        = f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', as: :string, input_html: { value: f.object.start_time.try(:strftime, '%m/%d/%Y %H:%M%z') }
+        p.faint.text-center Email #{mail_to 'support@startupalliance.com', 'support@startupalliance.com', subject: "Change my Event location (reference: #{event.pid})", encode: 'hex'} to change your Event Location
         = f.button :submit, 'Update your Live Event', class: 'button expanded accent'
       p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.

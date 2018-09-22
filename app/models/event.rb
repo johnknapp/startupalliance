@@ -8,9 +8,9 @@ class Event < ApplicationRecord
   validates :title, length: { maximum: 140 }, presence: true
   validates :description, length: { maximum: 1024 }, presence: true
 
-  after_validation(on: :create) do
-    update_attribute(:access_url, WEBRTC_EVENT_URL + self.pid)
-  end
+  # after_validation(on: :create) do
+  #   update_attribute(:access_url, WEBRTC_EVENT_URL + self.pid)
+  # end
 
   enum event_type: {
       Discussion:       0,
