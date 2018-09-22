@@ -2,10 +2,12 @@
   ' Startup Alliance – Nucleus Live Event: #{@event.title}
 
   - content_for :page_header do
-    h4.bold.little-space-top.medium-grey-text.text-center
-      ' Nucleus Live Event:
-    h2.bold.white-text.text-center.title-font
-      = @event.title
+    /h2.bold.little-space-top.white-text.text-center
+    h2.bold.little-space-top.little-space-bottom.white-text.text-center
+      ' Featured Live Event
+    /h4.bold.medium-grey-text.text-center
+    /  = @event.title
+
 .row
   .medium-10.medium-offset-1.columns
     .float-left
@@ -14,7 +16,45 @@
           i.fa.fa-arrow-left
           | &nbsp;
           | &nbsp;
-          ' Return to Events Listing
+          ' Return to All Live Events
     p.snug-top.text-right Nucleus Live Events are put on by members, staff and special guests.
     p.snug-top.show-for-medium &nbsp;
+
+    .row
+      .medium-8.columns
+        .callout.primary
+          h4.bold.primary= @event.title
+          p.little-snug-top= @event.description
+          p.little-snug-top
+            - if @event.alliance_id.present? and @event.access_url.blank?
+              ' Private Alliance: #{link_to @event.alliance.name, alliance_path(@event.alliance)}
+            - elsif @event.alliance_id.blank? and @event.access_url.present?
+              ' All Members Area: #{link_to 'All Members Room', @event.access_url, target: '_blank'}
+            - else
+              ' Location TBD
+          p.little-snug-top Event type: #{@event.event_type}
+          - if @event.start_time.present?
+            - if @event.start_time > Time.now
+              - if current_user and current_user.time_zone.present?
+                p.little-snug-top Event start time: #{@event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%m/%d/%Y %H:%M%z')}
+              - else
+                p.little-snug-top Event start time: #{@event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')}
+            - else
+              p.little-snug-top.faint This Live Event is over
+          - else
+            p.little-snug-top.faint Event start time: Not set!
+          p.faint.text-right.little-snug-top
+            ' Organized by #{link_to @event.organizer.name, vanity_path(@event.organizer.username)}
+
+      .medium-4.columns
+        h4.bold.primary Upcoming Live Events:
+        - @upcoming_events.each do |event|
+          - if event == @event
+            p.indented-1.bold= link_to event.title, event_path(event)
+            p.indented-2.faint.snug-top= event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+            p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
+          - else
+            p.indented-1= link_to event.title, event_path(event)
+            p.indented-2.faint.snug-top= event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+            p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
 

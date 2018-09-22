@@ -9,8 +9,11 @@ $ ->
     format: 'mm/dd/yyyy'
   return
 $ ->
+  start = new Date
+  start.setHours 0, 0, 0, 0
   $('#event_start_time').fdatepicker
-    format: 'mm-dd-yyyy hh:ii',
+    startDate: start,
+    format: 'mm/dd/yyyy hh:ii',
     minuteStep: 15,
     todayBtn: true,
     pickTime: true

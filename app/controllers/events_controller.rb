@@ -7,19 +7,19 @@ class EventsController  < ApplicationController
     @event = Event.new
     if params[:filter]
       if params[:filter] == 'All'
-        @events  = Event.all.order(updated_at: :desc)
+        @events  = Event.all.order(:start_time)
       else
-        @events  = Event.tagged_with(params[:filter]).order(updated_at: :desc)
+        @events  = Event.tagged_with(params[:filter]).order(:start_time)
       end
     elsif params[:query].present?
       @events    = Event.event_tsearch(params[:query])
     elsif params[:organizer_pid].present?
       @organizer        = User.find_by_pid(params[:organizer_pid])
       if @organizer
-        @events  = Event.where(organizer_id: @organizer.id).order(updated_at: :desc)
+        @events  = Event.where(organizer_id: @organizer.id).order(:start_time)
       end
     else
-      @events    = Event.order(updated_at: :desc).limit(10)
+      @events    = Event.order(:start_time).limit(10)
     end
   end
 
@@ -44,6 +44,9 @@ class EventsController  < ApplicationController
         clone.organizer_id = current_user.id
       end
       clone.save
+      if clone.access_url.present?             # a new room for the clone
+        clone.update_attribute(:access_url, WEBRTC_EVENT_URL + clone.pid)
+      end
       redirect_to events_path(organizer_pid: current_user.pid), notice: 'Your Event was successfully cloned.'
     else
       redirect_back(fallback_location: events_path, alert: 'There was a problem!')
@@ -51,6 +54,7 @@ class EventsController  < ApplicationController
   end
 
   def show
+    @upcoming_events = Event.where('start_time > ?', Time.now).order(:start_time).limit(10)
   end
 
   def update
