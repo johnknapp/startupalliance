@@ -1,5 +1,7 @@
 ActiveAdmin.register Classified do
 
+  menu parent: 'Nucleus'
+
   permit_params :title, :body
 
   controller do

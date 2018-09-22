@@ -1,6 +1,6 @@
 ActiveAdmin.register Page do
 
-  menu parent: 'KB'
+  menu parent: 'Nucleus'
 
   permit_params :title, :content, :state, :author_id, :category_list => []
 

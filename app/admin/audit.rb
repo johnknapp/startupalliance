@@ -1,6 +1,6 @@
 ActiveAdmin.register Audit do
 
-  menu parent: 'KB'
+  menu parent: 'JK only'
 
   index do
     selectable_column

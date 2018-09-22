@@ -70,10 +70,19 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
+        panel 'Recent Events' do
+          ul do
+            Event.last(20).reverse.map do |event|
+              li link_to event.title, events_path(query: event.title)
+            end
+          end
+        end
+      end
+      column do
         panel 'Recent Classified ads' do
           ul do
             Classified.last(20).reverse.map do |classified|
-              li link_to classified.title, classifieds_path
+              li link_to classified.title, classifieds_path(query: classified.title)
             end
           end
         end

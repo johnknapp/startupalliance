@@ -1,5 +1,7 @@
 ActiveAdmin.register Event do
 
+  menu parent: 'Nucleus'
+
   permit_params :title, :description, :start_time, :event_type, :alliance_id, :organizer_id, :state
 
   controller do

@@ -1,5 +1,7 @@
 ActiveAdmin.register Quark do
 
+  menu parent: 'Nucleus'
+
   permit_params :text, :author_id, :state
 
   controller do
