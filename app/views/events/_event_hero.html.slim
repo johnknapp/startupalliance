@@ -26,7 +26,10 @@
       ' Location TBD
   p.little-snug-top Event type: #{event.event_type}
   - if event.start_time.present?
-    p.little-snug-top Event start time: #{event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')}
+    - if current_user and current_user.time_zone.present?
+      p.little-snug-top Event start time: #{event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%m/%d/%Y %H:%M%z')}
+    - else
+      p.little-snug-top Event start time: #{event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')}
   - else
     p.little-snug-top Event start time: Not set!
   p.faint.text-right.little-snug-top
