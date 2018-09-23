@@ -5,16 +5,16 @@
         li= link_to 'How it Works', how_it_works_path
         li= link_to 'Help Center', 'https://support.startupalliance.com'
         li= link_to 'FAQ', faq_path
-        /li= link_to 'Quick start', quick_start_path
         li= link_to 'Community Canvas', community_canvas_path
         li= link_to 'Sponsorship Opportunities', sponsorship_path
         li= link_to 'About', about_path
-        li= link_to 'Admin', admin_root_path if current_user and current_user.admin?
+        li= link_to 'Blog', 'https://blog.startupalliance.com'
       ul.menu.simple.align-center.little-space-bottom
         li= link_to 'Commitment Pledge', commitment_pledge_path
         li= link_to 'Code of Conduct', code_of_conduct_path
         li= link_to 'Privacy Policy', privacy_path
         li= link_to 'Terms of Service', terms_path
+        li= link_to 'Admin', admin_root_path if current_user and current_user.admin?
       ul.menu.simple.align-center.little-space-bottom
         li= mail_to 'hello@startupalliance.com', 'Email us', subject: "Hello!", encode: 'hex'
         li= link_to 'Follow @StartupAlliance', 'https://twitter.com/intent/user?screen_name=startupalliance', target: '_blank'

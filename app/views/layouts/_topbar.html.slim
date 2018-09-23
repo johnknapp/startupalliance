@@ -25,6 +25,7 @@
                 li= link_to 'Company Workspaces', companies_path
                 li= link_to 'Commitment Pledge', commitment_pledge_path
                 li= link_to 'Sponsorship Opportunities', sponsorship_path
+                li= link_to 'Startup Alliance Blog', 'https://blog.startupalliance.com'
 
             li= link_to 'About', about_path
             li.bold= link_to 'Sign-up', features_path
@@ -43,12 +44,11 @@
                 li= link_to 'Company Workspaces', companies_path
                 li= link_to 'Commitment Pledge', commitment_pledge_path
                 li= link_to 'Sponsorship Opportunities', sponsorship_path
+                li= link_to 'Startup Alliance Blog', 'https://blog.startupalliance.com'
             li= link_to 'About', about_path
             li.bold= link_to 'Sign-up', features_path
             li= link_to 'Sign-in', new_user_session_path
-
       - else
-
         .top-bar-left
           - if params[:action] == 'home'
             = link_to (image_tag 'sa_banner_2.svg', width: '230px'), root_path
@@ -70,6 +70,7 @@
                 li= link_to 'Company Workspaces', companies_path
                 li= link_to 'Commitment Pledge', commitment_pledge_path
                 li= link_to 'Sponsorship Opportunities', sponsorship_path
+                li= link_to 'Startup Alliance Blog', 'https://blog.startupalliance.com'
             li= link_to 'About', about_path
             li.bold.primary-text.is-dropdown-submenu-parent
               = link_to '#' do
