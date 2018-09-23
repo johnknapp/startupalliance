@@ -28,11 +28,6 @@
           .callout.white
             .row
               .medium-3.columns
-                p.bold.little-snug-top Event Organizer:
-              .medium-9.columns
-                p.little-snug-top=link_to "#{@event.organizer.name} (#{render 'partials/user_si_ti_display', user: @event.organizer})", vanity_path(@event.organizer.username)
-
-              .medium-3.columns
                 p.bold.little-snug-top Location:
               .medium-9.columns
                 p.little-snug-top
@@ -60,14 +55,31 @@
                   p.little-snug-top Not set!
             .row
               .medium-3.columns
-                p.bold.snug-bottom.little-snug-top Event type:
+                p.bold.little-snug-top Event type:
               .medium-9.columns
-                p.snug-bottom.little-snug-top
+                p.little-snug-top
                   span.has-tip.normal data-tooltip=true aria-haspopup=true data-click-open='false' title=EVENT_TYPE_TIP
                     = @event.event_type
+            .row
+              .medium-3.columns
+                p.bold.little-snug-top.snug-bottom Event Organizer:
+              .medium-9.columns
+                p.little-snug-top.snug-bottom=link_to "#{@event.organizer.name} (#{render 'partials/user_si_ti_display', user: @event.organizer})", vanity_path(@event.organizer.username)
+                /- if @event.organizer.time_zone.present?
+                  p.faint.snug-top
+                    = ActiveSupport::TimeZone.new(@event.organizer.time_zone)
+                /- if @event.organizer.work_role.present?
+                  p.faint.snug-top
+                    ' Primary Work Role:
+                    - if current_user and current_user == @event.organizer and @event.organizer.work_role == 'Unset'
+                      ' #{link_to '(' + @event.organizer.work_role + '!)', edit_user_registration_path(current_user)}
+                    - else
+                      ' #{@event.organizer.work_role}
 
-          p.faint.text-right.little-snug-top
-            ' Organized by #{link_to @event.organizer.name, vanity_path(@event.organizer.username)}
+      .float-right
+        p.snug-top.faint.text-right
+        p.snug-top.faint
+
 
       .medium-4.columns
         h4.bold.primary Upcoming Live Events:
