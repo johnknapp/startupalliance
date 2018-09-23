@@ -74,8 +74,12 @@
                       p.text-center= link_to 'Show upcoming events or search again', events_path
 
       .tabs-panel#calendar
-        /= week_calendar events: @events, number_of_weeks: 2 do |date, events|
-        = month_calendar events: @events do |date, events|
-          = date.day
-          - events.each do |event|
-            p.text-center.little-snug-bottom= link_to event.title, event_path(event)
+        .show-for-large
+          /= week_calendar events: @events, number_of_weeks: 2 do |date, events|
+          = month_calendar events: @events do |date, events|
+            = date.day
+            - events.each do |event|
+              p.text-center.little-snug-bottom= link_to event.title, event_path(event)
+        .hide-for-large
+          p.snug-top &nbsp;
+          p.bold.text-center Calendar view only available on large displays.
