@@ -1,6 +1,6 @@
 class EventsController  < ApplicationController
   include DateConverter
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_event, only: [:create, :clone, :show, :update, :destroy]
 
   def index

@@ -25,24 +25,47 @@
         .callout.primary
           h4.bold.primary= @event.title
           p.little-snug-top= @event.description
-          p.little-snug-top
-            - if @event.alliance_id.present? and @event.access_url.blank?
-              ' Private Alliance: #{link_to @event.alliance.name, alliance_path(@event.alliance)}
-            - elsif @event.alliance_id.blank? and @event.access_url.present?
-              ' All Members Area: #{link_to 'All Members Room', @event.access_url, target: '_blank'}
-            - else
-              ' Location TBD
-          p.little-snug-top Event type: #{@event.event_type}
-          - if @event.start_time.present?
-            - if @event.start_time > Time.now
-              - if current_user and current_user.time_zone.present?
-                p.little-snug-top Event start time: #{@event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%m/%d/%Y %H:%M%z')}
-              - else
-                p.little-snug-top Event start time: #{@event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')}
-            - else
-              p.little-snug-top.faint This Live Event is over
-          - else
-            p.little-snug-top.faint Event start time: Not set!
+          .callout.white
+            .row
+              .medium-3.columns
+                p.bold.little-snug-top Event Organizer:
+              .medium-9.columns
+                p.little-snug-top=link_to "#{@event.organizer.name} (#{render 'partials/user_si_ti_display', user: @event.organizer})", vanity_path(@event.organizer.username)
+
+              .medium-3.columns
+                p.bold.little-snug-top Location:
+              .medium-9.columns
+                p.little-snug-top
+                  - if @event.alliance_id.present? and @event.access_url.blank?
+                    ' Private Alliance:
+                    br
+                    ' #{link_to @event.alliance.name, alliance_path(@event.alliance)}
+                  - elsif @event.alliance_id.blank? and @event.access_url.present?
+                    ' #{link_to 'All Members Room', @event.access_url, target: '_blank'}
+                  - else
+                    ' Location TBD
+            .row
+              .medium-3.columns
+                p.bold.little-snug-top Start time:
+              .medium-9.columns
+                - if @event.start_time.present?
+                  - if @event.start_time > Time.now
+                    - if current_user and current_user.time_zone.present?
+                      p.little-snug-top= @event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%m/%d/%Y %H:%M%z')
+                    - else
+                      p.little-snug-top= @event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+                  - else
+                    p.little-snug-top.faint This Live Event is over
+                - else
+                  p.little-snug-top Not set!
+            .row
+              .medium-3.columns
+                p.bold.snug-bottom.little-snug-top Event type:
+              .medium-9.columns
+                p.snug-bottom.little-snug-top
+                  span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=EVENT_TYPE_TIP
+                    = @event.event_type
+
           p.faint.text-right.little-snug-top
             ' Organized by #{link_to @event.organizer.name, vanity_path(@event.organizer.username)}
 

@@ -16,8 +16,27 @@
         = f.hidden_field :organizer_id,     value: current_user.id  if current_user
         = f.input :title, autofocus: true, required: true, label: 'Event name', placeholder: '140 character maximum'
         .little-snug-top= f.input :description, required: true, label: 'Description', as: :text, placeholder: 'Describe your Event'
-        .little-snug-top= f.input :event_type, collection: Event.event_types.keys
-        = f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', input_html: { autocomplete: 'off' }, as: :string
+        .row
+          .small-3.columns
+            .little-snug-top= f.input :event_type, as: :radio_buttons, collection: Event.event_types.keys
+          .small-9.columns
+            p.snug-top.space-bottom &nbsp;
+            p.snug-top.faint
+              ' Choose
+              span.bold
+                ' AMA
+              ' for Office Hours.
+              p.little-snug-top.faint
+                ' Choose
+                span.bold
+                  ' Hangout
+                ' for group discussion.
+              p.little-snug-top.faint
+                ' Choose
+                span.bold
+                  ' Lecture
+                ' to deliver a presentation.
+        .little-space-top= f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', input_html: { autocomplete: 'off' }, as: :string
         .little-snug-top= f.input :alliance_id, label: 'Event location', collection: locations
         = f.button :submit, 'Create your Live Event', class: 'button expanded accent'
       p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.

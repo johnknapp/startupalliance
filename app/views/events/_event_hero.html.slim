@@ -25,7 +25,6 @@
 
   .callout.white
     .row
-    .row
       .medium-3.columns
         p.bold.little-snug-top Event Organizer:
       .medium-9.columns
@@ -61,4 +60,6 @@
       .medium-3.columns
         p.bold.snug-bottom.little-snug-top Event type:
       .medium-9.columns
-        p.snug-bottom.little-snug-top= event.event_type
+        p.snug-bottom.little-snug-top
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=EVENT_TYPE_TIP
+            = event.event_type

@@ -48,6 +48,7 @@ SUBSCRIPTION_STATES         = %w[trialing active past_due canceled unpaid error]
 WEBRTC_PRIVATE_URL          = 'https://meet.jit.si/sa-pvo-'
 WEBRTC_EVENT_URL            = 'https://meet.jit.si/sa-event-'
 
+EVENT_TYPE_TIP              = 'Three event types: Lectures provide helpful information. AMAs let participants get their questions answered by an expert. Hangouts are for participant interaction.'
 TOP_QUARK_TIP               = 'This is a Top Quark! Our Top Quark Award honors the best pearls of startup wisdom contributed by our members. Top Quarks and the author may be promoted on social channels.'
 KB_SUGGESTION_TIP           = 'Suggested Knowledge Base Pages are marked with a Bell icon as a signal to potential authors they have a writing opportunity.'
 ACCOUNT_ACTIVATION_TIP      = 'When you signed up, we sent you an account activation email containing a link to choose a username and password. Activate your account for full privileges!'
