@@ -19,7 +19,7 @@ class EventsController  < ApplicationController
         @events  = Event.where(organizer_id: @organizer.id).order(:start_time)
       end
     else
-      @events    = Event.order(:start_time).limit(10)
+      @events    = Event.where('start_time > ?', Time.now).order(:start_time).limit(10)
     end
   end
 

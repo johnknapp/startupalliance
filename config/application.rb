@@ -34,5 +34,7 @@ module StartupAlliance
       g.template_engine :slim
     end
 
+    config.beginning_of_week = :sunday
+
   end
 end
