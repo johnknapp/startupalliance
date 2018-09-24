@@ -36,7 +36,8 @@ a data-open="edit-event-#{event.pid}"
               span.bold
                 ' Lecture
               ' to deliver a presentation.
-        /p.faint.text-center Email #{mail_to 'support@startupalliance.com', 'support@startupalliance.com', subject: "Change my Event location (reference: #{event.pid})", encode: 'hex'} to change your Event Location
+        p.faint.text-center Email #{mail_to 'support@startupalliance.com', 'support@startupalliance.com', subject: "Change my Event location (reference: #{event.pid})", encode: 'hex'} to change your Event Location
+        p.faint.text-center Email #{mail_to 'support@startupalliance.com', 'support@startupalliance.com', subject: "Change my Event start_time (reference: #{event.pid})", encode: 'hex'} to change your Event Start time
         /= f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', as: :string, input_html: { value: f.object.start_time.try(:strftime, '%m/%d/%Y %H:%M'), autocomplete: 'off' }
         = f.button :submit, 'Update your Live Event', class: 'button expanded accent'
       p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.
