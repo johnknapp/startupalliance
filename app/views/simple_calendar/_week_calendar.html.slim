@@ -1,25 +1,38 @@
 .simple-calendar
-  .calendar-heading
-    = link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view
+  .calendar-heading.text-center
+    = link_to calendar.url_for_previous_view + '#week' do
+      i.fa.fa-lg.fa-caret-left
+      i.fa.fa-lg.fa-caret-left
+    | &nbsp;
     | &nbsp;
     | &nbsp;
     | &nbsp;
     - if calendar.number_of_weeks == 1
-      span.calendar-title
+      span.calendar-title.bold.scale-to-120
         | Week
         | &nbsp;
         = calendar.week_number
+        | &nbsp;
+        ' of
+        = start_date.year
     - else
-      span.calendar-title
+      span.calendar-title.bold.scale-to-120
         | Weeks
         | &nbsp;
         = calendar.week_number
-        |  -
+        |  &
+        | &nbsp;
         = calendar.end_week
+        | &nbsp;
+        ' of
+        = start_date.year
     | &nbsp;
     | &nbsp;
     | &nbsp;
-    = link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view
+    | &nbsp;
+    = link_to calendar.url_for_next_view + '#week' do
+      i.fa.fa-lg.fa-caret-right
+      i.fa.fa-lg.fa-caret-right
   table.hover.shadow
     thead
       tr

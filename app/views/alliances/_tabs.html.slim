@@ -14,6 +14,7 @@
   p.snug-bottom You are a member of this Private Alliance
 - else
   p.snug-bottom #{link_to 'Sign-up', features_path(anchor: 'alliances')} or #{link_to 'sign-in', new_user_session_path} to join this Private Alliance. If you’re an Associate, you must upgrade to Alliance Membership.
+
 ul.tabs.accent-background.shadow#tool-tabs data-tabs=true data-deep-link="true" data-update-history="true"
   li.tabs-title.is-active
     a.bold href='#overview' aria-selected='true'
@@ -33,10 +34,10 @@ ul.tabs.accent-background.shadow#tool-tabs data-tabs=true data-deep-link="true" 
           i.fa.fa-comments
   li.tabs-title
     a.bold href='#office'
-      ' Virtual Office
+      ' Live Events & Virtual Office
   li.tabs-title
     a.bold href='#best-practices'
-      ' Private Alliance Best Practices
+      ' Best Practices
 
 .tabs-content.shadow data-tabs-content='tool-tabs'
   .tabs-panel.is-active#overview

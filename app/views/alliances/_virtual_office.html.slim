@@ -8,11 +8,12 @@
         ' Collaborate in real-time or just hang out in your virtual office. (Any member can use this any time.)
 .row
   .medium-10.medium-offset-1.columns
-    h5.bold.primary-text
+    p.text-center.little-space-top.space-bottom= WEBRTC_TIP
+    /h5.bold.primary-text
       span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
         ' Real-time Private Virtual Office:
     - if current_user and @alliance.webmeet_code.present? and @alliance.members.include? current_user
-      p.text-center.snug-bottom= link_to 'Access your Private Virtual Office', alliance_pvo_url, target: '_blank', class: 'button shadow-4dp'
+      p.text-center.snug-bottom= link_to 'Access your Private Meeting Area', alliance_pvo_url, target: '_blank', class: 'button shadow-4dp'
     - else
       p.space-top.text-center
-        em Virtual Office only available to the Private Alliance Members.
+        em Virtual Office only available to the Members of this Private Alliance.
