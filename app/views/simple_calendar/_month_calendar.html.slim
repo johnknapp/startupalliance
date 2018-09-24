@@ -1,10 +1,8 @@
 .simple-calendar
   .calendar-heading.text-center
     = link_to calendar.url_for_previous_view do
-      i.fa.fa-arrow-left
-      | &nbsp;
-      | &nbsp;
-      ' Last month
+      i.fa.fa-lg.fa-caret-left
+      i.fa.fa-lg.fa-caret-left
     | &nbsp;
     | &nbsp;
     | &nbsp;
@@ -18,10 +16,8 @@
     | &nbsp;
     | &nbsp;
     = link_to calendar.url_for_next_view do
-      ' Next month
-      | &nbsp;
-      | &nbsp;
-      i.fa.fa-arrow-right
+      i.fa.fa-lg.fa-caret-right
+      i.fa.fa-lg.fa-caret-right
 
   table.hover.shadow-4dp
     thead
