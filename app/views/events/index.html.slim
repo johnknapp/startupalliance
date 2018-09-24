@@ -21,6 +21,27 @@
     .float-left
       = render 'partials/nucleus_menu'
     p.snug-top.space-bottom.text-right Live Events organized by Alliance and Company Members.
+    .row
+      .small-12.columns
+        - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
+          .float-right
+            ul.menu.little-space-top
+              li
+                a data-open='create-event'
+                  i.fa.fa-plus
+                  | &nbsp;
+                  ' Organizer a Live Event
+              = render 'events/add_modal'
+        ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
+          li.primary-text
+            h5.bold
+              = link_to '#' do
+                ' Filter Live Events
+                | &nbsp;
+                i.fa.fa-lg.fa-caret-down
+            ul.menu.normal.shadow-8dp data-dropdown-menu=true
+              li.bold= link_to "Soonest events", events_path
+              li.bold= link_to "Organized by me (#{number_with_delimiter(Event.where(organizer_id: current_user.id).count)})", events_path(organizer_pid: current_user.pid) if current_user
 
     ul.tabs.accent-background#event-tabs data-tabs=true data-deep-link="true" data-update-history="true"
       li.tabs-title.is-active
@@ -33,7 +54,7 @@
       .tabs-panel.is-active#list
         .row
           .medium-5.columns.medium-push-7
-            h4.little-space-top &nbsp;
+            p.snug-top &nbsp;
             = render 'partials/search_form_events'
             p.indented-1.bold.text-center
               ' Nucleus Live Events are open to all members.
@@ -42,41 +63,19 @@
               ' Events held in an All Members Room are open to every SA Member.
             p.faint.text-center.little-snug-top Only Alliance and Company members can organize Live Events.
           .medium-7.columns.medium-pull-5
-            .row
-              .small-12.columns
-                - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }
-                  .float-right
-                    ul.menu.little-space-top
-                      li
-                        a data-open='create-event'
-                          i.fa.fa-plus
-                          | &nbsp;
-                          ' Organizer a Live Event
-                      = render 'events/add_modal'
-                ul.little-space-top.dropdown.menu.bold data-dropdown-menu=true
-                  li.primary-text
-                    h5.bold
-                      = link_to '#' do
-                        ' Filter Live Events
-                        | &nbsp;
-                        i.fa.fa-lg.fa-caret-down
-                    ul.menu.normal.shadow-8dp data-dropdown-menu=true
-                      li.bold= link_to "Soonest events", events_path
-                      li.bold= link_to "Organized by me (#{number_with_delimiter(Event.where(organizer_id: current_user.id).count)})", events_path(organizer_pid: current_user.pid) if current_user
-              .row
-                .small-12.columns
-                  - if @events.present?
-                    - @events.each do |event|
-                      = render 'events/event_hero', event: event
-                  - else
-                    .callout.accent.shadow.space-bottom
-                      p.bold.text-center No Live Events match your query!
-                      p.text-center= link_to 'Show upcoming events or search again', events_path
+            p.snug-top &nbsp;
+            - if @events.present?
+              - @events.each do |event|
+                = render 'events/event_hero', event: event
+            - else
+              .callout.accent.shadow.space-bottom
+                p.bold.text-center No Live Events match your query!
+                p.text-center= link_to 'Show upcoming events or search again', events_path
 
       .tabs-panel#calendar
         .show-for-large
           /= week_calendar events: @events, number_of_weeks: 2 do |date, events|
-          = month_calendar events: @events do |date, events|
+          .little-space-top= month_calendar events: @events do |date, events|
             = date.day
             - events.each do |event|
               p.text-center.little-snug-bottom= link_to event.title, event_path(event)
