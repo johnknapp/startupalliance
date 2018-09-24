@@ -14,7 +14,7 @@
           - locations << ['Private Alliance: ' + alliance.name, alliance.id]
         - locations << ['All Members Area', 0]
         = f.hidden_field :organizer_id,     value: current_user.id  if current_user
-        = f.input :title, autofocus: true, required: true, label: 'Event name', placeholder: '140 character maximum'
+        = f.input :title, autofocus: true, required: true, label: 'Event name', placeholder: 'Keep the title brief'
         .little-snug-top= f.input :description, required: true, label: 'Description', as: :text, placeholder: 'Describe your Event'
         .row
           .small-3.columns
@@ -36,7 +36,9 @@
                 span.bold
                   ' Lecture
                 ' to deliver a presentation.
-        .little-space-top= f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', input_html: { autocomplete: 'off' }, as: :string
-        .little-snug-top= f.input :alliance_id, label: 'Event location', collection: locations
+        .little-space-top
+          = f.input :alliance_id, label: 'Event location', collection: locations
+        .little-snug-top
+          = f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', input_html: { autocomplete: 'off' }, as: :string
         = f.button :submit, 'Create your Live Event', class: 'button expanded accent'
       p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.

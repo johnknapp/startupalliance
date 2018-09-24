@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method [:current_or_guest_user]
   before_action :configure_permitted_parameters,  if:     :devise_controller?
   before_action :store_current_location,          unless: :devise_controller?
+  before_action :set_time_zone,                   if: :user_signed_in?
 
   impersonates :user
 
@@ -135,6 +136,14 @@ class ApplicationController < ActionController::Base
       u.skip_confirmation_notification!
       u.save!(:validate => false)
       u
+    end
+
+    def set_time_zone
+      if current_user.time_zone.present?
+        Time.zone = current_user.time_zone
+      else
+        Time.zone = 'UTC'
+      end
     end
 
 end

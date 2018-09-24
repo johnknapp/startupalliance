@@ -19,7 +19,7 @@ class EventsController  < ApplicationController
         @events  = Event.where(organizer_id: @organizer.id).order(:start_time)
       end
     else
-      @events    = Event.where('start_time > ?', Time.now).order(:start_time).limit(10)
+      @events    = Event.where('start_time > ?', Time.zone.now).order(:start_time).limit(10)
     end
   end
 
@@ -54,7 +54,7 @@ class EventsController  < ApplicationController
   end
 
   def show
-    @upcoming_events = Event.where('start_time > ?', Time.now).order(:start_time).limit(10)
+    @upcoming_events = Event.where('start_time > ?', Time.zone.now).order(:start_time).limit(10)
   end
 
   def update

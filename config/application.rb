@@ -26,7 +26,8 @@ module StartupAlliance
 
     config.middleware.use Rack::Attack
 
-    config.time_zone = 'Pacific Time (US & Canada)'
+    # config.time_zone = 'Pacific Time (US & Canada)'
+    config.time_zone = 'UTC'
 
     config.sass.preferred_syntax = :sass
 

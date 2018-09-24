@@ -21,9 +21,9 @@ class Okr < ApplicationRecord
       Red:      2
   }
 
-  scope :upcoming,  -> { where('okr_start >= ?',Time.now).or(Okr.where(okr_start: nil)) }
-  scope :active,    -> { where('okr_start <= ?',Time.now).where('okr_finish >= ?',Time.now) }
-  scope :concluded, -> { where('okr_finish <= ?',Time.now) }
+  scope :upcoming,  -> { where('okr_start >= ?',Time.zone.now).or(Okr.where(okr_start: nil)) }
+  scope :active,    -> { where('okr_start <= ?',Time.zone.now).where('okr_finish >= ?',Time.zone.now) }
+  scope :concluded, -> { where('okr_finish <= ?',Time.zone.now) }
 
   def date_unset?
     self.okr_start.nil?

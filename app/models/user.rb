@@ -109,7 +109,7 @@ class User < ApplicationRecord
       self.update(
         plan_id:              plan.id,
         subscription_state:   sub.status,
-        subscribed_at:        Time.now
+        subscribed_at:        Time.zone.now
       )
     end
   end
