@@ -31,6 +31,7 @@ class AlliancesController < ApplicationController
   # GET /alliances/1.json
   def show
     @discussion = Discussion.new
+    @upcoming_events = Event.where('start_time > ?', Time.zone.now).where(alliance_id: @alliance.id).order(:start_time).limit(10)
   end
 
   # GET /alliances/new

@@ -7,13 +7,36 @@
       p.faint.pad-right
         ' Collaborate in real-time or just hang out in your virtual office. (Any member can use this any time.)
 .row
-  .medium-10.medium-offset-1.columns
-    p.text-center.little-space-top.space-bottom= WEBRTC_TIP
-    /h5.bold.primary-text
-      span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
-        ' Real-time Private Virtual Office:
-    - if current_user and @alliance.webmeet_code.present? and @alliance.members.include? current_user
-      p.text-center.snug-bottom= link_to 'Access your Private Meeting Area', alliance_pvo_url, target: '_blank', class: 'button shadow-4dp'
-    - else
-      p.space-top.text-center
-        em Virtual Office only available to the Members of this Private Alliance.
+  .medium-8.medium-offset-2.columns
+    .row
+      .medium-6.columns
+        p.snug-top &nbsp;
+        .callout.small.shadow
+          h5.bold.primary Upcoming Live Events:
+          - @upcoming_events.each do |event|
+            p.indented-1.bold= link_to event.title, event_path(event)
+            p.indented-2.faint.snug-top
+              = event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+            p.indented-2.faint.snug-top
+              ' Organized by
+              = link_to "#{event.organizer.name}, (#{render 'partials/user_si_ti_display', user: event.organizer})", vanity_path(event.organizer.username)
+              /- if current_user and @alliance.members.include? current_user
+                | &nbsp;
+                | &nbsp;
+                = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: event.organizer.pid), method: :post do
+                  i.fa.fa-comments-o
+      .medium-6.columns
+        p.snug-top &nbsp;
+        /.callout.small.shadow
+          p.little-space-top.space-bottom= WEBRTC_TIP
+          /h5.bold.primary-text
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
+              ' Real-time Private Virtual Office:
+        - if current_user and @alliance.webmeet_code.present? and @alliance.members.include? current_user
+          p.text-center.snug-bottom= link_to 'Access your Private Meeting Area', alliance_pvo_url, target: '_blank', class: 'button expanded shadow-4dp'
+        - else
+          p.space-top.text-center
+            em Virtual Office only available to the Members of this Private Alliance.
+
+
+

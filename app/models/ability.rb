@@ -41,6 +41,7 @@ class Ability
         can :search_results,        Discussion
         can :mark_posts_read,       Post
         can :mark_post_read,        Post
+        can :remove_alliance_member,  Alliance # TODO only if they're removing themself
         # seems skills and traits can be set and unset on user
 
       else # they have no role which means they are non-auth
