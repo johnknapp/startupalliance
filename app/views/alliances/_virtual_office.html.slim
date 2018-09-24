@@ -12,7 +12,7 @@
       .medium-6.columns
         p.snug-top &nbsp;
         .callout.small.shadow
-          h5.bold.primary Upcoming Live Events:
+          h5.bold.primary Events happening here:
           - @upcoming_events.each do |event|
             p.indented-1.bold= link_to event.title, event_path(event)
             p.indented-2.faint.snug-top
