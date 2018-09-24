@@ -21,4 +21,16 @@ ActiveAdmin.register Event do
     actions
   end
 
+  form do |f|
+    f.inputs 'Edit Page' do
+      f.input :state, collection: EVENT_STATES
+      f.input :organizer_id, label: 'Organizer ID'
+      f.input :title
+      f.input :description
+      f.input :event_type
+      f.input :start_time
+    end
+    f.actions
+  end
+
 end
