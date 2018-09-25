@@ -60,6 +60,9 @@ class StaticController < ApplicationController
   def sponsorship
   end
 
+  def foundation
+  end
+
   def privacy
   end
 

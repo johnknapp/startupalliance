@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'thanks_join',                to: 'static#thanks_join',          constraints: { format: 'html' }
   get 'thanks_activate',            to: 'static#thanks_activate',      constraints: { format: 'html' }
   get 'sponsorship',                to: 'static#sponsorship',          constraints: { format: 'html' }
+  get 'foundation',                 to: 'static#foundation',           constraints: { format: 'html' }
   get 'privacy',                    to: 'static#privacy',              constraints: { format: 'html' }
   get 'terms',                      to: 'static#terms',                constraints: { format: 'html' }
   get 'quick_start',                to: 'static#quick_start',          constraints: { format: 'html' }
