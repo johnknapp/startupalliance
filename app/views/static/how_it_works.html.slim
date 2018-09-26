@@ -66,15 +66,22 @@
         /p.little-snug-top Learn more about membership plans on our #{link_to 'Features & Pricing page', features_path}.
 
         h5.bold.space-top.little-snug-bottom
-          ' Member profiles are unique, make yours awesome
+          ' Your
+          | TrueInsight Profile
+
+          ' &trade; is unlike any other, make yours awesome!
         p
           ' In addition to adding your social profiles and mission statement, you should list all your startup skills and personal traits.
           ' This helps members make the right connections.
-          /' This way, we can all connect with the people we need and have confidence we’re making the right connections.
-          /' (Your skills and traits are used to calculate your Skill and Trait indices which appear throughout the site.)
+        p.little-snug-top
+          span.bold
+            ' Pro tip:
+          ' Your TrueInsight Profile is publicly accessible and sharing it throughout your social media is a great way to help people get to know you.
+          ' By default, your exact Skill and Trait ratings are only visible to other members.
+          ' You have the option to make them visible to non-members. (On your account settings page.)
+          '
         .little-snug-top= image_tag 'personal_traits_screely.png'
         p.faint.text-center The more skills and traits you list, the more you’ll stand out.
-          '
 
     .row
       .medium-3.columns
@@ -90,12 +97,26 @@
             ' ask your questions and share what you know!
           ' This community is filled with committed entrepreneurs willing to share what they know and
           ' help you meet your challenges.
+        p.little-snug-top
+          span.bold
+            ' A word about your privacy:
+          ' Posts you make within a Private Alliance or Company Workspace are only seen within those small groups.
+          ' When you post in the Nucleus Discussions, they are hidden from non-members (and the Google Crawler)
+          ' but they can be seen by
+          em
+            ' every
+          ' Startup Alliance Member.
+          em
+            ' We care about your privacy and want you to be mindful about who sees your posts.
+          '
         h5.bold.space-top.little-snug-bottom
           ' Check out the knowledge base and pick up hard won startup wisdom
         p
           ' Just like Wikipedia, our #{link_to 'knowledge base', pages_path} contains articles written
           ' and constantly improved by our community members.
           ' Search and browse and if you don’t find what you’re looking for, suggest an article for someone else to write.
+          span.bold
+            ' Better yet, write it yourself and raise your profile in the community!
         .little-snug-top= image_tag 'kb_article_screely.png'
         p.faint.text-center Members can vote on and collaboratively improve articles and browse the entire edit history.
           '
@@ -132,7 +153,8 @@
           '
         ul.snug-top
           li Search the #{link_to 'discussion forums', discussions_path} and #{link_to 'knowledge base', pages_path}.
-          li If you find a relevant topic thread, make a post.
+          li If you find a relevant topic thread, make a post to ask your question.
+          li Bring your questions to a Live Event and ask the Organizer.
           li If you find a good post, message the author and discuss your challenge specifically.
           li Message #{link_to 'Startup Alliance founder, John Knapp', vanity_path('john')}, he will have a suggestion.
 
@@ -144,9 +166,12 @@
           ' Try authoring a #{link_to 'knowledge base', pages_path} article and answering questions
           ' in the #{link_to 'discussion forums', discussions_path}.
           ' Author a #{link_to 'Nucleus Quark!', quarks_path} and compete for a Top Quark Award.
-          ' Arrange a time to connect directly with another member in the Global Virtual Office.
+          ' Arrange a time to connect directly with a few other members in the Global Virtual Office.
+          ' Organize a #{link_to 'Live Event', events_path} and invite others.
           ' If you’re an advisor, investor or mentor, you can join a company team and use all the tools in their Collaboration Workspace.
-          ' Or better yet, form lasting bonds of trust with other entrepreneurs by joining #{link_to 'a Private Alliance', alliances_path}.
+          span.bold
+            ' Or best of all,
+          ' form lasting bonds of trust with other entrepreneurs by joining #{link_to 'a Private Alliance', alliances_path}.
     .row
       .medium-3.columns
         h4.bold.pad-right.primary-text.space-top
@@ -172,11 +197,12 @@
         p
           ' Form lasting bonds with a small group of entrepreneurs you can trust.
           ' Collaborate in private to ask questions, get answers, gain deeper insights and broader perspectives.
-          ' You can join established Private Alliances and we encourage you to create your own and invite your network.
+          ' You can join established Private Alliances plus we encourage you to create your own and invite the entrepreneurs you respect most.
           ' Alliance Members can participate in up to 5 Private Alliances concurrently and Alliance and Company members can join and leave at any time.
         p.little-snug-top
-          ' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it from other members.
-          ' The creator can also limit membership to only those they personally invite.
+          ' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it
+          ' from other members (and the Google Crawler.)
+          ' The Private Alliance creator can also limit membership to only those they personally invite.
         .little-snug-top= image_tag 'fast_track_pa_screely.png'
         p.faint.text-center All new Alliance and Company members get started in the New Member Private Alliance
         h5.bold.space-top.little-snug-bottom
@@ -184,7 +210,7 @@
         p
           ' Inspired by
           ' #{link_to 'Mastermind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
-          ' a successful #{link_to 'Private Alliances', alliances_path} have similar best practices.
+          ' successful #{link_to 'Private Alliances', alliances_path} usually have similar best practices.
           ' Each group should work out their own guidelines but here are our recommendations:
         = render 'partials/pa_best_practices'
 
@@ -219,11 +245,18 @@
           li
             span.bold
               ' FActors and STrategies —
-            ' Document the success and risk FActors for your business and keep them in front of the team to inform their actions, keep them aware of the related STrategies and help them avoid costly mis-steps.
+            ' Document the success and risk FActors for your business and keep them in front of the team to inform their actions, keep them aware of the related STrategies which goes a long way to help them avoid costly mis-steps.
           li
             span.bold
               ' Objectives and Key Results (OKR) —
-            ' OKRs are a technique companies use to set and communicate primary Objectives and more importantly, achieve them by focusing on the accomplishment of measurable Key Results.
+            ' OKRs are a technique companies use to set and communicate primary Objectives within the team and, more
+            ' importantly, achieve them by focusing on the accomplishment of measurable Key Results.
+            ul
+              li Any team member can create an OKR and assigns it to ny team member.
+              li Each OKR has a set duration. (We recommend 3 months.)
+              li Each OKR has a status set by the owner. (Green, Yellow, Red.)
+              li When finished, the OKR owner scores each Key Result. (The overall score is an average of those.)
+              li The OKR owner writes a Postmortem so the entire team learns and improves future performance.
           li
             span.bold
               ' Private discussion forums —
