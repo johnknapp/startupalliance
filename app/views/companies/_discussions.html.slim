@@ -14,6 +14,14 @@
           i.fa.fa-lg.fa-info-circle
         = render 'partials/quick_ref_disco'
       h5.bold.space-top &nbsp
+      .callout.small.alert
+        p
+          span.bold
+            ' Note:
+          ' Posts here are visible only to
+          em
+            | the team members of this Company Workspace
+          ' . Nobody else can read your post.
       - if @company.discussions.present?
         - if discussable_topics(@company).present?
           .callout.small
