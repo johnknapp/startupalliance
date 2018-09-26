@@ -26,8 +26,12 @@
         li.indented-1= okr.key_result_1
         li.indented-1= okr.key_result_2
         li.indented-1= okr.key_result_3
-      - if okr.postmortem.present?
-        p.scale-to-90= okr.postmortem
+      .callout.small
+        p.bold Postmortem:
+        - if okr.postmortem.present?
+          p.snug-top= okr.postmortem
+        - else
+          p.snug-top None!
   .row
     .small-4.columns
       p.faint.snug-bottom
