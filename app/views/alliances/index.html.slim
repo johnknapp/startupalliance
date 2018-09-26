@@ -25,6 +25,15 @@
   .medium-5.columns.medium-push-7
     h5.space-top &nbsp;
     = render 'partials/search_form_alliances'
+    .callout.small.alert
+      p
+        span.bold
+          ' Note:
+        ' Posts within a Private Alliance are
+        em
+          | only visible to the members of that Private Alliance
+        ' . Nobody outside of that PA can read your post.
+        ' We care about your privacy.
     - upcoming = Alliance.where(state: 'Upcoming').where(is_unlisted: false).order(created_at: :desc).all
     - if upcoming.present?
       h5.bold.little-space-top Upcoming Private Alliances:

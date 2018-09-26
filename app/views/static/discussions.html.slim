@@ -33,6 +33,16 @@
     h5.space-top &nbsp;
     = render 'partials/search_form_disco'
 
+    .callout.small.alert
+      p
+        span.bold
+          ' Note:
+        ' Posts here are visible to
+        em
+          | all authenticated members
+        ' . If your topic is confidential, discuss it within a #{link_to 'Private Alliance', alliances_path}
+        ' with a limited audience you trust.
+
     - if nucleus_topics.present?
       .callout.small
         p.bold Recently active Topics:
