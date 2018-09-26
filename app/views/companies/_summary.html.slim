@@ -40,15 +40,15 @@
     p.little-snug-top= ISO3166::Country(@company.country_code).try(:name)
   p.little-snug-top Country:
 
-.float-right
-  p.little-snug-top= link_to @company.creator.name, vanity_path(@company.creator.username)
-p.little-snug-top Listed by:
+/.float-right
+/  p.little-snug-top= link_to @company.creator.name, vanity_path(@company.creator.username)
+/p.little-snug-top Listed by:
 
-.float-right
-  p.little-snug-top= @company.created_at.strftime('%B %e, %Y')
-p.little-snug-top Listed on:
+/.float-right
+/  p.little-snug-top= @company.created_at.strftime('%B %e, %Y')
+/p.little-snug-top Listed on:
 
-.float-right
-  p.little-snug-top.snug-bottom= @company.updated_at.strftime('%B %e, %Y')
-p.little-snug-top.snug-bottom Last update:
+/.float-right
+/  p.little-snug-top.snug-bottom= @company.updated_at.strftime('%B %e, %Y')
+/p.little-snug-top.snug-bottom Last update:
 
