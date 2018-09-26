@@ -4,7 +4,7 @@
       button data-close=true aria-label='Close' type='button' class='close-button'
         span aria-hidden=true
           ' &times;
-      p.faint.pad-right
+      p.pad-right
         ' Make sure the right people can learn about you and connect. (This private message only seen by the profile owner, you! :-)
 .row
   .medium-12.columns
@@ -43,72 +43,72 @@
       - elsif current_user and @user == current_user and current_user.confirmed?
         p.text-center= link_to 'Add your personal mission statement!', edit_user_registration_path
       - else
-        p.faint #{@user.name} has not written their personal mission
+        p #{@user.name} has not written their personal mission
 
     h5.bold.little-space-top Member summary:
     - if @user.work_role
       .float-right
-        p.little-snug-top.faint.text-right
+        p.little-snug-top.text-right
           - if current_user and current_user == @user and @user.work_role == 'Unset'
             ' #{link_to '(' + @user.work_role + '!)', edit_user_registration_path(current_user)}
           - else
             ' #{@user.work_role}
-      p.little-snug-top.faint Primary Work Role:
+      p.little-snug-top Primary Work Role:
     /.float-right
-      p.faint.text-right.snug-top= @user.skill_index
-    /p.faint.snug-top Skill index / Trait index:
+      p.text-right.snug-top= @user.skill_index
+    /p.snug-top Skill index / Trait index:
     .float-right
-      p.faint.text-right.snug-top= render 'partials/user_si_ti_display', user: @user
-    p.faint.snug-top Skill index / Trait index:
+      p.text-right.snug-top= render 'partials/user_si_ti_display', user: @user
+    p.snug-top Skill index / Trait index:
     /- if @user.username
       .float-right
-        p.faint.text-right.snug-top= @user.username
-      p.faint.snug-top Username:
+        p.text-right.snug-top= @user.username
+      p.snug-top Username:
     /- if @user.companies.present?
       .float-right
-        p.faint.text-right.snug-top= @user.okrs.count
-      p.faint.snug-top OKR ownership:
+        p.text-right.snug-top= @user.okrs.count
+      p.snug-top OKR ownership:
     /- if @user.topics_count.present?
       .float-right
-        p.faint.text-right.snug-top= @user.topics_count
-      p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Topic threads:
+        p.text-right.snug-top= @user.topics_count
+      p.snug-top #{link_to 'Discussion Forum', discussions_path} Topic threads:
     /- if @user.posts_count.present?
       .float-right
-        p.faint.text-right.snug-top= @user.posts_count
-      p.faint.snug-top #{link_to 'Discussion Forum', discussions_path} Posts:
+        p.text-right.snug-top= @user.posts_count
+      p.snug-top #{link_to 'Discussion Forum', discussions_path} Posts:
     - if @user.pages_count.present?
       / TODO make this only include page state 'Published'
       .float-right
-        p.faint.text-right.snug-top= number_with_delimiter(@user.pages_count)
-      p.faint.snug-top #{link_to 'Knowledge Base Articles', pages_path(author_pid: @user.pid)}:
+        p.text-right.snug-top= number_with_delimiter(@user.pages_count)
+      p.snug-top #{link_to 'Knowledge Base Articles', pages_path(author_pid: @user.pid)}:
     - if @user.quarks_count.present?
       / TODO make this exclude quark state 'Flagged'
       .float-right
-        p.faint.text-right.snug-top= number_with_delimiter(@user.quarks_count)
-      p.faint.snug-top #{link_to 'Quarks!', quarks_path(author_pid: @user.pid)}:
+        p.text-right.snug-top= number_with_delimiter(@user.quarks_count)
+      p.snug-top #{link_to 'Quarks!', quarks_path(author_pid: @user.pid)}:
     - if @user.events_count.present?
       / TODO make this exclude event state 'Flagged'
       .float-right
-        p.faint.text-right.snug-top= number_with_delimiter(@user.events_count)
-      p.faint.snug-top #{link_to 'Live Events', events_path(organizer_pid: @user.pid)}:
+        p.text-right.snug-top= number_with_delimiter(@user.events_count)
+      p.snug-top #{link_to 'Live Events', events_path(organizer_pid: @user.pid)}:
     - if @user.time_zone.present?
       .float-right
-        p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)
-      p.faint.snug-top Time zone:
+        p.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)
+      p.snug-top Time zone:
     - if @user.country_code.present?
       .float-right
-        p.faint.snug-top= ISO3166::Country(@user.country_code).name
-      p.faint.snug-top Country:
+        p.snug-top= ISO3166::Country(@user.country_code).name
+      p.snug-top Country:
     - if @user.plan_short_name.present?
       .float-right
-        p.snug-top.faint.text-right
+        p.snug-top.text-right
           ' #{@user.plan.display_name}
-      p.snug-top.faint Membership plan:
+      p.snug-top Membership plan:
     - if @user.created_at
       .float-right
-        p.snug-top.faint.text-right
+        p.snug-top.text-right
           ' #{@user.created_at.strftime('%B %e, %Y')}
-      p.snug-top.faint Member since:
+      p.snug-top Member since:
 
     - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
     h5.bold Social profiles:
@@ -134,5 +134,5 @@
     - elsif current_user and @user == current_user and current_user.confirmed?
       p.text-center.little-snug-top= link_to 'Add your social profiles!', edit_user_registration_path
     - else
-      p.little-snug-top.faint #{@user.name} has not listed their social profiles
+      p.little-snug-top #{@user.name} has not listed their social profiles
 
