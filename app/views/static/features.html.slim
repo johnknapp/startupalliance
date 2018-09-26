@@ -59,7 +59,7 @@
             .row
               .medium-8.medium-offset-2.columns
 
-                .callout.small.shadow-4dp
+                .callout.success.small.shadow-4dp
                   h5.primary.bold.text-center
                     ' It’s easy to choose the right membership plan
 
@@ -114,9 +114,15 @@
                   p.text-center.little-snug-top
                     em
                       ' Free for life
+                      br
+                      ' Renews annually
                   ul.little-snug-top
+                    li Unrivaled entrepreneurs profile
                     li Use The Entrepreneur’s Nucleus
-                    li Respond to private messages
+                    li
+                      span.bold
+                        ' Respond
+                      ' to private messages
                     li Join Company Workspaces
                   ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
                     li
@@ -132,12 +138,19 @@
                       br
                       ' #{ALLIANCE_MONTH} paid monthly
                   ul.little-snug-top
-                    li Join Private Alliances
-                    li Create Private Alliances
-                    li Join Company Workspaces
+                    li Unrivaled entrepreneurs profile
                     li Use The Entrepreneur’s Nucleus
-                    li Send private messages
+                    li
+                      span.bold
+                        ' Send
+                      ' private messages
+                    li Join Company Workspaces
                     li Appear in Members listings
+                    li Join Private Alliances
+                    li
+                      span.bold
+                        ' Create
+                      ' Private Alliances
                   ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='alliance-year'
@@ -145,6 +158,7 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='alliance-month'
                         ' Go Month to Month
+                  h5.bold.little-less-space-top.text-center= link_to 'Learn more...', features_path(anchor: 'alliances')
 
               .medium-4.columns
                 .callout.small.primary.shadow
@@ -155,13 +169,26 @@
                       br
                       ' #{COMPANY_MONTH} paid monthly
                   ul.little-snug-top
-                    li Create Company Workspace
-                    li Add your team for free
-                    /li Join Private Alliances
-                    /li Create Private Alliances
+                    li Unrivaled entrepreneurs profile
                     li Use The Entrepreneur’s Nucleus
-                    li Send private messages
+                    li
+                      span.bold
+                        ' Send
+                      ' private messages
+                    li Join Company Workspaces
                     li Appear in Members listings
+                    li Join Private Alliances
+                    li
+                      span.bold
+                        ' Create
+                      ' Private Alliances
+                    li
+                      span.bold
+                        ' Create
+                      ' Company Workspaces
+                    li
+                      span.bold
+                        ' Add your team for free
                   ul.menu.normal.vertical.shadow-3dp data-dropdown-menu=true
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='company-year'
@@ -169,6 +196,7 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='company-month'
                         ' Go Month to Month
+                  h5.bold.little-less-space-top.text-center= link_to 'Learn more...', features_path(anchor: 'companies')
 
             /ul.snug-top.indented-2
               li
@@ -205,10 +233,15 @@
               p.little-snug-top= link_to 'Explore Private Alliances', alliances_path
             h3.bold.primary-text Private Alliances
             p.little-snug-top
-              ' Form lasting bonds with a small group of entrepreneurs you can trust.
+              span.bold
+                ' Form lasting bonds with a small group of entrepreneurs you can trust.
               ' Work together to ask questions, get answers, gain deeper insights
               ' and broader perspectives.
-              ' There are #{link_to 'plenty of Private Alliances', alliances_path} you can join and you can create your own too.
+              ' There are #{link_to 'plenty of Private Alliances', alliances_path} you can join,
+              span.bold
+                ' plus you can create your own
+              ' and if you care about privacy, simply activate Stealth Mode.
+            p.little-snug-top
               ' Alliance Members can participate in up to 5 Private Alliances at once and you can join and leave them at any time.
               '
             h5.bold.little-space-top.snug-bottom Each Private Alliance contains:
@@ -243,11 +276,19 @@
               p.little-snug-top= link_to 'Explore Company Workspaces', companies_path
             h3.bold.primary-text Company Workspaces
             p.little-snug-top
-              ' Unite the efforts of your staff, advisors, consultants and investors.
+              span.bold
+                ' Unite the efforts of your staff, advisors, consultants and investors.
               ' Team up to set objectives for your company, discuss and overcome challenges
               ' and track your progress towards your ultimate success.
+              ' If you care about privacy, you can operate your Company Workspace in Stealth Mode.
               '
-            h5.bold.little-space-top.snug-bottom Each Company Workspace contains:
+              '
+            p.bold.little-snug-top
+              ' As a Company Member, you receive two additional benefits:
+            ul.snug-top
+              li You can add your company team to your Company Workspaces for free
+              li You can also create and join Private Alliances
+            h5.bold.little-space-top.snug-bottom Your Company Workspace gives you full access to:
             ul.indented-2
               li Public facing company summary
               li Team summaries with private messaging
@@ -264,7 +305,7 @@
                     ' #{COMPANY_YEAR_MTHLY} a month, billed annually
                   p.scale-to-90.snug-top.text-center.primary
                     ' #{COMPANY_MONTH} billed monthly
-                  p.primary.bold.text-center.little-snug-top.little-snug-bottom Join then add your entire team for free.
+                  p.primary.bold.text-center.little-snug-top.little-snug-bottom Join then add your team for free.
                   ul.menu.vertical.little-space-top.shadow-3dp
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='company-year'
@@ -290,6 +331,7 @@
               li Twelve discussion groups on topics you care about
               li Wiki style knowledge base with leaderboard
               li Bite sized nuggets of startup wisdom from our members
+              li Live events organized by members, staff and special guests
               li Global Virtual Office for co-working and real-time collaboration
               li More on the way!
             .row
