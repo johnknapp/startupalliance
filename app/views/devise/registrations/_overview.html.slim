@@ -36,41 +36,35 @@
 
 
     /- if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
-    p.bold.little-space-top Personal mission:
-    - if @user.mission.present?
-      p.snug-top= @user.mission
-    - elsif current_user and @user == current_user and current_user.confirmed?
-      p.text-center.snug-top= link_to 'Add your personal mission statement!', edit_user_registration_path
-    - else
-      p.snug-top.faint #{@user.name} has not written their personal mission
+    .callout.accent.shadow.little-space-top
+      h5.bold.text-center My Personal Mission:
+      - if @user.mission.present?
+        h5.little-snug-top= @user.mission
+      - elsif current_user and @user == current_user and current_user.confirmed?
+        p.text-center= link_to 'Add your personal mission statement!', edit_user_registration_path
+      - else
+        p.faint #{@user.name} has not written their personal mission
 
-    p.bold.little-space-top Member summary:
+    h5.bold.little-space-top Member summary:
     - if @user.work_role
       .float-right
-        p.snug-top.faint.text-right
+        p.little-snug-top.faint.text-right
           - if current_user and current_user == @user and @user.work_role == 'Unset'
             ' #{link_to '(' + @user.work_role + '!)', edit_user_registration_path(current_user)}
           - else
             ' #{@user.work_role}
-      p.snug-top.faint Primary Work Role:
-    - if @user.created_at
-      .float-right
-        p.snug-top.faint.text-right
-          ' #{@user.created_at.strftime('%B %e, %Y')}
-      p.snug-top.faint Member since:
-    - if @user.user_skills.present?
-      .float-right
-        p.faint.text-right.snug-top= @user.skill_index
-      p.faint.snug-top Skill index:
-    - if @user.user_traits.present?
-      .float-right
-        p.faint.text-right.snug-top= @user.trait_index
-      p.faint.snug-top Trait index:
-    - if @user.username
+      p.little-snug-top.faint Primary Work Role:
+    /.float-right
+      p.faint.text-right.snug-top= @user.skill_index
+    /p.faint.snug-top Skill index / Trait index:
+    .float-right
+      p.faint.text-right.snug-top= render 'partials/user_si_ti_display', user: @user
+    p.faint.snug-top Skill index / Trait index:
+    /- if @user.username
       .float-right
         p.faint.text-right.snug-top= @user.username
       p.faint.snug-top Username:
-    - if @user.companies.present?
+    /- if @user.companies.present?
       .float-right
         p.faint.text-right.snug-top= @user.okrs.count
       p.faint.snug-top OKR ownership:
@@ -86,17 +80,17 @@
       / TODO make this only include page state 'Published'
       .float-right
         p.faint.text-right.snug-top= number_with_delimiter(@user.pages_count)
-      p.faint.snug-top #{link_to 'Nucleus Knowledge Base Articles', pages_path(author_pid: @user.pid)}:
+      p.faint.snug-top #{link_to 'Knowledge Base Articles', pages_path(author_pid: @user.pid)}:
     - if @user.quarks_count.present?
       / TODO make this exclude quark state 'Flagged'
       .float-right
         p.faint.text-right.snug-top= number_with_delimiter(@user.quarks_count)
-      p.faint.snug-top #{link_to 'Nucleus Quarks', quarks_path(author_pid: @user.pid)}:
+      p.faint.snug-top #{link_to 'Quarks!', quarks_path(author_pid: @user.pid)}:
     - if @user.events_count.present?
       / TODO make this exclude event state 'Flagged'
       .float-right
         p.faint.text-right.snug-top= number_with_delimiter(@user.events_count)
-      p.faint.snug-top #{link_to 'Nucleus Live Events', events_path(organizer_pid: @user.pid)}:
+      p.faint.snug-top #{link_to 'Live Events', events_path(organizer_pid: @user.pid)}:
     - if @user.time_zone.present?
       .float-right
         p.faint.snug-top= ActiveSupport::TimeZone.new(@user.time_zone)
@@ -110,12 +104,16 @@
         p.snug-top.faint.text-right
           ' #{@user.plan.display_name}
       p.snug-top.faint Membership plan:
+    - if @user.created_at
+      .float-right
+        p.snug-top.faint.text-right
+          ' #{@user.created_at.strftime('%B %e, %Y')}
+      p.snug-top.faint Member since:
 
     - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
-    p
-      strong Social profiles:
+    h5.bold Social profiles:
     - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
-      h5.snug-top.space-bottom#tour-2
+      h5.little-snug-top.space-bottom#tour-2
         - if @user.twitter_profile.present?
           = link_to @user.twitter_profile, target: '_blank'
             span.fa.fa-twitter
@@ -134,7 +132,7 @@
           = link_to @user.website, target: '_blank'
             span.fa.fa-globe
     - elsif current_user and @user == current_user and current_user.confirmed?
-      p.text-center.snug-top= link_to 'Add your social profiles!', edit_user_registration_path
+      p.text-center.little-snug-top= link_to 'Add your social profiles!', edit_user_registration_path
     - else
-      p.snug-top.faint #{@user.name} has not listed their social profiles
+      p.little-snug-top.faint #{@user.name} has not listed their social profiles
 

@@ -52,22 +52,15 @@
 
         p.little-snug-top.faint Role:
 
-        - if member.okrs.present?
-          .float-right
-            p.little-snug-top.faint= member.okrs.count
-          p.little-snug-top.faint OKR ownership:
+        .float-right
+          p.little-snug-top.faint= render 'partials/user_si_ti_display', user: member
+        p.little-snug-top.faint Skill index / Trait index:
 
-        - if member.user_skills.present?
-          .float-right
-            p.little-snug-top.faint= member.skill_index
-          p.little-snug-top.faint Skill index:
+        .float-right
+          p.little-snug-top.faint= member.okrs.count
+        p.little-snug-top.faint OKR ownership:
 
-        - if member.user_traits.present?
-          .float-right
-            p.little-snug-top.faint= member.trait_index
-          p.little-snug-top.faint Trait index:
-
-        - if member.time_zone.present?  
+        - if member.time_zone.present?
           .float-right
             p.little-snug-top.faint= ActiveSupport::TimeZone.new(member.time_zone)
           p.little-snug-top.faint Time zone:
