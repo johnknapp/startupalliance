@@ -1,5 +1,7 @@
 - content_for :page_title do
-  ' Startup Alliance Member – #{@user.name} (SI #{@user.skill_index} / TI #{@user.trait_index})
+  | Startup Alliance TrueInsight Profile
+  ' &trade;
+  ' – #{@user.name} (SI #{@user.skill_index} / TI #{@user.trait_index})
 
 - content_for :page_header do
   - if current_user and current_user.admin? and current_user != @user
@@ -20,7 +22,9 @@
             = link_to conversations_path(sender_pid: current_user.pid, recipient_pid: @user.pid), method: :post do
               i.fa.fa-comments-o.white-text
 
-  h2.bold.little-space-top.white-text.text-center
+  h5.bold.little-space-top.medium-grey-text.text-center
+    | TrueInsight Profile for
+  h2.bold.white-text.text-center
     ' #{image_tag gravatar_url("#{@user.email}", 72)}
     strong
       ' #{@user.name}
