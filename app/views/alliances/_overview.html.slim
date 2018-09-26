@@ -12,7 +12,7 @@
     - if @alliance.mission.present?
       .callout.shadow.little-space-top
          h5.bold.text-center Mission statement:
-         h5= @alliance.mission
+         h5.text-center= @alliance.mission
 
     .float-right
       p.little-snug-top= @alliance.created_at.strftime('%B %e, %Y')

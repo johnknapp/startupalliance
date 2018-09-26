@@ -12,14 +12,14 @@
     .callout.shadow.little-space-top data-equalizer-watch=true
       h5.bold Mission statement:
       - if @company.mission.present?
-        h5= @company.mission
+        h5.text-center= @company.mission
       - else
         p.text-center not set
   .medium-6.columns
     .callout.shadow.little-space-top data-equalizer-watch=true
       h5.bold Primary market:
       - if @company.primary_market.present?
-        h5= @company.primary_market
+        h5.text-center= @company.primary_market
       - else
         p.text-center not set
 .row
