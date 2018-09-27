@@ -59,18 +59,49 @@
 
         h5.bold.space-top Join us today!
         p.little-snug-top
-          /' Startup Alliance exists to support and accelerate the globalization of entrepreneurship.
           ' #{link_to 'Membership', features_path} is open to
           ' all committed entrepreneurs, advisors and investors who believe in our mission
           ' to accelerate the globalization of entrepreneurship.
-          /span.bold
-            ' Join us today!
-        /p.little-snug-top
-          /' We welcome
-          /' #{mail_to 'hello@startupalliance.com', 'your inquiries', subject: "Hello!", encode: 'hex'}
-          /' and encourage you to
           '
-        p &nbsp;
+        h5.bold.space-top Our long-term commitment to global entrepreneurship
+        p.little-snug-top
+          ' Once sustainably profitable, remaining net income from subscription revenue will be used to
+          ' support our mission.
+        p.little-snug-top
+          span.bold
+            ' We will do this in several ways:
+        ul.snug-top
+          li
+            span.bold
+              ' Policy Development —
+            /' Unlocking the power of entrepreneurship to bolster economies, create jobs and
+            /' build more vibrant communities requires sensible regulation and governance.
+            ' We will work with national, regional and local governments and NGOs to
+            ' make sure the right conditions exist for their people to build successful and sustainable companies.
+            '
+          li
+            span.bold
+              ' Educational Outreach —
+            ' We will sponsor startup experts to deliver their knowledge to
+            ' entrepreneurs without regard to skill level, location or the type of business they operate.
+            ' We will also sponsor in person entrepreneur gatherings, local and
+            ' regional entrepreneurship conferences.
+            '
+          li
+            span.bold
+              ' Directed ESO Grants —
+            ' We will make cash grants in support of Entrepreneurship Support Organizations (ESOs) worldwide.
+            ' This includes both governmental and non-governmental ESOs whose
+            ' mission aligns with ours.
+            '
+        p.little-snug-top
+          ' Please support our mission to accelerate the globalization of entrepreneurship.
+          ' You can do that via #{link_to 'subscription', features_path} or through
+          ' #{link_to 'generous patronage', 'https://www.patreon.com/startupalliance', target: '_blank'}
+          ' or #{link_to 'direct sponsorship', sponsorship_path}.
+          '
+
+        p.snug-top &nbsp;
     .row
       .medium-12.columns
         = render 'partials/storybox'
