@@ -13,7 +13,8 @@
     p.snug-top.show-for-medium &nbsp;
 
 .row
-  .large-10.large-offset-1.medium-12.columns
+  .medium-12.columns
+
     /.callout.accent.shadow-6dp
       h5.bold.primary
         ' First, some perspective:
@@ -28,221 +29,250 @@
         '
       h4.bold.primary.text-center.little-snug-top
         ' Entrepreneurship is hard. We make it easier.
+    p.text-center.snug-bottom
+      ' Membership is open to committed entrepreneurs, advisors, investors and mentors
+      ' no matter where you are and no matter what kind of business you run.
+    ul.tabs.accent-background.shadow-4dp#how-it-works data-tabs=true data-deep-link="true" data-update-history="true"
+      li.tabs-title.is-active
+        a.bold href='#start' aria-selected='true'
+          ' Getting started
+      li.tabs-title
+        a.bold href='#involved'
+          ' Getting involved
+      li.tabs-title
+        a.bold href='#better'
+          ' Getting better
+      li.tabs-title
+        a.bold href='#nucleus'
+          ' Entrepreneur’s Nucleus
+      li.tabs-title
+        a.bold href='#alliances'
+          ' Private Alliances
+      li.tabs-title
+        a.bold href='#companies'
+          ' Collaboration Workspaces
 
-    .row
-      .medium-3.columns
-        /p.scale-to-80 &nbsp;
-        h4.bold.pad-right.primary-text.space-top
-          strong Get started:
-      .medium-9.columns
+    .tabs-content.shadow-4dp data-tabs-content='how-it-works'
+      .tabs-panel.is-active#start
+        .row
+          .medium-4.columns
+            h4.bold.pad-right.primary-text.space-top
+              strong Getting started:
+            /p.little-less-space-top #{link_to 'Live example profile', vanity_path('john')}
+          .medium-8.columns
 
-        h5.bold.space-top.little-snug-bottom
-          ' Your
-          | TrueInsight Profile
+            h5.bold.space-top.little-snug-bottom
+              ' Your
+              | TrueInsight Profile
 
-          ' &trade; is unlike any other, make yours awesome!
-        p
-          ' In addition to adding your social profiles and mission statement, we rate ourselves
-          ' on a standard set of 18 startup skills and 12 personal traits.
-          ' This way, we know a lot more about the people we interact with and we’re
-          ' better equipped to make optimal connections with the right members.
-        p.little-snug-top
-          span.bold
-            ' Pro tip:
-          ' Your TrueInsight Profile is publicly accessible and sharing it throughout your social media is a great way to help people get to know you.
-          /' By default, your exact Skill and Trait ratings are only visible to other members.
-          /' You have the option to make them visible to non-members. (On your account settings page.)
-          ' Honestly
-          '
-        .little-snug-top= image_tag 'personal_traits_screely.png'
-        p.faint.text-center The more skills and traits you list, the more you’ll stand out.
+              ' &trade; is unlike any other, make yours awesome!
+            p
+              ' In addition to adding our social profiles and mission statement, we rate ourselves
+              ' on a standard set of 18 startup skills and 12 personal traits.
+              ' This way, we learn more about the people we interact with and we’re
+              ' better equipped to make optimal connections with the right members.
+            p.little-snug-top
+              span.bold
+                ' Pro tip:
+              ' Your TrueInsight Profile is publicly accessible and sharing it throughout your social media is a great way to help people get to know you.
+              /' By default, your exact Skill and Trait ratings are only visible to other members.
+              /' You have the option to make them visible to non-members. (On your account settings page.)
+              ' Honestly
+              '
+            .little-snug-top= image_tag 'personal_traits_screely.png'
+            p.faint.text-center The more skills and traits you list, the more you’ll stand out.
 
-    .row
-      .medium-3.columns
-        h4.bold.pad-right.primary-text.space-top
-          strong Get involved:
-      .medium-9.columns
-        h5.bold.space-top.little-snug-bottom
-          ' Jump into the discussions and get answers fast
-        p
-          ' The #{link_to 'discussion forums', discussions_path} have a variety of important subjects to search and browse.
-          ' Read all you want but don’t stop there,
-          span.bold
-            ' ask your questions and share what you know!
-          ' This community is filled with committed entrepreneurs willing to share what they know and
-          ' help you meet your challenges.
-        p.little-snug-top
-          span.bold
-            ' A word about your privacy:
-          ' Posts you make within a Private Alliance or Company Workspace are only seen within those small groups.
-          ' When you post in the Nucleus Discussions, they are hidden from non-members (and the Google Crawler)
-          ' but they can be seen by
-          em
-            ' every
-          ' Startup Alliance Member.
-          em
-            ' We care about your privacy and want you to be mindful about who sees your posts.
-          '
-        h5.bold.space-top.little-snug-bottom
-          ' Check out the knowledge base and pick up hard won startup wisdom
-        p
-          ' Just like Wikipedia, our #{link_to 'knowledge base', pages_path} contains articles written
-          ' and constantly improved by our community members.
-          ' Search and browse and if you don’t find what you’re looking for, suggest an article for someone else to write.
-          span.bold
-            ' Better yet, write it yourself and gain recognition for your contribution!
-        .little-snug-top= image_tag 'kb_article_screely.png'
-        p.faint.text-center Members can vote on and collaboratively improve articles and browse the entire edit history.
-          '
+      .tabs-panel#involved
+        .row
+          .medium-4.columns
+            h4.bold.pad-right.primary-text.space-top
+              strong Getting involved:
+          .medium-8.columns
+            h5.bold.space-top.little-snug-bottom
+              ' Jump into the discussions and get the answers you need
+            p
+              ' The #{link_to 'discussion forums', discussions_path} have a variety of important subjects to search and browse.
+              ' Read all you want but don’t stop there,
+              span.bold
+                ' ask your questions and share what you know!
+              ' This community is filled with committed entrepreneurs willing to share what they know and
+              ' help you meet your challenges.
+            p.little-snug-top
+              span.bold
+                ' A word about your privacy:
+              ' Posts you make within a Private Alliance or Company Workspace are only seen within those small groups.
+              ' When you post in the Nucleus Discussions, they are hidden from non-members (and the Google Crawler)
+              ' but they can be seen by
+              em
+                ' every
+              ' Startup Alliance Member.
+              em
+                ' We care about your privacy and want you to be mindful about who sees your posts.
+              '
+            h5.bold.space-top.little-snug-bottom
+              ' Check out the knowledge base and pick up hard won startup wisdom
+            p
+              ' Just like Wikipedia, our #{link_to 'knowledge base', pages_path} contains articles written
+              ' and constantly improved by our community members.
+              ' Search and browse and if you don’t find what you’re looking for, suggest an article for someone else to write.
+              span.bold
+                ' Better yet, write it yourself and gain recognition for your contribution!
+            .little-snug-top= image_tag 'kb_article_screely.png'
+            p.faint.text-center Members can vote on and collaboratively improve articles and browse the entire edit history.
+              '
 
-        h5.bold.space-top.little-snug-bottom
-          ' Hang out in the Global Virtual Office
-        p
-          ' The Global Virtual Office is open 24/7/365 and available to all members.
-          ' It’s a great place to hang out and hold impromptu meetings with other members.
-          ' Who will you meet? What will you learn there?
-          '
+            h5.bold.space-top.little-snug-bottom
+              ' Hang out in the Global Virtual Office
+            p
+              ' The Global Virtual Office is open 24/7/365 and available to all members.
+              ' It’s a great place to hang out and hold impromptu meetings with other members.
+              ' Who will you meet? What will you learn there?
+              '
 
-        h5.bold.space-top.little-snug-bottom
-          ' Join some Private Alliances and a Collaboration Workspace
-        p
-          ' Company members can invite Associate and Alliance members into their company team for free and once there, they can participate fully.
-          ' Alliance and Company members can join up to 5 Private Alliances where they can amplify their success
-          ' through collaboration with trusted peers and forge powerful networks.
-          '
+            h5.bold.space-top.little-snug-bottom
+              ' Join some Private Alliances and a Collaboration Workspace
+            p
+              ' Company members can invite Associate and Alliance members into their company team for free and once there, they can participate fully.
+              ' Alliance and Company members can join up to 5 Private Alliances where they can amplify their success
+              ' through collaboration with trusted peers and forge powerful networks.
+              '
 
-    .row
-      .medium-3.columns
-        h4.bold.pad-right.primary-text.space-top
-          strong Get better:
-      .medium-9.columns
-        h5.bold.space-top.little-snug-bottom
-          ' Don’t be shy, ask for help when you need it
-        p
-          ' Startup Alliance is all about collaboration and that means not being shy when it comes to asking for help.
-          ' Remember, we’re all in pursuit of our entrepreneurial dreams. It’s not an easy road and we all get stuck and stuggle for answers.
-          br
-          span.bold
-            ' Here are some ways to get help from the Startup Alliance Community:
-          '
-        ul.snug-top
-          li Search the #{link_to 'discussion forums', discussions_path} and #{link_to 'knowledge base', pages_path}.
-          li If you find a relevant topic thread, make a post to ask your question.
-          li Bring your questions to a Live Event and ask the Organizer.
-          li If you find a good post, message the author and discuss your challenge specifically.
-          li Message #{link_to 'Startup Alliance founder, John Knapp', vanity_path('john')}, he will have a suggestion.
+      .tabs-panel#better
+        .row
+          .medium-4.columns
+            h4.bold.pad-right.primary-text.space-top
+              strong Getting better:
+          .medium-8.columns
+            h5.bold.space-top.little-snug-bottom
+              ' Don’t be shy, ask for help when you need it
+            p
+              ' Startup Alliance is all about collaboration and that means not being shy when it comes to asking for help.
+              ' Remember, we’re all in pursuit of our entrepreneurial dreams. It’s not an easy road and we all get stuck and stuggle for answers.
+              br
+              span.bold
+                ' Here are some ways to get help from the Startup Alliance Community:
+              '
+            ul.snug-top
+              li Search the #{link_to 'discussion forums', discussions_path} and #{link_to 'knowledge base', pages_path}.
+              li If you find a relevant topic thread, make a post to ask your question.
+              li Bring your questions to a Live Event and ask the Organizer.
+              li If you find a good post, message the author and discuss your challenge specifically.
+              li Message #{link_to 'Startup Alliance founder, John Knapp', vanity_path('john')}, he will have a suggestion.
 
-        h5.bold.space-top.little-snug-bottom
-          ' Enhance your own skills by sharing them with others
-        p.little-snug-top
-          .float-left.pad-right= image_tag 'share_what_you_know_screely.png', width: '360px'
-          span.bold
-            ' It’s a fact:
-          ' The best way to learn is to teach what you know.
-        p.little-snug-top
-          span.bold
-            ' Here are six ways you can do that:
-          ' Author a #{link_to 'knowledge base', pages_path} article and answer questions
-          ' in the #{link_to 'discussion forums', discussions_path}.
-          ' Author a #{link_to 'Nucleus Quark!', quarks_path} and compete for a Top Quark Award.
-          ' Connect directly with a few other members in the Global Virtual Office.
-          ' Organize a #{link_to 'Live Event', events_path} and invite others.
-          ' If you’re an advisor, investor or mentor, join a company team and use all the tools in their Collaboration Workspace.
-          span.bold
-            ' Or best of all,
-          ' form lasting bonds of trust with other entrepreneurs by joining #{link_to 'a Private Alliance', alliances_path}.
-    .row
-      .medium-3.columns
-        h4.bold.pad-right.primary-text.space-top
-          strong The Entrepreneur’s Nucleus:
-      .medium-9.columns
-        h5.bold.space-top.little-snug-bottom
-          ' Community resources help you maximize your awesome
-        p
-          ' This growing collection of community resources provides a central gathering place for the
-          ' community and helps all members maximize their entrepreneurial success.
-          ' This is a members only resource so you need to be signed in.
-          ' Some resources may not be available to Associate members.
-        .little-snug-top= image_tag 'nucleus_home_screely.png'
-        p.faint.text-center The Entrepreneur’s Nucleus is the central hub of our global entrepreneurs community
+            h5.bold.space-top.little-snug-bottom
+              /' It’s a fact:
+              ' The best way to learn is to teach what you know
+            .text-center.little-less-space-top= image_tag 'share_what_you_know_screely.png', width: '420px'
+            p.faint.text-center #truth We all have valuable knowledge to share.
+            p
+              span.bold
+                ' Here are six ways you can do that:
+            ol.snug-top
+              li Author a #{link_to 'knowledge base', pages_path} article and answer questions in the #{link_to 'discussion forums', discussions_path}.
+              li Author a #{link_to 'Nucleus Quark!', quarks_path} and compete for a Top Quark Award.
+              li Connect directly with a few other members in the Global Virtual Office.
+              li Organize a #{link_to 'Live Event', events_path} and invite others to attend.
+              li If you’re an advisor, investor or mentor, join a company team and help them maximize their success.
+              li
+                span.bold
+                  ' Best of all,
+                ' form lasting bonds of trust with other entrepreneurs by joining #{link_to 'a Private Alliance', alliances_path}.
 
-    .row
-      .medium-3.columns
-        h4.bold.pad-right.primary-text.space-top
-          strong Private Alliances:
-      .medium-9.columns
-        h5.bold.space-top.little-snug-bottom
-          ' You’ll make significant progress towards your entrepreneurial goals
-        p
-          ' Form lasting bonds with a small group of entrepreneurs you can trust.
-          ' Collaborate in private to ask questions, get answers, gain deeper insights and broader perspectives.
-          ' You can join established Private Alliances plus we encourage you to create your own and invite the entrepreneurs you respect most.
-          ' Alliance Members can participate in up to 5 Private Alliances concurrently and Alliance and Company members can join and leave at any time.
-        p.little-snug-top
-          ' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it
-          ' from other members (and the Google Crawler.)
-          ' The Private Alliance creator can also limit membership to only those they personally invite.
-        .little-snug-top= image_tag 'fast_track_pa_screely.png'
-        p.faint.text-center All new Alliance and Company members get started in the New Member Private Alliance
-        h5.bold.space-top.little-snug-bottom
-          ' How to get the most out of your Private Alliance
-        p
-          ' Inspired by
-          ' #{link_to 'Mastermind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
-          ' successful #{link_to 'Private Alliances', alliances_path} usually have similar best practices.
-          ' Each group should work out their own guidelines but here are our recommendations:
-        = render 'partials/pa_best_practices'
+      .tabs-panel#nucleus
+        .row
+          .medium-4.columns
+            h4.bold.pad-right.primary-text.space-top
+              strong The Entrepreneur’s Nucleus:
+          .medium-8.columns
+            h5.bold.space-top.little-snug-bottom
+              ' Community resources help you maximize your awesome
+            p
+              ' This growing collection of community resources provides a central gathering place for the
+              ' community and helps all members maximize their entrepreneurial success.
+              ' This is a members only resource so you need to be signed in.
+              ' Some resources may not be available to Associate members.
+            .little-snug-top= image_tag 'nucleus_home_screely.png'
+            p.faint.text-center The Entrepreneur’s Nucleus is the central hub of our global entrepreneurs community
 
-    .row
-      .medium-3.columns
-        h4.bold.pad-right.primary-text.space-top
-          strong Collaboration Workspaces:
-      .medium-9.columns
-        h5.bold.space-top.little-snug-bottom
-          ' Take your company to the next level
-        p
-          ' #{link_to 'Collaboration Workspaces', companies_path} are where company staff, advisors and investors team up to set and achieve objectives,
-          ' increase focus on top priorities and track their progress.
-          ' Each Company Workspace contains a comprehensive suite of focus enhancement and collaboration tools available for 24/7 usage.
-        p.little-snug-top
-          ' The member who creates the Collaboration Workspace can set “stealth mode” to keep it out of the directory and hide it from other members.
-          ' They can also choose to display a recruiting message.
-        .little-snug-top= image_tag 'hoverlay_cw_screely.png'
-        p.faint.text-center Each Collaboration Workspace has a public profile but the tools are only accessible to the team.
-          '
-        h5.bold.space-top.little-snug-bottom
-          ' How to use the tools in your Collaboration Workspace
-        ul
-          li
-            span.bold
-              ' Team messaging —
-            ' Private messages and one-on-one conversations within the platform.
-          li
-            span.bold
-              ' SAKPIs —
-            ' Monitoring our standard set of KPIs keeps the team aware of the business situation and focused on priorities.
-          li
-            span.bold
-              ' FActors and STrategies —
-            ' Document the success and risk FActors for your business and keep them in front of the team to inform their actions, keep them aware of the related STrategies which goes a long way to help them avoid costly mis-steps.
-          li
-            span.bold
-              ' Objectives and Key Results (OKR) —
-            ' OKRs are a technique companies use to set and communicate primary Objectives within the team and, more
-            ' importantly, achieve them by focusing on the accomplishment of measurable Key Results.
+      .tabs-panel#alliances
+        .row
+          .medium-4.columns
+            h4.bold.pad-right.primary-text.space-top
+              strong Private Alliances:
+          .medium-8.columns
+            h5.bold.space-top.little-snug-bottom
+              ' You’ll make significant progress towards your entrepreneurial goals
+            p
+              ' Form lasting bonds with a small group of entrepreneurs you can trust.
+              ' Collaborate in private to ask questions, get answers, gain deeper insights and broader perspectives.
+              ' You can join established Private Alliances plus we encourage you to create your own and invite the entrepreneurs you respect most.
+              ' Alliance Members can participate in up to 5 Private Alliances concurrently and Alliance and Company members can join and leave at any time.
+            p.little-snug-top
+              ' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it
+              ' from other members (and the Google Crawler.)
+              ' The Private Alliance creator can also limit membership to only those they personally invite.
+            .little-snug-top= image_tag 'fast_track_pa_screely.png'
+            p.faint.text-center All new Alliance and Company members get started in the New Member Private Alliance
+            h5.bold.space-top.little-snug-bottom
+              ' How to get the most out of your Private Alliance
+            p
+              ' Inspired by
+              ' #{link_to 'Mastermind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'},
+              ' successful #{link_to 'Private Alliances', alliances_path} usually have similar best practices.
+              ' Each group should work out their own guidelines but here are our recommendations:
+            = render 'partials/pa_best_practices'
+
+      .tabs-panel#companies
+        .row
+          .medium-4.columns
+            h4.bold.pad-right.primary-text.space-top
+              strong Collaboration Workspaces for Companies:
+          .medium-8.columns
+            h5.bold.space-top.little-snug-bottom
+              ' Take your company to the next level
+            p
+              ' #{link_to 'Collaboration Workspaces', companies_path} are where company staff, advisors and investors team up to set and achieve objectives,
+              ' increase focus on top priorities and track their progress.
+              ' Each Company Workspace contains a comprehensive suite of focus enhancement and collaboration tools available for 24/7 usage.
+            p.little-snug-top
+              ' The member who creates the Collaboration Workspace can set “stealth mode” to keep it out of the directory and hide it from other members.
+              ' They can also choose to display a recruiting message.
+            .little-snug-top= image_tag 'hoverlay_cw_screely.png'
+            p.faint.text-center Each Collaboration Workspace has a public profile but the tools are only accessible to the team.
+              '
+            h5.bold.space-top.little-snug-bottom
+              ' How to use the tools in your Collaboration Workspace
             ul
-              li Any team member can create an OKR and assign it to ny team member.
-              li Each OKR has a set duration. (You choose but we recommend 3 months.)
-              li Each OKR has a status set by the owner. (Green, Yellow, Red.)
-              li When finished, the OKR owner scores each Key Result. (The overall score is an average of those.)
-              li The OKR owner writes a Postmortem so the entire team learns and improves future performance.
-          li
-            span.bold
-              ' Private discussion forums —
-            ' Serving as a repository of knowledge and a source for problem solving, you can create as many forum subjects as you need.
-          li
-            span.bold
-              ' Private Virtual Office (PVO) —
-            ' Facilitates co-working and real-time collaboration whenever you need it, your PVO provides secure, private group webchats and screen sharing.
+              li
+                span.bold
+                  ' Team messaging —
+                ' Private messages and one-on-one conversations within the platform.
+              li
+                span.bold
+                  ' SAKPIs —
+                ' Monitoring our standard set of KPIs keeps the team aware of the business situation and focused on priorities.
+              li
+                span.bold
+                  ' FActors and STrategies —
+                ' Document the success and risk FActors for your business and keep them in front of the team to inform their actions, keep them aware of the related STrategies which goes a long way to help them avoid costly mis-steps.
+              li
+                span.bold
+                  ' Objectives and Key Results (OKR) —
+                ' OKRs are a technique companies use to set and communicate primary Objectives within the team and, more
+                ' importantly, achieve them by focusing on the accomplishment of measurable Key Results.
+                ul
+                  li Any team member can create an OKR and assign it to ny team member.
+                  li Each OKR has a set duration. (You choose but we recommend 3 months.)
+                  li Each OKR has a status set by the owner. (Green, Yellow, Red.)
+                  li When finished, the OKR owner scores each Key Result. (The overall score is an average of those.)
+                  li The OKR owner writes a Postmortem so the entire team learns and improves future performance.
+              li
+                span.bold
+                  ' Private discussion forums —
+                ' Serving as a repository of knowledge and a source for problem solving, you can create as many forum subjects as you need.
+              li
+                span.bold
+                  ' Private Virtual Office (PVO) —
+                ' Facilitates co-working and real-time collaboration whenever you need it, your PVO provides secure, private group webchats and screen sharing.
 
-        p &nbsp;
+    p &nbsp;
