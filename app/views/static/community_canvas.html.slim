@@ -7,7 +7,7 @@
 .row
   .medium-10.medium-offset-1.columns
     p.snug-top.text-right
-      ' Last updated May 15, 2018
+      ' Last updated September 28, 2018
     p.snug-top.show-for-medium &nbsp;
 
     .callout.accent.shadow-4dp
@@ -43,7 +43,7 @@
         p
           ' Startup Alliance is a global community of committed entrepreneurs driving innovation and creating value worldwide.
           ' Our purpose is to accelerate the globalization of entrepreneurship by helping these entrepreneurs
-          ' stay focused and be more effective, make connections and help each other overcome challenges
+          ' stay focused, be more effective, make connections and help each other overcome challenges
           ' and maximize their success.
           '
           '
@@ -51,8 +51,8 @@
         h5.bold.space-top.little-snug-bottom
           ' Our Membership
         p
-          ' Startup Alliance members are #{link_to 'committed entrepreneurs', commitment_pledge_path} operating all types of businesses located anywhere and
-          ' everywhere on earth. Startup Alliance membership also includes business experts and investors who provide
+          ' Startup Alliance members are #{link_to 'committed entrepreneurs', commitment_pledge_path} operating any kind of businesses located anywhere
+          ' on earth. Startup Alliance membership also includes business experts and investors who provide
           ' entrepreneurs with helpful advice and support.
           '
 
@@ -67,7 +67,7 @@
         h5.bold.space-top.little-snug-bottom
           ' Our Definition of Success
         p
-          ' Startup Alliance members are successful when their business goals are met, when their companies deliver
+          ' Startup Alliance members are successful when their business goals are met, when their companies thrive and deliver
           ' value to their communities and stakeholders and provide a meaningful livelihood to their employees.
           ' Startup Alliance is successful when its members consider their membership a factor in their personal
           ' and business success.
@@ -91,16 +91,16 @@
           ' Accessing the Startup Alliance
         p
           ' Startup Alliance is an online community — membership is open to committed entrepreneurs, business
-          ' advisors and investors who support the entrepreneurs and their companies. Access to the community
+          ' advisors and investors who support entrepreneurs and their companies. Access to the community
           ' and tools requires members to register and sign-in. Access to certain features may require
           ' payment of subscription fees.
         p
-          ' Any member can be invited to join any company team or private alliance. The member that created the
-          ' Company Workspace or Private Alliance decides who receives an invitation. Furthermore, some Companies
-          ' and Private Alliances operate in “stealth mode” on Startup Alliance and will not appear in the
+          ' All members may participate in any Company Workspace to which they have been invited.
+          ' The member that created the Company Workspace issues invitations.
+          ' Alliance or Company Membership is required to participate in a Private Alliance.
+          ' Some Companies and Private Alliances operate in “stealth mode” and will not appear in the
           ' directory or in search results. Only the members of those Companies and Alliances can access
           ' and participate within those entities.
-          '
 
         /h5.bold.space-top.little-snug-bottom
           ' Rituals
@@ -113,8 +113,8 @@
           ' Startup Alliance members collaborate one-on-one with other members and one-to-many within their
           ' Company Teams and Private Alliances using the tools we provide. Collaboration happens through
           ' the written word and real-time virtual offices. Members also use organizational aids and
-          ' productivity tools to help themselves and their fellow members. Each member, company and
-          ' private alliance has a searchable TrueInsight Profile to help people make beneficial connections
+          ' productivity tools to help themselves and their fellow members.
+          ' Each member has a searchable TrueInsight Profile to help people make beneficial connections
           ' leading to mutual success.
           '
 
@@ -125,6 +125,9 @@
           ' The organizational aids and productivity tools provide a written record of objectives set, progress
           ' and achievements made. The collaboration tools provide a historical trove of business wisdom
           ' and solutions contributed by the members themselves.
+        p
+          ' Content within a Company Workspace and within a Private Alliance is only accessible to those teams.
+          ' Content within the community resources is accessible to all members.
           '
 
         h5.bold.space-top.little-snug-bottom
@@ -134,26 +137,26 @@
           ' and #{link_to 'Commitment Pledge', commitment_pledge_path}.
 
         h5.bold.space-top.little-snug-bottom
-          ' Four Membership Levels
+          ' Three Membership Levels
         ul
           li
             span.bold
               ' Associate Membership
             ' for students, investors, fledgling entrepreneurs and company staff
-          li
+          /li
             span.bold
               ' Entrepreneur Membership
             ' for full time entrepreneurs who seek to benefit by gaining insights and solutions from complementary others
           li
             span.bold
-              ' Private Alliance Membership
-            ' for entrepreneurs seeking broader perspective for personal and business growth
+              ' Alliance Membership
+            ' for committed entrepreneurs seeking broader perspective for personal and business growth
           li
             span.bold
-              ' Company Workspace Membership
-            ' for goal drive company leaders who want to increase their company performance and results
-        p
-          ' You will find specifics on the #{link_to 'Membership Plans', features_path} page.
+              ' Company Membership
+            ' for goal driven company leaders who want to increase their company performance and results
+        p.little-snug-top
+          ' Details of each membership plan are found on the #{link_to 'Features & Pricing page', features_path(anchor: 'memberships')}.
 
         /h5.bold.space-top.little-snug-bottom
           ' Transitioning Out
@@ -197,7 +200,11 @@
         h5.bold.space-top.little-snug-bottom
           ' Financing
         p
-          ' Startup Alliance is capitalized by the founder, member subscriptions and sponsorships.
+          ' Startup Alliance is capitalized by the founder,
+          ' #{link_to 'member subscriptions', features_path},
+          | #{link_to 'patrons', 'https://www.patreon.com/startupalliance', target: '_blank'}
+          ' , and
+          ' #{link_to 'sponsorships', sponsorship_path}.
           '
 
         p &nbsp;
