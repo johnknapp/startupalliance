@@ -16,7 +16,7 @@
         ul.tabs.show-for-small-only.shadow#features-tabs data-tabs=true data-deep-link="true" data-update-history="true"
           li.tabs-title.is-active
             a.bold href='#memberships' aria-selected='true'
-              ' Memberships
+              ' Choose your membership plan
           li.tabs-title
             a.bold href='#alliances'
               ' Private Alliances
@@ -29,7 +29,7 @@
         ul.vertical.tabs.show-for-medium.shadow#features-tabs data-tabs=true data-deep-link="true" data-update-history="true"
           li.tabs-title.is-active
             a.bold href='#memberships' aria-selected='true'
-              ' Memberships
+              ' Choose your membership plan
           li.tabs-title
             a.bold href='#alliances'
               ' Private Alliances
@@ -129,6 +129,7 @@
                     li
                       a.button.expanded.success.bold.scale-to-110 data-open='associate-year'
                         ' Free Associate Membership
+                  h5.bold.little-less-space-top.text-center= link_to 'Learn more...', features_path(anchor: 'nucleus')
 
               .medium-4.columns
                 .callout.small.primary.shadow
@@ -153,7 +154,7 @@
                         ' Send
                       ' private messages
                     li Join Company Workspaces
-                    li Appear in Members listings
+                    li Appear in Members Listing
                     li Join Private Alliances
                     li
                       span.bold
@@ -191,7 +192,7 @@
                         ' Send
                       ' private messages
                     li Join Company Workspaces
-                    li Appear in Members listings
+                    li Appear in Members Listing
                     li Join Private Alliances
                     li
                       span.bold
@@ -361,7 +362,7 @@
               .large-10.large-offset-1.columns
                 .callout.small.primary.shadow-3dp.little-space-top
                   p.bold.text-center.little-less-space-top.primary
-                    ' Associate Membership — free for life!
+                    ' Access The Nucleus with Free Associate Membership
                   = render 'partials/join_form', acqsrc: 'features'
 
           .tabs-panel#profile
