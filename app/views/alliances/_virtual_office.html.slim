@@ -41,7 +41,7 @@
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=WEBRTC_TIP
               ' Real-time Private Virtual Office:
         - if current_user and @alliance.webmeet_code.present? and @alliance.members.include? current_user
-          p.text-center.snug-bottom= link_to 'Access your Private Meeting Area', alliance_pvo_url, target: '_blank', class: 'button expanded shadow-4dp'
+          p.text-center.snug-bottom= link_to 'Enter your Event & Office Space', alliance_pvo_url, target: '_blank', class: 'button expanded shadow-4dp'
         - else
           p.space-top.text-center
             em Virtual Office only available to the Members of this Private Alliance.
