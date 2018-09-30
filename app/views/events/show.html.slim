@@ -45,10 +45,12 @@
               .medium-9.columns
                 - if @event.start_time.present?
                   - if @event.start_time > Time.zone.now
+                    p.little-snug-top= @event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
                     - if current_user and current_user.time_zone.present?
-                      p.little-snug-top= @event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%m/%d/%Y %H:%M%z')
+                      p.faint.snug-top
+                        ' Your local time: #{@event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, at %H:%M %Z')}
                     - else
-                      p.little-snug-top= @event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+                      p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path} to display local time.
                   - else
                     p.little-snug-top.faint This Live Event is over
                 - else
@@ -86,10 +88,10 @@
         - @upcoming_events.each do |event|
           - if event == @event
             p.indented-1.bold= link_to event.title, event_path(event)
-            p.indented-2.faint.snug-top= event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+            p.indented-2.faint.snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
             p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
           - else
             p.indented-1= link_to event.title, event_path(event)
-            p.indented-2.faint.snug-top= event.start_time.try(:strftime, '%m/%d/%Y %H:%M%z')
+            p.indented-2.faint.snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
             p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
 

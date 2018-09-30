@@ -40,5 +40,19 @@
           = f.input :alliance_id, label: 'Event location', collection: locations
         .little-snug-top
           = f.input :start_time, placeholder: 'In the future (mm/dd/yyyy hh:mm)', input_html: { autocomplete: 'off' }, as: :string
+
+          - if current_user and current_user.time_zone.present?
+            p.faint.snug-top
+              ' Start time will be in
+              span.bold
+                ' #{current_user.time_zone}
+          - else
+            .float-right
+              p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path}!
+            p.faint.snug-top.bold
+              ' Start time will be set in
+              ' #{link_to 'UTC', 'https://en.wikipedia.org/wiki/Coordinated_Universal_Time', target: '_blank'}!
+
+
         = f.button :submit, 'Create your Live Event', class: 'button expanded accent'
       p.faint.text-center.snug-bottom Your event will be reviewed. We will contact you if there is a problem.

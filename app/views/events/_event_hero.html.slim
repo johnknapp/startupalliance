@@ -53,7 +53,7 @@
             p.little-snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
             - if current_user and current_user.time_zone.present?
               p.faint.snug-top
-                ' (Your local time: #{event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, at %H:%M %Z')})
+                ' Your local time: #{event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, at %H:%M %Z')}
             - else
               p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path} to display local time.
 
