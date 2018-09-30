@@ -23,6 +23,25 @@
     .row
       .medium-8.columns
         .callout.primary
+          - if current_user and (@event.organizer == current_user or current_user.admin?)
+            .float-right
+              ul.dropdown.menu data-dropdown-menu=true
+                li
+                  = link_to '#' do
+                    i.fa.fa-ellipsis-v
+                  ul.menu data-dropdown-menu=true
+                    li
+                      = render 'events/edit_modal', event: @event
+                    li
+                      = link_to clone_event_path(@event), data: { confirm: 'Your clone will have no start time!' }, method: :post  do
+                        i.fa.fa-clone
+                        | &nbsp;
+                        ' Clone this Event
+                    li
+                      = link_to @event, data: { confirm: 'Are you sure?' }, method: :delete do
+                        i.fa.fa-trash-o
+                        | &nbsp;
+                        ' Delete this Event
           h4.bold.primary= @event.title
           p.little-snug-top= @event.description
           .callout.white

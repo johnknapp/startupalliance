@@ -1,35 +1,9 @@
 .callout.accent.shadow.space-bottom
 
-  - if current_user and (event.organizer == current_user or current_user.admin?)
-    .float-right
-      ul.dropdown.menu data-dropdown-menu=true
-        li
-          = link_to '#' do
-            i.fa.fa-ellipsis-v.fainter
-          ul.menu data-dropdown-menu=true
-            li
-              = render 'events/edit_modal', event: event
-            li
-              = link_to clone_event_path(event), data: { confirm: 'Your clone will have no start time!' }, method: :post  do
-                i.fa.fa-clone
-                | &nbsp;
-                ' Clone this Event
-            li
-              = link_to event, data: { confirm: 'Are you sure?' }, method: :delete do
-                i.fa.fa-trash-o
-                | &nbsp;
-                ' Delete this Event
-
   h4.bold.primary.pad-right= link_to event.title, event_path(event)
   p.little-snug-top.little-less-snug-bottom= event.description
 
   .callout.white
-    /.row
-      .medium-3.columns
-        p.bold.little-snug-top Event Organizer:
-      .medium-9.columns
-        p.little-snug-top=link_to "#{event.organizer.name} (#{render 'partials/user_si_ti_display', user: event.organizer})", vanity_path(event.organizer.username)
-
     .row
       .medium-3.columns
         p.bold.little-snug-top Location:
@@ -68,5 +42,3 @@
         p.snug-bottom.little-snug-top
           span.has-tip.normal data-tooltip=true aria-haspopup=true data-click-open='false' title=EVENT_TYPE_TIP
             = event.event_type
-  /p.faint.text-right.little-snug-top
-    ' Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}

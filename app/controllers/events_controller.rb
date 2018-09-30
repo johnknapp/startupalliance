@@ -47,9 +47,9 @@ class EventsController  < ApplicationController
       if clone.access_url.present?             # a new room for the clone
         clone.update_attribute(:access_url, WEBRTC_EVENT_URL + clone.pid)
       end
-      redirect_to events_path(organizer_pid: current_user.pid), notice: 'Your Event was successfully cloned.'
+      redirect_to event_path(clone), notice: 'Your Event was successfully cloned.'
     else
-      redirect_back(fallback_location: events_path, alert: 'There was a problem!')
+      redirect_back(fallback_location: event_path(clone), alert: 'There was a problem!')
     end
   end
 
@@ -59,7 +59,7 @@ class EventsController  < ApplicationController
 
   def update
     flash[:notice] = 'Live Event was successfully updated.' if @event.update(event_params)
-    redirect_to events_path
+    redirect_to event_path(@event)
   end
 
   def destroy
