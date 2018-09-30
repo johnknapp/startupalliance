@@ -12,7 +12,7 @@
         - locations = []
         - current_user.alliances.each do |alliance|
           - locations << ['Private Alliance: ' + alliance.name, alliance.id]
-        - locations << ['All Members Area', 0]
+        - locations << ['All Members Room', 0]
         = f.hidden_field :organizer_id,     value: current_user.id  if current_user
         = f.input :title, autofocus: true, required: true, label: 'Event name', placeholder: 'Keep the title brief'
         .little-snug-top= f.input :description, required: true, label: 'Description', as: :text, placeholder: 'Describe your Event'
