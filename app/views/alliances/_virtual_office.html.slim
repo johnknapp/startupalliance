@@ -25,7 +25,7 @@
               p.indented-3.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path}!
 
 
-            p.indented-2.faint.little-snug-top
+            p.indented-2.faint.snug-top
               ' Organized by
               = link_to "#{event.organizer.name}, (#{render 'partials/user_si_ti_display', user: event.organizer})", vanity_path(event.organizer.username)
               /- if current_user and @alliance.members.include? current_user
