@@ -14,4 +14,6 @@ class Event < ApplicationRecord
       Lecture:  2
   }
 
+  scope :upcoming, -> { where('start_time > ?', Time.zone.now).order(:start_time) }
+
 end

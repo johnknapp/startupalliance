@@ -13,8 +13,8 @@
         p.snug-top &nbsp;
         .callout.small.shadow
           h5.bold.primary Events happening here:
-          - if @upcoming_events.present?
-            - @upcoming_events.each do |event|
+          - if @alliance.events.upcoming.present?
+            - @alliance.events.upcoming.limit(8).each do |event|
               p.indented-1.bold= link_to event.title, event_path(event)
               p.indented-2.faint.snug-top
                 = event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
