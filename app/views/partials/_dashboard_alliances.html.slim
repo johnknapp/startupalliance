@@ -13,5 +13,12 @@
                     span.red-text
                       i.fa.fa-comments
                 = link_to alliance.name, alliance_path(alliance)
+                - if alliance.events.upcoming.present?
+                  - alliance.events.upcoming.limit(1).each do |event|
+                    p.little-snug-top.faint.indented-1
+                      - if current_user and current_user.time_zone.present?
+                        ' Next Event: #{link_to event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, %m/%d/%y %H:%M %Z')}
+                      - else
+                        ' Next Event: #{link_to event.start_time.utc.try(:strftime, '%a, %m/%d/%y %H:%M %Z'), event_path(event)}
         - else
             p.text-center None!
