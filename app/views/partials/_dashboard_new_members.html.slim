@@ -1,0 +1,13 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center Newest Members
+    .card-section
+      .plan-box data-equalizer-watch=true
+        ul.snug-bottom
+          - User.last(8).reverse.map do |user|
+            - if user.confirmed?
+              li
+                .float-right
+                  = render 'partials/user_si_ti_display', user: user
+                = link_to user.name, vanity_path(user.username)

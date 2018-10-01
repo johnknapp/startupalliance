@@ -1,0 +1,17 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center My Private Alliances
+    .card-section
+      .plan-box data-equalizer-watch=true
+        - if current_user.alliances.present?
+          ul.snug-bottom
+            - current_user.alliances.each do |alliance|
+              li
+                - if alliance.discussions.any? { |disco| disco.posts.unread_by(current_user).present? if disco.posts.where.not(author_id: current_user.id).present? }
+                  .float-right
+                    span.red-text
+                      i.fa.fa-comments
+                = link_to alliance.name, alliance_path(alliance)
+        - else
+            p.text-center None!

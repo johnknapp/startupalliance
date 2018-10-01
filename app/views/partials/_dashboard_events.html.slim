@@ -1,0 +1,17 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center Upcoming Events
+    .card-section
+      .plan-box data-equalizer-watch=true
+        - events = Event.where('start_time > ?', Time.zone.now).order(:start_time).limit(10)
+        - if events.present?
+          ul.snug-bottom
+            - events.each do |event|
+              li
+                = link_to event.title, event_path(event)
+                .indented-1.faint.little-less-snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
+                .indented-1.faint.little-less-snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
+
+        - else
+            p.text-center None!

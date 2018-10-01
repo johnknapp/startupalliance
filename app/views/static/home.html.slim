@@ -1,25 +1,22 @@
 - if current_user
+  .callout.primary-background
+    h2.bold.little-space-top.white-text.text-center
+      ' Welcome #{current_user.name}
+    h4.bold.medium-grey-text.text-center
+      ' Member since #{current_user.created_at.strftime('%B %e, %Y')}
+
   .row
     .medium-12.columns
-      h4.bold.primary-text.space-top.little-snug-bottom You’re signed in so here’s quick access to The Nucleus:
       .callout.accent.little-space-top.shadow-6dp
         .row.medium-up-2.large-up-3 data-equalizer=true
           h3.bold.primary-text.text-center.little-space-bottom
-            | The Entrepreneurs Nucleus
-            span.faint
-              ' &trade;
-            ' for
-            - if current_user
-              ' #{current_user.name}...
-            - else
-              ' Committed Entrepreneurs...
-          = render 'partials/hero_disco'
-          = render 'partials/hero_kb'
-          = render 'partials/hero_gvo'
-          = render 'partials/hero_quarks'
-          = render 'partials/hero_events'
-          /= render 'partials/hero_classifieds'
-          = render 'partials/hero_more_coming'
+            ' Member’s Dashboard
+          = render 'partials/dashboard_alliances'
+          = render 'partials/dashboard_companies'
+          = render 'partials/dashboard_nucleus'
+          = render 'partials/dashboard_events'
+          = render 'partials/dashboard_new_members'
+
 
 - else
 
@@ -98,6 +95,6 @@
           ' Don’t miss the calls to action. This is where you sign-up.
           i.fa.fa-lg.fa-arrow-up
 
-.callout.primary-background.little-space-top.snug-bottom
-  h2.h1.bold.little-space-top.white-text.text-center.wide-line-height
-    ' Better. Together.
+  .callout.primary-background.little-space-top.snug-bottom
+    h2.h1.bold.little-space-top.white-text.text-center.wide-line-height
+      ' Better. Together.

@@ -1,0 +1,17 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center My Companies
+    .card-section
+      .plan-box data-equalizer-watch=true
+        - if current_user.companies.present?
+          ul.snug-bottom
+            - current_user.companies.each do |company|
+              li
+                - if company.discussions.any? { |disco| disco.posts.unread_by(current_user).present? if disco.posts.where.not(author_id: current_user.id).present? }
+                  .float-right
+                    span.red-text
+                      i.fa.fa-comments
+                = link_to company.name, company_path(company)
+        - else
+          p.text-center None!

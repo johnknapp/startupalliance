@@ -3,6 +3,8 @@ class StaticController < ApplicationController
 
   def home
     render layout: 'application_wide'
+    if current_user
+    end
   end
 
   def h2

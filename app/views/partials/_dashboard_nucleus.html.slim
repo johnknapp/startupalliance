@@ -1,0 +1,29 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center
+        | The Entrepreneur’s Nucleus
+        span.faint
+          ' &trade;
+
+    .card-section
+      .plan-box data-equalizer-watch=true
+        ul.snug-bottom
+          li
+            = link_to discussions_path do
+              ' Discussion Forums
+              - if Discussion.where(nucleus: true).any? { |disco| disco.posts.unread_by(current_user).present? if disco.posts.where.not(author_id: current_user.id).present? }
+                .float-right
+                  span.red-text
+                    i.fa.fa-comments
+          li= link_to 'Knowledge Base', pages_path
+          li= link_to 'Events Calendar', events_path(anchor: 'calendar')
+          /li= link_to 'Classified Ads', classifieds_path
+          li= link_to 'Nucleus Quarks!', quarks_path
+          li= link_to 'Global Virtual Office', gvo_url, target: '_blank'
+          li
+            = link_to gvo_url(24), target: '_blank' do
+              ' Previous GVO
+              | &nbsp;
+              span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
+                i.fa.fa-info-circle
