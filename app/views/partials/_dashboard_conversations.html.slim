@@ -1,0 +1,32 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center My Private Conversations
+    .card-section
+      .plan-box data-equalizer-watch=true
+        - if current_user.conversations.present?
+          ul.snug-bottom
+            - current_user.conversations.each do |conversation|
+
+              - if conversation.sender.present? and conversation.recipient.present?
+                - unread_count = conversation.messages.where.not(user_id: current_user).where(read: false).count
+                /- if conversation.sender == current_user or conversation.recipient == current_user
+                  .float-right
+                    = link_to conversation, data: { confirm: 'Really destroy entire conversation and all messages?' }, method: :delete do
+                      i.fa.fa-trash-o.faint
+                - if conversation.sender_id == current_user.id
+                  - interlocutor = conversation.recipient
+                - else
+                  - interlocutor = conversation.sender
+                li
+                  = link_to conversation_messages_path(conversation) do
+                    - if unread_count != 0
+                      .float-right
+                        span.red-text
+                          i.fa.fa-envelope
+                    = interlocutor.name
+
+
+
+        - else
+            p.text-center None!
