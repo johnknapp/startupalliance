@@ -13,7 +13,8 @@
 
     .row
       .large-3.columns
-        ul.tabs.show-for-small-only.shadow#features-tabs data-tabs=true data-deep-link="true" data-update-history="true"
+        p.bold.text-center.little-space-top.hide-for-large Questions? #{mail_to 'hello@startupalliance.com', 'Email us for answers!', subject: "Questions about membership plans", encode: 'hex'}
+        ul.accent-background.tabs.hide-for-large.shadow-4dp#features-tabs data-tabs=true data-deep-link="true" data-update-history="true"
           li.tabs-title.is-active
             a.bold href='#memberships' aria-selected='true'
               ' Membership Plans
@@ -26,7 +27,7 @@
           li.tabs-title
             a.bold href='#nucleus'
               ' The Entrepreneur’s Nucleus
-        ul.vertical.tabs.show-for-medium.shadow#features-tabs data-tabs=true data-deep-link="true" data-update-history="true"
+        ul.accent-background.vertical.tabs.show-for-large.shadow-4dp#features-tabs data-tabs=true data-deep-link="true" data-update-history="true"
           li.tabs-title.is-active
             a.bold href='#memberships' aria-selected='true'
               ' Membership Plans
@@ -39,9 +40,9 @@
           li.tabs-title
             a.bold href='#nucleus'
               ' The Entrepreneur’s Nucleus
-
+        p.bold.text-center.little-space-top.show-for-large Questions? #{mail_to 'hello@startupalliance.com', 'Email us for answers!', subject: "Questions about membership plans", encode: 'hex'}
       .large-9.columns
-        .tabs-content.shadow data-tabs-content='features-tabs'
+        .tabs-content.shadow-4dp data-tabs-content='features-tabs'
           .tabs-panel.is-active#memberships
             /p
               ' We provide online tools and community resources our members use to make
