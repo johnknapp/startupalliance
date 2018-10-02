@@ -38,7 +38,7 @@
                   = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
                     i.fa.fa-trash-o.scale-to-90
                 p.text-right.faint #{time_ago_in_words(message.created_at)} ago
-                p.text-right.little-snug-top= auto_link(message.body, html: { target: '_blank' })
+                p.little-snug-top= auto_link(message.body, html: { target: '_blank' })
         - else
           .row
             .medium-8.columns
