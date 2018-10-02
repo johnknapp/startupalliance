@@ -1,0 +1,32 @@
+- content_for :page_header do
+  h2.bold.little-space-top.white-text.text-center
+    = @user.name
+  h4.bold.medium-grey-text.text-center
+    ' Your current Skill Index is #{@user.skill_index}
+.row
+  .large-10.large-offset-1.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to vanity_path(@user.username) do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to your TrueInsight Profile
+    p.snug-top.text-right= USER_SKILL_TIP
+    p.snug-top.show-for-medium &nbsp;
+
+
+.row
+  .medium-6.medium-offset-3.columns
+    .callout.shadow-4dp
+      p.bold.snug-top Honestly rate your level for each startup skill (10 is top expert)
+
+      table.hover.stacked.shadow
+        tbody
+          - skills = Skill.all.order(:name)
+          - skills.each do |skill|
+            tr
+              td{width='50%' align='right'}= skill.name.html_safe
+              td{width='50%'}= render 'partials/skill_level', skill: skill
+
+    p.snug-top.show-for-medium &nbsp;
