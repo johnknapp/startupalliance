@@ -54,9 +54,10 @@
                   | &nbsp;
                   ' #{number_with_delimiter(unread_count)}
             p.faint
-              = link_to conversation_messages_path(conversation) do
-                ' #{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}
-                | &nbsp;
-                ' (#{time_ago_in_words(conversation.messages.last.created_at)} ago)
+              - if conversation.messages.present?
+                = link_to conversation_messages_path(conversation) do
+                  ' #{number_with_delimiter(conversation.messages.count)} #{'message'.pluralize(conversation.messages.count)}
+                  | &nbsp;
+                  ' (#{time_ago_in_words(conversation.messages.last.created_at)} ago)
     - else
       ' No conversations yet!
