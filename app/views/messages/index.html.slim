@@ -8,40 +8,45 @@
   ' Conversation with #{interlocutor.name}
 
 - content_for :page_header do
-  h4.bold.little-space-top.medium-grey-text.text-center
+  h5.bold.little-space-top.medium-grey-text.text-center
     ' Private Conversation with:
-  h2.bold.white-text.text-center
+  h3.bold.white-text.text-center
     = link_to vanity_path(interlocutor.username), class: 'white-text' do
       ' #{image_tag gravatar_url("#{interlocutor.email}", 60)}
       strong
         ' #{interlocutor.name}
 
 .row
-  .medium-10.medium-offset-1.columns
-    p.snug-top.space-bottom.text-right
-      | &nbsp;
-      /' Your conversation with #{link_to interlocutor.name, vanity_path(interlocutor.username)} is private.
+  .large-10.large-offset-1.columns
+
+    p.snug-top.space-bottom
+      = link_to conversations_path do
+        i.fa.fa-arrow-left
+        | &nbsp;
+        | &nbsp;
+        ' Return to Private Conversations
+
     - @conversation.messages.each do |message|
       - if message.body
         - if message.author == current_user
-          .float-right
-            | &nbsp;
-            | &nbsp;
-            = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
-              i.fa.fa-trash-o.faint
-          p.text-right.faint Written by you #{time_ago_in_words(message.created_at)} ago
-          hr.little-snug-top
           .row
-            .small-6.small-offset-6.columns
-              p.text-right.snug-top= auto_link(message.body, html: { target: '_blank' })
+            .medium-8.medium-offset-4.columns
+              .callout.small.accent-background.shadow
+                /.float-right
+                  | &nbsp;
+                  | &nbsp;
+                  = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
+                    i.fa.fa-trash-o.scale-to-90
+                p.text-right.faint #{time_ago_in_words(message.created_at)} ago
+                p.text-right.little-snug-top= auto_link(message.body, html: { target: '_blank' })
         - else
-          p.faint Written by them #{time_ago_in_words(message.created_at)} ago
-          hr.little-snug-top
           .row
-            .small-6.columns
-              p.snug-top= auto_link(message.body, html: { target: '_blank' })
+            .medium-8.columns
+              .callout.small.light-grey-background.shadow
+                p.faint #{time_ago_in_words(message.created_at)} ago
+                p.little-snug-top= auto_link(message.body, html: { target: '_blank' })
 
-    = simple_form_for @message, url: conversation_messages_path, method: :post do |f|
+    .space-top= simple_form_for @message, url: conversation_messages_path, method: :post do |f|
       = f.hidden_field :user_id, value: current_user.id
       .row.collapse
         .small-10.columns
