@@ -1,11 +1,3 @@
-/- if current_user and @company.team.include?(current_user)
-  .small-12.columns
-    .callout data-closable=true
-      button data-close=true aria-label='Close' type='button' class='close-button'
-        span aria-hidden=true
-          ' &times;
-      p.faint
-        ' Invite and involve your people — use these tools and build a more successful company. (#{@company.name} owners can add or remove team members.)
 .row.small-up-2.medium-up-3
   - @company.team.order(created_at: :desc).each_with_index do |member,i|
     .column
