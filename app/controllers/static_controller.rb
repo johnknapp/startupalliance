@@ -21,6 +21,9 @@ class StaticController < ApplicationController
   def features
   end
 
+  def how_we_are_different
+  end
+
   def about
   end
 

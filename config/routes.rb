@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :prospects,                     only: [:create],           constraints: { format: 'html' }
   resources :offers,        path: :welcome, only: [:show],             constraints: { format: 'html' }
 
-  get 'how_it_works',               to: 'static#how_it_works',         constraints: { format: 'html' }
+  get 'how-we-are-different',       to: 'static#how_we_are_different',   constraints: { format: 'html' }
+  get 'how-it-works',               to: 'static#how_it_works',         constraints: { format: 'html' }
   get 'features',                   to: 'static#features',             constraints: { format: 'html' }
   get 'pricing',                    to: redirect('/features')
   get 'nucleus',                    to: 'static#nucleus',              constraints: { format: 'html' }
