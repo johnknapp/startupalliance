@@ -42,13 +42,16 @@
                 | &nbsp;
                 | &nbsp;
                 = interlocutor.name
+                | &nbsp;
+                | &nbsp;
+                span.normal
+                  ' (#{render 'partials/user_si_ti_display', user: interlocutor})
             - if unread_count != 0
               .float-right
                 p.red-text.pad-right
                   i.fa.fa-lg.fa-envelope
                   | &nbsp;
                   | &nbsp;
-                  /span.bold
                   ' #{number_with_delimiter(unread_count)}
             p.faint
               = link_to conversation_messages_path(conversation) do
