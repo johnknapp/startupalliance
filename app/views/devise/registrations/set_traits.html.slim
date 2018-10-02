@@ -13,13 +13,20 @@
           | &nbsp;
           | &nbsp;
           ' Return to your TrueInsight Profile
-    p.snug-top.text-right= USER_TRAIT_TIP
     p.snug-top.show-for-medium &nbsp;
 
 .row
   .medium-6.medium-offset-3.columns
+    h5.bold Set your Personal Traits
+    p.little-snug-top
+      ' You are strongly encouraged to rate yourself on this standard set of Personal Traits.
+      ' This helps other members get to know you and it helps you discover more about those with whom you interact.
+    p.little-snug-top
+      ' Only Personal Traits for which you are rated will be visible to others.
+      ' By default, non-members cannot see your ratings when viewing your TrueInsight Profile.
+      ' You can make them visible to non-members on your #{link_to 'Account Settings Page', edit_user_registration_path}.
     .callout.shadow-4dp
-      p.bold.snug-top Honestly rate your level for each personal trait (10 is top expert)
+      p.bold.snug-top Honestly rate your level for each Personal Trait (10 is top expert)
 
       table.hover.stacked.shadow
         tbody
