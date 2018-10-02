@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  prepend_before_action :authenticate_scope!, only: [:membership, :edit, :update, :destroy] # adding :membership to their defaults
+  prepend_before_action :authenticate_scope!, only: [:membership, :edit, :update, :set_skills, :set_traits, :destroy] # adding :membership to their defaults
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
       trait.update(level: params[:level])
       set_trait_index
     end
-    redirect_back(fallback_location: vanity_path(current_user.username), notice: 'You set your trait level')
+    redirect_back(fallback_location: users_set_traits_path, notice: 'You set your trait level')
   end
 
   def unset_trait
@@ -20,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
       UserTrait.where(user_id: current_user.id, trait_id: params[:trait_id]).first.destroy
       set_trait_index
     end
-    redirect_back(fallback_location: vanity_path(current_user.username), alert: 'You unset your trait level')
+    redirect_back(fallback_location: users_set_traits_path, alert: 'You unset your trait level')
   end
 
   def declare_skill
@@ -32,7 +32,7 @@ class RegistrationsController < Devise::RegistrationsController
       skill.update(level: params[:level])
       set_skill_index
     end
-    redirect_back(fallback_location: vanity_path(current_user.username), notice: 'You set your skill level')
+    redirect_back(fallback_location: users_set_skills_path, notice: 'You set your skill level')
   end
 
   def unset_skill
@@ -40,7 +40,7 @@ class RegistrationsController < Devise::RegistrationsController
       UserSkill.where(user_id: current_user.id, skill_id: params[:skill_id]).first.destroy
       set_skill_index
     end
-    redirect_back(fallback_location: vanity_path(current_user.username), alert: 'You unset your skill level')
+    redirect_back(fallback_location: users_set_skills_path, alert: 'You unset your skill level')
   end
 
   def change_plan
@@ -121,6 +121,12 @@ class RegistrationsController < Devise::RegistrationsController
         # render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       end
     end
+  end
+
+  def set_skill
+  end
+
+  def set_trait
   end
 
   def membership

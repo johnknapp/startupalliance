@@ -10,7 +10,9 @@
   .medium-10.medium-offset-1.columns
     - if current_user and current_user == @user
       /- if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
-      .float-left
+      .float-right
+        = link_to 'Update your Personal Traits', users_set_traits_path, class: 'button accent'
+        /= link_to 'Update your Personal Traits', '#', class: 'button accent', data: {open: 'set-traits'}
         p.faint
           a data-open='set-traits'
             i.fa.fa-pencil
