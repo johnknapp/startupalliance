@@ -1,11 +1,3 @@
-/- if current_user and @user == current_user
-  .small-12.columns
-    .callout data-closable=true
-      button data-close=true aria-label='Close' type='button' class='close-button'
-        span aria-hidden=true
-          ' &times;
-      p.pad-right
-        ' Make sure the right people can learn about you and connect. (This private message only seen by the profile owner, you! :-)
 .row
   .medium-12.columns
     /.float-right
@@ -35,7 +27,6 @@
   .large-6.large-offset-3.medium-8.medium-offset-2.columns
 
 
-    /- if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
     .callout.accent.shadow.little-space-top
       h5.bold.text-center My Personal Mission:
       - if @user.mission.present?

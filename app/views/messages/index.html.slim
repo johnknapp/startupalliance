@@ -55,6 +55,6 @@
       = f.hidden_field :user_id, value: current_user.id
       .row.collapse
         .small-10.columns
-          = f.input :body, autofocus: true, as: :string, label: false, placeholder: "Private message to #{interlocutor.name}"
+          = f.input :body, autofocus: true, as: :string, label: false, placeholder: "Direct Message to #{interlocutor.name}"
         .small-2.columns
           = f.button :submit, "Send", class: 'button postfix accent expanded'
