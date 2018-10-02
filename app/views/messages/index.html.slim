@@ -32,11 +32,16 @@
           .row
             .medium-8.medium-offset-4.columns
               .callout.small.accent-background.shadow
-                /.float-right
-                  | &nbsp;
-                  | &nbsp;
-                  = link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
-                    i.fa.fa-trash-o.scale-to-90
+                .float-right
+                  ul.dropdown.menu.little-snug-top data-dropdown-menu=true
+                    li
+                      = link_to '#' do
+                        i.fa.fa-ellipsis-v.faint
+                      ul.menu data-dropdown-menu=true
+                        li= link_to conversation_message_path(id: message.pid), data: { confirm: 'Really destroy this message?' }, method: :delete do
+                          i.fa.fa-trash-o.faint
+                          | &nbsp;
+                          ' Delete message
                 p.text-right.faint #{time_ago_in_words(message.created_at)} ago
                 p.little-snug-top= auto_link(message.body, html: { target: '_blank' })
         - else
