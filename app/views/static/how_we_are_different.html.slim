@@ -12,7 +12,7 @@
   .large-8.large-offset-2.medium-10.medium-offset-1.columns
     p.bold.text-right.snug-top= link_to '10 things making Startup Alliance special...', how_we_are_different_path(anchor: 'how-we-stand-out')
 
-    h5.bold.space-top
+    h5.bold.space-top#eo
       ' How we’re different from Entrepreneur’s Organization
     p.little-snug-top
       ' The Entrepreneur’s Organization is an excellent source of knowledge, national and regional events, face-to-face and online learning.
@@ -21,15 +21,20 @@
       ' Chapter dues are on top of global dues and vary based on each individual chapter policies.
     p.little-snug-top
       ' Startup Alliance is open to all #{link_to 'with significantly lower membership costs', features_path(anchor: 'memberships')} when compared to Entrepreneur’s Organization.
-      ' Startup Alliance is an online community with a global focus on collaboration to help entrepreneurs connect with qualified peers regardless of where they’re located.
-      ' Additionally, Startup Alliance provides a growing set of #{link_to 'productivity and focus enhancing tools and community resources', features_path}.
+      ' Startup Alliance is an online community with a global focus on collaboration to help entrepreneurs
+      span.bold
+        ' connect with qualified peers regardless of where they’re located.
+    p.little-snug-top
+      ' Additionally, Startup Alliance provides a growing set of #{link_to 'productivity and focus enhancing tools and community resources', features_path}
+      span.bold
+        ' giving new capabilities to Entrepreneur’s Organization members.
       ' Each member, even those who join for free, receive a unique
       | #{link_to 'TrueInsight Profile', vanity_path('john')}
       span.faint
         ' &trade;
       ' they can use across all social media and within other entrepreneur communities to help people everywhere get to know them.
 
-    h5.bold.space-top
+    h5.bold.space-top#indie-hackers
       ' How we’re different from Indie Hackers
     p.little-snug-top
       ' Indie Hackers is a vibrant online knowledge sharing community for product makers and entrepreneurs.
@@ -38,15 +43,17 @@
       ' Indie Hackers was created by Courtland Allen in 2016 and acquired by Stripe in 2017.
     p.little-snug-top
       ' Startup Alliance also offers #{link_to 'free membership plus two other subscription based memberships', features_path(anchor: 'memberships')} with #{link_to 'additional features', features_path}.
-      ' Additionally, Startup Alliance provides a growing set of #{link_to 'productivity and focus enhancing tools and community resources', features_path}.
+      span.bold
+        ' Adding value to Indie Hacker membership,
+      ' Startup Alliance provides a growing set of #{link_to 'productivity and focus enhancing tools and community resources', features_path}.
       ' Each member, even those who join for free, receive a unique
       | #{link_to 'TrueInsight Profile', vanity_path('john')}
       span.faint
         ' &trade;
-      ' they can use across all social media and within other entrepreneur communities to help people everywhere get to know them.
+      ' they can use on Indie Hackers and social media and other communities to help people everywhere get to know them.
       '
 
-    h5.bold.space-top
+    h5.bold.space-top#vistage
       ' How we’re different from Vistage
     p.little-snug-top
       ' Over 60 years old, Vistage is a business coaching company. Vistage assembles business executives into peer groups based on professional title and also provides one-to-one coaching, interactive workshops and online resources.
@@ -54,23 +61,38 @@
       ' Vistage maintains a large group of executive coaches and pairs them with the appropriate members.
     p.little-snug-top
       ' Startup Alliance is open to all #{link_to 'with significantly lower membership costs', features_path(anchor: 'memberships')} when compared to Vistage.
-      ' Startup Alliance is an online community with a global focus on collaboration to help entrepreneurs connect with
-      ' qualified peers regardless of where they’re located.
+      ' Startup Alliance is
+      span.bold
+        ' an online community with a global focus on collaboration
+      ' to help entrepreneurs connect with qualified peers regardless of where they’re located.
       ' Startup Alliance is the only entrepreneurs community featuring #{link_to 'Collaboration Workspaces for Companies', features_path(anchor: 'companies')} and
       ' #{link_to 'Private Alliances', features_path(anchor: 'alliances')} to unite the efforts compatible entrepreneurs to ask questions, get answers, gain deeper insights and broader perspectives.
       ' Each member, even those who join for free, receive a unique
       | #{link_to 'TrueInsight Profile', vanity_path('john')}
       span.faint
         ' &trade;
-      ' they can use across all social media and within other entrepreneur communities to help people everywhere get to know them.
+      ' they can use on Vistage, social media and face-to-face to help the people they meet get to know them.
 
-    h5.bold.space-top
+    h5.bold.space-top#founder-cafe
       ' How we’re different from Founder Cafe
     p.little-snug-top
-      ' Founder Cafe is an invite-only private discussion forum for self-funded entrepreneurs. Membership is by invitation only. Applicants go through a vetting process to insure a good fit with the community and membership fees are $99 each calendar quarter.
+      ' Founder Cafe is an excellent invite-only private discussion forum for self-funded entrepreneurs. Membership is by
+      ' invitation only. Applicants go through a vetting process to insure a good fit with the community and
+      ' membership fees are $99 each calendar quarter.
       '
     p.little-snug-top
-      ' Startup Alliance has a #{link_to 'growing collection of community resources', nucleus_path} available to all members, even those who join for free:
+      span.bold
+        ' Of great benefit to Founder Cafe members,
+      ' Startup Alliance has #{link_to 'Collaboration Workspaces for Companies', features_path(anchor: 'companies')} and
+      ' #{link_to 'Private Alliances', features_path(anchor: 'alliances')} where well suited entrepreneurs help each other meet their challenges, gain deeper insights and gain broader perspectives.
+      ' Each member, even those who join for free, receive a unique
+      | #{link_to 'TrueInsight Profile', vanity_path('john')}
+      span.faint
+        ' &trade;
+      ' they can use on Founder Cafe and throughout social media and other communities and meetups to help people everywhere get to know them.
+
+    p.little-snug-top
+      ' Additionally, Startup Alliance has a #{link_to 'unique collection of community resources', nucleus_path} available to all members, even those who join for free.
     ul.snug-top
       li
         span.bold
@@ -88,16 +110,7 @@
         span.bold
           ' Global virtual office
         ' for co-working and real time collaboration with entrepreneurs from around the word.
-    p.little-snug-top
-      ' Additionally, Startup Alliance has #{link_to 'Collaboration Workspaces for Companies', features_path(anchor: 'companies')} and
-      ' #{link_to 'Private Alliances', features_path(anchor: 'alliances')} where compatible entrepreneurs help each other by asking questions, geting answers, gain deeper insights and broader perspectives.
-      ' Each member, even those who join for free, receive a unique
-      | #{link_to 'TrueInsight Profile', vanity_path('john')}
-      span.faint
-        ' &trade;
-      ' they can use across all social media and within other entrepreneur communities to help people everywhere get to know them.
-
-    h5.bold.space-top
+    h5.bold.space-top#meetups
       ' How we’re different from local and regional entrepreneur gatherings
     p.little-snug-top
       ' Face-to-face entrepreneur gatherings are excellent —
@@ -107,8 +120,18 @@
     p.little-snug-top
       ' Startup Alliance is an online entrepreneurs community that comes as close as possible to meeting face-to-face
       ' in a gathering of your peers, talking about business and helping each other meet challenges and set strategy.
+    p.little-snug-top
+      span.bold
+        ' Especially during their co-founder search,
+      | the #{link_to 'TrueInsight Profile', vanity_path('john')}
+      span.faint
+        ' &trade;
+      ' is a powerful way meetup attendees have
+      ' to present their entrepreneurial credentials and discover the potential of the co-founder candidates they meet.
+      '
+      '
 
-    h5.bold.space-top
+    h5.bold.space-top#yc
       ' How we’re different from startup accelerators and incubators
     p.little-snug-top
       ' There are 10s of thousands of accelerators and incubators around the world.
@@ -118,6 +141,13 @@
       /' Startup Alliance is an online community focused on collaboration where entrepreneurs work together to make connections, overcome challenges and win through collaboration with their peers.
       ' Startup Alliance provides #{link_to 'complementary value added online functionality', features_path} to all participants in all accelerators and incubators.
       ' Even #{link_to 'free Associate Membership', features_path(anchor: 'memberships')} provides access to robust community resources and #{link_to 'paid memberships', features_path(anchor: 'memberships')} offer even more capabilities.
+      span.bold
+        ' Especially useful in co-working environments
+      ' where frequent new connections are made,
+      | the #{link_to 'TrueInsight Profile', vanity_path('john')}
+      span.faint
+        ' &trade;
+      ' is a great way to introduce yourself, choose mentors and quickly get to know potential co-founders.
 
     .callout.primary.space-top.shadow-8dp#how-we-stand-out
       .float-right
@@ -182,8 +212,8 @@
           span.bold
             ' Long term effort to accelerate the globalization of entrepreneurship —
           ' Once sustainably profitable, remaining net income from subscription fees will be used
-          ' to spread startup knowledge and skills through in-person educational efforts both directly to
-          ' entrepreneurs worldwide and through exemplary Entrepreneurship Support Organizations (ESOs) and
+          ' to spread startup knowledge and skills both directly to
+          ' entrepreneurs worldwide and through Entrepreneurship Support Organizations (ESOs) and
           ' entrepreneurship gatherings and conferences.
 
     = link_to 'Learn more and join us today', features_path, class: 'space-top bold large button expanded success shadow-4dp'
