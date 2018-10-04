@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'events/calendar',    to: 'calendars#upcoming_events', constraints: { format: 'ics' }
+
   resources :classifieds,   only: [:index, :create, :update, :destroy], constraints: { format: 'html' } do
     member do
       post :ad_response,    to: 'classifieds#ad_response'

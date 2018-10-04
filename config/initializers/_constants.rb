@@ -82,6 +82,8 @@ USERNAME_EXCLUSIONS = %w[
   administrator
   alliance
   alliances
+  calendar
+  calendars
   card
   cards
   change_plan
