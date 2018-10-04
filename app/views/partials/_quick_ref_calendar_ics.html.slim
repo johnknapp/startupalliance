@@ -1,0 +1,24 @@
+.reveal.small#calendar-ics data-reveal=true
+  button data-close=true aria-label='Close' type='button' class='close-button'
+    span aria-hidden=true
+      ' &times;
+  h4.primary-text
+    ' Quick Reference:
+    strong
+      ' Subscribing to Events Calendar
+  /hr.little-snug-top
+  /p.snug-top.space-bottom.text-right Never miss another Live Event
+
+  .callout.accent
+    p.bold.snug-bottom What you need to know:
+
+    p
+      ' Startup Alliance publishes an upcoming event calendar in ICS format.
+      ' Clicking this Subscribe button should launch your calendar software and add this calendar.
+      ' We publish event time as UTC. Your calendar software should convert to your local time zone.
+    p.little-snug-top
+      ' If the subscribe button doesn’t work for you, manually paste the calendar WEBCAL link into your calendar software:
+      span.bold
+        ' #{events_calendar_url(protocol: :webcal, format: :ics)}
+    .little-snug-top.text-center= image_tag 'gcal_add_screely.png'
+    p.faint.text-center Shown above: Adding link to Google Calendar.

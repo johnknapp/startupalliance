@@ -66,8 +66,13 @@
               ' Events held in an All Members Room are open to every SA Member.
               ' Only Alliance and Company members can organize Live Events.
             .callout.small
+              .float-right
+                a data-open='calendar-ics'
+                  i.fa.fa-info-circle
+                = render 'partials/quick_ref_calendar_ics'
               p.text-center.bold Don’t miss upcoming Live Events:
               p.little-snug-top.text-center= link_to 'Subscribe to the Events Calendar', events_calendar_url(protocol: :webcal, format: :ics), class: 'button accent'
+
           .medium-7.columns.medium-pull-5
             p.snug-top &nbsp;
             - if @events.present?
