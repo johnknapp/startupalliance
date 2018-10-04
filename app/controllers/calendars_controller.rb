@@ -16,6 +16,7 @@ class CalendarsController < ApplicationController
           event.dtend         = upcoming_event.start_time+1.hour
           event.summary       = '[SA] ' + upcoming_event.title
           event.url           = event_url(upcoming_event)
+          event.description   = event_url(upcoming_event)
           cal.add_event(event)
         end
         cal.publish
