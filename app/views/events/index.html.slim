@@ -64,7 +64,9 @@
             p.indented-1.little-snug-top
               ' Events held in a Private Alliance are open to members of that Alliance.
               ' Events held in an All Members Room are open to every SA Member.
-            p.faint.text-center.little-snug-top Only Alliance and Company members can organize Live Events.
+              ' Only Alliance and Company members can organize Live Events.
+            .callout.small
+              p.text-center= link_to 'Add Startup Alliance Events to your calendar app', events_calendar_url(protocol: :webcal, format: :ics)
           .medium-7.columns.medium-pull-5
             p.snug-top &nbsp;
             - if @events.present?

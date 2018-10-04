@@ -15,6 +15,9 @@ ul.dropdown.menu data-dropdown-menu=true
               .float-right
                 span.red-text
                   i.fa.fa-comments
+      li.pad-left= link_to 'Knowledge Base', pages_path
+      li.pad-left= link_to 'Live Events', events_path
+      li.pad-left= link_to 'Nucleus Quarks!', quarks_path
       - if current_user
         li.pad-left= link_to 'GVO (current)', gvo_url, target: '_blank'
         li.pad-left
@@ -23,6 +26,3 @@ ul.dropdown.menu data-dropdown-menu=true
             | &nbsp;
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
               i.fa.fa-info-circle
-      li.pad-left= link_to 'Knowledge Base', pages_path
-      li.pad-left= link_to 'Nucleus Quarks!', quarks_path
-      li.pad-left= link_to 'Live Events', events_path

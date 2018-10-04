@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'events/calendar',    to: 'calendars#upcoming_events', constraints: { format: 'ics' }
+  get 'events/calendar',    to: 'calendars#upcoming_events'
 
   resources :classifieds,   only: [:index, :create, :update, :destroy], constraints: { format: 'html' } do
     member do
