@@ -1,5 +1,6 @@
-- content_for :page_title do
-  ' Startup Alliance – Nucleus Live Event: #{@event.title}
+- if @event.present?
+  - content_for :page_title do
+    ' Startup Alliance – Nucleus Live Event: #{@event.title}
 
   - content_for :page_header do
     /h2.bold.little-space-top.white-text.text-center
@@ -8,109 +9,124 @@
     /h4.bold.medium-grey-text.text-center
     /  = @event.title
 
-.row
-  .medium-10.medium-offset-1.columns
-    .float-left
-      p.snug-top.space-bottom
-        = link_to events_path do
-          i.fa.fa-arrow-left
-          | &nbsp;
-          | &nbsp;
-          ' Return to All Live Events
-    p.snug-top.text-right Nucleus Live Events are put on by members, staff and special guests.
-    p.snug-top.show-for-medium &nbsp;
+  .row
+    .medium-10.medium-offset-1.columns
+      .float-left
+        p.snug-top.space-bottom
+          = link_to events_path do
+            i.fa.fa-arrow-left
+            | &nbsp;
+            | &nbsp;
+            ' Return to All Live Events
+      p.snug-top.text-right Nucleus Live Events are put on by members, staff and special guests.
+      p.snug-top.show-for-medium &nbsp;
 
-    .row
-      .medium-8.columns
-        .callout.primary
-          - if current_user and (@event.organizer == current_user or current_user.admin?)
-            .float-right
-              ul.dropdown.menu data-dropdown-menu=true
-                li
-                  = link_to '#' do
-                    i.fa.fa-ellipsis-v
-                  ul.menu data-dropdown-menu=true
-                    li
-                      = render 'events/edit_modal', event: @event
-                    li
-                      = link_to clone_event_path(@event), data: { confirm: 'Your clone will have no start time!' }, method: :post  do
-                        i.fa.fa-clone
-                        | &nbsp;
-                        ' Clone this Event
-                    li
-                      = link_to @event, data: { confirm: 'Are you sure?' }, method: :delete do
-                        i.fa.fa-trash-o
-                        | &nbsp;
-                        ' Delete this Event
-          h4.bold.primary= @event.title
-          p.little-snug-top= @event.description
-          .callout.white
-            .row
-              .medium-3.columns
-                p.bold.little-snug-top Location:
-              .medium-9.columns
-                p.little-snug-top
-                  - if @event.alliance_id.present? and @event.access_url.blank?
-                    ' Private Alliance:
-                    br
-                    ' #{link_to @event.alliance.name, alliance_path(@event.alliance, anchor: 'office')}
-                  - elsif @event.alliance_id.blank? and @event.access_url.present?
-                    ' #{link_to 'All Members Room', @event.access_url, target: '_blank'}
-                  - else
-                    ' Location TBD
-            .row
-              .medium-3.columns
-                p.bold.little-snug-top Start time:
-              .medium-9.columns
-                - if @event.start_time.present?
-                  - if @event.start_time > Time.zone.now
-                    p.little-snug-top= @event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
-                    - if current_user and current_user.time_zone.present?
-                      p.faint.snug-top
-                        ' Your local: #{@event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, at %H:%M %Z')}
+      .row
+        .medium-8.columns
+          .callout.primary
+            - if current_user and (@event.organizer == current_user or current_user.admin?)
+              .float-right
+                ul.dropdown.menu data-dropdown-menu=true
+                  li
+                    = link_to '#' do
+                      i.fa.fa-ellipsis-v
+                    ul.menu data-dropdown-menu=true
+                      li
+                        = render 'events/edit_modal', event: @event
+                      li
+                        = link_to clone_event_path(@event), data: { confirm: 'Your clone will have no start time!' }, method: :post  do
+                          i.fa.fa-clone
+                          | &nbsp;
+                          ' Clone this Event
+                      li
+                        = link_to @event, data: { confirm: 'Are you sure?' }, method: :delete do
+                          i.fa.fa-trash-o
+                          | &nbsp;
+                          ' Delete this Event
+            h4.bold.primary= @event.title
+            p.little-snug-top= @event.description
+            .callout.white
+              .row
+                .medium-3.columns
+                  p.bold.little-snug-top Location:
+                .medium-9.columns
+                  p.little-snug-top
+                    - if @event.alliance_id.present? and @event.access_url.blank?
+                      ' Private Alliance:
+                      br
+                      ' #{link_to @event.alliance.name, alliance_path(@event.alliance, anchor: 'office')}
+                    - elsif @event.alliance_id.blank? and @event.access_url.present?
+                      ' #{link_to 'All Members Room', @event.access_url, target: '_blank'}
                     - else
-                      p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path} to display local time.
-                  - else
-                    p.little-snug-top.faint This Live Event is over
-                - else
-                  p.little-snug-top Not set!
-            .row
-              .medium-3.columns
-                p.bold.little-snug-top Event type:
-              .medium-9.columns
-                p.little-snug-top
-                  span.has-tip.normal data-tooltip=true aria-haspopup=true data-click-open='false' title=EVENT_TYPE_TIP
-                    = @event.event_type
-            .row
-              .medium-3.columns
-                p.bold.little-snug-top.snug-bottom Event Organizer:
-              .medium-9.columns
-                p.little-snug-top.snug-bottom=link_to "#{@event.organizer.name} (#{render 'partials/user_si_ti_display', user: @event.organizer})", vanity_path(@event.organizer.username)
-                /- if @event.organizer.time_zone.present?
-                  p.faint.snug-top
-                    = ActiveSupport::TimeZone.new(@event.organizer.time_zone)
-                /- if @event.organizer.work_role.present?
-                  p.faint.snug-top
-                    ' Primary Work Role:
-                    - if current_user and current_user == @event.organizer and @event.organizer.work_role == 'Unset'
-                      ' #{link_to '(' + @event.organizer.work_role + '!)', edit_user_registration_path(current_user)}
+                      ' Location TBD
+              .row
+                .medium-3.columns
+                  p.bold.little-snug-top Start time:
+                .medium-9.columns
+                  - if @event.start_time.present?
+                    - if @event.start_time > Time.zone.now
+                      p.little-snug-top= @event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
+                      - if current_user and current_user.time_zone.present?
+                        p.faint.snug-top
+                          ' Your local: #{@event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, at %H:%M %Z')}
+                      - else
+                        p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path} to display local time.
                     - else
-                      ' #{@event.organizer.work_role}
+                      p.little-snug-top.faint This Live Event is over
+                  - else
+                    p.little-snug-top Not set!
+              .row
+                .medium-3.columns
+                  p.bold.little-snug-top Event type:
+                .medium-9.columns
+                  p.little-snug-top
+                    span.has-tip.normal data-tooltip=true aria-haspopup=true data-click-open='false' title=EVENT_TYPE_TIP
+                      = @event.event_type
+              .row
+                .medium-3.columns
+                  p.bold.little-snug-top.snug-bottom Event Organizer:
+                .medium-9.columns
+                  p.little-snug-top.snug-bottom=link_to "#{@event.organizer.name} (#{render 'partials/user_si_ti_display', user: @event.organizer})", vanity_path(@event.organizer.username)
+                  /- if @event.organizer.time_zone.present?
+                    p.faint.snug-top
+                      = ActiveSupport::TimeZone.new(@event.organizer.time_zone)
+                  /- if @event.organizer.work_role.present?
+                    p.faint.snug-top
+                      ' Primary Work Role:
+                      - if current_user and current_user == @event.organizer and @event.organizer.work_role == 'Unset'
+                        ' #{link_to '(' + @event.organizer.work_role + '!)', edit_user_registration_path(current_user)}
+                      - else
+                        ' #{@event.organizer.work_role}
 
-      .float-right
-        p.snug-top.faint.text-right
-        p.snug-top.faint
+        .float-right
+          p.snug-top.faint.text-right
+          p.snug-top.faint
 
 
-      .medium-4.columns
-        h4.bold.primary Upcoming Live Events:
-        - @upcoming_events.each do |event|
-          - if event == @event
-            p.indented-1.bold= link_to event.title, event_path(event)
-            p.indented-2.faint.snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
-            p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
-          - else
-            p.indented-1= link_to event.title, event_path(event)
-            p.indented-2.faint.snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
-            p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
+        .medium-4.columns
+          h4.bold.primary Upcoming Live Events:
+          - @upcoming_events.each do |event|
+            - if event == @event
+              p.indented-1.bold= link_to event.title, event_path(event)
+              p.indented-2.faint.snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
+              p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
+            - else
+              p.indented-1= link_to event.title, event_path(event)
+              p.indented-2.faint.snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
+              p.indented-2.faint.snug-top Organized by #{link_to event.organizer.name, vanity_path(event.organizer.username)}
+
+- else
+  - content_for :page_header do
+    h2.bold.little-space-top.little-space-bottom.white-text.text-center Nothing here!
+  .row
+    .medium-10.medium-offset-1.columns
+      .float-left
+        p.snug-top.space-bottom
+          = link_to events_path do
+            i.fa.fa-arrow-left
+            | &nbsp;
+            | &nbsp;
+            ' Return to All Live Events
+      p.snug-top.text-right Nucleus Live Events are put on by members, staff and special guests.
+      p.snug-top.show-for-medium &nbsp;
 
