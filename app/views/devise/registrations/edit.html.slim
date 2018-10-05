@@ -42,10 +42,10 @@
           .medium-3.columns
             = f.input :email, required: true
           .medium-3.columns
-            - if resource.subscription == 'associate'
-              = f.input :username, disabled: true, label: 'Upgrade plan for custom username'
-            - else
-              = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
+            /- if resource.subscription == 'associate'
+            /  = f.input :username, disabled: true, label: 'Upgrade plan for custom username'
+            /- else
+            = f.input :username, required: true, placeholder: 'username (lowercase, no spaces)'
 
         .row
           .medium-4.columns
