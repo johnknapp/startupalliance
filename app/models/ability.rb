@@ -36,6 +36,8 @@ class Ability
         can :dashboard,             Company
         can :set_sakpi,             Company
         can :unset_sakpi,           Company
+        can :join_alliance,         Alliance
+        can :remove_alliance_member, Alliance
         can :manage_members,        Alliance, creator_id: user.id
         can :manage_team,           Company,  creator_id: user.id
         can :search_results,        Discussion

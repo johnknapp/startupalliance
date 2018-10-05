@@ -10,7 +10,7 @@
         = f.input :url, label: 'URL', placeholder: 'Company website'
       .medium-4.columns
         = f.input :phases, label: 'Company stage', collection: Company.phases.keys
-    = f.input :is_unlisted, label: 'Activate stealth mode to hide your company'
+    = f.input :is_unlisted, label: 'Activate stealth mode to hide this Company Workspace'
     = f.input :recruiting, label: 'Display recruiting notification'
     = f.input :mission, label: 'Mission statement (Help people understand the value your company provides)', as: :text, input_html: { rows: '3' }, placeholder: 'Company mission statement and value proposition.'
     = f.input :primary_market, label: 'Primary market served (Help people understand who you help and where those people are)', as: :text, input_html: { rows: '2' }, placeholder: 'Briefly describe the market to which you provide value'

@@ -1,11 +1,11 @@
 - if current_user and (!@alliance.members.include? current_user) and (%w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions })
   - if @alliance.invite_only
-    p.snug-bottom This Private Alliance is Invitation Only
+    p.snug-bottom This Private Alliance is Invitation Only, you can message the creator #{link_to @alliance.creator.name, vanity_path(@alliance.creator.username)}.
   - else
-    - if @alliance.member_cap <= @alliance.members.count
+    - if @alliance.member_cap >= @alliance.members.count
       p.snug-bottom= link_to 'Join this Private Alliance', join_alliance_alliance_path, method: :put
     - else
-      p.snug-bottom Sorry, this Private Alliance is full, please message #{link_to @alliance.creator.name, vanity_path(@alliance.creator.username).
+      p.snug-bottom Sorry, this Private Alliance is full, you can message the creator #{link_to @alliance.creator.name, vanity_path(@alliance.creator.username)}.
 - elsif current_user and @alliance.creator == current_user
   p.snug-bottom You created this Private Alliance
 - elsif current_user and @alliance.members.include? current_user

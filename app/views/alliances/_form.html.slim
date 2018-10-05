@@ -6,7 +6,7 @@
     = f.input :name, placeholder: 'A brief name for this Private Alliance'
     = f.input :mission, label: 'Mission statement', as: :text, input_html: { rows: '2' }, placeholder: 'Mission statement for this Private Alliance'
     = f.input :invite_only, label: 'Membership by invitation only'
-    = f.input :is_unlisted, label: 'Activate stealth mode to hide your Private Alliance'
+    = f.input :is_unlisted, label: 'Activate stealth mode to hide this Private Alliance'
     = f.input :recruiting, label: 'Display recruiting notification'
     = f.input :leader_id, label: 'Private Alliance Leader', collection: @alliance.members if params[:action] == 'edit'
 
