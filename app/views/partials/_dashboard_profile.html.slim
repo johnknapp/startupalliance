@@ -1,0 +1,76 @@
+.column
+  .card.primary.shadow
+    .card-divider.accent-background
+      h5.bold.text-center
+        | TrueInsight Profile
+        span.faint
+          ' &trade;
+    .card-section
+      .plan-box data-equalizer-watch=true
+        p Make sure your profile is up-to-date.
+        ul.no-bullet.little-snug-top.snug-bottom.indented-1
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.mission.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Mission statement
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Mission statement
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.work_role.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Professional work role
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Professional work role
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.linkedin_profile.present? and current_user.twitter_profile.present? and current_user.website.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Social media accounts
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Social media accounts
+          li
+            = link_to users_set_skills_path do
+              - if current_user.skills.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Startup Skills (#{current_user.skill_index})
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Startup Skills (#{current_user.skill_index})
+          li
+            = link_to users_set_traits_path do
+              - if current_user.traits.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Personal Traits (#{current_user.trait_index})
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Personal Traits (#{current_user.trait_index})
