@@ -82,9 +82,13 @@
             span.bold We hope you do!
         li
           ' Check out upcoming #{link_to 'Live Events', events_path} and subscribe to the Events Calendar
+        li
+          ' Become familiar with your Members Dashboard. Just visit the #{link_to 'home page', root_path} when you’re signed in.
+          '
+
       = render 'partials/welcomebox'
 
-      h4.bold Just one more thing:
+      h4.bold One more thing:
       ul.indented-2
         li
           span.bold If you haven’t already...
@@ -95,4 +99,4 @@
                 em
                   ' Your current Gravatar:
                   | &nbsp;
-                  ' #{image_tag gravatar_url("#{@user.email}", 24)}
+                  ' #{image_tag gravatar_url("#{@user.email}", 36)}
