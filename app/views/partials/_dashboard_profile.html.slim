@@ -2,7 +2,7 @@
   .card.primary.shadow
     .card-divider.accent-background
       h5.bold.text-center
-        | TrueInsight Profile
+        | #{link_to 'TrueInsight Profile', vanity_path(current_user.username)}
         span.faint
           ' &trade;
         ' Status
