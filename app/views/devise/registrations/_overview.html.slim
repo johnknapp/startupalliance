@@ -37,14 +37,22 @@
         p.text-center #{@user.name} has not written their personal mission
 
     h5.bold.little-space-top Member summary:
-    - if @user.work_role
+    /- if @user.work_role_primary
       .float-right
         p.little-snug-top.text-right
-          - if current_user and current_user == @user and @user.work_role == 'Unset'
-            ' #{link_to '(' + @user.work_role + '!)', edit_user_registration_path(current_user)}
+          - if current_user and current_user == @user and @user.work_role_primary == 'Unset'
+            ' #{link_to '(' + @user.work_role_primary + '!)', edit_user_registration_path(current_user)}
           - else
-            ' #{@user.work_role}
+            ' #{@user.work_role_primary}
       p.little-snug-top Primary Work Role:
+    - if @user.work_role_primary and @user.work_role_secondary
+      .float-right
+        p.little-snug-top.text-right
+          - if current_user and current_user == @user
+            ' #{link_to @user.work_role_primary, edit_user_registration_path(current_user)} / #{link_to @user.work_role_secondary, edit_user_registration_path(current_user)}
+          - else
+            ' #{@user.work_role_primary} / #{@user.work_role_secondary}
+      p.little-snug-top Primary / Secondary Work Roles:
     /.float-right
       p.text-right.snug-top= @user.skill_index
     /p.snug-top Skill index / Trait index:

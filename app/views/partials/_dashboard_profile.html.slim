@@ -5,49 +5,11 @@
         | TrueInsight Profile
         span.faint
           ' &trade;
+        ' Status
     .card-section
       .plan-box data-equalizer-watch=true
-        p Make sure your profile is up-to-date.
+        /p Make sure your profile is up-to-date.
         ul.no-bullet.little-snug-top.snug-bottom.indented-1
-          li
-            = link_to edit_user_registration_path do
-              - if current_user.mission.present?
-                i.fa.fa-check-square
-                | &nbsp;
-                | &nbsp;
-                ' Mission statement
-              - else
-                span.alert
-                  i.far.fa-square
-                  | &nbsp;
-                  | &nbsp;
-                  ' Mission statement
-          li
-            = link_to edit_user_registration_path do
-              - if current_user.work_role.present?
-                i.fa.fa-check-square
-                | &nbsp;
-                | &nbsp;
-                ' Professional work role
-              - else
-                span.alert
-                  i.far.fa-square
-                  | &nbsp;
-                  | &nbsp;
-                  ' Professional work role
-          li
-            = link_to edit_user_registration_path do
-              - if current_user.linkedin_profile.present? and current_user.twitter_profile.present? and current_user.website.present?
-                i.fa.fa-check-square
-                | &nbsp;
-                | &nbsp;
-                ' Social media accounts
-              - else
-                span.alert
-                  i.far.fa-square
-                  | &nbsp;
-                  | &nbsp;
-                  ' Social media accounts
           li
             = link_to users_set_skills_path do
               - if current_user.skills.present?
@@ -74,3 +36,81 @@
                   | &nbsp;
                   | &nbsp;
                   ' Personal Traits (#{current_user.trait_index})
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.mission.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Mission statement
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Mission statement
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.work_role_primary != 'Unset'
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Primary work role
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Primary work role
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.work_role_secondary != 'Unset'
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Secondary work role
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Secondary work role
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.linkedin_profile.present? and current_user.twitter_profile.present? and current_user.website.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Social media accounts
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Social media accounts
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.country_code.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Country of residence
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Country of residence
+          li
+            = link_to edit_user_registration_path do
+              - if current_user.time_zone.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Time zone
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Time zone

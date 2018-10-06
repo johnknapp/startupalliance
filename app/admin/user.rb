@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   menu parent: 'Subscriptions'
 
-  permit_params :id, :pid, :first_name, :last_name, :username, :work_role, :mission, :bio, :email, :password, :password_confirmation,
+  permit_params :id, :pid, :first_name, :last_name, :username, :work_role_primary, :work_role_secondary, :mission, :bio, :email, :password, :password_confirmation,
                 :current_password, :skill_index, :trait_index, :company_owner, :twitter_profile, :role, :subscribed_at, :subscription_state, :state,
                 :linkedin_profile, :website, :country_code, :time_zone, :plan_id, :acqsrc, :public_skills, :public_traits
 
@@ -91,7 +91,7 @@ ActiveAdmin.register User do
     column :username do |user|
       link_to user.username, vanity_path(user.username)
     end
-    column :work_role
+    column :work_role_primary
     column :role
     column :plan
     column :subscription_state
@@ -110,7 +110,8 @@ ActiveAdmin.register User do
   filter :email
   filter :state,                as: :select, collection: USER_STATES
   filter :role,                 as: :select, collection: USER_ROLES
-  filter :work_role,            as: :select, collection: WORK_ROLE
+  filter :work_role_primary,    as: :select, collection: WORK_ROLE
+  filter :work_role_secondary,  as: :select, collection: WORK_ROLE
   filter :plan
   filter :stripe_customer_id
   filter :stripe_coupon_code
@@ -124,7 +125,8 @@ ActiveAdmin.register User do
       f.input :username
       f.input :mission
       f.input :email
-      f.input :work_role,     as: :select, collection: WORK_ROLE
+      f.input :work_role_primary,     as: :select, collection: WORK_ROLE
+      f.input :work_role_secondary,   as: :select, collection: WORK_ROLE
       # f.input :company_owner
       f.input :public_skills
       f.input :public_traits

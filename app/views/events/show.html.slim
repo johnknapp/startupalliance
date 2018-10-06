@@ -90,13 +90,13 @@
                   /- if @event.organizer.time_zone.present?
                     p.faint.snug-top
                       = ActiveSupport::TimeZone.new(@event.organizer.time_zone)
-                  /- if @event.organizer.work_role.present?
+                  /- if @event.organizer.work_role_primary.present?
                     p.faint.snug-top
                       ' Primary Work Role:
-                      - if current_user and current_user == @event.organizer and @event.organizer.work_role == 'Unset'
-                        ' #{link_to '(' + @event.organizer.work_role + '!)', edit_user_registration_path(current_user)}
+                      - if current_user and current_user == @event.organizer and @event.organizer.work_role_primary == 'Unset'
+                        ' #{link_to '(' + @event.organizer.work_role_primary + '!)', edit_user_registration_path(current_user)}
                       - else
-                        ' #{@event.organizer.work_role}
+                        ' #{@event.organizer.work_role_primary}
 
         .float-right
           p.snug-top.faint.text-right
