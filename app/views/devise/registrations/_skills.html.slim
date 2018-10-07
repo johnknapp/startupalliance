@@ -19,5 +19,8 @@
                 p.bold.meter-text= us.skill.name.html_safe
         - else
           p.text-center We encourage you to list your Startup Skills
-    - else
-      p.space-top.text-center #{@user.name} has not listed their startup skills or is keeping them private
+    - elsif @user.public_skills == false and @user.skill_index != 0
+      p.space-top.text-center #{@user.name} only shares their Startup Skills with other members
+      p.space-top.text-center.bold= link_to 'Join Startup Alliance to see what they know!', features_path
+    - elsif @user.skill_index == 0
+      p.space-top.text-center #{@user.name} has not listed their startup skills yet!
