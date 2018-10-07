@@ -58,10 +58,9 @@
             = f.input :time_zone, label: 'Time zone where you live', required: true, priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select your time zone', input_html: { class: 'chosen-select' }
         /- if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
         .row.little-space-top
-          .small-4.columns
-            .indented-1= f.input :public_skills, required: false, label: 'Make my skills visible to non-members'
-          .small-4.columns.end
-            .indented-1= f.input :public_traits, required: false, label: 'Make my traits visible to non-members'
+          .small-6.columns
+            .indented-1= f.input :public_skills, required: false, label: 'Make my skills publicly visible to everybody. (Recommended)'
+            .indented-1= f.input :public_traits, required: false, label: 'Make my traits publicly visible to everybody. (Recommended)'
         .row
           .large-6.columns
             = f.input :password, label: 'New password', placeholder: 'New password'
