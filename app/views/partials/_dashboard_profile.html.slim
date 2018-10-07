@@ -11,6 +11,13 @@
         /p Make sure your profile is up-to-date.
         ul.no-bullet.little-snug-top.snug-bottom.indented-1
           li
+            = link_to edit_user_registration_path do
+              .float-right
+                .faint
+                  - if current_user.public_skills
+                    ' everybody
+                  - else
+                    ' members only
             = link_to users_set_skills_path do
               - if current_user.skills.present?
                 i.fa.fa-check-square
@@ -24,6 +31,13 @@
                   | &nbsp;
                   ' Startup Skills (#{current_user.skill_index})
           li
+            = link_to edit_user_registration_path do
+              .float-right
+                .faint
+                  - if current_user.public_traits
+                    ' everybody
+                  -else
+                    ' members only
             = link_to users_set_traits_path do
               - if current_user.traits.present?
                 i.fa.fa-check-square
