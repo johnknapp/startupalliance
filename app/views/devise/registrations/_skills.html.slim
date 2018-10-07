@@ -21,6 +21,6 @@
           p.text-center We encourage you to list your Startup Skills
     - elsif @user.public_skills == false and @user.skill_index != 0
       p.space-top.text-center #{@user.name} only shares their Startup Skills with other members
-      p.space-top.text-center.bold= link_to 'Join Startup Alliance to see what they know!', features_path
+      p.text-center.bold= link_to 'Join Startup Alliance to see what they know!', features_path, class: 'button accent shadow'
     - elsif @user.skill_index == 0
       p.space-top.text-center #{@user.name} has not listed their startup skills yet!
