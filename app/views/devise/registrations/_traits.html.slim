@@ -20,7 +20,7 @@
         - else
           p.text-center We encourage you to list your Personal Traits
     - elsif @user.public_traits == false and @user.trait_index != 0
-      p.space-top.text-center #{@user.name} only shares their Personal Traits with other members
-      p.text-center.bold= link_to 'Join Startup Alliance to get to know them!', features_path, class: 'button accent shadow'
+      p.space-top.text-center Only members can see the Personal Traits #{@user.name} has.
+      p.text-center.bold= link_to 'Become a member now to see them!', features_path, class: 'button accent shadow'
     - elsif @user.trait_index == 0
-      p.space-top.text-center #{@user.name} has not listed their personal traits yet!
+      p.space-top.text-center #{@user.name} has not listed their Personal Traits yet!
