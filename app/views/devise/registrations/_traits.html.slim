@@ -19,7 +19,7 @@
                 p.bold.meter-text= ut.trait.name.html_safe
         - else
           p.text-center We encourage you to list your Personal Traits
-    - elsif @user.public_triats == false and @user.trait_index != 0
+    - elsif @user.public_traits == false and @user.trait_index != 0
       p.space-top.text-center #{@user.name} only shares their Personal Traits with other members
       p.space-top.text-center.bold= link_to 'Join Startup Alliance to get to know them!', features_path
     - elsif @user.trait_index == 0
