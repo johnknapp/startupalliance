@@ -200,11 +200,12 @@
         h5.bold.space-top.little-snug-bottom
           ' Financing
         p
-          ' Startup Alliance is capitalized by the founder,
-          ' #{link_to 'member subscriptions', features_path},
-          | #{link_to 'patrons', 'https://www.patreon.com/startupalliance', target: '_blank'}
-          ' , and
-          ' #{link_to 'sponsorships', sponsorship_path}.
+          ' Startup Alliance is capitalized by
+          ' #{link_to 'member subscriptions', features_path}, and
+          /' , and
+          /' #{link_to 'the founder', vanity_path('john')},
+          ' #{link_to 'The Startup Alliance Foundation', 'https://startupalliance.org', target: '_blank'}.
+          /' #{link_to 'sponsorships', sponsorship_path}.
           '
 
         p &nbsp;
