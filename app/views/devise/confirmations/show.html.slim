@@ -8,7 +8,7 @@
     p.snug-top All fields are required.
 
     - if params[:error] == 'true'
-      .callout.accent
+      .callout.alert-background.shadow-4dp
         p
           strong There was an error, please try again!
 
@@ -17,42 +17,26 @@
             div[class="alert-box #{name.to_s == 'notice' ? 'success' : 'alert'} shadow-4dp" data-alert=true]
               p= content_tag :div, msg
 
-    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :put }) do |f|
-      = f.error_notification
-      .form-inputs
-        = f.hidden_field :confirmation_token, value: params[:confirmation_token]
-        .row
-          .medium-4.columns
-            = f.input :first_name, required: true, autofocus:true
-            span.form-error
-              ' First name is required
-          .medium-4.columns
-            = f.input :last_name, required: true
-            span.form-error
-              ' Last name is required
-          .medium-4.columns
-            - if resource.subscription == 'associate'
-              = f.input :username, disabled: true, label: 'Default username for Associates'
-            - else
-              = f.input :username,  label: 'Username (letters, numbers, hyphen)', required: true, placeholder: 'lower case alphanumeric plus hyphen'
-            span.form-error
-              ' Username is required
-            /.space-top.indented-1= f.input :company_owner, required: false, label: 'I own my own company'
-        /.row
-          .medium-4.columns
-        .row
-          .medium-3.columns
-            = f.input :work_role_primary, label: 'Your primary work role', include_blank: 'Select your primary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
-          .medium-3.columns
-            = f.input :work_role_secondary, label: 'Your secondary work role', include_blank: 'Select your secondary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
-          .medium-3.columns
-            = f.input :country_code, label: 'Country where you live', required: false, include_blank: 'Select your country', input_html: { class: 'chosen-select' }
-          .medium-3.columns
-            = f.input :time_zone, label: 'Time zone where you live', required: false, priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select your time zone', input_html: { class: 'chosen-select' }
-        .row.little-space-top
-          .medium-6.columns
-            = f.input :password, required: true
-          .medium-6.columns
-            = f.input :password_confirmation, required: true
-      .form-actions
-        = f.button :submit, 'Activate your account', class: 'expand'
+.row
+  .large-8.large-offset-2.columns
+    .callout.space-top.accent.shadow-4dp
+      = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :put}) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.hidden_field :confirmation_token, value: params[:confirmation_token]
+          .row
+            .medium-6.columns
+              = f.input :first_name, required: true, autofocus:true
+              span.form-error
+                ' First name is required
+            .medium-6.columns
+              = f.input :last_name, required: true
+              span.form-error
+                ' Last name is required
+          .row
+            .medium-6.columns
+              = f.input :password, required: true
+            .medium-6.columns
+              = f.input :password_confirmation, required: true
+        .form-actions
+          = f.button :submit, 'Activate your account!', class: 'bold expanded snug-bottom'
