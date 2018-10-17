@@ -71,11 +71,17 @@ $foundation-palette: (
 
    primary:   #1b4995,    // kyle 1c
    accent:    #99C7E3,    // kyle 1e lightened
+   secondary: #ee663c,    // orange soda
+   alert:     #FB3640,
+   light-grey: #f4f4f4,
+   medium-gray: #cacaca,
+   dark-grey: #8a8a8a,
+   warning:   #E5323B,
+   success:   #FFD700,
 //   accent: #8eb8e5,    // jordy blue
 //   secondary: #ff6600,    // "Big Orange Button"
 //   secondary: #f25f5c,    // sunset orange           nice orange
 //   secondary: #f36d6a,    // lightened sunset orange 'begonia'
-   secondary: #ee663c,    // orange soda
 //   secondary: #eb4511,    // oriole orange           dark
 //   secondary: #ef767a,    // tango pink              salmon-y
 //   secondary: #e7ad99,    // pastel pink             weak
@@ -89,12 +95,6 @@ $foundation-palette: (
 //   primary:   #5873D9,
 //   accent:    #8EF9F3,
 //   secondary: #5873D9,
-   alert:     #FB3640,
-   light-grey: #f4f4f4,
-   medium-gray: #cacaca,
-   dark-grey: #8a8a8a,
-   warning:   #E5323B,
-   success:   #FFD700,
 );
 
 // Color usage

@@ -99,7 +99,10 @@ class RegistrationsController < Devise::RegistrationsController
     else
       redirect_back(fallback_location: root_path, alert: 'Either your email is invalid... or you’re a robot!') and return
     end
+  end
 
+  def setup_profile
+    @user = current_user
   end
 
   def update

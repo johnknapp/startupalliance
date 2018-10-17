@@ -14,8 +14,8 @@ class EventsController  < ApplicationController
     elsif params[:query].present?
       @events    = Event.event_tsearch(params[:query])
     elsif params[:organizer_pid].present?
-      @organizer        = User.find_by_pid(params[:organizer_pid])
-      if @organizer
+      @organizer = User.find_by_pid(params[:organizer_pid])
+      if @organizer.present?
         @events  = Event.where(organizer_id: @organizer.id).order(:start_time)
       end
     else

@@ -1,0 +1,41 @@
+.callout.accent.shadow-4dp
+  = simple_form_for @user, url: user_profile_path(@user) do |f|
+    = f.error_notification
+    .form-inputs
+      .row
+        .small-12.columns
+          .callout.primary
+            p.little-snug-bottom Customize your username to get the perfect Profile URL
+            = f.input :username,  label: '(only letters, numbers and hyphen)', required: true, placeholder: 'lower case alphanumeric plus hyphen'
+            span.form-error
+              ' Username is required!
+            p.little-snug-top
+              ' Your current profile URL:
+              span.bold
+                = vanity_url(@user.username)
+      .row
+        .small-12.columns
+          = f.input :mission, as: :text, label: 'Write your personal mission statement', placeholder: 'Write a brief mission statement.'
+      .row
+        .small-12.columns
+          = f.input :work_role_primary, label: 'Select your primary work role', include_blank: 'Select your primary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
+      .row
+        .small-12.columns
+          .little-space-top= f.input :work_role_secondary, label: 'Select your secondary work role', include_blank: 'Select your secondary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
+      .row
+        .small-12.columns
+          .little-space-top= f.input :country_code, label: 'Country where you live', required: false, include_blank: 'Select your country', input_html: { class: 'chosen-select' }
+      .row
+        .small-12.columns
+          .little-space-top= f.input :time_zone, label: 'Time zone where you live', required: false, priority: ActiveSupport::TimeZone.us_zones, include_blank: 'Select your time zone', input_html: { class: 'chosen-select' }
+      .row
+        .small-12.columns
+          .little-space-top= f.input :twitter_profile, label: 'Your Twitter URL', placeholder: 'Complete URL'
+      .row
+        .small-12.columns
+          .little-space-top= f.input :linkedin_profile, label: 'Your LinkedIn URL', placeholder: 'Complete URL'
+      .row
+        .small-12.columns
+          .little-space-top= f.input :website, label: 'Your personal website', placeholder: 'Complete URL'
+    .form-actions.little-space-top
+      = f.button :submit, 'Save your entries', class: 'bold expanded'

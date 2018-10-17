@@ -1,0 +1,19 @@
+- content_for :page_header do
+  h2.bold.little-space-top.white-text.text-center
+    = @user.name
+  h4.bold.medium-grey-text.text-center
+    ' Set up your Profile
+
+.row
+  .large-10.large-offset-1.columns
+    .float-left
+      p.snug-top.space-bottom
+        = link_to vanity_path(@user.username) do
+          i.fa.fa-arrow-left
+          | &nbsp;
+          | &nbsp;
+          ' Return to your TrueInsight Profile
+    p.snug-top.show-for-medium &nbsp;
+.row
+  .large-6.large-offset-3.medium-10.medium-offset-1.columns
+    = render 'partials/profile_setup_form'

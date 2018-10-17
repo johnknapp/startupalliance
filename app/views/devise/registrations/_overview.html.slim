@@ -1,5 +1,7 @@
 .row
   .medium-12.columns
+    - if current_user and current_user == @user
+      p.snug-top.text-right= link_to 'Update your Overview', users_setup_profile_path
     /.float-right
       - if current_user and current_user.confirmed? and current_user != @user
         - if Conversation.between(current_user.id,@user.id).present?
@@ -32,9 +34,9 @@
       - if @user.mission.present?
         h5.little-snug-top.text-center= @user.mission
       - elsif current_user and @user == current_user and current_user.confirmed?
-        p.text-center= link_to 'Add your personal mission statement!', edit_user_registration_path
+        p.text-center= link_to 'Add your personal mission statement!', users_setup_profile_path
       - else
-        p.text-center #{@user.name} has not written their personal mission
+        p.text-center #{@user.name} has not written their Personal Mission
 
     h5.bold.little-space-top Member summary:
     /- if @user.work_role_primary
@@ -49,7 +51,7 @@
       .float-right
         p.little-snug-top.text-right
           - if current_user and current_user == @user
-            ' #{link_to @user.work_role_primary, edit_user_registration_path(current_user)} / #{link_to @user.work_role_secondary, edit_user_registration_path(current_user)}
+            ' #{link_to @user.work_role_primary, users_setup_profile_path} / #{link_to @user.work_role_secondary, users_setup_profile_path}
           - else
             ' #{@user.work_role_primary} / #{@user.work_role_secondary}
       p.little-snug-top Primary / Secondary Work Roles:
@@ -112,10 +114,13 @@
     - if %w[entrepreneur alliance company].any? { |necessary_subscriptions| @user.subscription == necessary_subscriptions }
     h5.bold Social profiles:
     - if @user.twitter_profile.present? or @user.linkedin_profile.present? or @user.website.present?
-      h5.little-snug-top.space-bottom#tour-2
+      h5.text-center.little-snug-top.space-bottom#tour-2
         - if @user.twitter_profile.present?
           = link_to @user.twitter_profile, target: '_blank'
             span.fa.fa-twitter
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
           | &nbsp;
           | &nbsp;
           | &nbsp;
@@ -127,11 +132,14 @@
           | &nbsp;
           | &nbsp;
           | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
         - if @user.website.present?
           = link_to @user.website, target: '_blank'
             span.fa.fa-globe
     - elsif current_user and @user == current_user and current_user.confirmed?
-      p.text-center.little-snug-top= link_to 'Add your social profiles!', edit_user_registration_path
+      p.text-center.little-snug-top= link_to 'Add your social profiles!', users_setup_profile_path
     - else
       p.little-snug-top #{@user.name} has not listed their social profiles
 

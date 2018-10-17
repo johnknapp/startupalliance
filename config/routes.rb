@@ -99,6 +99,8 @@ Rails.application.routes.draw do
 
   post :stripe_webhooks, to: 'cards#stripe_webhooks'
 
+  resources :user_profiles, only:   [:edit, :update]
+
   devise_scope :user do
     get '/:username' => 'registrations#show', as: :vanity, constraints: { format: 'html'}
     # get '/:username/topics' => 'topics#index', as: :user_topics, constraints: { format: 'html'}
@@ -111,6 +113,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { confirmations: 'confirmations', registrations: 'registrations', sessions: 'sessions' , passwords: 'passwords' }
   as :user do
+    get 'users/setup_profile',      to: 'registrations#setup_profile', constraints: { format: 'html' }
     get 'users/set_traits',         to: 'registrations#set_traits',    constraints: { format: 'html' }
     get 'users/set_skills',         to: 'registrations#set_skills',    constraints: { format: 'html' }
     get 'users/membership',         to: 'registrations#membership',    constraints: { format: 'html' }

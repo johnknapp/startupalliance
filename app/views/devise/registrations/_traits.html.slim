@@ -1,8 +1,7 @@
+- if current_user and current_user == @user
+  .snug-top.text-right= link_to 'Update your Personal Traits', users_set_traits_path
 .row
   .medium-10.medium-offset-1.columns
-    - if current_user and current_user == @user
-      .float-right
-        = link_to 'Set your Personal Traits', users_set_traits_path, class: 'button accent'
     - if (current_user or @user.public_traits == true) and (@user.traits.present? or @user == current_user)
       h5.bold.primary-text.little-space-bottom
         - if current_user == @user
