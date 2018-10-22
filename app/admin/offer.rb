@@ -35,16 +35,16 @@ ActiveAdmin.register Offer do
       f.input :pid, label: 'Landing page code', hint: 'Required. Must be unique. Recommend keep system value.'
       f.input :header_1, hint: 'Required'
       f.input :header_2, hint: 'Required'
-      f.input :box_1, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
+      f.input :box_1, input_html: { rows: 6 }, hint: 'Introduction. Aligned center.'
+      f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.where(state: 'active').order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
+      f.input :valid_through, hint: 'Optional'
+      f.input :coupon, hint: 'Valid Stripe Coupon Code. Optional.'
+      f.input :offer_lead_in, hint: 'Required'
+      f.input :benefit_lead_in, as: :text, input_html: { rows: 6 }, hint: 'Required'
       f.input :box_2, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
       f.input :box_3, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
-      f.input :video_url, label: 'YouTube video code', hint: 'Required'
-      f.input :valid_through, hint: 'Optional'
+      f.input :video_url, label: 'YouTube video code', hint: 'Optional'
       f.input :cta_button_text, hint: 'Required'
-      f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.where(state: 'active').order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
-      f.input :coupon, hint: 'Valid Stripe Coupon Code. Optional.'
-      f.input :offer_lead_in, hint: 'Optional'
-      f.input :benefit_lead_in, hint: 'Required'
     end
     f.actions
   end
@@ -59,26 +59,30 @@ ActiveAdmin.register Offer do
       row :box_1 do |offer|
         markdown offer.box_1
       end
+      row 'YouTube video code' do |offer|
+        offer.video_url
+      end
+      row :offer_lead_in
+      row :plan
+      if offer.plan.present?
+        row :plan_detail do |offer|
+          "Regular price #{offer.plan.display_price} with #{offer.plan.trial_period_days} day trial"
+        end
+      end
+      row :offer_valid_through do |offer|
+        offer.valid_through
+      end
+      row 'Membership benefits' do |offer|
+        markdown offer.benefit_lead_in
+      end
       row :box_2 do |offer|
         markdown offer.box_2
       end
       row :box_3 do |offer|
         markdown offer.box_3
       end
-      row 'YouTube video code' do |offer|
-        offer.video_url
-      end
-      row :offer_valid_through do |offer|
-        offer.valid_through
-      end
       row :cta_button_text
       # row :offer_lead_in
-      # row :plan
-      # if offer.plan.present?
-      #   row :plan_detail do |offer|
-      #     "Regular price #{offer.plan.display_price} with #{offer.plan.trial_period_days} day trial"
-      #   end
-      # end
       if offer.coupon.present?
         row :coupon_detail do |offer|
           coupon = Stripe::Coupon.retrieve(offer.coupon)
