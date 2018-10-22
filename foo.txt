@@ -100,3 +100,23 @@ app/services/subscription_service.rb (is where the magic happens!)
 1. As staff, I want to know what’s happening so I can maximize revenue and grow the business.
 1. As staff, I want to have all the cool admin stuff so I can keep the wheels of commerce rolling.
 1. As user, I want to get notifications and emails so I keep thinking about BB and do cool stuff.
+
+
+
+- Business models & customer discovery
+- Capitalization & cash flow
+- Founders, team & advisors
+- Ideation & validation
+- Legal, IP & corporate structure
+- Marketing, growth & sales
+- Product planning, production & design
+- Productivity hacks & time management
+- Putting Pirate Metrics to Work
+- Revenue models & pricing
+- Software, engineering & technology
+
+- Community wide discussion groups on topics you care about
+- Wiki style knowledge base with leaderboard
+- Bite sized nuggets of startup wisdom from our members
+- Live events organized by members, staff and special guests
+- Global Virtual Office for co-working and real-time collaboration

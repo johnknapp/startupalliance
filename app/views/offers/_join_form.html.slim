@@ -1,10 +1,13 @@
-.callout.primary.shadow-6dp
+.callout.success.shadow-6dp
+  h5.bold
+    ' #{@offer.plan.display_name} —
+    - if @offer.coupon.present?
+      ' #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
+    - else
+      ' #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+  p.faint.little-less-snug-top Then it’s only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
   - if @offer.valid_through.present?
-    p
-      span.bold
-        ' Don’t forget:
-      em
-        ' This offer expires #{@offer.valid_through.strftime('%B %e, %Y')}.
+    p This offer expires #{@offer.valid_through.strftime('%B %e, %Y')}.
   = simple_form_for(:user, url: registration_path(:user)) do |f|
     = f.error_notification
 
