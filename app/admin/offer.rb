@@ -33,17 +33,25 @@ ActiveAdmin.register Offer do
   form do |f|
     f.inputs 'Edit Offer' do
       f.input :pid, label: 'Landing page code', hint: 'Required. Must be unique. Recommend keep system value.'
-      f.input :header_1, hint: 'Required'
-      f.input :header_2, hint: 'Required'
+      f.li "<h2><strong>Lead-in header stripe for this cohort</strong></h2>".html_safe
+      f.input :header_1, hint: 'Required. "Exclusive offer for <cohort name>"'
+      f.input :header_2, hint: 'Required. Narrative offer description'
+      f.li "<h2><strong>Introduction for this cohort</strong></h2>".html_safe
       f.input :box_1, input_html: { rows: 6 }, hint: 'Introduction. Aligned center.'
-      f.input :plan_id, as: :select, hint: 'Leave blank for prospect offer.', collection: Plan.where(state: 'active').order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
+      f.input :video_url, label: 'YouTube video code', hint: 'Optional'
+      f.li "<h2><strong>Introducing the offer to the cohort</strong></h2>".html_safe
+      f.input :offer_lead_in, hint: 'Required'
+      f.li "<h2><strong>Plan, Duration, Coupon</strong></h2>".html_safe
+      f.input :plan_id, as: :select, hint: 'Required', collection: Plan.where(state: 'active').order(:display_name).pluck(:display_name, :id), include_blank: 'Choose plan'
       f.input :valid_through, hint: 'Optional'
       f.input :coupon, hint: 'Valid Stripe Coupon Code. Optional.'
-      f.input :offer_lead_in, hint: 'Required'
+      f.li "<h2><strong>Benefits summary of the offered membership tier</strong></h2>".html_safe
       f.input :benefit_lead_in, as: :text, input_html: { rows: 6 }, hint: 'Required'
-      f.input :box_2, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
+      f.li "<h2><strong>Optional. Further benefits of this membership tier</strong></h2>".html_safe
+      f.input :box_2, input_html: { further: 6 }, hint: 'Optional. Markdown supported.'
+      f.li "<h2><strong>Optional. Furtner benefits of this membership tier</strong></h2>".html_safe
       f.input :box_3, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
-      f.input :video_url, label: 'YouTube video code', hint: 'Optional'
+      f.li "<h2><strong>Email submit button text</strong></h2>".html_safe
       f.input :cta_button_text, hint: 'Required'
     end
     f.actions
