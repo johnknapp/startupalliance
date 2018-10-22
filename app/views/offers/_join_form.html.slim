@@ -2,7 +2,19 @@
   h5.bold
     ' #{@offer.plan.display_name} —
     - if @offer.coupon.present?
-      ' #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
+      ' #{@coupon.percent_off}% off
+      - if @coupon.duration_in_months.present? and @coupon.duration != 'once'
+        ' for #{@coupon.duration_in_months} months
+      - elsif @coupon.duration == 'once'
+        - invoice_amount = (@offer.plan.amount * @coupon.percent_off)/10000
+        ' first year
+        ' (You pay #{number_to_currency(invoice_amount)})
+
+
+
+
+
+
     - else
       ' #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
   p.faint.little-less-snug-top Then it’s only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}

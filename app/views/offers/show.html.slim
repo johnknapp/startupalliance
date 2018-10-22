@@ -25,6 +25,9 @@
       .little-space-top= render 'offers/video_embed'
 
 p.snug-top.show-for-medium &nbsp;
+/h1.text-center= @offer.plan.amount
+/h1.text-center= @coupon.percent_off
+/= @coupon.to_hash
 .callout.success
   .row
     .medium-12.columns
@@ -34,13 +37,21 @@ p.snug-top.show-for-medium &nbsp;
       .callout.success-background.coupon-border
         h4.bold.text-center= @offer.plan.display_name
         - if @coupon
-          h5.bold.text-center #{@coupon.percent_off}% off for #{@coupon.duration_in_months} months
+          h5.bold.text-center
+            ' #{@coupon.percent_off}% off
+            - if @coupon.duration_in_months.present? and @coupon.duration != 'once'
+              ' for #{@coupon.duration_in_months} months
+            - elsif @coupon.duration == 'once'
+              - invoice_amount = (@offer.plan.amount * @coupon.percent_off)/10000
+              ' first year
+              ' (You pay #{number_to_currency(invoice_amount)})
           - if @offer.valid_through.present?
             p.text-center.little-snug-top  Offer expires #{@offer.valid_through.strftime('%B %e, %Y')}
           p.text-center.faint Then it’s only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
         - else
           h5.bold.text-center Only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
       = markdown @offer.benefit_lead_in
+
 
 .callout.primary.snug-top
 
