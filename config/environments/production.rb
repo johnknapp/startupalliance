@@ -59,7 +59,12 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :info
+  # config.log_level = :debug   # 0
+  # config.log_level = :info      # 1
+  config.log_level = :warn    # 2
+  # config.log_level = :error   # 3
+  # config.log_level = :fatal   # 4
+  # config.log_level = :unknown # 5
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
