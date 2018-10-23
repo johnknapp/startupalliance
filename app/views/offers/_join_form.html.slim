@@ -8,16 +8,10 @@
       - elsif @coupon.duration == 'once'
         - invoice_amount = (@offer.plan.amount * @coupon.percent_off)/10000
         ' first year
-        ' (You pay #{number_to_currency(invoice_amount)})
-
-
-
-
-
-
+        ' (Only #{number_to_currency(invoice_amount)})
     - else
       ' #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
-  p.faint.little-less-snug-top Then it’s only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+  p.faint.little-less-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
   - if @offer.valid_through.present?
     p This offer expires #{@offer.valid_through.strftime('%B %e, %Y')}.
   = simple_form_for(:user, url: registration_path(:user)) do |f|
