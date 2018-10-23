@@ -80,15 +80,14 @@ p.snug-top.show-for-medium &nbsp;
 
           /- if @offer.plan and @offer.plan.short_name != 'associate'
   .row
-    .large-8.large-offset-2.medium-12.columns.columns
+    .large-8.large-offset-2.medium-12.columns
       p.snug-top.show-for-medium &nbsp;
       = render 'offers/join_form'
-
 
 .callout.primary-background.snug-top
   .row
     .medium-12.columns
-      h2.bold.white-text.text-center.space-top.space-bottom Better. Together.
-      .float-right
-        .medium-grey-text.snug-top.snug-bottom
-          ' Have a question? #{mail_to 'hello@startupalliance.com', 'Email us', encode: 'hex', class: 'medium-grey-text'}!
+      h2.bold.white-text.text-center.space-top Better. Together.
+      ul.menu.align-right.snug-top.snug-bottom
+        li= mail_to 'hello@startupalliance.com', 'Email us', encode: 'hex', class: 'medium-grey-text'
+        li= link_to 'Why we’re different', how_we_are_different_path, target: '_blank', class: 'medium-grey-text'
