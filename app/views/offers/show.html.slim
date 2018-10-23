@@ -33,7 +33,9 @@ p.snug-top.show-for-medium &nbsp;
     .large-6.large-offset-3.medium-8.medium-offset-2.columns
       .callout.success-background.coupon-border
         h4.bold.text-center= @offer.plan.display_name
-        p.text-center.little-less-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+        - if !@offer.plan.trial_period_days.nil?
+          p.text-center.little-snug-top #{@offer.plan.trial_period_days} day risk free trial (No card required)
+        p.text-center.little-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
 
         - if @coupon
           h5.bold.text-center
@@ -90,4 +92,5 @@ p.snug-top.show-for-medium &nbsp;
       h2.bold.white-text.text-center.space-top Better. Together.
       ul.menu.align-right.snug-top.snug-bottom
         li= mail_to 'hello@startupalliance.com', 'Email us', encode: 'hex', class: 'medium-grey-text'
-        li= link_to 'Why we’re different', how_we_are_different_path, target: '_blank', class: 'medium-grey-text'
+        li= link_to 'How it Works', how_it_works_path, target: '_blank', class: 'medium-grey-text'
+        li= link_to 'How We’re Different', how_we_are_different_path, target: '_blank', class: 'medium-grey-text'

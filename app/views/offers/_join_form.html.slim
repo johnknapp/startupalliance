@@ -11,7 +11,9 @@
         ' (Only #{number_to_currency(invoice_amount)})
     - else
       ' #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
-  p.faint.little-less-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+  - if !@offer.plan.trial_period_days.nil?
+    p.little-snug-top #{@offer.plan.trial_period_days} day risk free trial (No card required)
+  p.faint.little-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
   - if @offer.valid_through.present?
     p This offer expires #{@offer.valid_through.strftime('%B %e, %Y')}.
   = simple_form_for(:user, url: registration_path(:user)) do |f|
