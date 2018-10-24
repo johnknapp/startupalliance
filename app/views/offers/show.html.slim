@@ -35,10 +35,10 @@ p.snug-top.show-for-medium &nbsp;
         h4.bold.text-center= @offer.plan.display_name
         - if !@offer.plan.trial_period_days.nil?
           p.text-center.little-snug-top #{@offer.plan.trial_period_days} day risk free trial (No card required)
-        p.text-center.little-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+        p.text-center.snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
 
         - if @coupon
-          h5.bold.text-center
+          h4.bold.text-center
             ' #{@coupon.percent_off}% off
             - if @coupon.duration_in_months.present? and @coupon.duration != 'once'
               ' for #{@coupon.duration_in_months} months
@@ -49,7 +49,7 @@ p.snug-top.show-for-medium &nbsp;
           - if @offer.valid_through.present?
             p.text-center.little-snug-top  Offer expires #{@offer.valid_through.strftime('%B %e, %Y')}
         - else
-          h5.bold.text-center Only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+          h4.bold.text-center Only #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
       = markdown @offer.benefit_lead_in
 
 

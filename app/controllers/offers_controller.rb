@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
 
-  before_action :prepare_offer
+  before_action :prepare_offer, only: [:show]
 
   # GET /welcome/:pid
   def show
