@@ -22,8 +22,7 @@
         p.bold.little-snug-top Start time:
       .medium-9.columns
         - if event.start_time.present?
-          - if event.start_time > Time.zone.now
-
+          - if event.start_time+45.minutes > Time.zone.now
             p.little-snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
             - if current_user and current_user.time_zone.present?
               p.faint.snug-top
