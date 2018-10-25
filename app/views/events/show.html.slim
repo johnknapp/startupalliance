@@ -71,6 +71,8 @@
                           ' Your local: #{@event.start_time.in_time_zone(current_user.time_zone).try(:strftime, '%a, at %H:%M %Z')}
                       - else
                         p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path} to display local time.
+                    - elsif @event.start_time+30.minutes > Time.zone.now
+                      p.little-snug-top #{time_ago_in_words(@event.start_time.utc)} ago
                     - else
                       p.little-snug-top.faint This Live Event is over
                   - else

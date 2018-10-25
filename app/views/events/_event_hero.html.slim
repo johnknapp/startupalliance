@@ -22,7 +22,7 @@
         p.bold.little-snug-top Start time:
       .medium-9.columns
         - if event.start_time.present?
-          - if event.start_time+45.minutes > Time.zone.now
+          - if event.start_time > Time.zone.now
             p.little-snug-top= event.start_time.utc.try(:strftime, '%a, %m/%d/%Y %H:%M %Z')
             - if current_user and current_user.time_zone.present?
               p.faint.snug-top
@@ -30,6 +30,8 @@
             - else
               p.faint.snug-top #{link_to 'Set your time zone', edit_user_registration_path} to display local time.
 
+          - elsif event.start_time+30.minutes > Time.zone.now
+            p.little-snug-top #{time_ago_in_words(event.start_time.utc)} ago
           - else
             p.little-snug-top.faint This Live Event is over
         - else

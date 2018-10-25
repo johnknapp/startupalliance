@@ -16,7 +16,7 @@ class EventsController  < ApplicationController
     elsif params[:organizer_pid].present?
       @organizer = User.find_by_pid(params[:organizer_pid])
       if @organizer.present?
-        @events  = Event.where(organizer_id: @organizer.id).order(:start_time)
+        @events  = Event.where(organizer_id: @organizer.id).order(start_time: :desc)
       end
     else
       @events    = Event.where('start_time > ?', Time.zone.now).order(:start_time).limit(10)
