@@ -4,27 +4,33 @@
   h4.bold.medium-grey-text.text-center
     ' Your current Trait Index is #{@user.trait_index}
 
-.row
-  .large-10.large-offset-1.columns
-    .float-left
+- if current_user and current_user == @user
+  .row
+    .medium-6.columns
       p.snug-top.space-bottom
         = link_to vanity_path(@user.username) do
           i.fa.fa-arrow-left
           | &nbsp;
           | &nbsp;
           ' Return to your TrueInsight Profile
-    p.snug-top.show-for-medium &nbsp;
+    .medium-6.columns
+      p.snug-top.space-bottom.text-right
+        = link_to users_set_skills_path do
+          ' Update your Startup Skills
+          | &nbsp;
+          | &nbsp;
+          i.fa.fa-arrow-right
+
 
 .row
   .medium-6.medium-offset-3.columns
     h5.bold Set your Personal Traits
     p.little-snug-top
-      ' You are strongly encouraged to rate yourself on this standard set of Personal Traits.
-      ' This helps other members get to know you and it helps you discover more about those with whom you interact.
-    p.little-snug-top
+      ' Rate yourself on these Personal Traits to help other members get to know you.
+      /' This helps other members get to know you and it helps you discover more about those with whom you interact.
       ' Only Personal Traits for which you are rated will be visible to others.
-      ' By default, non-members cannot see your ratings when viewing your TrueInsight Profile.
-      ' You can make them visible to non-members on your #{link_to 'Account Settings Page', edit_user_registration_path}.
+      /' By default, non-members cannot see your ratings when viewing your TrueInsight Profile.
+      ' Make your ratings visible to non-members on your #{link_to 'Account Settings Page', edit_user_registration_path}.
     .callout.shadow-4dp
       p.bold.snug-top Honestly rate your level for each Personal Trait (10 is top expert)
 

@@ -4,16 +4,24 @@
   h4.bold.medium-grey-text.text-center
     ' Set up your Profile
 
-.row
-  .large-10.large-offset-1.columns
-    .float-left
+- if current_user and current_user == @user
+  .row
+    .medium-6.columns
       p.snug-top.space-bottom
         = link_to vanity_path(@user.username) do
           i.fa.fa-arrow-left
           | &nbsp;
           | &nbsp;
           ' Return to your TrueInsight Profile
-    p.snug-top.show-for-medium &nbsp;
+    .medium-6.columns
+      p.snug-top.space-bottom.text-right
+        = link_to users_set_skills_path do
+          ' Update your Startup Skills
+          | &nbsp;
+          | &nbsp;
+          i.fa.fa-arrow-right
+
+
 .row
   .large-6.large-offset-3.medium-10.medium-offset-1.columns
     = render 'partials/profile_setup_form'
