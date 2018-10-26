@@ -1,7 +1,13 @@
 .row
   .medium-12.columns
     - if current_user and current_user == @user
-      p.snug-top.text-right= link_to 'Update your Overview', users_setup_profile_path
+      p.snug-top.text-right
+        = link_to users_setup_profile_path do
+          ' Update your Overview
+          | &nbsp;
+          i.fa.fa-arrow-right
+
+
     /.float-right
       - if current_user and current_user.confirmed? and current_user != @user
         - if Conversation.between(current_user.id,@user.id).present?
