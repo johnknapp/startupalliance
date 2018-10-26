@@ -15,7 +15,7 @@
                 = vanity_url(@user.username)
       .row
         .small-12.columns
-          = f.input :mission, as: :text, label: 'Write your personal mission statement', placeholder: 'Write a brief mission statement.'
+          = f.input :mission, as: :text, input_html: { rows: '4' }, label: 'Write your personal mission statement', placeholder: 'Write a brief mission statement.'
       .row
         .small-12.columns
           = f.input :work_role_primary, label: 'Select your primary work role', include_blank: 'Select your primary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
@@ -33,9 +33,9 @@
           .little-space-top= f.input :twitter_profile, label: 'Your Twitter URL', placeholder: 'Complete URL'
       .row
         .small-12.columns
-          .little-space-top= f.input :linkedin_profile, label: 'Your LinkedIn URL', placeholder: 'Complete URL'
+          .little-less-space-top= f.input :linkedin_profile, label: 'Your LinkedIn URL', placeholder: 'Complete URL'
       .row
         .small-12.columns
-          .little-space-top= f.input :website, label: 'Your personal website', placeholder: 'Complete URL'
+          .little-less-space-top= f.input :website, label: 'Your personal website', placeholder: 'Complete URL'
     .form-actions.little-space-top
       = f.button :submit, 'Save your entries', class: 'bold expanded'
