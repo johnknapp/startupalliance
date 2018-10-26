@@ -30,7 +30,7 @@
 
 
     .callout.accent.shadow.little-space-top
-      h5.bold.text-center My Personal Mission:
+      h5.bold.text-center My Personal Mission Statement:
       - if @user.mission.present?
         h5.little-snug-top.text-center= @user.mission
       - elsif current_user and @user == current_user and current_user.confirmed?
