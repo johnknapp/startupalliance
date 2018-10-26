@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  prepend_before_action :authenticate_scope!, only: [:membership, :edit, :update, :set_skills, :set_traits, :destroy] # adding :membership to their defaults
+  prepend_before_action :authenticate_scope!, only: [:membership, :edit, :update, :setup_profile, :set_skills, :set_traits, :destroy] # adding to their defaults
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
