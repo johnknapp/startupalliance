@@ -17,7 +17,9 @@ ActiveAdmin.register Event do
     column :title
     column :event_type
     column :organizer
-    column :start_time
+    column :start_time do |event|
+      event.start_time.strftime('%m/%e/%y %H:%M %Z')
+    end
     actions
   end
 
