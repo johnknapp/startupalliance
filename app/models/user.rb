@@ -117,6 +117,8 @@ class User < ApplicationRecord
   def subscription
     if self.subscription_state != 'canceled' # if they're canceled, they can't do stuff.
       self.plan_short_name
+    else
+      'Cancelled'
     end
   end
 

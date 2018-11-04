@@ -79,7 +79,9 @@ ActiveAdmin.register User do
   index do
     selectable_column
     column :id
-    column :created_at
+    column :joined do |user|
+      user.created_at.strftime('%m/%e/%y')
+    end
     column :pid
     column :name do |user|
       if user.name
@@ -91,16 +93,27 @@ ActiveAdmin.register User do
     column :username do |user|
       link_to user.username, vanity_path(user.username)
     end
-    column :work_role_primary
-    column :role
-    column :plan
-    column :subscription_state
-    column :skill_index
-    column :trait_index
-    # column :company_owner
     column :email do |user|
       mail_to user.email, user.email
     end
+    column :work_role do |user|
+      user.work_role_primary
+    end
+    column :plan do |user|
+      link_to user.subscription, 'https://dashboard.stripe.com/customers/'+ user.stripe_customer_id, target: '_blank'
+    end
+    column :next_invoice do |user|
+      Time.at(user.next_invoice.date).strftime('%m/%e/%y')
+    end
+    column :amount do |user|
+      number_to_currency(user.next_invoice.amount_due.to_f/100)
+    end
+    column :sub_state do |user|
+      user.subscription_state
+    end
+    # column :skill_index
+    # column :trait_index
+    # column :company_owner
     actions
   end
 
@@ -111,10 +124,10 @@ ActiveAdmin.register User do
   filter :state,                as: :select, collection: USER_STATES
   filter :role,                 as: :select, collection: USER_ROLES
   filter :work_role_primary,    as: :select, collection: WORK_ROLE
-  filter :work_role_secondary,  as: :select, collection: WORK_ROLE
+  # filter :work_role_secondary,  as: :select, collection: WORK_ROLE
   filter :plan
-  filter :stripe_customer_id
-  filter :stripe_coupon_code
+  # filter :stripe_customer_id
+  # filter :stripe_coupon_code
   filter :subscribed_at
   filter :subscription_state,   as: :select, collection: SUBSCRIPTION_STATES
 
