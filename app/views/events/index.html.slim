@@ -48,7 +48,7 @@
         a.bold href='#list'
           ' List view
       li.tabs-title
-        a.bold href='#month'
+        a.bold href='#month' rel='nofollow'
           ' Month view
       /li.tabs-title
         a.bold href='#week'
@@ -88,7 +88,7 @@
           .little-space-top= month_calendar events: @events do |date, events|
             = date.day
             - events.each do |event|
-              p.text-center.little-snug-bottom= link_to event.title, event_path(event)
+              p.text-center.little-snug-bottom= link_to event.title, event_path(event), rel: 'nofollow'
         .hide-for-large
           p.snug-top &nbsp;
           p.bold.text-center Month view only available on large displays.

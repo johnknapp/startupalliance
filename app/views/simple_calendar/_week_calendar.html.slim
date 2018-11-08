@@ -1,6 +1,6 @@
 .simple-calendar
   .calendar-heading.text-center
-    = link_to calendar.url_for_previous_view + '#week' do
+    = link_to calendar.url_for_previous_view + '#week', rel: 'nofollow' do
       i.fa.fa-lg.fa-caret-left
       i.fa.fa-lg.fa-caret-left
     | &nbsp;
@@ -30,7 +30,7 @@
     | &nbsp;
     | &nbsp;
     | &nbsp;
-    = link_to calendar.url_for_next_view + '#week' do
+    = link_to calendar.url_for_next_view + '#week', rel: 'nofollow' do
       i.fa.fa-lg.fa-caret-right
       i.fa.fa-lg.fa-caret-right
   table.hover.shadow

@@ -1,6 +1,6 @@
 .simple-calendar
   .calendar-heading.text-center
-    = link_to calendar.url_for_previous_view + '#month' do
+    = link_to calendar.url_for_previous_view + '#month', rel: 'nofollow' do
       i.fa.fa-lg.fa-caret-left
       i.fa.fa-lg.fa-caret-left
     | &nbsp;
@@ -15,7 +15,7 @@
     | &nbsp;
     | &nbsp;
     | &nbsp;
-    = link_to calendar.url_for_next_view + '#month' do
+    = link_to calendar.url_for_next_view + '#month', rel: 'nofollow' do
       i.fa.fa-lg.fa-caret-right
       i.fa.fa-lg.fa-caret-right
 
