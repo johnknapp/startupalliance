@@ -105,9 +105,9 @@ ActiveAdmin.register User do
     column :next_invoice do |user|
       Time.at(user.next_invoice.date).strftime('%m/%e/%y')
     end
-    column :amount do |user|
-      number_to_currency(user.next_invoice.amount_due.to_f/100)
-    end
+    # column :amount do |user|
+    #   number_to_currency(user.next_invoice.amount_due.to_f/100)
+    # end
     column :sub_state do |user|
       user.subscription_state
     end
