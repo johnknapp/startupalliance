@@ -4,6 +4,9 @@
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center = @offer.header_1
   h4.bold.medium-grey-text.text-center            = @offer.header_2
+  /- if @offer.valid_through.present?
+    h5.bold.medium-grey-text.text-center  Offer expires #{@offer.valid_through.strftime('%B %e, %Y')}
+
 
 .row
   .medium-12.columns
@@ -35,7 +38,7 @@ p.snug-top.show-for-medium &nbsp;
         h4.bold.text-center= @offer.plan.display_name
         - if !@offer.plan.trial_period_days.nil? and @coupon.percent_off != 100
           p.text-center.little-snug-top #{@offer.plan.trial_period_days} day risk free trial (No card required)
-        p.text-center.snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
+        p.text-center.little-snug-top Regular price: #{@offer.plan.display_price} a #{@offer.plan.duration.humanize}
 
         - if @coupon
           h4.bold.text-center
