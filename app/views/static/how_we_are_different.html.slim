@@ -198,13 +198,19 @@
           ' These events occur online using your webcam or mobile device.
         li
           span.bold
-            ' Private Alliances —
-          ' This is where our members form lasting bonds with a small group of entrepreneurs they can trust.
-          ' They work together to ask questions, get answers, gain deeper insights and broader perspectives.
-          ' There are plenty of Private Alliances to join, plus Alliance Members can create their own.
+            ' Private Alliances build better entrepreneurs —
+          ' Inspired by Mastermind Groups, a Private Alliance is an online gathering place with
+          ' collaboration tools where you can work privately with a small group of entrepreneurs to
+          ' ask questions, get answers, participate in live events, gain deeper insights and broader perspectives.
+          ' There are #{link_to 'topic specific Private Alliances', alliances_path} you can join,
+          ' plus you can create your own and decide who to invite.
+          '
+          /' This is where our members form lasting bonds with a small group of entrepreneurs they can trust.
+          /' They work together to ask questions, get answers, gain deeper insights and broader perspectives.
+          /' There are plenty of Private Alliances to join, plus Alliance Members can create their own.
         li
           span.bold
-            ' Collaboration Workspaces for Companies —
+            ' Collaboration Workspaces make companies more effective —
           ' This is where busienss leaders unite the efforts of their company staff, advisors, consultants and investors.
           ' This is where they team up to set objectives for the company, discuss and overcome challenges and
           ' track their progress towards their ultimate success.
@@ -212,10 +218,12 @@
         li
           span.bold
             ' Committed to accelerating the globalization of entrepreneurship —
-          ' Once sustainably profitable, net income from subscription fees will be used
-          ' to spread startup knowledge and skills both directly to
-          ' entrepreneurs worldwide and through Entrepreneurship Support Organizations (ESOs) and
-          ' entrepreneurship gatherings and conferences.
+          ' #{link_to 'The Startup Alliance Foundation', 'https://startupalliance.org', target: '_blank'}
+          ' provides services and technology to incubators, accelerators and economic development entities
+          ' helping them improve the entrepreneurial landscape in their communities and augment the skills,
+          ' knowledge and abilities of entrepreneurs wherever they may be and whatever kind of business they run.
+          '
+
 
     = link_to 'Learn more and join us today', features_path, class: 'space-top bold large button expanded success shadow-4dp'
     p &nbsp;

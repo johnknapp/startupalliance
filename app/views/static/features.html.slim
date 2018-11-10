@@ -271,22 +271,15 @@
               p.little-snug-top= link_to 'Explore Private Alliances', alliances_path
             h3.bold.primary-text Private Alliances build better entrepreneurs
             p.little-snug-top
-              /span.bold
-                ' Form lasting bonds with a small group of entrepreneurs you can trust.
-              /' Work together to ask questions, get answers, gain deeper insights
-              /' and broader perspectives.
               ' Inspired by Mastermind Groups, a Private Alliance is an online gathering place with
               ' collaboration tools where you can work privately with a small group of entrepreneurs to
               ' ask questions, get answers, participate in live events, gain deeper insights and broader perspectives.
-              ' There are #{link_to 'plenty of Private Alliances', alliances_path} you can join,
-              ' plus you can create your own.
+              ' There are #{link_to 'topic specific Private Alliances', alliances_path} you can join,
+              ' plus you can create your own and decide who to invite.
               '
             p.little-snug-top.bold
               ' In a Private Alliance, you'll form lasting bonds, build trust in one another and amplify your success.
 
-            /p.little-snug-top
-              ' Alliance Members can participate in up to 5 Private Alliances at once and you can join and leave them at any time.
-              '
             h5.bold.little-space-top.snug-bottom Each Private Alliance includes:
             ul.indented-2
               li Public facing mission statement articulates the goals of the group
@@ -299,6 +292,7 @@
                 span.bold
                   ' New Members Fast Track
                 ' Private Alliance
+              li An ability to set stealth mode to keep things extra private
             .row
               .large-10.large-offset-1.columns
                 .callout.small.primary.shadow-3dp.little-space-top
@@ -315,7 +309,7 @@
                       a.button.expanded.success.bold.scale-to-110 data-open='alliance-month'
                         ' Go Month to Month...
                   h5.bold.text-center.little-space-top.primary 14 day free trial, no card required
-            p.snug-bottom.bold.text-center #{mail_to 'hello@startupalliance.com', 'Ask about group pricing for incubators and accelerators', subject: 'Incubator and Accelerator pricing question', encode: 'hex'}
+            p.snug-bottom.bold.text-center #{mail_to 'hello@startupalliance.com', 'Ask about group pricing for incubators and accelerators', subject: 'Incubator & Accelerator question', encode: 'hex'}
             /p.bold.snug-bottom
               ' Know some awesome entrepreneurs?
               = mail_to '', 'Click to tell them about Startup Alliance.', subject: 'Cool way we can collaborate', body: ALLIANCE_TIP_EMAIL
@@ -351,6 +345,8 @@
                 span.bold
                   ' New Members Fast Track
                 ' Private Alliance
+              li An ability to set stealth mode to keep things private
+
             .row
               .large-10.large-offset-1.columns
                 .callout.small.primary.shadow-3dp.little-space-top
