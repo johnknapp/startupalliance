@@ -241,5 +241,17 @@ alliances = [
              mission: "The tools and tech we love, the processes and strategies we employ. What works and what doesn’t work today and tomorrow."  }
 ]
 
-
+# crawled user pids
+# 'ex0v2' was changed to 'john'
+arr = %w[
+  3vfg
+  1754
+  bg0pe
+  cpg
+  eft
+  750
+  ex0v2
+  pje
+  i75
+]
 

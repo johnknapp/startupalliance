@@ -16,6 +16,7 @@ COMPANY_YEAR                = '$359.40' # raising pricing from intro to charter 
 RELEVANT_STRIPE_WEBHOOKS    = %w[
   customer.subscription.created
   customer.subscription.trial_will_end
+  invoice.upcoming
   invoice.created
   invoice.payment_succeeded
   invoice.payment_failed
@@ -23,9 +24,13 @@ RELEVANT_STRIPE_WEBHOOKS    = %w[
   customer.subscription.updated
 ]
 VALID_STRIPE_COUPONS        = %w[
+  50FIRST
+  2MTH50
+  2FREE
+  3FREE
   VIP6JK
-  charter6
   beta6
+  charter6
 ]
 STRIPE_PK_LIVE              = 'pk_live_ZnTO2YN1mMhQy09vNOUp5Sgc'
 STRIPE_PK_TEST              = 'pk_test_As4q7e0EyphQP9ncUqCCBlPJ'
@@ -72,7 +77,7 @@ OKR_TIP                     = 'Companies use our Objectives and Key Results tool
 FAST_TIP                    = 'Companies use our FActors & STrategies tool to keep the team focused on overall priorities and optimal strategies'
 SAKPI_SHORT_TIP             = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team.'
 SAKPI_TIP                   = 'Startup Alliance Key Performance Indicators are tracked and optimized by the company team. The level indicates relative strength of each SAKPI. (Visible only to company teams.)'
-COMPANY_TIP_EMAIL           = 'I found StartupAlliance.com, they have a Company Workspace that looks perfect for our team. I think we should try it out.'
+COMPANY_TIP_EMAIL           = 'I found StartupAlliance.com, they have a Company Collaboration Workspace that looks perfect for our team. I think we should try it out.'
 ALLIANCE_TIP_EMAIL          = 'StartupAlliance.com Private Alliances are a great way to help us collaborate and help each other. I think we should try it out.'
 
 USERNAME_EXCLUSIONS = %w[
