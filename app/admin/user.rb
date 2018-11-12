@@ -102,15 +102,15 @@ ActiveAdmin.register User do
     column :plan do |user|
       link_to user.subscription, 'https://dashboard.stripe.com/customers/'+ user.stripe_customer_id, target: '_blank'
     end
-    column :next_invoice do |user|
-      Time.at(user.next_invoice.date).strftime('%m/%e/%y')
-    end
+    # column :next_invoice do |user|
+    #   Time.at(user.next_invoice.date).strftime('%m/%e/%y')
+    # end
     # column :amount do |user|
     #   number_to_currency(user.next_invoice.amount_due.to_f/100)
     # end
-    # column :sub_state do |user|
-    #   user.subscription_state
-    # end
+    column :sub_state do |user|
+      user.subscription_state
+    end
     # column :skill_index
     # column :trait_index
     # column :company_owner
