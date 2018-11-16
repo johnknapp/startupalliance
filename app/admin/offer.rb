@@ -48,8 +48,8 @@ ActiveAdmin.register Offer do
       f.li "<h2><strong>Benefits summary of the offered membership tier</strong></h2>".html_safe
       f.input :benefit_lead_in, as: :text, input_html: { rows: 6 }, hint: 'Required'
       f.li "<h2><strong>Optional. Further benefits of this membership tier</strong></h2>".html_safe
-      f.input :box_2, input_html: { further: 6 }, hint: 'Optional. Markdown supported.'
-      f.li "<h2><strong>Optional. Furtner benefits of this membership tier</strong></h2>".html_safe
+      f.input :box_2, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
+      f.li "<h2><strong>Optional. Further benefits of this membership tier</strong></h2>".html_safe
       f.input :box_3, input_html: { rows: 6 }, hint: 'Optional. Markdown supported.'
       f.li "<h2><strong>Email submit button text</strong></h2>".html_safe
       f.input :cta_button_text, hint: 'Required'
