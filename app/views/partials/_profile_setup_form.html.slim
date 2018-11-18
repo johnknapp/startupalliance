@@ -5,17 +5,17 @@
       .row
         .small-12.columns
           .callout.primary
-            p.little-snug-bottom Customize your username to get the perfect Profile URL
+            p.little-snug-bottom.bold Customize your username
             = f.input :username,  label: '(only letters, numbers and hyphen)', required: true, placeholder: 'lower case alphanumeric plus hyphen'
             span.form-error
               ' Username is required!
             p.little-snug-top
-              ' Your current profile URL:
+              ' Your profile URL includes your username:
               span.bold
                 = vanity_url(@user.username)
       .row
         .small-12.columns
-          = f.input :mission, as: :text, input_html: { rows: '4' }, label: 'Write your personal mission statement', placeholder: 'Write a brief mission statement.'
+          = f.input :mission, as: :text, input_html: { rows: '4' }, label: 'Write your personal mission statement', placeholder: 'Tell the community what you’re about.'
       .row
         .small-12.columns
           = f.input :work_role_primary, label: 'Select your primary work role', include_blank: 'Select your primary role', collection: WORK_ROLE, required: false, input_html: { class: 'chosen-select' }
