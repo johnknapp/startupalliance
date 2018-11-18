@@ -31,7 +31,8 @@
         - if page.audits.present?
           /' #{page.audits.count.ordinalize} edit: #{page.updated_at.strftime('%b %d, %Y')}
           ' Published #{page.updated_at.strftime('%b %d, %Y')}
-          ' by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
+          - if page.audits.last.user.present?
+            ' by #{link_to page.audits.last.user.name, vanity_path(page.audits.last.user.username)}
         - elsif page.state == 'Suggestion'
           ' Suggested #{page.updated_at.strftime('%b %d, %Y')}
           ' by #{link_to page.author.name, vanity_path(page.author.username)}

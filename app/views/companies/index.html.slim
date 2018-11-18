@@ -48,7 +48,10 @@
                   ' —
       p.faint.snug-top Companies in Stealth Mode do not appear.
     - elsif current_user and !current_user.confirmed?
-      = render 'partials/inactive_browse_roadblock'
+      .row
+        .medium-10.medium-offset-1.columns
+          p.show-for-medium.snug-top &nbsp;
+          = render 'partials/inactive_browse_roadblock'
     - else
       .row data-equalizer=true
         .medium-10.medium-offset-1.columns

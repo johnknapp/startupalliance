@@ -16,6 +16,14 @@
       - if !@discussion.discussable
         li.bold= link_to 'Nucleus Discussions', discussions_path
       li.bold= @discussion.name
+- if current_user and !current_user.confirmed?
+  .row
+    .medium-11.medium-offset-1.columns
+      .callout.small.alert.little-space-top.snug-bottom
+        p.text-center
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+            = link_to 'Activate your account', new_confirmation_path(current_user)
+          '  to access the discussions!
 .row
   .medium-4.columns.medium-push-8
     p &nbsp;
@@ -46,11 +54,8 @@
   .medium-7.medium-offset-1.columns.medium-pull-4
     - if current_user and current_user.confirmed?
       p= render 'topics/add_modal'
-    - elsif current_user and !current_user.confirmed?
-      p
-        span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
-          ' Activate your account
-        '  to add a Topic thread!
+    - else
+      p &nbsp;
     - if @discussion.topics.present?
       - @discussion.topics.fresh_posts_first.each do |topic|
         .callout.accent.shadow.space-bottom
@@ -82,14 +87,17 @@
                         i.fa.fa-trash-o
                         | &nbsp;
                         ' Delete
-          - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+          - if current_user and current_user.confirmed? and topic.posts.present? and topic.posts.unread_by(current_user).present?
             .float-left
               h5= link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
                 i.fa.fa-comments.red-text
                 | &nbsp;
                 | &nbsp;
           h4.bold
-            = link_to topic.name, discussion_topic_path(@discussion,topic)
+            - if current_user and current_user.confirmed?
+              = link_to topic.name, discussion_topic_path(@discussion,topic)
+            - else
+              = topic.name
           p.faint.little-snug-top
             ' (Started by #{link_to topic.author.name, vanity_path(topic.author.username)}.
             = topic_meta(topic)
@@ -102,8 +110,8 @@
         - elsif current_user and !current_user.confirmed?
           p.text-center.snug-bottom
             span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
-              ' Activate your account
-            '  to start a Topic Thread!
+              = link_to 'Activate your account', new_confirmation_path(current_user)
+            '  to access the discussions!
 
 
 

@@ -24,6 +24,12 @@
       .callout.snug-bottom
         p.bold Instant access with FREE Associate Membership
         = render 'partials/join_form', acqsrc: 'discussions_index'
+- if current_user and !current_user.confirmed?
+  .callout.small.alert.space-top.snug-bottom
+    p.text-center
+      span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+        = link_to 'Activate your account', new_confirmation_path(current_user)
+      '  to access the discussions!
 .row
   .medium-5.columns.medium-push-7
     .float-right.space-top
@@ -49,13 +55,16 @@
         ul.little-snug-top
           - nucleus_topics.fresh_posts_first.limit(8).each do |topic|
             li.little-space-bottom
-              - if current_user and topic.posts.present? and topic.posts.unread_by(current_user).present?
+              - if current_user and current_user.confirmed? and topic.posts.present? and topic.posts.unread_by(current_user).present?
                 .float-right
                   = link_to mark_posts_read_discussion_topic_posts_path(topic.discussion,topic), data: { confirm: 'Really mark all these Posts as read?' }, method: :post do
                     i.fa.fa-comments.fa-lg.red-text
                   | &nbsp;
                   | &nbsp;
-              .bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+              - if current_user and current_user.confirmed?
+                .bold= link_to topic.name, discussion_topic_path(topic.discussion,topic)
+              - else
+                .bold= topic.name
               .scale-to-90 In: #{link_to topic.discussion.name, discussion_path(topic.discussion)}
               /.scale-to-90 = topic_meta(topic)
     - else

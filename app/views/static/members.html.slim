@@ -59,7 +59,10 @@
                   .text-center = member.alliances.count
       p.faint.snug-top Associate Members do not appear.
     - elsif current_user and !current_user.confirmed?
-      = render 'partials/inactive_browse_roadblock'
+      .row
+        .medium-10.medium-offset-1.columns
+          p.show-for-medium.snug-top &nbsp;
+          = render 'partials/inactive_browse_roadblock'
     - else
       .row
         .medium-10.medium-offset-1.columns
