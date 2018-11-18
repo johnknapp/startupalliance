@@ -10,7 +10,7 @@ class UserProfilesController < ApplicationController
     if @user.update(user_params)
       # to thanks activate if new or vanity_url if existing
       if Rails.application.routes.recognize_path(request.referrer)[:controller] == 'user_profiles'
-        redirect_to thanks_activate_path, notice: 'You set up your profile!'
+        redirect_to how_it_works_path, notice: 'You set up your profile!'
       else
         redirect_to vanity_path(@user.username), notice: 'You updated your profile!'
       end
