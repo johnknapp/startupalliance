@@ -11,7 +11,7 @@
   .row
     .medium-10.medium-offset-1.columns
 
-      - if current_user
+      - if current_user and current_user.confirmed?
         = link_to 'Enter the Global Virtual Office', gvo_url, target: '_blank', class: 'button expanded'
         p.snug-top.faint.text-center
           ' GVO link updates #{(time+1.day).strftime('%b %e @ %H:%M %Z')}
@@ -19,6 +19,11 @@
           span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=GVO_LINK_EXPIRY_TIP
             i.fa.fa-info-circle
         p.snug-top.faint.text-center= link_to 'Previous GVO link', gvo_url(24), target: '_blank'
+      - elsif current_user and !current_user.confirmed?
+        p.text-center
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+            = link_to 'Activate your account', new_confirmation_path(current_user)
+          '  to access the Gloabal Virtual Office!
       - else
         = link_to 'Enter the Global Virtual Office', gvo_url, class: 'button expanded disabled'
         .callout

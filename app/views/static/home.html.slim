@@ -7,9 +7,10 @@
 
   .row
     .medium-12.columns
-      .row
-        .medium-10.medium-offset-1.columns
-          = render 'partials/inactive_browse_roadblock'
+      - if !current_user.confirmed?
+        .row
+          .medium-10.medium-offset-1.columns
+            = render 'partials/inactive_browse_roadblock'
       .callout.accent.little-space-top.shadow-6dp
         /.row.medium-up-2.large-up-3 data-equalizer=true
         .row.medium-up-2.large-up-3

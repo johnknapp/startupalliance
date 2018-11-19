@@ -89,6 +89,12 @@
           .button-group
             = submit_tag 'Add your Quark', class: 'button expanded accent'
           p.faint.text-center.little-snug-top.snug-bottom Your contribution may be edited for clarity. Duplicate contributions may be removed.
+  - elsif current_user and !current_user.confirmed?
+    p.text-center
+      span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+        = link_to 'Activate your account', new_confirmation_path(current_user)
+      '  to add a Quark
+
   - else
     p.bold.little-snug-bottom Become a member to add a Quark!
     = render 'partials/join_form', acqsrc: 'add_quark_form'

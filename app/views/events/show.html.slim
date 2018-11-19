@@ -20,7 +20,12 @@
             ' Return to All Live Events
       p.snug-top.text-right Nucleus Live Events are put on by members, staff and special guests.
       p.snug-top.show-for-medium &nbsp;
-
+      - if current_user and !current_user.confirmed?
+        .callout.small.alert
+          p.text-center
+            span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+              = link_to 'Activate your account', new_confirmation_path(current_user)
+            '  to access Live Events!
       .row
         .medium-8.columns
           .callout.primary
@@ -50,15 +55,18 @@
                 .medium-3.columns
                   p.bold.little-snug-top Location:
                 .medium-9.columns
-                  p.little-snug-top
-                    - if @event.alliance_id.present? and @event.access_url.blank?
-                      ' Private Alliance:
-                      br
-                      ' #{link_to @event.alliance.name, alliance_path(@event.alliance, anchor: 'office')}
-                    - elsif @event.alliance_id.blank? and @event.access_url.present?
-                      ' #{link_to 'All Members Room', @event.access_url, target: '_blank'}
-                    - else
-                      ' Location TBD
+                  - if current_user and current_user.confirmed?
+                    p.little-snug-top
+                      - if @event.alliance_id.present? and @event.access_url.blank?
+                        ' Private Alliance:
+                        br
+                        ' #{link_to @event.alliance.name, alliance_path(@event.alliance, anchor: 'office')}
+                      - elsif @event.alliance_id.blank? and @event.access_url.present?
+                        ' #{link_to 'All Members Room', @event.access_url, target: '_blank'}
+                      - else
+                        ' Location TBD
+                  - else
+                    p.little-snug-top= link_to 'Activate your account for access', new_confirmation_path(current_user)
               .row
                 .medium-3.columns
                   p.bold.little-snug-top Start time:

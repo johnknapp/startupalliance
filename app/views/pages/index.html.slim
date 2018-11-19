@@ -34,6 +34,12 @@
         = render 'partials/join_form', acqsrc: 'kb_index'
 
 
+- if current_user and !current_user.confirmed?
+  .callout.small.alert.space-top.snug-bottom
+    p.text-center
+      span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+        = link_to 'Activate your account', new_confirmation_path(current_user)
+      '  to access the Knowledge Base!
 .row
   .medium-5.columns.medium-push-7
     .float-right.space-top

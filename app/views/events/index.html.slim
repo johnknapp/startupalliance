@@ -21,6 +21,13 @@
     .float-left
       = render 'partials/nucleus_menu'
     p.snug-top.space-bottom.text-right Live Events organized by Alliance and Company Members.
+
+    - if current_user and !current_user.confirmed?
+      .callout.small.alert.space-top.snug-bottom
+        p.text-center
+          span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=ACCOUNT_ACTIVATION_TIP
+            = link_to 'Activate your account', new_confirmation_path(current_user)
+          '  to access Live Events!
     .row
       .small-12.columns
         - if current_user and %w[alliance company].any? { |necessary_subscriptions| current_user.subscription == necessary_subscriptions }

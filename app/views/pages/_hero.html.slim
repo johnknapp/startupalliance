@@ -13,10 +13,13 @@
         span.has-tip data-tooltip=true aria-haspopup=true data-click-open='false' title=KB_SUGGESTION_TIP
           i.fa.fa-bell.primary-text
   h4.bold.text-center
-    - if page.state == 'Draft'
-      = link_to page.title, edit_page_path(page)
+    - if current_user and current_user.confirmed?
+      - if page.state == 'Draft'
+        = link_to page.title, edit_page_path(page)
+      - else
+        = link_to page.title, page_path(page)
     - else
-      = link_to page.title, page_path(page)
+      = page.title
   - if page.category_list.present?
     p.faint.little-snug-top.text-center
       - page.category_list.each_with_index do |cat, i|
