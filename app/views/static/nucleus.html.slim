@@ -23,7 +23,7 @@
     p.snug-top.space-bottom.text-right
       ' The central core of our global entrepreneurs community
       '
-    - if !current_user.confirmed?
+    - if current_user and !current_user.confirmed?
       .row
         .medium-10.medium-offset-1.columns
           = render 'partials/inactive_browse_roadblock'
