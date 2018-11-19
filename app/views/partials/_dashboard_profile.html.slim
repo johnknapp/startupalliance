@@ -11,6 +11,25 @@
         /p Make sure your profile is up-to-date.
         ul.no-bullet.little-snug-top.snug-bottom.indented-1
           li
+            = link_to users_setup_profile_path do
+              .float-right
+                .faint
+                  - if current_user.username.present?
+                    = current_user.username
+                  - else
+                    ' Not set!
+              - if current_user.username.present?
+                i.fa.fa-check-square
+                | &nbsp;
+                | &nbsp;
+                ' Username
+              - else
+                span.alert
+                  i.far.fa-square
+                  | &nbsp;
+                  | &nbsp;
+                  ' Username
+          li
             = link_to edit_user_registration_path do
               .float-right
                 .faint
