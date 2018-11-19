@@ -223,9 +223,8 @@
           ' economic development entities. Our work helps them improve the entrepreneurial landscape in their
           ' communities and augment the skills, knowledge and abilities of the entrepreneurs they support.
           '
-
-
-    = link_to 'Learn more and join us today', features_path, class: 'space-top bold large button expanded success shadow-4dp'
+    - if !current_user
+      = link_to 'Learn more and join us today', features_path, class: 'space-top bold large button expanded success shadow-4dp'
 .row
   .medium-10.medium-offset-1.columns
     p.snug-top &nbsp;
