@@ -15,7 +15,7 @@
               .float-right
                 .faint
                   - if current_user.username.present?
-                    = current_user.username
+                    = link_to current_user.username, vanity_path(current_user.username)
                   - else
                     ' Not set!
               - if current_user.username.present?
