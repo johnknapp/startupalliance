@@ -83,13 +83,13 @@ ActiveAdmin.register User do
       user.created_at.strftime('%m/%e/%y')
     end
     column :pid
-    column :name do |user|
-      if user.name
-        "#{user.name}"
-      else
-        "noname"
-      end
-    end
+    # column :name do |user|
+    #   if user.name
+    #     "#{user.name}"
+    #   else
+    #     "noname"
+    #   end
+    # end
     column :username do |user|
       link_to user.username, vanity_path(user.username)
     end
@@ -100,7 +100,7 @@ ActiveAdmin.register User do
       user.work_role_primary
     end
     column :plan do |user|
-      link_to user.subscription, 'https://dashboard.stripe.com/customers/'+ user.stripe_customer_id, target: '_blank'
+      link_to user.plan.name, 'https://dashboard.stripe.com/customers/'+ user.stripe_customer_id, target: '_blank'
     end
     # column :next_invoice do |user|
     #   Time.at(user.next_invoice.date).strftime('%m/%e/%y')
