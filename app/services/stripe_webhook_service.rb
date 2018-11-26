@@ -29,6 +29,8 @@ class StripeWebhookService
         happy_dance
       when 'customer.subscription.trial_will_end'
         request_card
+      when 'invoice.upcoming'
+        notify_upcoming_invoice
       when 'invoice.created'
         happy_dance
       when 'invoice.payment_succeeded'
@@ -58,13 +60,32 @@ class StripeWebhookService
       end
     end
 
-    # customer.subscription.trial_will_end
+    # customer.subscription.trial_will_end three days from onw
     def request_card
-      # If no card on file, ask them to add one
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
-      if user and user.last4.nil? and user.next_invoice.amount_due != 0
-        StripeMailer.card_request(user).deliver
-        Notifier.card_requested(user).deliver
+      if user
+        # make them active state
+        if user.subscription_state == 'trialing'
+          user.update_attribute(:subscription_state, 'active')
+        end
+        # ask for a card if they need to
+        if user.last4.nil? and user.next_invoice.amount_due != 0
+          StripeMailer.card_request(user).deliver
+          Notifier.card_requested(user).deliver
+        end
+      end
+    end
+
+    # invoice.upcoming three days from now
+    def notify_upcoming_invoice
+      # ask for a card if next invoice amount is non-zero
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
+      if user.next_invoice.amount_due != 0
+        # ask for a card if they need to
+        if user.last4.nil? and user.next_invoice.amount_due != 0
+          StripeMailer.card_request(user).deliver
+          Notifier.card_requested(user).deliver
+        end
       end
     end
 

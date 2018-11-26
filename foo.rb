@@ -255,3 +255,11 @@ arr = %w[
   i75
 ]
 
+users = User.all
+arr = []
+users.each do |u|
+  if Stripe::Customer.retrieve(id: u.stripe_customer_id).subscriptions.count > 1
+    arr << [u.id,u.email]
+  end
+end
+
