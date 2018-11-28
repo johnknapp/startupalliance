@@ -29,6 +29,8 @@ class StripeWebhookService
         happy_dance
       when 'customer.subscription.trial_will_end'
         request_card
+      when 'customer.subscription.updated'
+        update_subscription
       when 'invoice.upcoming'
         notify_upcoming_invoice
       when 'invoice.created'
@@ -74,6 +76,21 @@ class StripeWebhookService
           Notifier.card_requested(user).deliver
         end
       end
+    end
+
+    # customer.subscription.updated
+    # Catch dashboard changes to the subscription
+    #   add or remove coupons
+    #   TODO change plans . . . or reset if plan is not changing?
+    # Catch subscription state changes (trialing to active)
+    def update_subscription
+      user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
+      if user
+        user.update_attribute(:subscription_state, @event['data']['object']['status'])
+      end
+      # user subscribed_at subscription_state stripe_coupon_code
+      # registrations_controller#change_subscription handles
+      # user.update(plan_id: plan.id, subscription_state: sub.status, stripe_coupon_code: stripe_coupon_code)
     end
 
     # invoice.upcoming three days from now

@@ -1,4 +1,4 @@
-- plans = Plan.where(state: 'active').where.not(id: current_user.plan_id).order(amount: :desc)
+- plans = Plan.where(state: 'active').order(amount: :desc)
 .reveal#change-plan data-reveal=true
   button data-close=true aria-label='Close' type='button' class='close-button'
     span aria-hidden=true
@@ -28,6 +28,14 @@
             ' (No credit card required for Associate Membership.)
         = simple_form_for current_user, url: change_plan_path, method: :put do |f|
           = f.input :plan_id, label: false, include_blank: 'Choose another plan...', collection: plans, label_method: :display_name, value_method: :id
+          - if ni.discount and ni.discount.coupon.id
+            = f.hidden_field :stripe_coupon_code,     value: ni.discount.coupon.id
+            p.faint.text-center.little-snug-top
+              ' Group code “#{ni.discount.coupon.id}” applies
+            p.faint.text-center.snug-top
+              ' #{ni.discount.coupon.percent_off}% off for #{ni.discount.coupon.duration_in_months} months
+          - else
+            = f.input :stripe_coupon_code, label: false, placeholder: 'Group code'
           = submit_tag 'Change to the selected plan', class: 'bold button accent expanded little-snug-bottom'
         p.scale-to-90.little-space-bottom.text-center
           em

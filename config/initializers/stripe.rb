@@ -8,7 +8,11 @@ if Rails.env.production?
   Stripe.api_key                = ENV["STRIPE_API_KEY"]
   Stripe.api_version            = '2018-02-28'
 else # dev
-  $stripe_signing_secret        = 'whsec_g6TXYb1Gpx7yz1n0nC7b0v9xV1sP1dgr' # so impermanent. Ask ngrok how.
+  # must use rails s
+  # launch ngrok on port 3000, get the url + /stripe_webhooks
+  # Create webhook, grab the signing secret and paste it below
+  # https://webhook.site is also handy to see what comes in.
+  $stripe_signing_secret        = 'whsec_fjUmFJwt9vwk49FAyR59lYfHySFVUb1g' # changes with every new test webhook
   Stripe.api_key                = 'sk_test_0gqafnktKwV7pbt0t1RnWAtu'
   Stripe.api_version            = '2018-02-28'
 end

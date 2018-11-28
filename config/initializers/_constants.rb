@@ -16,6 +16,7 @@ COMPANY_YEAR                = '$359.40' # raising pricing from intro to charter 
 RELEVANT_STRIPE_WEBHOOKS    = %w[
   customer.subscription.created
   customer.subscription.trial_will_end
+  customer.subscription.updated
   invoice.upcoming
   invoice.created
   invoice.payment_succeeded

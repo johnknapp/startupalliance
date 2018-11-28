@@ -47,14 +47,21 @@ class RegistrationsController < Devise::RegistrationsController
     if current_user and params[:user][:plan_id]
       plan = Plan.find(params[:user][:plan_id])
 
+      if params[:user][:stripe_coupon_code].present?
+        stripe_coupon_code = params[:user][:stripe_coupon_code]
+      else
+        stripe_coupon_code = nil
+      end
+
       sub = current_user.first_sub              # retrieves the subscription object
-      sub.plan = plan.stripe_id                 # puts a new plan id on sub
+      sub.coupon  = stripe_coupon_code          # careful, this can remove ()if nil)
+      sub.plan    = plan.stripe_id              # this plan replaces what was there before
       sub.save                                  # saving removes old and adds new plan to this sub
 
       # Alternative update method can send other attributes
       # Stripe::Subscription.update(sub.id, plan: plan.stripe_id, trial_from_plan: true)
 
-      current_user.update(plan_id: plan.id, subscription_state: sub.status)
+      current_user.update(plan_id: plan.id, subscription_state: sub.status, stripe_coupon_code: stripe_coupon_code)
       GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
     end
     redirect_back(fallback_location: users_membership_path, alert: 'You changed your plan')
