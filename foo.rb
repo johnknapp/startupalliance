@@ -263,3 +263,136 @@ users.each do |u|
   end
 end
 
+# match all user.subscription_state to stripe subscription.status
+users = User.all
+arr = []
+users.each do |u|
+  sub = Stripe::Customer.retrieve(id: u.stripe_customer_id).subscriptions.first
+  if u.subscription_state != sub.status
+    arr << [u.id,u.stripe_customer_id,u.subscription_state,sub.status]
+  end
+  u.update(subscription_state: sub.status)
+end
+# 20 users got active sub-state on 11/28/18:
+[
+    [ 0] [
+    [0] 7,
+    [1] "cus_CgaeIcovI1dgsm",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 1] [
+    [0] 346,
+    [1] "cus_Cgaebk5ODHLQnJ",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 2] [
+    [0] 360,
+    [1] "cus_DL7Yph4xrWJUXP",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 3] [
+    [0] 342,
+    [1] "cus_CgaePReuo1FssE",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 4] [
+    [0] 340,
+    [1] "cus_CgaeHs3K4kUgpd",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 5] [
+    [0] 345,
+    [1] "cus_CgaeRniuox17To",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 6] [
+    [0] 351,
+    [1] "cus_CkrIhNO539srLw",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 7] [
+    [0] 335,
+    [1] "cus_CgaeLXaGZkiFBg",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 8] [
+    [0] 6,
+    [1] "cus_CgaeESCBuIESP0",
+    [2] "trialing",
+    [3] "active"
+],
+    [ 9] [
+    [0] 354,
+    [1] "cus_CucWtzVJYOdLW3",
+    [2] "trialing",
+    [3] "active"
+],
+    [10] [
+    [0] 347,
+    [1] "cus_CgaeSgHVZmOG25",
+    [2] "trialing",
+    [3] "active"
+],
+    [11] [
+    [0] 341,
+    [1] "cus_Cgaeqbh4MZr0Kx",
+    [2] "trialing",
+    [3] "active"
+],
+    [12] [
+    [0] 367,
+    [1] "cus_DhFiOCwbKwaphZ",
+    [2] "trialing",
+    [3] "active"
+],
+    [13] [
+    [0] 338,
+    [1] "cus_CgaeAoPObjkwdq",
+    [2] "trialing",
+    [3] "active"
+],
+    [14] [
+    [0] 361,
+    [1] "cus_DMXovj8H4CplTq",
+    [2] "trialing",
+    [3] "active"
+],
+    [15] [
+    [0] 364,
+    [1] "cus_DaW4wbxelqmZkz",
+    [2] "trialing",
+    [3] "active"
+],
+    [16] [
+    [0] 370,
+    [1] "cus_DlT46j84hAxfgj",
+    [2] "trialing",
+    [3] "active"
+],
+    [17] [
+    [0] 343,
+    [1] "cus_Cgae1ZYbjMTnEd",
+    [2] "trialing",
+    [3] "active"
+],
+    [18] [
+    [0] 337,
+    [1] "cus_CgaeKqbILcKbVN",
+    [2] "trialing",
+    [3] "active"
+],
+    [19] [
+    [0] 1,
+    [1] "cus_Cgaegg2H5hA1nh",
+    [2] "trialing",
+    [3] "active"
+]
+]
