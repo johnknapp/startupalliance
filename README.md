@@ -11,7 +11,7 @@
 Make a symlink telling pow where the app lives
 
 ```
-$ cd ~/.pow
+$ cd ~/.pow (puma-dev)
 $ ln -s /path/to/the_app <symlink_name>
 ```
 

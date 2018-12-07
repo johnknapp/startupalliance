@@ -1,4 +1,6 @@
 class GibbonService
+
+  # called upon account registration AND confirmation
   def self.add_update(user, list_id)
     if Rails.env.production? and user.email.present?
       md5_email = Digest::MD5.hexdigest(user.email.downcase)
@@ -21,6 +23,7 @@ class GibbonService
   rescue => e
   end
 
+  # called upon account deletion
   def self.unsubscribe(user, list_id)
     md5_email = Digest::MD5.hexdigest(user.email.downcase)
     if Rails.env.production? and user.email.present?

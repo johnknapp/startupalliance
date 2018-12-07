@@ -87,6 +87,9 @@ class StripeWebhookService
       user = User.find_by_stripe_customer_id(@event['data']['object']['customer'])
       if user
         user.update_attribute(:subscription_state, @event['data']['object']['status'])
+        if Rails.env.production?
+          GibbonService.add_update(user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+        end
       end
       # user subscribed_at subscription_state stripe_coupon_code
       # registrations_controller#change_subscription handles
