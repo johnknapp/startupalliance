@@ -68,7 +68,7 @@ class RegistrationsController < Devise::RegistrationsController
       # Alternative update method can send other attributes
       Stripe::Subscription.update(
           sub.id,                                 # the subscription we're updating
-          trial_from_plan:  true,                 # if old_plan.amount == 0
+          # trial_from_plan:  true,                 # if old_plan.amount == 0
           plan:             new_plan.stripe_id,
           coupon:           stripe_coupon_code
       )
