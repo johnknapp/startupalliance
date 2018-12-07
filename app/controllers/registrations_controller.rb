@@ -56,17 +56,22 @@ class RegistrationsController < Devise::RegistrationsController
 
       sub = current_user.first_sub              # retrieves the subscription object from Stripe
       # prevent the no card on file failure if they're upgrading to paid tier
-      if current_user.card_expiry == nil       # no card on file
-        if new_plan.amount > old_plan.amount   # price is going up
-          sub.trial_from_plan = true           # give a trial so they have time to add card
-        end
-      end
-      sub.coupon  = stripe_coupon_code          # careful, this can remove ()if nil)
-      sub.plan    = new_plan.stripe_id          # this plan replaces what was there before
-      sub.save                                  # saving removes old and adds new plan to this sub
+      # if current_user.card_expiry == nil       # no card on file
+      #   if new_plan.amount > old_plan.amount   # price is going up
+      #     sub.trial_from_plan = true           # give a trial so they have time to add card
+      #   end
+      # end
+      # sub.coupon  = stripe_coupon_code          # careful, this can remove ()if nil)
+      # sub.plan    = new_plan.stripe_id          # this plan replaces what was there before
+      # sub.save                                  # saving removes old and adds new plan to this sub
 
       # Alternative update method can send other attributes
-      # Stripe::Subscription.update(sub.id, plan: plan.stripe_id, trial_from_plan: true)
+      Stripe::Subscription.update(
+          sub.id,                                 # the subscription we're updating
+          trial_from_plan:  true,                 # if old_plan.amount == 0
+          plan:             new_plan.stripe_id,
+          coupon:           stripe_coupon_code
+      )
 
       current_user.update(plan_id: plan.id, subscription_state: sub.status, stripe_coupon_code: stripe_coupon_code)
       GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
