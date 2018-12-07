@@ -58,7 +58,7 @@ class RegistrationsController < Devise::RegistrationsController
       # prevent the no card on file failure if they're upgrading to paid tier
       if current_user.card_expiry == nil       # no card on file
         if new_plan.amount > old_plan.amount   # price is going up
-          sub.plan.trial_period_days = new_plan.trial_period_days
+          sub.trial_from_plan = true           # give a trial so they have time to add card
         end
       end
       sub.coupon  = stripe_coupon_code          # careful, this can remove ()if nil)
