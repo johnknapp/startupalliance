@@ -45,7 +45,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   def change_plan
     if current_user and params[:user][:plan_id]
-      plan = Plan.find(params[:user][:plan_id])
+      new_plan = Plan.find(params[:user][:plan_id])  # our plan objects
+      old_plan = current_user.plan                   # our plan objects
 
       if params[:user][:stripe_coupon_code].present?
         stripe_coupon_code = params[:user][:stripe_coupon_code]
@@ -53,9 +54,15 @@ class RegistrationsController < Devise::RegistrationsController
         stripe_coupon_code = nil
       end
 
-      sub = current_user.first_sub              # retrieves the subscription object
+      sub = current_user.first_sub              # retrieves the subscription object from Stripe
+      # prevent the no card on file failure if they're upgrading to paid tier
+      if current_user.card_expiry == nil       # no card on file
+        if new_plan.amount > old_plan.amount   # price is going up
+          sub.plan.trial_period_days = new_plan.trial_period_days
+        end
+      end
       sub.coupon  = stripe_coupon_code          # careful, this can remove ()if nil)
-      sub.plan    = plan.stripe_id              # this plan replaces what was there before
+      sub.plan    = new_plan.stripe_id          # this plan replaces what was there before
       sub.save                                  # saving removes old and adds new plan to this sub
 
       # Alternative update method can send other attributes
