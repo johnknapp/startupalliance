@@ -68,12 +68,12 @@ ActiveAdmin.register User do
 
         jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
         jk = User.find 1 if Rails.env.development?
-        # Page.where(author_id: resource.id).update_all(author_id: jk.id)          if resource.pages.present?
-        # Alliance.where(creator_id: resource.id).update_all(creator_id: jk.id)    if resource.alliances.present?
-        pages = Page.where(author_id: resource.id).all
-        pages.update_all(author_id: jk.id)        if pages    # reset the author
-        alliances = Alliance.where(creator_id: resource.id).all
-        alliances.update_all(creator_id: jk.id)   if alliances # reset the creator
+        Page.where(author_id: resource.id).update_all(author_id: jk.id)          if resource.pages.present?
+        Alliance.where(creator_id: resource.id).update_all(creator_id: jk.id)    if resource.alliances.present?
+        # pages = Page.where(author_id: resource.id).all
+        # pages.update_all(author_id: jk.id)        if pages    # reset the author
+        # alliances = Alliance.where(creator_id: resource.id).all
+        # alliances.update_all(creator_id: jk.id)   if alliances # reset the creator
 
         Stripe::Customer.retrieve(id: resource.stripe_customer_id).delete if resource.stripe_customer_id
       end
