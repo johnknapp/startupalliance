@@ -69,6 +69,7 @@ class RegistrationsController < Devise::RegistrationsController
       Stripe::Subscription.update(
           sub.id,                                 # the subscription we're updating
           # trial_from_plan:  true,                 # if old_plan.amount == 0
+          trial_end:        (Time.now+14.days).to_i,
           plan:             new_plan.stripe_id,
           coupon:           stripe_coupon_code
       )
