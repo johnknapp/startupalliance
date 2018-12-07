@@ -68,7 +68,7 @@ ActiveAdmin.register User do
 
         jk = User.where(email: 'john@startupalliance.com') if Rails.env.production?
         jk = User.find 1 if Rails.env.development?
-        Page.where(author_id: resource.id).update_all(author_id: jk.id)
+        Page.where(author_id: resource.id).update_all(author_id: jk.id)          if resource.pages_count > 0
         Alliance.where(creator_id: resource.id).update_all(creator_id: jk.id)
 
         Stripe::Customer.retrieve(id: resource.stripe_customer_id).delete if resource.stripe_customer_id
