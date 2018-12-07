@@ -89,7 +89,7 @@
         - if ni.amount_due == 0
           p $ 0.00
         - else
-          p $ #{ni.amount_due/100.to_f}
+          p $ #{sprintf( "%0.02f", ni.amount_due/100.to_f)}
       p Amount:
 
       .float-right
