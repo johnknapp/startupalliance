@@ -46,7 +46,6 @@ class RegistrationsController < Devise::RegistrationsController
   def change_plan
     if current_user and params[:user][:plan_id]
       new_plan = Plan.find(params[:user][:plan_id])  # our plan objects
-      old_plan = current_user.plan                   # our plan objects
 
       if params[:user][:stripe_coupon_code].present?
         stripe_coupon_code = params[:user][:stripe_coupon_code]
@@ -54,27 +53,31 @@ class RegistrationsController < Devise::RegistrationsController
         stripe_coupon_code = nil
       end
 
-      sub = current_user.first_sub              # retrieves the subscription object from Stripe
-      # prevent the no card on file failure if they're upgrading to paid tier
-      # if current_user.card_expiry == nil       # no card on file
-      #   if new_plan.amount > old_plan.amount   # price is going up
-      #     sub.trial_from_plan = true           # give a trial so they have time to add card
-      #   end
-      # end
-      # sub.coupon  = stripe_coupon_code          # careful, this can remove ()if nil)
-      # sub.plan    = new_plan.stripe_id          # this plan replaces what was there before
-      # sub.save                                  # saving removes old and adds new plan to this sub
+      sub = current_user.first_sub      # retrieves the subscription object from Stripe
 
-      # Alternative update method can send other attributes
+      # Set sub.trial_end appropriately based on existing sub.trial_end and new plan.trial_days
+      #   sub.trial_end  = null         give new_plan.trial_days unless 0 then nil
+      #   sub.trial_end  = past         give new_plan.trial_days unless 0 then nil
+      #   sub.trial_end  = future       retain existing sub.trial_end
+      # This logic prevents abuse by changing plans to continually extend trial_end
+      if sub.trial_end < Time.now.to_i or sub.trial_end == nil        # expired or blank
+        if new_plan.trial_period_days == 0                            # blank
+          trial_end = nil                                             # no trial
+        else                                                          # expired
+          trial_end = (Time.now+(new_plan.trial_period_days).days).to_i # give new trial
+        end
+      else                                                            # still on trial
+        trial_end = sub.trial_end                                     # keep existing trial_end
+      end
+
       Stripe::Subscription.update(
-          sub.id,                                 # the subscription we're updating
-          # trial_from_plan:  true,                 # if old_plan.amount == 0
-          trial_end:        (Time.now+14.days).to_i,
+          sub.id,
+          trial_end:        trial_end,                                # based on logic above
           plan:             new_plan.stripe_id,
           coupon:           stripe_coupon_code
       )
 
-      current_user.update(plan_id: plan.id, subscription_state: sub.status, stripe_coupon_code: stripe_coupon_code)
+      current_user.update(plan_id: new_plan.id, subscription_state: sub.status, stripe_coupon_code: stripe_coupon_code)
       GibbonService.add_update(current_user, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
     end
     redirect_back(fallback_location: users_membership_path, alert: 'You changed your plan')
