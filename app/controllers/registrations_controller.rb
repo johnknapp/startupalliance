@@ -135,12 +135,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     params[:user][:branch_ids] ||= []
-    if resource.save
-      if Rails.env.production?
-        GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
-      end
-    end
     super
+    if Rails.env.production?
+      GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
+    end
   end
 
   def show
