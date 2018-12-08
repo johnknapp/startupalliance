@@ -31,10 +31,10 @@ ActiveAdmin.register User do
       if params[:user][:password].blank?
         %w[password password_confirmation].each { |p| params[:user].delete(p) }
       end
+      super
       if Rails.env.production?
         GibbonService.add_update(resource, ENV['MAILCHIMP_SITE_MEMBERS_LIST'])
       end
-      super
     end
 
     def destroy
