@@ -1,7 +1,7 @@
 .column
   .card.primary.shadow
     .card-divider.accent-background
-      h5.bold.text-center My Companies
+      h5.bold.text-center My #{link_to 'Companies', companies_path}
     .card-section
       .plan-box data-equalizer-watch=true
         - if current_user.companies.present?

@@ -3,25 +3,28 @@
 
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
-    ' Check your email!
+    ' Check your inbox!
   h4.bold.medium-grey-text.text-center
     - if current_user
-      ' Your account activation email went to #{current_user.email}
+      ' Account activation email sent to #{current_user.email}
     - else
       ' We sent you an account activation email
 
 .row
   .medium-6.medium-offset-3.columns
-    p &nbsp;
+    p.snug-top &nbsp;
     .callout.primary.shadow-4dp
-      h4.primary.bold.space-top.little-more-snug-bottom.indented-2 Activation only takes a moment!
+      h3.h1.bold.primary.text-center Activate for full member benefits!
+      p.bold.little-more-snug-bottom.indented-2 Activation only takes a moment!
       ol.indented-4
-        li Click the link in the email we sent
+        li Click the link in the activation email
         li Add your name, choose a password
-        li Sign in and achieve your entrepreneurial dreams!
+        li Sign in and pursue your entrepreneurial dreams!
+      h4.h2.bold.primary.text-center That’s why we’re all here!
 
 .row
   .medium-10.medium-offset-1.columns
+    p.snug-top &nbsp;
     p.snug-top &nbsp;
     = render 'partials/storybox'
     /.row

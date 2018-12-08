@@ -2,9 +2,10 @@
   .card.primary.shadow
     .card-divider.accent-background
       h5.bold.text-center
-        | Entrepreneur’s Nucleus
-        span.faint
-          ' &trade;
+        = link_to nucleus_path do
+          | Entrepreneur’s Nucleus
+          span.faint
+            ' &trade;
 
     .card-section
       .plan-box data-equalizer-watch=true

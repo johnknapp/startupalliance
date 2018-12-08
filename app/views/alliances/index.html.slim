@@ -21,7 +21,7 @@
     .float-right
       p.snug-top.space-bottom Our members join Private Alliances to gain insight from beyond their company walls
 
-- if current_user and current_user.confirmed?
+- if current_user and !current_user.confirmed?
   .row
     .medium-10.medium-offset-1.columns
       p.show-for-medium.snug-top &nbsp;

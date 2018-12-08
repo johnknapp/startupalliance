@@ -1,7 +1,7 @@
 .column
   .card.primary.shadow
     .card-divider.accent-background
-      h5.bold.text-center Upcoming Events
+      h5.bold.text-center=link_to 'Upcoming Events', events_path
     .card-section
       .plan-box data-equalizer-watch=true
         - events = Event.where('start_time > ?', Time.zone.now).order(:start_time).limit(10)

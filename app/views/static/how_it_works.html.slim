@@ -62,15 +62,16 @@
             /p.little-less-space-top #{link_to 'Live example profile', vanity_path('john')}
           .medium-8.columns
 
-            h5.bold.space-top.little-snug-bottom
-              ' Sign-up and activate your account
-            p
-              ' Startup Alliance is a subscription based membership platform. You need to be signed in to use it.
-              ' If you’re not a member, head over to
-              ' #{link_to 'the Features & Pricing page', features_path},
-              ' choose a plan and sign up.
-              ' You also need to confirm your email address and choose a password.
-              '
+            - if !current_user
+              h5.bold.space-top.little-snug-bottom
+                ' Sign-up and activate your account
+              p
+                ' Startup Alliance is a subscription based membership platform. You need to be signed in to use it.
+                ' If you’re not a member, head over to
+                ' #{link_to 'the Features & Pricing page', features_path},
+                ' choose a plan and sign up.
+                ' You also need to confirm your email address and choose a password.
+                '
 
             h5.bold.space-top.little-snug-bottom
               ' Complete your
@@ -79,8 +80,8 @@
                 ' &trade;
               ' — let people get to know you
             p
-              ' In addition to adding our social profiles and mission statement, we rate ourselves
-              ' on a standard set of 18 startup skills and 12 personal traits.
+              ' In addition to adding our mission statement and social profiles, we rate
+              ' ourselves on a standard set of 18 startup skills and 12 personal traits.
               ' This way, we learn more about the people we interact with and we’re
               ' better equipped to make optimal connections with the right members.
             p.little-snug-top
@@ -91,20 +92,36 @@
               /' You have the option to make them visible to non-members. (On your account settings page.)
               /' Honestly
               '
-            .little-snug-top= image_tag 'personal_traits_screely.png'
+            .little-snug-top.shadow-4dp= image_tag 'personal_traits_screely.png'
             p.faint.text-center The more skills and traits you list, the more you’ll stand out.
 
             h5.bold.space-top.little-snug-bottom
-              ' Jump onto the New Members Fast Track
+              ' Jump into the New Members Fast Track
             p
               ' All new
               ' #{link_to 'Alliance and Company members', features_path}
-              ' are automatically added to the
+              ' can join the
               span.bold
                 | New Members Fast Track Private Alliance
               ' . In addition to orienting you to the platform, it includes staff led live events to help you create your success plan and
               ' forums for your Q&A and introductions.
               '
+            p.little-snug-top= link_to 'Browse the Private Alliances now!', alliances_path
+        .row
+          .medium-6.columns
+            /p.snug-bottom
+              = link_to how_it_works_path, class: 'button accent' do
+                i.fa.fa-arrow-left
+                | &nbsp;
+                | &nbsp;
+                ' Previous section
+          .medium-6.columns
+            p.snug-bottom.text-right
+              = link_to how_it_works_path(anchor: 'involved'), class: 'button accent' do
+                ' Next section
+                | &nbsp;
+                | &nbsp;
+                i.fa.fa-arrow-right
 
       .tabs-panel#involved
         .row
@@ -141,7 +158,7 @@
               ' Search and browse and if you don’t find what you’re looking for, suggest an article for someone else to write.
               span.bold
                 ' Better yet, write it yourself and gain recognition for your contribution!
-            .little-snug-top= image_tag 'kb_article_screely.png'
+            .little-snug-top.shadow-4dp= image_tag 'kb_article_screely.png'
             p.faint.text-center Members can vote on and collaboratively improve articles and browse the entire edit history.
               '
 
@@ -150,7 +167,7 @@
             p
               ' The Global Virtual Office is open 24/7/365 and available to all members.
               ' It’s a great place to hang out and hold impromptu meetings with other members.
-              ' Who will you meet? What will you learn there?
+              ' Who will you meet? What will you learn?
               '
 
             h5.bold.space-top.little-snug-bottom
@@ -160,6 +177,21 @@
               ' Alliance and Company members can join up to 5 Private Alliances where they can amplify their success
               ' through collaboration with trusted peers and forge powerful networks.
               '
+        .row
+          .medium-6.columns
+            p.snug-bottom
+              = link_to how_it_works_path(anchor: 'start'), class: 'button accent' do
+                i.fa.fa-arrow-left
+                | &nbsp;
+                | &nbsp;
+                ' Previous section
+          .medium-6.columns
+            p.snug-bottom.text-right
+              = link_to how_it_works_path(anchor: 'better'), class: 'button accent' do
+                ' Next section
+                | &nbsp;
+                | &nbsp;
+                i.fa.fa-arrow-right
 
       .tabs-panel#better
         .row
@@ -201,6 +233,21 @@
                 span.bold
                   ' Best of all,
                 ' form lasting bonds of trust with other entrepreneurs by joining #{link_to 'a Private Alliance', alliances_path}.
+        .row
+          .medium-6.columns
+            p.snug-bottom
+              = link_to how_it_works_path(anchor: 'involved'), class: 'button accent' do
+                i.fa.fa-arrow-left
+                | &nbsp;
+                | &nbsp;
+                ' Previous section
+          .medium-6.columns
+            p.snug-bottom.text-right
+              = link_to how_it_works_path(anchor: 'nucleus'), class: 'button accent' do
+                ' Next section
+                | &nbsp;
+                | &nbsp;
+                i.fa.fa-arrow-right
 
       .tabs-panel#nucleus
         .row
@@ -215,8 +262,23 @@
               ' community and helps all members maximize their entrepreneurial success.
               ' This is a members only resource so you need to be signed in.
               ' Some resources may not be available to Associate members.
-            .little-snug-top= image_tag 'nucleus_home_screely.png'
+            .little-snug-top.shadow-4dp= image_tag 'nucleus_home_screely.png'
             p.faint.text-center The Entrepreneur’s Nucleus is the central hub of our global entrepreneurs community
+        .row
+          .medium-6.columns
+            p.snug-bottom
+              = link_to how_it_works_path(anchor: 'better'), class: 'button accent' do
+                i.fa.fa-arrow-left
+                | &nbsp;
+                | &nbsp;
+                ' Previous section
+          .medium-6.columns
+            p.snug-bottom.text-right
+              = link_to how_it_works_path(anchor: 'alliances'), class: 'button accent' do
+                ' Next section
+                | &nbsp;
+                | &nbsp;
+                i.fa.fa-arrow-right
 
       .tabs-panel#alliances
         .row
@@ -227,16 +289,41 @@
             h5.bold.space-top.little-snug-bottom
               ' You’ll make significant progress towards your entrepreneurial goals
             p
-              ' Form lasting bonds with a small group of entrepreneurs you can trust.
-              ' Collaborate in private to ask questions, get answers, gain deeper insights and broader perspectives.
-              ' You can join topic specific Private Alliances plus we encourage you to create your own and invite the entrepreneurs you respect most.
-              ' Alliance Members can participate in up to 5 Private Alliances concurrently and Alliance and Company members can join and leave at any time.
+              /span.bold
+              ' Inspired by #{link_to 'Mastermind Groups', 'https://en.wikipedia.org/wiki/Mastermind_group', target: '_blank'}, a Private Alliance is an online gathering place
+              ' with collaboration tools so you can work privately with a small group of entrepreneurs to ask questions, get answers, gain deeper insights and broader perspectives.
+              ' #{link_to 'Browse the Private Alliances now!', alliances_path}
+              /' Collaborate in private to ask questions, get answers, gain deeper insights and broader perspectives.
+              /' You can join topic specific Private Alliances plus we encourage you to create your own and invite the entrepreneurs you respect most.
+              /' Alliance Members can participate in up to 5 Private Alliances concurrently and Alliance and Company members can join and leave at any time.
+            p.little-snug-top.snug-bottom
+              .span.bold
+                ' Private Alliances are available for these essential startup topics:
+            ul.snug-top.indented-2
+              li Business models & customer discovery
+              li Capitalization & cash flow
+              li Founders, team & advisors
+              li Ideation & validation
+              li Legal, IP & corporate structure
+              li Marketing, growth & sales
+              li Product planning, production & design
+              li Productivity hacks & time management
+              li Putting Pirate Metrics to Work
+              li Revenue models & pricing
+              li Software, engineering & technology
             p.little-snug-top
-              ' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it
-              ' from other members (and the Google Crawler.)
-              ' The Private Alliance creator can also limit membership to only those they personally invite.
-            .little-snug-top= image_tag 'fast_track_pa_screely.png'
-            p.faint.text-center All new Alliance and Company members get started in the New Member Private Alliance
+              .span.bold
+                ' Also, Alliance Members can create their own Private Alliances and control who can join.
+              /' The member who creates the Private Alliance can set “stealth mode” to keep it out of the directory and hide it
+              /' from other members (and the Google Crawler.)
+              /' The Private Alliance creator can also limit membership to only those they personally invite.
+            p.little-snug-top.space-bottom
+              em
+                ' Each Private Alliance has forums, member profiles and private messaging. They also have a
+                ' private virtual office for 24/7 webcam co-working, screen sharing, shared document
+                ' editing and hangouts.
+            .little-snug-top.shadow-4dp= image_tag 'fast_track_pa_screely.png'
+            p.faint.text-center New Alliance and Company members get started by joining the New Member Private Alliance
             h5.bold.space-top.little-snug-bottom
               ' How to get the most out of your Private Alliance
             p
@@ -245,6 +332,21 @@
               ' successful #{link_to 'Private Alliances', alliances_path} usually have similar best practices.
               ' Each group should work out their own guidelines but here are our recommendations:
             = render 'partials/pa_best_practices'
+        .row
+          .medium-6.columns
+            p.snug-bottom
+              = link_to how_it_works_path(anchor: 'nucleus'), class: 'button accent' do
+                i.fa.fa-arrow-left
+                | &nbsp;
+                | &nbsp;
+                ' Previous section
+          .medium-6.columns
+            p.snug-bottom.text-right
+              = link_to how_it_works_path(anchor: 'companies'), class: 'button accent' do
+                ' Next section
+                | &nbsp;
+                | &nbsp;
+                i.fa.fa-arrow-right
 
       .tabs-panel#companies
         .row
@@ -261,7 +363,7 @@
             p.little-snug-top
               ' The member who creates the Collaboration Workspace can set “stealth mode” to keep it out of the directory and hide it from other members.
               ' They can also choose to display a recruiting message.
-            .little-snug-top= image_tag 'hoverlay_cw_screely.png'
+            .little-snug-top.shadow-4dp= image_tag 'hoverlay_cw_screely.png'
             p.faint.text-center Each Collaboration Workspace has a public profile but the tools are only accessible to the team.
               '
             h5.bold.space-top.little-snug-bottom
@@ -298,5 +400,20 @@
                 span.bold
                   ' Private Virtual Office (PVO) —
                 ' Facilitates co-working and real-time collaboration whenever you need it, your PVO provides secure, private group webchats and screen sharing.
+        .row
+          .medium-6.columns
+            p.snug-bottom
+              = link_to how_it_works_path(anchor: 'alliances'), class: 'button accent' do
+                i.fa.fa-arrow-left
+                | &nbsp;
+                | &nbsp;
+                ' Previous section
+          .medium-6.columns
+            /p.snug-bottom.text-right
+              = link_to how_it_works_path(anchor: 'companies'), class: 'button accent' do
+                ' Next section
+                | &nbsp;
+                | &nbsp;
+                i.fa.fa-arrow-right
 
     p &nbsp;

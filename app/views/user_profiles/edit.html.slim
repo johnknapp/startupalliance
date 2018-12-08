@@ -1,9 +1,14 @@
 - content_for :page_header do
   h2.bold.little-space-top.white-text.text-center
-    | Set up your TrueInsight Profile
-    span.faint
-      ' &trade;
+    ' Tell us about yourself!
+  h4.bold.medium-grey-text.text-center
+    ' Take a moment now to set up your profile...
+    /| Set up your TrueInsight Profile
+    /span.faint
+    /  ' &trade;
+
 .row
   .large-8.large-offset-2.columns
-
+     p.faint.text-center
+      ' (Don’t worry, you can always finish it later.)
      = render 'partials/profile_setup_form', path: 'new'
