@@ -60,7 +60,7 @@ class RegistrationsController < Devise::RegistrationsController
       #   sub.trial_end  = past         give new_plan.trial_days unless 0 then nil
       #   sub.trial_end  = future       retain existing sub.trial_end
       # This logic prevents abuse by changing plans to continually extend trial_end
-      if sub.trial_end < Time.now.to_i or sub.trial_end == nil        # expired or blank
+      if sub.trial_end == nil or sub.trial_end < Time.now.to_i        # expired or blank
         if new_plan.trial_period_days == 0                            # blank
           trial_end = nil                                             # no trial
         else                                                          # expired
