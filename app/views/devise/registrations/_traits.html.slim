@@ -1,5 +1,9 @@
 - if current_user and current_user == @user
-  .snug-top.text-right= link_to 'Update your Personal Traits', users_set_traits_path
+  .snug-top.text-right
+    = link_to users_set_traits_path do
+      ' Update your Personal Traits
+      | &nbsp;
+      i.fa.fa-arrow-right
 .row
   .medium-10.medium-offset-1.columns
     - if (current_user or @user.public_traits == true) and (@user.traits.present? or @user == current_user)

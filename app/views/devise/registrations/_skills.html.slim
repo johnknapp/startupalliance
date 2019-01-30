@@ -1,5 +1,9 @@
 - if current_user and current_user == @user
-  .snug-top.text-right= link_to 'Update your Startup Skills', users_set_skills_path
+  .snug-top.text-right
+    = link_to users_set_skills_path do
+      ' Update your Startup Skills
+      | &nbsp;
+      i.fa.fa-arrow-right
 .row
   .medium-10.medium-offset-1.columns
     - if (current_user or @user.public_skills == true) and (@user.skills.present? or @user == current_user)
