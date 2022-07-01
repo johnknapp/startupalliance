@@ -100,6 +100,7 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'rb-readline'
   # gem 'factory_girl_rails'
   # gem 'rspec-rails'
   # gem 'spring-commands-rspec'
